@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>80</y>
+      <w>210</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Amministratore
+--
+-id{PK}: long
+-username: String
+-password: String
+-nomeAgenzia: String
+
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>370</y>
+      <w>210</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Foto
+--
+-id{PK}: long
+-chiave_s3: String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>320</y>
+      <w>210</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Agente Immobiliare
+--
+-id{PK}: long
+-username: String
+-password: String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>140</x>
+      <y>40</y>
+      <w>230</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=0..1
+create to &gt;</panel_attributes>
+    <additional_attributes>80.0;80.0;130.0;80.0;130.0;10.0;10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>90</x>
+      <y>170</y>
+      <w>110</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=1
+create to &gt;</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>0</x>
+      <y>660</y>
+      <w>520</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Postgress permette l'eredità. Posso creare un'entità immobile che ha
+come figli affitto e vendita così che posso rendere più manuntenibile il 
+software da poter aggiungere facilmente altri tipi di contratto. 
+
+ORM da poter utilizzare: hibernate o springDataJPA</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>610</x>
+      <y>340</y>
+      <w>210</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>Immobile
+--
+-id{PK}: long
+-descrizione: String
+-dimensioneInM:double
+-numeroStanze: int
+-numeroPiano: int
+-classeEnergetica: String
+-ascensore: boolean
+-portineria: boolean
+-climatizzatore: boolean
+-nPostoAuto: int
+-terrazza:boolean
+-garage: boolean
+-balcone: boolean
+-giardino: boolean
+-piscina: boolean
+-dataCaricamento: date
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>510</y>
+      <w>210</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Cliente
+--
+-id{PK}: long
+-email: String
+-password: String
+-nome: String
+-cognome: String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>790</x>
+      <y>360</y>
+      <w>310</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=3..10
+have to&gt;</panel_attributes>
+    <additional_attributes>30;50;290;50</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>190</x>
+      <y>340</y>
+      <w>440</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+shares to&gt;</panel_attributes>
+    <additional_attributes>30;50;420;50</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>660</x>
+      <y>610</y>
+      <w>110</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1= 1
+m2= 1
+have to&gt;
+</panel_attributes>
+    <additional_attributes>60;30;60;180</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>620</x>
+      <y>790</y>
+      <w>210</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Indirizzo
+--
+-id{PK}: long
+-regione: String
+-provinca: String
+-città: String
+-cap:String
+-via:String
+-numeroCivico: int
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>490</x>
+      <y>100</y>
+      <w>210</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Vendita
+--
+-prezzo: double
+-dataDisponibilità: Date
+-statoProprietà: String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>740</x>
+      <y>100</y>
+      <w>210</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Affitto
+--
+-canoneMensile: double
+-depositoCauzionale: double
+-durataContrattoAnni: int
+-speseCondominiali: double
+
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>320</x>
+      <y>500</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Visualizza
+--
+-id{PK}: long
+-dataUltimaVisita: date
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>190</x>
+      <y>520</y>
+      <w>150</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..n
+</panel_attributes>
+    <additional_attributes>30;30;130;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>400</x>
+      <y>430</y>
+      <w>230</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=1
+</panel_attributes>
+    <additional_attributes>30;70;30;30;210;30</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>500</y>
+      <w>210</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Statistiche
+--
+-id{PK}: long
+-numero_visite: long
+-numero_offerte: long
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>790</x>
+      <y>500</y>
+      <w>310</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+have to&gt;</panel_attributes>
+    <additional_attributes>30;50;290;50</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>860</x>
+      <y>620</y>
+      <w>450</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Ho estratto le informazioni delle statistiche da immobile visto che non
+sono strettamente collegate fra loro e non vengono usate sempre insieme. È stato preso in considerazione anche di creare una classe caratteristiche immobili però sono tutte informazioni che vengono
+prelevate insieme agli altri attributi di immobile.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>550</x>
+      <y>190</y>
+      <w>92</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..1
+is a&gt;</panel_attributes>
+    <additional_attributes>70;150;30;30</additional_attributes>
+  </element>
+  <element>
+    <type>com.baselet.element.old.element.Relation</type>
+    <coordinates>
+      <x>740</x>
+      <y>190</y>
+      <w>130</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=0..1
+is a&gt;</panel_attributes>
+    <additional_attributes>30;150;110;30</additional_attributes>
+  </element>
+</diagram>
