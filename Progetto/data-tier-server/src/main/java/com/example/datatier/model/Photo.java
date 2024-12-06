@@ -1,4 +1,5 @@
 package com.example.datatier.model;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
@@ -25,7 +26,7 @@ public class Photo {
         foreignKey = @ForeignKey(name="property_photo_fk"))
     private Property property;
 
-    public Photo(){}
+    public Photo(){/* */}
     
     public String getKeyS3() {
         return keyS3;

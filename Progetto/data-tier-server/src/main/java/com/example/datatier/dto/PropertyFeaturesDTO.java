@@ -1,29 +1,16 @@
-package com.example.datatier.model.embeddable;
+package com.example.datatier.dto;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-
-@Embeddable
-public class PropertyFeatures {
-
-    @Column(columnDefinition = "boolean default false")
+public class PropertyFeaturesDTO {
     private boolean elevator;
-    @Column(columnDefinition = "boolean default false")
     private boolean concierge;
-    @Column(name="air_conditioning", columnDefinition = "boolean default false")
     private boolean airConditioning;
-    @Column(columnDefinition = "boolean default false")
     private boolean terrace;
-    @Column(columnDefinition = "boolean default false")
     private boolean garage;
-    @Column(columnDefinition = "boolean default false")
     private boolean balcony;
-    @Column(columnDefinition = "boolean default false")
     private boolean garden;
-    @Column(columnDefinition = "boolean default false")
     private boolean pool;
 
+    // Getters and setters
     public boolean isElevator() {
         return elevator;
     }
@@ -40,7 +27,7 @@ public class PropertyFeatures {
         this.concierge = concierge;
     }
 
-    public boolean isClimatizzatore() {
+    public boolean isAirConditioning() {
         return airConditioning;
     }
 

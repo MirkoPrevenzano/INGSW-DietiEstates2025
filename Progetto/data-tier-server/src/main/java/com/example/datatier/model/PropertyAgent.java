@@ -27,7 +27,7 @@ public class PropertyAgent {
     @JoinColumn(name="id_administrator", referencedColumnName="id")
     private Administrator administrator;
 
-    public PropertyAgent(){}
+    public PropertyAgent(){/* */}
 
     public Long getId() {
         return id;

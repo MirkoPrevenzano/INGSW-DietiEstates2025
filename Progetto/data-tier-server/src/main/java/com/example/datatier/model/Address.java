@@ -30,7 +30,7 @@ public class Address {
 
      
 
-     public Address(){}
+     public Address(){/*Empty */}
 
   
      public String getCap() {
@@ -57,9 +57,7 @@ public class Address {
      public int getHouseNumber() {
          return houseNumber;
      }
-     public void setNumeroCivico(int houseNumber) {
-         this.houseNumber = houseNumber;
-     }
+    
 
      public String getProvince() {
          return province;
@@ -78,10 +76,17 @@ public class Address {
      public String getStreet() {
          return street;
      }
-     public void setVia(String street) {
+    
+
+     public void setStreet(String street) {
          this.street = street;
      }
+     public void setHouseNumber(int houseNumber) {
+         this.houseNumber = houseNumber;
+     }
    
+    
+    
 	
 
 

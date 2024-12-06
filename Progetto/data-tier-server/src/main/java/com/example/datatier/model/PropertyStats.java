@@ -29,7 +29,7 @@ public class PropertyStats {
     @JoinColumn(name="id_property", referencedColumnName = "id", foreignKey = @ForeignKey(name="property_feature_fk"))
     private Property property;
 
-    PropertyStats(){}
+    PropertyStats(){/* */}
 
     public Long getId() {
         return id;
@@ -55,7 +55,7 @@ public class PropertyStats {
     public long getVisitNumber() {
         return visitNumber;
     }
-    public void SetVisitNumber(long visitNumber) {
+    public void setVisitNumber(long visitNumber) {
         this.visitNumber = visitNumber;
     }
 

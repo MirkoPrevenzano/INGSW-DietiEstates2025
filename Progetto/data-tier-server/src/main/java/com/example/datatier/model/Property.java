@@ -78,7 +78,7 @@ public abstract class Property {
     @OneToMany(mappedBy = "property")
     private List<ViewProperty> visualizzaImmobili;
 
-    public Property() {
+    protected Property() {
     }
 
     @PrePersist

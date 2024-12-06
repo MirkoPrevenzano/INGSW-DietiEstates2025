@@ -14,8 +14,11 @@ public class Administrator {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
     private String username;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private String agencyName;
 
     @ManyToOne
@@ -25,7 +28,7 @@ public class Administrator {
     @OneToMany(mappedBy = "responsible")
     private List<Administrator> managers;
 
-    public Administrator() {
+    public Administrator() {/* */
     }
 
     public Long getId() {

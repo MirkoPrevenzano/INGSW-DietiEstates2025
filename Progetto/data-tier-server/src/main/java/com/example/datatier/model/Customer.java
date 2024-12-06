@@ -31,7 +31,7 @@ public class Customer {
     private List<ViewProperty> viewProperties;
 
 
-    public Customer(){}
+    public Customer(){/*Is empty */}
 
     public Long getId() {
         return id;

@@ -1,36 +1,24 @@
-package com.example.datatier.model;
+package com.example.datatier.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.PrimaryKeyJoinColumn;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name="property_rent")
-@PrimaryKeyJoinColumn(name="id")
-public class PropertyRent extends Property{
-
-    @Column(name="monthly_rent", nullable = false)
+public class PropertyRentDTO extends PropertyDTO {
     private double monthlyRent;
-    @Column(name="security_deposit", nullable = false)
     private double securityDeposit;
-    @Column(name="contract_years", columnDefinition="integer default 1")
     private int contractYears;
-    @Column(name="condo_fee", nullable = false)
     private double condoFee;
 
-    public PropertyRent(){/*is empty*/} 
-
+    // Getters and setters
     public double getMonthlyRent() {
         return monthlyRent;
     }
+
     public void setMonthlyRent(double monthlyRent) {
         this.monthlyRent = monthlyRent;
     }
-    
-    public double getDepositoCauzionale() {
+
+    public double getSecurityDeposit() {
         return securityDeposit;
     }
+
     public void setSecurityDeposit(double securityDeposit) {
         this.securityDeposit = securityDeposit;
     }
@@ -38,6 +26,7 @@ public class PropertyRent extends Property{
     public int getContractYears() {
         return contractYears;
     }
+
     public void setContractYears(int contractYears) {
         this.contractYears = contractYears;
     }
@@ -45,9 +34,8 @@ public class PropertyRent extends Property{
     public double getCondoFee() {
         return condoFee;
     }
+
     public void setCondoFee(double condoFee) {
         this.condoFee = condoFee;
     }
-
-
 }

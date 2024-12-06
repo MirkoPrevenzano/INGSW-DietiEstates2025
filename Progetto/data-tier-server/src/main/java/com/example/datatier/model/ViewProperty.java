@@ -25,7 +25,7 @@ public class ViewProperty {
     @Column(name = "last_visit_date", nullable = false)
     private LocalDate lastVisitDate;
 
-    public ViewProperty() {}
+    public ViewProperty() {/* */}
 
     public Customer getCustomer() {
         return customer;
