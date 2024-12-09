@@ -14,6 +14,7 @@ public class Administrator {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    
     @Column(nullable = false, unique = true)
     private String username;
     @Column(nullable = false)
@@ -21,6 +22,7 @@ public class Administrator {
     @Column(nullable = false)
     private String agencyName;
 
+    //riferimento responsabile e gruppo di manager di cui eventualmente è responsabile
     @ManyToOne
     @JoinColumn(name = "id_responsible")
     private Administrator responsible;

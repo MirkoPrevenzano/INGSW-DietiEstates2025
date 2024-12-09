@@ -19,6 +19,7 @@ public class Photo {
     @Column(name="key_s3", nullable = false)
     private String keyS3;
 
+    //riferimento alla property associata
     @ManyToOne
     @JoinColumn(name=" id_property",
         referencedColumnName = "id", 

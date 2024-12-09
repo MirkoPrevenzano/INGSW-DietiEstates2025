@@ -25,6 +25,7 @@ public class PropertyStats {
     @Column(name="offer_number", columnDefinition = "bigint default 0")
     private long offerNumber;
     
+    //riferimento a property, unidirezionale
     @OneToOne
     @JoinColumn(name="id_property", referencedColumnName = "id", foreignKey = @ForeignKey(name="property_feature_fk"))
     private Property property;

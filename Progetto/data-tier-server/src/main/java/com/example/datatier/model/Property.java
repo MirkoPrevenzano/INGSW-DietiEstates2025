@@ -60,6 +60,7 @@ public abstract class Property {
     @Embedded
     private PropertyFeatures features;
 
+    //Indirizzo della property
     @OneToOne
     @JoinColumn(name="id_address", 
         referencedColumnName = "id", 
@@ -68,6 +69,7 @@ public abstract class Property {
     private Address address;
 
 
+    //agente di riferimento
     @ManyToOne
     @JoinColumn(name="id_property_agent", 
         referencedColumnName = "id", 
@@ -75,8 +77,12 @@ public abstract class Property {
         foreignKey = @ForeignKey(name="property_agent_fk"))
     private PropertyAgent propertyAgent;
 
+
+    /*da levare */
     @OneToMany(mappedBy = "property")
     private List<ViewProperty> visualizzaImmobili;
+
+    //mettere riferimento lista foto
 
     protected Property() {
     }

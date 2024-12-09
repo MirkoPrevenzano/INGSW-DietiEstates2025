@@ -28,7 +28,7 @@ public class Address {
      @Column(name="house_number", nullable = false)
      private int houseNumber;
 
-     
+     /*Riferimento immobile */
 
      public Address(){/*Empty */}
 

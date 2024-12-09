@@ -1,17 +1,26 @@
 package com.example.datatier.model;
 
-import java.util.List;
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="customer")
-public class Customer {
+public class Customer implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,50 +31,48 @@ public class Customer {
     @Column(nullable = false)
     private String surname;
     @Column(nullable = false, unique = true)
-    private String email;
+    private String username;
     @Column(nullable = false)
     private String password;
 
-        
-    @OneToMany(mappedBy = "customer")
-    private List<ViewProperty> viewProperties;
+    
+    
 
 
-    public Customer(){/*Is empty */}
-
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
-    public String getSurname() {
-        return surname;
+
+    @Override
+    public String getUsername() {
+        return username;
     }
-    public void setSurname(String surname) {
-        this.surname = surname;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
+        /*
+         * Questa classe implemente UserDetails, interfaccia di springSecurity
+         * Buol dire che questa classe fornisce dettagli per auntenticazione e autorizzazione
+         */
+
+   
 }
