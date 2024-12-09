@@ -36,7 +36,7 @@ public class PropertySellService implements PropertyService<PropertySellDTO> {
 
     @Override
     @Async
-    public CompletableFuture<PropertySellDTO> saveNewPropertyRent(PropertySellDTO propertySellDTO,
+    public CompletableFuture<PropertySellDTO> saveNewProperty(PropertySellDTO propertySellDTO,
                                                                   String usernamePropertyAgent,
                                                                   AddressDTO addressDTO) {
         return propertyAgentAsyncService.findByUsername(usernamePropertyAgent)

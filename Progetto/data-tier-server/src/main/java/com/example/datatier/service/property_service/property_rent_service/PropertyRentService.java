@@ -39,7 +39,7 @@ public class PropertyRentService implements PropertyService<PropertyRentDTO>{
 
     @Override
     @Transactional
-    public CompletableFuture<PropertyRentDTO> saveNewPropertyRent(PropertyRentDTO propertyRentDTO,
+    public CompletableFuture<PropertyRentDTO> saveNewProperty(PropertyRentDTO propertyRentDTO,
                                                                   String usernamePropertyAgent,AddressDTO addressDTO) {
         return propertyAgentAsyncService.findByUsername(usernamePropertyAgent)
         .thenCompose(agent -> {

@@ -6,7 +6,7 @@ import com.example.datatier.dto.AddressDTO;
 import com.example.datatier.dto.PropertyDTO;
 
 public interface PropertyService<T extends PropertyDTO> {
-    public CompletableFuture<T> saveNewPropertyRent(T propertyDTO,
+    public CompletableFuture<T> saveNewProperty(T propertyDTO,
                                                     String usernamePropertyAgent,
                                                     AddressDTO addressDTO);
 
