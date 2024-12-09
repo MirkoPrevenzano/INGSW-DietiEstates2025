@@ -7,7 +7,6 @@ create table amministratore(
 	constraint responsabile_fk foreign key(id_responsabile) references amministratore(id)
 	on update cascade
 	on delete cascade
-	lll
 );
 
 
