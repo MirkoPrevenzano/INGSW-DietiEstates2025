@@ -13,10 +13,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.List;
 
 import com.example.datatier.model.embeddable.PropertyFeatures;
@@ -26,6 +27,8 @@ import com.example.datatier.model.embeddable.PropertyFeatures;
  * Immobile ha associazione 1 a 1 con i vari tipi di post immobile così che fitto e vendita 
  * ereditano tutti gli attributi in comune con gli immobili.
  */
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "property")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -58,7 +61,7 @@ public abstract class Property {
     private Timestamp uploadDate;
 
     @Embedded
-    private PropertyFeatures features;
+    private PropertyFeatures features=new PropertyFeatures();
 
     //Indirizzo della property
     @OneToOne
@@ -83,102 +86,4 @@ public abstract class Property {
     private List<ViewProperty> visualizzaImmobili;
 
     //mettere riferimento lista foto
-
-    protected Property() {
-    }
-
-    @PrePersist
-    protected void onCreate() {
-        this.uploadDate = Timestamp.from(Instant.now());
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public PropertyFeatures getFeatures() {
-        return features;
-    }
-
-    public void setFeaturers(PropertyFeatures features) {
-        this.features = features;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getSizeInSquareMeters() {
-        return sizeInSquareMeters;
-    }
-
-    public void setSizeInSquareMeters(double sizeInSquareMeters) {
-        this.sizeInSquareMeters = sizeInSquareMeters;
-    }
-
-    public int getRoomCount() {
-        return roomCount;
-    }
-
-    public void setRoomCount(int roomCount) {
-        this.roomCount = roomCount;
-    }
-
-    public int getFloorNumber() {
-        return floorNumber;
-    }
-
-    public void setFloorNumber(int floorNumber) {
-        this.floorNumber = floorNumber;
-    }
-
-    public String getEnergyClass() {
-        return energyClass;
-    }
-
-    public void setEnergyClass(String energyClass) {
-        this.energyClass = energyClass;
-    }
-
-    public int getNumberParkingSpace() {
-        return numberParkingSpace;
-    }
-
-    public void setNumberParkingSpace(int numberParkingSpace) {
-        this.numberParkingSpace = numberParkingSpace;
-    }
-
-    
-
-    public Timestamp getUploadDate() {
-        return uploadDate;
-    }
-
-    public void setUploadDate(Timestamp uploadDate) {
-        this.uploadDate = uploadDate;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public PropertyAgent getPropertyAgent() {
-        return propertyAgent;
-    }
-    public void setPropertyAgent(PropertyAgent propertyAgent) {
-        this.propertyAgent = propertyAgent;
-    }
-
-    
 }

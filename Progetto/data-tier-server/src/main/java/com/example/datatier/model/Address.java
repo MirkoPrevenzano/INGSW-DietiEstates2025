@@ -6,9 +6,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="address")
+@Data
+@NoArgsConstructor
 public class Address {
 
      @Id
@@ -29,65 +33,4 @@ public class Address {
      private int houseNumber;
 
      /*Riferimento immobile */
-
-     public Address(){/*Empty */}
-
-  
-     public String getCap() {
-         return cap;
-     }
-     public void setCap(String cap) {
-         this.cap = cap;
-     }
-
-     public String getCity() {
-         return city;
-     }
-     public void setCity(String city) {
-         this.city = city;
-     }
-
-     public Long getId() {
-         return id;
-     }
-     public void setId(Long id) {
-         this.id = id;
-     }
-
-     public int getHouseNumber() {
-         return houseNumber;
-     }
-    
-
-     public String getProvince() {
-         return province;
-     }
-     public void setProvince(String province) {
-         this.province = province;
-     }
-
-     public String getRegion() {
-         return region;
-     }
-     public void setRegion(String region) {
-         this.region = region;
-     }
-
-     public String getStreet() {
-         return street;
-     }
-    
-
-     public void setStreet(String street) {
-         this.street = street;
-     }
-     public void setHouseNumber(int houseNumber) {
-         this.houseNumber = houseNumber;
-     }
-   
-    
-    
-	
-
-
 }

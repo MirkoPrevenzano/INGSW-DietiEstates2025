@@ -1,6 +1,9 @@
 package com.example.datatier.model;
 
 
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,10 +12,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name="property_agent")
-public class PropertyAgent {
+public class PropertyAgent implements User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,39 +32,12 @@ public class PropertyAgent {
     
     @ManyToOne
     @JoinColumn(name="id_administrator", referencedColumnName="id")
-    private Administrator administrator;
+    private transient Administrator administrator;
+    //non viene serializzato (processo che rende un oggetto covneritot in uno facilmente trasmissibile)
 
-    public PropertyAgent(){/* */}
-
-    public Long getId() {
-        return id;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    
-    public Administrator getAdministrator() {
-        return administrator;
-    }
-    public void setAdministrator(Administrator administrator) {
-        this.administrator = administrator;
-    }
-
+ 
 }

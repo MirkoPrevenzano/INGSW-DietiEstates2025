@@ -1,6 +1,5 @@
 package com.example.datatier.service;
 
-import java.util.concurrent.CompletableFuture;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +23,10 @@ public class AddressService {
         this.modelMapper=modelMapper;
     }
 
-    public CompletableFuture<Address> save(AddressDTO addressDTO)
+    public Address save(AddressDTO addressDTO)
     {
         Address address=modelMapper.map(addressDTO,Address.class);
-        return CompletableFuture.completedFuture(addressRepository.save(address));
+        return addressRepository.save(address);
     }
 
 }

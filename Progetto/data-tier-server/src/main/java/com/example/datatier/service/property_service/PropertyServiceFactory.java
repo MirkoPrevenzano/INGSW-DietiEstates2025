@@ -6,8 +6,6 @@ import org.springframework.stereotype.Component;
 import com.example.datatier.dto.PropertyDTO;
 import com.example.datatier.dto.PropertyRentDTO;
 import com.example.datatier.dto.PropertySellDTO;
-import com.example.datatier.service.property_service.property_rent_service.PropertyRentService;
-import com.example.datatier.service.property_service.property_sell_service.PropertySellService;
 
 @Component
 public class PropertyServiceFactory {
@@ -22,7 +20,8 @@ public class PropertyServiceFactory {
         this.propertySellService = propertySellService;
     }
 
-    public PropertyService<? extends PropertyDTO> getService(PropertyDTO propertyDTO) {
+    @SuppressWarnings("rawtypes")
+    public PropertyService getService(PropertyDTO propertyDTO) {
         if (propertyDTO instanceof PropertyRentDTO) {
             return propertyRentService;
         } else if (propertyDTO instanceof PropertySellDTO) {

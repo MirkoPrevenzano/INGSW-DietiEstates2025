@@ -1,10 +1,15 @@
 package com.example.datatier.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 
 import com.example.datatier.model.embeddable.ViewPropertyId;
 
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "view_property")
 public class ViewProperty {
@@ -24,36 +29,5 @@ public class ViewProperty {
 
     @Column(name = "last_visit_date", nullable = false)
     private LocalDate lastVisitDate;
-
-    public ViewProperty() {/* */}
-
-    public Customer getCustomer() {
-        return customer;
-    }
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public LocalDate getLastVisitDate() {
-        return lastVisitDate;
-    }
-    public void setLastVisitDate(LocalDate lastVisitDate) {
-        this.lastVisitDate = lastVisitDate;
-    }
-
-    public ViewPropertyId getId() {
-        return id;
-    }
-    public void setId(ViewPropertyId id) {
-        this.id = id;
-    }
-
-    public Property getProperty() {
-        return property;
-    }
-    public void setImmobile(Property property) {
-        this.property = property;
-    }
-
 }
 

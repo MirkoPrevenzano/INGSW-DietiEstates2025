@@ -1,9 +1,9 @@
 package com.example.datatier.model;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,16 +11,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name="customer")
-public class Customer implements UserDetails{
+public class Customer implements User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,13 +33,9 @@ public class Customer implements UserDetails{
     @Column(nullable = false)
     private String password;
 
-    
-    
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of();
     }
 
 
@@ -69,10 +63,10 @@ public class Customer implements UserDetails{
         return true;
     }
 
-        /*
-         * Questa classe implemente UserDetails, interfaccia di springSecurity
-         * Buol dire che questa classe fornisce dettagli per auntenticazione e autorizzazione
-         */
+    /*
+    * Questa classe implemente UserDetails, interfaccia di springSecurity
+    * Buol dire che questa classe fornisce dettagli per auntenticazione e autorizzazione
+    */
 
    
 }

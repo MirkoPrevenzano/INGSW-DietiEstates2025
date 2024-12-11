@@ -9,9 +9,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.OneToOne;
 
 
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "property_stats")
 public class PropertyStats {
@@ -29,37 +33,4 @@ public class PropertyStats {
     @OneToOne
     @JoinColumn(name="id_property", referencedColumnName = "id", foreignKey = @ForeignKey(name="property_feature_fk"))
     private Property property;
-
-    PropertyStats(){/* */}
-
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Property getProperty() {
-        return property;
-    }
-    public void setProperty(Property property) {
-        this.property = property;
-    }
-
-    public long getOfferNumber() {
-        return offerNumber;
-    }
-    public void setOfferNumber(long offerNumber) {
-        this.offerNumber = offerNumber;
-    }
-
-    public long getVisitNumber() {
-        return visitNumber;
-    }
-    public void setVisitNumber(long visitNumber) {
-        this.visitNumber = visitNumber;
-    }
-
-
-    
 }

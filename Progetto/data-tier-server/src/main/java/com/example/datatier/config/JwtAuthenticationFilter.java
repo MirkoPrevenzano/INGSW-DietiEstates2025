@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import io.micrometer.common.lang.NonNull;
@@ -23,6 +24,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * 
  * Prima cosa si estrae il token dall'header http, si verifica la validità. Se valido si imposta l'autenticazione rispettando la sicurezza di spring e si prosegue.
  */
+@Component
 public class JwtAuthenticationFilter  extends OncePerRequestFilter{
 
     

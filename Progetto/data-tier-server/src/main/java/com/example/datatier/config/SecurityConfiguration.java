@@ -29,7 +29,7 @@ public class SecurityConfiguration {
         http
             .csrf(csrf -> csrf.disable()) // Disabilita la protezione CSRF
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/auth/login", "/auth/register", "/auth/check-username", "/auth/check-email").permitAll() // Endpoint pubblicamente accessibili
+                .requestMatchers("/auth/authenticate", "/auth/register", "/auth/check-username", "/auth/check-email").permitAll() // Endpoint pubblicamente accessibili
                 .anyRequest().authenticated() // Tutte le altre richieste richiedono autenticazione
             )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))// Configura la gestione delle sessioni come stateless

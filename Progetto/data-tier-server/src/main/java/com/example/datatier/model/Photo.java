@@ -9,7 +9,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "photo")
 public class Photo {
@@ -27,26 +31,5 @@ public class Photo {
         foreignKey = @ForeignKey(name="property_photo_fk"))
     private Property property;
 
-    public Photo(){/* */}
     
-    public String getKeyS3() {
-        return keyS3;
-    }
-    public void setKeyS3(String keyS3) {
-        this.keyS3 = keyS3;
-    }
-
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    public Property getProperty() {
-        return property;
-    }
-    public void setProperty(Property property) {
-        this.property = property;
-    }
 }

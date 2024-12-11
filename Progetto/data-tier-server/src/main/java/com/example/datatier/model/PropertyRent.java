@@ -4,7 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
+@Data
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 @Entity
 @Table(name="property_rent")
 @PrimaryKeyJoinColumn(name="id")
@@ -18,36 +24,4 @@ public class PropertyRent extends Property{
     private int contractYears;
     @Column(name="condo_fee", nullable = false)
     private double condoFee;
-
-    public PropertyRent(){/*is empty*/} 
-
-    public double getMonthlyRent() {
-        return monthlyRent;
-    }
-    public void setMonthlyRent(double monthlyRent) {
-        this.monthlyRent = monthlyRent;
-    }
-    
-    public double getDepositoCauzionale() {
-        return securityDeposit;
-    }
-    public void setSecurityDeposit(double securityDeposit) {
-        this.securityDeposit = securityDeposit;
-    }
-
-    public int getContractYears() {
-        return contractYears;
-    }
-    public void setContractYears(int contractYears) {
-        this.contractYears = contractYears;
-    }
-
-    public double getCondoFee() {
-        return condoFee;
-    }
-    public void setCondoFee(double condoFee) {
-        this.condoFee = condoFee;
-    }
-
-
 }
