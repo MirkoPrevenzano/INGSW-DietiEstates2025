@@ -1,7 +1,7 @@
 
-ARREDAMENTO: non arred, parzial. arred, ben arred
-			 not fournished, partially fournished, well fournished
+ARREDAMENTO: non arredato, parzial. arredato, ben arredato
+	     not fournished, partially fournished, well fournished
 
-STATO:  in costruz, nuovo, da ristrutt, ristrutt, abitabile/buono, ottimo
-		under construction, new, to renovate, renovated, habitable/good, excellent
+STATO:  in costruzione, nuovo, da ristrutturare, ristrutturato, abitabile/buono, ottimo
+        under construction, new, to renovate, renovated, habitable/good, excellent
 
