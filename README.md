@@ -1,3 +1,25 @@
+
+
+lista  estate più recenti di un certo agente (dato l'username e un valori limit che indica il numero di estate da restituire). Voglio che mi restituisca descrizione, titolo, data e id
+
+Dato determinati filtri, numero di pagina e limit che indica il numero di estate da restituire passami le foto, descrizione, data, titolo, id e città (da considerare se conviene inviare tutte le info dei 10 immobili o meglio inviare solo certe info)
+
+dato un certo id resituisci tutte le info di tale estate
+
+ 
+metti google
+cambiare validatorEmail
+
+Per rendere la ricerca più efficiente è possibile attraverso la tecnica della paginazione (lazy loading)
+
+ Caricare in modo asincrono le info, prima titolo e descrizione. e poi le foto. Vedere come
+ Usare asincronismo dal server per ottenere le info degli estate
+ Per quanto riguarda estate, mettere price generael
+(piccola chicca, vietare di far inserire una password uguale a quella precedente
+
+
+
+
 # INGSW-DietiEstates2025
 
 
