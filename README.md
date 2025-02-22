@@ -26,8 +26,9 @@
     }
 
 
-    /*
+     /*
       Richiesto le statistiche per ogni immobile di un certo agente immobiliare.
+      Passo come valore di query, il numero di pagina e limit
       Mi aspetto un vettore di oggetti EstateStats che ha i seguenti attributi:
       -title
       -uploadDate
@@ -35,10 +36,10 @@
       -viewNumber
       -id (l'id dell'estate, serve perchè cliccando sulla riga della tabella ti reindirizza nel dettaglio dell'estate)
 
-      url: agent/{username}/estates-stats
+      url: agent/{username}/estates-stats?page=${page}&limit=${limit}
     */
-    estatesStats(user:string):Observable<EstateStats[]>{
-      const url = this.url+`/${user}/estates-stats`
+    estatesStats(user:string, page:number, limit:number):Observable<EstateStats[]>{
+      const url = this.url+`/${user}/estates-stats?page=${page}&limit=${limit}`
       return this.http.get<EstateStats[]>(url, this.httpOptions)
     }
 
