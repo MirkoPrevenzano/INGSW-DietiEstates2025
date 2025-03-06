@@ -1,0 +1,41 @@
+JPA's merge api takes the object passed in and merges it into the context. This is different 
+from persist, which takes the instance passed in and makes it managed - merge will return the managed instance.
+
+Entity e = new Entity();
+
+Entity e1 = em.merge(e);
+assertTrue(e1!=e);// they are different instances
+when the transaction is flushed/committed, e1 will have its ID set because it was managed by the persistence unit, 
+but 'e' will not. So when you call em.merge(e), you are giving it a blank instance, forcing in duplicates.
+
+Simple solution is to return the resulting Foo from your processBars method and use it for your subsequent 
+changes and merge calls.
+
+
+
+So, instead of deleting just one post_tag entry, Hibernate removes all post_tag rows associated with the given post_id and reinserts the 
+remaining ones back afterward. This is not efficient at all because it’s extra work for the database, especially for recreating indexes 
+associated with the underlying Foreign Keys. For this reason, it’s not a good idea to use the java.util.List for @ManyToMany JPA associations.
+Instead of a List, we can use a Set with Hashset. Questo però vale solo nel caso in cui stiamo usando la @joinTable
+
+
+The many-to-many CascadeType.ALL is another code smell, I often bump into while reviewing code. 
+The CascadeType.REMOVE is automatically inherited when using CascadeType.ALL, but the entity removal is not only 
+applied to the link table, but to the other side of the association as well.
+
+
+
+Usare in caso non basta il DispatcherServlet per recuperare parametri dalla Http request:
+
+    @Bean 
+    public RequestContextListener requestContextListener()
+    {
+        return new RequestContextListener();
+    }
+    httpServletRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest(); 
+
+
+COSA SUCCEDE SE LEVO @NONNULL nei DTO? In poche parole, o uso if per controllare e lanciare eccezione, o essa viene generata automaticamente; in 
+                                       in caso contrario, l'attributo viene gestito automaticamente tramite un handler di default 
+                                       DefaultHandlerExceptionResolver -> HttpMessageNotReadableException: JSON parse error: is marked non-null but is null
+
