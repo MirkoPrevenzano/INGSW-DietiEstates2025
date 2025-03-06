@@ -1,0 +1,16 @@
+import type { AgChartOptions } from 'ag-charts-types';
+import type { DOMManager } from '../dom/domManager';
+export interface LicenseManager {
+    validateLicense: () => void;
+    isDisplayWatermark: () => boolean;
+    getWatermarkMessage: () => string;
+    getLicenseDetails: (licenseKey: string) => object;
+}
+interface EnterpriseModuleOptions {
+    isEnterprise: boolean;
+    styles?: string;
+    licenseManager?: (options: AgChartOptions) => LicenseManager;
+    injectWatermark?: (domManager: DOMManager, text: string) => void;
+}
+export declare const enterpriseModule: EnterpriseModuleOptions;
+export {};

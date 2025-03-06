@@ -1,0 +1,24 @@
+import { AgCharts } from './api/agCharts';
+import { registerInbuiltModules } from './chart/factory/registerInbuiltModules';
+import * as _Scene from './integrated-charts-scene';
+import * as _Theme from './integrated-charts-theme';
+import * as _Util from './integrated-charts-util';
+import { VERSION } from './version';
+export { AG_CHARTS_LOCALE_EN_US } from 'ag-charts-locale';
+export * from 'ag-charts-types';
+export * as time from './util/time';
+export { AgCharts, VERSION };
+export * as _ModuleSupport from './module-support';
+export * as _Widget from './widget/exports';
+export { registerInbuiltModules as setupCommunityModules };
+export { _Scene, _Theme, _Util };
+export declare const AgChartsCommunityModule: {
+    VERSION: string;
+    _Scene: typeof _Scene;
+    _Theme: typeof _Theme;
+    _Util: typeof _Util;
+    create: typeof AgCharts.create;
+    createSparkline: typeof AgCharts.__createSparkline;
+    setup: typeof registerInbuiltModules;
+    isEnterprise: false;
+};
