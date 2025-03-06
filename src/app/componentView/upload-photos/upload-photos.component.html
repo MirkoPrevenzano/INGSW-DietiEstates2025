@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<div class="flex flex-col items-center justify-center w-full p-4">
+  <h2 class="text-lg font-medium mb-4">Upload Photos</h2>
+  <input type="file" (change)="onFileSelected($event)" accept="image/*" multiple class="mb-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div *ngFor="let image of imagePreview" class="flex flex-col items-center">
+      <img [src]="image" alt="Image Preview" class="w-16 h-16 object-cover rounded-md mb-2">
+      <button (click)="removeImage(image)" class="text-gray-500 hover:text-gray-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

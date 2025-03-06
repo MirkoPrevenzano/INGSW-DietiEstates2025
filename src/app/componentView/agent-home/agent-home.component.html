@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<div class=" relative h-full bg-cover bg-center" style="background-image: url('assets/images/agent-home.jpg');">
+  <div class="absolute inset-0 bg-black opacity-50"></div>
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-white p-4">
+    <h1 class="text-4xl font-bold mb-8">Welcome, Real Estate Agent</h1>
+    <app-choose-type-estate (typeEstate)="onSelectedType($event)" class="sm:w-full max-w-md"></app-choose-type-estate>
+    <app-recently-estate-popup class="w-full max-w-4xl mt-8 "></app-recently-estate-popup>
+    <button routerLink="/dashboard" class="mt-8 text-white bg-blue-500 p-3 rounded-lg shadow-md hover:underline">Go to Dashboard</button>
+  </div>
+</div>

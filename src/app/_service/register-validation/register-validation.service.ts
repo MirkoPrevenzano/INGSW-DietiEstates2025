@@ -14,24 +14,9 @@ export class RegisterValidationService {
   }
 
   isEmailInvalid(email: string): boolean {
-    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$/;
     return !emailPattern.test(email);
   }
 
-  validatePassword(password: string): string[] {
-    const errors: string[] = [];
-    if (password.length < 10) {
-      errors.push('Password must be at least 10 characters long.');
-    }
-    if (!/[A-Z]/.test(password)) {
-      errors.push('Password must contain at least one uppercase letter.');
-    }
-    if (!/\d/.test(password)) {/**\d presenta qualsiasi cifra decimale */
-      errors.push('Password must contain at least one digit.');
-    }
-    if (!/[!@#$%^&*()_+[\]{}|;:,.<>?]/.test(password)) {
-      errors.push('Password must contain at least one special character.');
-    }
-    return errors;
-  }
+ 
 }

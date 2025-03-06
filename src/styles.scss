@@ -2,3 +2,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Nascondi il pulsante SVG generato da GeocoderAutocomplete */
+.custom-toast {
+    background-color: #ffcccb; /* Colore di sfondo personalizzato */
+    color: #333; /* Colore del testo personalizzato */
+    border-radius: 8px; /* Angoli arrotondati */
+    padding: 25px; /* Padding */
+    margin-top: 23px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra */
+}
+
+.custom-toast-title {
+    font-weight: bold; /* Titolo in grassetto */
+    font-size: 1.2em; /* Dimensione del font del titolo */
+}
+
+.custom-toast-message {
+    font-size: 1em; /* Dimensione del font del messaggio */
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Stile per la barra di scorrimento */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px; /* Altezza della barra di scorrimento orizzontale */
+  width: 8px; /* Larghezza della barra di scorrimento verticale */
+  border-radius: 1000px; /* Arrotondamento generale */
+}
+
+/* Stile per il pollice (la parte che si muove) */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #888; /* Colore del pollice */
+  border-radius: 1000px; /* Arrotondamento */
+  border: 200px solid #f1f1f1; /* Bordo per effetto distaccato */
+}
+
+/* Stile per la traccia (sfondo della scrollbar) */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Colore della traccia */
+  border-radius: 10px; /* Arrotondamento */
+  margin: 10px; /* Riduzione della lunghezza della scrollbar */
+}
+
+/* Stile per Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #c9c9c9 #f1f1f1;
+}

@@ -1,6 +1,6 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PasswordRequest } from '../model/passwordRequest';
+import { PasswordRequest } from '../../../model/passwordRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class PasswordChangeService {
 
   constructor(private readonly http:HttpClient) { }
   
-    url:string="http://localhost:8080/dashboard/admin"
+    url:string="http://localhost:8080/admin"
   
     httpOptions = {
         headers: new HttpHeaders({
@@ -26,7 +26,7 @@ export class PasswordChangeService {
     * 
     */
     passwordChange(request: PasswordRequest){
-      const url= this.url+"/newPassword"
+      const url= this.url+`/${localStorage.getItem('user')}/update-password`
       return this.http.put(url, request, this.httpOptions);
     }
 }

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<div class="flex flex-col lg:flex-row justify-center  overflow-y-auto">
+    <div class="w-full lg:w-1/2 p-4">
+        <app-address-estates 
+            (coordinatesChanged)="onCoordinateChanged($event)" 
+            [coordinatesToStreet]="coordinatesByMarker"
+            (addressOut)="onAddressOut($event)">
+        </app-address-estates>
+    </div>
+    <div class="w-full lg:w-1/2 p-4  sm:mt-28  mb-8 mx-4">
+        <app-map 
+            [coordinates]="currentCoordinates" 
+            (coordinateWithMarker)="onClickMarker($event)"
+            [clickable]="true"
+            class=" ">
+        </app-map>
+    </div>
+</div>

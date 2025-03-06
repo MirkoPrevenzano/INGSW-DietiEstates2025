@@ -47,7 +47,7 @@ export class AuthService {
     console.log(decodedToken)
     const user = decodedToken.sub;
     console.log(user)
-    const role = decodedToken.role;
+    const role = decodedToken.roles[0];
     this.authState.set({
       user: user,
       token: token,
@@ -76,13 +76,23 @@ export class AuthService {
   }
   
   
-  private getRoleByToken(){
-    const token= this.getToken()
-    if(token){
-      const decodedToken: any= jwtDecode(token)
-      return decodedToken ? decodedToken.role : null
+  private getRoleByToken() {
+    const token = this.getToken();
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      if (decodedToken) {
+        if (decodedToken.role) {
+          return decodedToken.role;
+        }
+        if (decodedToken.roles && Array.isArray(decodedToken.roles)) {
+          return decodedToken.roles[0];
+        }
+        if (decodedToken.authorities && Array.isArray(decodedToken.authorities)) {
+          return decodedToken.authorities[0];
+        }
+      }
     }
-    return null
+    return null;
   }
   isUserAuthenticated(): boolean { return this.verifyToken(this.getToken()); }
 
@@ -93,10 +103,16 @@ export class AuthService {
   getToken(): string | null { return localStorage.getItem("token"); }
 
   
-  getRole(): string | null {return this.authState().role;}
+  getRole(): string | null {return localStorage.getItem("role");}
 
 
-  logout(){ this.authState.set({user: null, token: null,role: null, isAuthenticated: false }); }
+  logout(){ 
+    localStorage.removeItem("role");
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+
+
+   }
 
   
 }

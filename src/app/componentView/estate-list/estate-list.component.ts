@@ -1,0 +1,24 @@
+import { AfterViewInit, Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { EstateItemPreviewComponent } from '../_estate-view/estate-item-preview/estate-item-preview.component';
+import { EstatePreview } from '../../model/estatePreview';
+
+@Component({
+  selector: 'app-estate-list',
+  imports: [
+    EstateItemPreviewComponent,
+    CommonModule
+  ],
+  templateUrl: './estate-list.component.html',
+  styleUrl: './estate-list.component.scss'
+})
+export class EstateListComponent  implements AfterViewInit{
+  ngAfterViewInit(): void {
+   console.log(this.listRealEstateId)
+  }
+  @Input() listPhotos!:string[][]
+  @Input() listEstatePreview!: EstatePreview[]
+  @Input() listRealEstateId!: number[]
+  
+  
+}

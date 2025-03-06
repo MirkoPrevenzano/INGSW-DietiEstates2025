@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RegisterRequest } from '../model/registerRequest';
+import { RegisterRequest } from '../../../model/registerRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class RegisterService {
   };
     
   registrate(registerRequest:RegisterRequest){
-    const url=this.url+"/register"
+    const url=this.url+"/standard-registration"
     return this.http.post(url, registerRequest, this.httpOptions)
   }
 }

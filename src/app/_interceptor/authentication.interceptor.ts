@@ -9,7 +9,7 @@ export function authInterceptor(request: HttpRequest<unknown>, next: HttpHandler
   if (token) {
     request = request.clone({
       setHeaders: {
-        Authorization:  token
+        Authorization:  `Bearer ${token}`
       }
     });
   }

@@ -6,13 +6,20 @@
   </head>
   <body class="flex flex-col min-h-screen">
 
-    
-    <navbar-component></navbar-component>
-    <main class="container mx-auto flex-grow">
-      <router-outlet></router-outlet>
-    </main>
-    <app-footer class=""></app-footer>
-  
+    <div class="grid grid-rows-layout h-screen">
+      <nav class="p-1">
+        <navbar-component></navbar-component>
+      </nav>
+
+      <main class="overflow-y-auto">
+        <router-outlet></router-outlet>
+      </main>
+
+      <footer class="bg-white shadow">
+        <app-footer></app-footer>
+      </footer>
+    </div>
+   
   
 
 </body>

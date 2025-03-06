@@ -1,0 +1,46 @@
+generateChartBar(chartWidth:number, containerElement:HTMLElement, xKey:string, yKey:string, title:string):AgChartOptions{
+  return {width: chartWidth,
+    height:300,
+    container:containerElement,     
+    title: {
+    text: 'Sell estate for month',
+    },
+    data: this.estateStatsSellRent.map((sold, index) => ({
+    month: new Date(0, index).toLocaleString('en-US', { month: 'long' }),
+    sold
+    })),
+    series: [
+    {
+      
+      type: 'bar',
+      xKey: 'month',
+      yKey: 'sold',
+      fill: '#1f77b4',
+      stroke: '#1f77b4',
+      highlightStyle: {
+      item: {
+        fill: '#ff7f0e',
+        stroke: '#ff7f0e',
+      },
+      },
+    },
+    ],
+    axes: [
+    {
+      
+      type: 'category',
+      position: 'bottom',
+      title: {
+      text: 'Month',
+      },
+      label: { rotation: 0 },
+    },
+    {
+      type: 'number',
+      position: 'left',
+      title: {
+      text: 'Estates number',
+      },
+    },
+    ],
+  };

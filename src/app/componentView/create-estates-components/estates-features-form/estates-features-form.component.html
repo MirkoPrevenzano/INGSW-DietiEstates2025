@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<div class="flex items-center justify-center p-4 mb-24  w-full">
+  <form [formGroup]="featuresForm" class="w-full max-w-lg p-6 bg-white shadow-lg rounded-lg">
+    <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">Services</h2>
+    
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold mb-4 text-gray-700">Internal Services</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-y-6 sm:gap-x-36">
+        <app-checkbox label="Elevator" [form]="featuresForm" controlName="hasElevator"></app-checkbox>
+        <app-checkbox label="Concierge" [form]="featuresForm" controlName="hasConcierge"></app-checkbox>
+        <app-checkbox label="Air Conditioning" [form]="featuresForm" controlName="hasAirConditioning"></app-checkbox>
+        <app-checkbox label="Heating" [form]="featuresForm" controlName="hasHeating"></app-checkbox>
+      </div>
+    </div>
+
+    <hr class="border-t border-gray-400 my-6">
+
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold mb-4 text-gray-700">External Services</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-y-6 sm:gap-x-36">
+        <app-checkbox label="Terrace" [form]="featuresForm" controlName="hasTerrace"></app-checkbox>
+        <app-checkbox label="Garage" [form]="featuresForm" controlName="hasGarage"></app-checkbox>
+        <app-checkbox label="Balcony" [form]="featuresForm" controlName="hasBalcony"></app-checkbox>
+        <app-checkbox label="Garden" [form]="featuresForm" controlName="hasGarden"></app-checkbox>
+        <app-checkbox label="Pool" [form]="featuresForm" controlName="hasSwimmingPool"></app-checkbox>
+      </div>
+    </div>
+  </form>
+</div>

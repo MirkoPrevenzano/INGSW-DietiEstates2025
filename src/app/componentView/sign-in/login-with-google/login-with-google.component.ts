@@ -5,11 +5,10 @@ import { LoginService } from '../../../_service/rest-backend/login/login.service
 declare const google: any;
 
 @Component({
-  selector: 'app-login-with-google',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './login-with-google.component.html',
-  styleUrls: ['./login-with-google.component.scss']
+    selector: 'app-login-with-google',
+    imports: [CommonModule],
+    templateUrl: './login-with-google.component.html',
+    styleUrls: ['./login-with-google.component.scss']
 })
 export class LoginWithGoogleComponent implements OnInit  {
   loggedIn: boolean|undefined

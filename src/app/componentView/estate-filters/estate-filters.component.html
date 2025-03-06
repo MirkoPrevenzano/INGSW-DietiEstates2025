@@ -1,0 +1,92 @@
+<div class="   bg-white   ">
+  <div class="mt-6 grid grid-cols-1 px-6 pb-3 gap-4">
+    <button type="submit" (click)="onSearch()" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Search</button>
+  </div>
+  <h2 class="text-2xl font-semibold mb-4">Enter filters</h2>
+  
+  <form [formGroup]="searchForm" >
+    <div class="grid grid-cols-1 gap-4">
+      <!-- Tipologia di inserzione -->
+      <app-form-field 
+        label="Type Assertion" 
+        type="select" 
+        controlName="type" 
+        [options]="[ 'For Sale', 'For Rent']" 
+        [form]="searchForm">
+      </app-form-field>
+
+      <!-- Prezzo minimo -->
+      <app-form-field 
+        label="Min Price"
+        [maxNumber]="searchForm.get('maxPrice')?.value" 
+        type="number" 
+        controlName="minPrice" 
+        [form]="searchForm">
+      </app-form-field>
+
+      <!-- Prezzo massimo -->
+      <app-form-field 
+        label="Max Price" 
+        type="number"
+        [minNumber]="searchForm.get('minPrice')?.value" 
+        controlName="maxPrice" 
+        [form]="searchForm">
+      </app-form-field>
+
+      <!-- Numero di stanze -->
+      <app-form-field 
+        label="Number Rooms" 
+        type="number" 
+        controlName="rooms" 
+        [form]="searchForm">
+      </app-form-field>
+
+      <!-- Classe energetica -->
+      <app-form-field 
+        label="Energy Class" 
+        type="select" 
+        controlName="energyClass" 
+        [options]="['', 'A', 'B', 'C', 'D', 'E', 'F', 'G']" 
+        [form]="searchForm">
+      </app-form-field>
+
+      <!-- Posizione -->
+      <app-autocomplete-input
+        #localityInput
+        elementId="locality"
+        type="locality"
+        label="Enter locality">
+      </app-autocomplete-input>
+
+      <!-- Servizi -->
+      <div class="col-span-1">
+        <h3 class="text-lg font-medium text-gray-700">Services</h3>
+        <div class="grid xl:grid-cols-2 grid-cols-1 gap-4">
+          <app-checkbox 
+            *ngFor="let feature of estateFeatures" 
+            [label]="feature.label" 
+            [controlName]="feature.controlName" 
+            [form]="searchForm">
+          </app-checkbox>
+        </div>
+      </div>
+
+      <!-- Caratteristiche della posizione -->
+      <div class="col-span-1">
+        <h3 class="text-lg font-medium text-gray-700">Position Features</h3>
+        <div class="grid xl:grid-cols-2 grid-cols-1 gap-4">
+          <app-checkbox 
+            *ngFor="let locationFeature of estateLocationFeatures" 
+            [label]="locationFeature.label" 
+            [controlName]="locationFeature.controlName" 
+            [form]="searchForm">
+          </app-checkbox>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 grid grid-cols-1 px-6">
+      <button (click)="onReset()" type="button" class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">Reset</button>
+    </div>
+  </form>
+</div>
