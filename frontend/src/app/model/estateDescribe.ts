@@ -1,0 +1,13 @@
+export interface EstateDescribe{
+    title: string
+    description: string,
+    price: number,
+    size: number,
+    roomsNumber: number,
+    floorNumber: number,
+    energyClass: string,
+    parkingSpacesNumber: number,
+    condoFee: number,
+    furnitureCondition: string,
+    estateCondition: string,
+}
