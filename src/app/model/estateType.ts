@@ -1,0 +1,1 @@
+export type EstateType = 'For Sale' | 'For Rent';

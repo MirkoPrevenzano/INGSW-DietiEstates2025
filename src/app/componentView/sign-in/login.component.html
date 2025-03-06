@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<div class=" relative h-full bg-cover bg-center" style="background-image: url('assets/images/photoImmobile.jpg');">
+  <div class="absolute inset-0 bg-black opacity-50"></div>
+
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-black p-4">
+    <form [formGroup]="loginForm" (ngSubmit)="signIn()" class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+    <h2 class="text-2xl font-bold  text-center">Login</h2>
+      <app-form-field
+        label="Select User Type"
+        [form]="loginForm"
+        controlName="userType"
+        type="select"
+        [options]="['customer', 'admin', 'agent']">
+      </app-form-field>
+      <hr class="my-4 border-gray-300 w-full">
+      <label *ngIf="loginForm.value.userType === 'customer'"  for="email" class="block text-sm font-medium text-gray-700 ">Insert E-mail</label>
+      <label *ngIf="loginForm.value.userType !== 'customer'" for="username" class="block text-sm font-medium text-gray-700">Insert Username</label>
+      <app-form-field
+        type="email"
+        label=""
+        [form]="loginForm"
+        controlName="username">
+      </app-form-field>
+      <app-password-field
+        label="Password"
+        controlName="password"
+        [form]="loginForm">
+      </app-password-field>
+      <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 mt-5 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</button>
+    <fieldset *ngIf="loginForm.value.userType === 'customer'" >
+      <app-login-with-google class="w-full py-2 mt-4 px-4 focus:outline-none focus:ring-2 focus:ring-offset-2 flex justify-center"></app-login-with-google>
+    </fieldset> 
+    <div *ngIf="loginForm.value.userType === 'customer'" class="text-center mt-4 hover:cursor-pointer">
+      <a routerLink="/register" class="text-indigo-600 hover:text-indigo-800">Want to register? Click here!</a>
+    </div>
+  </form>
+</div>
+</div>

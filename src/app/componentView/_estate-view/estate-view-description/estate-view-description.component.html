@@ -1,0 +1,14 @@
+<div class="p-6">
+    <h2 class="text-2xl font-bold mb-4">{{ estateDescribe.title }}</h2>
+    <p #description class="text-gray-700 mb-3 whitespace-pre-line" [ngClass]="{'line-clamp-3': !showFullDescription}">
+      {{ estateDescribe.description }}
+    </p>
+    <button *ngIf="showToggleButtons && !showFullDescription" (click)="toggleDescription()" class="text-blue-500 hover:underline">
+      Show more
+    </button>
+    <button *ngIf="showToggleButtons && showFullDescription" (click)="toggleDescription()" class="text-blue-500 hover:underline">
+      Show less
+    </button>
+    <p class="text-gray-900 text-2xl mb-3 whitespace-pre-line flex justify-end">{{ estateDescribe.price | currency:'EUR':'symbol':'1.0-0' }}</p>
+
+</div>

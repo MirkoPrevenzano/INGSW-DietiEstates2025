@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<div class="max-w-full   ">
+  <app-progress-bar [currentStep]="currentStep" [steps]="steps"></app-progress-bar>
+
+
+<div *ngIf="currentStep === 0" class="w-full flex-grow">
+  <app-select-place 
+    (addressOut)="onAddressOut($event)"
+  >
+  </app-select-place>
+</div>
+
+<div *ngIf="currentStep === 1" class="w-full flex-grow">
+  <app-description-estates-form 
+    (formSubmit)="onDescribeOut($event)" 
+    [estateType]="estate.type" 
+    (imagesOut)="onPhotosChanged($event)"
+    (fileOut)="onFileChanged($event)"
+  >
+  </app-description-estates-form>
+</div>
+
+
+<div *ngIf="currentStep === 2" class="w-full flex-grow">
+  <app-estates-features-form 
+  (estateFeatures)="onEstateFeatures($event)"
+  >
+  </app-estates-features-form>
+</div>
+
+<div *ngIf="currentStep === 3" class="w-full flex-grow">
+  <app-estate-item 
+    [estate] ="estate" 
+    [photos]="photos">
+  </app-estate-item>
+</div>
+
+<div class="fixed bottom-12 mb-1 left-0 right-0  p-4 bg-white flex justify-between items-center z-0 ">
+  <div class="flex space-x-1">
+    <button class="px-4 py-2 bg-gray-500 text-white rounded" [class.cursor-not-allowed]="currentStep === 0" [disabled]="currentStep === 0" (click)="previousStep()">Previous</button>
+    <button class="px-4 py-2 bg-blue-500 text-white rounded" [class.cursor-not-allowed]="currentStep === 3" [disabled]="currentStep === 3" (click)="nextStep()">Next</button>
+  </div>
+  <button *ngIf="currentStep === 3" class="px-4 py-2 bg-green-500 text-white rounded" (click)="submit()">Submit</button>
+</div>
+
+
+
+
+</div>

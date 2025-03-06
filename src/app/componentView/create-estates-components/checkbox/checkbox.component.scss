@@ -1,0 +1,19 @@
+.toggle-switch {
+    @apply appearance-none relative inline-flex items-center h-6 rounded-full w-11;
+    background-color: #d1d5db;
+    transition: background-color 0.2s;
+    cursor: pointer;
+  }
+  
+  .toggle-switch:checked {
+    @apply bg-blue-500;
+  }
+  
+  .toggle-switch:before {
+    @apply content-[''] absolute left-1 top-1 bg-white border border-gray-300 rounded-full h-4 w-4 transition-transform;
+    transform: translateX(0);
+  }
+  
+  .toggle-switch:checked:before {
+    transform: translateX(1.25rem);
+  }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<div class="p-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-semibold mb-4">Select locality on map</h2>
+    <div class="mb-4">
+        <label for="radius" class="block text-lg font-medium text-gray-700">Radius: <span class="font-bold">{{ radius }}</span> m</label>
+        <input type="range" id="radius" name="radius" min="100" max="9999" [(ngModel)]="radius" class="w-full mt-2 custom-range">
+    </div>
+    <div class=" h-96 md:w-full w-96 my-10">
+        <app-map  
+            class=" rounded-lg border border-gray-300"
+            (coordinateWithMarker)="onClickMarker($event)"
+            [clickable]="true"
+            [radius]="radius"
+            [coordinates]="coordinate"
+        >
+        </app-map>
+    </div>
+    <div class="flex justify-end">
+        <button (click)="submit()" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Search</button>
+    </div>
+</div>

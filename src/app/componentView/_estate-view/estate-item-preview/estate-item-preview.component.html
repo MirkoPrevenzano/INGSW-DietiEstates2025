@@ -1,0 +1,14 @@
+<div (click)="showEstateDetail()" class="max-w-screen-sm my-3 mt-24 h-max mx-auto pt-5 px-5 bg-white shadow-lg rounded-lg cursor-pointer">
+  <div class="relative w-auto h-60 mx-auto overflow-hidden rounded-lg bg-gray-200">
+    <app-image-slider [photos]="photos" [sliderConfig]="sliderConfig"></app-image-slider>
+  </div>
+  <div class="p-2">
+    <div class="p-6">
+      <h2 class="text-2xl font-bold mb-4">{{ estatePreview.title }}</h2>
+      <p #description class="text-gray-700 mb-3 whitespace-pre-line" [ngClass]="{ 'line-clamp-3': true }">
+        {{ estatePreview.description }}
+      </p>
+      <p class="text-gray-900 text-2xl mb-3 whitespace-pre-line flex justify-end">{{ estatePreview.price | currency:'EUR':'symbol':'1.0-0' }}</p>
+    </div>
+  </div>
+</div>
