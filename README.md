@@ -1,4 +1,12 @@
 <<<<<<< HEAD
+   VISUALIZZAZIONE FOTO:
+   -  upload-photo: per una foto va bene, implementare la gestione per più foto quindi un vettore, come input questa funzione deve ricevere l'id dal frontend, così che poi associa le foto all'estate corretto. Inoltre mettere il codice che controlla che il vettore di foto che ricevi in input abbiano un minimo di dimensione 3 e un massimo di 10.
+   - get-photo: va bene la visualizzazione delle foto, mi serve però che questa richiesta recuperi tutte le foto di un immobile dato in input il suo id.
+   - create-real-estate-rent/sell : per entrambi i metodi, nella creazione dell'estate voglio che mi invii il proprio id (in questo  modo posso inserire nel database le foto associando le foto all'estate attraverso il proprio id)
+   
+   
+   
+   
     /*
       Richiedo il numero di operazioni completate da un'agente, per ogni mese.
       Nel body va un vettore di interi di 12 celle, ogni cella corrisponde ad un mese.
