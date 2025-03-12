@@ -8,6 +8,7 @@ import { FormFieldComponent } from '../form-field/form-field.component';
 import { PasswordFieldComponent } from '../password-field/password-field.component';
 import {  IndividualConfig, ToastrService } from 'ngx-toastr';
 import { Router, RouterModule } from '@angular/router';
+import { ButtonCustomComponent } from '../button-custom/button-custom.component';
 
 @Component({
     selector: 'app-login-customer',
@@ -17,7 +18,8 @@ import { Router, RouterModule } from '@angular/router';
       CommonModule,
       FormFieldComponent,
       PasswordFieldComponent,
-      RouterModule
+      RouterModule,
+      ButtonCustomComponent
     ],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss'

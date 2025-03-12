@@ -8,6 +8,7 @@ import { AgChartsComponent } from '../ag-charts/ag-charts.component';
 import { DownloadFileService } from '../../_service/download-file/download-file.service';
 import { ChartsConfigService } from '../../_service/charts-config/charts-config.service';
 import { AgentGeneralStats } from '../../model/agentGeneralStats';
+import { ButtonCustomComponent } from '../button-custom/button-custom.component';
 
 @Component({
   selector: 'app-agent-dashboard',
@@ -15,7 +16,8 @@ import { AgentGeneralStats } from '../../model/agentGeneralStats';
     AgChartsComponent,
     CommonModule,
     EstateStatsComponent,
-    GeneralStatsComponent
+    GeneralStatsComponent,
+    ButtonCustomComponent
   ],
   templateUrl: './agent-dashboard.component.html',
   styleUrls: ['./agent-dashboard.component.scss']

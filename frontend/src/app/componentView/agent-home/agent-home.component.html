@@ -5,6 +5,13 @@
     <h1 class="text-4xl font-bold mb-8">Welcome, Real Estate Agent</h1>
     <app-choose-type-estate (typeEstate)="onSelectedType($event)" class="sm:w-full max-w-md"></app-choose-type-estate>
     <app-recently-estate-popup class="w-full max-w-4xl mt-8 "></app-recently-estate-popup>
-    <button routerLink="/dashboard" class="mt-8 text-white bg-blue-500 p-3 rounded-lg shadow-md hover:underline">Go to Dashboard</button>
+    <div class="mt-16">
+      <app-button-custom
+      text="Go To Dashboard"
+      routerLink="/dashboard"
+      [width]=250
+      ></app-button-custom>
+    </div>
+    
   </div>
 </div>

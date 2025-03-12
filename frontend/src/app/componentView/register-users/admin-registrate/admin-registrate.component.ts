@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { PasswordFieldComponent } from '../../password-field/password-field.component';
 import {  ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ButtonCustomComponent } from '../../button-custom/button-custom.component';
 
 @Component({
   selector: 'app-admin-registrate',
@@ -16,7 +17,8 @@ import { Router } from '@angular/router';
     ReactiveFormsModule,
     FormFieldComponent, 
     CommonModule,
-    PasswordFieldComponent
+    PasswordFieldComponent,
+    ButtonCustomComponent
     
   ],
   templateUrl: '../register/register.component.html',

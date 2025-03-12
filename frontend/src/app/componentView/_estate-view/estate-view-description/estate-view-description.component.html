@@ -3,6 +3,7 @@
     <p #description class="text-gray-700 mb-3 whitespace-pre-line" [ngClass]="{'line-clamp-3': !showFullDescription}">
       {{ estateDescribe.description }}
     </p>
+    
     <button *ngIf="showToggleButtons && !showFullDescription" (click)="toggleDescription()" class="text-blue-500 hover:underline">
       Show more
     </button>

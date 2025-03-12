@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
     CheckboxComponent,
     ReactiveFormsModule,
     CommonModule,
-    AutocompleteInputComponent
+    AutocompleteInputComponent,
   ],
   templateUrl: './estate-filters.component.html',
   styleUrl: './estate-filters.component.scss'

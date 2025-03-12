@@ -6,13 +6,15 @@ import { PasswordFieldComponent } from '../password-field/password-field.compone
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { PasswordChangeControlService } from '../../_service/password-change/password-change-control.service';
+import { ButtonCustomComponent } from '../button-custom/button-custom.component';
 
 @Component({
     selector: 'app-password-change',
     imports: [
       ReactiveFormsModule, 
       CommonModule, 
-      PasswordFieldComponent
+      PasswordFieldComponent,
+      ButtonCustomComponent
     ],
     templateUrl: './password-change.component.html',
     styleUrl: './password-change.component.scss'

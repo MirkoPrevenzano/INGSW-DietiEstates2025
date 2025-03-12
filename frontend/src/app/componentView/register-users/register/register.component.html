@@ -3,7 +3,7 @@
 <div class="absolute inset-0 bg-black opacity-50"></div>
 
   <div class="relative z-10 flex flex-col items-center justify-center h-full text-black p-4">
-    <form  (ngSubmit)="onRegister()" [formGroup]="registerForm" class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+    <form   [formGroup]="registerForm" class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
     <h2 class="text-2xl font-bold mb-6 text-center">{{title}}</h2>
     <app-form-field 
       label="Name" 
@@ -48,7 +48,11 @@
       >
     </app-password-field>
     <fieldset>
-      <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register</button>
+      <app-button-custom
+        text="Register"
+        (clickEvent)="onRegister()"
+        color="bg-indigo-600"
+      ></app-button-custom>
     </fieldset>
     <div *ngIf="isCustomer" class="text-center mt-4 hover:cursor-pointer">
       <button routerLink="/login" class="text-indigo-600 hover:text-indigo-800">Already have an account? Click here!</button>

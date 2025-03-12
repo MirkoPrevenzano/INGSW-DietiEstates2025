@@ -54,11 +54,12 @@
     <div id="message" class="p-4 rounded-md mb-6 text-gray-700"></div>
     
     <div class="text-right">
-      <button 
-          class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none" 
-          (click)="checkAddress()">
-          Check Address
-      </button>
+     
+      <app-button-custom
+        text="Check Address"
+        (clickEvent)="checkAddress()"
+        [width]=160
+      ></app-button-custom>
     </div>
   </div>
 </div>

@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<div class="relative h-full bg-cover bg-center" style="background-image: url('../../../assets/images/agent-home.jpg');">
-  <div class="absolute inset-0 bg-black opacity-50"></div>
-  <div class="relative z-10 flex flex-col items-center justify-center h-full text-white p-4">
-    <h1 class="text-4xl font-bold mb-8">Welcome, Administrator</h1>
-    <button routerLink="/admin/change-password" class="mt-4 text-white bg-blue-500 p-3 rounded-lg shadow-md hover:underline">Change Password</button>
-    <button routerLink="/admin/create-agent" class="mt-4 text-white bg-green-500 p-3 rounded-lg shadow-md hover:underline">Create Agent</button>
-    <button routerLink="/admin/create-collaborator" class="mt-4 text-white bg-red-500 p-3 rounded-lg shadow-md hover:underline">Create Admin Manager</button>
+<div class="relative h-full bg-cover bg-center flex items-center justify-center" style="background-image: url('../../../assets/images/agent-home.jpg');">
+  <!-- Overlay scuro per migliorare la leggibilità -->
+  <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+  
+  <!-- Contenitore principale -->
+  <div class="relative z-10 text-center text-white px-6 sm:px-12">
+    <h1 class="text-5xl font-extrabold mb-32 drop-shadow-lg">Welcome, Administrator</h1>
+    
+    <div class="space-y-6 flex flex-col justify-center items-center">
+      <app-button-custom
+        text="Change Password"
+        color="bg-blue-600"
+        [width]="240"
+        routerLink="/admin/change-password"
+      ></app-button-custom>
+      
+      <app-button-custom
+        text="Create Agent"
+        color="bg-green-600"
+        [width]="240"
+        routerLink="/admin/create-agent"
+      ></app-button-custom>
+      
+      <app-button-custom
+        text="Create Admin Manager"
+        color="bg-red-600"
+        [width]="240"
+        routerLink="/admin/create-collaborator"
+      ></app-button-custom>
+    </div>
   </div>
 </div>

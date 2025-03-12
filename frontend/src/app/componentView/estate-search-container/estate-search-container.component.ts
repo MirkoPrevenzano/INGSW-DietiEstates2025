@@ -13,6 +13,7 @@ import { EstateService } from '../../_service/rest-backend/estate-request/estate
 import { switchMap } from 'rxjs';
 import { EstatePreview } from '../../model/estatePreview';
 import { CacheService } from '../../_service/cache-service/cache-service.service';
+import { ButtonCustomComponent } from '../button-custom/button-custom.component';
 
 
 @Component({
@@ -22,7 +23,8 @@ import { CacheService } from '../../_service/cache-service/cache-service.service
     MapComponent,
     EstateFiltersComponent,
     CommonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ButtonCustomComponent
   ],
   templateUrl: './estate-search-container.component.html',
   styleUrl: './estate-search-container.component.scss'

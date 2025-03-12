@@ -36,11 +36,25 @@
 </div>
 
 <div class="fixed bottom-12 mb-1 left-0 right-0  p-4 bg-white flex justify-between items-center z-0 ">
-  <div class="flex space-x-1">
-    <button class="px-4 py-2 bg-gray-500 text-white rounded" [class.cursor-not-allowed]="currentStep === 0" [disabled]="currentStep === 0" (click)="previousStep()">Previous</button>
-    <button class="px-4 py-2 bg-blue-500 text-white rounded" [class.cursor-not-allowed]="currentStep === 3" [disabled]="currentStep === 3" (click)="nextStep()">Next</button>
+  <div class="flex space-x-3">
+    <button       
+      class=" px-6 py-3 text-white  bg-gray-500 hover:bg-gray-600 font-semibold rounded-xl shadow-lg transition transform hover:scale-105"
+      [class.cursor-not-allowed]="currentStep === 0" 
+      [disabled]="currentStep === 0" 
+      (click)="previousStep()">Previous
+    </button>
+    <button
+      class=" px-6 py-3  bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-xl shadow-lg transition transform hover:scale-105"
+      [class.cursor-not-allowed]="currentStep === 3" 
+      [disabled]="currentStep === 3" 
+      (click)="nextStep()">Next
+    </button>
   </div>
-  <button *ngIf="currentStep === 3" class="px-4 py-2 bg-green-500 text-white rounded" (click)="submit()">Submit</button>
+  <button 
+    *ngIf="currentStep === 3" 
+    class=" px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl shadow-lg transition transform hover:scale-105"
+    (click)="submit()">Submit
+  </button>
 </div>
 
 

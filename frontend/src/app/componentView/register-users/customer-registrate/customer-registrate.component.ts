@@ -10,6 +10,7 @@ import { PasswordFieldComponent } from '../../password-field/password-field.comp
 import { Router, RouterModule } from '@angular/router';
 import {  ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ButtonCustomComponent } from '../../button-custom/button-custom.component';
 
 @Component({
   selector: 'app-customer-registrate',
@@ -18,7 +19,8 @@ import { HttpErrorResponse } from '@angular/common/http';
     CommonModule,
     FormFieldComponent,
     PasswordFieldComponent,
-    RouterModule
+    RouterModule,
+    ButtonCustomComponent
   ],
   templateUrl: '../register/register.component.html',
   styleUrl: './customer-registrate.component.scss'

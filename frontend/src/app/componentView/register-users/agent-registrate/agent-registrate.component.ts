@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { PasswordFieldComponent } from '../../password-field/password-field.component';
 import { ignoreElements } from 'rxjs';
 import { Router } from '@angular/router';
+import { ButtonCustomComponent } from '../../button-custom/button-custom.component';
 
 @Component({
   selector: 'app-agent-registrate',
@@ -15,7 +16,8 @@ import { Router } from '@angular/router';
     ReactiveFormsModule,
     FormFieldComponent, 
     CommonModule,
-    PasswordFieldComponent
+    PasswordFieldComponent,
+    ButtonCustomComponent
   ],
   templateUrl: '../register/register.component.html',
 })

@@ -7,7 +7,8 @@ import { FormFieldComponent } from '../../form-field/form-field.component';
 import { PasswordValidatorService } from '../../../_service/password-validator/password-validator.service';
 import { PasswordFieldComponent } from '../../password-field/password-field.component';
 import { ToastrService } from 'ngx-toastr';
-import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ButtonCustomComponent } from '../../button-custom/button-custom.component';
 
 @Component({
     selector: 'app-register',
@@ -16,7 +17,8 @@ import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
       CommonModule,
       FormFieldComponent,
       PasswordFieldComponent,
-      RouterModule
+      RouterModule,
+      ButtonCustomComponent
     ],
     templateUrl: './register.component.html',
     styleUrl: './register.component.scss'

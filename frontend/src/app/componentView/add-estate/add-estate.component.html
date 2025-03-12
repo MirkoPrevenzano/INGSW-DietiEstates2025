@@ -1,6 +1,6 @@
 <div class="bg-white text-black p-6 rounded-lg shadow-lg  ">
     <h2 class="text-2xl font-bold mb-4">Create a New Listing</h2>
-    <form [formGroup]="typeForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="typeForm" >
       <app-form-field 
         label="Listing Type" 
         type="select" 
@@ -8,6 +8,10 @@
         controlName="listingType" 
         [options]="['For Sale', 'For Rent']">
       </app-form-field>
-      <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Next</button>
+      <app-button-custom
+        text="Next"
+        (clickEvent)="onSubmit()"
+        color="bg-blue-600"
+      ></app-button-custom>
     </form>
 </div>

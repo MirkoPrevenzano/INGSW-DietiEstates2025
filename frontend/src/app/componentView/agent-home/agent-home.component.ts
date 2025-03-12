@@ -5,6 +5,7 @@ import { RecentlyEstatePopupComponent } from '../recently-estate-popup/recently-
 import {  Router, RouterLink } from '@angular/router';
 import { EstateCreateService } from '../../_service/rest-backend/estate-create/estate-create.service';
 import { AgentService } from '../../_service/rest-backend/agent/agent.service';
+import { ButtonCustomComponent } from '../button-custom/button-custom.component';
 
 @Component({
   selector: 'app-agent-home',
@@ -12,7 +13,8 @@ import { AgentService } from '../../_service/rest-backend/agent/agent.service';
     CommonModule, 
     AddEstateComponent, 
     RecentlyEstatePopupComponent,
-    RouterLink
+    RouterLink,
+    ButtonCustomComponent
   ],
   templateUrl: './agent-home.component.html',
   styleUrl: './agent-home.component.scss'

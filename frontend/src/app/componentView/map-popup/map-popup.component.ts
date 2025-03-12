@@ -4,13 +4,15 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Coordinate } from '../../model/coordinate';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ButtonCustomComponent } from '../button-custom/button-custom.component';
 
 @Component({
   selector: 'app-map-popup',
   imports: [
     MapComponent,
     FormsModule,
-    CommonModule
+    CommonModule,
+    ButtonCustomComponent
   ],
   templateUrl: './map-popup.component.html',
   styleUrl: './map-popup.component.scss'

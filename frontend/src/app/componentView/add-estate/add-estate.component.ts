@@ -1,10 +1,15 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormFieldComponent } from '../form-field/form-field.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ButtonCustomComponent } from '../button-custom/button-custom.component';
 
 @Component({
   selector: 'app-choose-type-estate',
-  imports: [FormFieldComponent,ReactiveFormsModule],
+  imports: [
+    FormFieldComponent,
+    ReactiveFormsModule,
+    ButtonCustomComponent
+  ],
   templateUrl: './add-estate.component.html',
   styleUrl: './add-estate.component.scss'
 })

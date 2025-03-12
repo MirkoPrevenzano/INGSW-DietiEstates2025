@@ -3,8 +3,10 @@
   <!-- Sidebar for filters -->
   <div class="sm:w-1/2 md:w-1/3 lg:w-1/4 w-full min-h-24 bg-white rounded-lg shadow-lg p-4 custom-scrollbar  overflow-y-auto" >
     <div class="md:hidden ">
-      <button (click)="toggleFilters()" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-        {{ showFilters ? 'Hide Filters' : 'Show Filters' }}
+      <button 
+        (click)="toggleFilters()" 
+        class=" px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg transition transform hover:scale-105"
+        >{{ showFilters ? 'Hide Filters' : 'Show Filters' }}
       </button>
     </div>
     <app-estate-filters 
@@ -19,12 +21,19 @@
 
    <div class="flex justify-end p-4 space-x-4"
         [ngClass]="{'hidden': showFilters && isMobile, 'block': !isMobile || !showFilters}">
-      <button (click)="isViewList = true" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-        View List
-      </button>
-      <button (click)="isViewList = false" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-        View Map
-      </button>
+      <app-button-custom
+        text="View List"
+        (clickEvent)="isViewList = true"
+        [width]=150
+        color="bg-blue-600"
+      ></app-button-custom>
+      <app-button-custom
+        text="View Map"
+        (clickEvent)="isViewList = false"
+        [width]=150
+        color="bg-blue-600"
+      ></app-button-custom>
+      
     </div>
 
     <div class="flex-1  overflow-hidden" [ngClass]="{'hidden':isMobile && showFilters ,'block':!isMobile || !showFilters}">

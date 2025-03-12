@@ -8,12 +8,14 @@ import { MapPopupComponent } from '../map-popup/map-popup.component';
 import { Coordinate } from '../../model/coordinate';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ButtonCustomComponent } from '../button-custom/button-custom.component';
 
 @Component({
   selector: 'app-customer-home',
   imports:[
     AutocompleteInputComponent, 
-    FormFieldComponent
+    FormFieldComponent,
+    ButtonCustomComponent
   ],
   templateUrl: './customer-home.component.html',
   styleUrls: ['./customer-home.component.scss']

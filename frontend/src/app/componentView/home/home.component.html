@@ -10,13 +10,19 @@
     
     <div class="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-2xl text-center">
       <div class="flex flex-col space-y-6">
-        <button routerLink="/login" class="w-full text-lg text-white bg-blue-600 px-6 py-3 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:bg-blue-700">
-          Login
-        </button>
+        <app-button-custom
+          text="Login"
+          routerLink="/login"
+          [width]=550
+          color="bg-blue-600"
+        ></app-button-custom>
+        <app-button-custom
+          text="Register as Customer"
+          routerLink="/register"
+          [width]=550
+          color="bg-green-600"
+        ></app-button-custom>
         
-        <button routerLink="/register" class="w-full text-lg text-white bg-green-600 px-6 py-3 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:bg-green-700">
-          Register as Customer
-        </button>
       </div>
     </div>
   </div>

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <div class="flex  justify-end m-10">
   <div class="relative inline-block text-left">
-    <button (click)="toggleDropdown()" class="inline-flex justify-center w-full rounded-md border-2 border-gray-300 shadow-sm px-16 py-2 bg-blue-600 text-sm font-medium text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-      Export Stats
-    </button>
+    <app-button-custom
+    text="Export Stats"
+    (clickEvent)="toggleDropdown()"
+    [width]=225
+    ></app-button-custom>
+    
     <div *ngIf="dropdownOpen" class="origin-top-right  right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
       <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
         <a (click)="exportCSV()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:cursor-pointer hover:text-gray-900" role="menuitem">Export as CSV</a>

@@ -4,12 +4,16 @@ import { Address } from '../../model/address';
 import { Coordinate } from '../../model/coordinate';
 import { AddressVerificationService } from '../../_service/geoapify/address-verification/address-verification.service';
 import { ToastrService } from 'ngx-toastr';
+import { ButtonCustomComponent } from '../button-custom/button-custom.component';
 
 @Component({
   selector: 'app-address-estates',
   templateUrl: './address-estates.component.html',
   styleUrls: ['./address-estates.component.scss'],
-  imports:[AutocompleteInputComponent]
+  imports:[
+    AutocompleteInputComponent,
+    ButtonCustomComponent
+  ]
 })
 export class AddressEstatesComponent implements AfterViewInit, OnChanges {
   @ViewChild('streetInput') streetInput!: AutocompleteInputComponent;
