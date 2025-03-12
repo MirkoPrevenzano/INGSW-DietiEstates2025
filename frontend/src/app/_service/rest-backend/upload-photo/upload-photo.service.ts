@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,18 +17,22 @@ export class UploadPhotoService {
         })
     };
 
-    uploadPhotos(id: number, photos: File){
+    uploadPhotos(id: number, photos: File[]) {
       const formData = new FormData()
-     /* photos.forEach(photo=>{
+      photos.forEach(photo=>{
         formData.append('photos', photo)
-      })*/
-     formData.append('file', photos)
-
-      for (const pair of (formData as any).entries()) {
-        console.log(`${pair[0]}: ${pair[1]}`);
-      }
+      })
       
       const url = this.url+`/${localStorage.getItem('user')}/upload-photo/${id}`
       return this.http.post(url, formData, this.httpOptions)
     }
+
+    getPhoto(photoKey: string): Observable<Blob> {
+      const url = `${this.url}/get-photo`;
+      const params = { photoKey: photoKey };
+      return this.http.get<Blob>(url, { ...this.httpOptions, params, responseType: 'blob' as 'json' })
+    }
+  
+    
+     
 }

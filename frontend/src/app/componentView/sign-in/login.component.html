@@ -3,7 +3,7 @@
   <div class="absolute inset-0 bg-black opacity-50"></div>
 
   <div class="relative z-10 flex flex-col items-center justify-center h-full text-black p-4">
-    <form [formGroup]="loginForm" (ngSubmit)="signIn()" class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+    <form [formGroup]="loginForm"  class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
     <h2 class="text-2xl font-bold  text-center">Login</h2>
       <app-form-field
         label="Select User Type"
@@ -26,7 +26,7 @@
         controlName="password"
         [form]="loginForm">
       </app-password-field>
-      <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 mt-5 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</button>
+      <button (click)="signIn()" class="w-full bg-indigo-600 text-white py-2 px-4 mt-5 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</button>
     <fieldset *ngIf="loginForm.value.userType === 'customer'" >
       <app-login-with-google class="w-full py-2 mt-4 px-4 focus:outline-none focus:ring-2 focus:ring-offset-2 flex justify-center"></app-login-with-google>
     </fieldset> 

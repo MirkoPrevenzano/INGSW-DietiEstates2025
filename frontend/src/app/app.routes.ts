@@ -88,6 +88,7 @@ export const routes: Routes = [
     {
         title: 'HomePage',
         path: 'home',
+        canActivate:[notAuthGuard],
         component: HomeComponent
     },
     {

@@ -77,9 +77,7 @@ export class CreateEstatesComponent implements OnInit{
     private readonly validateStepService: ValidateStepEstateCreateService
 
   ){}
-  /*ngAfterViewInit(): void {
-   //
-  }*/ //vedo se prova qualche problema la sua assenza
+  
 
   onPhotosChanged(photos:string[]): void {
     this.photos = photos
@@ -88,11 +86,11 @@ export class CreateEstatesComponent implements OnInit{
   onFileChanged(photos:File[]){
     this.filePhoto= photos
   }
-
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.estate.type = params['type'] || 'For Sale';
     });
+    
     this.address = this.estateDataService.getAddress()
     this.description = this.estateDataService.getDescription()
     
@@ -182,13 +180,19 @@ export class CreateEstatesComponent implements OnInit{
     })
 
     this.createEstateService.createEstate(this.estate).subscribe((response:any)=>{
-      this.uploadPhotos(4)
+      this.uploadPhotos(response.realEstateId)
+
+      
     }) 
   }
 
   uploadPhotos(id: any) {
-    this.uploadPhotosService.uploadPhotos(2, this.filePhoto[0]).subscribe(()=>{
-
+    this.uploadPhotosService.uploadPhotos(id, this.filePhoto).subscribe({
+      next:(response)=>{
+        console.log(response)
+        
+        
+      }
     })
   }
 

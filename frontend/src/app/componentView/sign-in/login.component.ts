@@ -74,7 +74,9 @@ export class LoginComponent {
       next: (response) => {
         const token = response.accessToken;
         this.authService.updateToken(token);
-        this.redirectHomePage()
+        setTimeout(()=>{
+          this.redirectHomePage()
+        },0)
       },
       error: (err) => {
         console.log(err);

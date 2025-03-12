@@ -5,7 +5,6 @@ package com.dietiEstates.backend.controller;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dietiEstates.backend.dto.RealEstatePreviewsFirstPageDTO;
 import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
-import com.dietiEstates.backend.model.RealEstate;
-import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.RealEstateService;
 
 import lombok.RequiredArgsConstructor;

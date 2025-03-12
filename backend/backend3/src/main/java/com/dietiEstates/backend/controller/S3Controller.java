@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -36,14 +38,15 @@ public class S3Controller
 
 
 
-    @PostMapping(value = "{username}/upload-photo/{realEstateId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> uploadPhoto(@PathVariable("username") String username, 
-                                              @RequestParam("file") MultipartFile file, 
-                                              @PathVariable("realEstateId") Long realEstateId)
+   @PostMapping(value = "{username}/upload-photo/{realEstateId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Void> uploadPhoto(@PathVariable("username") String username, 
+                                                           @RequestParam("file") MultipartFile file, 
+                                                           @PathVariable("realEstateId") Long realEstateId)
     {
         try 
         {
-            return ResponseEntity.ok().body(realEstateAgentService.uploadPhoto(username, file, realEstateId));            
+            realEstateAgentService.uploadPhoto(username, file, realEstateId);
+            return ResponseEntity.ok().body(null);            
         } 
         catch (IllegalArgumentException e)
         {
@@ -57,7 +60,7 @@ public class S3Controller
 
 
     @GetMapping(value = "get-photo", produces = {MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE})
-    public ResponseEntity<byte[]> getPhoto(@RequestParam("file") String photoKey) 
+    public ResponseEntity<byte[]> getPhoto(@RequestParam("photoKey") String photoKey) 
     {        
         try 
         {
