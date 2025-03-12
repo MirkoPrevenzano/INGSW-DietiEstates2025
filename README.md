@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
    VISUALIZZAZIONE FOTO:
    -  upload-photo: per una foto va bene, implementare la gestione per più foto quindi un vettore, come input questa funzione deve ricevere l'id dal frontend, così che poi associa le foto all'estate corretto. Inoltre mettere il codice che controlla che il vettore di foto che ricevi in input abbiano un minimo di dimensione 3 e un massimo di 10.
    - get-photo: va bene la visualizzazione delle foto, mi serve però che questa richiesta recuperi tutte le foto di un immobile dato in input il suo id.
