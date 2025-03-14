@@ -1,4 +1,9 @@
-<<<<<<< HEAD
+  FUNZIONE AMMINISTRATORE
+  - quando si crea un amministratore, da frontend non scelgo la password, nel backend inserisci nel campo password "default" o come vuoi, ma una parola standard. Ovviamente non rispetta le norme di password sicura (bisognerebbe bypassarlo solo in questa casistica). Nel frontend quando accedo con password "default" mi deve obbligatoriamente far cambiare password, altrimenti non mi fa accedere a nessun servizio. Quello che dovresti fare tu da backend, oltre al fatto di settare password "default" è quella che se l'amministratore non ha ancora cambiato la password non può eseguire alcuna operazione.
+  -Solo l'amministratore principale, quello creato con id=1 può creare amministratori, l'altra volta ti proposi di fare questo controllo nel backend invece che controllare io da frontend (perchè l'id dovresti mandarlo nel token, quindi poi dovresti mandarmi l'id di tutti). L'idea è quella che nel caso l'id dell'admin sia 1, al vettore role aggiungi un ruolo tipo admin-principal oltre al ruolo admin, così che io controllo dal vettore di ruoli (che già mi mandi nel token) se posso visualizzare l'opzione di creare nuovo admin
+
+
+
    VISUALIZZAZIONE FOTO:
    -  upload-photo: per una foto va bene, implementare la gestione per più foto quindi un vettore, come input questa funzione deve ricevere l'id dal frontend, così che poi associa le foto all'estate corretto. Inoltre mettere il codice che controlla che il vettore di foto che ricevi in input abbiano un minimo di dimensione 3 e un massimo di 10.
    - get-photo: va bene la visualizzazione delle foto, mi serve però che questa richiesta recuperi tutte le foto di un immobile dato in input il suo id.
