@@ -16,6 +16,7 @@ import { AgentDashboardComponent } from './componentView/agent-dashboard/agent-d
 import { authGuard } from './_guard/authentication/auth.guard';
 import { roleGuard } from './_guard/authorization/role.guard';
 import { notAuthGuard } from './_guard/not-auth/no-auth.guard';
+import { EstateItemDetailComponent } from './componentView/_estate-view/estate-item-detail/estate-item-detail.component';
 
 export const routes: Routes = [
     {
@@ -97,6 +98,12 @@ export const routes: Routes = [
         component: EstateItemPreviewComponent,
         canActivate: [authGuard, roleGuard],
         data:{expectedRole:'ROLE_USER'}
+    },
+    {
+        title:'EstateDetail',
+        path:'estate/:id',
+        component: EstateItemDetailComponent,
+       
     },
     {
         title: 'Filter',

@@ -1,4 +1,4 @@
-import {  Component, Input } from '@angular/core';
+import {  Component, inject, Input, OnInit } from '@angular/core';
 import { Estate } from '../../../model/estate';
 import { EstateViewDescriptionComponent } from '../estate-view-description/estate-view-description.component';
 import { EstateViewFeaturesComponent } from '../estate-view-features/estate-view-features.component';
@@ -9,6 +9,10 @@ import { EstateSell } from '../../../model/estateSell';
 import { RentEstateViewComponent } from '../rent-estate-view/rent-estate-view.component';
 import { SellEstateViewComponent } from '../sell-estate-view/sell-estate-view.component';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { UploadPhotoService } from '../../../_service/rest-backend/upload-photo/upload-photo.service';
+import { GetEstateDetailService } from '../../../_service/rest-backend/get-estate-detail.service';
+import { ReadPhotoService } from '../../../_service/read-photo/read-photo.service';
 
 @Component({
   selector: 'app-estate-item',
@@ -24,8 +28,13 @@ import { CommonModule } from '@angular/common';
   templateUrl: './estate-item-detail.component.html',
   styleUrl: './estate-item-detail.component.scss'
 })
-export class EstateItemComponent {
+export class EstateItemDetailComponent implements OnInit{
   
+  route = inject(ActivatedRoute)
+  uploadPhotosService = inject(UploadPhotoService)
+  estateService = inject(GetEstateDetailService)
+  readPhoto = inject(ReadPhotoService)
+  notFound404=false
   @Input() estate!: Estate;
   @Input() photos: string[] = [];
   @Input() realEstateId!:number
@@ -38,6 +47,35 @@ export class EstateItemComponent {
     autoplay: true,
     autoplaySpeed: 2000
   };
+
+  ngOnInit(): void {
+    if(Number(this.route.snapshot.paramMap.has('id'))){
+      this.realEstateId=Number(this.route.snapshot.paramMap.get('id'))
+      this.loadEstate()
+    }
+  }
+  
+  loadEstate() {
+    this.estateService.getEstateInfo(this.realEstateId).subscribe({
+      next: (result) => {
+        this.estate = result; // Assegna il risultato alla proprietà `estate`
+      },
+      error: (err) => {
+        if(err.code==404)
+          this.notFound404=true
+        console.error("Errore durante il caricamento dell'immobile:", err);
+      }
+    });
+  
+    this.uploadPhotosService.getPhotos(this.realEstateId).subscribe({
+      next: (result) => {
+        this.photos=this.readPhoto.blobToPhoto(result)
+      },
+      error: (err) => {
+        console.error("Errore durante il caricamento delle foto:", err);
+      }
+    });
+  }
 
   isEstateRent(estate: Estate): estate is EstateRent {
     return this.estate.type === 'For Rent';

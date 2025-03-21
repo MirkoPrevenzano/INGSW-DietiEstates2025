@@ -17,7 +17,7 @@ import { EstateLocationFeatures } from '../../../model/estateLocationFeatures';
 import { Observable, switchMap } from 'rxjs';
 import { UploadPhotoService } from '../../../_service/rest-backend/upload-photo/upload-photo.service';
 import { ToastrService } from 'ngx-toastr';
-import { EstateItemComponent } from '../../_estate-view/estate-item-detail/estate-item-detail.component';
+import { EstateItemDetailComponent } from '../../_estate-view/estate-item-detail/estate-item-detail.component';
 import { EstateCreateService } from '../../../_service/rest-backend/estate-create/estate-create.service';
 import { ValidateStepEstateCreateService } from '../../../_service/validate-step-create-estate/validate-step-estate-create.service';
 
@@ -29,7 +29,7 @@ import { ValidateStepEstateCreateService } from '../../../_service/validate-step
     EstatesFeaturesFormComponent,
     CommonModule,
     ProgressBarComponent,
-    EstateItemComponent
+    EstateItemDetailComponent
   ],
   templateUrl: './create-estates.component.html',
   styleUrl: './create-estates.component.scss'

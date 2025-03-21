@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EstateItemComponent } from './estate-item-detail.component';
+import { EstateItemDetailComponent } from './estate-item-detail.component';
 
 describe('EstateItemComponent', () => {
-  let component: EstateItemComponent;
-  let fixture: ComponentFixture<EstateItemComponent>;
+  let component: EstateItemDetailComponent;
+  let fixture: ComponentFixture<EstateItemDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EstateItemComponent]
+      imports: [EstateItemDetailComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EstateItemComponent);
+    fixture = TestBed.createComponent(EstateItemDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

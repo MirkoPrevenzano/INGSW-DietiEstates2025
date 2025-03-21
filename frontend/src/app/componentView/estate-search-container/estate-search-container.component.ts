@@ -9,7 +9,7 @@ import { Map as LeafletMap } from 'leaflet';
 import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CacheEstates } from '../../model/cacheEstates';
-import { EstateService } from '../../_service/rest-backend/estate-request/estate.service';
+import { EstateService } from '../../_service/rest-backend/estates-request/estate.service';
 import { switchMap } from 'rxjs';
 import { EstatePreview } from '../../model/estatePreview';
 import { CacheService } from '../../_service/cache-service/cache-service.service';
@@ -182,7 +182,7 @@ export class EstateSearchContainerComponent implements OnInit {
   /*richiesta estates per cambio di pagina */
   getEstatesNewFilter(params: { [key: string]: any; }, cacheKey: string) {
     this.estateService.getEstatesNewFilter(params).pipe(
-      switchMap((result) => {
+      switchMap((result:any) => {
         console.log("risultato")
         console.log(result)
         this.listEstatePreview = result.realEstatePreviews;

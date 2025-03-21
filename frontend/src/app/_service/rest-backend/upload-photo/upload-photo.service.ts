@@ -32,6 +32,11 @@ export class UploadPhotoService {
       const params = { photoKey: photoKey };
       return this.http.get<Blob>(url, { ...this.httpOptions, params, responseType: 'blob' as 'json' })
     }
+
+    getPhotos(realEstateId:number): Observable<Blob[]>{
+      const url=`${this.url}/get-photos/${realEstateId}`
+      return this.http.get<Blob[]>(url, this.httpOptions)
+    }
   
     
      
