@@ -1,4 +1,27 @@
 
+  COSE DA FARE CON IL FRONTEND
+  - nella visualizzazione dell'estate indicare lo stato di vendita e le info delle stats
+  - nei filtri, locality non deve restare vuoto
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     FUNZIONE AMMINISTRATORE
   - quando si crea un amministratore, da frontend non scelgo la password, nel backend inserisci nel campo password "default" o come vuoi, ma una parola standard. Ovviamente non rispetta le norme di password sicura (bisognerebbe bypassarlo solo in questa casistica). Nel frontend quando accedo con password "default" mi deve obbligatoriamente far cambiare password, altrimenti non mi fa accedere a nessun servizio. Quello che dovresti fare tu da backend, oltre al fatto di settare password "default" è quella che se l'amministratore non ha ancora cambiato la password non può eseguire alcuna operazione.
   -Solo l'amministratore principale, quello creato con id=1 può creare amministratori, l'altra volta ti proposi di fare questo controllo nel backend invece che controllare io da frontend (perchè l'id dovresti mandarlo nel token, quindi poi dovresti mandarmi l'id di tutti). L'idea è quella che nel caso l'id dell'admin sia 1, al vettore role aggiungi un ruolo tipo admin-principal oltre al ruolo admin, così che io controllo dal vettore di ruoli (che già mi mandi nel token) se posso visualizzare l'opzione di creare nuovo admin

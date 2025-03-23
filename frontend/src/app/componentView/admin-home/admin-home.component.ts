@@ -13,4 +13,6 @@ import { ButtonCustomComponent } from '../button-custom/button-custom.component'
   templateUrl: './admin-home.component.html',
   styleUrl: './admin-home.component.scss'
 })
-export class AdminHomeComponent {}
+export class AdminHomeComponent {
+  roleLevel=localStorage.getItem('role')
+}

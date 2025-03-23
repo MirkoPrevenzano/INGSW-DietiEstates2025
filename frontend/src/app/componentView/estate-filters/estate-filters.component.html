@@ -20,6 +20,27 @@
         [form]="searchForm">
       </app-form-field>
 
+      <div class="">
+        <label for="radius" class="block text-sm font-medium  ">Radius: <span class="font-bold">{{searchForm.controls["radius"].value}}</span> </label>
+        
+        <input 
+        type="range" 
+        id="radius" 
+        name="radius" 
+        min="100" 
+        max="9999" 
+        [value]="searchForm.controls['radius'].value" 
+        (input)="onRadiusChange($event)" 
+        class="w-full mt-2 custom-range">
+      </div>
+      <!-- Posizione -->
+      <app-autocomplete-input
+        #localityInput
+        elementId="locality"
+        type="locality"
+        label="Enter locality">
+      </app-autocomplete-input>
+
       <!-- Prezzo minimo -->
       <app-form-field 
         label="Min Price"
@@ -55,13 +76,7 @@
         [form]="searchForm">
       </app-form-field>
 
-      <!-- Posizione -->
-      <app-autocomplete-input
-        #localityInput
-        elementId="locality"
-        type="locality"
-        label="Enter locality">
-      </app-autocomplete-input>
+      
 
       <!-- Servizi -->
       <div class="col-span-1">

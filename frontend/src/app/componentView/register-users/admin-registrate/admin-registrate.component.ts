@@ -51,6 +51,20 @@ export class AdminRegistrateComponent extends RegisterComponent{
     })
   }
 
+  override onRegister()
+  {
+    const userRequest: RegisterRequest ={
+        name:this.registerForm.value.name,
+        surname: this.registerForm.value.lastname,
+        username: this.registerForm.value.username,
+    }
+    console.log(userRequest)
+    this.onRegisterUser(userRequest)
+      
+  }
+
+  
+
 
   
 }

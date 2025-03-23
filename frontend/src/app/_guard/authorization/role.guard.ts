@@ -8,7 +8,7 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state:Ro
 
   const expectedRole = route.data['expectedRole'];
   const role = authService.getRole();
-  if (authService.isAuthenticated() && expectedRole == role) {
+  if (authService.isAuthenticated() && expectedRole.includes(role)) {
     return true;
   } else {
 

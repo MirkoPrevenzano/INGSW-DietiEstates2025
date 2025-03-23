@@ -6,7 +6,7 @@ import { GeocoderAutocompleteService } from '../../_service/geoapify/geocoder-au
   selector: 'app-autocomplete-input',
   template: `
     <div class="mb-6 relative">
-      <label [for]="elementId" class="block text-sm font-medium text-gray-700">{{ label }}:</label>
+      <label [for]="elementId" class="block text-sm font-medium">{{ label }}:</label>
       <div [id]="elementId" class="address-field relative mt-2 w-full   rounded-lg"></div>
     </div>
   `,

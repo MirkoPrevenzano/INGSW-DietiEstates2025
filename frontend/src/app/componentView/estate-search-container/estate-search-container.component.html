@@ -1,70 +1,75 @@
 <!DOCTYPE html>
-<div class="flex flex-col md:flex-row  h-full ">
-  <!-- Sidebar for filters -->
-  <div class="sm:w-1/2 md:w-1/3 lg:w-1/4 w-full min-h-24 bg-white rounded-lg shadow-lg p-4 custom-scrollbar  overflow-y-auto" >
-    <div class="md:hidden ">
-      <button 
-        (click)="toggleFilters()" 
-        class=" px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg transition transform hover:scale-105"
-        >{{ showFilters ? 'Hide Filters' : 'Show Filters' }}
-      </button>
+@if(isNotFound()){
+  <app-not-found textMessage="Sorry, there are no properties that reflect these filters. Try again! "></app-not-found>
+}
+@else {
+  <div class="flex flex-col md:flex-row  h-full ">
+    <!-- Sidebar for filters -->
+    <div class="sm:w-1/2 md:w-1/3 lg:w-1/4 w-full min-h-24 bg-white rounded-lg shadow-lg p-4 custom-scrollbar  overflow-y-auto" >
+      <div class="md:hidden ">
+        <button 
+          (click)="toggleFilters()" 
+          class=" px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg transition transform hover:scale-105"
+          >{{ showFilters ? 'Hide Filters' : 'Show Filters' }}
+        </button>
+      </div>
+      <app-estate-filters 
+        [ngClass]="{'hidden': !showFilters && isMobile}"
+        (filterParams) ="applyFilter($event)"
+        >
+      </app-estate-filters>
     </div>
-    <app-estate-filters 
-      [ngClass]="{'hidden': !showFilters && isMobile}"
-      (filterParams) ="applyFilter($event)"
-      >
-    </app-estate-filters>
-  </div>
-
-  <div class="flex-1 flex flex-col h-full">
-   
-
-   <div class="flex justify-end p-4 space-x-4"
-        [ngClass]="{'hidden': showFilters && isMobile, 'block': !isMobile || !showFilters}">
-      <app-button-custom
-        text="View List"
-        (clickEvent)="isViewList = true"
-        [width]=150
-        color="bg-blue-600"
-      ></app-button-custom>
-      <app-button-custom
-        text="View Map"
-        (clickEvent)="isViewList = false"
-        [width]=150
-        color="bg-blue-600"
-      ></app-button-custom>
+  
+    <div class="flex-1 flex flex-col h-full">
+     
+  
+     <div class="flex justify-end p-4 space-x-4"
+          [ngClass]="{'hidden': showFilters && isMobile, 'block': !isMobile || !showFilters}">
+        <app-button-custom
+          text="View List"
+          (clickEvent)="isViewList = true"
+          [width]=150
+          color="bg-blue-600"
+        ></app-button-custom>
+        <app-button-custom
+          text="View Map"
+          (clickEvent)="isViewList = false"
+          [width]=150
+          color="bg-blue-600"
+        ></app-button-custom>
+        
+      </div>
+  
+      <div class="flex-1  overflow-hidden" [ngClass]="{'hidden':isMobile && showFilters ,'block':!isMobile || !showFilters}">
+        <div [ngClass]="{'hidden': isViewList, 'block': !isViewList}" class="h-full">
+          <app-map 
+            [listCoordinate]="listCoordinate"
+            class="w-full h-full"
+            (mapReady)="onMapReady($event)"
+          >
+          </app-map>
+        </div>
+        <div [ngClass]="{'hidden': !isViewList, 'block': isViewList}" class="max-h-full overflow-y-auto">
+          <app-estate-list
+            [listPhotos]="listPhotos"
+            [listEstatePreview]="listEstatePreview"
+            [listRealEstateId]="listRealEstateId"
+            class="w-full h-full"
+          ></app-estate-list>
+        </div>
+      </div>
+      <div [ngClass]="{'hidden': showFilters && isMobile ,'block': !showFilters || !isMobile} " class="bg-white h-14  mb-0 -pb-2">
+        <mat-paginator 
+          [length]= "countOfItems"   
+          aria-label = "Seleziona pagina" 
+          [pageSize]="limit"
+          [hidePageSize]="true"
+          [pageIndex]="pageNumber"
+          (page)="onPageChange($event)"
+        > 
+        </mat-paginator>
+      </div>
       
     </div>
-
-    <div class="flex-1  overflow-hidden" [ngClass]="{'hidden':isMobile && showFilters ,'block':!isMobile || !showFilters}">
-      <div [ngClass]="{'hidden': isViewList, 'block': !isViewList}" class="h-full">
-        <app-map 
-          [listCoordinate]="listCoordinate"
-          class="w-full h-full"
-          (mapReady)="onMapReady($event)"
-        >
-        </app-map>
-      </div>
-      <div [ngClass]="{'hidden': !isViewList, 'block': isViewList}" class="max-h-full overflow-y-auto">
-        <app-estate-list
-          [listPhotos]="listPhotos"
-          [listEstatePreview]="listEstatePreview"
-          [listRealEstateId]="listRealEstateId"
-          class="w-full h-full"
-        ></app-estate-list>
-      </div>
-    </div>
-    <div [ngClass]="{'hidden': showFilters && isMobile ,'block': !showFilters || !isMobile} " class="bg-white h-14  mb-0 -pb-2">
-      <mat-paginator 
-        [length]= "countOfItems"   
-        aria-label = "Seleziona pagina" 
-        [pageSize]="limit"
-        [hidePageSize]="true"
-        [pageIndex]="pageNumber"
-        (page)="onPageChange($event)"
-      > 
-      </mat-paginator>
-    </div>
-    
   </div>
-</div>
+}

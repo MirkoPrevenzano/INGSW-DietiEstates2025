@@ -22,7 +22,7 @@ export class EstateService {
   
 
   getEstatesNewPage(params: { [key: string]: any; }): Observable<EstatePreview[]>{
-    const url: string = this.url+"/search2";
+    const url: string = this.url+"/search4";
     console.log("Sto in new page")
     const httpParams = new HttpParams({ fromObject: params });
     return this.http.get< 

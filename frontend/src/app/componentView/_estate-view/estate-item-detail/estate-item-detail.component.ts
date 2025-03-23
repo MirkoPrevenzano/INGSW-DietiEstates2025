@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UploadPhotoService } from '../../../_service/rest-backend/upload-photo/upload-photo.service';
 import { GetEstateDetailService } from '../../../_service/rest-backend/get-estate-detail.service';
 import { ReadPhotoService } from '../../../_service/read-photo/read-photo.service';
+import { NotFoundComponent } from '../../not-found/not-found.component';
 
 @Component({
   selector: 'app-estate-item',
@@ -23,12 +24,14 @@ import { ReadPhotoService } from '../../../_service/read-photo/read-photo.servic
     ImageSliderComponent,
     RentEstateViewComponent,
     SellEstateViewComponent,
-    CommonModule
+    CommonModule,
+    NotFoundComponent
   ],
   templateUrl: './estate-item-detail.component.html',
   styleUrl: './estate-item-detail.component.scss'
 })
 export class EstateItemDetailComponent implements OnInit{
+
   
   route = inject(ActivatedRoute)
   uploadPhotosService = inject(UploadPhotoService)
@@ -54,6 +57,8 @@ export class EstateItemDetailComponent implements OnInit{
       this.loadEstate()
     }
   }
+
+  
   
   loadEstate() {
     this.estateService.getEstateInfo(this.realEstateId).subscribe({
@@ -83,6 +88,10 @@ export class EstateItemDetailComponent implements OnInit{
 
   isEstateSell(estate: Estate): estate is EstateSell {
     return this.estate.type === 'For Sale';
+  }
+
+  isNotFound() {
+    return this.notFound404
   }
 
   

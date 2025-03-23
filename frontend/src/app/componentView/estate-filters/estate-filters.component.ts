@@ -35,6 +35,7 @@ export class EstateFiltersComponent implements AfterViewInit{
 
     searchForm!:FormGroup
     coordinate: Coordinate = {lat:NaN, lon:NaN}
+    radius:number =0
     @Output() filterParams: EventEmitter<{ [key: string]: any }> = new EventEmitter();
   
     estateFeatures = [
@@ -78,9 +79,10 @@ export class EstateFiltersComponent implements AfterViewInit{
         hasElevator: new FormControl(false),
         isNearPark: new FormControl(false),
         isNearPublicTransport: new FormControl(false),
-        isNearSchool: new FormControl(false)
+        isNearSchool: new FormControl(false),
+        radius: new FormControl(100)
       });
-
+      
       this.route.queryParams.subscribe(params => {
         for (const key in params) {
           if (this.searchForm.controls[key]) {
@@ -94,7 +96,13 @@ export class EstateFiltersComponent implements AfterViewInit{
         }
       })
     }
-  
+    
+    onRadiusChange(event: Event): void {
+      const inputElement = event.target as HTMLInputElement;
+      const radiusValue = parseInt(inputElement.value, 10);
+      this.searchForm.controls['radius'].setValue(radiusValue);
+    }
+
     onSearch(): void {
       const queryParams: { [key: string]: any } = {};
       if (this.searchForm.valid) {

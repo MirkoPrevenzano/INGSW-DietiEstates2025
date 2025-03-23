@@ -1,0 +1,2 @@
+GET http://localhost:8080/customer/aaahaaaaaa@gmail.com/view/1 HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYWFoYWFhYWFhQGdtYWlsLmNvbSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJleHAiOjE3NDQyNjEyMjksImlhdCI6MTc0MjU1NjE5Nn0.8uSQ8quzLTVLcZ_il_-qSIdBDH1GQjR4zdYyu3NzLnw

@@ -29,6 +29,7 @@ export class RegisterComponent implements OnInit {
   private readonly route: ActivatedRoute = inject(ActivatedRoute)
   title: string =""
   isCustomer: boolean = false
+  isCreateCollaborator:boolean = false
   
   constructor(
     protected readonly registerValidation:RegisterValidationService,
@@ -39,13 +40,14 @@ export class RegisterComponent implements OnInit {
       name: new FormControl('', Validators.required),
       lastname: new FormControl('', Validators.required),
       username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required)
+      password: new FormControl('')
     });
   }
 
   ngOnInit(): void {
     this.route.url.subscribe(url => {
       this.isCustomer = url.some(segment => segment.path === 'register');
+      this.isCreateCollaborator = url.some(segment => segment.path === 'create-collaborator')
     });
   }
 

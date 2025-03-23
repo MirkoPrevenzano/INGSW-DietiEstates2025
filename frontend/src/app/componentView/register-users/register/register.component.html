@@ -40,13 +40,15 @@
     </div>
     
     
-
-    <app-password-field 
+    <div *ngIf="!isCreateCollaborator">
+      <app-password-field 
       label="Password" 
       controlName="password"
       [form]="registerForm"
       >
-    </app-password-field>
+      </app-password-field>
+    </div>
+    
     <fieldset>
       <app-button-custom
         text="Register"

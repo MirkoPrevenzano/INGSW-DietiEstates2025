@@ -21,13 +21,14 @@
         [width]="240"
         routerLink="/admin/create-agent"
       ></app-button-custom>
-      
-      <app-button-custom
-        text="Create Admin Manager"
-        color="bg-red-600"
-        [width]="240"
-        routerLink="/admin/create-collaborator"
-      ></app-button-custom>
+      @if(roleLevel=="ROLE_ADMIN"){
+        <app-button-custom
+          text="Create Admin Manager"
+          color="bg-red-600"
+          [width]="240"
+          routerLink="/admin/create-collaborator"
+        ></app-button-custom>
+      }
     </div>
   </div>
 </div>

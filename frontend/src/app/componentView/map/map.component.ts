@@ -32,7 +32,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
   ) {}
 
   ngAfterViewInit() {
-    const initCoord: Coordinate ={lat:11, lon:49}
+    const initCoord: Coordinate ={lat:40.837726396538166, lon:14.306795597076418}
     const initZoom = 4
     this.mapInstance=this.mapService.initMap(this.mapElement,initCoord,initZoom)
     if(this.clickable){

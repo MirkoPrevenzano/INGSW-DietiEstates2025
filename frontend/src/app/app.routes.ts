@@ -41,21 +41,21 @@ export const routes: Routes = [
         path: 'admin/change-password',
         component: PasswordChangeComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:'ROLE_ADMIN'}
+        data:{expectedRole:['ROLE_ADMIN','ROLE_COLLABORATOR']}
     },
     {
         title:'Save real estates agent',
         path: 'admin/create-agent',
         component: AgentRegistrateComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:'ROLE_ADMIN'}
+        data:{expectedRole:['ROLE_ADMIN','ROLE_COLLABORATOR']}
     },
     {
         title:'Save collaborator',
         path: 'admin/create-collaborator',
         component: AdminRegistrateComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:'ROLE_ADMIN'}
+        data:{expectedRole:['ROLE_ADMIN']}
     },
    
     {
@@ -63,28 +63,28 @@ export const routes: Routes = [
         path: 'create-estate',
         component: CreateEstatesComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:'ROLE_AGENT'}
+        data:{expectedRole:['ROLE_AGENT']}
     },
     {
         title: 'agent home',
         path: 'home/agent',
         component: AgentHomeComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:'ROLE_AGENT'}
+        data:{expectedRole:['ROLE_AGENT']}
     },
     {
         title:'Home Admin',
         path: 'home/admin',
         component: AdminHomeComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:'ROLE_ADMIN'}
+        data:{expectedRole:['ROLE_ADMIN','ROLE_COLLABORATOR']}
     },
     {
         title:'Home Customer',
         path: 'home/customer',
         component: CustomerHomeComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:'ROLE_USER'}
+        data:{expectedRole:['ROLE_USER']}
     },
     {
         title: 'HomePage',
@@ -97,12 +97,14 @@ export const routes: Routes = [
         path: 'estate',
         component: EstateItemPreviewComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:'ROLE_USER'}
+        data:{expectedRole:['ROLE_USER']}
     },
     {
         title:'EstateDetail',
         path:'estate/:id',
         component: EstateItemDetailComponent,
+        data:{expectedRole:['ROLE_USER','ROLE_AGENT']}
+
        
     },
     {
@@ -110,20 +112,20 @@ export const routes: Routes = [
         path: 'filter',
         component: EstateFiltersComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:'ROLE_USER'}
+        data:{expectedRole:['ROLE_USER']}
     },{
         title:'container',
         path: 'container',
         component:EstateSearchContainerComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:'ROLE_USER'}
+        data:{expectedRole:['ROLE_USER']}
     },
     {
         title:'dashboard',
         path: 'dashboard',
         component: AgentDashboardComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:'ROLE_AGENT'}
+        data:{expectedRole:['ROLE_AGENT']}
     }
    
 ];

@@ -1,0 +1,70 @@
+
+package com.dietiEstates.backend.service;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.dietiEstates.backend.dto.RealEstatePreviewsFirstPageDTO;
+import com.dietiEstates.backend.dto.LatLongMinMax;
+import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
+import com.dietiEstates.backend.repository.RealEstateRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class RealEstateService 
+{
+    private final RealEstateRepository realEstateRepository;
+    private final FindByRadiusService findByRadiusService;
+
+
+
+    public RealEstatePreviewsFirstPageDTO search(Map<String,String> filters, Pageable page)
+    {
+        Page<RealEstatePreviewDTO> realEstatePreviewsPage = realEstateRepository.findRealEstateByFilters(filters, page);
+
+        RealEstatePreviewsFirstPageDTO RealEstatePreviewsFirstPageDTO = new RealEstatePreviewsFirstPageDTO(realEstatePreviewsPage.getContent(),
+                                                                                                        realEstatePreviewsPage.getTotalElements(), 
+                                                                                                        realEstatePreviewsPage.getTotalPages());
+        return RealEstatePreviewsFirstPageDTO;
+    }
+    
+
+    public List<RealEstatePreviewDTO> search2(Map<String,String> filters, Pageable page)
+    {
+        return realEstateRepository.findRealEstateByFilters2(filters, page);
+    }
+
+
+    public RealEstatePreviewsFirstPageDTO search3(Map<String,String> filters, Pageable page)
+    {
+        LatLongMinMax latLongMinMax = findByRadiusService.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
+                                                                               Double.valueOf(filters.get("lat")), 
+                                                                               Double.valueOf(filters.get("long")));
+
+        Page<RealEstatePreviewDTO> realEstatePreviewsPage = realEstateRepository.findRealEstateByFilters3(filters, page, latLongMinMax);
+
+        RealEstatePreviewsFirstPageDTO RealEstatePreviewsFirstPageDTO = new RealEstatePreviewsFirstPageDTO(realEstatePreviewsPage.getContent(),
+                                                                                                        realEstatePreviewsPage.getTotalElements(), 
+                                                                                                        realEstatePreviewsPage.getTotalPages());
+        return RealEstatePreviewsFirstPageDTO;
+    }
+
+
+    public List<RealEstatePreviewDTO> search4(Map<String,String> filters, Pageable page)
+    {
+        LatLongMinMax latLongMinMax = findByRadiusService.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
+                                                                               Double.valueOf(filters.get("lat")), 
+                                                                               Double.valueOf(filters.get("long")));
+                                                                               
+        return realEstateRepository.findRealEstateByFilters4(filters, page, latLongMinMax);
+    }
+}

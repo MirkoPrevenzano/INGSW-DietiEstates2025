@@ -14,6 +14,7 @@ import { switchMap } from 'rxjs';
 import { EstatePreview } from '../../model/estatePreview';
 import { CacheService } from '../../_service/cache-service/cache-service.service';
 import { ButtonCustomComponent } from '../button-custom/button-custom.component';
+import { NotFoundComponent } from '../not-found/not-found.component';
 
 
 @Component({
@@ -24,12 +25,14 @@ import { ButtonCustomComponent } from '../button-custom/button-custom.component'
     EstateFiltersComponent,
     CommonModule,
     MatPaginatorModule,
-    ButtonCustomComponent
+    ButtonCustomComponent,
+    NotFoundComponent
   ],
   templateUrl: './estate-search-container.component.html',
   styleUrl: './estate-search-container.component.scss'
 })
 export class EstateSearchContainerComponent implements OnInit {
+
   isViewList:boolean=false
   showFilters: boolean = true;
   isMobile: boolean = false;  
@@ -38,6 +41,7 @@ export class EstateSearchContainerComponent implements OnInit {
   readonly maxCacheSize: number = 5;
   mapInstance!: LeafletMap
   isPage = false
+  notFound404= false
 
 
   // Cache con chiave dinamica
@@ -176,30 +180,31 @@ export class EstateSearchContainerComponent implements OnInit {
       //this.listPhotos = photos;
     });
   }
-  /*richiesta estates per cambio di pagina */
-
-
-  /*richiesta estates per cambio di pagina */
+  
   getEstatesNewFilter(params: { [key: string]: any; }, cacheKey: string) {
     this.estateService.getEstatesNewFilter(params).pipe(
       switchMap((result:any) => {
-        console.log("risultato")
-        console.log(result)
-        this.listEstatePreview = result.realEstatePreviews;
-        this.listCoordinate = result.realEstatePreviews.map((estate:any) => ({
-          lat: estate.latitude,
-          lon: estate.longitude
-        }));
-        
-        this.listRealEstateId = result.realEstatePreviews.map(
-          (estate: EstatePreview) => estate.id
-        );
-        
-        this.countOfItems = result.totalElements
-        
-        this.markerService.addMarkers(this.listCoordinate, this.mapInstance, this.listRealEstateId);
-        this.addPageCache()
-
+        console.log(result.totalElements)
+        if(result.totalElements>0){
+          this.countOfItems = result.totalElements
+          console.log("risultato")
+          console.log(result)
+          this.listEstatePreview = result.realEstatePreviews;
+          this.listCoordinate = result.realEstatePreviews.map((estate:any) => ({
+            lat: estate.latitude,
+            lon: estate.longitude
+          }));
+          
+          this.listRealEstateId = result.realEstatePreviews.map(
+            (estate: EstatePreview) => estate.id
+          );
+          
+          
+          this.markerService.addMarkers(this.listCoordinate, this.mapInstance, this.listRealEstateId);
+          this.addPageCache()
+        }
+        else
+          this.notFound404=true
         //return this.estateService.getPhotos(this.listRealEstateId);
         return "ok"
       })
@@ -276,6 +281,10 @@ export class EstateSearchContainerComponent implements OnInit {
       queryParams: queryParams,
       queryParamsHandling: 'merge'
     })
+  }
+
+  isNotFound() {
+    return this.notFound404
   }
 }
 
