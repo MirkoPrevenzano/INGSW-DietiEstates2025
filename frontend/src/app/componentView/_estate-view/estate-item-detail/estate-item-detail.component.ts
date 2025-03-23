@@ -64,6 +64,7 @@ export class EstateItemDetailComponent implements OnInit{
     this.estateService.getEstateInfo(this.realEstateId).subscribe({
       next: (result) => {
         this.estate = result; // Assegna il risultato alla proprietà `estate`
+        console.log(result)
       },
       error: (err) => {
         if(err.code==404)
@@ -82,12 +83,14 @@ export class EstateItemDetailComponent implements OnInit{
     });
   }
 
-  isEstateRent(estate: Estate): estate is EstateRent {
-    return this.estate.type === 'For Rent';
+  isEstateRent(estate: Estate):estate is EstateRent  {
+    return Object.hasOwn(estate,"contractYears")
+    
   }
 
   isEstateSell(estate: Estate): estate is EstateSell {
-    return this.estate.type === 'For Sale';
+    return Object.hasOwn(estate, "notaryDeedState")
+
   }
 
   isNotFound() {

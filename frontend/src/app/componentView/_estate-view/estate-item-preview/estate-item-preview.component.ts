@@ -24,7 +24,7 @@ export class EstateItemPreviewComponent {
 
   showEstateDetail(){
     console.log("Sto cliccando")
-    this.router.navigate([`/login`])
+    this.router.navigate([`/estate/${this.realEstateId}`])
   }
 
   sliderConfig = {

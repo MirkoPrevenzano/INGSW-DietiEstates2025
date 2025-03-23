@@ -54,7 +54,7 @@ public class AdministratorController
     }
     
 
-    @PostMapping(path = "/create-collaborator")
+    @PostMapping(path = "{username}/create-collaborator")
     public ResponseEntity<?> createCollaborator(@RequestBody AdminRegistrationDTO adminRegistrationDTO) 
     {
         try 

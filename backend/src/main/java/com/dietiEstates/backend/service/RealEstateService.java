@@ -48,7 +48,7 @@ public class RealEstateService
     {
         LatLongMinMax latLongMinMax = findByRadiusService.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
                                                                                Double.valueOf(filters.get("lat")), 
-                                                                               Double.valueOf(filters.get("long")));
+                                                                               Double.valueOf(filters.get("lon")));
 
         Page<RealEstatePreviewDTO> realEstatePreviewsPage = realEstateRepository.findRealEstateByFilters3(filters, page, latLongMinMax);
 
@@ -63,7 +63,7 @@ public class RealEstateService
     {
         LatLongMinMax latLongMinMax = findByRadiusService.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
                                                                                Double.valueOf(filters.get("lat")), 
-                                                                               Double.valueOf(filters.get("long")));
+                                                                               Double.valueOf(filters.get("lon")));
                                                                                
         return realEstateRepository.findRealEstateByFilters4(filters, page, latLongMinMax);
     }

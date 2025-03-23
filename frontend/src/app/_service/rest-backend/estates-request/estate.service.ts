@@ -37,7 +37,7 @@ export class EstateService {
 
   getEstatesNewFilter(params: { [key: string]: any; }):Observable<{ realEstatePreviews: EstatePreview[], totalElements: number, totalPages:number }> {
     console.log("Sto in new filter")
-    const url: string = this.url+"/search"
+    const url: string = this.url+"/search3"
     const httpParams = new HttpParams({ fromObject: params });
     return this.http.get<{ 
       realEstatePreviews: EstatePreview[], 

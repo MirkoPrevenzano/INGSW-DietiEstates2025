@@ -137,67 +137,67 @@ public class CustomRepositoryImpl implements CustomRepository
                 predicates.add(cb.equal(energyClass, entry.getValue()));
             } 
 
-            if(entry.getKey().equals("roomsNumber"))
+            if(entry.getKey().equals("rooms"))
             {
                 predicates.add(cb.gt(roomsNumber, Integer.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("airConditioning"))
+            if(entry.getKey().equals("hasAirConditioning"))
             {
                 predicates.add(cb.equal(airConditioning, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("heating"))
+            if(entry.getKey().equals("hasHeating"))
             {
                 predicates.add(cb.equal(heating, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("elevator"))
+            if(entry.getKey().equals("hasElevator"))
             {
                 predicates.add(cb.equal(elevator, Boolean.valueOf(entry.getValue())));
             }
 
-            if(entry.getKey().equals("concierge"))
+            if(entry.getKey().equals("hasConcierge"))
             {
                 predicates.add(cb.equal(concierge, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("terrace"))
+            if(entry.getKey().equals("hasTerrace"))
             {
                 predicates.add(cb.equal(terrace, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("garage"))
+            if(entry.getKey().equals("hasGarage"))
             {
                 predicates.add(cb.equal(garage, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("balcony"))
+            if(entry.getKey().equals("hasBalcony"))
             {
                 predicates.add(cb.equal(balcony, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("garden"))
+            if(entry.getKey().equals("hasGarden"))
             {
                 predicates.add(cb.equal(garden, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("swimmingPool"))
+            if(entry.getKey().equals("hasWwimmingPool"))
             {
                 predicates.add(cb.equal(swimmingPool, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("nearPark"))
+            if(entry.getKey().equals("isNearPark"))
             {
                 predicates.add(cb.equal(nearPark, Boolean.valueOf(entry.getValue())));
             } 
 
-            if(entry.getKey().equals("nearSchool"))
+            if(entry.getKey().equals("isNearSchool"))
             {
                 predicates.add(cb.equal(nearSchool, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("nearPublicTransport"))
+            if(entry.getKey().equals("isNearPublicTransport"))
             {
                 predicates.add(cb.equal(nearPublicTransport, Boolean.valueOf(entry.getValue())));
             }  
@@ -297,7 +297,7 @@ public class CustomRepositoryImpl implements CustomRepository
                 predicates2.add(cb2.equal(energyClass2, entry.getValue()));
             } 
 
-            if(entry.getKey().equals("roomsNumber"))
+            if(entry.getKey().equals("rooms"))
             {
                 predicates2.add(cb2.gt(roomsNumber2, Integer.valueOf(entry.getValue())));
             }  
@@ -453,7 +453,7 @@ public class CustomRepositoryImpl implements CustomRepository
                 predicates.add(cb.equal(energyClass, entry.getValue()));
             } 
 
-            if(entry.getKey().equals("roomsNumber"))
+            if(entry.getKey().equals("rooms"))
             {
                 predicates.add(cb.gt(roomsNumber, Integer.valueOf(entry.getValue())));
             }  
@@ -613,7 +613,7 @@ public class CustomRepositoryImpl implements CustomRepository
         if(sizeParam != null)
             predicates.add(cb.gt(size, Double.valueOf(sizeParam)));
 
-        String roomsNumberParam = filters.get("roomsNumber");
+        String roomsNumberParam = filters.get("rooms");
         if(roomsNumberParam != null)
             predicates.add(cb.gt(roomsNumber, Integer.valueOf(roomsNumberParam)));
 
@@ -670,67 +670,67 @@ public class CustomRepositoryImpl implements CustomRepository
                 predicates.add(cb.equal(energyClass, entry.getValue()));
             } 
 
-            if(entry.getKey().equals("roomsNumber"))
+            if(entry.getKey().equals("rooms"))
             {
                 predicates.add(cb.gt(roomsNumber, Integer.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("airConditioning"))
+            if(entry.getKey().equals("hasAirConditioning"))
             {
                 predicates.add(cb.equal(airConditioning, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("heating"))
+            if(entry.getKey().equals("hasHeating"))
             {
                 predicates.add(cb.equal(heating, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("elevator"))
+            if(entry.getKey().equals("hasElevator"))
             {
                 predicates.add(cb.equal(elevator, Boolean.valueOf(entry.getValue())));
             }
 
-            if(entry.getKey().equals("concierge"))
+            if(entry.getKey().equals("hasConcierge"))
             {
                 predicates.add(cb.equal(concierge, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("terrace"))
+            if(entry.getKey().equals("hasTerrace"))
             {
                 predicates.add(cb.equal(terrace, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("garage"))
+            if(entry.getKey().equals("hasGarage"))
             {
                 predicates.add(cb.equal(garage, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("balcony"))
+            if(entry.getKey().equals("hasBalcony"))
             {
                 predicates.add(cb.equal(balcony, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("garden"))
+            if(entry.getKey().equals("hasGarden"))
             {
                 predicates.add(cb.equal(garden, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("swimmingPool"))
+            if(entry.getKey().equals("hasSwimmingPool"))
             {
                 predicates.add(cb.equal(swimmingPool, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("nearPark"))
+            if(entry.getKey().equals("isNearPark"))
             {
                 predicates.add(cb.equal(nearPark, Boolean.valueOf(entry.getValue())));
             } 
 
-            if(entry.getKey().equals("nearSchool"))
+            if(entry.getKey().equals("isNearSchool"))
             {
                 predicates.add(cb.equal(nearSchool, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("nearPublicTransport"))
+            if(entry.getKey().equals("isNearPublicTransport"))
             {
                 predicates.add(cb.equal(nearPublicTransport, Boolean.valueOf(entry.getValue())));
             }  
@@ -836,67 +836,67 @@ public class CustomRepositoryImpl implements CustomRepository
                 predicates2.add(cb2.equal(energyClass2, entry.getValue()));
             } 
 
-            if(entry.getKey().equals("roomsNumber"))
+            if(entry.getKey().equals("rooms"))
             {
                 predicates2.add(cb2.gt(roomsNumber2, Integer.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("airConditioning"))
+            if(entry.getKey().equals("hasAirConditioning"))
             {
                 predicates2.add(cb2.equal(airConditioning2, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("heating"))
+            if(entry.getKey().equals("hasHeating"))
             {
                 predicates2.add(cb2.equal(heating2, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("elevator"))
+            if(entry.getKey().equals("hasElevator"))
             {
                 predicates2.add(cb2.equal(elevator2, Boolean.valueOf(entry.getValue())));
             }
 
-            if(entry.getKey().equals("concierge"))
+            if(entry.getKey().equals("hasConcierge"))
             {
                 predicates2.add(cb2.equal(concierge2, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("terrace"))
+            if(entry.getKey().equals("hasTerrace"))
             {
                 predicates2.add(cb2.equal(terrace2, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("garage"))
+            if(entry.getKey().equals("hasGarage"))
             {
                 predicates2.add(cb2.equal(garage2, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("balcony"))
+            if(entry.getKey().equals("hasBalcony"))
             {
                 predicates2.add(cb2.equal(balcony2, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("garden"))
+            if(entry.getKey().equals("hasGarden"))
             {
                 predicates2.add(cb2.equal(garden2, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("swimmingPool"))
+            if(entry.getKey().equals("hasSwimmingPool"))
             {
                 predicates2.add(cb2.equal(swimmingPool2, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("nearPark"))
+            if(entry.getKey().equals("isNearPark"))
             {
                 predicates2.add(cb2.equal(nearPark2, Boolean.valueOf(entry.getValue())));
             } 
 
-            if(entry.getKey().equals("nearSchool"))
+            if(entry.getKey().equals("isNearSchool"))
             {
                 predicates2.add(cb2.equal(nearSchool2, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("nearPublicTransport"))
+            if(entry.getKey().equals("isNearPublicTransport"))
             {
                 predicates2.add(cb2.equal(nearPublicTransport2, Boolean.valueOf(entry.getValue())));
             }  
@@ -1003,62 +1003,62 @@ public class CustomRepositoryImpl implements CustomRepository
                 predicates.add(cb.gt(roomsNumber, Integer.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("airConditioning"))
+            if(entry.getKey().equals("hasAirConditioning"))
             {
                 predicates.add(cb.equal(airConditioning, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("heating"))
+            if(entry.getKey().equals("hasHeating"))
             {
                 predicates.add(cb.equal(heating, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("elevator"))
+            if(entry.getKey().equals("hasElevator"))
             {
                 predicates.add(cb.equal(elevator, Boolean.valueOf(entry.getValue())));
             }
 
-            if(entry.getKey().equals("concierge"))
+            if(entry.getKey().equals("hasConcierge"))
             {
                 predicates.add(cb.equal(concierge, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("terrace"))
+            if(entry.getKey().equals("hasTerrace"))
             {
                 predicates.add(cb.equal(terrace, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("garage"))
+            if(entry.getKey().equals("hasGarage"))
             {
                 predicates.add(cb.equal(garage, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("balcony"))
+            if(entry.getKey().equals("hasBalcony"))
             {
                 predicates.add(cb.equal(balcony, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("garden"))
+            if(entry.getKey().equals("hasGarden"))
             {
                 predicates.add(cb.equal(garden, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("swimmingPool"))
+            if(entry.getKey().equals("hasSwimmingPool"))
             {
                 predicates.add(cb.equal(swimmingPool, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("nearPark"))
+            if(entry.getKey().equals("isNearPark"))
             {
                 predicates.add(cb.equal(nearPark, Boolean.valueOf(entry.getValue())));
             } 
 
-            if(entry.getKey().equals("nearSchool"))
+            if(entry.getKey().equals("isNearSchool"))
             {
                 predicates.add(cb.equal(nearSchool, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("nearPublicTransport"))
+            if(entry.getKey().equals("isNearPublicTransport"))
             {
                 predicates.add(cb.equal(nearPublicTransport, Boolean.valueOf(entry.getValue())));
             }  

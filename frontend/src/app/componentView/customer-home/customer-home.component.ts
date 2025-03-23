@@ -45,8 +45,8 @@ export class CustomerHomeComponent{
 
   onLocationSelected(locality: any) {
     console.log(locality)
-    this.coordinate.lat= locality.geometry.coordinates[0]
-    this.coordinate.lon= locality.geometry.coordinates[1]
+    this.coordinate.lat= locality.geometry.coordinates[1]
+    this.coordinate.lon= locality.geometry.coordinates[0]
   }
 
   openMap() {

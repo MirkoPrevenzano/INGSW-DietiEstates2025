@@ -9,7 +9,7 @@ import { Estate } from '../../model/estate';
 export class GetEstateDetailService {
 
   constructor(private readonly http: HttpClient) { }
-  url:string="http://localhost:8080/real-estate"
+  url:string="http://localhost:8080/customer"
       
     httpOptions = {
         headers: new HttpHeaders({
@@ -18,7 +18,7 @@ export class GetEstateDetailService {
     };
 
     getEstateInfo(realEstateId:number):Observable<Estate>{
-      const url = `${this.url}/${realEstateId}`;
+      const url = `${this.url}/${localStorage.getItem('user')}/view/${realEstateId}`;
       return this.http.get<Estate>(url, this.httpOptions);
     }
 }

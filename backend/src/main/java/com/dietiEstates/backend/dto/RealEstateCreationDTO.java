@@ -27,5 +27,6 @@ public class RealEstateCreationDTO
 
     @NonNull
     private EstateLocationFeatures estateLocationFeatures;
+
 }
 

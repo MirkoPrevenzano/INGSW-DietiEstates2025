@@ -21,14 +21,14 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @RestController
-@RequestMapping("/PDF")
+@RequestMapping("/agent")
 @RequiredArgsConstructor
 @Slf4j
 public class PdfController 
 {
     private final PdfService pdfService;
          
-    @GetMapping("{username}/export")
+    @GetMapping("{username}/exportPDF")
     public void exportToPDF(@PathVariable("username") String username, HttpServletResponse response) throws DocumentException, IOException 
     {
         response.setContentType("application/pdf");
