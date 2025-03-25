@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Base64;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -39,7 +40,7 @@ public class S3Controller
 
     @PostMapping(value = "{username}/upload-photo/{realEstateId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> uploadPhoto(@PathVariable("username") String username, 
-                                              @RequestParam("file") MultipartFile[] file, 
+                                              @RequestParam("photos") MultipartFile[] file, 
                                               @PathVariable("realEstateId") Long realEstateId)
     {
         try 
@@ -58,15 +59,15 @@ public class S3Controller
     }
 
 
-    @GetMapping(value = "get-photo/{realEstateId}")
-    public ResponseEntity<List<byte[]>> getPhoto(@PathVariable("realEstateId") Long realEstateId) 
+    @GetMapping(value = "get-photos/{realEstateId}")
+    public ResponseEntity<String[]> getPhoto(@PathVariable("realEstateId") Long realEstateId) 
     {        
         try 
         {
-            List<byte[]> photo = realEstateAgentService.getPhoto(realEstateId);
-
             return ResponseEntity.ok()
-                                 .body(photo);
+                                 .body(realEstateAgentService.getPhoto(realEstateId).stream()
+                                     .map(Base64.getEncoder()::encodeToString)
+                                     .toArray(String[]::new));
         } 
         catch (NoSuchKeyException e) 
         {
