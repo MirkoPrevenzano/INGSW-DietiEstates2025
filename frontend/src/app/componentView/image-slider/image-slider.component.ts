@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { SlickCarouselComponent, SlickCarouselModule } from 'ngx-slick-carousel';
 
 @Component({
@@ -12,7 +12,10 @@ import { SlickCarouselComponent, SlickCarouselModule } from 'ngx-slick-carousel'
   templateUrl: './image-slider.component.html',
   styleUrl: './image-slider.component.scss'
 })
-export class ImageSliderComponent {
+export class ImageSliderComponent{
+  ngOnChanges() {
+    console.log('Foto ricevute nello slider:', this.photos);
+  }
   @Input() sliderConfig: any
   @Input() photos: string[] = []
 

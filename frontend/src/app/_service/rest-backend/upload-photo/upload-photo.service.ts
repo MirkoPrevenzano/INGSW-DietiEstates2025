@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { forkJoin, map, Observable, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -27,17 +27,40 @@ export class UploadPhotoService {
       return this.http.post(url, formData, this.httpOptions)
     }
 
-    getPhoto(photoKey: string): Observable<Blob> {
+    getPhoto(photoKey: string): Observable<Uint8Array> {
       const url = `${this.url}/get-photo`;
       const params = { photoKey: photoKey };
-      return this.http.get<Blob>(url, { ...this.httpOptions, params, responseType: 'blob' as 'json' })
+      return this.http.get<Uint8Array>(url, { ...this.httpOptions, params, responseType: 'blob' as 'json' })
     }
 
-    getPhotos(realEstateId:number): Observable<Blob[]>{
-      const url=`${this.url}/get-photos/${realEstateId}`
-      return this.http.get<Blob[]>(url, this.httpOptions)
+
+    //questo va
+    /*getPhotos(realEstateId: number): Observable<any> {
+      const url = `${this.url}/get-photos/${realEstateId}`;
+      return this.http.get(url, { ...this.httpOptions, responseType: 'arraybuffer' }).pipe(
+        map((response: ArrayBuffer) => {
+          return new Blob([response]); // Converte l'ArrayBuffer in un Blob
+        })
+      );       
+      
+    }*/
+
+    //va, ricevo stringhe
+    /*getPhotos(realEstateId: number): Observable<any> {
+      const url = `${this.url}/get-photos/${realEstateId}`;
+      return this.http.get(url, { ...this.httpOptions, responseType: 'text' });
+    }*/
+    
+
+    //versione con lista
+    getPhotos(realEstateId: number): Observable<string[]> {
+      const url = `${this.url}/get-photos/${realEstateId}`;
+      return this.http.get<string[]>(url, { ...this.httpOptions, responseType: 'json' });
     }
-  
+    
+   
+    
+    
     
      
 }

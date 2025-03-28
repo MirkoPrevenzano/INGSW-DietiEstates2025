@@ -12,12 +12,16 @@ export const roleGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state:Ro
     return true;
   } else {
 
-    if(role=="ROLE_ADMIN")
+    if(role=="ROLE_ADMIN" || role=="ROLE_COLLABORATOR")
       router.navigateByUrl("home/admin")
     else if(role=="ROLE_AGENT")
       router.navigateByUrl("home/agent")
     else if(role=="ROLE_CUSTOMER")
       router.navigateByUrl("home/customer")
+    else if(role=="ROLE_UNAUTHORIZED")
+      router.navigateByUrl("admin/change-password")
+
+    
     return false 
   }
   

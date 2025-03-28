@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { EstateFeatures } from '../../../model/estateFeatures';
-import { EstateDataService } from '../../../_service/estate-data.service';
+import { EstateDataService } from '../../../_service/estate-data/estate-data.service';
 
 @Component({
   selector: 'app-estates-features-form',

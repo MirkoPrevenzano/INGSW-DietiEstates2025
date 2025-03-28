@@ -8,7 +8,6 @@ import { EstateDescribe } from '../../../model/estateDescribe';
 import { EstateFeatures } from '../../../model/estateFeatures';
 import { Estate } from '../../../model/estate';
 import { ActivatedRoute } from '@angular/router';
-import { EstateDataService } from '../../../_service/estate-data.service';
 import { EstateFactoryService } from '../../../_service/estate-factory/estate-factory.service';
 import { ProgressBarComponent } from '../../progress-bar/progress-bar.component';
 import { Coordinate } from '../../../model/coordinate';
@@ -20,6 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 import { EstateItemDetailComponent } from '../../_estate-view/estate-item-detail/estate-item-detail.component';
 import { EstateCreateService } from '../../../_service/rest-backend/estate-create/estate-create.service';
 import { ValidateStepEstateCreateService } from '../../../_service/validate-step-create-estate/validate-step-estate-create.service';
+import { EstateDataService } from '../../../_service/estate-data/estate-data.service';
 
 @Component({
   selector: 'app-create-estates',
@@ -180,7 +180,7 @@ export class CreateEstatesComponent implements OnInit{
     })
 
     this.createEstateService.createEstate(this.estate).subscribe((response:any)=>{
-      this.uploadPhotos(response.realEstateId)
+      this.uploadPhotos(response)
 
       
     }) 

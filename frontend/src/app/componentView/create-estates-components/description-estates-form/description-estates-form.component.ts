@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { UploadPhotosComponent } from '../../upload-photos/upload-photos.component';
 import { ESTATE_TYPES_CONFIG } from '../../../configuration/estate-types.config';
 import { EstateType } from '../../../model/estateType';
-import { EstateDataService } from '../../../_service/estate-data.service';
+import { EstateDataService } from '../../../_service/estate-data/estate-data.service';
 
 @Component({
   selector: 'app-description-estates-form',

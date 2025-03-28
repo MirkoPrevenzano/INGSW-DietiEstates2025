@@ -88,16 +88,20 @@ export class LoginComponent {
 
 
   redirectHomePage() {
-    if(this.loginForm.value.userType=='customer'){
-      this.router.navigateByUrl('/home/customer')
-    }
-    if(this.loginForm.value.userType=='admin'){
-      this.router.navigateByUrl('/home/admin')
-    }
-    if(this.loginForm.value.userType=='agent'){
+    const role= this.authService.getRole()
+    console.log(role)
+    if(role=="ROLE_ADMIN" || role=="ROLE_COLLABORATOR")
+      this.router.navigateByUrl("home/admin")
+    else if(role=="ROLE_AGENT")
+      this.router.navigateByUrl("home/agent")
+    else if(role=="ROLE_CUSTOMER")
+      this.router.navigateByUrl("home/customer")
+    else if(role=="ROLE_UNAUTHORIZED"){
+      console.log("CIao")
 
-      this.router.navigateByUrl('/home/agent')
+      this.router.navigateByUrl("admin/change-password")
     }
+
     this.notifyToastr.success(`Welcome ${this.loginForm.value.username}`)
   }
   

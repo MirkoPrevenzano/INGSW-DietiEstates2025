@@ -41,7 +41,7 @@ export const routes: Routes = [
         path: 'admin/change-password',
         component: PasswordChangeComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:['ROLE_ADMIN','ROLE_COLLABORATOR']}
+        data:{expectedRole:['ROLE_ADMIN','ROLE_COLLABORATOR','ROLE_UNAUTHORIZED']}
     },
     {
         title:'Save real estates agent',

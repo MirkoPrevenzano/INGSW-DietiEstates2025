@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Map;
+import java.util.List;
+
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -58,16 +61,14 @@ public class S3Controller
         }
     }
 
-
+   
     @GetMapping(value = "get-photos/{realEstateId}")
     public ResponseEntity<String[]> getPhoto(@PathVariable("realEstateId") Long realEstateId) 
     {        
         try 
         {
             return ResponseEntity.ok()
-                                 .body(realEstateAgentService.getPhoto(realEstateId).stream()
-                                     .map(Base64.getEncoder()::encodeToString)
-                                     .toArray(String[]::new));
+                                .body(realEstateAgentService.getPhoto(realEstateId));
         } 
         catch (NoSuchKeyException e) 
         {
@@ -80,6 +81,6 @@ public class S3Controller
         catch (IOException e) 
         {
             return ResponseEntity.internalServerError().header("Error", e.getMessage()).body(null);
-        }        
+        } 
     }
 }

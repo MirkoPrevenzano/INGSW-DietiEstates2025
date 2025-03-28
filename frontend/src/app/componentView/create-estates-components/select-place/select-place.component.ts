@@ -3,7 +3,7 @@ import { AddressEstatesComponent } from '../../address-estates/address-estates.c
 import { MapComponent } from '../../map/map.component';
 import { Coordinate } from '../../../model/coordinate';
 import { Address } from '../../../model/address';
-import { EstateDataService } from '../../../_service/estate-data.service';
+import { EstateDataService } from '../../../_service/estate-data/estate-data.service';
 
 @Component({
   selector: 'app-select-place',

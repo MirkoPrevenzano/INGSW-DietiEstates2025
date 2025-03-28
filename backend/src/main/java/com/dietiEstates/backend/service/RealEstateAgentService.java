@@ -4,9 +4,9 @@ package com.dietiEstates.backend.service;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
@@ -37,7 +37,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import software.amazon.awssdk.core.exception.SdkException;
-
+import java.util.Base64;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -169,20 +170,26 @@ public class RealEstateAgentService
     }
 
     
-    public List<byte[]> getPhoto(Long realEstateId) throws IOException
+    public String[] getPhoto(Long realEstateId) throws IOException
     {
         RealEstate realEstate = realEstateRepository.findById(realEstateId).get();
 
         List<Photo> photos = realEstate.getPhotos();
-        ArrayList<byte[]> photosBytes = new ArrayList<>();
+        List<byte[]> photosBytes = new ArrayList<>();
 
         for(Photo photo : photos)
         {
             photosBytes.add(s3Service.getObject(photo.getAmazonS3Key()));
         }
 
-        return photosBytes;
+        String[] phoStrings = new String[photosBytes.size()];
+        for (int i=0;i<photosBytes.size();i++) {
+            phoStrings[i]=Base64.getEncoder().encodeToString(photosBytes.get(i));
+        }
+
+        return phoStrings;
     }
+   
 
 
     public List<RealEstateRecentDTO> findRecentRealEstates(String username, Integer limit) 

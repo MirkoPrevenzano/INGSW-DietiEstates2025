@@ -15,6 +15,7 @@ import { EstatePreview } from '../../model/estatePreview';
 import { CacheService } from '../../_service/cache-service/cache-service.service';
 import { ButtonCustomComponent } from '../button-custom/button-custom.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
+import { UploadPhotoService } from '../../_service/rest-backend/upload-photo/upload-photo.service';
 
 
 @Component({
@@ -61,7 +62,8 @@ export class EstateSearchContainerComponent implements OnInit {
     private readonly router: Router,
     private readonly activadeRouter: ActivatedRoute,
     private readonly estateService: EstateService,
-    private readonly cacheService: CacheService
+    private readonly cacheService: CacheService,
+    private readonly uploadPhotoService: UploadPhotoService
   ) {
     this.checkScreenSize();
   }
@@ -119,6 +121,19 @@ export class EstateSearchContainerComponent implements OnInit {
     } else {
       this.serverRetrieveEstates(params,cacheKey)
     }
+
+
+    
+  }
+  retrievePhotos() {
+    
+    for (let index = 0; index < this.listRealEstateId.length; index++) {
+      this.uploadPhotoService.getPhotos(this.listRealEstateId[index]).subscribe(photos => {
+        this.listPhotos[index] = photos;
+      }); 
+    }
+    
+
   }
 
 
@@ -173,7 +188,7 @@ export class EstateSearchContainerComponent implements OnInit {
         this.markerService.addMarkers(this.listCoordinate, this.mapInstance, this.listRealEstateId);
         this.addPageCache()
 
-        //return this.estateService.getPhotos(this.listRealEstateId);
+          //return this.estateService.getPhotos(this.listRealEstateId);
         return "ok";
       })
     ).subscribe((photos: any) => {

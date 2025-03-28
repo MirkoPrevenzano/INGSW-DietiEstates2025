@@ -14,7 +14,6 @@ import { EstatePreview } from '../../model/estatePreview';
 })
 export class EstateListComponent  implements AfterViewInit{
   ngAfterViewInit(): void {
-   console.log(this.listRealEstateId)
   }
   @Input() listPhotos!:string[][]
   @Input() listEstatePreview!: EstatePreview[]
