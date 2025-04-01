@@ -175,6 +175,10 @@ public class RealEstateAgentService
         RealEstate realEstate = realEstateRepository.findById(realEstateId).get();
 
         List<Photo> photos = realEstate.getPhotos();
+        if (photos == null || photos.isEmpty()) {
+            return new String[]{};
+        }
+        
         List<byte[]> photosBytes = new ArrayList<>();
 
         for(Photo photo : photos)

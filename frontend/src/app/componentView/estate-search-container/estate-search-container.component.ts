@@ -10,7 +10,7 @@ import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CacheEstates } from '../../model/cacheEstates';
 import { EstateService } from '../../_service/rest-backend/estates-request/estate.service';
-import { switchMap } from 'rxjs';
+import { forkJoin, from, mergeMap, switchMap } from 'rxjs';
 import { EstatePreview } from '../../model/estatePreview';
 import { CacheService } from '../../_service/cache-service/cache-service.service';
 import { ButtonCustomComponent } from '../button-custom/button-custom.component';
@@ -125,15 +125,24 @@ export class EstateSearchContainerComponent implements OnInit {
 
     
   }
-  retrievePhotos() {
-    
-    for (let index = 0; index < this.listRealEstateId.length; index++) {
-      this.uploadPhotoService.getPhotos(this.listRealEstateId[index]).subscribe(photos => {
-        this.listPhotos[index] = photos;
-      }); 
-    }
-    
 
+  
+  retrievePhotos() {
+    this.listPhotos=[]
+    from(this.listRealEstateId)
+      .pipe(
+        mergeMap(id => this.uploadPhotoService.getPhotos(id), 5) // Limita a 5 richieste simultanee
+      )
+      .subscribe({
+        next: (photos: string[]) => {
+          
+          this.listPhotos.push(photos.map(photo => `data:image/jpeg;base64,${photo}`));
+          console.log('listPhotos:', this.listPhotos);
+        },
+        error: (error) => {
+          console.error('Errore nel recupero delle foto:', error);
+        }
+      });
   }
 
 
@@ -164,11 +173,12 @@ export class EstateSearchContainerComponent implements OnInit {
 
   /*richiesta estates per cambio di pagina */
   getEstatesNewPage(params: { [key: string]: any; }, cacheKey: string) {
-    this.estateService.getEstatesNewPage(params).pipe(
-      switchMap((result) => {
+    console.log("estateNewPage")
+    console.log(params)
+    this.estateService.getEstatesNewPage(params).subscribe((result) => {
         if (!result) {
           console.error("Result is undefined");
-          return "error";
+          return;
         }
   
         console.log("risultato");
@@ -186,24 +196,19 @@ export class EstateSearchContainerComponent implements OnInit {
         this.isPage = false;
   
         this.markerService.addMarkers(this.listCoordinate, this.mapInstance, this.listRealEstateId);
-        this.addPageCache()
-
-          //return this.estateService.getPhotos(this.listRealEstateId);
-        return "ok";
-      })
-    ).subscribe((photos: any) => {
-      //this.listPhotos = photos;
-    });
+        this.addPageCache();
+        this.retrievePhotos()
+      });
+    
   }
   
   getEstatesNewFilter(params: { [key: string]: any; }, cacheKey: string) {
-    this.estateService.getEstatesNewFilter(params).pipe(
-      switchMap((result:any) => {
+    console.log("estateNewFilter")
+    console.log(params)
+    this.estateService.getEstatesNewFilter(params).subscribe((result:any)=>{
         console.log(result.totalElements)
         if(result.totalElements>0){
           this.countOfItems = result.totalElements
-          console.log("risultato")
-          console.log(result)
           this.listEstatePreview = result.realEstatePreviews;
           this.listCoordinate = result.realEstatePreviews.map((estate:any) => ({
             lat: estate.latitude,
@@ -214,26 +219,19 @@ export class EstateSearchContainerComponent implements OnInit {
             (estate: EstatePreview) => estate.id
           );
           
-          
+          this.retrievePhotos()
           this.markerService.addMarkers(this.listCoordinate, this.mapInstance, this.listRealEstateId);
           this.addPageCache()
         }
         else
           this.notFound404=true
-        //return this.estateService.getPhotos(this.listRealEstateId);
-        return "ok"
-      })
-    ).subscribe((photos:any) => {
-      //this.listPhotos = photos;
-
       
-    });
+      })
   }
 
 
 
   cacheRetrieveEstates(cacheKey: string) {
-    console.log('Recupera dalla cache:', this.pageCache.get(cacheKey));
       // Usa i dati dalla cache
       const cachedData = this.pageCache.get(cacheKey);
       this.listEstatePreview = cachedData!.listEstatePreview
@@ -241,9 +239,7 @@ export class EstateSearchContainerComponent implements OnInit {
       this.listRealEstateId = cachedData!.listRealEstateId
       this.markerService.addMarkers(this.listCoordinate, this.mapInstance, this.listRealEstateId)
         
-     /* this.estateService.getPhotos(this.listRealEstateId).subscribe(photos=>{
-        this.listPhotos=photos
-      })*/
+      this.retrievePhotos()
 
          
   }
@@ -285,11 +281,12 @@ export class EstateSearchContainerComponent implements OnInit {
   updateUrl(params:{ [key: string]: any }, page:number){
     this.pageNumber = page
     
-    const queryParams={
+    const queryParams: { [key: string]: any } = {
       ...params,
       page:this.pageNumber,
       limit:this.limit
     }
+
 
     this.router.navigate([],{
       relativeTo:this.activadeRouter,

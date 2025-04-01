@@ -61,14 +61,20 @@ public class S3Controller
         }
     }
 
-   
+    /*Se un estate non ha foto non deve dare errore, ma semplicemente una lsita vuota */
     @GetMapping(value = "get-photos/{realEstateId}")
     public ResponseEntity<String[]> getPhoto(@PathVariable("realEstateId") Long realEstateId) 
     {        
         try 
         {
-            return ResponseEntity.ok()
-                                .body(realEstateAgentService.getPhoto(realEstateId));
+            String[] photos = realEstateAgentService.getPhoto(realEstateId);
+             // Se non ci sono foto, restituisci un array vuoto
+            if (photos == null || photos.length == 0) {
+                return ResponseEntity.ok(new String[]{});
+            }
+
+            // Restituisci le foto nel corpo della risposta
+            return ResponseEntity.ok(photos);
         } 
         catch (NoSuchKeyException e) 
         {

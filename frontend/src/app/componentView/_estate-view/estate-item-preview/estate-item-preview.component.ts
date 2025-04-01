@@ -23,7 +23,6 @@ export class EstateItemPreviewComponent {
   constructor(private readonly router: Router){}
 
   showEstateDetail(){
-    console.log("Sto cliccando")
     this.router.navigate([`/estate/${this.realEstateId}`])
   }
 

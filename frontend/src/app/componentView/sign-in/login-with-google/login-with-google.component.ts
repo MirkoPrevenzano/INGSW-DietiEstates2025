@@ -61,28 +61,4 @@ export class LoginWithGoogleComponent implements OnInit  {
     // Handle the response and authenticate the user
   }
 
- 
-  /*ngOnInit() {
-    this.initGoogleAuth();
-  }
-
-  initGoogleAuth() {
-    loadGapiInsideDOM().then(() => {
-      gapi.load('auth2', () => {
-        gapi.auth2.init({
-          client_id:  '699354462746-9ale2lg8onjqvafu9aiopmd0fo82j3b4.apps.googleusercontent.com'
-        });
-      });
-    });
-  }
-
-  login() {
-    const auth2 = gapi.auth2.getAuthInstance();
-    auth2.signIn().then((googleUser: any) => {
-      const idToken = googleUser.getAuthResponse().id_token;
-      this.loginService.loginWithGoogle(idToken).subscribe(response => {
-        console.log('User authenticated:', response);
-      });
-    });
-  }*/
 }
