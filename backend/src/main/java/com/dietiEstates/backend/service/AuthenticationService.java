@@ -12,10 +12,19 @@ import com.dietiEstates.backend.dto.UserDTO;
 import com.dietiEstates.backend.model.Customer;
 import com.dietiEstates.backend.model.Role;
 import com.dietiEstates.backend.repository.CustomerRepository;
-
+import com.dietiEstates.backend.service.CustomerService;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import java.util.Collections;
+import java.util.Optional;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
+import java.util.UUID;
+import java.util.Collection;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +35,7 @@ public class AuthenticationService
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final ValidatorService validatorService;
+    private final CustomerService customerService;
 
 
     public AuthenticationResponseDTO standardRegistration(UserDTO userDTO) throws IllegalArgumentException, MappingException
@@ -72,4 +82,39 @@ public class AuthenticationService
 
     //googleregistration
     //googlelogin
+    public AuthenticationResponseDTO authenticateWithGoogle(String googleToken) { 
+        GoogleIdToken.Payload payload = verifyGoogleToken(googleToken); 
+        Customer user = customerService.authenticateWithExternalAPI(payload);
+        // Genera il token di autenticazione 
+        Collection<SimpleGrantedAuthority> authorities = Collections.singletonList(
+            new SimpleGrantedAuthority(Role.ROLE_USER.name()) // Imposta il ruolo come ROLE_CUSTOMER
+        );
+    
+        // Genera il token di autenticazione
+        String token = JWTUtils.generateAccessToken(
+            new User(
+                user.getUsername(),
+                user.getPassword(),
+                authorities // Passa le autorità richieste
+            )
+        );
+        // Crea una risposta di autenticazione 
+        return new AuthenticationResponseDTO(token); 
+    } 
+
+   
+    private GoogleIdToken.Payload verifyGoogleToken(String token) {
+        try {
+            @SuppressWarnings("deprecation") 
+            GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())
+                    .setAudience(Collections.singletonList("699354462746-9ale2lg8onjqvafu9aiopmd0fo82j3b4.apps.googleusercontent.com")) // Sostituisci con il tuo Client ID
+                    .build();
+    
+            GoogleIdToken idToken = verifier.verify(token);
+            return (idToken != null) ? idToken.getPayload() : null;
+        } catch (Exception e) {
+            log.error("Errore durante la verifica del token Google: {}", e.getMessage());
+            return null;
+        }
+    }
 }

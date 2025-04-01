@@ -14,9 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-
-
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import java.util.Map;
 @RestController
 @RequestMapping(path = "/auth")
 @RequiredArgsConstructor
@@ -41,7 +40,7 @@ public class AuthenticationController
         }
     }
 
-    @PostMapping("google-registration")
+    /*@PostMapping("google-registration")
     public String googleRegistration(@RequestBody String entity) 
     {
         //TODO: process POST request
@@ -53,5 +52,22 @@ public class AuthenticationController
     {
         //TODO: process POST request
         return entity;
-    }
+    }*/
+    @PostMapping("/login/oauth2/code/google") 
+
+    public ResponseEntity<AuthenticationResponseDTO> googleLogin( @RequestBody Map<String, String> request) { 
+
+        String token= request.get("token"); 
+
+        if (token != null) { 
+
+            AuthenticationResponseDTO authenticationResponse= authenticationService.authenticateWithGoogle(token); 
+
+            return ResponseEntity.ok(authenticationResponse); 
+
+        } 
+
+        return ResponseEntity.badRequest().build(); 
+
+    } 
 }

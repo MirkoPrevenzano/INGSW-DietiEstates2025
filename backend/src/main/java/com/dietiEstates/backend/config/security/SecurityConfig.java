@@ -44,7 +44,7 @@ public class SecurityConfig implements WebMvcConfigurer
                                                 sessionManagementCustomizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
                                                 authorizeHttpRequestsCustomizer.requestMatchers("/login/**", 
-                                                                                                            "/auth/**", 
+                                                                                                            "/auth/**", "/auth/login/oauth2/code/google",
                                                                                                             "/CSV/**", 
                                                                                                             "/PDF/**").permitAll())
 			.authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 

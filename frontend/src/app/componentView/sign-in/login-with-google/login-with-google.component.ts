@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../../_service/rest-backend/login/login.service';
+import { AuthService } from '../../../_service/auth/auth.service';
+import { Router } from '@angular/router';
 
 declare const google: any;
 
@@ -16,6 +18,8 @@ export class LoginWithGoogleComponent implements OnInit  {
  
   constructor(
     private readonly loginService:LoginService,
+    private readonly authService: AuthService, 
+    private readonly router:Router
   ){}
 
   
@@ -40,13 +44,18 @@ export class LoginWithGoogleComponent implements OnInit  {
   }
 
   handleCredentialResponse(response: any): void {
-    console.log('Encoded JWT ID token: ' + response);
+    console.log('Encoded JWT ID token: ');
+    console.log(response)
     this.loginService.loginWithGoogle(response.credential).subscribe({
       error: (err)=>{
         console.log(err)
       },
       next: (res)=>{
         console.log(res)
+        this.authService.updateToken(res.jwttoken)
+        setTimeout(()=>
+          this.router.navigateByUrl("home/customer")  
+        )
       }
     })
     // Handle the response and authenticate the user

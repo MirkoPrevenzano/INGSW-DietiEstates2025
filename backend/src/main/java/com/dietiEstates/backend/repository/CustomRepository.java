@@ -11,7 +11,8 @@ import com.dietiEstates.backend.dto.LatLongMinMax;
 import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
 import com.dietiEstates.backend.dto.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.RealEstateStatsDTO;
-
+import java.util.Optional;
+import com.dietiEstates.backend.model.Customer;
 
 public interface CustomRepository 
 {

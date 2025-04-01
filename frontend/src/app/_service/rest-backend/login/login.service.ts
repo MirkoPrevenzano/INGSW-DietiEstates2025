@@ -28,8 +28,8 @@ export class LoginService {
   }
 
   loginWithGoogle(credential: any): Observable<any> {
-    const url = this.url + "/login/oauth2/code/google";
-    const body = new HttpParams().set('token', credential);
-    return this.http.post(url, body.toString(), this.httpOptions);
+    const url = this.url + "/auth/login/oauth2/code/google";
+    const body = { token: credential }; // Oggetto JSON valido
+    return this.http.post(url, body, { headers: { 'Content-Type': 'application/json' } });
   }
 }

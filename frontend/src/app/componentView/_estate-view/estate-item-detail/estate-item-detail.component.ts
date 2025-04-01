@@ -77,62 +77,18 @@ export class EstateItemDetailComponent implements OnInit{
     this.retrievePhotos()
     
   }
-//questo va
-/*
-    retrievePhotos() {
-      this.uploadPhotosService.getPhotos(this.realEstateId).subscribe({
-        next: (blob: Blob) => {
-          this.convertBlobToBase64(blob).then((base64Photo: string) => {
-            this.photos = [base64Photo]; // Assegna la foto convertita come array
-            console.log("Foto caricata:", this.photos);
-          });
-        },
-        error: (err) => {
-          console.error("Errore durante il caricamento della foto:", err);
-        }
-      });
-    }
-    
-    private convertBlobToBase64(blob: Blob): Promise<string> {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          const base64Data = reader.result as string;
-          const mimeType = blob.type || 'image/jpg'; // Usa il tipo MIME del Blob o un valore predefinito
-          resolve(`data:${mimeType};base64,${base64Data.split(',')[1]}`);
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(blob);
-      });
-     }
-*/
 
-//ricevo una foto come stringa
-/*retrievePhotos() {
-  this.uploadPhotosService.getPhotos(this.realEstateId).subscribe({
-    next: (base64Photo:string) => {
-      this.photos = [`data:image/jpeg;base64,${base64Photo}`]; // Aggiungi il prefisso per il tipo MIME
-      console.log("Foto caricata nello slider:", this.photos);
-    },
-    error: (err) => {
-      console.error("Errore durante il caricamento della foto:", err);
-    }
-  });
-}*/
-
-
-//versione con la lista di foto
-retrievePhotos() {
-  this.uploadPhotosService.getPhotos(this.realEstateId).subscribe({
-    next: (base64Photo:string[]) => {
-      this.photos = base64Photo.map(photo => `data:image/jpeg;base64,${photo}`);
-      console.log("Foto caricate nello slider:", this.photos);
-    },
-    error: (err) => {
-      console.error("Errore durante il caricamento della foto:", err);
-    }
-  });
-}
+  retrievePhotos() {
+    this.uploadPhotosService.getPhotos(this.realEstateId).subscribe({
+      next: (base64Photo:string[]) => {
+        this.photos = base64Photo.map(photo => `data:image/jpeg;base64,${photo}`);
+        console.log("Foto caricate nello slider:", this.photos);
+      },
+      error: (err) => {
+        console.error("Errore durante il caricamento della foto:", err);
+      }
+    });
+  }
 
 
 

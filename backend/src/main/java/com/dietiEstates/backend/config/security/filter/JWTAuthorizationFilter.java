@@ -39,7 +39,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter
                                     @NonNull FilterChain filterChain) throws ServletException, IOException 
     {
         if(request.getServletPath().equals("/login") || request.getServletPath().equals("/auth/standard-registration") ||
-           request.getServletPath().equals("/CSV/c/export") || request.getServletPath().equals("/PDF/c/export"))
+           request.getServletPath().equals("/CSV/c/export") || request.getServletPath().equals("/PDF/c/export") ||request.getServletPath().equals("/auth/login/oauth2/code/google")) 
+           
         {
             filterChain.doFilter(request, response);
             return;
