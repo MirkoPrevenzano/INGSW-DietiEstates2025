@@ -17,13 +17,10 @@ import { authGuard } from './_guard/authentication/auth.guard';
 import { roleGuard } from './_guard/authorization/role.guard';
 import { notAuthGuard } from './_guard/not-auth/no-auth.guard';
 import { EstateItemDetailComponent } from './componentView/_estate-view/estate-item-detail/estate-item-detail.component';
+import { RedirectGuard } from './_guard/redirect-home/redirect.guard';
 
 export const routes: Routes = [
-    {
-        path: '',
-        redirectTo: '/home',
-        pathMatch: 'full'
-    },
+    
     {
         title: 'Login',
         path: 'login',
@@ -126,6 +123,12 @@ export const routes: Routes = [
         component: AgentDashboardComponent,
         canActivate: [authGuard, roleGuard],
         data:{expectedRole:['ROLE_AGENT']}
+    },
+    {
+        path: '**',
+        canActivate: [RedirectGuard],
+        component: HomeComponent // Puoi usare un componente generico o uno specifico
     }
    
 ];
+

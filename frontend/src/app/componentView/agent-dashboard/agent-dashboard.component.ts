@@ -22,7 +22,7 @@ import { ButtonCustomComponent } from '../button-custom/button-custom.component'
   templateUrl: './agent-dashboard.component.html',
   styleUrls: ['./agent-dashboard.component.scss']
 })
-export class AgentDashboardComponent implements OnInit, AfterViewInit {
+export class AgentDashboardComponent implements OnInit {
   estateStatsSellRent: number[] = [0,0,0,0,0,0,0,0,0,0,0,0]
   monthlySalesChartOptions: AgChartOptions = {}
   pieChartOptions: AgChartOptions = {}
@@ -62,17 +62,13 @@ export class AgentDashboardComponent implements OnInit, AfterViewInit {
           console.log(this.estateStatsSellRent)
           this.createMonthlySalesChart()
           this.createPieCharts()
-
-
-
         }
       })
        
   }
 
 
-  ngAfterViewInit(): void {
-  }
+ 
 
   createPieCharts() {
     this.pieChartOptions = this.chartsConfig.successRateConfig(
@@ -108,7 +104,8 @@ export class AgentDashboardComponent implements OnInit, AfterViewInit {
 
   exportPDF(){
     this.agentService.exportPDF().subscribe(blob =>{
-      this.downloadFileService.downloadFile(blob, `dashboard_${localStorage.getItem('user')}:${this.getActualDate()}.pdf`)
+      console.log(blob)
+      this.downloadFileService.downloadFile(blob, `dashboard_${localStorage.getItem('user')}_${this.getActualDate()}.pdf`)
     })
   }
 

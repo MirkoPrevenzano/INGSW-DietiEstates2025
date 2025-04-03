@@ -36,7 +36,7 @@ public class PdfController
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=mirkos" + currentDateTime + ".pdf";
+        String headerValue = "attachment; filename="+username + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue); 
 
         try 

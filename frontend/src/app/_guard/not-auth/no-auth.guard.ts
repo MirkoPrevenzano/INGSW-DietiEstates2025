@@ -1,22 +1,19 @@
 import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../../_service/auth/auth.service';
+import { RedirectHomeService } from '../../_service/redirect-home/redirect-home.service';
 
 export const notAuthGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const router= inject(Router)
   const authService= inject(AuthService)
+  const redirectService = inject(RedirectHomeService)
 
   if(!authService.isAuthenticated())
     return true
   else{
-    const role = authService.getRole()
-    if(role=="ROLE_ADMIN")
-      router.navigateByUrl("home/admin")
-    else if(role=="ROLE_AGENT")
-      router.navigateByUrl("home/agent")
-    else if(role=="ROLE_CUSTOMER")
-      router.navigateByUrl("home/customer")
-    return false 
+    const defaultHome = redirectService.determineDefaultHome();
+    router.navigate([defaultHome]);
+    return false; 
   }
 
 };

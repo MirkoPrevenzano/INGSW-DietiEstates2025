@@ -10,7 +10,6 @@ import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CacheEstates } from '../../model/cacheEstates';
 import { EstateService } from '../../_service/rest-backend/estates-request/estate.service';
-import { forkJoin, from, mergeMap, switchMap } from 'rxjs';
 import { EstatePreview } from '../../model/estatePreview';
 import { CacheService } from '../../_service/cache-service/cache-service.service';
 import { ButtonCustomComponent } from '../button-custom/button-custom.component';
@@ -54,7 +53,6 @@ export class EstateSearchContainerComponent implements OnInit {
   listCoordinate: Coordinate[] = []
    
 
-  listPhotos: string[][] = []
   listEstatePreview: EstatePreview[] = []
   listRealEstateId: number[] = []
   constructor(
@@ -122,28 +120,10 @@ export class EstateSearchContainerComponent implements OnInit {
       this.serverRetrieveEstates(params,cacheKey)
     }
 
-
-    
   }
 
   
-  retrievePhotos() {
-    this.listPhotos=[]
-    from(this.listRealEstateId)
-      .pipe(
-        mergeMap(id => this.uploadPhotoService.getPhotos(id), 5) // Limita a 5 richieste simultanee
-      )
-      .subscribe({
-        next: (photos: string[]) => {
-          
-          this.listPhotos.push(photos.map(photo => `data:image/jpeg;base64,${photo}`));
-          console.log('listPhotos:', this.listPhotos);
-        },
-        error: (error) => {
-          console.error('Errore nel recupero delle foto:', error);
-        }
-      });
-  }
+ 
 
 
  
@@ -197,7 +177,6 @@ export class EstateSearchContainerComponent implements OnInit {
   
         this.markerService.addMarkers(this.listCoordinate, this.mapInstance, this.listRealEstateId);
         this.addPageCache();
-        this.retrievePhotos()
       });
     
   }
@@ -219,7 +198,6 @@ export class EstateSearchContainerComponent implements OnInit {
             (estate: EstatePreview) => estate.id
           );
           
-          this.retrievePhotos()
           this.markerService.addMarkers(this.listCoordinate, this.mapInstance, this.listRealEstateId);
           this.addPageCache()
         }
@@ -237,11 +215,7 @@ export class EstateSearchContainerComponent implements OnInit {
       this.listEstatePreview = cachedData!.listEstatePreview
       this.listCoordinate = cachedData!.listCoordinate
       this.listRealEstateId = cachedData!.listRealEstateId
-      this.markerService.addMarkers(this.listCoordinate, this.mapInstance, this.listRealEstateId)
-        
-      this.retrievePhotos()
-
-         
+      this.markerService.addMarkers(this.listCoordinate, this.mapInstance, this.listRealEstateId) 
   }
 
   @HostListener('window:resize', ['$event'])

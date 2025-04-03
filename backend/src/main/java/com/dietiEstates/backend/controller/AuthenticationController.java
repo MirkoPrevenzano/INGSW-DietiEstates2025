@@ -40,21 +40,8 @@ public class AuthenticationController
         }
     }
 
-    /*@PostMapping("google-registration")
-    public String googleRegistration(@RequestBody String entity) 
-    {
-        //TODO: process POST request
-        return entity;
-    }
-
-    @PostMapping("google-login")
-    public String googleLogin(@RequestBody String entity) 
-    {
-        //TODO: process POST request
-        return entity;
-    }*/
+   
     @PostMapping("/login/oauth2/code/google") 
-
     public ResponseEntity<AuthenticationResponseDTO> googleLogin( @RequestBody Map<String, String> request) { 
 
         String token= request.get("token"); 

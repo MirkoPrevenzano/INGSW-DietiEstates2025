@@ -53,8 +53,7 @@ public class PdfService extends PdfPageEventHelper
         try 
         {  
 
-            // PdfWriter p = PdfWriter.getInstance(document, response.getOutputStream());
-            PdfWriter p = PdfWriter.getInstance(document, new FileOutputStream("PDFprova.pdf"));
+            PdfWriter p = PdfWriter.getInstance(document, response.getOutputStream());
 
             p.setPageEvent(new PdfService(realEstateAgentRepository));
             document.open();

@@ -65,6 +65,7 @@ public class SecurityConfig implements WebMvcConfigurer
             //.authorizeHttpRequests(a -> a.requestMatchers("/auth/path/**").hasAuthority("ROLE_USER"))
 			.addFilter(jwtAuthenticationFilter)
             .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+             
 
         return http.build();
     }

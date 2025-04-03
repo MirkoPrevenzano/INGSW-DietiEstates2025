@@ -2,6 +2,10 @@
   COSE DA FARE CON IL FRONTEND
   - nella visualizzazione dell'estate indicare lo stato di vendita e le info delle stats
   - nei filtri, locality non deve restare vuoto
+  - Accedo da customer ma non mi rispedisce nella home
+  - Quando disconnetto la notifica subito scompare
+  - Quando creo estate, l'agent non visualizza il messaggio di successo
+  - la home ha i pulsanti non standard
     
     
     
