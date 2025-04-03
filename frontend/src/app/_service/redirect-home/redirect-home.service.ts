@@ -18,6 +18,8 @@ export class RedirectHomeService {
       case 'ROLE_ADMIN':
       case 'ROLE_COLLABORATOR':
         return '/home/admin'
+      case 'ROLE_UNAUTHORIZED':
+        return '/admin/change-password'
       default:
         return '/home' 
     }

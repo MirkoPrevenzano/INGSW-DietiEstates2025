@@ -20,6 +20,11 @@ import com.dietiEstates.backend.model.Role;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import com.dietiEstates.backend.service.AuthenticationService;
+import com.dietiEstates.backend.service.CustomOAuth2UserService;
+import com.dietiEstates.backend.service.OAuthLoginSuccessHandler;
+
+
 
 
 @Configuration
@@ -31,6 +36,9 @@ public class SecurityConfig implements WebMvcConfigurer
 {
     private final DaoAuthenticationProvider daoAuthenticationProvider;
 
+    //PARTA AGGIUNTA
+    private final CustomOAuth2UserService customOAuth2UserService;
+    private final OAuthLoginSuccessHandler oAuthLoginSuccessHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
@@ -65,6 +73,7 @@ public class SecurityConfig implements WebMvcConfigurer
             //.authorizeHttpRequests(a -> a.requestMatchers("/auth/path/**").hasAuthority("ROLE_USER"))
 			.addFilter(jwtAuthenticationFilter)
             .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+           
              
 
         return http.build();

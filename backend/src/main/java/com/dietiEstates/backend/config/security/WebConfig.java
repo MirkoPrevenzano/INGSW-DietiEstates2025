@@ -33,6 +33,7 @@ public class WebConfig implements WebMvcConfigurer
         registry.addMapping("/**").allowedOrigins("http://localhost:4200")
                                               .allowedMethods("GET","POST","PUT","OPTIONS")
                                               .allowedHeaders("*")
-                                              .allowCredentials(true);
+                                              .allowCredentials(true)
+                                              .exposedHeaders("error");
     }    
 }

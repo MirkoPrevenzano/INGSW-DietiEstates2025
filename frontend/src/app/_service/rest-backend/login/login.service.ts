@@ -32,4 +32,9 @@ export class LoginService {
     const body = { token: credential }; // Oggetto JSON valido
     return this.http.post(url, body, { headers: { 'Content-Type': 'application/json' } });
   }
+
+  loginGit():Observable<any>{
+    const url = this.url + "/oauth2/authorization/github";
+    return this.http.post(url,  { headers: { 'Content-Type': 'application/json' } });
+  }
 }

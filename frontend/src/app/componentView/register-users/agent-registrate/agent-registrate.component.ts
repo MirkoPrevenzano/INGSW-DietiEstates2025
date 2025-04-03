@@ -29,7 +29,8 @@ export class AgentRegistrateComponent extends RegisterComponent{
   protected override onRegisterUser(userRequest: RegisterRequest): void {
     this.savePersonalService.saveAgent(userRequest).subscribe({
       error: (err)=>{
-        this.notify.error(err.error)
+        console.log(err)
+        this.notify.error(err.headers.get('error'))
       },
       complete:()=> {
         this.notify.success('agent add with success')

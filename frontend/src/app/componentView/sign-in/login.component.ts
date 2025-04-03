@@ -30,7 +30,8 @@ export class LoginComponent {
     private readonly loginService: LoginService,
     private readonly authService: AuthService,
     private readonly notifyToastr: ToastrService,
-    private readonly router: Router
+    private readonly router: Router,
+    
   ) {}
   loginForm =new FormGroup({
     userType: new FormControl('customer'),
@@ -104,6 +105,12 @@ export class LoginComponent {
 
     this.notifyToastr.success(`Welcome ${this.loginForm.value.username}`)
   }
+  goGithub() {
+    this.loginService.loginGit().subscribe((token)=>{
+      console.log(token)
+    })
+  }
+    
   
 
 

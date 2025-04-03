@@ -29,8 +29,8 @@ export class EstateFiltersComponent implements AfterViewInit{
     ){}
 
     handleLocalitySelect(locality: any): void {
-      this.coordinate.lat = locality.geometry.coordinates[0]
-      this.coordinate.lon = locality.geometry.coordinates[1]
+      this.coordinate.lat = locality.geometry.coordinates[1]
+      this.coordinate.lon = locality.geometry.coordinates[0]
     }
 
     searchForm!:FormGroup
@@ -63,7 +63,7 @@ export class EstateFiltersComponent implements AfterViewInit{
   
     ngOnInit(): void {
       this.searchForm = new FormGroup({
-        type: new FormControl(''),
+        type: new FormControl('For Sale'),
         minPrice: new FormControl(0),
         maxPrice: new FormControl(0),
         rooms: new FormControl(0),
@@ -89,12 +89,7 @@ export class EstateFiltersComponent implements AfterViewInit{
             this.searchForm.controls[key].setValue(params[key]);
           }
         }
-
-        if (params['lat'] && params['lon']) {
-          this.coordinate.lat = parseFloat(params['lat']);
-          this.coordinate.lon = parseFloat(params['lon']);
-        }
-      })
+      });
     }
     
     onRadiusChange(event: Event): void {
@@ -107,11 +102,9 @@ export class EstateFiltersComponent implements AfterViewInit{
       const queryParams: { [key: string]: any } = {};
       if (this.searchForm.valid) {
         const searchParams = this.searchForm.value;
-  
-        // Aggiungi solo i parametri che hanno un valore
-        for (const key in searchParams) {
-          if (searchParams[key]) {
-            queryParams[key] = searchParams[key];
+          for (const key in searchParams) {
+            if (searchParams[key] && searchParams[key] !== 'Anything') {
+              queryParams[key] = searchParams[key];
           }
         } 
       }
@@ -124,17 +117,6 @@ export class EstateFiltersComponent implements AfterViewInit{
       if(Object.keys(queryParams).length)
       {
         this.filterParams.emit(queryParams)
-
-        //devo emettere da qui i risultati
-        /*this.estateService.searchEstates(queryParams).subscribe(
-          (response) => {
-            console.log('Search Results:', response);
-            
-          },
-          (error) => {
-            console.error('Error:', error);
-          }
-        );*/
       }
     }
 

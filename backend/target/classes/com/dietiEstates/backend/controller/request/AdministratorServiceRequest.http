@@ -1,0 +1,32 @@
+
+POST http://localhost:8080/admin/create-collaborator HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5ZGsiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImV4cCI6MTc0Mzg1MTkzNSwiaWF0IjoxNzQyMTQ2OTAyfQ.Fk_zoDFbrNG7IUhcQIhh1M9vPvGKbKoa3jmVhHY5eFo
+Content-Type: application/json
+
+{
+    "name" : "w",
+    "surname" : "x",
+    "username" : "yks"
+}
+
+
+POST http://localhost:8080/admin/ydk/create-real-estate-agent HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5ZGsiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImV4cCI6MTc0MjY0NzYwOCwiaWF0IjoxNzQwOTQyNTc1fQ.2bMGO5cc9-mWBRSt66fkPFo5Yu5iqYGYQ3h3GnZrDDo
+Content-Type: application/json
+
+{
+    "name" : "d",
+    "surname" : "x",
+    "username" : "ykfklllllk",
+    "password" : "jasfdgef23SD@0"
+}
+
+
+PUT http://localhost:8080/admin/ydk/update-password HTTP/1.1
+Authorization: Bearer 
+Content-Type: application/json
+
+{
+    "oldPassword" : "jssssssssssssssssssss22A@",
+    "newPassword" : "jssssssssssssssssssss22A@sssssss"
+}
