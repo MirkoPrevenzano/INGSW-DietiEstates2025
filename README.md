@@ -1,3 +1,375 @@
+        spring.security.oauth2.client.registration.github.client-id=Ov23licdn1Phpdh0wLOh
+        spring.security.oauth2.client.registration.github.client-secret=e54588cbad7debe9237503c2f506017f456c7624
+        
+        
+
+
+
+
+METTI IN SECURITY
+
+    import com.dietiEstates.backend.service.AuthenticationService;
+    import com.dietiEstates.backend.service.CustomOAuth2UserService;
+    import com.dietiEstates.backend.service.OAuthLoginSuccessHandler;
+
+    private final CustomOAuth2UserService customOAuth2UserService;
+    private final OAuthLoginSuccessHandler oAuthLoginSuccessHandler;
+
+                 .oauth2Login(a -> a.defaultSuccessUrl("/hello",true)
+                               //.userInfoEndpoint(b -> b.userService(customOAuth2UserService))
+                                .successHandler(oAuthLoginSuccessHandler)); 
+
+
+
+  METTI IN AuthService
+  
+    public Customer processOAuthPostLogin(String name, String surname, String password, String email, String providerName)
+    {
+        Optional<Customer> existUser = customerRepository.findByUsername(email);
+         
+        if (existUser.isPresent()) {
+            log.error("Customer with this e-mail is already present!");
+            throw new IllegalArgumentException("Customer with this e-mail is already present!");
+        }
+
+            log.info("sono in processOauthPostLOgin");
+            Customer newUser = new Customer();
+            newUser.setAuthWithExternalAPI(true);
+            newUser.setUsername(email);
+            newUser.setProvider(Provider.valueOf(providerName.toUpperCase()));
+            newUser.setName(name);             
+            newUser.setSurname(surname);      
+            newUser.setPassword(password);       
+
+            return customerRepository.save(newUser);
+    }
+
+
+
+
+METTI IN SERVICE 
+
+    package com.dietiEstates.backend.service;
+    
+    import java.io.IOException;
+    import java.util.HashMap;
+    import java.util.Map;
+    
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.HttpStatusCode;
+    import org.springframework.http.MediaType;
+    import org.springframework.security.core.Authentication;
+    import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+    import org.springframework.stereotype.Component;
+    
+    import com.dietiEstates.backend.config.security.JWTUtils;
+    import com.dietiEstates.backend.model.CustomOAuth2User;
+    import com.dietiEstates.backend.model.Customer;
+    import com.fasterxml.jackson.databind.ObjectMapper;
+    
+    import jakarta.servlet.ServletException;
+    import jakarta.servlet.http.HttpServletRequest;
+    import jakarta.servlet.http.HttpServletResponse;
+    import lombok.extern.slf4j.Slf4j;
+    
+    @Component
+    @Slf4j
+    public class OAuthLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+     
+        @Autowired AuthenticationService authenticationService;
+         
+        @Override
+        public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                Authentication authentication) throws ServletException, IOException 
+        {
+            CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
+    
+            Customer customer;
+            String client = oAuth2User.getOauth2ClientName();
+            String fullName = oAuth2User.getAttribute("name");
+            String email = oAuth2User.getAttribute("email");
+            String name = "";
+            String surname = "";
+            String password = "default";
+    
+            System.out.println("Name : " + oAuth2User.getAttribute("name"));
+            System.out.println("Email : " + oAuth2User.getAttribute("email"));
+            System.out.println("Client : " + oAuth2User.getOauth2ClientName());
+            //System.out.println(oAuth2User.getAttributes());
+            
+            if(client.equals("GitHub"))
+            {
+                if(email != null && fullName != null)
+                {
+                    String[] fullNameSplit = fullName.split(" ");
+    
+                    if(fullNameSplit.length > 1)
+                    {
+                        name = fullNameSplit[0];
+                        surname = fullNameSplit[1];
+                    }
+                    else
+                    {
+                        name = fullName;
+                        surname = "default";
+                    }
+                }
+                else
+                {
+    
+                }
+            }
+    
+            try 
+            {
+                customer = authenticationService.processOAuthPostLogin(name, surname, password, email, client);
+            } catch (Exception e) 
+            {        
+    /*             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+                new ObjectMapper().writeValue(response.getOutputStream(), "sdad"); */
+                response.sendError(400, "lol");
+            }
+    
+    
+            String accessToken = JWTUtils.generateAccessToken(oAuth2User);
+            log.info(accessToken);
+            //super.onAuthenticationSuccess(request, response, authentication);
+    
+            // restituire oggetto json nel body
+            Map<String,String> token = new HashMap<>(); 
+            token.put("accessToken", accessToken);
+    
+            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            new ObjectMapper().writeValue(response.getOutputStream(), token);
+        }
+     
+    }
+
+
+
+METTI IN FILTRI
+    
+    package com.dietiEstates.backend.config.security.filter;
+    
+    import static java.util.Arrays.stream;
+    
+    import java.io.IOException;
+    import java.util.ArrayList;
+    import java.util.Collection;
+    
+    import org.springframework.http.HttpHeaders;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.lang.NonNull;
+    import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+    import org.springframework.security.core.authority.SimpleGrantedAuthority;
+    import org.springframework.security.core.context.SecurityContextHolder;
+    import org.springframework.security.core.userdetails.UsernameNotFoundException;
+    import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+    import org.springframework.web.filter.OncePerRequestFilter;
+    
+    import com.auth0.jwt.exceptions.JWTVerificationException;
+    import com.auth0.jwt.interfaces.DecodedJWT;
+    
+    import com.dietiEstates.backend.config.security.JWTUtils;
+    
+    import jakarta.servlet.FilterChain;
+    import jakarta.servlet.ServletException;
+    import jakarta.servlet.http.HttpServletRequest;
+    import jakarta.servlet.http.HttpServletResponse;
+    
+    import lombok.extern.slf4j.Slf4j;
+    
+    
+    @Slf4j
+    public class JWTAuthorizationFilter extends OncePerRequestFilter
+    {
+        @Override
+        protected void doFilterInternal(@NonNull HttpServletRequest request, 
+                                        @NonNull HttpServletResponse response, 
+                                        @NonNull FilterChain filterChain) throws ServletException, IOException 
+        {
+            log.info("servletPath prima dell'if :{}", request.getServletPath());
+    
+            if(request.getServletPath().equals("/login") ||
+               request.getServletPath().equals("/mirkos") || request.getServletPath().equals("/favicon.ico") || 
+               request.getServletPath().equals("/default-ui.css"))
+            {
+                log.info("servletPath dell'if :{}", request.getServletPath());
+                log.info("sono quiiii");
+                filterChain.doFilter(request, response);
+                log.info("sono quaaaa");
+                //return;
+            }
+            else 
+            {
+                log.info("sono nell'else del JWT authoriz...");
+                log.info("servletPath dopo dell'if :{}", request.getServletPath());
+                String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+    
+                if(authorizationHeader != null && authorizationHeader.startsWith("Bearer "))
+                {
+                    try 
+                    {
+                        String token = authorizationHeader.substring("Bearer ".length());
+                        DecodedJWT decodedJWT = JWTUtils.verifyToken(token);  
+        
+                        String username = decodedJWT.getSubject();
+                        String[] roles = decodedJWT.getClaim("roles").asArray(String.class);
+                        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+                        stream(roles).forEach(role -> {authorities.add(new SimpleGrantedAuthority(role));});
+                            
+                        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,null, authorities);
+                        authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                        SecurityContextHolder.getContext().setAuthentication(authenticationToken);   
+                        log.info("JWT Authorization is OK!");
+        
+                        request.setAttribute("com.dietiEstates.backend.model.User.username", username);
+                        filterChain.doFilter(request, response);  
+                    } 
+                    catch (UsernameNotFoundException e)
+                    {
+                        log.error("{}", e.getMessage());
+                        response.setHeader("Error", e.getMessage());
+                        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                    }
+                    catch (JWTVerificationException e) 
+                    {
+                        log.error("{}", e.getMessage());
+                        response.setHeader("Error", e.getMessage());
+                        response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                    }
+                }
+                else
+                {
+                    log.error("You are not a JWT Bearer!");
+                    response.setHeader("Error", "You are not a JWT Bearer!");
+                    response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+METTI IN MODEL
+
+    
+    package com.dietiEstates.backend.model;
+    
+    import java.util.Collection;
+    import java.util.List;
+    import java.util.Map;
+     
+    import org.springframework.security.core.GrantedAuthority;
+    import org.springframework.security.core.authority.SimpleGrantedAuthority;
+    import org.springframework.security.oauth2.core.user.OAuth2User;
+    
+    import lombok.extern.slf4j.Slf4j;
+    
+    
+    @Slf4j
+    public class CustomOAuth2User implements OAuth2User 
+    {
+        private OAuth2User oauth2User;
+        private String oauth2ClientName;
+        private Role role;
+    
+    
+        public CustomOAuth2User(OAuth2User oauth2User, String oauth2ClientName) 
+        {
+            this.oauth2User = oauth2User;
+            this.oauth2ClientName = oauth2ClientName;
+            this.role = Role.ROLE_USER;
+        }
+     
+    
+    
+        @Override
+        public Map<String, Object> getAttributes() {
+            return oauth2User.getAttributes();
+        }
+    
+        @Override
+        public Collection<SimpleGrantedAuthority> getAuthorities() 
+        {
+            return List.of(new SimpleGrantedAuthority(role.name()));
+        }
+    /*  
+        @Override
+        public Collection<? extends GrantedAuthority> getAuthorities() {
+            return oauth2User.getAuthorities();
+        }
+      */
+        @Override
+        public String getName() {
+            return oauth2User.getAttribute("name");
+        }
+     
+        public String getEmail() {
+            return oauth2User.getAttribute("email");     
+        }
+        
+        public String getOauth2ClientName() {
+            return this.oauth2ClientName;
+        }
+    }
+
+
+
+
+METTI IN SERVICE
+    
+    
+    package com.dietiEstates.backend.service;
+    
+    import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
+    import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+    import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
+    import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
+    import org.springframework.security.oauth2.core.user.OAuth2User;
+    import org.springframework.stereotype.Service;
+    
+    import com.dietiEstates.backend.model.CustomOAuth2User;
+    
+    import lombok.extern.slf4j.Slf4j;
+     
+    
+    @Service
+    @Slf4j
+    public class CustomOAuth2UserService extends DefaultOAuth2UserService  {
+     
+        @Override
+        public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException 
+        {    
+            log.info("sono in loadUser");
+    
+            log.info("userRequest : {}", userRequest.toString());
+    
+            log.info("userRequest.AccessToken : {}", userRequest.getAccessToken().getTokenValue());
+    
+            log.info("userRequest.clientRegistration : {}", userRequest.getClientRegistration().toString());
+    
+            log.info("userRequest.clientRegistration.clientId : {}", userRequest.getClientRegistration().getClientId());
+            log.info("userRequest.clientRegistration.getClientName : {}", userRequest.getClientRegistration().getClientName());
+            log.info("userRequest.clientRegistration.getClientSecret : {}", userRequest.getClientRegistration().getClientSecret());
+            log.info("userRequest.clientRegistration.getRedirectUri : {}", userRequest.getClientRegistration().getRedirectUri());
+            log.info("userRequest.clientRegistration.getRegistrationId : {}", userRequest.getClientRegistration().getRegistrationId());
+            log.info("userRequest.clientRegistration.getAuthorizationGrantType : {}", userRequest.getClientRegistration().getAuthorizationGrantType());
+            log.info("userRequest.clientRegistration.getClientAuthenticationMethod : {}", userRequest.getClientRegistration().getClientAuthenticationMethod());
+            log.info("userRequest.clientRegistration.getProviderDetails : {}", userRequest.getClientRegistration().getProviderDetails());
+            log.info("userRequest.clientRegistration..getScopes : {}", userRequest.getClientRegistration().getScopes());
+    
+            String clientName = userRequest.getClientRegistration().getClientName();
+            OAuth2User user =  super.loadUser(userRequest);
+            return new CustomOAuth2User(user,clientName);
+        }
+     
+    }
+
 
   COSE DA FARE CON IL FRONTEND
   - nella visualizzazione dell'estate indicare lo stato di vendita e le info delle stats
