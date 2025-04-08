@@ -17,7 +17,6 @@ com/dietiEstates/backend/config/PasswordEncoderConfig.class
 com/dietiEstates/backend/service/RealEstateAgentService.class
 com/dietiEstates/backend/config/security/SecurityConfig.class
 com/dietiEstates/backend/repository/CustomRepository.class
-com/dietiEstates/backend/service/CustomOAuth2UserService.class
 com/dietiEstates/backend/model/RealEstateForRent.class
 com/dietiEstates/backend/repository/RealEstateAgentRepository.class
 com/dietiEstates/backend/config/S3Config.class

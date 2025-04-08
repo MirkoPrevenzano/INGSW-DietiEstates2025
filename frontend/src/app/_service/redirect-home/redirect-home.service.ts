@@ -6,22 +6,22 @@ import { AuthService } from '../auth/auth.service';
 })
 export class RedirectHomeService {
 
-  constructor() { }
+  constructor(private readonly authService: AuthService) {}
+
   determineDefaultHome(): string {
-    const authService = inject(AuthService)
-    const userRole = authService.getRole(); 
+    const userRole = this.authService.getRole(); 
     switch (userRole) {
       case 'ROLE_USER':
-        return '/home/customer'
+        return '/home/customer';
       case 'ROLE_AGENT':
-        return '/home/agent'
+        return '/home/agent';
       case 'ROLE_ADMIN':
       case 'ROLE_COLLABORATOR':
-        return '/home/admin'
+        return '/home/admin';
       case 'ROLE_UNAUTHORIZED':
-        return '/admin/change-password'
+        return '/admin/change-password';
       default:
-        return '/home' 
+        return '/home';
     }
   }
 }

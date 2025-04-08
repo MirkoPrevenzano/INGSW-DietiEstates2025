@@ -4,3 +4,12 @@
       display: none;
     }
 }
+
+.truncate {
+  display: inline-block;
+  max-width: 150px; /* Imposta una larghezza massima adeguata */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer; /* Indica che l'elemento è interattivo */
+}

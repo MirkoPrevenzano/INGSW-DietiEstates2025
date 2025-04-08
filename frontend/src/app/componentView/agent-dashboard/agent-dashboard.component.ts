@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AgChartOptions } from 'ag-charts-community';
 import { AgentService } from '../../_service/rest-backend/agent/agent.service';
 import { CommonModule } from '@angular/common';

@@ -28,10 +28,16 @@ export class NavbarComponent {
 
   signOut(){
     this.authService.logout()    
-    this.toastrService.success("You have successfully signed out. See you soon!", "Goodbye!");
     setTimeout(() => {
-      this.router.navigateByUrl('/home');
-    }, 2000); // Ritarda la navigazione di 2 secondi
+      this.router.navigateByUrl('/home').then(() => {
+        this.toastrService.success("You have successfully signed out. See you soon!", "Goodbye!", {
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
+          closeButton: true
+        })
+      })
+    }, 100); // Ritarda la navigazione di 2 secondi
+
   }
 
   goHome(){

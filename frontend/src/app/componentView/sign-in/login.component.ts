@@ -9,6 +9,7 @@ import { PasswordFieldComponent } from '../password-field/password-field.compone
 import {  IndividualConfig, ToastrService } from 'ngx-toastr';
 import { Router, RouterModule } from '@angular/router';
 import { ButtonCustomComponent } from '../button-custom/button-custom.component';
+import { RedirectHomeService } from '../../_service/redirect-home/redirect-home.service';
 
 @Component({
     selector: 'app-login-customer',
@@ -31,6 +32,7 @@ export class LoginComponent {
     private readonly authService: AuthService,
     private readonly notifyToastr: ToastrService,
     private readonly router: Router,
+    private readonly redirectHomeService: RedirectHomeService
     
   ) {}
   loginForm =new FormGroup({
@@ -89,27 +91,12 @@ export class LoginComponent {
 
 
   redirectHomePage() {
-    const role= this.authService.getRole()
-    console.log(role)
-    if(role=="ROLE_ADMIN" || role=="ROLE_COLLABORATOR")
-      this.router.navigateByUrl("home/admin")
-    else if(role=="ROLE_AGENT")
-      this.router.navigateByUrl("home/agent")
-    else if(role=="ROLE_CUSTOMER")
-      this.router.navigateByUrl("home/customer")
-    else if(role=="ROLE_UNAUTHORIZED"){
-      console.log("CIao")
-
-      this.router.navigateByUrl("admin/change-password")
-    }
-
-    this.notifyToastr.success(`Welcome ${this.loginForm.value.username}`)
+    const path = this.redirectHomeService.determineDefaultHome(); // Chiamata al servizio
+    this.router.navigateByUrl(path);
+    this.notifyToastr.success(`Welcome ${this.loginForm.value.username}`);
+    
   }
-  goGithub() {
-    this.loginService.loginGit().subscribe((token)=>{
-      console.log(token)
-    })
-  }
+ 
     
   
 

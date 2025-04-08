@@ -36,9 +36,7 @@
           <a class="relative ml-3 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" routerLink="/register" routerLinkActive="active" >Register</a>
         }
         @else {
-          <div>
-            <p class="text-black font-semibold mr-2">Welcome {{ user }} ( {{role}} )</p>
-          </div>
+          
           <div class="relative ml-3 ">
            
             <button type="button" (click)="toggleUserMenu()" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
@@ -55,7 +53,12 @@
           role="menu" 
           aria-orientation="vertical" 
           aria-labelledby="user-menu-button" 
-          tabindex="-1">
+          tabindex="-1"> 
+          <p 
+            class="block px-4 py-2 text-sm text-black font-semibold truncate" 
+            [title]="user">
+            {{ user }}
+          </p> 
           <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-sky-600" role="menuitem" tabindex="-1" id="user-menu-item-2" (click)="signOut()">Sign out</a>
           </div>
           </div>

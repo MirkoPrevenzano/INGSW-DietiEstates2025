@@ -15,6 +15,7 @@ import { CacheService } from '../../_service/cache-service/cache-service.service
 import { ButtonCustomComponent } from '../button-custom/button-custom.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
 import { UploadPhotoService } from '../../_service/rest-backend/upload-photo/upload-photo.service';
+import { FilterService } from '../../_service/filter/filter.service';
 
 
 @Component({
@@ -61,7 +62,8 @@ export class EstateSearchContainerComponent implements OnInit {
     private readonly activadeRouter: ActivatedRoute,
     private readonly estateService: EstateService,
     private readonly cacheService: CacheService,
-    private readonly uploadPhotoService: UploadPhotoService
+    private readonly uploadPhotoService: UploadPhotoService,
+    private readonly filterService: FilterService
   ) {
     this.checkScreenSize();
   }
@@ -82,7 +84,7 @@ export class EstateSearchContainerComponent implements OnInit {
   /*
     ricavo filtri e li inserisco nell'url
    */
-  retrieveFilter(params: Params) {
+  /*retrieveFilter(params: Params) {
     this.pageNumber = Number(params['page']) || 0
       
       if(!params['page']){
@@ -98,7 +100,13 @@ export class EstateSearchContainerComponent implements OnInit {
       this.filter={...params}
       delete this.filter['page']
       delete this.filter['limit']
-  }
+  }*/
+
+    retrieveFilter(params: Params) {
+      const { filters, page } = this.filterService.retrieveFilter(params);
+      this.filter = filters;
+      this.pageNumber = page;
+    }
 
 
   
@@ -123,14 +131,6 @@ export class EstateSearchContainerComponent implements OnInit {
   }
 
   
- 
-
-
- 
-
-  
-
-  
   addPageCache(){
     const result: CacheEstates = {
       listEstatePreview: this.listEstatePreview,
@@ -153,16 +153,11 @@ export class EstateSearchContainerComponent implements OnInit {
 
   /*richiesta estates per cambio di pagina */
   getEstatesNewPage(params: { [key: string]: any; }, cacheKey: string) {
-    console.log("estateNewPage")
-    console.log(params)
     this.estateService.getEstatesNewPage(params).subscribe((result) => {
         if (!result) {
           console.error("Result is undefined");
           return;
         }
-  
-        console.log("risultato");
-        console.log(result);
         this.listEstatePreview = result;
         this.listCoordinate = result.map((estate: any) => ({
           lat: estate.latitude,
@@ -182,8 +177,6 @@ export class EstateSearchContainerComponent implements OnInit {
   }
   
   getEstatesNewFilter(params: { [key: string]: any; }, cacheKey: string) {
-    console.log("estateNewFilter")
-    console.log(params)
     this.estateService.getEstatesNewFilter(params).subscribe((result:any)=>{
         console.log(result.totalElements)
         if(result.totalElements>0){
@@ -210,12 +203,13 @@ export class EstateSearchContainerComponent implements OnInit {
 
 
   cacheRetrieveEstates(cacheKey: string) {
-      // Usa i dati dalla cache
-      const cachedData = this.pageCache.get(cacheKey);
-      this.listEstatePreview = cachedData!.listEstatePreview
-      this.listCoordinate = cachedData!.listCoordinate
-      this.listRealEstateId = cachedData!.listRealEstateId
-      this.markerService.addMarkers(this.listCoordinate, this.mapInstance, this.listRealEstateId) 
+    const cachedData = this.cacheService.getFromCache(cacheKey, this.pageCache);
+    if (cachedData) {
+      this.listEstatePreview = cachedData.listEstatePreview;
+      this.listCoordinate = cachedData.listCoordinate;
+      this.listRealEstateId = cachedData.listRealEstateId;
+      this.markerService.addMarkers(this.listCoordinate, this.mapInstance, this.listRealEstateId);
+    }
   }
 
   @HostListener('window:resize', ['$event'])
@@ -253,20 +247,7 @@ export class EstateSearchContainerComponent implements OnInit {
   }
 
   updateUrl(params:{ [key: string]: any }, page:number){
-    this.pageNumber = page
-    
-    const queryParams: { [key: string]: any } = {
-      ...params,
-      page:this.pageNumber,
-      limit:this.limit
-    }
-
-
-    this.router.navigate([],{
-      relativeTo:this.activadeRouter,
-      queryParams: queryParams,
-      queryParamsHandling: 'merge'
-    })
+    this.filterService.updateUrl(params, page, this.limit);
   }
 
   isNotFound() {

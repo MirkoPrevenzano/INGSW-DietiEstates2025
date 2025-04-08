@@ -7,7 +7,7 @@ import { Address } from '../../../model/address';
 import { EstateDescribe } from '../../../model/estateDescribe';
 import { EstateFeatures } from '../../../model/estateFeatures';
 import { Estate } from '../../../model/estate';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EstateFactoryService } from '../../../_service/estate-factory/estate-factory.service';
 import { ProgressBarComponent } from '../../progress-bar/progress-bar.component';
 import { Coordinate } from '../../../model/coordinate';
@@ -74,7 +74,8 @@ export class CreateEstatesComponent implements OnInit{
     private readonly uploadPhotosService: UploadPhotoService,
     private readonly toastrService: ToastrService,
     private readonly createEstateService:EstateCreateService,
-    private readonly validateStepService: ValidateStepEstateCreateService
+    private readonly validateStepService: ValidateStepEstateCreateService,
+    private readonly router: Router
 
   ){}
   
@@ -176,14 +177,26 @@ export class CreateEstatesComponent implements OnInit{
   submit(){
     this.searchPoi({lat:this.address.latitude!, lon:this.address.longitude!}).subscribe((response:any)=>{
      this.estate=this.createEstate()
-     console.log(this.estate)
     })
 
-    this.createEstateService.createEstate(this.estate).subscribe((response:any)=>{
-      this.uploadPhotos(response)
-
-      
-    }) 
+    this.createEstateService.createEstate(this.estate).subscribe({
+      next: (response: any) => {
+        this.uploadPhotos(response);
+        setTimeout(()=>{
+          this.toastrService.success("The estate has been created successfully!", "Success")
+        },1000)
+        this.router.navigateByUrl('/home/admin')
+        
+      },
+      error: (err: any) => {
+        console.error(err);
+        this.toastrService.error("An error occurred while creating the estate.", "Error", {
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
+          closeButton: true
+        });
+      }
+    });
   }
 
   uploadPhotos(id: any) {

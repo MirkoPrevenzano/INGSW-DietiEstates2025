@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CacheEstates } from '../../model/cacheEstates';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,10 @@ export class CacheService {
 
   getKey(info:any):string{
     return JSON.stringify(info)
+  }
+
+  getFromCache(cacheKey: string, pageCache: Map<string, CacheEstates>): CacheEstates | undefined {
+    return pageCache.get(cacheKey);
   }
   
 }

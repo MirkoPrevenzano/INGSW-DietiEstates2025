@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { AutocompleteInputComponent } from '../autocomplete-input/autocomplete-input.component';
 import { Coordinate } from '../../model/coordinate';
 import { ActivatedRoute } from '@angular/router';
+import { estateFeatures } from '../../constants/estate-features';
+import { estateLocationFeatures } from '../../constants/estate-location-features';
 
 @Component({
   selector: 'app-estate-filters',
@@ -38,24 +40,8 @@ export class EstateFiltersComponent implements AfterViewInit{
     radius:number =0
     @Output() filterParams: EventEmitter<{ [key: string]: any }> = new EventEmitter();
   
-    estateFeatures = [
-      { controlName: 'hasHeating', label: 'Heating' },
-      { controlName: 'hasConcierge', label: 'Concierge' },
-      { controlName: 'hasAirConditioning', label: 'Air Conditioning' },
-      { controlName: 'hasTerrace', label: 'Terrace' },
-      { controlName: 'hasGarage', label: 'Garage' },
-      { controlName: 'hasBalcony', label: 'Balcony' },
-      { controlName: 'hasGarden', label: 'Garden' },
-      { controlName: 'hasSwimmingPool', label: 'Swimming Pool' },
-      { controlName: 'hasElevator', label: 'Elevator' }
-    ];
-  
-    estateLocationFeatures = [
-      { controlName: 'isNearPark', label: 'Is Near Park' },
-      { controlName: 'isNearSchool', label: 'Is Near School' },
-      { controlName: 'isNearPublicTransport', label: 'Is Near Public Transport' },
-
-    ];
+    estateFeatures = estateFeatures;
+    estateLocationFeatures = estateLocationFeatures;
   
 
     @ViewChild('localityInput') localityInput!: AutocompleteInputComponent
