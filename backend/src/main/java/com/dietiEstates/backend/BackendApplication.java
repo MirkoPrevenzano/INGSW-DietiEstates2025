@@ -65,7 +65,6 @@ import lombok.extern.slf4j.Slf4j;
 public class BackendApplication 
 {
     private final PasswordEncoder passwordEncoder;
-
     
     public static void main(String[] args) {
         SpringApplication.run(BackendApplication.class, args);

@@ -12,10 +12,12 @@ import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
-public class DaoAuthProviderConfig 
+public class DaoAuthenticationProviderConfig
 {
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
+
+    
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider()
