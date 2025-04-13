@@ -45,20 +45,19 @@ public class SecurityConfig implements WebMvcConfigurer
                                     sessionManagementCustomizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
                                         authorizeHttpRequestsCustomizer.requestMatchers("/login/**", "/auth/**").permitAll())
-			.authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
-                                        authorizeHttpRequestsCustomizer.requestMatchers("/admin/create-collaborator")
-                                                                            .hasAuthority(Role.ROLE_ADMIN.name()))
             .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
-                                                authorizeHttpRequestsCustomizer.requestMatchers("/admin/{username}/update-password")
-                                                                                            .hasAnyAuthority(Role.ROLE_ADMIN.name(), 
-                                                                                                             Role.ROLE_COLLABORATOR.name(), 
-                                                                                                             Role.ROLE_UNAUTHORIZED.name()))
-            .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
-                                                authorizeHttpRequestsCustomizer.requestMatchers("/admin/{username}/create-real-estate-agent")
-                                                                                            .hasAnyAuthority(Role.ROLE_ADMIN.name(), 
-                                                                                                             Role.ROLE_COLLABORATOR.name()))
-            .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
-                                                authorizeHttpRequestsCustomizer.anyRequest().authenticated())
+                                        authorizeHttpRequestsCustomizer.anyRequest().authenticated())
+			.authorizeHttpRequests(adminHttpRequestsCustomizer-> 
+                                        adminHttpRequestsCustomizer.requestMatchers("/admin/create-collaborator")
+                                                                        .hasAuthority(Role.ROLE_ADMIN.name())
+                                                                    .requestMatchers("/admin/{username}/update-password")
+                                                                        .hasAnyAuthority(Role.ROLE_ADMIN.name(),
+                                                                                         Role.ROLE_COLLABORATOR.name(),
+                                                                                         Role.ROLE_UNAUTHORIZED.name())
+                                                                    .requestMatchers("/admin/{username}/create-real-estate-agent")
+                                                                        .hasAnyAuthority(Role.ROLE_ADMIN.name(),
+                                                                                         Role.ROLE_COLLABORATOR.name()))
+
             //.exceptionHandling(a -> a.accessDeniedPage("/admin/aa").accessDeniedHandler(new AccessDeniedHandlerImpl()))   
             //.authorizeHttpRequests(a -> a.requestMatchers("/auth/path/**").hasAuthority("ROLE_USER"))
 			.addFilter(jwtAuthenticationFilter)
