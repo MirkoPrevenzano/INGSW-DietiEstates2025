@@ -31,12 +31,12 @@ public class JWTUtils
                                 .withSubject(userDetails.getUsername())
                                 .withClaim("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                                 .withIssuedAt(new Date(System.currentTimeMillis()))
-                                .withExpiresAt(new Date(System.currentTimeMillis() + 100000 * 60 * 1000))
+                                .withExpiresAt(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000))
                                 .sign(algorithm);
         
         return accessToken;
     }
-    
+
 
     public DecodedJWT verifyToken(String token)
     {
