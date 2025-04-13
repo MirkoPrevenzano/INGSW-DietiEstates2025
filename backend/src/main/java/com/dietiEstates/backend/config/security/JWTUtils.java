@@ -16,6 +16,7 @@ import lombok.experimental.UtilityClass;
 import com.auth0.jwt.JWTVerifier;
 
 
+
 @UtilityClass
 public class JWTUtils 
 {
@@ -35,17 +36,7 @@ public class JWTUtils
         
         return accessToken;
     }
-
-    public String generateRefreshToken(UserDetails userDetails)
-    {
-        String refreshToken = JWT.create()
-                                .withSubject(userDetails.getUsername())
-                                .withIssuedAt(new Date(System.currentTimeMillis()))
-                                .withExpiresAt(new Date(System.currentTimeMillis() + 60 * 60 * 1000))
-                                .sign(algorithm);
-        
-        return refreshToken;
-    }
+    
 
     public DecodedJWT verifyToken(String token)
     {
@@ -53,4 +44,3 @@ public class JWTUtils
         return jwtVerifier.verify(token);
     }
 }
-

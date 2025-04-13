@@ -78,10 +78,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         UserDetails user = (UserDetails) authenticationResult.getPrincipal();
 
         String accessToken = JWTUtils.generateAccessToken(user);
-        String refreshToken = JWTUtils.generateRefreshToken(user);
 
         response.setHeader("accessToken", accessToken);
-        response.setHeader("refreshToken", refreshToken); 
         
         // restituire oggetto json nel body
         Map<String,String> tokens = new HashMap<>(); 
