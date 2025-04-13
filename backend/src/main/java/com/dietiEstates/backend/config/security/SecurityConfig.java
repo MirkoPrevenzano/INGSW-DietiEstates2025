@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.dietiEstates.backend.config.security.filter.JWTAuthenticationFilter;
 import com.dietiEstates.backend.config.security.filter.JWTAuthorizationFilter;
@@ -27,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @EnableMethodSecurity
 @RequiredArgsConstructor
 @Slf4j
-public class SecurityConfig implements WebMvcConfigurer
+public class SecurityConfig
 {
     private final DaoAuthenticationProvider daoAuthenticationProvider;
 
