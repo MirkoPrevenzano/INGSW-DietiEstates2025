@@ -12,6 +12,7 @@ import com.dietiEstates.backend.config.security.interceptor.AuthorizationInterce
 import lombok.RequiredArgsConstructor;
 
 
+
 @Configuration
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer

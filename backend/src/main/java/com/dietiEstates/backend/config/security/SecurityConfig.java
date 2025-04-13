@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -20,8 +19,6 @@ import com.dietiEstates.backend.model.Role;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import com.dietiEstates.backend.service.AuthenticationService;
-
 
 
 
@@ -34,7 +31,7 @@ public class SecurityConfig implements WebMvcConfigurer
 {
     private final DaoAuthenticationProvider daoAuthenticationProvider;
 
-    //PARTA AGGIUNTA
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
@@ -45,15 +42,12 @@ public class SecurityConfig implements WebMvcConfigurer
             .cors(Customizer.withDefaults())
             .httpBasic(Customizer.withDefaults())
             .sessionManagement(sessionManagementCustomizer -> 
-                                                sessionManagementCustomizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                    sessionManagementCustomizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
-                                                authorizeHttpRequestsCustomizer.requestMatchers("/login/**", 
-                                                                                                            "/auth/**", "/auth/login/oauth2/code/google",
-                                                                                                            "/CSV/**", 
-                                                                                                            "/PDF/**").permitAll())
+                                        authorizeHttpRequestsCustomizer.requestMatchers("/login/**", "/auth/**").permitAll())
 			.authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
-                                                authorizeHttpRequestsCustomizer.requestMatchers("/admin/create-collaborator")
-                                                                                            .hasAuthority(Role.ROLE_ADMIN.name()))
+                                        authorizeHttpRequestsCustomizer.requestMatchers("/admin/create-collaborator")
+                                                                            .hasAuthority(Role.ROLE_ADMIN.name()))
             .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
                                                 authorizeHttpRequestsCustomizer.requestMatchers("/admin/{username}/update-password")
                                                                                             .hasAnyAuthority(Role.ROLE_ADMIN.name(), 
@@ -74,25 +68,4 @@ public class SecurityConfig implements WebMvcConfigurer
 
         return http.build();
     }
-    
-    /*@Bean
-    @Order(2)
-    public SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception
-    {            
-        JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter( 
-                                                               authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)));     
-        jwtAuthenticationFilter.setFilterProcessesUrl("/login/google/**");
-
-        http.csrf(a -> a.disable())
-            .sessionManagement(a -> a.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .securityMatcher("/login/**","/auth/**")
-			.authorizeHttpRequests(a-> a.requestMatchers("/login/google/**").permitAll())
-            //.authorizeHttpRequests(a -> a.requestMatchers("/auth/path/**").hasAuthority("ROLE_AGENT"))
-			.addFilter(jwtAuthenticationFilter)
-            .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
-            .authorizeHttpRequests(a-> a.anyRequest().authenticated())
-            .httpBasic(Customizer.withDefaults());
-
-        return http.build();
-    }*/
 }
