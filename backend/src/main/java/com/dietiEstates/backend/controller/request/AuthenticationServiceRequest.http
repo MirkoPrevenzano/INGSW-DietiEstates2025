@@ -22,8 +22,8 @@ Content-Type: application/x-www-form-urlencoded
 username=ydk&password=jssssssssssssssssssss22A@&role=admin
 
 
-GET http://localhost:8080/CSV/c/export HTTP/1.1
+GET http://localhost:8080/agent/c/exportPDF HTTP/1.1
 
 
-GET http://localhost:8080/PDF/c/export HTTP/1.1
+GET http://localhost:8080/agent/c/exportCSV HTTP/1.1
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjIiwicm9sZXMiOlsiUk9MRV9BR0VOVCJdLCJleHAiOjE3NDE5ODAzMzMsImlhdCI6MTc0MDI3NTMwMH0.CaNVKzDLfsdhbRVcM9KibKadfghiwLrVT1WBkMYEaAc

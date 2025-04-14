@@ -10,4 +10,4 @@ curl --location 'http://localhost:8080/S3/c/upload-photo/1' \
 --header 'Cookie: JSESSIONID=B781B639F000B11DA261FD657C119D93' \
 --form 'file=@"/home/ciro/Pictures/penpot.png"' \
 --form 'file=@"/home/ciro/Pictures/mockfloww.png"' \
---form 'file=@"/home/ciro/Pictures/overleaf.png"'
+--form 'file=@"/home/ciro/Pictures/Screenshot from 2025-01-26 00-42-55.png"'

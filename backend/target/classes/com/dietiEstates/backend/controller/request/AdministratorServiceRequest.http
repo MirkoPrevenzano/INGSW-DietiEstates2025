@@ -1,5 +1,5 @@
 
-POST http://localhost:8080/admin/create-collaborator HTTP/1.1
+POST http://localhost:8080/admin/ydk/create-collaborator HTTP/1.1
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ5ZGsiLCJyb2xlcyI6WyJST0xFX0FETUlOIl0sImV4cCI6MTc0Mzg1MTkzNSwiaWF0IjoxNzQyMTQ2OTAyfQ.Fk_zoDFbrNG7IUhcQIhh1M9vPvGKbKoa3jmVhHY5eFo
 Content-Type: application/json
 
