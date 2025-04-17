@@ -1,0 +1,59 @@
+
+com.dietiEstates.backend.controller.RealEstateAgentController#aaaa(Ljava/lang/String;)Lorg/springframework/http/ResponseEntity; 
+•/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/controller/RealEstateAgentController.javag% g()"startingBlock*°
+startingBlockg) g(T±
+®
+g* g(C
+%4"
+__annotate*T
+
+__unknown_file (86
+4org.springframework.web.bind.annotation.PathVariable*:
+
+__unknown_file (
+
+usernamejava.lang.String\
+Z
+gK g(S
+usernamejava.lang.String"__annotation*"
+
+__unknown_file (
+
+%4*
+1*ï
+1i i(ô
+ñ
+i i("9
+%03org.springframework.http.ResponseEntity$BodyBuilder"aorg.springframework.http.ResponseEntity#ok()Lorg/springframework/http/ResponseEntity$BodyBuilder;*G
+
+__unknown_file (+")
+'org.springframework.http.ResponseEntityÍ
+Ê
+i( i(>=
+%17com.dietiEstates.backend.service.RealEstateAgentService"__id*y
+
+__unknown_file (]*[?
+=com.dietiEstates.backend.controller.RealEstateAgentController"
+realEstateAgentServiceùö
+i( i(Q
+%2java.lang.Integer[]"^com.dietiEstates.backend.service.RealEstateAgentService#getBarChartStats()[Ljava/lang/Integer;*[
+
+__unknown_file (?
+=
+%17com.dietiEstates.backend.service.RealEstateAgentService2getBarChartStats()ßÜ
+i i(R-
+%3'org.springframework.http.ResponseEntity"uorg.springframework.http.ResponseEntity$BodyBuilder#body(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;*W
+
+__unknown_file (;
+9
+%03org.springframework.http.ResponseEntity$BodyBuilder*7
+
+__unknown_file (
+
+%2java.lang.Integer[]2body(Ljava/lang/Object;)";
+i i(S/
+-
+%3'org.springframework.http.ResponseEntity:(
+g* g(S
+usernamejava.lang.StringBA?
+=com.dietiEstates.backend.controller.RealEstateAgentControllerH

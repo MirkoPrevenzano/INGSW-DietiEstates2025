@@ -1,0 +1,6 @@
+com.dietiEstates.backend.model.Administrator#removeCollaborator(Lcom/dietiEstates/backend/model/Administrator;)V
+false
+954621c2eb350fe426396749c995361b
+==
+!unknownMethod! !unknownMethod!
+remove java.util.List#remove(Ljava/lang/Object;)Z

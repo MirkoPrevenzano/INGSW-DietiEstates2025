@@ -1,0 +1,853 @@
+
+1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021385*java2.BÌ%
+U
+Psrc/main/java/com/dietiEstates/backend/controller/RealEstateAgentController.java2
+
+package4
+(
+#com.dietiEstates.backend.controller5
+B
+=com.dietiEstates.backend.controller.RealEstateAgentController7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+RealEstateAgentController12
+<
+6org.springframework.web.bind.annotation.RestController14
+
+unknown15
+
+annotated by16
+
+
+uses17
+<
+6org.springframework.web.bind.annotation.RequestMapping19
+$
+lombok.RequiredArgsConstructor21
+
+lombok.extern.slf4j.Slf4j23
+Z
+Tcom.dietiEstates.backend.controller.RealEstateAgentController.realEstateAgentService25
+
+field26
+
+private27
+
+realEstateAgentService28
+=
+7com.dietiEstates.backend.service.RealEstateAgentService30
+
+is type31
+‘
+Õcom.dietiEstates.backend.controller.RealEstateAgentController#createRealEstateForSale(Ljava/lang/String;Lcom/dietiEstates/backend/dto/RealEstateForSaleCreationDTO;)Lorg/springframework/http/ResponseEntity;33
+
+method34
+
+createRealEstateForSale35
+-
+'org.springframework.http.ResponseEntity37
+
+returns38
+?
+9com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO40
+
+	has param41
+9
+3org.springframework.web.bind.annotation.PostMapping43
+:
+4org.springframework.web.bind.annotation.PathVariable45
+9
+3org.springframework.web.bind.annotation.RequestBody47
+9
+3org.springframework.http.ResponseEntity$BodyBuilder49
+
+
+references50
+{
+uorg.springframework.http.ResponseEntity$BodyBuilder#body(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;52
+
+calls53
+l
+forg.springframework.http.ResponseEntity#status(I)Lorg/springframework/http/ResponseEntity$BodyBuilder;55
+)
+#org.springframework.http.HttpStatus57
+2
+,org.springframework.http.HttpStatus#value()I59
+1
++org.springframework.http.HttpStatus.CREATED61
+µ
+Æcom.dietiEstates.backend.service.RealEstateAgentService#createRealEstateForSale(Ljava/lang/String;Lcom/dietiEstates/backend/dto/RealEstateForSaleCreationDTO;)Ljava/lang/Long;63
+M
+Gorg.springframework.security.core.userdetails.UsernameNotFoundException65
+<
+6org.springframework.http.ResponseEntity$HeadersBuilder67
+m
+gorg.springframework.http.ResponseEntity$HeadersBuilder#build()Lorg/springframework/http/ResponseEntity;69
+£
+úorg.springframework.http.ResponseEntity$HeadersBuilder#header(Ljava/lang/String;[Ljava/lang/String;)Lorg/springframework/http/ResponseEntity$HeadersBuilder;71
+p
+jorg.springframework.http.ResponseEntity#notFound()Lorg/springframework/http/ResponseEntity$HeadersBuilder;73
+‘
+Õcom.dietiEstates.backend.controller.RealEstateAgentController#createRealEstateForRent(Ljava/lang/String;Lcom/dietiEstates/backend/dto/RealEstateForRentCreationDTO;)Lorg/springframework/http/ResponseEntity;75
+
+createRealEstateForRent76
+?
+9com.dietiEstates.backend.dto.RealEstateForRentCreationDTO78
+µ
+Æcom.dietiEstates.backend.service.RealEstateAgentService#createRealEstateForRent(Ljava/lang/String;Lcom/dietiEstates/backend/dto/RealEstateForRentCreationDTO;)Ljava/lang/Long;80
+ó
+êcom.dietiEstates.backend.controller.RealEstateAgentController#aa(Ljava/lang/String;Ljava/lang/Integer;)Lorg/springframework/http/ResponseEntity;82
+
+aa83
+8
+2org.springframework.web.bind.annotation.GetMapping85
+6
+0com.dietiEstates.backend.dto.RealEstateRecentDTO87
+ã
+Ñcom.dietiEstates.backend.service.RealEstateAgentService#findRecentRealEstates(Ljava/lang/String;Ljava/lang/Integer;)Ljava/util/List;89
+m
+gorg.springframework.http.ResponseEntity#ok(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;91
+â
+Çcom.dietiEstates.backend.controller.RealEstateAgentController#aaaaaaa(Ljava/lang/String;)Lorg/springframework/http/ResponseEntity;93
+
+aaaaaaa94
+:
+4com.dietiEstates.backend.dto.RealEstateAgentStatsDTO96
+ñ
+ècom.dietiEstates.backend.service.RealEstateAgentService#getAgentStats(Ljava/lang/String;)Lcom/dietiEstates/backend/dto/RealEstateAgentStatsDTO;98
+h
+aorg.springframework.http.ResponseEntity#ok()Lorg/springframework/http/ResponseEntity$BodyBuilder;100
+≠
+•com.dietiEstates.backend.controller.RealEstateAgentController#aaaa(Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)Lorg/springframework/http/ResponseEntity;102
+
+aaaa103
+6
+/com.dietiEstates.backend.dto.RealEstateStatsDTO105
+†
+òcom.dietiEstates.backend.service.RealEstateAgentService#getRealEstateStats(Ljava/lang/String;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;107
+2
++org.springframework.data.domain.PageRequest109
+f
+_org.springframework.data.domain.PageRequest#of(II)Lorg/springframework/data/domain/PageRequest;111
+Ü
+com.dietiEstates.backend.controller.RealEstateAgentController#aaaa(Ljava/lang/String;)Lorg/springframework/http/ResponseEntity;113
+e
+^com.dietiEstates.backend.service.RealEstateAgentService#getBarChartStats()[Ljava/lang/Integer;115J
+
+1
+12Z
+
+3	
+354jÒ	
+
+44
+444515
+
+60
+606115
+
+64
+646515
+
+114
+11411515
+
+20
+202115
+
+18
+181915
+
+68
+686915
+
+48
+484915
+
+70
+707115
+
+97
+979815
+
+54
+545515
+
+88
+888915
+
+46
+464715
+@
+74:
+747534 *
+17 7(26:3B
+	
+9
+10
+
+
+11
+76
+
+90
+909115
+@
+92:
+929334 *
+1S S(26:3B
+	
+9
+10
+
+
+11
+94
+
+95
+959615
+@
+81:
+818234 *
+1G G(26:3B
+	
+9
+10
+
+
+11
+83
+
+104
+10410515
+
+110
+11011115
+
+51
+515215
+
+84
+848515
+
+72
+727315
+
+86
+868715
+
+39
+394015
+
+106
+10610715
+
+62
+626315
+
+79
+798015
+
+42
+424315
+
+58
+585915
+
+99
+9910015
+D
+112=
+11211334 *
+1f f(26:3B
+	
+9
+10
+
+11
+103
+
+29
+293015
+
+108
+10810915
+D
+101=
+10110234 *
+1\ \(26:3B
+	
+9
+10
+
+11
+103
+@
+24:
+242526 *
+1# #(26:3B
+	
+9
+27
+
+
+11
+28
+
+13
+131415
+9
+64
+678 *
+1! !(':3B
+	
+9
+10
+
+
+11
+12
+
+56
+565715
+
+22
+222315
+
+77
+777815
+@
+32:
+323334 *
+1' '(26:3B
+	
+9
+10
+
+
+11
+35
+
+36
+363715
+
+66
+666715r¢$
+
+61316*
+1 (
+
+61317*
+1 (
+
+61816*
+1 (
+
+61817*
+1 (
+
+62016*
+1 (
+
+62017*
+1 (
+
+62216*
+1   (
+
+62217*
+1   (
+
+242931*
+1# #()
+
+242917*
+1# #()
+
+242917*
+1#* #(@
+
+323638*
+1( ((
+
+323941*
+1(e ((Å
+
+324216*
+1' '(
+
+324217*
+1' '(
+
+323617*
+1( ((
+
+324416*
+1(9 ((:
+
+324417*
+1(: ((F
+
+323931*
+1(Ç ((û
+
+324616*
+1(X ((Y
+
+324617*
+1(Y ((d
+
+323917*
+1(e ((Å
+
+323638*
+1, ,("
+
+324850*
+1, ,("
+
+325153*
+1-# -('
+
+324838*
+1, ,("
+
+323650*
+1, ,("
+
+325453*
+1,# ,()
+
+325650*
+1,* ,(4
+
+325853*
+1,= ,(B
+
+325617*
+1,* ,(4
+
+325617*
+1,5 ,(<
+
+326050*
+1,5 ,(<
+
+322950*
+1-( -(>
+
+326253*
+1-? -(V
+
+322450*
+1-( -(>
+
+322917*
+1-( -(>
+
+322450*
+1-( -(>
+
+326431*
+10* 0(+
+
+326417*
+10 0()
+
+323638*
+12 2("
+
+326650*
+12 2("
+
+326853*
+12N 2(S
+
+326650*
+12 2("
+
+327053*
+12. 2(4
+
+326638*
+12 2("
+
+323650*
+12 2("
+
+327253*
+12# 2(+
+
+743638*
+18 8(
+
+747741*
+18e 8(Å
+
+744216*
+17 7(
+
+744217*
+17 7(
+
+743617*
+18 8(
+
+744416*
+189 8(:
+
+744417*
+18: 8(F
+
+747731*
+18Ç 8(û
+
+744616*
+18X 8(Y
+
+744617*
+18Y 8(d
+
+747717*
+18e 8(Å
+
+743638*
+1< <("
+
+744850*
+1< <("
+
+745153*
+1=# =('
+
+744838*
+1< <("
+
+743650*
+1< <("
+
+745453*
+1<# <()
+
+745650*
+1<* <(4
+
+745853*
+1<= <(B
+
+745617*
+1<* <(4
+
+745617*
+1<5 <(<
+
+746050*
+1<5 <(<
+
+742950*
+1=( =(>
+
+747953*
+1=? =(V
+
+742450*
+1=( =(>
+
+742917*
+1=( =(>
+
+742450*
+1=( =(>
+
+746431*
+1@* @(+
+
+746417*
+1@ @()
+
+743638*
+1B B("
+
+746650*
+1B B("
+
+746853*
+1BN B(S
+
+746650*
+1B B("
+
+747053*
+1B. B(4
+
+746638*
+1B B("
+
+743650*
+1B B("
+
+747253*
+1B# B(+
+
+813638*
+1H H(
+
+818416*
+1G G(
+
+818417*
+1G G(
+
+813617*
+1H H(
+
+818617*
+1H  H(3
+
+814416*
+1H9 H(:
+
+814417*
+1H: H(F
+
+814416*
+1Hd H(e
+
+814417*
+1He H(q
+
+818617*
+1J J(!
+
+812950*
+1J1 J(G
+
+818853*
+1JH J(]
+
+812450*
+1J1 J(G
+
+812917*
+1J1 J(G
+
+812450*
+1J1 J(G
+
+818631*
+1L! L(4
+
+818617*
+1L L( 
+
+813638*
+1O O(
+
+813650*
+1O O(
+
+819053*
+1O O(!
+
+923638*
+1T T(
+
+928416*
+1S S(
+
+928417*
+1S S(
+
+923617*
+1T T(
+
+929517*
+1T T(2
+
+924416*
+1T< T(=
+
+924417*
+1T= T(I
+
+929531*
+1V! V(8
+
+929517*
+1V	 V( 
+
+929538*
+1V; V(Q
+
+922950*
+1V; V(Q
+
+929753*
+1VR V(_
+
+922450*
+1V; V(Q
+
+922917*
+1V; V(Q
+
+922450*
+1V; V(Q
+
+923638*
+1X X(
+
+924850*
+1X X(
+
+925153*
+1X$ X((
+
+924838*
+1X X(
+
+923650*
+1X X(
+
+929953*
+1X X(!
+
+1013638*
+1] ](
+
+1018416*
+1\ \(
+
+1018417*
+1\ \(
+
+1013617*
+1] ](
+
+10110417*
+1]  ](2
+
+1014416*
+1]: ](;
+
+1014417*
+1]; ](G
+
+1014416*
+1^4 ^(5
+
+1014417*
+1^5 ^(A
+
+1014416*
+1_4 _(5
+
+1014417*
+1_5 _(A
+
+10110417*
+1a a( 
+
+1012950*
+1a8 a(N
+
+10110653*
+1aO a(a
+
+1012450*
+1a8 a(N
+
+1012917*
+1a8 a(N
+
+1012450*
+1a8 a(N
+
+10110838*
+1bb b(m
+
+10110850*
+1bb b(m
+
+10111053*
+1bn b(p
+
+10110817*
+1bb b(m
+
+1013638*
+1c c(
+
+1014850*
+1c c(
+
+1015153*
+1c$ c((
+
+1014838*
+1c c(
+
+1013650*
+1c c(
+
+1019953*
+1c c(!
+
+1123638*
+1g g(
+
+1128416*
+1f f(
+
+1128417*
+1f f(
+
+1123617*
+1g g(
+
+1124416*
+1g+ g(,
+
+1124417*
+1g, g(8
+
+1123638*
+1i i(
+
+1124850*
+1i i(
+
+1125153*
+1i$ i((
+
+1124838*
+1i i(
+
+1123650*
+1i i(
+
+1129953*
+1i i(!
+
+1122950*
+1i) i(?
+
+11211453*
+1i@ i(P
+
+1122450*
+1i) i(?
+
+1122917*
+1i) i(?
+
+1122450*
+1i) i(?

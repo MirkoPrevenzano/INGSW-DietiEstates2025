@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<div class=" relative h-full bg-cover bg-center" style="background-image: url('assets/images/photoImmobile.jpg');">
-  <div class="absolute inset-0 bg-black opacity-50"></div>
+<div class=" relative h-full bg-cover bg-back">
 
-  <div class="relative z-10 flex flex-col items-center justify-center h-full text-black p-4">
-    <form [formGroup]="loginForm"  class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+  <div class="relative z-10 flex  flex-col items-center justify-center   h-full text-text p-4">
+    <form [formGroup]="loginForm"  class="w-full max-w-md bg-white border-4 border-secondary rounded-lg shadow-md p-8">
     <h2 class="text-2xl font-bold  text-center">Login</h2>
       <app-form-field
         label="Select User Type"
@@ -13,8 +12,8 @@
         [options]="['customer', 'admin', 'agent']">
       </app-form-field>
       <hr class="my-4 border-gray-300 w-full">
-      <label *ngIf="loginForm.value.userType === 'customer'"  for="email" class="block text-sm font-medium text-gray-700 ">Insert E-mail</label>
-      <label *ngIf="loginForm.value.userType !== 'customer'" for="username" class="block text-sm font-medium text-gray-700">Insert Username</label>
+      <label *ngIf="loginForm.value.userType === 'customer'"  for="email" class="block text-sm font-medium text-text ">Insert E-mail</label>
+      <label *ngIf="loginForm.value.userType !== 'customer'" for="username" class="block text-sm font-medium text-text">Insert Username</label>
       <app-form-field
         type="email"
         label=""
@@ -29,14 +28,14 @@
       <app-button-custom
         text="Login"
         (clickEvent)="signIn()"
-        color="bg-indigo-600"
+        
       ></app-button-custom>
     <fieldset *ngIf="loginForm.value.userType === 'customer'" >
       <app-login-with-google class="w-full py-2 mt-4 px-4 focus:outline-none focus:ring-2 focus:ring-offset-2 flex justify-center"></app-login-with-google>
     </fieldset>
     <fieldset *ngIf="loginForm.value.userType === 'customer'" >
     </fieldset>    <div *ngIf="loginForm.value.userType === 'customer'" class="text-center mt-4 hover:cursor-pointer">
-      <a routerLink="/register" class="text-indigo-600 hover:text-indigo-800">Want to register? Click here!</a>
+      <a routerLink="/register" class="text-primary hover:text-indigo-900">Want to register? Click here!</a>
     </div>
   </form>
 </div>

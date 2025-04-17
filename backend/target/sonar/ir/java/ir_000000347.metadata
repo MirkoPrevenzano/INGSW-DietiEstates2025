@@ -1,0 +1,7 @@
+com.dietiEstates.backend.model.RealEstateAgent#instance-init#
+false
+7e6fef56564dcc018b1dcad9f99eb0f3
+com.dietiEstates.backend.model.embeddable.RealEstateAgentStats#<init>()V
+com.dietiEstates.backend.model.embeddable.RealEstateAgentStats#instance-init#
+java.util.ArrayList#<init>()V
+java.util.ArrayList#instance-init#

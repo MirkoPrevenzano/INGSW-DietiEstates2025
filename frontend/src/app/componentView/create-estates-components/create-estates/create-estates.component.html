@@ -35,16 +35,16 @@
   </app-estate-item>
 </div>
 
-<div class="fixed bottom-12 mb-1 left-0 right-0  p-4 bg-white flex justify-between items-center z-0 ">
+<div class="fixed bottom-12 mb-1 left-0 right-0  p-4 bg-back flex justify-between items-center z-0 ">
   <div class="flex space-x-3">
     <button       
-      class=" px-6 py-3 text-white  bg-gray-500 hover:bg-gray-600 font-semibold rounded-xl shadow-lg transition transform hover:scale-105"
+      class=" px-6 py-3 text-white  bg-gray-400 hover:bg-gray-600 font-semibold rounded-xl shadow-lg transition transform hover:scale-105"
       [class.cursor-not-allowed]="currentStep === 0" 
       [disabled]="currentStep === 0" 
       (click)="previousStep()">Previous
     </button>
     <button
-      class=" px-6 py-3  bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-xl shadow-lg transition transform hover:scale-105"
+      class=" px-6 py-3  bg-primary hover:bg-blue-900 text-white font-semibold rounded-xl shadow-lg transition transform hover:scale-105"
       [class.cursor-not-allowed]="currentStep === 3" 
       [disabled]="currentStep === 3" 
       (click)="nextStep()">Next

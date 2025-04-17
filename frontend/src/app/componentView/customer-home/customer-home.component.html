@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<div class="relative h-full bg-cover bg-center" style="background-image: url('assets/images/customer-home.jpg');">   
-  <div class="absolute inset-0 bg-black opacity-40"></div>   
-  <div class="relative  flex flex-col items-center justify-center h-full text-white p-6">
+<div class="relative h-full bg-cover bg-back" >   
+  <div class="relative  flex flex-col items-center justify-center h-full text-primary p-6">
     <h1 class="text-5xl font-extrabold mb-10 drop-shadow-lg">Welcome, Customer</h1> 
     
-    <div class="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-3xl">
+    <div class="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-3xl border-4 border-secondary">
       <div class="w-full flex flex-col lg:flex-row items-center justify-between space-y-6 lg:space-y-0 lg:space-x-6">
         <app-form-field 
           [form]="formSelectType"
           controlName="estateType"
           label="Select Estate Type"
           type="select"
-          class="w-full"
+          class="w-full text-text"
           [options]="['For Rent', 'For Sale']">
         </app-form-field>
         
@@ -20,7 +19,7 @@
           elementId="locality" 
           type="city" 
           label="Search Locality" 
-          class="text-black w-full" 
+          class="text-text w-full" 
           (select)="onLocationSelected($event)">
         </app-autocomplete-input>
       </div>
@@ -30,14 +29,14 @@
           text="Select Location on Map"
           (clickEvent)="openMap()"
           [width]=225
-          color="bg-blue-600"
+          color="bg-secondary"
         ></app-button-custom>
 
         <app-button-custom
           text="Search"
           (clickEvent)="submit()"
           [width]=150
-          color="bg-green-600"
+          color="bg-primary"
         ></app-button-custom>
       </div>
     </div>

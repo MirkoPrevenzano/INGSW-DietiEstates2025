@@ -1,0 +1,11 @@
+com.dietiEstates.backend.service.CsvService#writeRealEstatesStats(Lcom/dietiEstates/backend/model/RealEstateAgent;Lorg/supercsv/io/ICsvListWriter;)V
+false
+deb2056dfc88830adf098508aca315d8
+com.dietiEstates.backend.service.CsvService#getEstateStatsProcessors()[Lorg/supercsv/cellprocessor/ift/CellProcessor;
+java.util.Arrays#asList([Ljava/lang/Object;)Ljava/util/List;
+==
+!unknownMethod! !unknownMethod!
+size java.util.List#size()I
+write org.supercsv.io.ICsvListWriter#write(Ljava/util/List;[Lorg/supercsv/cellprocessor/ift/CellProcessor;)V
+write org.supercsv.io.ICsvListWriter#write([Ljava/lang/String;)V
+writeHeader org.supercsv.io.ICsvWriter#writeHeader([Ljava/lang/String;)V

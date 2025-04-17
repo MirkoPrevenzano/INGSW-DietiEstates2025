@@ -189,12 +189,7 @@ export class CreateEstatesComponent implements OnInit{
         
       },
       error: (err: any) => {
-        console.error(err);
-        this.toastrService.error("An error occurred while creating the estate.", "Error", {
-          timeOut: 3000,
-          positionClass: 'toast-top-center',
-          closeButton: true
-        });
+        this.toastrService.error(err.headers.get('error'))
       }
     });
   }

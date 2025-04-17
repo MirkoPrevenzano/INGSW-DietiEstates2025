@@ -43,18 +43,13 @@ public class AuthenticationController
    
     @PostMapping("/login/oauth2/code/google") 
     public ResponseEntity<AuthenticationResponseDTO> googleLogin( @RequestBody Map<String, String> request) { 
-
-        String token= request.get("token"); 
-
-        if (token != null) { 
-
-            AuthenticationResponseDTO authenticationResponse= authenticationService.authenticateWithGoogle(token); 
-
-            return ResponseEntity.ok(authenticationResponse); 
-
+        try{
+            AuthenticationResponseDTO authenticationResponse= authenticationService.authenticateWithGoogle(request); 
+            return ResponseEntity.ok(authenticationResponse);
         } 
-
-        return ResponseEntity.badRequest().build(); 
+        catch(Exception e){
+            return ResponseEntity.badRequest().build(); 
+        }
 
     } 
 }

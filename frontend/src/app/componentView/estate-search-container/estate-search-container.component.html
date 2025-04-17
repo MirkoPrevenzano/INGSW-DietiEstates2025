@@ -9,7 +9,7 @@
       <div class="md:hidden ">
         <button 
           (click)="toggleFilters()" 
-          class=" px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-lg transition transform hover:scale-105"
+          class=" px-6 py-3 bg-primary hover:bg-blue-900 text-white font-semibold rounded-xl shadow-lg transition transform hover:scale-105"
           >{{ showFilters ? 'Hide Filters' : 'Show Filters' }}
         </button>
       </div>
@@ -29,13 +29,11 @@
           text="View List"
           (clickEvent)="isViewList = true"
           [width]=150
-          color="bg-blue-600"
         ></app-button-custom>
         <app-button-custom
           text="View Map"
           (clickEvent)="isViewList = false"
           [width]=150
-          color="bg-blue-600"
         ></app-button-custom>
         
       </div>

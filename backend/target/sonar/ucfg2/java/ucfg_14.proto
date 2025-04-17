@@ -1,0 +1,151 @@
+
+H__sonar_lambda_4$com.dietiEstates.backend.config.security.SecurityConfigö
+è/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/config/security/SecurityConfig.java1 :(w"1*º,
+12( 2(Cª∏
+2( 2(qs
+%21lorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizedUrl"àorg.springframework.security.config.annotation.web.AbstractRequestMatcherRegistry#requestMatchers([Ljava/lang/String;)Ljava/lang/Object;*…
+
+__unknown_file (¨
+©
+adminHttpRequestsCustomizerâorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry*:
+
+__unknown_file (
+/admin/create-collaborator2$requestMatchers([Ljava/lang/String;)b
+`
+3V 3(e*
+%22#com.dietiEstates.backend.model.Role"__id*"
+
+__unknown_file (
+""°û
+3V 3(l
+%23java.lang.String"'java.lang.Enum#name()Ljava/lang/String;*H
+
+__unknown_file (,
+*
+%22#com.dietiEstates.backend.model.Role2name()©¶
+2( 3(më
+%24âorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry"òorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizedUrl#hasAuthority(Ljava/lang/String;)Lorg/springframework/security/config/annotation/web/configurers/AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry;*ë
+
+__unknown_file (u
+s
+%21lorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizedUrl*5
+
+__unknown_file (
+
+%23java.lang.String2 hasAuthority(Ljava/lang/String;)™ß
+2( 4(ys
+%25lorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizedUrl"àorg.springframework.security.config.annotation.web.AbstractRequestMatcherRegistry#requestMatchers([Ljava/lang/String;)Ljava/lang/Object;*±
+
+__unknown_file (î
+ë
+%24âorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry*A
+
+__unknown_file (%#
+!/admin/{username}/update-password2$requestMatchers([Ljava/lang/String;)b
+`
+5Y 5(h*
+%26#com.dietiEstates.backend.model.Role"__id*"
+
+__unknown_file (
+""°û
+5Y 5(o
+%27java.lang.String"'java.lang.Enum#name()Ljava/lang/String;*H
+
+__unknown_file (,
+*
+%26#com.dietiEstates.backend.model.Role2name()b
+`
+6Y 6(o*
+%28#com.dietiEstates.backend.model.Role"__id*"
+
+__unknown_file (
+""°û
+6Y 6(v
+%29java.lang.String"'java.lang.Enum#name()Ljava/lang/String;*H
+
+__unknown_file (,
+*
+%28#com.dietiEstates.backend.model.Role2name()b
+`
+7Y 7(o*
+%30#com.dietiEstates.backend.model.Role"__id*"
+
+__unknown_file (
+""°û
+7Y 7(v
+%31java.lang.String"'java.lang.Enum#name()Ljava/lang/String;*H
+
+__unknown_file (,
+*
+%30#com.dietiEstates.backend.model.Role2name()üú
+2( 7(wë
+%32âorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry"úorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizedUrl#hasAnyAuthority([Ljava/lang/String;)Lorg/springframework/security/config/annotation/web/configurers/AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry;*ë
+
+__unknown_file (u
+s
+%25lorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizedUrl*5
+
+__unknown_file (
+
+%27java.lang.String*5
+
+__unknown_file (
+
+%29java.lang.String*5
+
+__unknown_file (
+
+%31java.lang.String2$hasAnyAuthority([Ljava/lang/String;)¥±
+	2( 8(Çs
+%33lorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizedUrl"àorg.springframework.security.config.annotation.web.AbstractRequestMatcherRegistry#requestMatchers([Ljava/lang/String;)Ljava/lang/Object;*±
+
+__unknown_file (î
+ë
+%32âorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry*J
+
+__unknown_file (.,
+*/admin/{username}/create-real-estate-agent2$requestMatchers([Ljava/lang/String;)b
+`
+9Y 9(h*
+%34#com.dietiEstates.backend.model.Role"__id*"
+
+__unknown_file (
+""°û
+9Y 9(o
+%35java.lang.String"'java.lang.Enum#name()Ljava/lang/String;*H
+
+__unknown_file (,
+*
+%34#com.dietiEstates.backend.model.Role2name()b
+`
+:Y :(o*
+%36#com.dietiEstates.backend.model.Role"__id*"
+
+__unknown_file (
+""°û
+:Y :(v
+%37java.lang.String"'java.lang.Enum#name()Ljava/lang/String;*H
+
+__unknown_file (,
+*
+%36#com.dietiEstates.backend.model.Role2name()ËÂ
+2( :(wë
+%38âorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry"úorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizedUrl#hasAnyAuthority([Ljava/lang/String;)Lorg/springframework/security/config/annotation/web/configurers/AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry;*ë
+
+__unknown_file (u
+s
+%33lorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizedUrl*5
+
+__unknown_file (
+
+%35java.lang.String*5
+
+__unknown_file (
+
+%37java.lang.String2$hasAnyAuthority([Ljava/lang/String;)"°
+2( :(wî
+ë
+%38âorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry:∂
+1 1(5©
+adminHttpRequestsCustomizerâorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistryB20
+.org.springframework.security.config.Customizer

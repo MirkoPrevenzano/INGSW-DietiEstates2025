@@ -1,0 +1,176 @@
+
+1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021277*java2.B§
+<
+7src/main/java/com/dietiEstates/backend/dto/UserDTO.java2
+
+package4
+!
+com.dietiEstates.backend.dto5
+)
+$com.dietiEstates.backend.dto.UserDTO7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+UserDTO12
+
+lombok.Data14
+
+unknown15
+
+annotated by16
+
+
+uses17
+
+lombok.NoArgsConstructor19
+$
+lombok.RequiredArgsConstructor21
+/
+)com.dietiEstates.backend.dto.UserDTO.name23
+
+field24
+
+private25
+
+
+name26
+
+lombok.NonNull28
+2
+,com.dietiEstates.backend.dto.UserDTO.surname30
+
+surname31
+3
+-com.dietiEstates.backend.dto.UserDTO.username33
+
+username34
+3
+-com.dietiEstates.backend.dto.UserDTO.password36
+
+password37J
+
+1
+12Z
+
+3	
+354j“
+@
+22:
+222324 *
+1 (26:3B
+	
+9
+25
+
+
+11
+26
+9
+64
+678 *
+1 (:3B
+	
+9
+10
+
+
+11
+12
+
+27
+272815
+
+13
+131415
+
+20
+202115
+@
+35:
+353624 *
+1 (26:3B
+	
+9
+25
+
+
+11
+37
+@
+32:
+323324 *
+1 (26:3B
+	
+9
+25
+
+
+11
+34
+
+18
+181915
+@
+29:
+293024 *
+1 (26:3B
+	
+9
+25
+
+
+11
+31rô
+
+61316*
+1	 	(
+
+61317*
+1	 	(
+
+61816*
+1
+ 
+(
+
+61817*
+1
+ 
+(
+
+62016*
+1 (
+
+62017*
+1 (
+
+222716*
+1 (
+
+222717*
+1 (
+
+292716*
+1 (
+
+292717*
+1 (
+
+322716*
+1 (
+
+322717*
+1 (
+
+352716*
+1 (
+
+352717*
+1 (

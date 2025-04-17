@@ -1,0 +1,95 @@
+
+ªcom.dietiEstates.backend.service.CustomerService#authenticateWithExternalAPI(Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdToken$Payload;)Lcom/dietiEstates/backend/model/Customer;ï
+à/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/service/CustomerService.javaû û(/"3*Ñ
+2
+ß ß(≥∞
+
+® ®(%-
+%4'com.dietiEstates.backend.model.Customer"*java.util.Optional#get()Ljava/lang/Object;*@
+
+__unknown_file ($
+"
+optionalUserjava.util.Optional2get()"=
+
+® ®(&/
+-
+%4'com.dietiEstates.backend.model.Customer*ô	
+3
+ü ü(Å˛
+
+ü ü()
+%0java.lang.String"_com.google.api.client.googleapis.auth.oauth2.GoogleIdToken$Payload#getEmail()Ljava/lang/String;*k
+
+__unknown_file (O
+M
+reqUserBcom.google.api.client.googleapis.auth.oauth2.GoogleIdToken$Payload2
+getEmail()e
+c
+
+ü ü(*
+emailjava.lang.String"__id*4
+
+__unknown_file (
+
+%0java.lang.StringΩ
+∫
+
+£* £(<<
+%16com.dietiEstates.backend.repository.CustomerRepository"__id*h
+
+__unknown_file (L*J2
+0com.dietiEstates.backend.service.CustomerService"
+customerRepository—Œ
+
+£* £(R
+%2java.util.Optional"mcom.dietiEstates.backend.repository.CustomerRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;*Z
+
+__unknown_file (>
+<
+%16com.dietiEstates.backend.repository.CustomerRepository*7
+
+__unknown_file (
+
+emailjava.lang.String2"findByUsername(Ljava/lang/String;)p
+n
+
+£ £(S"
+optionalUserjava.util.Optional"__id*6
+
+__unknown_file (
+
+%2java.util.Optionaléã
+
+¶ ¶($
+%3boolean"java.util.Optional#isPresent()Z*@
+
+__unknown_file ($
+"
+optionalUserjava.util.Optional2isPresent()*
+2
+1*œ
+1
+¨ ¨(˛
+˚
+
+≠ ≠(2-
+%5'com.dietiEstates.backend.model.Customer"≈com.dietiEstates.backend.service.CustomerService#generateCustomerAPI(Ljava/lang/String;Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdToken$Payload;)Lcom/dietiEstates/backend/model/Customer;*P
+
+__unknown_file (42
+0com.dietiEstates.backend.service.CustomerService*7
+
+__unknown_file (
+
+emailjava.lang.String*k
+
+__unknown_file (O
+M
+reqUserBcom.google.api.client.googleapis.auth.oauth2.GoogleIdToken$Payload"=
+
+≠ ≠(3/
+-
+%5'com.dietiEstates.backend.model.Customer:[
+
+û0 û(MM
+reqUserBcom.google.api.client.googleapis.auth.oauth2.GoogleIdToken$PayloadB42
+0com.dietiEstates.backend.service.CustomerServiceH

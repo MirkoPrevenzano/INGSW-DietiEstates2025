@@ -1,0 +1,64 @@
+
+˜com.dietiEstates.backend.service.RealEstateAgentService#getRealEstateStats(Ljava/lang/String;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;œ
+/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/service/RealEstateAgentService.javaÖ$ Ö(6"1*±
+1
+Ø Ø(#È
+Å
+
+Ø Ø(#>
+%08com.dietiEstates.backend.repository.RealEstateRepository"__id*q
+
+__unknown_file (U*S9
+7com.dietiEstates.backend.service.RealEstateAgentService"
+realEstateRepositoryÒ
+Ï
+
+Ø9 Ø(RC
+%1=com.dietiEstates.backend.repository.RealEstateAgentRepository"__id*v
+
+__unknown_file (Z*X9
+7com.dietiEstates.backend.service.RealEstateAgentService"
+realEstateAgentRepositoryâß
+
+Ø9 Ø(k
+%2java.util.Optional"tcom.dietiEstates.backend.repository.RealEstateAgentRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;*a
+
+__unknown_file (E
+C
+%1=com.dietiEstates.backend.repository.RealEstateAgentRepository*:
+
+__unknown_file (
+
+usernamejava.lang.String2"findByUsername(Ljava/lang/String;)°­
+
+Ø9 Ø(q4
+%3.com.dietiEstates.backend.model.RealEstateAgent"*java.util.Optional#get()Ljava/lang/Object;*6
+
+__unknown_file (
+
+%2java.util.Optional2get()ÑÎ
+
+Ø Ù(=
+%4"•com.dietiEstates.backend.repository.CustomRepository#findRealEstateStats2(Ljava/lang/Long;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;*\
+
+__unknown_file (@
+>
+%08com.dietiEstates.backend.repository.RealEstateRepository*"
+
+__unknown_file (
+""*N
+
+__unknown_file (2
+0
+page(org.springframework.data.domain.Pageable2PfindRealEstateStats2(Ljava/lang/Long;Lorg/springframework/data/domain/Pageable;)"
+
+Ø Ù(>
+
+%4:*
+
+Ö7 Ö(G
+usernamejava.lang.String:>
+
+ÖH Ö(U0
+page(org.springframework.data.domain.PageableB;9
+7com.dietiEstates.backend.service.RealEstateAgentServiceH

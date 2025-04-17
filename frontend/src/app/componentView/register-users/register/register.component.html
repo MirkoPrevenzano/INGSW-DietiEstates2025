@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<div class=" relative h-full bg-cover bg-center" style="background-image: url('assets/images/photoImmobile.jpg');">
-<div class="absolute inset-0 bg-black opacity-50"></div>
+<div class=" relative h-full bg-cover bg-back" >
 
-  <div class="relative z-10 flex flex-col items-center justify-center h-full text-black p-4">
-    <form   [formGroup]="registerForm" class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-text p-4">
+    <form   [formGroup]="registerForm" class="w-full max-w-md bg-white border-4 border-secondary rounded-lg shadow-md p-8">
     <h2 class="text-2xl font-bold mb-6 text-center">{{title}}</h2>
     <app-form-field 
       label="Name" 
@@ -53,11 +52,10 @@
       <app-button-custom
         text="Register"
         (clickEvent)="onRegister()"
-        color="bg-indigo-600"
       ></app-button-custom>
     </fieldset>
     <div *ngIf="isCustomer" class="text-center mt-4 hover:cursor-pointer">
-      <button routerLink="/login" class="text-indigo-600 hover:text-indigo-800">Already have an account? Click here!</button>
+      <button routerLink="/login" class="text-primary hover:text-indigo-900">Already have an account? Click here!</button>
     </div>
   </form>
   

@@ -1,0 +1,308 @@
+
+1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021041*java2.Bì
+C
+>src/main/java/com/dietiEstates/backend/BackendApplication.java2
+
+package4
+
+com.dietiEstates.backend5
+0
++com.dietiEstates.backend.BackendApplication7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+BackendApplication12
+B
+<org.springframework.boot.autoconfigure.SpringBootApplication14
+
+unknown15
+
+annotated by16
+
+
+uses17
+$
+lombok.RequiredArgsConstructor19
+
+lombok.extern.slf4j.Slf4j21
+A
+;com.dietiEstates.backend.BackendApplication.passwordEncoder23
+
+field24
+
+private25
+
+passwordEncoder26
+B
+<org.springframework.security.crypto.password.PasswordEncoder28
+
+is type29
+L
+Fcom.dietiEstates.backend.BackendApplication#main([Ljava/lang/String;)V31
+
+method32
+
+
+main33
+@
+:org.springframework.context.ConfigurableApplicationContext35
+
+returns36
+0
+*org.springframework.boot.SpringApplication38
+
+
+references39
+—
+org.springframework.boot.SpringApplication#run(Ljava/lang/Class;[Ljava/lang/String;)Lorg/springframework/context/ConfigurableApplicationContext;41
+
+calls42
+ù
+òcom.dietiEstates.backend.BackendApplication#commandLineRunner(Lcom/dietiEstates/backend/repository/CustomerRepository;Lcom/dietiEstates/backend/repository/AdministratorRepository;Lcom/dietiEstates/backend/service/S3Service;Lcom/dietiEstates/backend/repository/RealEstateAgentRepository;Lcom/dietiEstates/backend/repository/RealEstateRepository;Lcom/dietiEstates/backend/service/RealEstateAgentService;Lcom/dietiEstates/backend/service/JFreeChartService;)Lorg/springframework/boot/CommandLineRunner;44
+
+	protected45
+
+commandLineRunner46
+0
+*org.springframework.boot.CommandLineRunner48
+<
+6com.dietiEstates.backend.repository.CustomerRepository50
+
+	has param51
+A
+;com.dietiEstates.backend.repository.AdministratorRepository53
+0
+*com.dietiEstates.backend.service.S3Service55
+C
+=com.dietiEstates.backend.repository.RealEstateAgentRepository57
+>
+8com.dietiEstates.backend.repository.RealEstateRepository59
+=
+7com.dietiEstates.backend.service.RealEstateAgentService61
+8
+2com.dietiEstates.backend.service.JFreeChartService63
+1
++org.springframework.context.annotation.Bean65J
+
+1
+12Z
+
+3	
+354jÁ
+@
+30:
+303132 *
+1E E(26:3B
+	
+9
+10
+
+
+11
+33
+
+13
+131415
+
+49
+495015
+
+60
+606115
+
+18
+181915
+
+62
+626315
+
+52
+525315
+9
+64
+678 *
+1A A( :3B
+	
+9
+10
+
+
+11
+12
+
+40
+404115
+
+37
+373815
+
+20
+202115
+
+27
+272815
+
+34
+343515
+
+54
+545515
+@
+22:
+222324 *
+1C C(26:3B
+	
+9
+25
+
+
+11
+26
+
+47
+474815
+
+64
+646515
+@
+43:
+434432 *
+1I I(26:3B
+	
+9
+45
+
+
+11
+46
+
+56
+565715
+
+58
+585915r–
+
+61316*
+1> >(
+
+61317*
+1> >(
+
+61816*
+1? ?(
+
+61817*
+1? ?(
+
+62016*
+1@ @(
+
+62017*
+1@ @(
+
+222729*
+1C C("
+
+222717*
+1C C("
+
+222717*
+1C# C(2
+
+303436*
+1F	 F(
+
+303739*
+1F	 F(
+
+304042*
+1F F(
+
+303717*
+1F	 F(
+
+30617*
+1F F(1
+
+434736*
+1J J(
+
+434951*
+1J) J(;
+
+435251*
+1JP J(g
+
+435451*
+1K) K(2
+
+435651*
+1K> K(W
+
+435851*
+1L) L(=
+
+436051*
+1M) M(?
+
+436251*
+1N) N(:
+
+436416*
+1I I(
+
+436417*
+1I I(
+
+
+434717*
+1J J(
+
+434929*
+1J< J(N
+
+434917*
+1J) J(;
+
+435229*
+1Jh J(
+
+435217*
+1JP J(g
+
+435429*
+1K3 K(<
+
+435417*
+1K) K(2
+
+435629*
+1KX K(q
+
+435617*
+1K> K(W
+
+435829*
+1L> L(R
+
+435817*
+1L) L(=
+
+436029*
+1M@ M(V
+
+436017*
+1M) M(?
+
+436229*
+1N; N(L
+
+436217*
+1N) N(:

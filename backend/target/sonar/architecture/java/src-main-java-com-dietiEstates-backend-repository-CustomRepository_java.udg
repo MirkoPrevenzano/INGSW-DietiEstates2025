@@ -1,0 +1,284 @@
+
+1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021327*java2.Bö
+L
+Gsrc/main/java/com/dietiEstates/backend/repository/CustomRepository.java2
+
+package4
+(
+#com.dietiEstates.backend.repository5
+9
+4com.dietiEstates.backend.repository.CustomRepository7
+
+	interface8
+
+access9
+
+public10
+
+simple name11
+
+CustomRepository12
+¥
+≠com.dietiEstates.backend.repository.CustomRepository#findRealEstateByFilters(Ljava/util/Map;Lorg/springframework/data/domain/Pageable;)Lorg/springframework/data/domain/Page;14
+
+method15
+
+findRealEstateByFilters16
+*
+$org.springframework.data.domain.Page18
+
+unknown19
+
+returns20
+.
+(org.springframework.data.domain.Pageable22
+
+	has param23
+
+
+uses24
+7
+1com.dietiEstates.backend.dto.RealEstatePreviewDTO26
+
+is type27
+ü
+òcom.dietiEstates.backend.repository.CustomRepository#findRealEstateByFilters2(Ljava/util/Map;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;29
+
+findRealEstateByFilters230
+·
+⁄com.dietiEstates.backend.repository.CustomRepository#findRealEstateByFilters3(Ljava/util/Map;Lorg/springframework/data/domain/Pageable;Lcom/dietiEstates/backend/dto/LatLongMinMax;)Lorg/springframework/data/domain/Page;32
+
+findRealEstateByFilters333
+0
+*com.dietiEstates.backend.dto.LatLongMinMax35
+À
+ƒcom.dietiEstates.backend.repository.CustomRepository#findRealEstateByFilters4(Ljava/util/Map;Lorg/springframework/data/domain/Pageable;Lcom/dietiEstates/backend/dto/LatLongMinMax;)Ljava/util/List;37
+
+findRealEstateByFilters438
+Ö
+com.dietiEstates.backend.repository.CustomRepository#findRecentRealEstates(Ljava/lang/Long;Ljava/lang/Integer;)Ljava/util/List;40
+
+findRecentRealEstates41
+6
+0com.dietiEstates.backend.dto.RealEstateRecentDTO43
+ú
+ïcom.dietiEstates.backend.repository.CustomRepository#findRealEstateStats2(Ljava/lang/Long;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;45
+
+findRealEstateStats246
+5
+/com.dietiEstates.backend.dto.RealEstateStatsDTO48
+o
+icom.dietiEstates.backend.repository.CustomRepository#findLastRealEstate(Ljava/lang/Long;)Ljava/lang/Long;50
+
+findLastRealEstate51J
+
+1
+12Z
+
+3	
+354jÅ
+
+34
+343519
+
+17
+171819
+@
+31:
+313215 *
+1 (	26:3B
+	
+9
+10
+
+
+11
+33
+@
+36:
+363715 *
+1 (	26:3B
+	
+9
+10
+
+
+11
+38
+@
+39:
+394015 *
+1 (	26:3B
+	
+9
+10
+
+
+11
+41
+@
+13:
+131415 *
+1 (	26:3B
+	
+9
+10
+
+
+11
+16
+@
+28:
+282915 *
+1 (	26:3B
+	
+9
+10
+
+
+11
+30
+
+47
+474819
+9
+64
+678 *
+1 (":3B
+	
+9
+10
+
+
+11
+12
+
+21
+212219
+
+42
+424319
+@
+44:
+444515 *
+1 (	26:3B
+	
+9
+10
+
+
+11
+46
+@
+49:
+495015 *
+1 (	26:3B
+	
+9
+10
+
+
+11
+51
+
+25
+252619r≈
+
+131720*
+1 (	
+
+132123*
+1T (\
+
+131724*
+1 (	
+
+132524*
+1
+ (
+
+132127*
+1] (a
+
+132124*
+1T (\
+
+282123*
+1U (]
+
+282524*
+1
+ (
+
+282127*
+1^ (b
+
+282124*
+1U (]
+
+311720*
+1 (	
+
+312123*
+1U (]
+
+313423*
+1d (q
+
+311724*
+1 (	
+
+312524*
+1
+ (
+
+312127*
+1^ (b
+
+312124*
+1U (]
+
+313427*
+1r (
+
+313424*
+1d (q
+
+362123*
+1U (]
+
+363423*
+1d (q
+
+362524*
+1
+ (
+
+362127*
+1^ (b
+
+362124*
+1U (]
+
+363427*
+1r (
+
+363424*
+1d (q
+
+394224*
+1
+ (
+
+442123*
+1A (I
+
+444724*
+1
+ (
+
+442127*
+1J (N
+
+442124*
+1A (I

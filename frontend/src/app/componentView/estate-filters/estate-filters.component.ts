@@ -1,3 +1,5 @@
+
+
 import { Component, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
 import { FormFieldComponent } from '../form-field/form-field.component';
 import { CheckboxComponent } from '../create-estates-components/checkbox/checkbox.component';
@@ -8,6 +10,7 @@ import { Coordinate } from '../../model/coordinate';
 import { ActivatedRoute } from '@angular/router';
 import { estateFeatures } from '../../constants/estate-features';
 import { estateLocationFeatures } from '../../constants/estate-location-features';
+import { AddressVerificationService } from '../../_service/geoapify/address-verification/address-verification.service';
 
 @Component({
   selector: 'app-estate-filters',
@@ -24,13 +27,31 @@ import { estateLocationFeatures } from '../../constants/estate-location-features
 export class EstateFiltersComponent implements AfterViewInit{
     ngAfterViewInit(): void {
       this.localityInput.select.subscribe((locality)=>this.handleLocalitySelect(locality))
+      this.route.queryParams.subscribe((params) => {
+        const lat = parseFloat(params['lat']);
+        const lon = parseFloat(params['lon']);
+    
+        if (!isNaN(lat) && !isNaN(lon)) {
+          this.coordinate.lat = lat;
+          this.coordinate.lon = lon;
+    
+          this.addressVerification.verifyAddressToCoordinate(this.coordinate).then((locality) => {
+            console.log(locality)
+            if (locality) {
+              this.localityInput.setValue(locality.features[0].properties.city);
+            }
+          });
+        }
+      });
     }
 
     constructor(
-      private readonly route: ActivatedRoute
+      private readonly route: ActivatedRoute,
+      private readonly addressVerification: AddressVerificationService
     ){}
 
     handleLocalitySelect(locality: any): void {
+      this.localityInput.setValue(locality.properties.formatted)
       this.coordinate.lat = locality.geometry.coordinates[1]
       this.coordinate.lon = locality.geometry.coordinates[0]
     }
@@ -76,6 +97,7 @@ export class EstateFiltersComponent implements AfterViewInit{
           }
         }
       });
+
     }
     
     onRadiusChange(event: Event): void {

@@ -1,0 +1,9 @@
+com.dietiEstates.backend.service.RealEstateService#search(Ljava/util/Map;Lorg/springframework/data/domain/Pageable;)Lcom/dietiEstates/backend/dto/RealEstatePreviewsFirstPageDTO;
+false
+b8269defba95a612c63985c5c8a6fb48
+com.dietiEstates.backend.dto.RealEstatePreviewsFirstPageDTO#instance-init#
+==
+findRealEstateByFilters com.dietiEstates.backend.repository.CustomRepository#findRealEstateByFilters(Ljava/util/Map;Lorg/springframework/data/domain/Pageable;)Lorg/springframework/data/domain/Page;
+getContent org.springframework.data.domain.Slice#getContent()Ljava/util/List;
+getTotalElements org.springframework.data.domain.Page#getTotalElements()J
+getTotalPages org.springframework.data.domain.Page#getTotalPages()I

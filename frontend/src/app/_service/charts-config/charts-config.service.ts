@@ -40,7 +40,8 @@ export class ChartsConfigService {
           "Success Rate",
           "amount",
           "asset",
-          "#7f7f7f"
+          "#7f7f7f",
+          "#2C3E50"
     
         )
     }
@@ -53,6 +54,8 @@ export class ChartsConfigService {
           "Renting/Selling",
           "amount",
           "asset",
+          "#2C3E50",
+          "#27AE60"
           
     
         )

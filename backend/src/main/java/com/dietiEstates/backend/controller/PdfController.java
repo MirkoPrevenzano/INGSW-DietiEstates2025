@@ -27,7 +27,9 @@ import lombok.extern.slf4j.Slf4j;
 public class PdfController 
 {
     private final PdfService pdfService;
-         
+       
+    
+    //Il controller bisogna che chiama solo il metodo del service
     @GetMapping("{username}/exportPDF")
     public void exportToPDF(@PathVariable("username") String username, HttpServletResponse response) throws DocumentException, IOException 
     {

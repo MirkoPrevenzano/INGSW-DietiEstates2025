@@ -1,0 +1,1020 @@
+
+1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789019422*java2.B«!
+M
+Hsrc/main/java/com/dietiEstates/backend/service/AdministratorService.java2
+
+package4
+%
+ com.dietiEstates.backend.service5
+:
+5com.dietiEstates.backend.service.AdministratorService7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+AdministratorService12
+,
+&org.springframework.stereotype.Service14
+
+unknown15
+
+annotated by16
+
+
+uses17
+$
+lombok.RequiredArgsConstructor19
+
+lombok.extern.slf4j.Slf4j21
+S
+Mcom.dietiEstates.backend.service.AdministratorService.administratorRepository23
+
+field24
+
+private25
+
+administratorRepository26
+A
+;com.dietiEstates.backend.repository.AdministratorRepository28
+
+is type29
+U
+Ocom.dietiEstates.backend.service.AdministratorService.realEstateAgentRepository31
+
+realEstateAgentRepository32
+C
+=com.dietiEstates.backend.repository.RealEstateAgentRepository34
+G
+Acom.dietiEstates.backend.service.AdministratorService.modelMapper36
+
+modelMapper37
+!
+org.modelmapper.ModelMapper39
+K
+Ecom.dietiEstates.backend.service.AdministratorService.passwordEncoder41
+
+passwordEncoder42
+B
+<org.springframework.security.crypto.password.PasswordEncoder44
+L
+Fcom.dietiEstates.backend.service.AdministratorService.validatorService46
+
+validatorService47
+7
+1com.dietiEstates.backend.service.ValidatorService49
+O
+Icom.dietiEstates.backend.service.AdministratorService.mockingStatsService51
+
+mockingStatsService52
+:
+4com.dietiEstates.backend.service.MockingStatsService54
+y
+scom.dietiEstates.backend.service.AdministratorService#createAdmin(Lcom/dietiEstates/backend/dto/AdministratorDTO;)V56
+
+method57
+
+createAdmin58
+3
+-com.dietiEstates.backend.dto.AdministratorDTO60
+
+	has param61
+&
+ org.modelmapper.MappingException63
+
+
+references64
+x
+rcom.dietiEstates.backend.repository.AdministratorRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;66
+
+calls67
+^
+Xcom.dietiEstates.backend.service.ValidatorService#passwordValidator(Ljava/lang/String;)V69
+2
+,com.dietiEstates.backend.model.Administrator71
+
+returns72
+\
+Vorg.modelmapper.ModelMapper#map(Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;74
+u
+oorg.springframework.security.crypto.password.PasswordEncoder#encode(Ljava/lang/CharSequence;)Ljava/lang/String;76
+?
+9org.springframework.security.core.userdetails.UserDetails78
+_
+Yorg.springframework.security.core.userdetails.UserDetails#getPassword()Ljava/lang/String;80
+8
+2org.springframework.data.repository.CrudRepository82
+c
+]org.springframework.data.repository.CrudRepository#save(Ljava/lang/Object;)Ljava/lang/Object;84
+„
+~com.dietiEstates.backend.service.AdministratorService#createCollaborator(Lcom/dietiEstates/backend/dto/AdminRegistrationDTO;)V86
+
+createCollaborator87
+7
+1com.dietiEstates.backend.dto.AdminRegistrationDTO89
+>
+8org.springframework.transaction.annotation.Transactional91
+M
+Gorg.springframework.security.core.userdetails.UsernameNotFoundException93
+i
+corg.springframework.data.repository.CrudRepository#findById(Ljava/lang/Object;)Ljava/util/Optional;95
+W
+Qcom.dietiEstates.backend.dto.AdminRegistrationDTO#getUsername()Ljava/lang/String;97
+s
+mcom.dietiEstates.backend.model.Administrator#addCollaborator(Lcom/dietiEstates/backend/model/Administrator;)V99
+Ž
+†com.dietiEstates.backend.service.AdministratorService#createRealEstateAgent(Ljava/lang/String;Lcom/dietiEstates/backend/dto/UserDTO;)V101
+
+createRealEstateAgent102
++
+$com.dietiEstates.backend.dto.UserDTO104
+{
+tcom.dietiEstates.backend.repository.RealEstateAgentRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;106
+5
+.com.dietiEstates.backend.model.RealEstateAgent108
+}
+vcom.dietiEstates.backend.service.MockingStatsService#mockAgentStats(Lcom/dietiEstates/backend/model/RealEstateAgent;)V110
+y
+rcom.dietiEstates.backend.model.Administrator#addRealEstateAgent(Lcom/dietiEstates/backend/model/RealEstateAgent;)V112
+‘
+‰com.dietiEstates.backend.service.AdministratorService#updatePassword(Ljava/lang/String;Lcom/dietiEstates/backend/dto/OldNewPasswordDTO;)V114
+
+updatePassword115
+5
+.com.dietiEstates.backend.dto.OldNewPasswordDTO117
+x
+qorg.springframework.security.crypto.password.PasswordEncoder#matches(Ljava/lang/CharSequence;Ljava/lang/String;)Z119J
+
+1
+12Z
+
+3	
+354j‚
+
+98
+989915
+@
+40:
+404124 *
+1" "(26:3B
+	
+9
+25
+
+
+11
+42
+
+92
+929315
+
+18
+181915
+
+116
+11611715
+
+88
+888915
+
+107
+10710815
+
+81
+818215
+
+59
+596015
+@
+50:
+505124 *
+1$ $(26:3B
+	
+9
+25
+
+
+11
+52
+@
+55:
+555657 *
+1' '(26:3B
+	
+9
+10
+
+
+11
+58
+@
+30:
+303124 *
+1   (26:3B
+	
+9
+25
+
+
+11
+32
+
+38
+383915
+@
+85:
+858657 *
+1J J(26:3B
+	
+9
+10
+
+
+11
+87
+@
+35:
+353624 *
+1! !(26:3B
+	
+9
+25
+
+
+11
+37
+
+70
+707115
+
+13
+131415
+
+53
+535415
+
+77
+777815
+
+111
+11111215
+
+65
+656615
+
+109
+10911015
+9
+64
+678 *
+1 (":3B
+	
+9
+10
+
+
+11
+12
+@
+22:
+222324 *
+1 (26:3B
+	
+9
+25
+
+
+11
+26
+
+83
+838415
+
+79
+798015
+
+105
+10510615
+
+48
+484915
+
+118
+11811915
+F
+113?
+11311457 *
+1¢ ¢(26:3B
+	
+9
+10
+
+11
+115
+
+73
+737415
+
+27
+272815
+D
+100=
+10010157 *
+1q q(26:3B
+	
+9
+10
+
+11
+102
+
+75
+757615
+
+20
+202115
+
+43
+434415
+
+103
+10310415
+@
+45:
+454624 *
+1# #(26:3B
+	
+9
+25
+
+
+11
+47
+
+94
+949515
+
+68
+686915
+
+33
+333415
+
+62
+626315
+
+90
+909115
+
+96
+969715rÇ/
+
+61316*
+1 (
+
+61317*
+1 (	
+
+61816*
+1 (
+
+61817*
+1 (
+
+62016*
+1 (
+
+62017*
+1 (
+
+222729*
+1 (*
+
+222717*
+1 (*
+
+222717*
+1+ (B
+
+303329*
+1   (,
+
+303317*
+1   (,
+
+303317*
+1 -  (F
+
+353829*
+1! !(
+
+353817*
+1! !(
+
+353817*
+1! !(*
+
+404329*
+1" "("
+
+404317*
+1" "("
+
+404317*
+1"# "(2
+
+454829*
+1# #(#
+
+454817*
+1# #(#
+
+454817*
+1#$ #(4
+
+505329*
+1$ $(&
+
+505317*
+1$ $(&
+
+505317*
+1$' $(:
+
+555961*
+1' '(-
+
+555929*
+1'. '(>
+
+555917*
+1' '(-
+
+556217*
+1'a '(q
+
+552764*
+1) )(#
+
+556567*
+1)$ )(2
+
+552264*
+1) )(#
+
+552717*
+1) )(#
+
+552264*
+1) )(#
+
+554864*
+11 1(
+
+556867*
+11 1(/
+
+554564*
+11 1(
+
+554817*
+11 1(
+
+554564*
+11 1(
+
+557029*
+19 9($
+
+557017*
+19	 9(
+
+557072*
+1< <((
+
+553864*
+1< <((
+
+557367*
+1<) <(,
+
+553564*
+1< <((
+
+553817*
+1< <((
+
+553564*
+1< <((
+
+557017*
+1<? <(L
+
+556229*
+1>! >("
+
+556217*
+1> >( 
+
+554364*
+1C# C(2
+
+557567*
+1C3 C(9
+
+554064*
+1C# C(2
+
+554317*
+1C# C(2
+
+554064*
+1C# C(2
+
+557764*
+1C: C(G
+
+557967*
+1CH C(S
+
+557072*
+1D D(0
+
+558164*
+1D D(0
+
+558367*
+1D1 D(5
+
+552264*
+1D D(0
+
+552717*
+1D D(0
+
+552264*
+1D D(0
+
+858861*
+1K$ K(8
+
+859016*
+1J J(
+
+859017*
+1J J(
+
+858829*
+1K9 K(M
+
+858817*
+1K$ K(8
+
+859217*
+1KV K(o
+
+856217*
+1Lo L(
+
+857017*
+1N N(
+
+858164*
+1N1 N(H
+
+859467*
+1NI N(Q
+
+852264*
+1N1 N(H
+
+852717*
+1N1 N(H
+
+852264*
+1N1 N(H
+
+859267*
+1R R(0
+
+857029*
+1T T(
+
+857017*
+1T	 T(
+
+857072*
+1T T(,
+
+852764*
+1V V(#
+
+856567*
+1V$ V(2
+
+852264*
+1V V(#
+
+852717*
+1V V(#
+
+852264*
+1V V(#
+
+858864*
+1V3 V(G
+
+859667*
+1VH V(S
+
+857029*
+1\ \(#
+
+857017*
+1\	 \(
+
+857072*
+1_ _('
+
+853864*
+1_ _('
+
+857367*
+1_( _(+
+
+853564*
+1_ _('
+
+853817*
+1_ _('
+
+853564*
+1_ _('
+
+857017*
+1_B _(O
+
+856229*
+1a! a("
+
+856217*
+1a a( 
+
+854364*
+1g" g(1
+
+857567*
+1g2 g(8
+
+854064*
+1g" g(1
+
+854317*
+1g" g(1
+
+854064*
+1g" g(1
+
+857064*
+1j	 j(
+
+859867*
+1j j(
+
+857072*
+1k k((
+
+858164*
+1k k((
+
+858367*
+1k) k(-
+
+852264*
+1k k((
+
+852717*
+1k k((
+
+852264*
+1k k((
+
+10010361*
+1r8 r(?
+
+1009016*
+1q q(
+
+1009017*
+1q q(
+
+10010329*
+1r@ r(R
+
+10010317*
+1r8 r(?
+
+1009217*
+1r[ r(t
+
+1006217*
+1su s(…
+
+1007017*
+1u u(
+
+1002764*
+1u9 u(P
+
+1006567*
+1uQ u(_
+
+1002264*
+1u9 u(P
+
+1002717*
+1u9 u(P
+
+1002264*
+1u9 u(P
+
+1009267*
+1y y(0
+
+1007029*
+1{ {($
+
+1007017*
+1{	 {(
+
+1007072*
+1{' {(<
+
+1003364*
+1} }(%
+
+10010567*
+1}& }(4
+
+1003064*
+1} }(%
+
+1003317*
+1} }(%
+
+1003064*
+1} }(%
+
+1004864*
+1… …(
+
+1006867*
+1… …(/
+
+1004564*
+1… …(
+
+1004817*
+1… …(
+
+1004564*
+1… …(
+
+10010729*
+1 ((
+
+10010717*
+1	 (
+
+10010772*
+1 (*
+
+1003864*
+1 (*
+
+1007367*
+1+ (.
+
+1003564*
+1 (*
+
+1003817*
+1 (*
+
+1003564*
+1 (*
+
+10010717*
+1C (R
+
+1006229*
+1’! ’("
+
+1006217*
+1’ ’( 
+
+1004364*
+1—% —(4
+
+1007567*
+1—5 —(;
+
+1004064*
+1—% —(4
+
+1004317*
+1—% —(4
+
+1004064*
+1—% —(4
+
+1007764*
+1—< —(K
+
+1007967*
+1—L —(W
+
+1005364*
+1™	 ™(
+
+10010967*
+1™ ™(+
+
+1005064*
+1™	 ™(
+
+1005317*
+1™	 ™(
+
+1005064*
+1™	 ™(
+
+1007064*
+1›	 ›(
+
+10011167*
+1› ›()
+
+1007072*
+1œ œ(0
+
+1008164*
+1œ œ(0
+
+1008367*
+1œ1 œ(5
+
+1002264*
+1œ œ(0
+
+1002717*
+1œ œ(0
+
+1002264*
+1œ œ(0
+
+11311661*
+1¢1 ¢(B
+
+11311629*
+1¢C ¢(T
+
+11311617*
+1¢1 ¢(B
+
+1139217*
+1¢] ¢(v
+
+1136217*
+1£w £(‡
+
+1137017*
+1¥ ¥(
+
+1132764*
+1¥9 ¥(P
+
+1136567*
+1¥Q ¥(_
+
+1132264*
+1¥9 ¥(P
+
+1132717*
+1¥9 ¥(P
+
+1132264*
+1¥9 ¥(P
+
+1139267*
+1© ©(0
+
+1134364*
+1¬ ¬(
+
+11311867*
+1¬ ¬(%
+
+1134064*
+1¬ ¬(
+
+1134317*
+1¬ ¬(
+
+1134064*
+1¬ ¬(
+
+1137764*
+1¬J ¬(_
+
+1137967*
+1¬f ¬(q
+
+1137072*
+1¬J ¬(_
+
+1134364*
+1² ²(
+
+11311867*
+1² ²($
+
+1134064*
+1² ²(
+
+1134317*
+1² ²(
+
+1134064*
+1² ²(
+
+1137764*
+1²I ²(^
+
+1137967*
+1²e ²(p
+
+1137072*
+1²I ²(^
+
+1134864*
+1º º(
+
+1136867*
+1º º(/
+
+1134564*
+1º º(
+
+1134817*
+1º º(
+
+1134564*
+1º º(
+
+1137029*
+1Â Â($
+
+1137017*
+1Â	 Â(
+
+1137072*
+1Â' Â(<
+
+1134364*
+1Ã# Ã(2
+
+1137567*
+1Ã3 Ã(9
+
+1134064*
+1Ã# Ã(2
+
+1134317*
+1Ã# Ã(2
+
+1134064*
+1Ã# Ã(2
+
+1137072*
+1Ä Ä(0
+
+1138164*
+1Ä Ä(0
+
+1138367*
+1Ä1 Ä(5
+
+1132264*
+1Ä Ä(0
+
+1132717*
+1Ä Ä(0
+
+1132264*
+1Ä Ä(0

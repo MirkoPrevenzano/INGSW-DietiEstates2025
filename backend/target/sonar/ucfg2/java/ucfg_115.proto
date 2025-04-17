@@ -1,0 +1,160 @@
+
+_com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId#equals(Ljava/lang/Object;)Z¦
+›/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/embeddable/CustomerViewsRealEstateId.java ("startingBlock*Ú
+2" "( 
+
+" "(*
+%8java.lang.Long"__id*u
+
+__unknown_file (Y*WE
+Ccom.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId"
+realEstateId¦
+£
+", "(=
+%9java.lang.Long"__id*{
+
+__unknown_file (_*]
+K
+thatCcom.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId"
+realEstateIdù
+ö
+" "(>
+%10boolean"?java.util.Objects#equals(Ljava/lang/Object;Ljava/lang/Object;)Z*1
+
+__unknown_file ("
+java.util.Objects*2
+
+__unknown_file (
+
+%8java.lang.Long*2
+
+__unknown_file (
+
+%9java.lang.Long*
+1*ð
+3 E  (F•
+’
+   (GK
+thatCcom.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId"__id*3
+
+__unknown_file (
+
+ojava.lang.Objectž
+›
+! !((
+%5java.lang.Long"__id*s
+
+__unknown_file (W*UE
+Ccom.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId"
+
+customerId¤
+¡
+!* !(9
+%6java.lang.Long"__id*y
+
+__unknown_file (]*[
+K
+thatCcom.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId"
+
+customerIdø
+õ
+! !(:
+%7boolean"?java.util.Objects#equals(Ljava/lang/Object;Ljava/lang/Object;)Z*1
+
+__unknown_file ("
+java.util.Objects*2
+
+__unknown_file (
+
+%5java.lang.Long*2
+
+__unknown_file (
+
+%6java.lang.Long*
+2
+1*‚
+startingBlock (#‰
+†
+ (
+%11"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*3
+
+__unknown_file (
+
+ojava.lang.ObjectV
+T
+! ("
+ojava.lang.Object"__annotation*#
+
+__unknown_file (
+
+%11*
+8*!
+4< (A"
+5 (B
+""*ù
+5 (!ÃÀ
+ (#
+%2java.lang.Class",java.lang.Object#getClass()Ljava/lang/Class;*c
+
+__unknown_file (GE
+Ccom.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId2
+getClass()“
+' (3
+%3java.lang.Class",java.lang.Object#getClass()Ljava/lang/Class;*3
+
+__unknown_file (
+
+ojava.lang.Object2
+getClass()…
+‚
+ (3
+%4boolean"	__compare*
+$ (&
+!=*#
+ (#
+
+%2java.lang.Class*#
+' (3
+
+%3java.lang.Class*
+3
+4*Š
+6 (s
+q
+ (
+%1boolean"	__compare*
+ (
+==*#
+ (
+
+ojava.lang.Object*
+ (
+""*
+4
+5*!
+7 (""
+ (#
+""*Í
+8 (µ
+²
+ (
+%0boolean"	__compare*
+ (
+==*S
+ (GE
+Ccom.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId*#
+ (
+
+ojava.lang.Object*
+6
+7*!
+1! "(?"
+! "(?
+"":!
+ ("
+ojava.lang.ObjectBGE
+Ccom.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateIdHX

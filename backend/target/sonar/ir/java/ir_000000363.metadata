@@ -1,0 +1,6 @@
+com.dietiEstates.backend.service.MockingStatsService#mockAgentStats(Lcom/dietiEstates/backend/model/RealEstateAgent;)V
+false
+21daef450ab216bd24954103ba6b85ea
+==
+!unknownMethod! !unknownMethod!
+nextInt java.util.random.RandomGenerator#nextInt(II)I

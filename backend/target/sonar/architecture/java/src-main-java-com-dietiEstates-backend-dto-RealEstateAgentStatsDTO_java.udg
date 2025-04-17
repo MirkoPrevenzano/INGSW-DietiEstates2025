@@ -1,0 +1,145 @@
+
+1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021490*java2.Bô
+L
+Gsrc/main/java/com/dietiEstates/backend/dto/RealEstateAgentStatsDTO.java2
+
+package4
+!
+com.dietiEstates.backend.dto5
+9
+4com.dietiEstates.backend.dto.RealEstateAgentStatsDTO7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+RealEstateAgentStatsDTO12
+
+lombok.Data14
+
+unknown15
+
+annotated by16
+
+
+uses17
+
+lombok.NoArgsConstructor19
+$
+lombok.RequiredArgsConstructor21
+O
+Icom.dietiEstates.backend.dto.RealEstateAgentStatsDTO.realEstateAgentStats23
+
+field24
+
+private25
+
+realEstateAgentStats26
+D
+>com.dietiEstates.backend.model.embeddable.RealEstateAgentStats28
+
+is type29
+
+lombok.NonNull31
+K
+Ecom.dietiEstates.backend.dto.RealEstateAgentStatsDTO.estatesPerMonths33
+
+estatesPerMonths34J
+
+1
+12Z
+
+3	
+354j£
+@
+22:
+222324 *
+1 (26:3B
+	
+9
+25
+
+
+11
+26
+
+27
+272815
+9
+64
+678 *
+1 (%:3B
+	
+9
+10
+
+
+11
+12
+
+30
+303115
+
+13
+131415
+
+20
+202115
+@
+32:
+323324 *
+1 (26:3B
+	
+9
+25
+
+
+11
+34
+
+18
+181915rÙ
+
+61316*
+1 (
+
+61317*
+1 (
+
+61816*
+1 (
+
+61817*
+1 (
+
+62016*
+1 (
+
+62017*
+1 (
+
+222729*
+1 (!
+
+223016*
+1 (
+
+223017*
+1 (
+
+222717*
+1 (!
+
+222717*
+1" (6
+
+323016*
+1 (
+
+323017*
+1 (

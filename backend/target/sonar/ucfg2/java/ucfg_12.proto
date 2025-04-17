@@ -1,0 +1,30 @@
+
+H__sonar_lambda_2$com.dietiEstates.backend.config.security.SecurityConfigö
+è/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/config/security/SecurityConfig.java- .(|"1*◊
+
+1.( .(Gÿ’
+.( .(ps
+%13lorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizedUrl"àorg.springframework.security.config.annotation.web.AbstractRequestMatcherRegistry#requestMatchers([Ljava/lang/String;)Ljava/lang/Object;*Õ
+
+__unknown_file (∞
+≠
+authorizeHttpRequestsCustomizerâorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry*)
+
+__unknown_file (
+	/login/***(
+
+__unknown_file (
+
+/auth/**2$requestMatchers([Ljava/lang/String;)»≈
+.( .(|ë
+%14âorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry"Éorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizedUrl#permitAll()Lorg/springframework/security/config/annotation/web/configurers/AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry;*ë
+
+__unknown_file (u
+s
+%13lorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizedUrl2permitAll()"°
+.( .(|î
+ë
+%14âorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry:∫
+- -(9≠
+authorizeHttpRequestsCustomizerâorg.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistryB20
+.org.springframework.security.config.Customizer

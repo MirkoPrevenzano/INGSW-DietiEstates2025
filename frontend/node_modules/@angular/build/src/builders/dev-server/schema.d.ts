@@ -104,7 +104,9 @@ export type PrebundleUnion = boolean | PrebundleClass;
 export type PrebundleClass = {
     /**
      * List of package imports that should not be prebundled by the development server. The
-     * packages will be bundled into the application code itself.
+     * packages will be bundled into the application code itself. Note: specifying `@foo/bar`
+     * marks all paths within the `@foo/bar` package as excluded, including sub-paths like
+     * `@foo/bar/baz`.
      */
     exclude: string[];
 };

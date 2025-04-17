@@ -2,9 +2,9 @@
   <app-not-found textMessage="Sorry, estate not found!"></app-not-found>
 }
 @else {
-  <div class="bg-slate-500 p-10 mb-24">
+  <div class="bg-back p-10 mb-24">
 
-    <div class="sm:max-w-4xl w-full my-3 mt-24 mx-auto pt-5 px-5 bg-white shadow-lg rounded-lg ">
+    <div class="sm:max-w-4xl w-full my-3 mt-24 mx-auto pt-5 px-5 border-4 border-secondary bg-white shadow-lg rounded-lg ">
       <div class="relative w-auto h-96 mx-auto overflow-hidden rounded-lg bg-gray-200">
         <app-image-slider [photos]="photos" [sliderConfig]="sliderConfig"></app-image-slider>
       </div> 
@@ -13,11 +13,11 @@
       </div>
     </div>
   
-    <div class="max-w-4xl mx-auto my-4 bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="max-w-4xl mx-auto my-4 bg-white shadow-lg border-4 border-secondary rounded-lg overflow-hidden">
       <app-estate-view-features [estateFeatures]="estate.estateFeatures" [estateDescribe]="estate.estateDescribe"></app-estate-view-features>
     </div> 
           
-    <div class="max-w-4xl mx-auto my-4 bg-white shadow-lg rounded-lg overflow-hidden">
+    <div class="max-w-4xl mx-auto my-4 bg-white shadow-lg  border-4 border-secondary rounded-lg overflow-hidden">
       <div class="p-6">
         <ng-container *ngIf="isEstateRent(estate)">
           <app-rent-estate-view [estate]="estate"></app-rent-estate-view>
@@ -28,7 +28,7 @@
       </div>
     </div>
   
-    <div class="max-w-4xl mx-auto my-4 bg-white shadow-lg rounded-lg h-full ">
+    <div class="max-w-4xl mx-auto my-4 bg-white shadow-lg border-4 border-secondary rounded-lg h-full ">
       <app-estate-view-map [address]="estate.address" [estateLocationFeatures]="estate.estateLocationFeatures"></app-estate-view-map>
     </div>
   </div>

@@ -1,0 +1,8 @@
+com.dietiEstates.backend.service.CsvService#writeRealEstatesPerMonthStats(Lcom/dietiEstates/backend/model/RealEstateAgent;Lorg/supercsv/io/ICsvListWriter;)V
+false
+7af7608c93b2f132142991959172fcd0
+java.util.Arrays#asList([Ljava/lang/Object;)Ljava/util/List;
+==
+getBarChartStats com.dietiEstates.backend.service.RealEstateAgentService#getBarChartStats()[Ljava/lang/Integer;
+write org.supercsv.io.ICsvListWriter#write(Ljava/util/List;)V
+writeHeader org.supercsv.io.ICsvWriter#writeHeader([Ljava/lang/String;)V

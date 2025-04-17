@@ -10,6 +10,7 @@ import {  IndividualConfig, ToastrService } from 'ngx-toastr';
 import { Router, RouterModule } from '@angular/router';
 import { ButtonCustomComponent } from '../button-custom/button-custom.component';
 import { RedirectHomeService } from '../../_service/redirect-home/redirect-home.service';
+import { PasswordValidatorService } from '../../_service/password-validator/password-validator.service';
 
 @Component({
     selector: 'app-login-customer',
@@ -32,7 +33,8 @@ export class LoginComponent {
     private readonly authService: AuthService,
     private readonly notifyToastr: ToastrService,
     private readonly router: Router,
-    private readonly redirectHomeService: RedirectHomeService
+    private readonly redirectHomeService: RedirectHomeService,
+    private readonly passwordValidator: PasswordValidatorService
     
   ) {}
   loginForm =new FormGroup({
@@ -44,16 +46,32 @@ export class LoginComponent {
   signIn() {
     if (this.isInvalidForm()) {
       const toastrConfig: Partial<IndividualConfig> = {
-        positionClass: 'toast-top-center',
-        timeOut: 1000,
+        timeOut: 2000,
       };
       this.notifyToastr.warning("Please fill out all fields before submitting.", "Form Incomplete", toastrConfig);
     }
-    else if (this.isValidUsername()) {
+    else if (this.isValidField()) {
       this.authenticateUser();
-    } else {
-      this.notifyToastr.warning("Please enter a valid email address.", "Invalid Email Format");
     }
+    
+  }
+
+  isValidField() {
+    let isValid = true
+    if(!this.isValidUsername())
+    {
+      this.notifyToastr.warning("Please enter a valid email address.", "Invalid Email Format");
+      isValid=false
+    }
+    let errorPassword = this.passwordValidator.validatePassword(this.loginForm.value.password ?? '')
+    if(errorPassword.length>0){
+      const formattedErrorMessage = errorPassword.map(msg => `<b>=></b>${msg}`).join('<br>'); // Avvolgi ogni elemento con <li> e unisci
+      this.notifyToastr.warning('<center><b>Password not secure</b></center><br> ' + formattedErrorMessage+'', '', {
+        enableHtml: true // Abilita l'HTML nel messaggio di avviso
+      });
+      isValid = false
+    }
+    return isValid
   }
 
   isInvalidForm() {
@@ -84,7 +102,7 @@ export class LoginComponent {
         },0)
       },
       error: (err) => {
-        console.log(err);
+        this.notifyToastr.warning(err.headers.get('error'))
       }
     });
   }

@@ -1,0 +1,574 @@
+
+ com.dietiEstates.backend.config.security.filter.JWTAuthorizationFilter#doFilterInternal(Ljakarta/servlet/http/HttpServletRequest;Ljakarta/servlet/http/HttpServletResponse;Ljakarta/servlet/FilterChain;)V©
+û/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/config/security/filter/JWTAuthorizationFilter.java% %(#"startingBlock*Î
+24< <(Sq
+o
+< <(S#
+authoritiesjava.util.Collection"__id*8
+
+__unknown_file (
+
+%21java.util.ArrayList·
+ﬁ
+= =(
+%23java.util.stream.Stream"Ejava.util.Arrays#stream([Ljava/lang/Object;)Ljava/util/stream/Stream;*0
+
+__unknown_file ("
+java.util.Arrays*9
+
+__unknown_file (
+
+rolesjava.lang.String[]*
+23*´
+25; ;(Th
+f
+; ;(T
+rolesjava.lang.String[]"__id*7
+
+__unknown_file (
+
+%20java.lang.String[]=;
+<E <(P
+%21java.util.ArrayList"java.util.ArrayListl
+j
+<A <(R
+%22"java.util.ArrayList#<init>()V*8
+
+__unknown_file (
+
+%21java.util.ArrayList*
+24*í
+26;F ;(R˚¯
+;! ;(S
+%20java.lang.String[]"Lcom.auth0.jwt.interfaces.Claim#asArray(Ljava/lang/Class;)[Ljava/lang/Object;*C
+
+__unknown_file ('
+%
+%19com.auth0.jwt.interfaces.Claim*"
+
+__unknown_file (
+""2asArray(Ljava/lang/Class;)*
+25*©
+27: :(:g
+e
+: :(:
+usernamejava.lang.String"__id*5
+
+__unknown_file (
+
+%18java.lang.String©¶
+;! ;(=%
+%19com.auth0.jwt.interfaces.Claim"]com.auth0.jwt.interfaces.Payload#getClaim(Ljava/lang/String;)Lcom/auth0/jwt/interfaces/Claim;*O
+
+__unknown_file (3
+1
+
+decodedJWT#com.auth0.jwt.interfaces.DecodedJWT*%
+
+__unknown_file (	
+roles2getClaim(Ljava/lang/String;)*
+26*
+288 8(Dê
+ç
+8 8(D1
+
+decodedJWT#com.auth0.jwt.interfaces.DecodedJWT"__id*H
+
+__unknown_file (,
+*
+%17#com.auth0.jwt.interfaces.DecodedJWT∆√
+:" :(9
+%18java.lang.String"?com.auth0.jwt.interfaces.Payload#getSubject()Ljava/lang/String;*O
+
+__unknown_file (3
+1
+
+decodedJWT#com.auth0.jwt.interfaces.DecodedJWT2getSubject()*
+27*¨
+297 7(Qd
+b
+7 7(Q
+tokenjava.lang.String"__id*5
+
+__unknown_file (
+
+%16java.lang.StringØ¨
+8( 8(C*
+%17#com.auth0.jwt.interfaces.DecodedJWT"vcom.dietiEstates.backend.config.security.JWTUtils#verifyToken(Ljava/lang/String;)Lcom/auth0/jwt/interfaces/DecodedJWT;*"
+
+__unknown_file (
+""*7
+
+__unknown_file (
+
+tokenjava.lang.String2verifyToken(Ljava/lang/String;)*
+28*Ì
+307 7(P÷”
+7 7(P
+%16java.lang.String"/java.lang.String#substring(I)Ljava/lang/String;*E
+
+__unknown_file ()
+'
+authorizationHeaderjava.lang.String*(
+
+__unknown_file (
+
+
+%15int2substring(I)*
+29*}
+317 7(2ge
+7= 7(O
+
+%15int"java.lang.String#length()I*'
+
+__unknown_file (	
+Bearer 2length()*
+30*˘
+333* 3(=ﬂ‹
+3* 3(S
+%14boolean"0java.lang.String#startsWith(Ljava/lang/String;)Z*E
+
+__unknown_file ()
+'
+authorizationHeaderjava.lang.String*'
+
+__unknown_file (	
+Bearer 2startsWith(Ljava/lang/String;)*
+31
+1*õ
+341% 1(,Z
+X
+17 1(P
+%11java.lang.String"__id*-
+
+__unknown_file (
+Authorizationß§
+1% 1(Q
+%12java.lang.String"Wjakarta.servlet.http.HttpServletRequest#getHeader(Ljava/lang/String;)Ljava/lang/String;*P
+
+__unknown_file (4
+2
+request'jakarta.servlet.http.HttpServletRequest*5
+
+__unknown_file (
+
+%11java.lang.String2getHeader(Ljava/lang/String;)r
+p
+1 1(R'
+authorizationHeaderjava.lang.String"__id*5
+
+__unknown_file (
+
+%12java.lang.Stringá
+Ñ
+3 3(&
+%13boolean"	__compare*
+3 3(!
+!=*5
+3 3()
+'
+authorizationHeaderjava.lang.String*
+3" 3(&
+""*
+33
+1*Ê
+35- -(¡æ
+- -(3
+%10void"hjakarta.servlet.FilterChain#doFilter(Ljakarta/servlet/ServletRequest;Ljakarta/servlet/ServletResponse;)V*H
+
+__unknown_file (,
+*
+filterChainjakarta.servlet.FilterChain*P
+
+__unknown_file (4
+2
+request'jakarta.servlet.http.HttpServletRequest*R
+
+__unknown_file (6
+4
+response(jakarta.servlet.http.HttpServletResponse2KdoFilter(Ljakarta/servlet/ServletRequest;Ljakarta/servlet/ServletResponse;)"
+. .(
+""*—
+36*r *(y÷”
+	*r *(ä
+%8java.lang.String"Jjakarta.servlet.http.HttpServletRequest#getServletPath()Ljava/lang/String;*P
+
+__unknown_file (4
+2
+request'jakarta.servlet.http.HttpServletRequest2getServletPath()›⁄
+	*r *(≥
+%9boolean",java.lang.String#equals(Ljava/lang/Object;)Z*4
+
+__unknown_file (
+
+%8java.lang.String*>
+
+__unknown_file (" 
+/auth/login/oauth2/code/google2equals(Ljava/lang/Object;)*
+35
+34*◊
+14E E(¡æ
+E E(7
+%38void"hjakarta.servlet.FilterChain#doFilter(Ljakarta/servlet/ServletRequest;Ljakarta/servlet/ServletResponse;)V*H
+
+__unknown_file (,
+*
+filterChainjakarta.servlet.FilterChain*P
+
+__unknown_file (4
+2
+request'jakarta.servlet.http.HttpServletRequest*R
+
+__unknown_file (6
+4
+response(jakarta.servlet.http.HttpServletResponse2KdoFilter(Ljakarta/servlet/ServletRequest;Ljakarta/servlet/ServletResponse;)*
+0*æ
+37*? *(F’“
+*? *(W
+%6java.lang.String"Jjakarta.servlet.http.HttpServletRequest#getServletPath()Ljava/lang/String;*P
+
+__unknown_file (4
+2
+request'jakarta.servlet.http.HttpServletRequest2getServletPath()À»
+*? *(o
+%7boolean",java.lang.String#equals(Ljava/lang/Object;)Z*4
+
+__unknown_file (
+
+%6java.lang.String*-
+
+__unknown_file (
+/PDF/c/export2equals(Ljava/lang/Object;)*
+35
+36*ï
+15D D(˛˚
+D D(^
+%37void"Rjakarta.servlet.ServletRequest#setAttribute(Ljava/lang/String;Ljava/lang/Object;)V*P
+
+__unknown_file (4
+2
+request'jakarta.servlet.http.HttpServletRequest*L
+
+__unknown_file (0.
+,com.dietiEstates.backend.model.User.username*:
+
+__unknown_file (
+
+usernamejava.lang.String22setAttribute(Ljava/lang/String;Ljava/lang/Object;)*
+14*æ
+38* *(’“
+* *(#
+%4java.lang.String"Jjakarta.servlet.http.HttpServletRequest#getServletPath()Ljava/lang/String;*P
+
+__unknown_file (4
+2
+request'jakarta.servlet.http.HttpServletRequest2getServletPath()À»
+* *(;
+%5boolean",java.lang.String#equals(Ljava/lang/Object;)Z*4
+
+__unknown_file (
+
+%4java.lang.String*-
+
+__unknown_file (
+/CSV/c/export2equals(Ljava/lang/Object;)*
+35
+37*Ã
+39)8 )(?’“
+)8 )(P
+%2java.lang.String"Jjakarta.servlet.http.HttpServletRequest#getServletPath()Ljava/lang/String;*P
+
+__unknown_file (4
+2
+request'jakarta.servlet.http.HttpServletRequest2getServletPath()Ÿ÷
+)8 )(v
+%3boolean",java.lang.String#equals(Ljava/lang/Object;)Z*4
+
+__unknown_file (
+
+%2java.lang.String*;
+
+__unknown_file (
+/auth/standard-registration2equals(Ljava/lang/Object;)*
+35
+38*‚
+17AE A(XÀ»
+A A(Y
+%36void"Äorg.springframework.security.core.context.SecurityContext#setAuthentication(Lorg/springframework/security/core/Authentication;)V*^
+
+__unknown_file (B
+@
+%359org.springframework.security.core.context.SecurityContext*Ñ
+
+__unknown_file (h
+f
+authenticationTokenOorg.springframework.security.authentication.UsernamePasswordAuthenticationToken2EsetAuthentication(Lorg/springframework/security/core/Authentication;)*
+15*—
+18A A(%∫
+∑
+A A(2@
+%359org.springframework.security.core.context.SecurityContext"áorg.springframework.security.core.context.SecurityContextHolder#getContext()Lorg/springframework/security/core/context/SecurityContext;*_
+
+__unknown_file (C"A
+?org.springframework.security.core.context.SecurityContextHolder*
+17*∞
+19@ @(jôñ
+@ @(j
+%34void"gorg.springframework.security.authentication.AbstractAuthenticationToken#setDetails(Ljava/lang/Object;)V*Ñ
+
+__unknown_file (h
+f
+authenticationTokenOorg.springframework.security.authentication.UsernamePasswordAuthenticationToken*m
+
+__unknown_file (Q
+O
+%33Horg.springframework.security.web.authentication.WebAuthenticationDetails2setDetails(Ljava/lang/Object;)*
+18*&
+0 "
+Z Z(
+implicit return*”
+1V V(‹Ÿ
+W W(D
+%51void"Yjakarta.servlet.http.HttpServletResponse#setHeader(Ljava/lang/String;Ljava/lang/String;)V*R
+
+__unknown_file (6
+4
+response(jakarta.servlet.http.HttpServletResponse*%
+
+__unknown_file (	
+Error*9
+
+__unknown_file (
+You are not a JWT Bearer!2/setHeader(Ljava/lang/String;Ljava/lang/String;)b
+`
+X X(6*
+%52#org.springframework.http.HttpStatus"__id*"
+
+__unknown_file (
+""öó
+X X(>
+
+%53int",org.springframework.http.HttpStatus#value()I*H
+
+__unknown_file (,
+*
+%52#org.springframework.http.HttpStatus2value()ﬁ€
+X X(?
+%54void"6jakarta.servlet.http.HttpServletResponse#setStatus(I)V*R
+
+__unknown_file (6
+4
+response(jakarta.servlet.http.HttpServletResponse*(
+
+__unknown_file (
+
+
+%53int2setStatus(I)*
+0*Å
+startingBlock%# '(E¶
+£
+$ $(
+%55"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*P
+
+__unknown_file (4
+2
+request'jakarta.servlet.http.HttpServletRequest¥
+±
+%$ %(,
+%56"
+__annotate*@
+
+__unknown_file ($"
+ org.springframework.lang.NonNull*P
+
+__unknown_file (4
+2
+request'jakarta.servlet.http.HttpServletRequestô
+ñ
+%@ %(G2
+request'jakarta.servlet.http.HttpServletRequest"__annotation*#
+
+__unknown_file (
+
+%55*#
+
+__unknown_file (
+
+%56®
+•
+$ $(
+%57"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*R
+
+__unknown_file (6
+4
+response(jakarta.servlet.http.HttpServletResponse∂
+≥
+&$ &(,
+%58"
+__annotate*@
+
+__unknown_file ($"
+ org.springframework.lang.NonNull*R
+
+__unknown_file (6
+4
+response(jakarta.servlet.http.HttpServletResponseõ
+ò
+&A &(I4
+response(jakarta.servlet.http.HttpServletResponse"__annotation*#
+
+__unknown_file (
+
+%57*#
+
+__unknown_file (
+
+%58û
+õ
+$ $(
+%59"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*H
+
+__unknown_file (,
+*
+filterChainjakarta.servlet.FilterChain¨
+©
+'$ '(,
+%60"
+__annotate*@
+
+__unknown_file ($"
+ org.springframework.lang.NonNull*H
+
+__unknown_file (,
+*
+filterChainjakarta.servlet.FilterChainë
+é
+'9 '(D*
+filterChainjakarta.servlet.FilterChain"__annotation*#
+
+__unknown_file (
+
+%59*#
+
+__unknown_file (
+
+%60*
+40*∑
+40) )(’“
+) )(#
+%0java.lang.String"Jjakarta.servlet.http.HttpServletRequest#getServletPath()Ljava/lang/String;*P
+
+__unknown_file (4
+2
+request'jakarta.servlet.http.HttpServletRequest2getServletPath()ƒ¡
+) )(4
+%1boolean",java.lang.String#equals(Ljava/lang/Object;)Z*4
+
+__unknown_file (
+
+%0java.lang.String*&
+
+__unknown_file (
+
+/login2equals(Ljava/lang/Object;)*
+35
+39*»
+20@a @(h±Æ
+@/ @(iO
+%33Horg.springframework.security.web.authentication.WebAuthenticationDetails"–org.springframework.security.web.authentication.WebAuthenticationDetailsSource#buildDetails(Ljakarta/servlet/http/HttpServletRequest;)Lorg/springframework/security/web/authentication/WebAuthenticationDetails;*s
+
+__unknown_file (W
+U
+%31Norg.springframework.security.web.authentication.WebAuthenticationDetailsSource*P
+
+__unknown_file (4
+2
+request'jakarta.servlet.http.HttpServletRequest27buildDetails(Ljakarta/servlet/http/HttpServletRequest;)*
+19*ß
+21	? ?(éÚ
+Ô
+	? ?(éf
+authenticationTokenOorg.springframework.security.authentication.UsernamePasswordAuthenticationToken"__id*t
+
+__unknown_file (X
+V
+%29Oorg.springframework.security.authentication.UsernamePasswordAuthenticationToken¥±
+@3 @(QU
+%31Norg.springframework.security.web.authentication.WebAuthenticationDetailsSource"Norg.springframework.security.web.authentication.WebAuthenticationDetailsSource„
+‡
+@/ @(S
+%32"Xorg.springframework.security.web.authentication.WebAuthenticationDetailsSource#<init>()V*s
+
+__unknown_file (W
+U
+%31Norg.springframework.security.web.authentication.WebAuthenticationDetailsSource*
+20*î
+22?r ?(z∂≥
+?N ?(qV
+%29Oorg.springframework.security.authentication.UsernamePasswordAuthenticationToken"Oorg.springframework.security.authentication.UsernamePasswordAuthenticationTokenƒ
+¡
+	?J ?(ç
+%30"ìorg.springframework.security.authentication.UsernamePasswordAuthenticationToken#<init>(Ljava/lang/Object;Ljava/lang/Object;Ljava/util/Collection;)V*t
+
+__unknown_file (X
+V
+%29Oorg.springframework.security.authentication.UsernamePasswordAuthenticationToken*:
+
+__unknown_file (
+
+usernamejava.lang.String*"
+
+__unknown_file (
+""*A
+
+__unknown_file (%
+#
+authoritiesjava.util.Collection*
+21*¯
+23=& =(bΩ
+∫
+=& =(b"
+%24java.util.function.Consumer"__declareFunction*w
+
+__unknown_file ([Y
+W__sonar_lambda_6$com.dietiEstates.backend.config.security.filter.JWTAuthorizationFilterõ
+ò
+
+__unknown_file (3
+"
+%24java.util.function.Consumer"
+authorities"__id*A
+
+__unknown_file (%
+#
+authoritiesjava.util.CollectionÉÄ
+= =(c
+%28void"?java.util.stream.Stream#forEach(Ljava/util/function/Consumer;)V*<
+
+__unknown_file ( 
+
+%23java.util.stream.Stream*@
+
+__unknown_file ($
+"
+%24java.util.function.Consumer2&forEach(Ljava/util/function/Consumer;)*
+22:>
+%$ %(H2
+request'jakarta.servlet.http.HttpServletRequest:@
+&$ &(J4
+response(jakarta.servlet.http.HttpServletResponse:6
+'$ '(D*
+filterChainjakarta.servlet.FilterChainBJH
+Fcom.dietiEstates.backend.config.security.filter.JWTAuthorizationFilter

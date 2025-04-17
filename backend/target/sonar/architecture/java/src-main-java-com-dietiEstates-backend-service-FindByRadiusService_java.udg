@@ -1,0 +1,151 @@
+
+1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789019634*java2.BÙ
+L
+Gsrc/main/java/com/dietiEstates/backend/service/FindByRadiusService.java2
+
+package4
+%
+ com.dietiEstates.backend.service5
+9
+4com.dietiEstates.backend.service.FindByRadiusService7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+FindByRadiusService12
+,
+&org.springframework.stereotype.Service14
+
+unknown15
+
+annotated by16
+
+
+uses17
+$
+lombok.RequiredArgsConstructor19
+
+lombok.extern.slf4j.Slf4j21
+S
+Mcom.dietiEstates.backend.service.FindByRadiusService.distancePerLatitudeGrade23
+
+field24
+
+private25
+
+distancePerLatitudeGrade26
+T
+Ncom.dietiEstates.backend.service.FindByRadiusService.distancePerLongitudeGrade28
+
+distancePerLongitudeGrade29
+µ
+Æcom.dietiEstates.backend.service.FindByRadiusService#calcoloLatLongMinMax(Ljava/lang/Integer;Ljava/lang/Double;Ljava/lang/Double;)Lcom/dietiEstates/backend/dto/LatLongMinMax;31
+
+method32
+
+calcoloLatLongMinMax33
+0
+*com.dietiEstates.backend.dto.LatLongMinMax35
+
+returns36
+
+
+references37J
+
+1
+12Z
+
+3	
+354j—
+@
+27:
+272824 *
+1 (	26:3B
+	
+9
+25
+
+
+11
+29
+
+20
+202115
+
+13
+131415
+@
+22:
+222324 *
+1 (26:3B
+	
+9
+25
+
+
+11
+26
+
+18
+181915
+@
+30:
+303132 *
+1 (26:3B
+	
+9
+10
+
+
+11
+33
+
+34
+343515
+9
+64
+678 *
+1 (!:3B
+	
+9
+10
+
+
+11
+12rà
+
+61316*
+1 (
+
+61317*
+1 (	
+
+61816*
+1 (
+
+61817*
+1 (
+
+62016*
+1 (
+
+62017*
+1 (
+
+303436*
+1 (
+
+303417*
+1 (
+
+302237*
+10 (H
+
+302737*
+11 (J

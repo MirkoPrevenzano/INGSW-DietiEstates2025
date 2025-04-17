@@ -1,0 +1,6 @@
+com.dietiEstates.backend.service.MockingStatsService#mockEstateStats(Lcom/dietiEstates/backend/model/RealEstate;)V
+false
+a0b64013459e6b1d4bc22beb26f08473
+==
+!unknownMethod! !unknownMethod!
+nextLong java.util.random.RandomGenerator#nextLong(JJ)J

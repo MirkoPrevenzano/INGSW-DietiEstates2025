@@ -1,0 +1,842 @@
+
+1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789022054*java2.B«
+S
+Nsrc/main/java/com/dietiEstates/backend/controller/AdministratorController.java2
+
+package4
+(
+#com.dietiEstates.backend.controller5
+@
+;com.dietiEstates.backend.controller.AdministratorController7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+AdministratorController12
+<
+6org.springframework.web.bind.annotation.RestController14
+
+unknown15
+
+annotated by16
+
+
+uses17
+<
+6org.springframework.web.bind.annotation.RequestMapping19
+$
+lombok.RequiredArgsConstructor21
+
+lombok.extern.slf4j.Slf4j23
+V
+Pcom.dietiEstates.backend.controller.AdministratorController.administratorService25
+
+field26
+
+private27
+
+administratorService28
+;
+5com.dietiEstates.backend.service.AdministratorService30
+
+is type31
+o
+icom.dietiEstates.backend.controller.AdministratorController#aa()Lorg/springframework/http/ResponseEntity;33
+
+method34
+
+aa35
+-
+'org.springframework.http.ResponseEntity37
+
+returns38
+9
+3org.springframework.web.bind.annotation.PostMapping40
+9
+3org.springframework.http.ResponseEntity$BodyBuilder42
+
+
+references43
+{
+uorg.springframework.http.ResponseEntity$BodyBuilder#body(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;45
+
+calls46
+o
+iorg.springframework.http.ResponseEntity#badRequest()Lorg/springframework/http/ResponseEntity$BodyBuilder;48
+¨
+¡com.dietiEstates.backend.controller.AdministratorController#createAdmin(Lcom/dietiEstates/backend/dto/AdministratorDTO;)Lorg/springframework/http/ResponseEntity;50
+
+createAdmin51
+3
+-com.dietiEstates.backend.dto.AdministratorDTO53
+
+	has param54
+9
+3org.springframework.web.bind.annotation.RequestBody56
+y
+scom.dietiEstates.backend.service.AdministratorService#createAdmin(Lcom/dietiEstates/backend/dto/AdministratorDTO;)V58
+<
+6org.springframework.http.ResponseEntity$HeadersBuilder60
+m
+gorg.springframework.http.ResponseEntity$HeadersBuilder#build()Lorg/springframework/http/ResponseEntity;62
+•
+Žorg.springframework.http.ResponseEntity#status(Lorg/springframework/http/HttpStatusCode;)Lorg/springframework/http/ResponseEntity$BodyBuilder;64
+)
+#org.springframework.http.HttpStatus66
+1
++org.springframework.http.HttpStatus.CREATED68
+£
+œorg.springframework.http.ResponseEntity$HeadersBuilder#header(Ljava/lang/String;[Ljava/lang/String;)Lorg/springframework/http/ResponseEntity$HeadersBuilder;70
+³
+¬com.dietiEstates.backend.controller.AdministratorController#createCollaborator(Lcom/dietiEstates/backend/dto/AdminRegistrationDTO;)Lorg/springframework/http/ResponseEntity;72
+
+createCollaborator73
+7
+1com.dietiEstates.backend.dto.AdminRegistrationDTO75
+„
+~com.dietiEstates.backend.service.AdministratorService#createCollaborator(Lcom/dietiEstates/backend/dto/AdminRegistrationDTO;)V77
+M
+Gorg.springframework.security.core.userdetails.UsernameNotFoundException79
+p
+jorg.springframework.http.ResponseEntity#notFound()Lorg/springframework/http/ResponseEntity$HeadersBuilder;81
+»
+´com.dietiEstates.backend.controller.AdministratorController#createRealEstateAgent(Ljava/lang/String;Lcom/dietiEstates/backend/dto/UserDTO;)Lorg/springframework/http/ResponseEntity;83
+
+createRealEstateAgent84
+*
+$com.dietiEstates.backend.dto.UserDTO86
+:
+4org.springframework.web.bind.annotation.PathVariable88
+
+†com.dietiEstates.backend.service.AdministratorService#createRealEstateAgent(Ljava/lang/String;Lcom/dietiEstates/backend/dto/UserDTO;)V90
+¾
+·com.dietiEstates.backend.controller.AdministratorController#updatePassword(Ljava/lang/String;Lcom/dietiEstates/backend/dto/OldNewPasswordDTO;)Lorg/springframework/http/ResponseEntity;92
+
+updatePassword93
+4
+.com.dietiEstates.backend.dto.OldNewPasswordDTO95
+8
+2org.springframework.web.bind.annotation.PutMapping97
+
+‰com.dietiEstates.backend.service.AdministratorService#updatePassword(Ljava/lang/String;Lcom/dietiEstates/backend/dto/OldNewPasswordDTO;)V99
+h
+aorg.springframework.http.ResponseEntity#ok()Lorg/springframework/http/ResponseEntity$BodyBuilder;101J
+
+1
+12Z
+
+3	
+354j¢
+
+87
+878815
+9
+64
+678 *
+1 (%:3B
+	
+9
+10
+
+
+11
+12
+
+67
+676815
+@
+49:
+495034 *
+1* *(26:3B
+	
+9
+10
+
+
+11
+51
+
+78
+787915
+
+20
+202115
+@
+71:
+717234 *
+19 9(26:3B
+	
+9
+10
+
+
+11
+73
+
+94
+949515
+
+18
+181915
+
+61
+616215
+
+74
+747515
+@
+91:
+919234 *
+1_ _(26:3B
+	
+9
+10
+
+
+11
+93
+
+41
+414215
+
+52
+525315
+
+69
+697015
+@
+32:
+323334 *
+1$ $(26:3B
+	
+9
+10
+
+
+11
+35
+
+57
+575815
+
+55
+555615
+
+76
+767715
+
+96
+969715
+
+44
+444515
+
+80
+808115
+
+29
+293015
+
+63
+636415
+
+39
+394015
+
+100
+10010115
+
+98
+989915
+
+13
+131415
+@
+82:
+828334 *
+1L L(26:3B
+	
+9
+10
+
+
+11
+84
+
+89
+899015
+
+65
+656615
+
+22
+222315
+
+85
+858615
+
+36
+363715
+
+59
+596015
+@
+24:
+242526 *
+1! !(26:3B
+	
+9
+27
+
+
+11
+28
+
+47
+474815rõ%
+
+61316*
+1 (
+
+61317*
+1 (
+
+61816*
+1 (
+
+61817*
+1 (
+
+62016*
+1 (
+
+62017*
+1 (
+
+62216*
+1 (
+
+62217*
+1 (
+
+242931*
+1! !('
+
+242917*
+1! !('
+
+242917*
+1!( !(<
+
+323638*
+1% %(
+
+323916*
+1$ $(
+
+323917*
+1$ $(
+
+323617*
+1% %(
+
+323638*
+1' '(
+
+324143*
+1' '(
+
+324446*
+1', '(0
+
+324138*
+1' '(
+
+323643*
+1' '(
+
+324746*
+1' '()
+
+493638*
+1+ +(
+
+495254*
+1+7 +(G
+
+493916*
+1* *(
+
+493917*
+1* *(
+
+493617*
+1+ +(
+
+495231*
+1+H +(X
+
+495516*
+1+* +(+
+
+495517*
+1++ +(6
+
+495217*
+1+7 +(G
+
+492943*
+1/ /(!
+
+495746*
+1/" /(-
+
+492443*
+1/ /(!
+
+492917*
+1/ /(!
+
+492443*
+1/ /(!
+
+493638*
+10 0("
+
+495943*
+10 0("
+
+496146*
+10> 0(C
+
+494138*
+10 0("
+
+493643*
+10 0("
+
+496346*
+10# 0()
+
+496517*
+10* 0(4
+
+496517*
+105 0(<
+
+496743*
+105 0(<
+
+493638*
+14 4("
+
+494143*
+14 4("
+
+494446*
+14P 4(T
+
+494138*
+14 4("
+
+495943*
+14 4("
+
+496946*
+140 4(6
+
+494138*
+14 4("
+
+493643*
+14 4("
+
+494746*
+14# 4(-
+
+713638*
+1: :(
+
+717454*
+1:> :(R
+
+713916*
+19 9(
+
+713917*
+19 9(
+
+713617*
+1: :(
+
+717431*
+1:S :(g
+
+715516*
+1:1 :(2
+
+715517*
+1:2 :(=
+
+717417*
+1:> :(R
+
+712943*
+1> >(!
+
+717646*
+1>" >(4
+
+712443*
+1> >(!
+
+712917*
+1> >(!
+
+712443*
+1> >(!
+
+713638*
+1? ?("
+
+715943*
+1? ?("
+
+716146*
+1?> ?(C
+
+714138*
+1? ?("
+
+713643*
+1? ?("
+
+716346*
+1?# ?()
+
+716517*
+1?* ?(4
+
+716517*
+1?5 ?(<
+
+716743*
+1?5 ?(<
+
+717831*
+1A* A(+
+
+717817*
+1A A()
+
+713638*
+1C C("
+
+715943*
+1C C("
+
+716146*
+1CN C(S
+
+715943*
+1C C("
+
+716946*
+1C. C(4
+
+715938*
+1C C("
+
+713643*
+1C C("
+
+718046*
+1C# C(+
+
+713638*
+1G G("
+
+714143*
+1G G("
+
+714446*
+1GP G(T
+
+714138*
+1G G("
+
+715943*
+1G G("
+
+716946*
+1G0 G(6
+
+714138*
+1G G("
+
+713643*
+1G G("
+
+714746*
+1G# G(-
+
+823638*
+1M M(
+
+828554*
+1M` M(g
+
+823916*
+1L L(
+
+823917*
+1L L(
+
+823617*
+1M M(
+
+828716*
+1M4 M(5
+
+828717*
+1M5 M(A
+
+828531*
+1Mh M(z
+
+825516*
+1MS M(T
+
+825517*
+1MT M(_
+
+828517*
+1M` M(g
+
+822943*
+1Q Q(!
+
+828946*
+1Q" Q(7
+
+822443*
+1Q Q(!
+
+822917*
+1Q Q(!
+
+822443*
+1Q Q(!
+
+823638*
+1R R("
+
+825943*
+1R R("
+
+826146*
+1R> R(C
+
+824138*
+1R R("
+
+823643*
+1R R("
+
+826346*
+1R# R()
+
+826517*
+1R* R(4
+
+826517*
+1R5 R(<
+
+826743*
+1R5 R(<
+
+827831*
+1T* T(+
+
+827817*
+1T T()
+
+823638*
+1V V("
+
+825943*
+1V V("
+
+826146*
+1VN V(S
+
+825943*
+1V V("
+
+826946*
+1V. V(4
+
+825938*
+1V V("
+
+823643*
+1V V("
+
+828046*
+1V# V(+
+
+823638*
+1Z Z("
+
+824143*
+1Z Z("
+
+824446*
+1ZP Z(T
+
+824138*
+1Z Z("
+
+825943*
+1Z Z("
+
+826946*
+1Z0 Z(6
+
+824138*
+1Z Z("
+
+823643*
+1Z Z("
+
+824746*
+1Z# Z(-
+
+913638*
+1` `(
+
+919454*
+1`Y `(j
+
+919616*
+1_ _(
+
+919617*
+1_ _(
+
+913617*
+1` `(
+
+918716*
+1`- `(.
+
+918717*
+1`. `(:
+
+919431*
+1`k `(|
+
+915516*
+1`L `(M
+
+915517*
+1`M `(X
+
+919417*
+1`Y `(j
+
+912943*
+1d d(!
+
+919846*
+1d" d(0
+
+912443*
+1d d(!
+
+912917*
+1d d(!
+
+912443*
+1d d(!
+
+913638*
+1e e("
+
+915943*
+1e e("
+
+916146*
+1e( e(-
+
+914138*
+1e e("
+
+913643*
+1e e("
+
+9110046*
+1e# e(%
+
+917831*
+1g* g(+
+
+917817*
+1g g()
+
+913638*
+1i i("
+
+915943*
+1i i("
+
+916146*
+1iN i(S
+
+915943*
+1i i("
+
+916946*
+1i. i(4
+
+915938*
+1i i("
+
+913643*
+1i i("
+
+918046*
+1i# i(+
+
+913638*
+1m m("
+
+914143*
+1m m("
+
+914446*
+1mP m(T
+
+914138*
+1m m("
+
+915943*
+1m m("
+
+916946*
+1m0 m(6
+
+914138*
+1m m("
+
+913643*
+1m m("
+
+914746*
+1m# m(-

@@ -1,0 +1,134 @@
+
+ùcom.dietiEstates.backend.controller.RealEstateController#aaaa(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/Map;)Lorg/springframework/http/ResponseEntity;õ
+ê/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/controller/RealEstateController.javaN6 N(:"startingBlock*Ã
+2R R(+w
+u
+R R(+?
+
+realEstate1com.dietiEstates.backend.dto.RealEstatePreviewDTO"__id*"
+
+__unknown_file (
+""ª
+∏
+R R(+?
+
+realEstate1com.dietiEstates.backend.dto.RealEstatePreviewDTO"
+__arrayGet*;
+
+__unknown_file (
+
+realEstatesjava.util.List*"
+
+__unknown_file (
+""*
+3
+1*À
+3S S([
+Y
+S S(@
+%3"__calculate*
+S9 S(:
++*
+S S(8
+""*
+S; S(@
+ : Z
+X
+S S(g
+%4"__calculate*
+SA S(B
++*
+S S(@
+
+%3*
+SC S(g
+""*
+2*≠
+startingBlock	N: N(ÆØ
+¨
+
+NÖ N(í
+%6"
+__annotate*T
+
+__unknown_file (86
+4org.springframework.web.bind.annotation.RequestParam*6
+
+__unknown_file (
+
+filtersjava.util.MapZ
+X
+
+N¶ N(≠
+filtersjava.util.Map"__annotation*"
+
+__unknown_file (
+
+%6*
+5*Ò
+5P1 P(Bæ
+ª
+P1 P(B8
+%02com.dietiEstates.backend.service.RealEstateService"__id*o
+
+__unknown_file (S*Q:
+8com.dietiEstates.backend.controller.RealEstateController"
+realEstateService·
+ﬁ
+PT P(o1
+%1+org.springframework.data.domain.PageRequest"_org.springframework.data.domain.PageRequest#of(II)Lorg/springframework/data/domain/PageRequest;*K
+
+__unknown_file (/"-
++org.springframework.data.domain.PageRequest*7
+
+__unknown_file (
+
+pagejava.lang.Integer*8
+
+__unknown_file (
+
+limitjava.lang.Integer–Õ
+P1 P(p
+%2java.util.List"Öcom.dietiEstates.backend.service.RealEstateService#search4(Ljava/util/Map;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;*V
+
+__unknown_file (:
+8
+%02com.dietiEstates.backend.service.RealEstateService*6
+
+__unknown_file (
+
+filtersjava.util.Map*O
+
+__unknown_file (3
+1
+%1+org.springframework.data.domain.PageRequest2Bsearch4(Ljava/util/Map;Lorg/springframework/data/domain/Pageable;)e
+c
+P P(q
+realEstatesjava.util.List"__id*2
+
+__unknown_file (
+
+%2java.util.List*
+2*¯
+1U U(´
+®
+U U(--
+%5'org.springframework.http.ResponseEntity"gorg.springframework.http.ResponseEntity#ok(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;*G
+
+__unknown_file (+")
+'org.springframework.http.ResponseEntity*;
+
+__unknown_file (
+
+realEstatesjava.util.List";
+U U(./
+-
+%5'org.springframework.http.ResponseEntity:%
+N; N(^
+pagejava.lang.Integer:'
+	N_ N(Ñ
+limitjava.lang.Integer:&
+
+NÖ N(≠
+filtersjava.util.MapB<:
+8com.dietiEstates.backend.controller.RealEstateControllerH

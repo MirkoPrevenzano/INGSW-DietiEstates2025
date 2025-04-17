@@ -1,0 +1,16 @@
+com.dietiEstates.backend.service.RealEstateAgentService#getPhoto(Ljava/lang/Long;)[Ljava/lang/String;
+false
+93c3c11b240b324f28b32030d040721c
+java.util.ArrayList#<init>()V
+java.util.ArrayList#instance-init#
+java.util.Base64#getEncoder()Ljava/util/Base64$Encoder;
+java.util.Optional#get()Ljava/lang/Object;
+==
+!unknownMethod! !unknownMethod!
+add java.util.List#add(Ljava/lang/Object;)Z
+encodeToString java.util.Base64$Encoder#encodeToString([B)Ljava/lang/String;
+findById org.springframework.data.repository.CrudRepository#findById(Ljava/lang/Object;)Ljava/util/Optional;
+get java.util.List#get(I)Ljava/lang/Object;
+getObject com.dietiEstates.backend.service.S3Service#getObject(Ljava/lang/String;)[B
+isEmpty java.util.List#isEmpty()Z
+size java.util.List#size()I

@@ -1,0 +1,10 @@
+com.dietiEstates.backend.service.CustomerService#authenticateWithExternalAPI(Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdToken$Payload;)Lcom/dietiEstates/backend/model/Customer;
+false
+4f364e5c473f327b778a09db778b0359
+com.dietiEstates.backend.service.CustomerService#generateCustomerAPI(Ljava/lang/String;Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdToken$Payload;)Lcom/dietiEstates/backend/model/Customer;
+java.util.Optional#get()Ljava/lang/Object;
+java.util.Optional#isPresent()Z
+==
+!unknownMethod! !unknownMethod!
+findByUsername com.dietiEstates.backend.repository.CustomerRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;
+getEmail com.google.api.client.googleapis.auth.oauth2.GoogleIdToken$Payload#getEmail()Ljava/lang/String;

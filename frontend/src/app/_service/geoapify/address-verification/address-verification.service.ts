@@ -38,4 +38,6 @@ export class AddressVerificationService {
       message.textContent = `We can only verify your address partially. The address we found is ${foundAddress.properties.formatted}`;
     }
   }
+
+  
 }

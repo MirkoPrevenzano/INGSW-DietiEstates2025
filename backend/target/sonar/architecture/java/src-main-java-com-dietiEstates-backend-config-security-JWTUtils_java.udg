@@ -1,0 +1,393 @@
+
+1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021103*java2.BÌ
+I
+Dsrc/main/java/com/dietiEstates/backend/config/security/JWTUtils.java2
+
+package4
+-
+(com.dietiEstates.backend.config.security5
+6
+1com.dietiEstates.backend.config.security.JWTUtils7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+JWTUtils12
+&
+ lombok.experimental.UtilityClass14
+
+unknown15
+
+annotated by16
+
+
+uses17
+B
+<com.dietiEstates.backend.config.security.JWTUtils.SECRET_KEY19
+
+field20
+
+private21
+
+
+SECRET_KEY22
+A
+;com.dietiEstates.backend.config.security.JWTUtils.algorithm24
+
+	algorithm25
+(
+"com.auth0.jwt.algorithms.Algorithm27
+
+is type28
+
+returns29
+
+
+references30
+X
+Rcom.auth0.jwt.algorithms.Algorithm#HMAC256([B)Lcom/auth0/jwt/algorithms/Algorithm;32
+
+calls33
+›
+”com.dietiEstates.backend.config.security.JWTUtils#generateAccessToken(Lorg/springframework/security/core/userdetails/UserDetails;)Ljava/lang/String;35
+
+method36
+
+generateAccessToken37
+?
+9org.springframework.security.core.userdetails.UserDetails39
+
+	has param40
+&
+ com.auth0.jwt.JWTCreator$Builder42
+c
+]com.auth0.jwt.JWTCreator$Builder#sign(Lcom/auth0/jwt/algorithms/Algorithm;)Ljava/lang/String;44
+h
+bcom.auth0.jwt.JWTCreator$Builder#withExpiresAt(Ljava/util/Date;)Lcom/auth0/jwt/JWTCreator$Builder;46
+g
+acom.auth0.jwt.JWTCreator$Builder#withIssuedAt(Ljava/util/Date;)Lcom/auth0/jwt/JWTCreator$Builder;48
+v
+pcom.auth0.jwt.JWTCreator$Builder#withClaim(Ljava/lang/String;Ljava/util/List;)Lcom/auth0/jwt/JWTCreator$Builder;50
+h
+bcom.auth0.jwt.JWTCreator$Builder#withSubject(Ljava/lang/String;)Lcom/auth0/jwt/JWTCreator$Builder;52
+
+com.auth0.jwt.JWT54
+B
+<com.auth0.jwt.JWT#create()Lcom/auth0/jwt/JWTCreator$Builder;56
+_
+Yorg.springframework.security.core.userdetails.UserDetails#getUsername()Ljava/lang/String;58
+f
+`org.springframework.security.core.userdetails.UserDetails#getAuthorities()Ljava/util/Collection;60
+8
+2org.springframework.security.core.GrantedAuthority62
+|
+vcom.dietiEstates.backend.config.security.JWTUtils#verifyToken(Ljava/lang/String;)Lcom/auth0/jwt/interfaces/DecodedJWT;64
+
+verifyToken65
+)
+#com.auth0.jwt.interfaces.DecodedJWT67
+
+com.auth0.jwt.JWTVerifier69
++
+%com.auth0.jwt.interfaces.Verification71
+N
+Hcom.auth0.jwt.interfaces.Verification#build()Lcom/auth0/jwt/JWTVerifier;73
+l
+fcom.auth0.jwt.JWT#require(Lcom/auth0/jwt/algorithms/Algorithm;)Lcom/auth0/jwt/interfaces/Verification;75
+_
+Ycom.auth0.jwt.JWTVerifier#verify(Ljava/lang/String;)Lcom/auth0/jwt/interfaces/DecodedJWT;77J
+
+1
+12Z
+
+3	
+354jç
+
+53
+535415
+
+70
+707115
+
+66
+666715
+
+51
+515215
+@
+18:
+181920 *
+1 (26:3B
+	
+9
+21
+
+
+11
+22
+
+45
+454615
+
+13
+131415
+
+55
+555615
+
+26
+262715
+
+68
+686915
+
+74
+747515
+
+38
+383915
+
+76
+767715
+
+49
+495015
+
+41
+414215
+
+57
+575815
+@
+23:
+232420 *
+1 (26:3B
+	
+9
+21
+
+
+11
+25
+
+31
+313215
+
+61
+616215
+9
+64
+678 *
+1 (:3B
+	
+9
+10
+
+
+11
+12
+@
+63:
+636436 *
+1) )(26:3B
+	
+9
+10
+
+
+11
+65
+@
+34:
+343536 *
+1 (26:3B
+	
+9
+10
+
+
+11
+37
+
+72
+727315
+
+47
+474815
+
+43
+434415
+
+59
+596015rË
+
+61316*
+1 (
+
+61317*
+1 (
+
+232628*
+1 (#
+
+232617*
+1 (#
+
+232617*
+1$ (-
+
+232629*
+10 (9
+
+232630*
+10 (9
+
+233133*
+1: (A
+
+232617*
+10 (9
+
+231830*
+1B (L
+
+231830*
+1B (L
+
+343840*
+1' (2
+
+343828*
+13 (>
+
+343817*
+1' (2
+
+344130*
+1 (!
+
+344333*
+1#" #(&
+
+344129*
+1 (!
+
+344130*
+1 (!
+
+344533*
+1"" "(/
+
+344129*
+1 (!
+
+344130*
+1 (!
+
+344733*
+1!" !(.
+
+344129*
+1 (!
+
+344130*
+1 (!
+
+344933*
+1 "  (+
+
+344129*
+1 (!
+
+344130*
+1 (!
+
+345133*
+1" (-
+
+344129*
+1 (!
+
+345330*
+1 (!
+
+345533*
+1" ((
+
+345317*
+1 (!
+
+343830*
+1. (9
+
+345733*
+1: (E
+
+343830*
+1 5  (@
+
+345933*
+1 A  (O
+
+346117*
+1 _  (o
+
+342617*
+1#' #(0
+
+342330*
+1#' #(0
+
+636629*
+1) )(
+
+636617*
+1) )(
+
+636828*
+1+ +( 
+
+636817*
+1+	 +(
+
+636829*
+1+# +(&
+
+637030*
+1+# +(&
+
+637233*
+1+: +(?
+
+637029*
+1+# +(&
+
+635330*
+1+# +(&
+
+637433*
+1+' +(.
+
+635317*
+1+# +(&
+
+632617*
+1+/ +(8
+
+632330*
+1+/ +(8
+
+636629*
+1, ,(
+
+636830*
+1, ,(
+
+637633*
+1, ,("

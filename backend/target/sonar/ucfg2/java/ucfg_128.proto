@@ -1,0 +1,30 @@
+
+icom.dietiEstates.backend.controller.AdministratorController#aa()Lorg/springframework/http/ResponseEntity;û
+ì/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/controller/AdministratorController.java%" %($"1*è
+1' '(¸
+˘
+' '(*9
+%03org.springframework.http.ResponseEntity$BodyBuilder"iorg.springframework.http.ResponseEntity#badRequest()Lorg/springframework/http/ResponseEntity$BodyBuilder;*G
+
+__unknown_file (+")
+'org.springframework.http.ResponseEntityœÃ
+' '(:-
+%1'org.springframework.http.ResponseEntity"uorg.springframework.http.ResponseEntity$BodyBuilder#body(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;*W
+
+__unknown_file (;
+9
+%03org.springframework.http.ResponseEntity$BodyBuilder*'
+
+__unknown_file (	
+sdfgsdg2body(Ljava/lang/Object;)r
+p
+' '(;
+%2"__return_xss_sink*K
+
+__unknown_file (/
+-
+%1'org.springframework.http.ResponseEntity";
+' '(;/
+-
+%1'org.springframework.http.ResponseEntityB?=
+;com.dietiEstates.backend.controller.AdministratorControllerH

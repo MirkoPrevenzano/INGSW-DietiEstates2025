@@ -1,0 +1,9 @@
+com.dietiEstates.backend.service.RealEstateService#search4(Ljava/util/Map;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;
+false
+7f36a830fc9de997c028f95d81cea67b
+java.lang.Double#valueOf(Ljava/lang/String;)Ljava/lang/Double;
+java.lang.Integer#valueOf(Ljava/lang/String;)Ljava/lang/Integer;
+==
+calcoloLatLongMinMax com.dietiEstates.backend.service.FindByRadiusService#calcoloLatLongMinMax(Ljava/lang/Integer;Ljava/lang/Double;Ljava/lang/Double;)Lcom/dietiEstates/backend/dto/LatLongMinMax;
+findRealEstateByFilters4 com.dietiEstates.backend.repository.CustomRepository#findRealEstateByFilters4(Ljava/util/Map;Lorg/springframework/data/domain/Pageable;Lcom/dietiEstates/backend/dto/LatLongMinMax;)Ljava/util/List;
+get java.util.Map#get(Ljava/lang/Object;)Ljava/lang/Object;

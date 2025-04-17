@@ -1,0 +1,412 @@
+
+™com.dietiEstates.backend.repository.CustomRepositoryImpl#findRealEstateStats2(Ljava/lang/Long;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;
+/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/repository/CustomRepositoryImpl.javaì$ ì(8"startingBlock*®
+startingBlock
+ì8 ì(U
+Œ
+
+ë ë(
+%29"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*7
+
+__unknown_file (
+
+agentIdjava.lang.Long\
+Z
+
+ì> ì(E
+agentIdjava.lang.Long"__annotation*#
+
+__unknown_file (
+
+%29¦
+£
+
+ë ë(
+%30"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*N
+
+__unknown_file (2
+0
+page(org.springframework.data.domain.Pageables
+q
+
+ìP ì(T0
+page(org.springframework.data.domain.Pageable"__annotation*#
+
+__unknown_file (
+
+%30*
+1*éM
+1
+î î(*«
+¨
+
+î î(*'
+%0!jakarta.persistence.EntityManager"__id*k
+
+__unknown_file (O*M:
+8com.dietiEstates.backend.repository.CustomRepositoryImpl"
+entityManager†ƒ
+
+î î(?2
+%1,jakarta.persistence.criteria.CriteriaBuilder"djakarta.persistence.EntityManager#getCriteriaBuilder()Ljakarta/persistence/criteria/CriteriaBuilder;*E
+
+__unknown_file ()
+'
+%0!jakarta.persistence.EntityManager2getCriteriaBuilder()›
+˜
+
+î î(@2
+cb,jakarta.persistence.criteria.CriteriaBuilder"__id*P
+
+__unknown_file (4
+2
+%1,jakarta.persistence.criteria.CriteriaBuilderĞÍ
+
+ï2 ï(Z0
+%2*jakarta.persistence.criteria.CriteriaQuery"wjakarta.persistence.criteria.CriteriaBuilder#createQuery(Ljava/lang/Class;)Ljakarta/persistence/criteria/CriteriaQuery;*P
+
+__unknown_file (4
+2
+cb,jakarta.persistence.criteria.CriteriaBuilder*"
+
+__unknown_file (
+""2createQuery(Ljava/lang/Class;)š
+—
+
+ï ï([3
+query*jakarta.persistence.criteria.CriteriaQuery"__id*N
+
+__unknown_file (2
+0
+%2*jakarta.persistence.criteria.CriteriaQuery¯¬
+
+ñ& ñ(B'
+%3!jakarta.persistence.criteria.Root"ejakarta.persistence.criteria.AbstractQuery#from(Ljava/lang/Class;)Ljakarta/persistence/criteria/Root;*Q
+
+__unknown_file (5
+3
+query*jakarta.persistence.criteria.CriteriaQuery*"
+
+__unknown_file (
+""2from(Ljava/lang/Class;)
+Š
+
+ñ ñ(C/
+
+realEstate!jakarta.persistence.criteria.Root"__id*E
+
+__unknown_file ()
+'
+%3!jakarta.persistence.criteria.Root¬©
+
+ó< ó(Z'
+%4!jakarta.persistence.criteria.Path"\jakarta.persistence.criteria.Path#get(Ljava/lang/String;)Ljakarta/persistence/criteria/Path;*M
+
+__unknown_file (1
+/
+
+realEstate!jakarta.persistence.criteria.Root*,
+
+__unknown_file (
+realEstateId2get(Ljava/lang/String;)¥¢
+
+ôI ô(`'
+%5!jakarta.persistence.criteria.Path"\jakarta.persistence.criteria.Path#get(Ljava/lang/String;)Ljakarta/persistence/criteria/Path;*M
+
+__unknown_file (1
+/
+
+realEstate!jakarta.persistence.criteria.Root*%
+
+__unknown_file (	
+title2get(Ljava/lang/String;)­ª
+
+õI õ(h'
+%6!jakarta.persistence.criteria.Path"\jakarta.persistence.criteria.Path#get(Ljava/lang/String;)Ljakarta/persistence/criteria/Path;*M
+
+__unknown_file (1
+/
+
+realEstate!jakarta.persistence.criteria.Root*-
+
+__unknown_file (
+uploadingDate2get(Ljava/lang/String;)¯¬
+
+öI ö(j'
+%7!jakarta.persistence.criteria.Path"\jakarta.persistence.criteria.Path#get(Ljava/lang/String;)Ljakarta/persistence/criteria/Path;*M
+
+__unknown_file (1
+/
+
+realEstate!jakarta.persistence.criteria.Root*/
+
+__unknown_file (
+realEstateStats2get(Ljava/lang/String;)£ 
+
+öI ö(}'
+%8!jakarta.persistence.criteria.Path"\jakarta.persistence.criteria.Path#get(Ljava/lang/String;)Ljakarta/persistence/criteria/Path;*E
+
+__unknown_file ()
+'
+%7!jakarta.persistence.criteria.Path*+
+
+__unknown_file (
+viewsNumber2get(Ljava/lang/String;)¯¬
+
+÷I ÷(j'
+%9!jakarta.persistence.criteria.Path"\jakarta.persistence.criteria.Path#get(Ljava/lang/String;)Ljakarta/persistence/criteria/Path;*M
+
+__unknown_file (1
+/
+
+realEstate!jakarta.persistence.criteria.Root*/
+
+__unknown_file (
+realEstateStats2get(Ljava/lang/String;)¥¢
+
+÷I ÷(~(
+%10!jakarta.persistence.criteria.Path"\jakarta.persistence.criteria.Path#get(Ljava/lang/String;)Ljakarta/persistence/criteria/Path;*E
+
+__unknown_file ()
+'
+%9!jakarta.persistence.criteria.Path*,
+
+__unknown_file (
+visitsNumber2get(Ljava/lang/String;)°­
+
+øI ø(j(
+%11!jakarta.persistence.criteria.Path"\jakarta.persistence.criteria.Path#get(Ljava/lang/String;)Ljakarta/persistence/criteria/Path;*M
+
+__unknown_file (1
+/
+
+realEstate!jakarta.persistence.criteria.Root*/
+
+__unknown_file (
+realEstateStats2get(Ljava/lang/String;)¦£
+
+øI ø(~(
+%12!jakarta.persistence.criteria.Path"\jakarta.persistence.criteria.Path#get(Ljava/lang/String;)Ljakarta/persistence/criteria/Path;*F
+
+__unknown_file (*
+(
+%11!jakarta.persistence.criteria.Path*,
+
+__unknown_file (
+offersNumber2get(Ljava/lang/String;)ÔÑ
+
+ó ø(5
+%13.jakarta.persistence.criteria.CompoundSelection"¢jakarta.persistence.criteria.CriteriaBuilder#construct(Ljava/lang/Class;[Ljakarta/persistence/criteria/Selection;)Ljakarta/persistence/criteria/CompoundSelection;*P
+
+__unknown_file (4
+2
+cb,jakarta.persistence.criteria.CriteriaBuilder*"
+
+__unknown_file (
+""*E
+
+__unknown_file ()
+'
+%4!jakarta.persistence.criteria.Path*E
+
+__unknown_file ()
+'
+%5!jakarta.persistence.criteria.Path*E
+
+__unknown_file ()
+'
+%6!jakarta.persistence.criteria.Path*E
+
+__unknown_file ()
+'
+%8!jakarta.persistence.criteria.Path*F
+
+__unknown_file (*
+(
+%10!jakarta.persistence.criteria.Path*F
+
+__unknown_file (*
+(
+%12!jakarta.persistence.criteria.Path2Econstruct(Ljava/lang/Class;[Ljakarta/persistence/criteria/Selection;)§¤
+ó ø(€1
+%14*jakarta.persistence.criteria.CriteriaQuery"‡jakarta.persistence.criteria.CriteriaQuery#select(Ljakarta/persistence/criteria/Selection;)Ljakarta/persistence/criteria/CriteriaQuery;*Q
+
+__unknown_file (5
+3
+query*jakarta.persistence.criteria.CriteriaQuery*S
+
+__unknown_file (7
+5
+%13.jakarta.persistence.criteria.CompoundSelection20select(Ljakarta/persistence/criteria/Selection;)°­
+
+ù ù(>(
+%15!jakarta.persistence.criteria.Path"\jakarta.persistence.criteria.Path#get(Ljava/lang/String;)Ljakarta/persistence/criteria/Path;*M
+
+__unknown_file (1
+/
+
+realEstate!jakarta.persistence.criteria.Root*/
+
+__unknown_file (
+realEstateAgent2get(Ljava/lang/String;) 
+
+ù ù(L(
+%16!jakarta.persistence.criteria.Path"\jakarta.persistence.criteria.Path#get(Ljava/lang/String;)Ljakarta/persistence/criteria/Path;*F
+
+__unknown_file (*
+(
+%15!jakarta.persistence.criteria.Path*&
+
+__unknown_file (
+
+userId2get(Ljava/lang/String;)ïì
+
+ù ù(V-
+%17&jakarta.persistence.criteria.Predicate"—jakarta.persistence.criteria.CriteriaBuilder#equal(Ljakarta/persistence/criteria/Expression;Ljava/lang/Object;)Ljakarta/persistence/criteria/Predicate;*P
+
+__unknown_file (4
+2
+cb,jakarta.persistence.criteria.CriteriaBuilder*F
+
+__unknown_file (*
+(
+%16!jakarta.persistence.criteria.Path*7
+
+__unknown_file (
+
+agentIdjava.lang.Long2Bequal(Ljakarta/persistence/criteria/Expression;Ljava/lang/Object;)œ™
+
+ó ù(W1
+%18*jakarta.persistence.criteria.CriteriaQuery"‡jakarta.persistence.criteria.CriteriaQuery#where(Ljakarta/persistence/criteria/Expression;)Ljakarta/persistence/criteria/CriteriaQuery;*O
+
+__unknown_file (3
+1
+%14*jakarta.persistence.criteria.CriteriaQuery*K
+
+__unknown_file (/
+-
+%17&jakarta.persistence.criteria.Predicate20where(Ljakarta/persistence/criteria/Expression;)­ª
+
+ú ú(;(
+%19!jakarta.persistence.criteria.Path"\jakarta.persistence.criteria.Path#get(Ljava/lang/String;)Ljakarta/persistence/criteria/Path;*M
+
+__unknown_file (1
+/
+
+realEstate!jakarta.persistence.criteria.Root*,
+
+__unknown_file (
+realEstateId2get(Ljava/lang/String;)…‚
+
+ú ú(<)
+%20"jakarta.persistence.criteria.Order"jakarta.persistence.criteria.CriteriaBuilder#asc(Ljakarta/persistence/criteria/Expression;)Ljakarta/persistence/criteria/Order;*P
+
+__unknown_file (4
+2
+cb,jakarta.persistence.criteria.CriteriaBuilder*F
+
+__unknown_file (*
+(
+%19!jakarta.persistence.criteria.Path2.asc(Ljakarta/persistence/criteria/Expression;)”‘
+
+ó ú(=1
+%21*jakarta.persistence.criteria.CriteriaQuery"…jakarta.persistence.criteria.CriteriaQuery#orderBy([Ljakarta/persistence/criteria/Order;)Ljakarta/persistence/criteria/CriteriaQuery;*O
+
+__unknown_file (3
+1
+%18*jakarta.persistence.criteria.CriteriaQuery*G
+
+__unknown_file (+
+)
+%20"jakarta.persistence.criteria.Order2.orderBy([Ljakarta/persistence/criteria/Order;)¬
+©
+
+ü( ü(5(
+%22!jakarta.persistence.EntityManager"__id*k
+
+__unknown_file (O*M:
+8com.dietiEstates.backend.repository.CustomRepositoryImpl"
+entityManager‰†
+
+ü( ü(H%
+%23jakarta.persistence.TypedQuery"{jakarta.persistence.EntityManager#createQuery(Ljakarta/persistence/criteria/CriteriaQuery;)Ljakarta/persistence/TypedQuery;*F
+
+__unknown_file (*
+(
+%22!jakarta.persistence.EntityManager*Q
+
+__unknown_file (5
+3
+query*jakarta.persistence.criteria.CriteriaQuery29createQuery(Ljakarta/persistence/criteria/CriteriaQuery;)°­
+
+ıJ ı(Z
+%24long"5org.springframework.data.domain.Pageable#getOffset()J*N
+
+__unknown_file (2
+0
+page(org.springframework.data.domain.Pageable2getOffset()‹ˆ
+
+ü( ı([%
+%25jakarta.persistence.TypedQuery"Pjakarta.persistence.TypedQuery#setFirstResult(I)Ljakarta/persistence/TypedQuery;*C
+
+__unknown_file ('
+%
+%23jakarta.persistence.TypedQuery*)
+
+__unknown_file (
+
+%24long2setFirstResult(I)³°
+
+şD ş(V
+
+%26int"7org.springframework.data.domain.Pageable#getPageSize()I*N
+
+__unknown_file (2
+0
+page(org.springframework.data.domain.Pageable2getPageSize()ˆ…
+
+ü( ş(W%
+%27jakarta.persistence.TypedQuery"Ojakarta.persistence.TypedQuery#setMaxResults(I)Ljakarta/persistence/TypedQuery;*C
+
+__unknown_file ('
+%
+%25jakarta.persistence.TypedQuery*(
+
+__unknown_file (
+
+
+%26int2setMaxResults(I)¼¹
+
+ü( ÿ(E
+%28java.util.List">jakarta.persistence.TypedQuery#getResultList()Ljava/util/List;*C
+
+__unknown_file ('
+%
+%27jakarta.persistence.TypedQuery2getResultList()a
+_
+
+ü ÿ(F
+listjava.util.List"__id*3
+
+__unknown_file (
+
+%28java.util.List"&
+
+	 	(
+
+listjava.util.List:'
+
+ì9 ì(F
+agentIdjava.lang.Long:>
+
+ìG ì(T0
+page(org.springframework.data.domain.PageableB<:
+8com.dietiEstates.backend.repository.CustomRepositoryImplH

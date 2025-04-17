@@ -1,0 +1,8 @@
+com.dietiEstates.backend.service.RealEstateAgentService#getRealEstateStats(Ljava/lang/String;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;
+false
+9d0a47d5a86335e7ba5e3f80a443a34f
+java.util.Optional#get()Ljava/lang/Object;
+==
+!unknownMethod! !unknownMethod!
+findByUsername com.dietiEstates.backend.repository.RealEstateAgentRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;
+findRealEstateStats2 com.dietiEstates.backend.repository.CustomRepository#findRealEstateStats2(Ljava/lang/Long;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;

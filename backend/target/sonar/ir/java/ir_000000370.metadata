@@ -1,0 +1,7 @@
+com.dietiEstates.backend.controller.GlobalExceptionHandler#handleError(Lorg/modelmapper/MappingException;)Lorg/springframework/http/ResponseEntity;
+false
+e3485ae3f6a0320f4effda868507e2de
+org.springframework.http.ResponseEntity#badRequest()Lorg/springframework/http/ResponseEntity$BodyBuilder;
+==
+body org.springframework.http.ResponseEntity$BodyBuilder#body(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;
+header org.springframework.http.ResponseEntity$HeadersBuilder#header(Ljava/lang/String;[Ljava/lang/String;)Lorg/springframework/http/ResponseEntity$HeadersBuilder;

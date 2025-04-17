@@ -1,0 +1,19 @@
+com.dietiEstates.backend.config.security.JWTUtils#generateAccessToken(Lorg/springframework/security/core/userdetails/UserDetails;)Ljava/lang/String;
+false
+c55a8fa7cd08dd1cfe1bb0154af8638a
+com.auth0.jwt.JWT#create()Lcom/auth0/jwt/JWTCreator$Builder;
+java.lang.System#currentTimeMillis()J
+java.util.Date#<init>(J)V
+java.util.Date#instance-init#
+java.util.stream.Collectors#toList()Ljava/util/stream/Collector;
+==
+collect java.util.stream.Stream#collect(Ljava/util/stream/Collector;)Ljava/lang/Object;
+getAuthorities org.springframework.security.core.userdetails.UserDetails#getAuthorities()Ljava/util/Collection;
+getUsername org.springframework.security.core.userdetails.UserDetails#getUsername()Ljava/lang/String;
+map java.util.stream.Stream#map(Ljava/util/function/Function;)Ljava/util/stream/Stream;
+sign com.auth0.jwt.JWTCreator$Builder#sign(Lcom/auth0/jwt/algorithms/Algorithm;)Ljava/lang/String;
+stream java.util.Collection#stream()Ljava/util/stream/Stream;
+withClaim com.auth0.jwt.JWTCreator$Builder#withClaim(Ljava/lang/String;Ljava/util/List;)Lcom/auth0/jwt/JWTCreator$Builder;
+withExpiresAt com.auth0.jwt.JWTCreator$Builder#withExpiresAt(Ljava/util/Date;)Lcom/auth0/jwt/JWTCreator$Builder;
+withIssuedAt com.auth0.jwt.JWTCreator$Builder#withIssuedAt(Ljava/util/Date;)Lcom/auth0/jwt/JWTCreator$Builder;
+withSubject com.auth0.jwt.JWTCreator$Builder#withSubject(Ljava/lang/String;)Lcom/auth0/jwt/JWTCreator$Builder;

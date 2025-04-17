@@ -1,0 +1,9 @@
+com.dietiEstates.backend.service.FindByRadiusService#calcoloLatLongMinMax(Ljava/lang/Integer;Ljava/lang/Double;Ljava/lang/Double;)Lcom/dietiEstates/backend/dto/LatLongMinMax;
+false
+595edb54aca0ec7737bb812213bcdac1
+com.dietiEstates.backend.dto.LatLongMinMax#instance-init#
+java.lang.Math#cos(D)D
+==
+println java.io.PrintStream#println(D)V
+println java.io.PrintStream#println(Ljava/lang/Object;)V
+println java.io.PrintStream#println(Ljava/lang/String;)V

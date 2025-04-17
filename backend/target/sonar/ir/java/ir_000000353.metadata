@@ -1,0 +1,7 @@
+com.dietiEstates.backend.model.RealEstate#instance-init#
+false
+94b0c4d83cb40514ec47d0f9c2c19325
+com.dietiEstates.backend.model.embeddable.RealEstateStats#<init>()V
+com.dietiEstates.backend.model.embeddable.RealEstateStats#instance-init#
+java.util.ArrayList#<init>()V
+java.util.ArrayList#instance-init#

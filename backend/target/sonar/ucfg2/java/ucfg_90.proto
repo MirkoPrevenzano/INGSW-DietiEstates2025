@@ -1,0 +1,62 @@
+
+<com.dietiEstates.backend.model.RealEstate#%field_initializer
+__unknown_file ("1*˚
+1 (éã
+å
+Å/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstate.javaU2 U(A?
+%09com.dietiEstates.backend.model.embeddable.RealEstateStats"9com.dietiEstates.backend.model.embeddable.RealEstateStats¨
+©
+å
+Å/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstate.javaU. U(C
+%1"Ccom.dietiEstates.backend.model.embeddable.RealEstateStats#<init>()V*M
+ (A
+?
+%09com.dietiEstates.backend.model.embeddable.RealEstateStats©
+¶
+å
+Å/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstate.javaT U(D@+
+)com.dietiEstates.backend.model.RealEstate"
+realEstateStats"__id*M
+ (A
+?
+%09com.dietiEstates.backend.model.embeddable.RealEstateStats¬ø
+å
+Å/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstate.javan% n(0
+%2java.util.ArrayList"java.util.ArrayList‡
+›
+å
+Å/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstate.javan! n(2
+%3"java.util.ArrayList#<init>()V*'
+ (
+
+%2java.util.ArrayList˙
+˜
+å
+Å/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstate.javag n(37+
+)com.dietiEstates.backend.model.RealEstate"
+photos"__id*'
+ (
+
+%2java.util.ArrayList¬ø
+å
+Å/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstate.javatI t(T
+%4java.util.ArrayList"java.util.ArrayList‡
+›
+å
+Å/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstate.javatE t(V
+%5"java.util.ArrayList#<init>()V*'
+ (
+
+%4java.util.ArrayListå
+â
+å
+Å/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstate.javap t(WI+
+)com.dietiEstates.backend.model.RealEstate"
+customerViewsRealEstates"__id*'
+ (
+
+%4java.util.ArrayList"£
+ã
+Å/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstate.java! í(
+implicit returnB-+
+)com.dietiEstates.backend.model.RealEstate

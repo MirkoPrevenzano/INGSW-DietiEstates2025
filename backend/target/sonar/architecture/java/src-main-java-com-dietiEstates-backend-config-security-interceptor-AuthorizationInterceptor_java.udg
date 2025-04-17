@@ -1,0 +1,248 @@
+
+1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021518*java2.Bš
+e
+`src/main/java/com/dietiEstates/backend/config/security/interceptor/AuthorizationInterceptor.java2
+
+package4
+9
+4com.dietiEstates.backend.config.security.interceptor5
+R
+Mcom.dietiEstates.backend.config.security.interceptor.AuthorizationInterceptor7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+AuthorizationInterceptor12
+8
+2org.springframework.web.servlet.HandlerInterceptor14
+
+unknown15
+
+
+implements16
+.
+(org.springframework.stereotype.Component18
+
+annotated by19
+
+
+uses20
+
+lombok.extern.slf4j.Slf4j22
+Æ
+¿com.dietiEstates.backend.config.security.interceptor.AuthorizationInterceptor#preHandle(Ljakarta/servlet/http/HttpServletRequest;Ljakarta/servlet/http/HttpServletResponse;Ljava/lang/Object;)Z24
+
+method25
+
+	preHandle26
+-
+'jakarta.servlet.http.HttpServletRequest28
+
+	has param29
+.
+(jakarta.servlet.http.HttpServletResponse31
+
+is type32
+&
+ org.springframework.lang.NonNull34
+$
+jakarta.servlet.ServletRequest36
+
+
+references37
+W
+Qjakarta.servlet.ServletRequest#getAttribute(Ljava/lang/String;)Ljava/lang/Object;39
+
+calls40
+4
+.org.springframework.web.servlet.HandlerMapping42
+U
+Oorg.springframework.web.servlet.HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE44
+_
+Yjakarta.servlet.http.HttpServletResponse#setHeader(Ljava/lang/String;Ljava/lang/String;)V46
+<
+6jakarta.servlet.http.HttpServletResponse#setStatus(I)V48
+)
+#org.springframework.http.HttpStatus50
+2
+,org.springframework.http.HttpStatus#value()I52
+6
+0org.springframework.http.HttpStatus.UNAUTHORIZED54J
+
+1
+12Z
+
+3	
+354j©
+
+43
+434415
+
+51
+515215
+9
+64
+678 *
+1 (&:3B
+	
+9
+10
+
+
+11
+12
+
+27
+272815
+
+35
+353615
+
+45
+454615
+@
+23:
+232425 *
+1 (26:3B
+	
+9
+10
+
+
+11
+26
+
+47
+474815
+
+38
+383915
+
+49
+495015
+
+17
+171815
+
+21
+212215
+
+41
+414215
+
+53
+535415
+
+13
+131415
+
+33
+333415
+
+30
+303115rõ
+
+61316*
+12 (D
+
+61719*
+1 (
+
+61720*
+1 (
+
+62119*
+1 (
+
+62120*
+1 (
+
+61320*
+12 (D
+
+232729*
+1' (9
+
+233029*
+1' (:
+
+232732*
+1: (A
+
+233319*
+1 (
+
+233320*
+1 (&
+
+232720*
+1' (9
+
+233032*
+1; (C
+
+233319*
+1 (
+
+233320*
+1 (&
+
+233020*
+1' (:
+
+233319*
+1 (
+
+233320*
+1 (&
+
+233537*
+1# (*
+
+233840*
+1+ (7
+
+234120*
+18 (F
+
+234337*
+1G (g
+
+233537*
+1 -  (4
+
+233840*
+1 5  (A
+
+233037*
+1+ +(
+
+234540*
+1+ +(#
+
+233037*
+1, ,(
+
+234740*
+1, ,(#
+
+234937*
+1,$ ,(.
+
+235140*
+1,< ,(A
+
+234920*
+1,$ ,(.
+
+234920*
+1,/ ,(;
+
+235337*
+1,/ ,(;

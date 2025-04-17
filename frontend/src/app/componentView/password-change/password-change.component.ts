@@ -55,7 +55,7 @@ export class PasswordChangeComponent {
         newPassword: this.passwordForm.value.newPassword as string,
       }).subscribe({
         error: (err) => {
-          this.notify.error(err);
+          this.notify.warning(err.headers.get('error'))
         },
         complete: () => {
           this.notify.success('Success change password');

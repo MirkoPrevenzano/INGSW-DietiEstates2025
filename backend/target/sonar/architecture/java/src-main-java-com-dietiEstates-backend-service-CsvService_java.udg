@@ -1,0 +1,850 @@
+
+1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789020938*java2.BÀ
+C
+>src/main/java/com/dietiEstates/backend/service/CsvService.java2
+
+package4
+%
+ com.dietiEstates.backend.service5
+0
++com.dietiEstates.backend.service.CsvService7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+
+CsvService12
+,
+&org.springframework.stereotype.Service14
+
+unknown15
+
+annotated by16
+
+
+uses17
+$
+lombok.RequiredArgsConstructor19
+
+lombok.extern.slf4j.Slf4j21
+K
+Ecom.dietiEstates.backend.service.CsvService.realEstateAgentRepository23
+
+field24
+
+private25
+
+realEstateAgentRepository26
+C
+=com.dietiEstates.backend.repository.RealEstateAgentRepository28
+
+is type29
+H
+Bcom.dietiEstates.backend.service.CsvService.realEstateAgentService31
+
+realEstateAgentService32
+=
+7com.dietiEstates.backend.service.RealEstateAgentService34
+Å
+{com.dietiEstates.backend.service.CsvService#writeCsvResponse(Ljava/lang/String;Ljakarta/servlet/http/HttpServletResponse;)V36
+
+method37
+
+writeCsvResponse38
+.
+(jakarta.servlet.http.HttpServletResponse40
+
+	has param41
+4
+.com.dietiEstates.backend.model.RealEstateAgent43
+
+returns44
+
+
+references45
+z
+tcom.dietiEstates.backend.repository.RealEstateAgentRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;47
+
+calls48
+%
+jakarta.servlet.ServletResponse50
+I
+Cjakarta.servlet.ServletResponse#setContentType(Ljava/lang/String;)V52
+_
+Yjakarta.servlet.http.HttpServletResponse#setHeader(Ljava/lang/String;Ljava/lang/String;)V54
+$
+org.supercsv.io.ICsvListWriter56
+#
+org.supercsv.io.CsvListWriter58
+F
+@jakarta.servlet.ServletResponse#getWriter()Ljava/io/PrintWriter;60
+&
+ org.supercsv.prefs.CsvPreference62
+7
+1org.supercsv.prefs.CsvPreference.EXCEL_PREFERENCE64
+î
+çcom.dietiEstates.backend.service.CsvService#writeAgentInfo(Lcom/dietiEstates/backend/model/RealEstateAgent;Lorg/supercsv/io/ICsvListWriter;)V66
+ 
+org.supercsv.io.ICsvWriter68
+B
+<org.supercsv.io.ICsvWriter#writeHeader([Ljava/lang/String;)V70
+ï
+écom.dietiEstates.backend.service.CsvService#writeAgentStats(Lcom/dietiEstates/backend/model/RealEstateAgent;Lorg/supercsv/io/ICsvListWriter;)V72
+õ
+îcom.dietiEstates.backend.service.CsvService#writeRealEstatesStats(Lcom/dietiEstates/backend/model/RealEstateAgent;Lorg/supercsv/io/ICsvListWriter;)V74
+£
+úcom.dietiEstates.backend.service.CsvService#writeRealEstatesPerMonthStats(Lcom/dietiEstates/backend/model/RealEstateAgent;Lorg/supercsv/io/ICsvListWriter;)V76
+.
+(org.supercsv.exception.SuperCsvException78
+<
+6jakarta.servlet.http.HttpServletResponse#setStatus(I)V80
+
+writeAgentInfo81
+2
+,org.supercsv.cellprocessor.ift.CellProcessor83
+u
+ocom.dietiEstates.backend.service.CsvService#getAgentProcessors()[Lorg/supercsv/cellprocessor/ift/CellProcessor;85
+?
+9org.springframework.security.core.userdetails.UserDetails87
+_
+Yorg.springframework.security.core.userdetails.UserDetails#getUsername()Ljava/lang/String;89
+l
+forg.supercsv.io.ICsvListWriter#write(Ljava/util/List;[Lorg/supercsv/cellprocessor/ift/CellProcessor;)V91
+
+writeAgentStats92
+z
+tcom.dietiEstates.backend.service.CsvService#getAgentStatsProcessors()[Lorg/supercsv/cellprocessor/ift/CellProcessor;94
+
+writeRealEstatesStats95
+{
+ucom.dietiEstates.backend.service.CsvService#getEstateStatsProcessors()[Lorg/supercsv/cellprocessor/ift/CellProcessor;97
+/
+)com.dietiEstates.backend.model.RealEstate99
+A
+:org.supercsv.io.ICsvListWriter#write([Ljava/lang/String;)V101
+$
+writeRealEstatesPerMonthStats102
+e
+^com.dietiEstates.backend.service.RealEstateAgentService#getBarChartStats()[Ljava/lang/Integer;104
+>
+7org.supercsv.io.ICsvListWriter#write(Ljava/util/List;)V106
+
+getAgentProcessors107
+4
+-org.supercsv.cellprocessor.constraint.NotNull109
+
+getAgentStatsProcessors110
+
+getEstateStatsProcessors111J
+
+1
+12Z
+
+3	
+354j´
+
+
+67
+676815
+
+51
+515215
+
+53
+535415
+
+103
+10310415
+
+18
+181915
+
+79
+798015
+
+55
+555615
+
+82
+828315
+
+42
+424315
+
+61
+616215
+
+90
+909115
+@
+22:
+222324 *
+1" "(26:3B
+	
+9
+25
+
+
+11
+26
+C
+96=
+969737 *
+1¬ ¬(26:3B
+	
+9
+25
+
+11
+111
+9
+64
+678 *
+1   (:3B
+	
+9
+10
+
+
+11
+12
+
+13
+131415
+
+57
+575815
+C
+93=
+939437 *
+1± ±(26:3B
+	
+9
+25
+
+11
+110
+
+98
+989915
+
+86
+868715
+
+108
+10810915
+
+69
+697015
+C
+75=
+757637 *
+1ó ó(26:3B
+	
+9
+25
+
+11
+102
+C
+84=
+848537 *
+1§ §(26:3B
+	
+9
+25
+
+11
+107
+@
+35:
+353637 *
+1' '(26:3B
+	
+9
+10
+
+
+11
+38
+
+59
+596015
+@
+73:
+737437 *
+1~ ~(26:3B
+	
+9
+25
+
+
+11
+95
+
+100
+10010115
+
+46
+464715
+
+63
+636415
+
+77
+777815
+
+105
+10510615
+
+33
+333415
+@
+65:
+656637 *
+1] ](26:3B
+	
+9
+25
+
+
+11
+81
+
+88
+888915
+
+20
+202115
+
+49
+495015
+@
+30:
+303124 *
+1# #(26:3B
+	
+9
+25
+
+
+11
+32
+
+39
+394015
+@
+71:
+717237 *
+1k k(26:3B
+	
+9
+25
+
+
+11
+92
+
+27
+272815rÍ#
+
+61316*
+1 (
+
+61317*
+1 (	
+
+61816*
+1 (
+
+61817*
+1 (
+
+62016*
+1 (
+
+62017*
+1 (
+
+222729*
+1" "(,
+
+222717*
+1" "(,
+
+222717*
+1"- "(F
+
+303329*
+1# #()
+
+303317*
+1# #()
+
+303317*
+1#* #(@
+
+353941*
+1'3 '(F
+
+353929*
+1'G '(O
+
+353917*
+1'3 '(F
+
+354229*
+1) )((
+
+354217*
+1)	 )(
+
+354244*
+1)+ )(D
+
+352745*
+1)+ )(D
+
+354648*
+1)E )(S
+
+352245*
+1)+ )(D
+
+352717*
+1)+ )(D
+
+352245*
+1)+ )(D
+
+354945*
+1+	 +(
+
+355148*
+1+ +( 
+
+353945*
+10	 0(
+
+355348*
+10 0(
+
+355529*
+12 2("
+
+355517*
+12	 2(
+
+355748*
+16 6(+
+
+354945*
+16, 6(4
+
+355948*
+165 6(>
+
+356117*
+16B 6(O
+
+356117*
+16P 6(`
+
+356345*
+16P 6(`
+
+35645*
+19 9(
+
+356548*
+19 9(
+
+356745*
+1; ;(
+
+356948*
+1; ;(#
+
+356745*
+1< <(
+
+356948*
+1< <(#
+
+35645*
+1> >(
+
+357148*
+1> >(
+
+356745*
+1@ @(
+
+356948*
+1@ @(#
+
+356745*
+1A A(
+
+356948*
+1A A(#
+
+35645*
+1C C("
+
+357348*
+1C C("
+
+356745*
+1E E(
+
+356948*
+1E E(#
+
+356745*
+1F F(
+
+356948*
+1F F(#
+
+35645*
+1H H(*
+
+357548*
+1H H(*
+
+357717*
+1L L(!
+
+353945*
+1N N(
+
+357948*
+1N N(
+
+353945*
+1O O(
+
+355348*
+1O O(
+
+654241*
+1]! ](0
+
+655541*
+1]B ](P
+
+654229*
+1]1 ](@
+
+654217*
+1]! ](0
+
+655529*
+1]Q ]([
+
+655517*
+1]B ](P
+
+656745*
+1_	 _(
+
+656948*
+1_ _(
+
+656745*
+1a	 a(
+
+656948*
+1a a(
+
+658229*
+1b b(.
+
+658217*
+1b b(
+
+658244*
+1b1 b(C
+
+65645*
+1b1 b(C
+
+658448*
+1b1 b(C
+
+658645*
+1e@ e(O
+
+658848*
+1eP e([
+
+655545*
+1g	 g(
+
+659048*
+1g g(
+
+714241*
+1k" k(1
+
+715541*
+1kC k(Q
+
+714229*
+1k2 k(A
+
+714217*
+1k" k(1
+
+715529*
+1kR k(\
+
+715517*
+1kC k(Q
+
+716745*
+1m	 m(
+
+716948*
+1m m(
+
+716745*
+1p	 p(
+
+716948*
+1p p(
+
+718229*
+1q q(3
+
+718217*
+1q q(
+
+718244*
+1q6 q(M
+
+71645*
+1q6 q(M
+
+719348*
+1q6 q(M
+
+715545*
+1z	 z(
+
+719048*
+1z z(
+
+734241*
+1~( ~(7
+
+735541*
+1~I ~(W
+
+734229*
+1~8 ~(G
+
+734217*
+1~( ~(7
+
+735529*
+1~X ~(b
+
+735517*
+1~I ~(W
+
+736745*
+1Ä	 Ä(
+
+736948*
+1Ä Ä(
+
+738229*
+1Ç Ç(3
+
+738217*
+1Ç Ç(
+
+738244*
+1Ç6 Ç(N
+
+73645*
+1Ç6 Ç(N
+
+739648*
+1Ç6 Ç(N
+
+736745*
+1É	 É(
+
+736948*
+1É É(
+
+739817*
+1Ñ Ñ(
+
+739829*
+1á# á(-
+
+739817*
+1á á("
+
+735545*
+1è è(
+
+739048*
+1è è("
+
+735545*
+1ì ì(
+
+7310048*
+1ì ì(
+
+754241*
+1ó0 ó(?
+
+755541*
+1óQ ó(_
+
+754229*
+1ó@ ó(O
+
+754217*
+1ó0 ó(?
+
+755529*
+1ó` ó(j
+
+755517*
+1óQ ó(_
+
+756745*
+1ô	 ô(
+
+756948*
+1ô ô(
+
+756745*
+1õ	 õ(
+
+756948*
+1õ õ(
+
+753345*
+1ú ú(.
+
+7510348*
+1ú/ ú(?
+
+753045*
+1ú ú(.
+
+753317*
+1ú ú(.
+
+753045*
+1ú ú(.
+
+755545*
+1ü	 ü(
+
+7510548*
+1ü ü(
+
+848244*
+1§ §(
+
+848217*
+1§ §(
+
+848229*
+1¶ ¶()
+
+848217*
+1¶ ¶(
+
+848217*
+1¶0 ¶(=
+
+8410848*
+1® ®(
+
+8410848*
+1© ©(
+
+8410848*
+1™ ™(
+
+938244*
+1± ±(
+
+938217*
+1± ±(
+
+938229*
+1≥ ≥()
+
+938217*
+1≥ ≥(
+
+938217*
+1≥0 ≥(=
+
+9310848*
+1µ µ(
+
+9310848*
+1∂ ∂(
+
+9310848*
+1∑ ∑(
+
+9310848*
+1∏ ∏(
+
+9310848*
+1π π(
+
+9310848*
+1∫ ∫(
+
+9310848*
+1ª ª(
+
+968244*
+1¬ ¬(
+
+968217*
+1¬ ¬(
+
+968229*
+1ƒ ƒ()
+
+968217*
+1ƒ ƒ(
+
+968217*
+1ƒ0 ƒ(=
+
+9610848*
+1∆ ∆(
+
+9610848*
+1« «(
+
+9610848*
+1» »(
+
+9610848*
+1… …(
+
+9610848*
+1   (

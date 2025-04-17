@@ -11,10 +11,10 @@ export class GenerateChartService {
 
   generateChartBar(
     options: ChartOptionsBar,
-    fillColor: string = '#1f77b4',
-    strokeColor: string = '#1f77b4',
-    highlightFillColor: string = '#ff7f0e',
-    highlightStrokeColor: string = '#ff7f0e'
+    fillColor: string = '#2C3E50',
+    strokeColor: string = '#2C3E50',
+    highlightFillColor: string = '#A9A9A9',
+    highlightStrokeColor: string = '#A9A9A9'
   ): AgChartOptions {
     return {
       width: options.chartWidth,

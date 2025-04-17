@@ -1,0 +1,10 @@
+com.dietiEstates.backend.service.RealEstateAgentService#realEstateForRentMapper(Lcom/dietiEstates/backend/dto/RealEstateForRentCreationDTO;)Lcom/dietiEstates/backend/model/RealEstateForRent;
+false
+0cbb4b82d683aec926d659d5a4dcf6b7
+com.dietiEstates.backend.model.RealEstateForRent#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/time/LocalDateTime;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/String;Lcom/dietiEstates/backend/model/embeddable/InternalRealEstateFeatures;Lcom/dietiEstates/backend/model/embeddable/ExternalRealEstateFeatures;Ljava/lang/Double;Ljava/lang/Integer;)V
+com.dietiEstates.backend.model.RealEstateForRent#instance-init#
+com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures#instance-init#
+com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures#instance-init#
+java.time.LocalDateTime#now()Ljava/time/LocalDateTime;
+==
+!unknownMethod! !unknownMethod!

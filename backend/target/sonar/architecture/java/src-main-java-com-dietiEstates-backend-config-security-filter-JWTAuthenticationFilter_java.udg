@@ -1,0 +1,550 @@
+
+1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789019582*java2.Bÿ 
+_
+Zsrc/main/java/com/dietiEstates/backend/config/security/filter/JWTAuthenticationFilter.java2
+
+package4
+4
+/com.dietiEstates.backend.config.security.filter5
+L
+Gcom.dietiEstates.backend.config.security.filter.JWTAuthenticationFilter7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+JWTAuthenticationFilter12
+Z
+Torg.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter14
+
+unknown15
+
+extends16
+$
+lombok.RequiredArgsConstructor18
+
+annotated by19
+
+
+uses20
+
+lombok.extern.slf4j.Slf4j22
+g
+acom.dietiEstates.backend.config.security.filter.JWTAuthenticationFilter.daoAuthenticationProvider24
+
+field25
+
+private26
+
+daoAuthenticationProvider27
+O
+Iorg.springframework.security.authentication.dao.DaoAuthenticationProvider29
+
+is type30
+ë
+äcom.dietiEstates.backend.config.security.filter.JWTAuthenticationFilter#attemptAuthentication(Ljakarta/servlet/http/HttpServletRequest;Ljakarta/servlet/http/HttpServletResponse;)Lorg/springframework/security/core/Authentication;32
+
+method33
+
+attemptAuthentication34
+6
+0org.springframework.security.core.Authentication36
+
+returns37
+-
+'jakarta.servlet.http.HttpServletRequest39
+
+	has param40
+.
+(jakarta.servlet.http.HttpServletResponse42
+?
+9org.springframework.security.core.AuthenticationException44
+$
+jakarta.servlet.ServletRequest46
+
+
+references47
+W
+Qjakarta.servlet.ServletRequest#getParameter(Ljava/lang/String;)Ljava/lang/String;49
+
+calls50
+U
+Oorg.springframework.security.authentication.UsernamePasswordAuthenticationToken52
+M
+Gorg.springframework.security.authentication.AbstractAuthenticationToken54
+m
+gorg.springframework.security.authentication.AbstractAuthenticationToken#setDetails(Ljava/lang/Object;)V56
+N
+Horg.springframework.security.web.authentication.WebAuthenticationDetails58
+T
+Norg.springframework.security.web.authentication.WebAuthenticationDetailsSource60
+×
+Ðorg.springframework.security.web.authentication.WebAuthenticationDetailsSource#buildDetails(Ljakarta/servlet/http/HttpServletRequest;)Lorg/springframework/security/web/authentication/WebAuthenticationDetails;62
+_
+Yorg.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider64
+Ó
+Ìorg.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider#authenticate(Lorg/springframework/security/core/Authentication;)Lorg/springframework/security/core/Authentication;66
+H
+Borg.springframework.security.authentication.AccountStatusException68
+C
+=org.springframework.security.authentication.DisabledException70
+A
+;org.springframework.security.authentication.LockedException72
+_
+Yjakarta.servlet.http.HttpServletResponse#setHeader(Ljava/lang/String;Ljava/lang/String;)V74
+M
+Gorg.springframework.security.core.userdetails.UsernameNotFoundException76
+I
+Corg.springframework.security.authentication.BadCredentialsException78
+Œ
+…com.dietiEstates.backend.config.security.filter.JWTAuthenticationFilter#successfulAuthentication(Ljakarta/servlet/http/HttpServletRequest;Ljakarta/servlet/http/HttpServletResponse;Ljakarta/servlet/FilterChain;Lorg/springframework/security/core/Authentication;)V80
+
+	protected81
+
+successfulAuthentication82
+!
+jakarta.servlet.FilterChain84
+&
+ jakarta.servlet.ServletException86
+?
+9org.springframework.security.core.userdetails.UserDetails88
+W
+Qorg.springframework.security.core.Authentication#getPrincipal()Ljava/lang/Object;90
+7
+1com.dietiEstates.backend.config.security.JWTUtils92
+›
+”com.dietiEstates.backend.config.security.JWTUtils#generateAccessToken(Lorg/springframework/security/core/userdetails/UserDetails;)Ljava/lang/String;94
+%
+jakarta.servlet.ServletResponse96
+I
+Cjakarta.servlet.ServletResponse#setContentType(Ljava/lang/String;)V98
+)
+"org.springframework.http.MediaType100
+@
+9org.springframework.http.MediaType.APPLICATION_JSON_VALUE102
+2
++com.fasterxml.jackson.databind.ObjectMapper104
+h
+acom.fasterxml.jackson.databind.ObjectMapper#writeValue(Ljava/io/OutputStream;Ljava/lang/Object;)V106
+*
+#jakarta.servlet.ServletOutputStream108
+]
+Vjakarta.servlet.ServletResponse#getOutputStream()Ljakarta/servlet/ServletOutputStream;110J
+
+1
+12Z
+
+3	
+354j‰
+
+57
+575815
+
+77
+777815
+
+97
+979815
+
+75
+757615
+
+38
+383915
+
+73
+737415
+@
+79:
+798033 *
+1H H(26:3B
+	
+9
+81
+
+
+11
+82
+
+17
+171815
+
+71
+717215
+@
+23:
+232425 *
+1$ $(26:3B
+	
+9
+26
+
+
+11
+27
+
+85
+858615
+
+107
+10710815
+
+105
+10510615
+
+48
+484915
+9
+64
+678 *
+1" "(%:3B
+	
+9
+10
+
+
+11
+12
+
+69
+697015
+
+87
+878815
+
+43
+434415
+
+65
+656615
+
+89
+899015
+
+45
+454615
+
+61
+616215
+
+99
+9910015
+
+83
+838415
+
+103
+10310415
+@
+31:
+313233 *
+1' '(26:3B
+	
+9
+10
+
+
+11
+34
+
+101
+10110215
+
+55
+555615
+
+59
+596015
+
+67
+676815
+
+63
+636415
+
+28
+282915
+
+21
+212215
+
+91
+919215
+
+109
+10911015
+
+13
+131415
+
+53
+535415
+
+95
+959615
+
+93
+939415
+
+41
+414215
+
+51
+515215
+
+35
+353615rÃ
+
+61316*
+1". "(R
+
+61719*
+1   (
+
+61720*
+1   (
+
+62119*
+1! !(
+
+62120*
+1! !(
+
+61320*
+1". "(R
+
+232830*
+1$ $(,
+
+232820*
+1$ $(,
+
+232820*
+1$- $(F
+
+313537*
+1( ((
+
+313840*
+1(1 ((C
+
+314140*
+1(M ((`
+
+313520*
+1( ((
+
+313830*
+1(D ((K
+
+313820*
+1(1 ((C
+
+314130*
+1(a ((i
+
+314120*
+1(M ((`
+
+314320*
+1(r ((‰
+
+314547*
+1* *("
+
+314850*
+1*# *(/
+
+314547*
+1+ +("
+
+314850*
+1+# +(/
+
+315130*
+1-- -(P
+
+315120*
+1-	 -(,
+
+315150*
+1-W -(z
+
+315347*
+1.	 .(,
+
+315550*
+1.- .(7
+
+315737*
+1.8 .(;
+
+315947*
+1.8 .(;
+
+316150*
+1.] .(i
+
+315950*
+1.< .(Z
+
+313537*
+12 2(-
+
+316347*
+12 2(-
+
+316550*
+12. 2(:
+
+312347*
+12 2(-
+
+312820*
+12 2(-
+
+312347*
+12 2(-
+
+316730*
+144 4(5
+
+316920*
+14 4(!
+
+317120*
+14$ 4(3
+
+314147*
+17 7(
+
+317350*
+17 7(
+
+317530*
+1:* :(+
+
+317520*
+1: :()
+
+314147*
+1= =(
+
+317350*
+1= =(
+
+317730*
+1@( @()
+
+317720*
+1@ @('
+
+314147*
+1C C(
+
+317350*
+1C C(
+
+793840*
+1I- I(?
+
+794140*
+1II I(\
+
+798340*
+1J- J(8
+
+793540*
+1J@ J(N
+
+793830*
+1I@ I(G
+
+793820*
+1I- I(?
+
+794130*
+1I] I(e
+
+794120*
+1II I(\
+
+798330*
+1J9 J(>
+
+798320*
+1J- J(8
+
+793530*
+1JO J(c
+
+793520*
+1J@ J(N
+
+798520*
+1Jy J(‰
+
+798730*
+1N N(
+
+798720*
+1N	 N(
+
+798720*
+1N N((
+
+793547*
+1N* N(>
+
+798950*
+1N? N(K
+
+799147*
+1P P(&
+
+799350*
+1P' P(:
+
+799120*
+1P P(&
+
+794147*
+1R	 R(
+
+797350*
+1R R(
+
+799547*
+1X	 X(
+
+799750*
+1X X( 
+
+799920*
+1X! X(*
+
+7910147*
+1X+ X(A
+
+7910347*
+1Y	 Y(
+
+7910550*
+1Y Y(&
+
+7910350*
+1Y Y(
+
+7910737*
+1Y' Y(/
+
+799547*
+1Y' Y(/
+
+7910950*
+1Y0 Y(?

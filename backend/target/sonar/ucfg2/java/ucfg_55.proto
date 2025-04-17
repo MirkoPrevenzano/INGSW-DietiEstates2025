@@ -1,0 +1,62 @@
+
+Çcom.dietiEstates.backend.service.PdfService#createParagraph(Lcom/lowagie/text/Font;Ljava/lang/String;)Lcom/lowagie/text/Paragraph;ê
+É/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/service/PdfService.javaÑ Ñ(%"1*Ø
+1
+Ü$ Ü()LJ
+
+Ü Ü(# 
+%0com.lowagie.text.Paragraph"com.lowagie.text.Paragraphû
+õ
+
+Ü Ü(4
+%1"Mcom.lowagie.text.Paragraph#<init>(Ljava/lang/String;Lcom/lowagie/text/Font;)V*>
+
+__unknown_file ("
+ 
+%0com.lowagie.text.Paragraph*7
+
+__unknown_file (
+
+titlejava.lang.String*?
+
+__unknown_file (#
+!
+fontNamecom.lowagie.text.Fontu
+s
+
+Ü Ü(5
+pcom.lowagie.text.Paragraph"__id*>
+
+__unknown_file ("
+ 
+%0com.lowagie.text.ParagraphC
+A
+
+á á(-	
+%2int"__id*"
+
+__unknown_file (
+""¡æ
+
+á á(.
+
+%3void"+com.lowagie.text.Paragraph#setAlignment(I)V*=
+
+__unknown_file (!
+
+pcom.lowagie.text.Paragraph*'
+
+__unknown_file (
+	
+%2int2setAlignment(I)"/
+
+â â(!
+
+pcom.lowagie.text.Paragraph:/
+
+Ñ& Ñ(4!
+fontNamecom.lowagie.text.Font:'
+
+Ñ5 Ñ(A
+titlejava.lang.StringB/-
++com.dietiEstates.backend.service.PdfService

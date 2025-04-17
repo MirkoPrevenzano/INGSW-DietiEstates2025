@@ -1,0 +1,36 @@
+com.dietiEstates.backend.repository.CustomRepositoryImpl#findRealEstateByFilters2(Ljava/util/Map;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;
+false
+0e5fb9d06d9f6968f9b738ff648a8b9f
+java.lang.Boolean#valueOf(Ljava/lang/String;)Ljava/lang/Boolean;
+java.lang.Double#valueOf(Ljava/lang/String;)Ljava/lang/Double;
+java.lang.Integer#valueOf(Ljava/lang/String;)Ljava/lang/Integer;
+java.lang.String#equals(Ljava/lang/Object;)Z
+java.util.ArrayList#<init>()V
+java.util.ArrayList#instance-init#
+==
+add java.util.List#add(Ljava/lang/Object;)Z
+and jakarta.persistence.criteria.CriteriaBuilder#and([Ljakarta/persistence/criteria/Predicate;)Ljakarta/persistence/criteria/Predicate;
+construct jakarta.persistence.criteria.CriteriaBuilder#construct(Ljava/lang/Class;[Ljakarta/persistence/criteria/Selection;)Ljakarta/persistence/criteria/CompoundSelection;
+createQuery jakarta.persistence.EntityManager#createQuery(Ljakarta/persistence/criteria/CriteriaQuery;)Ljakarta/persistence/TypedQuery;
+createQuery jakarta.persistence.criteria.CriteriaBuilder#createQuery(Ljava/lang/Class;)Ljakarta/persistence/criteria/CriteriaQuery;
+entrySet java.util.Map#entrySet()Ljava/util/Set;
+equal jakarta.persistence.criteria.CriteriaBuilder#equal(Ljakarta/persistence/criteria/Expression;Ljakarta/persistence/criteria/Expression;)Ljakarta/persistence/criteria/Predicate;
+equal jakarta.persistence.criteria.CriteriaBuilder#equal(Ljakarta/persistence/criteria/Expression;Ljava/lang/Object;)Ljakarta/persistence/criteria/Predicate;
+from jakarta.persistence.criteria.AbstractQuery#from(Ljava/lang/Class;)Ljakarta/persistence/criteria/Root;
+ge jakarta.persistence.criteria.CriteriaBuilder#ge(Ljakarta/persistence/criteria/Expression;Ljava/lang/Number;)Ljakarta/persistence/criteria/Predicate;
+get jakarta.persistence.criteria.Path#get(Ljava/lang/String;)Ljakarta/persistence/criteria/Path;
+get java.util.Map#get(Ljava/lang/Object;)Ljava/lang/Object;
+getCriteriaBuilder jakarta.persistence.EntityManager#getCriteriaBuilder()Ljakarta/persistence/criteria/CriteriaBuilder;
+getKey java.util.Map$Entry#getKey()Ljava/lang/Object;
+getOffset org.springframework.data.domain.Pageable#getOffset()J
+getPageSize org.springframework.data.domain.Pageable#getPageSize()I
+getResultList jakarta.persistence.TypedQuery#getResultList()Ljava/util/List;
+getValue java.util.Map$Entry#getValue()Ljava/lang/Object;
+gt jakarta.persistence.criteria.CriteriaBuilder#gt(Ljakarta/persistence/criteria/Expression;Ljava/lang/Number;)Ljakarta/persistence/criteria/Predicate;
+le jakarta.persistence.criteria.CriteriaBuilder#le(Ljakarta/persistence/criteria/Expression;Ljava/lang/Number;)Ljakarta/persistence/criteria/Predicate;
+select jakarta.persistence.criteria.CriteriaQuery#select(Ljakarta/persistence/criteria/Selection;)Ljakarta/persistence/criteria/CriteriaQuery;
+setFirstResult jakarta.persistence.TypedQuery#setFirstResult(I)Ljakarta/persistence/TypedQuery;
+setMaxResults jakarta.persistence.TypedQuery#setMaxResults(I)Ljakarta/persistence/TypedQuery;
+size java.util.List#size()I
+toArray java.util.List#toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+where jakarta.persistence.criteria.CriteriaQuery#where(Ljakarta/persistence/criteria/Expression;)Ljakarta/persistence/criteria/CriteriaQuery;

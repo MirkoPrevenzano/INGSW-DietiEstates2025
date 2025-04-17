@@ -44,8 +44,6 @@ public class SecurityConfig
                                     sessionManagementCustomizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
                                         authorizeHttpRequestsCustomizer.requestMatchers("/login/**", "/auth/**").permitAll())
-            .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
-                                        authorizeHttpRequestsCustomizer.anyRequest().authenticated())
 			.authorizeHttpRequests(adminHttpRequestsCustomizer-> 
                                         adminHttpRequestsCustomizer.requestMatchers("/admin/create-collaborator")
                                                                         .hasAuthority(Role.ROLE_ADMIN.name())
@@ -56,6 +54,8 @@ public class SecurityConfig
                                                                     .requestMatchers("/admin/{username}/create-real-estate-agent")
                                                                         .hasAnyAuthority(Role.ROLE_ADMIN.name(),
                                                                                          Role.ROLE_COLLABORATOR.name()))
+            .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
+                authorizeHttpRequestsCustomizer.anyRequest().authenticated())
 
             //.exceptionHandling(a -> a.accessDeniedPage("/admin/aa").accessDeniedHandler(new AccessDeniedHandlerImpl()))   
             //.authorizeHttpRequests(a -> a.requestMatchers("/auth/path/**").hasAuthority("ROLE_USER"))

@@ -30,8 +30,7 @@ export class AgentHomeComponent implements OnInit{
    const user= localStorage.getItem('user')!
    this.agentService.recentyRealEstate(user).subscribe(response=>{
     const uploadingDate = new Date(response[0].uploadingDate);
-    console.log(uploadingDate.toLocaleDateString())
-    console.log(uploadingDate.toLocaleTimeString())
+   
    })
   }
 

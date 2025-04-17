@@ -1,0 +1,5 @@
+com.dietiEstates.backend.model.RealEstateForSale#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/time/LocalDateTime;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/String;Lcom/dietiEstates/backend/model/embeddable/InternalRealEstateFeatures;Lcom/dietiEstates/backend/model/embeddable/ExternalRealEstateFeatures;Ljava/lang/String;)V
+false
+7294d4daac438b792b95c0ed556786cb
+==
+<init> com.dietiEstates.backend.model.RealEstate#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/time/LocalDateTime;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/String;Lcom/dietiEstates/backend/model/embeddable/InternalRealEstateFeatures;Lcom/dietiEstates/backend/model/embeddable/ExternalRealEstateFeatures;)V

@@ -1,0 +1,16 @@
+
+H__sonar_lambda_0$com.dietiEstates.backend.config.security.SecurityConfigö
+è/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/config/security/SecurityConfig.java( ((<"1*ˇ
+1($ ((2ëé
+($ ((<N
+%2Horg.springframework.security.config.annotation.web.builders.HttpSecurity"ßorg.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer#disable()Lorg/springframework/security/config/annotation/web/HttpSecurityBuilder;*}
+
+__unknown_file (a
+_
+csrfCustomizerMorg.springframework.security.config.annotation.web.configurers.CsrfConfigurer2	disable()"\
+($ ((<P
+N
+%2Horg.springframework.security.config.annotation.web.builders.HttpSecurity:k
+( (( _
+csrfCustomizerMorg.springframework.security.config.annotation.web.configurers.CsrfConfigurerB20
+.org.springframework.security.config.Customizer

@@ -39,8 +39,7 @@ export class AdminRegistrateComponent extends RegisterComponent{
   protected override onRegisterUser(userRequest: RegisterRequest): void {
     this.savePersonalService.saveAdmin(userRequest).subscribe({
       error: (err)=>{
-        console.log("Error register:"+err)
-        this.notify.error(err)
+        this.notify.warning(err.headers.get('error'))
       },
       complete: ()=>{
         this.notify.success('Admin created successfully')

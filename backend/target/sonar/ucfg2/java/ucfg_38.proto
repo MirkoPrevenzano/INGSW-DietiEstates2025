@@ -1,0 +1,63 @@
+
+„com.dietiEstates.backend.service.RealEstateAgentService#findRecentRealEstates(Ljava/lang/String;Ljava/lang/Integer;)Ljava/util/List;œ
+/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/service/RealEstateAgentService.javaÇ% Ç(:"1*ð
+
+1
+É É(#È
+Å
+
+É É(#>
+%08com.dietiEstates.backend.repository.RealEstateRepository"__id*q
+
+__unknown_file (U*S9
+7com.dietiEstates.backend.service.RealEstateAgentService"
+realEstateRepositoryÒ
+Ï
+
+É: É(SC
+%1=com.dietiEstates.backend.repository.RealEstateAgentRepository"__id*v
+
+__unknown_file (Z*X9
+7com.dietiEstates.backend.service.RealEstateAgentService"
+realEstateAgentRepositoryâß
+
+É: É(l
+%2java.util.Optional"tcom.dietiEstates.backend.repository.RealEstateAgentRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;*a
+
+__unknown_file (E
+C
+%1=com.dietiEstates.backend.repository.RealEstateAgentRepository*:
+
+__unknown_file (
+
+usernamejava.lang.String2"findByUsername(Ljava/lang/String;)°­
+
+É: É(r4
+%3.com.dietiEstates.backend.model.RealEstateAgent"*java.util.Optional#get()Ljava/lang/Object;*6
+
+__unknown_file (
+
+%2java.util.Optional2get()Œ
+É É(†
+%4"com.dietiEstates.backend.repository.CustomRepository#findRecentRealEstates(Ljava/lang/Long;Ljava/lang/Integer;)Ljava/util/List;*\
+
+__unknown_file (@
+>
+%08com.dietiEstates.backend.repository.RealEstateRepository*"
+
+__unknown_file (
+""*8
+
+__unknown_file (
+
+limitjava.lang.Integer2:findRecentRealEstates(Ljava/lang/Long;Ljava/lang/Integer;)"
+É É(‡
+
+%4:*
+
+Ç; Ç(K
+usernamejava.lang.String:(
+
+ÇL Ç(Y
+limitjava.lang.IntegerB;9
+7com.dietiEstates.backend.service.RealEstateAgentServiceH

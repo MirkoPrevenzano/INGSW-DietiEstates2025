@@ -21,9 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CSVController 
 {
     private final CsvService csvService;
-
-
-         
+    
     @GetMapping(value = "/{username}/exportCSV")
     public void exportToCSV(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {

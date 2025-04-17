@@ -1,0 +1,44 @@
+
+Acom.dietiEstates.backend.model.RealEstateAgent#%field_initializer
+__unknown_file ("1*ì
+1 (ùö
+ë
+Ü/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstateAgent.java(4 ((HD
+%0>com.dietiEstates.backend.model.embeddable.RealEstateAgentStats">com.dietiEstates.backend.model.embeddable.RealEstateAgentStatsª
+∏
+ë
+Ü/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstateAgent.java(0 ((J
+%1"Hcom.dietiEstates.backend.model.embeddable.RealEstateAgentStats#<init>()V*R
+ (F
+D
+%0>com.dietiEstates.backend.model.embeddable.RealEstateAgentStatsΩ
+∫
+ë
+Ü/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstateAgent.java' ((KJ0
+.com.dietiEstates.backend.model.RealEstateAgent"
+realEstateAgentStats"__id*R
+ (F
+D
+%0>com.dietiEstates.backend.model.embeddable.RealEstateAgentStats«ƒ
+ë
+Ü/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstateAgent.java8/ 8(:
+%2java.util.ArrayList"java.util.ArrayListÂ
+‚
+ë
+Ü/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstateAgent.java8+ 8(<
+%3"java.util.ArrayList#<init>()V*'
+ (
+
+%2java.util.ArrayListâ
+Ü
+ë
+Ü/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstateAgent.java4 8(=A0
+.com.dietiEstates.backend.model.RealEstateAgent"
+realEstates"__id*'
+ (
+
+%2java.util.ArrayList"ß
+è
+Ü/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/model/RealEstateAgent.java N(
+implicit returnB20
+.com.dietiEstates.backend.model.RealEstateAgent

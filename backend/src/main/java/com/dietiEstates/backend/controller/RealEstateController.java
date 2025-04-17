@@ -23,7 +23,7 @@ import com.dietiEstates.backend.service.RealEstateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-
+//mettere nel customer controller (idea)
 @RestController
 @RequestMapping(path = "/real-estate")
 @RequiredArgsConstructor
@@ -39,7 +39,7 @@ public class RealEstateController
     {
         RealEstatePreviewsFirstPageDTO realEstatePreviewsFirstPageDTO = realEstateService.search(filters, PageRequest.of(page, limit));
 
-         for(RealEstatePreviewDTO realEstate : realEstatePreviewsFirstPageDTO.getRealEstatePreviews())
+        for(RealEstatePreviewDTO realEstate : realEstatePreviewsFirstPageDTO.getRealEstatePreviews())
             log.info(realEstate.getLatitude().toString() + " : " + realEstate.getLongitude().toString()); 
         
         log.info(realEstatePreviewsFirstPageDTO.getTotalElements().toString() + " : " + realEstatePreviewsFirstPageDTO.getTotalPages().toString());
@@ -65,7 +65,7 @@ public class RealEstateController
     {
         RealEstatePreviewsFirstPageDTO realEstatePreviewsFirstPageDTO = realEstateService.search3(filters, PageRequest.of(page, limit));
 
-         for(RealEstatePreviewDTO realEstate : realEstatePreviewsFirstPageDTO.getRealEstatePreviews())
+        for(RealEstatePreviewDTO realEstate : realEstatePreviewsFirstPageDTO.getRealEstatePreviews())
             log.info(realEstate.getLatitude().toString() + " : " + realEstate.getLongitude().toString()); 
         
         log.info(realEstatePreviewsFirstPageDTO.getTotalElements().toString() + " : " + realEstatePreviewsFirstPageDTO.getTotalPages().toString());

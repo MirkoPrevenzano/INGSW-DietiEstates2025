@@ -25,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import java.util.UUID;
 import java.util.Collection;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -82,7 +83,8 @@ public class AuthenticationService
 
     //googleregistration
     //googlelogin
-    public AuthenticationResponseDTO authenticateWithGoogle(String googleToken) { 
+    public AuthenticationResponseDTO authenticateWithGoogle(Map <String, String> request) { 
+        String googleToken = request.get("token");
         GoogleIdToken.Payload payload = verifyGoogleToken(googleToken); 
         Customer user = customerService.authenticateWithExternalAPI(payload);
         // Genera il token di autenticazione 

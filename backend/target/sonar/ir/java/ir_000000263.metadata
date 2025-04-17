@@ -1,0 +1,8 @@
+com.dietiEstates.backend.service.RealEstateAgentService#findRecentRealEstates(Ljava/lang/String;Ljava/lang/Integer;)Ljava/util/List;
+false
+93289adc64edce40ca0092cca36ad6d5
+java.util.Optional#get()Ljava/lang/Object;
+==
+!unknownMethod! !unknownMethod!
+findByUsername com.dietiEstates.backend.repository.RealEstateAgentRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;
+findRecentRealEstates com.dietiEstates.backend.repository.CustomRepository#findRecentRealEstates(Ljava/lang/Long;Ljava/lang/Integer;)Ljava/util/List;

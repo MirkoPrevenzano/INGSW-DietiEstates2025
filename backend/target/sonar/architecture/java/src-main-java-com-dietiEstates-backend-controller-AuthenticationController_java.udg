@@ -1,0 +1,414 @@
+
+1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789020362*java2.Bé
+T
+Osrc/main/java/com/dietiEstates/backend/controller/AuthenticationController.java2
+
+package4
+(
+#com.dietiEstates.backend.controller5
+A
+<com.dietiEstates.backend.controller.AuthenticationController7
+
+
+class8
+
+access9
+
+public10
+
+simple name11
+
+AuthenticationController12
+<
+6org.springframework.web.bind.annotation.RestController14
+
+unknown15
+
+annotated by16
+
+
+uses17
+<
+6org.springframework.web.bind.annotation.RequestMapping19
+$
+lombok.RequiredArgsConstructor21
+
+lombok.extern.slf4j.Slf4j23
+X
+Rcom.dietiEstates.backend.controller.AuthenticationController.authenticationService25
+
+field26
+
+private27
+
+authenticationService28
+<
+6com.dietiEstates.backend.service.AuthenticationService30
+
+is type31
+©
+¢com.dietiEstates.backend.controller.AuthenticationController#standardRegistration(Lcom/dietiEstates/backend/dto/UserDTO;)Lorg/springframework/http/ResponseEntity;33
+
+method34
+
+standardRegistration35
+-
+'org.springframework.http.ResponseEntity37
+
+returns38
+*
+$com.dietiEstates.backend.dto.UserDTO40
+
+	has param41
+9
+3org.springframework.web.bind.annotation.PostMapping43
+<
+6com.dietiEstates.backend.dto.AuthenticationResponseDTO45
+9
+3org.springframework.web.bind.annotation.RequestBody47
+9
+3org.springframework.http.ResponseEntity$BodyBuilder49
+
+
+references50
+{
+uorg.springframework.http.ResponseEntity$BodyBuilder#body(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;52
+
+calls53
+g
+aorg.springframework.http.ResponseEntity#ok()Lorg/springframework/http/ResponseEntity$BodyBuilder;55
+²
+«com.dietiEstates.backend.service.AuthenticationService#standardRegistration(Lcom/dietiEstates/backend/dto/UserDTO;)Lcom/dietiEstates/backend/dto/AuthenticationResponseDTO;57
+<
+6org.springframework.http.ResponseEntity$HeadersBuilder59
+£
+œorg.springframework.http.ResponseEntity$HeadersBuilder#header(Ljava/lang/String;[Ljava/lang/String;)Lorg/springframework/http/ResponseEntity$HeadersBuilder;61
+o
+iorg.springframework.http.ResponseEntity#badRequest()Lorg/springframework/http/ResponseEntity$BodyBuilder;63
+‰
+‚com.dietiEstates.backend.controller.AuthenticationController#googleLogin(Ljava/util/Map;)Lorg/springframework/http/ResponseEntity;65
+
+googleLogin66
+
+–com.dietiEstates.backend.service.AuthenticationService#authenticateWithGoogle(Ljava/util/Map;)Lcom/dietiEstates/backend/dto/AuthenticationResponseDTO;68
+m
+gorg.springframework.http.ResponseEntity#ok(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;70
+m
+gorg.springframework.http.ResponseEntity$HeadersBuilder#build()Lorg/springframework/http/ResponseEntity;72J
+
+1
+12Z
+
+3	
+354j‘
+
+42
+424315
+
+54
+545515
+@
+64:
+646534 *
+1, ,(26:3B
+	
+9
+10
+
+
+11
+66
+
+67
+676815
+
+20
+202115
+
+18
+181915
+
+71
+717215
+
+48
+484915
+
+13
+131415
+
+60
+606115
+@
+32:
+323334 *
+1 (26:3B
+	
+9
+10
+
+
+11
+35
+
+44
+444515
+
+46
+464715
+9
+64
+678 *
+1 (&:3B
+	
+9
+10
+
+
+11
+12
+
+22
+222315
+
+29
+293015
+
+69
+697015
+
+39
+394015
+
+51
+515215
+@
+24:
+242526 *
+1 (26:3B
+	
+9
+27
+
+
+11
+28
+
+36
+363715
+
+58
+585915
+
+62
+626315
+
+56
+565715r¿
+
+61316*
+1 (
+
+61317*
+1 (
+
+61816*
+1 (
+
+61817*
+1 (
+
+62016*
+1 (
+
+62017*
+1 (
+
+62216*
+1 (
+
+62217*
+1 (
+
+242931*
+1 ((
+
+242917*
+1 ((
+
+242917*
+1) (>
+
+323638*
+1 (
+
+323941*
+1X (_
+
+324216*
+1 (
+
+324217*
+1 (
+
+323617*
+1 (
+
+324417*
+1 (4
+
+323931*
+1` (g
+
+324616*
+1K (L
+
+324617*
+1L (W
+
+323917*
+1X (_
+
+323638*
+1" "("
+
+324850*
+1" "("
+
+325153*
+1"( "(,
+
+324838*
+1" "("
+
+323650*
+1" "("
+
+325453*
+1"# "(%
+
+324438*
+1"- "(B
+
+322950*
+1"- "(B
+
+325653*
+1"C "(W
+
+322450*
+1"- "(B
+
+322917*
+1"- "(B
+
+322450*
+1"- "(B
+
+323638*
+1& &("
+
+324850*
+1& &("
+
+325153*
+1'` '(d
+
+324838*
+1& &("
+
+325850*
+1& &("
+
+326053*
+1'0 '(6
+
+324838*
+1& &("
+
+325850*
+1& &("
+
+326053*
+1&0 &(6
+
+324838*
+1& &("
+
+323650*
+1& &("
+
+326253*
+1&# &(-
+
+643638*
+1- -(
+
+644216*
+1, ,(
+
+644217*
+1, ,(
+
+643617*
+1- -(
+
+644417*
+1- -(4
+
+644616*
+1-C -(D
+
+644617*
+1-D -(O
+
+644431*
+1/' /(=
+
+644417*
+1/ /(&
+
+644438*
+1/? /(T
+
+642950*
+1/? /(T
+
+646753*
+1/U /(k
+
+642450*
+1/? /(T
+
+642917*
+1/? /(T
+
+642450*
+1/? /(T
+
+643638*
+10 0("
+
+643650*
+10 0("
+
+646953*
+10# 0(%
+
+643638*
+13 3("
+
+645850*
+13 3("
+
+647153*
+130 3(5
+
+644838*
+13 3("
+
+643650*
+13 3("
+
+646253*
+13# 3(-

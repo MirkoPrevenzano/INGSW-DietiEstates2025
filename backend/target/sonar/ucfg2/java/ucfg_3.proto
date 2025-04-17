@@ -1,0 +1,160 @@
+
+ñcom.dietiEstates.backend.service.AuthenticationService#authenticateWithGoogle(Ljava/util/Map;)Lcom/dietiEstates/backend/dto/AuthenticationResponseDTO;ô
+é/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/service/AuthenticationService.javaV% V(;"1*Ô!
+1W W($é
+ã
+W W(1
+%0java.lang.String"__mapGet*6
+
+__unknown_file (
+
+requestjava.util.Map*%
+
+__unknown_file (	
+tokeni
+g
+W W(2
+googleTokenjava.lang.String"__id*4
+
+__unknown_file (
+
+%0java.lang.Stringë
+é
+X( X(FH
+%1Bcom.google.api.client.googleapis.auth.oauth2.GoogleIdToken$Payload"†com.dietiEstates.backend.service.AuthenticationService#verifyGoogleToken(Ljava/lang/String;)Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdToken$Payload;*V
+
+__unknown_file (:8
+6com.dietiEstates.backend.service.AuthenticationService*=
+
+__unknown_file (!
+
+googleTokenjava.lang.String 
+«
+X X(GM
+payloadBcom.google.api.client.googleapis.auth.oauth2.GoogleIdToken$Payload"__id*f
+
+__unknown_file (J
+H
+%1Bcom.google.api.client.googleapis.auth.oauth2.GoogleIdToken$Payload∏
+µ
+Y Y('6
+%20com.dietiEstates.backend.service.CustomerService"__id*k
+
+__unknown_file (O*M8
+6com.dietiEstates.backend.service.AuthenticationService"
+customerService†ù
+Y Y(L-
+%3'com.dietiEstates.backend.model.Customer"ªcom.dietiEstates.backend.service.CustomerService#authenticateWithExternalAPI(Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdToken$Payload;)Lcom/dietiEstates/backend/model/Customer;*T
+
+__unknown_file (8
+6
+%20com.dietiEstates.backend.service.CustomerService*k
+
+__unknown_file (O
+M
+payloadBcom.google.api.client.googleapis.auth.oauth2.GoogleIdToken$Payload2aauthenticateWithExternalAPI(Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdToken$Payload;)ë
+é
+Y Y(M/
+user'com.dietiEstates.backend.model.Customer"__id*K
+
+__unknown_file (/
+-
+%3'com.dietiEstates.backend.model.Customera
+_
+\' \(5)
+%4#com.dietiEstates.backend.model.Role"__id*"
+
+__unknown_file (
+""üú
+\' \(<
+%5java.lang.String"'java.lang.Enum#name()Ljava/lang/String;*G
+
+__unknown_file (+
+)
+%4#com.dietiEstates.backend.model.Role2name()õò
+\ \(&H
+%6Borg.springframework.security.core.authority.SimpleGrantedAuthority"Borg.springframework.security.core.authority.SimpleGrantedAuthorityë
+é
+\ \(=
+%7"^org.springframework.security.core.authority.SimpleGrantedAuthority#<init>(Ljava/lang/String;)V*f
+
+__unknown_file (J
+H
+%6Borg.springframework.security.core.authority.SimpleGrantedAuthority*4
+
+__unknown_file (
+
+%5java.lang.Stringã
+à
+[9 ](	
+%8java.util.List"Gjava.util.Collections#singletonList(Ljava/lang/Object;)Ljava/util/List;*5
+
+__unknown_file ("
+java.util.Collections*f
+
+__unknown_file (J
+H
+%6Borg.springframework.security.core.authority.SimpleGrantedAuthorityk
+i
+[ ](
+#
+authoritiesjava.util.Collection"__id*2
+
+__unknown_file (
+
+%8java.util.Listﬁ€
+b b("
+%9java.lang.String"Yorg.springframework.security.core.userdetails.UserDetails#getUsername()Ljava/lang/String;*M
+
+__unknown_file (1
+/
+user'com.dietiEstates.backend.model.Customer2getUsername()ﬂ‹
+c c("
+%10java.lang.String"Yorg.springframework.security.core.userdetails.UserDetails#getPassword()Ljava/lang/String;*M
+
+__unknown_file (1
+/
+user'com.dietiEstates.backend.model.Customer2getPassword(){y
+a a(9
+%112org.springframework.security.core.userdetails.User"2org.springframework.security.core.userdetails.Userï
+í
+a e(
+%12"vorg.springframework.security.core.userdetails.User#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/util/Collection;)V*W
+
+__unknown_file (;
+9
+%112org.springframework.security.core.userdetails.User*4
+
+__unknown_file (
+
+%9java.lang.String*5
+
+__unknown_file (
+
+%10java.lang.String*A
+
+__unknown_file (%
+#
+authoritiesjava.util.Collectionåâ
+` f(	
+%13java.lang.String"îcom.dietiEstates.backend.config.security.JWTUtils#generateAccessToken(Lorg/springframework/security/core/userdetails/UserDetails;)Ljava/lang/String;*"
+
+__unknown_file (
+""*W
+
+__unknown_file (;
+9
+%112org.springframework.security.core.userdetails.User2PgenerateAccessToken(Lorg/springframework/security/core/userdetails/UserDetails;)d
+b
+` f(
+
+tokenjava.lang.String"__id*5
+
+__unknown_file (
+
+%13java.lang.String"
+h h(4
+"":$
+V< V(X
+requestjava.util.MapB:8
+6com.dietiEstates.backend.service.AuthenticationServiceH

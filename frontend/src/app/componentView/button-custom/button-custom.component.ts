@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
       [routerLink]="routerLink"
       (click)="handleClick($event)"
       [ngStyle]="width ? {'width.px': width} : {}"
-      class=" px-6 py-3 text-white font-semibold rounded-xl shadow-lg transition transform hover:scale-105 sm:w-full w-full"
+      class=" px-6 py-3 text-back font-semibold rounded-xl shadow-lg transition transform hover:scale-105 sm:w-full w-full"
     >
       {{ text }}
     </button>
@@ -23,13 +23,14 @@ import { RouterModule } from '@angular/router';
 })
 export class ButtonCustomComponent {
   @Input() text: string = '';
-  @Input() color: string = 'bg-blue-600';
   @Input() width: number |null = null
+  @Input() color: string = 'bg-primary'; 
+  @Input() hoverColor: string = 'hover:bg-secondary';
   @Input() routerLink: string | null = null;
   @Output() clickEvent = new EventEmitter<Event>();
 
   get buttonClass() {
-    return `${this.color} hover:${this.color.replace('600', '700')}`;
+    return `${this.color} hover:${this.hoverColor}`;
   }
 
   handleClick(event: Event) {

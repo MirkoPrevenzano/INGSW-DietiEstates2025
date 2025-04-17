@@ -1,0 +1,5 @@
+com.dietiEstates.backend.service.CsvService#getEstateStatsProcessors()[Lorg/supercsv/cellprocessor/ift/CellProcessor;
+false
+bf1adefa693dc32f691a1848111f1639
+org.supercsv.cellprocessor.constraint.NotNull#<init>()V
+org.supercsv.cellprocessor.constraint.NotNull#instance-init#

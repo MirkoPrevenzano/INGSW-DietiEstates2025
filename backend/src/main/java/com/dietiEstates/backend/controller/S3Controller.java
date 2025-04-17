@@ -68,12 +68,6 @@ public class S3Controller
         try 
         {
             String[] photos = realEstateAgentService.getPhoto(realEstateId);
-             // Se non ci sono foto, restituisci un array vuoto
-            if (photos == null || photos.length == 0) {
-                return ResponseEntity.ok(new String[]{});
-            }
-
-            // Restituisci le foto nel corpo della risposta
             return ResponseEntity.ok(photos);
         } 
         catch (NoSuchKeyException e) 

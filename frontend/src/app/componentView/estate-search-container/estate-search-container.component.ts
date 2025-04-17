@@ -77,42 +77,19 @@ export class EstateSearchContainerComponent implements OnInit {
     this.activadeRouter.queryParams.subscribe(params => {
       this.retrieveFilter(params)
     });
-
+    
     this.loadEstates();
   }
 
-  /*
-    ricavo filtri e li inserisco nell'url
-   */
-  /*retrieveFilter(params: Params) {
-    this.pageNumber = Number(params['page']) || 0
-      
-      if(!params['page']){
-        const page = this.pageNumber
-        const limit = this.limit
-        this.router.navigate([],{
-          relativeTo: this.activadeRouter,
-          queryParams: {...params, page,limit},
-          queryParamsHandling: 'merge'
-        })
-      }
 
-      this.filter={...params}
-      delete this.filter['page']
-      delete this.filter['limit']
-  }*/
-
-    retrieveFilter(params: Params) {
-      const { filters, page } = this.filterService.retrieveFilter(params);
-      this.filter = filters;
-      this.pageNumber = page;
-    }
+  retrieveFilter(params: Params) {
+    const { filters, page } = this.filterService.retrieveFilter(params);
+    this.filter = filters;
+    this.pageNumber = page;
+  }
 
 
-  
-  /*
-    ricavo gli estates
-  */
+
   loadEstates() {
     const params = {
       ...this.filter,
@@ -143,19 +120,18 @@ export class EstateSearchContainerComponent implements OnInit {
   
 
 
-  /*Ricavo gli estates dal server */
   serverRetrieveEstates(params: { [key: string]: any; }, cacheKey: string) {
     if(this.isPage)
       this.getEstatesNewPage(params,cacheKey)
-    else
+    else{
       this.getEstatesNewFilter(params,cacheKey)  
+
+    }
   }
 
-  /*richiesta estates per cambio di pagina */
   getEstatesNewPage(params: { [key: string]: any; }, cacheKey: string) {
     this.estateService.getEstatesNewPage(params).subscribe((result) => {
         if (!result) {
-          console.error("Result is undefined");
           return;
         }
         this.listEstatePreview = result;
@@ -178,7 +154,6 @@ export class EstateSearchContainerComponent implements OnInit {
   
   getEstatesNewFilter(params: { [key: string]: any; }, cacheKey: string) {
     this.estateService.getEstatesNewFilter(params).subscribe((result:any)=>{
-        console.log(result.totalElements)
         if(result.totalElements>0){
           this.countOfItems = result.totalElements
           this.listEstatePreview = result.realEstatePreviews;
@@ -241,8 +216,11 @@ export class EstateSearchContainerComponent implements OnInit {
 
   applyFilter(params: { [key: string]: any }){
     this.pageCache.clear()
+    this.filter = { ...this.filter, ...params };
+    this.pageNumber=0
     this.updateUrl(params, 0)
     this.loadEstates()
+    
 
   }
 

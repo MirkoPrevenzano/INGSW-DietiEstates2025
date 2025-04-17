@@ -1,0 +1,11 @@
+com.dietiEstates.backend.service.PdfService#writeAgentStats(Lcom/lowagie/text/Document;Lcom/lowagie/text/Font;Lcom/lowagie/text/Font;Lcom/lowagie/text/pdf/PdfPCell;Lcom/lowagie/text/Font;Lcom/lowagie/text/pdf/PdfPCell;Lcom/dietiEstates/backend/model/RealEstateAgent;)V
+false
+d23d3730058b6ce46177add9fc5753f7
+com.dietiEstates.backend.service.PdfService#createParagraph(Lcom/lowagie/text/Font;Ljava/lang/String;)Lcom/lowagie/text/Paragraph;
+com.dietiEstates.backend.service.PdfService#createTable(IF[F)Lcom/lowagie/text/pdf/PdfPTable;
+com.dietiEstates.backend.service.PdfService#writeInTable(Lcom/lowagie/text/pdf/PdfPTable;Lcom/lowagie/text/pdf/PdfPCell;Lcom/lowagie/text/Font;[Ljava/lang/String;)V
+java.lang.Double#toString()Ljava/lang/String;
+java.lang.Integer#toString()Ljava/lang/String;
+==
+!unknownMethod! !unknownMethod!
+add com.lowagie.text.Document#add(Lcom/lowagie/text/Element;)Z

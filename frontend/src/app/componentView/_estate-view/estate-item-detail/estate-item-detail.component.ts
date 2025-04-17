@@ -14,6 +14,7 @@ import { UploadPhotoService } from '../../../_service/rest-backend/upload-photo/
 import { GetEstateDetailService } from '../../../_service/rest-backend/get-estate-detail.service';
 import { ReadPhotoService } from '../../../_service/read-photo/read-photo.service';
 import { NotFoundComponent } from '../../not-found/not-found.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-estate-item',
@@ -37,6 +38,7 @@ export class EstateItemDetailComponent implements OnInit{
   uploadPhotosService = inject(UploadPhotoService)
   estateService = inject(GetEstateDetailService)
   readPhoto = inject(ReadPhotoService)
+  notifyService = inject(ToastrService)
   notFound404=false
   @Input() estate!: Estate;
   @Input() photos: string[] = [];
@@ -70,7 +72,9 @@ export class EstateItemDetailComponent implements OnInit{
       error: (err) => {
         if(err.code==404)
           this.notFound404=true
-        console.error("Errore durante il caricamento dell'immobile:", err);
+        else
+          this.notifyService.warning(err.headers.get('error'))
+
       }
     });
     
@@ -85,7 +89,7 @@ export class EstateItemDetailComponent implements OnInit{
         console.log("Foto caricate nello slider:", this.photos);
       },
       error: (err) => {
-        console.error("Errore durante il caricamento della foto:", err);
+        this.notifyService.error(err.headers.get('error'))
       }
     });
   }

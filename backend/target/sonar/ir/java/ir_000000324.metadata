@@ -1,0 +1,5 @@
+com.dietiEstates.backend.model.embeddable.RealEstateAgentStats#getRentalsToSalesRatio()D
+false
+864240e8aaf22b14ba0073b786b86afd
+==
+getSalesToRentalsRatio com.dietiEstates.backend.model.embeddable.RealEstateAgentStats#getSalesToRentalsRatio()D

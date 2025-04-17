@@ -1,0 +1,57 @@
+
+ìcom.dietiEstates.backend.controller.GlobalExceptionHandler#handleError(Lorg/modelmapper/MappingException;)Lorg/springframework/http/ResponseEntity;ù
+í/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/controller/GlobalExceptionHandler.java (("startingBlock*∆
+startingBlock( (<æ
+ª
+ (9
+%3"
+__annotate*X
+
+__unknown_file (<:
+8org.springframework.web.bind.annotation.ExceptionHandler*C
+
+__unknown_file ('
+%
+e org.modelmapper.MappingExceptione
+c
+: (;%
+e org.modelmapper.MappingException"__annotation*"
+
+__unknown_file (
+
+%3*
+1*®	
+1 (¸
+˘
+ (*9
+%03org.springframework.http.ResponseEntity$BodyBuilder"iorg.springframework.http.ResponseEntity#badRequest()Lorg/springframework/http/ResponseEntity$BodyBuilder;*G
+
+__unknown_file (+")
+'org.springframework.http.ResponseEntityèå
+ (b9
+%13org.springframework.http.ResponseEntity$BodyBuilder"úorg.springframework.http.ResponseEntity$HeadersBuilder#header(Ljava/lang/String;[Ljava/lang/String;)Lorg/springframework/http/ResponseEntity$HeadersBuilder;*W
+
+__unknown_file (;
+9
+%03org.springframework.http.ResponseEntity$BodyBuilder*%
+
+__unknown_file (	
+Error*w
+
+__unknown_file ([Y
+WProblems while mapping! Probably the source object was different than the one expected!2-header(Ljava/lang/String;[Ljava/lang/String;) «
+ (m-
+%2'org.springframework.http.ResponseEntity"uorg.springframework.http.ResponseEntity$BodyBuilder#body(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;*W
+
+__unknown_file (;
+9
+%13org.springframework.http.ResponseEntity$BodyBuilder*"
+
+__unknown_file (
+""2body(Ljava/lang/Object;)";
+ (n/
+-
+%2'org.springframework.http.ResponseEntity:1
+) (;%
+e org.modelmapper.MappingExceptionB><
+:com.dietiEstates.backend.controller.GlobalExceptionHandlerH

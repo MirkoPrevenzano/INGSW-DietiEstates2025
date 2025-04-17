@@ -1,0 +1,25 @@
+
+^com.dietiEstates.backend.service.RealEstateAgentService#getBarChartStats()[Ljava/lang/Integer;ú
+è/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/service/RealEstateAgentService.java‹ ‹(%"1*˙
+1
+ﬁ ﬁ("√
+¿
+
+ﬁ ﬁ(":
+%04com.dietiEstates.backend.service.MockingStatsService"__id*p
+
+__unknown_file (T*R9
+7com.dietiEstates.backend.service.RealEstateAgentService"
+mockingStatsService˜Ù
+
+ﬁ ﬁ(6
+%1java.lang.Integer[]"\com.dietiEstates.backend.service.MockingStatsService#mockBarChartStats()[Ljava/lang/Integer;*X
+
+__unknown_file (<
+:
+%04com.dietiEstates.backend.service.MockingStatsService2mockBarChartStats()")
+
+ﬁ ﬁ(7
+
+%1java.lang.Integer[]B;9
+7com.dietiEstates.backend.service.RealEstateAgentServiceH

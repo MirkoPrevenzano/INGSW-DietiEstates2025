@@ -25,11 +25,11 @@ public class CustomerController
 {
     private final CustomerService customerService;
 
-
-
     @GetMapping("{username}/view/{realEstateId}")
     public ResponseEntity<RealEstateCreationDTO> viewRealEstate(@PathVariable("username") String username, @PathVariable("realEstateId") Long realEstateId) 
     {
         return ResponseEntity.ok().body(customerService.viewRealEstate(username, realEstateId));
     }
+
+    //mettere i filtri senza username nel path
 }

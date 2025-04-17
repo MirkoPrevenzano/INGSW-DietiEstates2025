@@ -2,25 +2,23 @@
 <html>
   <head>
     <title>Dieti-Estates</title>
-
   </head>
-  <body class="flex flex-col min-h-screen">
-
-    <div class="grid grid-rows-layout h-screen">
-      <nav class="p-1">
+  <body class="flex flex-col min-h-screen ">
+    <div class="grid grid-rows-[auto,1fr,auto] h-screen bg-back">
+      <!-- Navbar -->
+      <nav class="pb-1">
         <navbar-component></navbar-component>
       </nav>
 
+      <!-- Main Content -->
       <main class="overflow-y-auto">
         <router-outlet></router-outlet>
       </main>
 
+      <!-- Footer -->
       <footer class="bg-white shadow">
         <app-footer></app-footer>
       </footer>
     </div>
-   
-  
-
-</body>
+  </body>
 </html>
