@@ -79,11 +79,11 @@ public class BackendApplication
     {
         return args -> 
         {  
-           /*  Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@", "ak");
+             Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@", "ak");
             administrator.setPassword(passwordEncoder.encode(administrator.getPassword()));
             administrator = administratorRepository.save(administrator);
 
-
+/* 
             RealEstateAgent agent = (new RealEstateAgent("a","b","c",passwordEncoder.encode("ssssssssssssssssssss22A@")));
             agent.setAdministrator(administrator);
             administrator.addRealEstateAgent(agent);
