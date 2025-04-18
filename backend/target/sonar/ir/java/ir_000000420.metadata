@@ -1,8 +1,0 @@
-com.dietiEstates.backend.controller.RealEstateController#a(Ljava/lang/Integer;Ljava/lang/Integer;Ljava/util/Map;)Lorg/springframework/http/ResponseEntity;
-false
-9276582fcd8c94c1aa784b16b95af9d1
-org.springframework.data.domain.PageRequest#of(II)Lorg/springframework/data/domain/PageRequest;
-org.springframework.http.ResponseEntity#ok(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;
-==
-!unknownMethod! !unknownMethod!
-search com.dietiEstates.backend.service.RealEstateService#search(Ljava/util/Map;Lorg/springframework/data/domain/Pageable;)Lcom/dietiEstates/backend/dto/RealEstatePreviewsFirstPageDTO;

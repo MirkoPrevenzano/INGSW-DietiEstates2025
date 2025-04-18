@@ -1,68 +1,0 @@
-
-‚com.dietiEstates.backend.controller.AuthenticationController#googleLogin(Ljava/util/Map;)Lorg/springframework/http/ResponseEntity;Ÿ
-”/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/controller/AuthenticationController.java-5 -(@"startingBlock*§
-startingBlock-@ -(k¬
-©
--B -(N
-%5"
-__annotate*S
-
-__unknown_file (75
-3org.springframework.web.bind.annotation.RequestBody*6
-
-__unknown_file (
-
-requestjava.util.MapX
-V
--c -(j
-requestjava.util.Map"__annotation*"
-
-__unknown_file (
-
-%5*
-6*J
-40 0(=";
-0 0(=/
--
-%2'org.springframework.http.ResponseEntity*·
-5/ /(tÁ
-¾
-/ /(tP
-authenticationResponse6com.dietiEstates.backend.dto.AuthenticationResponseDTO"__id*Z
-
-__unknown_file (>
-<
-%16com.dietiEstates.backend.dto.AuthenticationResponseDTOÞ
-Û
-0 0(<-
-%2'org.springframework.http.ResponseEntity"gorg.springframework.http.ResponseEntity#ok(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;*G
-
-__unknown_file (+")
-'org.springframework.http.ResponseEntity*n
-
-__unknown_file (R
-P
-authenticationResponse6com.dietiEstates.backend.dto.AuthenticationResponseDTO*
-4*ƒ
-6/> /(SÊ
-Ç
-/> /(S<
-%06com.dietiEstates.backend.service.AuthenticationService"__id*w
-
-__unknown_file ([*Y>
-<com.dietiEstates.backend.controller.AuthenticationController"
-authenticationService¡ž
-/> /(s<
-%16com.dietiEstates.backend.dto.AuthenticationResponseDTO"–com.dietiEstates.backend.service.AuthenticationService#authenticateWithGoogle(Ljava/util/Map;)Lcom/dietiEstates/backend/dto/AuthenticationResponseDTO;*Z
-
-__unknown_file (>
-<
-%06com.dietiEstates.backend.service.AuthenticationService*6
-
-__unknown_file (
-
-requestjava.util.Map2'authenticateWithGoogle(Ljava/util/Map;)*
-5:$
--B -(j
-requestjava.util.MapB@>
-<com.dietiEstates.backend.controller.AuthenticationControllerH

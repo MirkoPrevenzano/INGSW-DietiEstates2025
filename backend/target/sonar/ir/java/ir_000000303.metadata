@@ -1,8 +1,0 @@
-com.dietiEstates.backend.service.PdfService#writeInTable(Lcom/lowagie/text/pdf/PdfPTable;Lcom/lowagie/text/pdf/PdfPCell;Lcom/lowagie/text/Font;[Ljava/lang/String;)V
-false
-c70868313436b1407ed1dc02a558b99d
-com.lowagie.text.Phrase#<init>(Ljava/lang/String;Lcom/lowagie/text/Font;)V
-com.lowagie.text.Phrase#instance-init#
-==
-addCell com.lowagie.text.pdf.PdfPTable#addCell(Lcom/lowagie/text/pdf/PdfPCell;)Lcom/lowagie/text/pdf/PdfPCell;
-setPhrase com.lowagie.text.pdf.PdfPCell#setPhrase(Lcom/lowagie/text/Phrase;)V

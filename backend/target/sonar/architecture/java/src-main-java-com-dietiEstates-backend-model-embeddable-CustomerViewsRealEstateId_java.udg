@@ -1,200 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021756*java2.Bì
-[
-Vsrc/main/java/com/dietiEstates/backend/model/embeddable/CustomerViewsRealEstateId.java2
-
-package4
-.
-)com.dietiEstates.backend.model.embeddable5
-H
-Ccom.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-CustomerViewsRealEstateId12
-$
-jakarta.persistence.Embeddable14
-
-unknown15
-
-annotated by16
-
-
-uses17
-$
-lombok.RequiredArgsConstructor19
-
-lombok.NoArgsConstructor21
-T
-Ncom.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId.customerId23
-
-field24
-
-private25
-
-
-customerId26
-
-lombok.NonNull28
-V
-Pcom.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId.realEstateId30
-
-realEstateId31
-e
-_com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId#equals(Ljava/lang/Object;)Z33
-
-method34
-
-equals35
-
-
-references36
-
-is type37
-U
-Ocom.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId#hashCode()I39
-
-hashCode40J
-
-1
-12Z
-
-3	
-354j“
-@
-29:
-293024 *
-1 (26:3B
-	
-9
-25
-
-
-11
-31
-@
-22:
-222324 *
-1 (26:3B
-	
-9
-25
-
-
-11
-26
-@
-32:
-323334 *
-1 (26:3B
-	
-9
-10
-
-
-11
-35
-9
-64
-678 *
-1 (':3B
-	
-9
-10
-
-
-11
-12
-
-27
-272815
-
-18
-181915
-
-13
-131415
-@
-38:
-383934 *
-1% %(26:3B
-	
-9
-10
-
-
-11
-40
-
-20
-202115r¬
-
-61316*
-1 (
-
-61317*
-1 (
-
-61816*
-1 (
-
-61817*
-1 (
-
-62016*
-1 (
-
-62017*
-1 (
-
-222716*
-1 (
-
-222717*
-1 (
-
-292716*
-1 (
-
-292717*
-1 (
-
-32617*
-1 (
-
-32636*
-1 (
-
-32637*
-1 #  ('
-
-32617*
-1 	  ("
-
-32617*
-1 +  (D
-
-322236*
-1! !()
-
-322236*
-1!0 !(:
-
-322936*
-1" "(+
-
-322936*
-1"2 "(>
-
-382236*
-1( (('
-
-382936*
-1() ((5

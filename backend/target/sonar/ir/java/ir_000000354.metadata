@@ -1,3 +1,0 @@
-com.dietiEstates.backend.model.RealEstate#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/time/LocalDateTime;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/String;Lcom/dietiEstates/backend/model/embeddable/InternalRealEstateFeatures;Lcom/dietiEstates/backend/model/embeddable/ExternalRealEstateFeatures;)V
-false
-7e41bea583757f07e187ba03d1254439

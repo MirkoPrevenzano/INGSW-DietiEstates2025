@@ -1,229 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021069*java2.B¤
-J
-Esrc/main/java/com/dietiEstates/backend/dto/RealEstateCreationDTO.java2
-
-package4
-!
-com.dietiEstates.backend.dto5
-7
-2com.dietiEstates.backend.dto.RealEstateCreationDTO7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-RealEstateCreationDTO12
-
-lombok.Data14
-
-unknown15
-
-annotated by16
-
-
-uses17
-
-lombok.NoArgsConstructor19
-$
-lombok.RequiredArgsConstructor21
-@
-:com.dietiEstates.backend.dto.RealEstateCreationDTO.address23
-
-field24
-
-private25
-
-address26
--
-'com.dietiEstates.backend.dto.AddressDTO28
-
-is type29
-
-lombok.NonNull31
-G
-Acom.dietiEstates.backend.dto.RealEstateCreationDTO.estateDescribe33
-
-estateDescribe34
-1
-+com.dietiEstates.backend.dto.EstateDescribe36
-G
-Acom.dietiEstates.backend.dto.RealEstateCreationDTO.estateFeatures38
-
-estateFeatures39
-1
-+com.dietiEstates.backend.dto.EstateFeatures41
-O
-Icom.dietiEstates.backend.dto.RealEstateCreationDTO.estateLocationFeatures43
-
-estateLocationFeatures44
-9
-3com.dietiEstates.backend.dto.EstateLocationFeatures46J
-
-1
-12Z
-
-3	
-354jã
-
-30
-303115
-
-20
-202115
-
-45
-454615
-9
-64
-678 *
-1 (#:3B
-	
-9
-10
-
-
-11
-12
-@
-37:
-373824 *
-1 (26:3B
-	
-9
-25
-
-
-11
-39
-
-40
-404115
-@
-22:
-222324 *
-1 (26:3B
-	
-9
-25
-
-
-11
-26
-
-27
-272815
-
-13
-131415
-@
-42:
-424324 *
-1 (26:3B
-	
-9
-25
-
-
-11
-44
-
-18
-181915
-@
-32:
-323324 *
-1 (26:3B
-	
-9
-25
-
-
-11
-34
-
-35
-353615r¸
-
-61316*
-1 (
-
-61317*
-1 (
-
-61816*
-1 (
-
-61817*
-1 (
-
-62016*
-1 (
-
-62017*
-1 (
-
-222729*
-1 (
-
-223016*
-1 (
-
-223017*
-1 (
-
-222717*
-1 (
-
-222717*
-1 (
-
-323529*
-1 (
-
-323016*
-1 (
-
-323017*
-1 (
-
-323517*
-1 (
-
-323517*
-1 (*
-
-374029*
-1 (
-
-373016*
-1 (
-
-373017*
-1 (
-
-374017*
-1 (
-
-374017*
-1 (*
-
-424529*
-1 (#
-
-423016*
-1 (
-
-423017*
-1 (
-
-424517*
-1 (#
-
-424517*
-1$ (:

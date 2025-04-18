@@ -1,7 +1,0 @@
-com.dietiEstates.backend.service.CustomerService#generateRandomPassword()Ljava/lang/String;
-false
-49727099adf88080108042dab1ec569b
-java.lang.String#replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
-java.lang.String#substring(II)Ljava/lang/String;
-java.util.UUID#randomUUID()Ljava/util/UUID;
-java.util.UUID#toString()Ljava/lang/String;

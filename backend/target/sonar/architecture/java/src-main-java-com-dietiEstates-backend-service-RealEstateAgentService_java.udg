@@ -1,1224 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789019993*java2.Bü/
-O
-Jsrc/main/java/com/dietiEstates/backend/service/RealEstateAgentService.java2
-
-package4
-%
- com.dietiEstates.backend.service5
-<
-7com.dietiEstates.backend.service.RealEstateAgentService7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-RealEstateAgentService12
-,
-&org.springframework.stereotype.Service14
-
-unknown15
-
-annotated by16
-
-
-uses17
-$
-lombok.RequiredArgsConstructor19
-
-lombok.extern.slf4j.Slf4j21
-W
-Qcom.dietiEstates.backend.service.RealEstateAgentService.realEstateAgentRepository23
-
-field24
-
-private25
-
-realEstateAgentRepository26
-C
-=com.dietiEstates.backend.repository.RealEstateAgentRepository28
-
-is type29
-R
-Lcom.dietiEstates.backend.service.RealEstateAgentService.realEstateRepository31
-
-realEstateRepository32
->
-8com.dietiEstates.backend.repository.RealEstateRepository34
-G
-Acom.dietiEstates.backend.service.RealEstateAgentService.s3Service36
-
-	s3Service37
-0
-*com.dietiEstates.backend.service.S3Service39
-Q
-Kcom.dietiEstates.backend.service.RealEstateAgentService.mockingStatsService41
-
-mockingStatsService42
-:
-4com.dietiEstates.backend.service.MockingStatsService44
-I
-Ccom.dietiEstates.backend.service.RealEstateAgentService.modelMapper46
-
-modelMapper47
-!
-org.modelmapper.ModelMapper49
-µ
-®com.dietiEstates.backend.service.RealEstateAgentService#createRealEstateForSale(Ljava/lang/String;Lcom/dietiEstates/backend/dto/RealEstateForSaleCreationDTO;)Ljava/lang/Long;51
-
-method52
-
-createRealEstateForSale53
-?
-9com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO55
-
-	has param56
-'
-!jakarta.transaction.Transactional58
-M
-Gorg.springframework.security.core.userdetails.UsernameNotFoundException60
-4
-.com.dietiEstates.backend.model.RealEstateAgent62
-
-
-references63
-z
-tcom.dietiEstates.backend.repository.RealEstateAgentRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;65
-
-calls66
-
-returns67
-6
-0com.dietiEstates.backend.model.RealEstateForSale69
-Å
-¾com.dietiEstates.backend.service.RealEstateAgentService#realEstateForSaleMapper(Lcom/dietiEstates/backend/dto/RealEstateForSaleCreationDTO;)Lcom/dietiEstates/backend/model/RealEstateForSale;71
-,
-&com.dietiEstates.backend.model.Address73
-L
-Forg.modelmapper.ModelMapper#map(Ljava/lang/Object;Ljava/lang/Object;)V75
-/
-)com.dietiEstates.backend.model.RealEstate77
-e
-_com.dietiEstates.backend.model.RealEstate#addAddress(Lcom/dietiEstates/backend/model/Address;)V79
-x
-rcom.dietiEstates.backend.service.MockingStatsService#mockEstateStats(Lcom/dietiEstates/backend/model/RealEstate;)V81
-p
-jcom.dietiEstates.backend.model.RealEstateAgent#addRealEstate(Lcom/dietiEstates/backend/model/RealEstate;)V83
-8
-2org.springframework.data.repository.CrudRepository85
-c
-]org.springframework.data.repository.CrudRepository#save(Ljava/lang/Object;)Ljava/lang/Object;87
-:
-4com.dietiEstates.backend.repository.CustomRepository89
-o
-icom.dietiEstates.backend.repository.CustomRepository#findLastRealEstate(Ljava/lang/Long;)Ljava/lang/Long;91
-µ
-®com.dietiEstates.backend.service.RealEstateAgentService#createRealEstateForRent(Ljava/lang/String;Lcom/dietiEstates/backend/dto/RealEstateForRentCreationDTO;)Ljava/lang/Long;93
-
-createRealEstateForRent94
-?
-9com.dietiEstates.backend.dto.RealEstateForRentCreationDTO96
-6
-0com.dietiEstates.backend.model.RealEstateForRent98
-Æ
-¾com.dietiEstates.backend.service.RealEstateAgentService#realEstateForRentMapper(Lcom/dietiEstates/backend/dto/RealEstateForRentCreationDTO;)Lcom/dietiEstates/backend/model/RealEstateForRent;100
-¢
-šcom.dietiEstates.backend.service.RealEstateAgentService#uploadPhoto(Ljava/lang/String;[Lorg/springframework/web/multipart/MultipartFile;Ljava/lang/Long;)V102
-
-uploadPhoto103
-6
-/org.springframework.web.multipart.MultipartFile105
-j
-corg.springframework.data.repository.CrudRepository#findById(Ljava/lang/Object;)Ljava/util/Optional;107
-Y
-Rorg.springframework.web.multipart.MultipartFile#getContentType()Ljava/lang/String;109
-A
-:org.springframework.web.multipart.MultipartFile#getSize()J111
-R
-Kcom.dietiEstates.backend.service.S3Service#putObject(Ljava/lang/String;[B)V113
-C
-<org.springframework.web.multipart.MultipartFile#getBytes()[B115
-9
-2software.amazon.awssdk.core.exception.SdkException117
-+
-$com.dietiEstates.backend.model.Photo119
-l
-ecom.dietiEstates.backend.service.RealEstateAgentService#getPhoto(Ljava/lang/Long;)[Ljava/lang/String;121
-
-getPhoto122
-Q
-Jcom.dietiEstates.backend.service.S3Service#getObject(Ljava/lang/String;)[B124
-Œ
-„com.dietiEstates.backend.service.RealEstateAgentService#findRecentRealEstates(Ljava/lang/String;Ljava/lang/Integer;)Ljava/util/List;126
-
-findRecentRealEstates127
-7
-0com.dietiEstates.backend.dto.RealEstateRecentDTO129
-†
-com.dietiEstates.backend.repository.CustomRepository#findRecentRealEstates(Ljava/lang/Long;Ljava/lang/Integer;)Ljava/util/List;131
-—
-com.dietiEstates.backend.service.RealEstateAgentService#getAgentStats(Ljava/lang/String;)Lcom/dietiEstates/backend/dto/RealEstateAgentStatsDTO;133
-
-getAgentStats134
-;
-4com.dietiEstates.backend.dto.RealEstateAgentStatsDTO136
-c
-\com.dietiEstates.backend.service.MockingStatsService#mockBarChartStats()[Ljava/lang/Integer;138
-E
->com.dietiEstates.backend.model.embeddable.RealEstateAgentStats140
- 
-˜com.dietiEstates.backend.service.RealEstateAgentService#getRealEstateStats(Ljava/lang/String;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;142
-
-getRealEstateStats143
-/
-(org.springframework.data.domain.Pageable145
-6
-/com.dietiEstates.backend.dto.RealEstateStatsDTO147
-
-•com.dietiEstates.backend.repository.CustomRepository#findRealEstateStats2(Ljava/lang/Long;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;149
-e
-^com.dietiEstates.backend.service.RealEstateAgentService#getBarChartStats()[Ljava/lang/Integer;151
-
-getBarChartStats152
-
-realEstateForRentMapper153
-K
-Dcom.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures155
-K
-Dcom.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures157
-
-realEstateForSaleMapper158J
-
-1
-12Z
-
-3	
-354jÿ
-
-59
-596015
-
-18
-181915
-
-116
-11611715
-
-130
-13013115
-
-135
-13513615
-
-137
-13713815
-
-146
-14614715
-
-128
-12812915
-
-144
-14414515
-F
-141?
-14114252 *
-1Ö Ö(26:3B
-	
-9
-10
-
-11
-143
-@
-30:
-303124 *
-11 1(26:3B
-	
-9
-25
-
-
-11
-32
-
-72
-727315
-@
-92:
-929352 *
-1X X(26:3B
-	
-9
-10
-
-
-11
-94
-C
-70=
-707152 *
-1ˆ ˆ(26:3B
-	
-9
-25
-
-11
-158
-
-86
-868715
-9
-64
-678 *
-1. .($:3B
-	
-9
-10
-
-
-11
-12
-@
-35:
-353624 *
-12 2(26:3B
-	
-9
-25
-
-
-11
-37
-
-80
-808115
-
-114
-11411515
-
-20
-202115
-
-95
-959615
-
-38
-383915
-
-106
-10610715
-
-112
-11211315
-
-118
-11811915
-
-123
-12312415
-D
-101=
-10110252 *
-1v v(26:3B
-	
-9
-10
-
-11
-103
-
-33
-333415
-@
-45:
-454624 *
-14 4(26:3B
-	
-9
-25
-
-
-11
-47
-
-156
-15615715
-
-108
-10810915
-F
-150?
-15015152 *
-1Ü Ü(26:3B
-	
-9
-10
-
-11
-152
-
-61
-616215
-
-84
-848515
-
-97
-979815
-F
-132?
-13213352 *
-1Í Í(26:3B
-	
-9
-10
-
-11
-134
-F
-125?
-12512652 *
-1Ç Ç(26:3B
-	
-9
-10
-
-11
-127
-
-82
-828315
-
-48
-484915
-
-110
-11011115
-
-13
-131415
-
-43
-434415
-
-76
-767715
-
-88
-888915
-
-148
-14814915
-
-54
-545515
-
-90
-909115
-@
-50:
-505152 *
-18 8(26:3B
-	
-9
-10
-
-
-11
-53
-
-68
-686915
-
-74
-747515
-
-78
-787915
-
-64
-646515
-
-139
-13914015
-
-154
-15415515
-@
-22:
-222324 *
-10 0(26:3B
-	
-9
-25
-
-
-11
-26
-D
-99>
-9910052 *
-1ã ã(26:3B
-	
-9
-25
-
-11
-153
-F
-120?
-12012152 *
-1­ ­(26:3B
-	
-9
-10
-
-11
-122
-
-57
-575815
-
-104
-10410515
-@
-40:
-404124 *
-13 3(26:3B
-	
-9
-25
-
-
-11
-42
-
-27
-272815r¯5
-
-61316*
-1+ +(
-
-61317*
-1+ +(	
-
-61816*
-1, ,(
-
-61817*
-1, ,(
-
-62016*
-1- -(
-
-62017*
-1- -(
-
-222729*
-10 0(,
-
-222717*
-10 0(,
-
-222717*
-10- 0(F
-
-303329*
-11 1('
-
-303317*
-11 1('
-
-303317*
-11( 1(<
-
-353829*
-12 2(
-
-353817*
-12 2(
-
-353817*
-12 2(&
-
-404329*
-13 3(&
-
-404317*
-13 3(&
-
-404317*
-13' 3(:
-
-454829*
-14 4(
-
-454817*
-14 4(
-
-454817*
-14 4(*
-
-505456*
-19: 9(V
-
-505716*
-18 8(
-
-505717*
-18 8(
-
-505429*
-19W 9(s
-
-505417*
-19: 9(V
-
-505917*
-19} 9(–
-
-506117*
-1; ;(!
-
-502763*
-1;= ;(V
-
-506466*
-1;W ;(e
-
-502263*
-1;= ;(V
-
-502717*
-1;= ;(V
-
-502263*
-1;= ;(V
-
-505966*
-1? ?(0
-
-506129*
-1A A((
-
-506117*
-1A	 A(
-
-506167*
-1A+ A(B
-
-506829*
-1C C(,
-
-506817*
-1C	 C(
-
-506867*
-1C/ C(F
-
-50663*
-1C/ C(F
-
-507066*
-1C/ C(F
-
-507229*
-1E E(
-
-507217*
-1E	 E(
-
-504863*
-1E E(&
-
-507466*
-1E' E(*
-
-504563*
-1E E(&
-
-504817*
-1E E(&
-
-504563*
-1E E(&
-
-507217*
-1EV E(]
-
-507663*
-1F	 F(
-
-507866*
-1F F(%
-
-504363*
-1H	 H(
-
-508066*
-1H H(,
-
-504063*
-1H	 H(
-
-504317*
-1H	 H(
-
-504063*
-1H	 H(
-
-506163*
-1J	 J(
-
-508266*
-1J J(&
-
-506163*
-1N	 N(
-
-508266*
-1N N(&
-
-506167*
-1P P(4
-
-508463*
-1P P(4
-
-508666*
-1P5 P(9
-
-502263*
-1P P(4
-
-502717*
-1P P(4
-
-502263*
-1P P(4
-
-508863*
-1T T($
-
-509066*
-1T% T(7
-
-503063*
-1T T($
-
-503317*
-1T T($
-
-503063*
-1T T($
-
-929556*
-1Y: Y(V
-
-925716*
-1X X(
-
-925717*
-1X X(
-
-929529*
-1YW Y(s
-
-929517*
-1Y: Y(V
-
-925917*
-1Y| Y(•
-
-926117*
-1[ [(!
-
-922763*
-1[= [(V
-
-926466*
-1[W [(e
-
-922263*
-1[= [(V
-
-922717*
-1[= [(V
-
-922263*
-1[= [(V
-
-925966*
-1_ _(0
-
-926129*
-1a a((
-
-926117*
-1a	 a(
-
-926167*
-1a+ a(B
-
-929729*
-1c c(,
-
-929717*
-1c	 c(
-
-929767*
-1c/ c(F
-
-92663*
-1c/ c(F
-
-929966*
-1c/ c(F
-
-927229*
-1e e(
-
-927217*
-1e	 e(
-
-924863*
-1e e(&
-
-927466*
-1e' e(*
-
-924563*
-1e e(&
-
-924817*
-1e e(&
-
-924563*
-1e e(&
-
-927217*
-1eV e(]
-
-927663*
-1f	 f(
-
-927866*
-1f f(%
-
-924363*
-1h	 h(
-
-928066*
-1h h(,
-
-924063*
-1h	 h(
-
-924317*
-1h	 h(
-
-924063*
-1h	 h(
-
-926163*
-1l	 l(
-
-928266*
-1l l(&
-
-926167*
-1n n(4
-
-928463*
-1n n(4
-
-928666*
-1n5 n(9
-
-922263*
-1n n(4
-
-922717*
-1n n(4
-
-922263*
-1n n(4
-
-928863*
-1r r($
-
-929066*
-1r% r(7
-
-923063*
-1r r($
-
-923317*
-1r r($
-
-923063*
-1r r($
-
-10110456*
-1v. v(;
-
-10110429*
-1v> v(C
-
-10110417*
-1v. v(;
-
-1017617*
-1x x(
-
-1018463*
-1x3 x(G
-
-10110666*
-1xH x(P
-
-1013063*
-1x3 x(G
-
-1013317*
-1x3 x(G
-
-1013063*
-1x3 x(G
-
-1017629*
-1~ ~(
-
-1017617*
-1~	 ~(
-
-1017667*
-1~! ~(3
-
-10110429*
-1† †((
-
-10110417*
-1† †(
-
-10110463*
-1ˆ" ˆ(/
-
-10110866*
-1ˆ0 ˆ(>
-
-10110463*
-1‰ ‰(&
-
-10111066*
-1‰' ‰(.
-
-1013863*
-1 (
-
-10111266*
-1 ($
-
-1013563*
-1 (
-
-1013817*
-1 (
-
-1013563*
-1 (
-
-10110463*
-1? (L
-
-10111466*
-1M (U
-
-10111617*
-1Ÿ Ÿ( 
-
-10111829*
-1¥ ¥(
-
-10111817*
-1¥ ¥(
-
-1017667*
-1©	 ©(
-
-1018463*
-1©	 ©(
-
-1018666*
-1© ©("
-
-1013063*
-1©	 ©(
-
-1013317*
-1©	 ©(
-
-1013063*
-1©	 ©(
-
-1207629*
-1¯ ¯(
-
-1207617*
-1¯	 ¯(
-
-1207667*
-1¯! ¯(5
-
-1208463*
-1¯! ¯(5
-
-12010666*
-1¯6 ¯(>
-
-1203063*
-1¯! ¯(5
-
-1203317*
-1¯! ¯(5
-
-1203063*
-1¯! ¯(5
-
-12011817*
-1± ±(
-
-12011829*
-1¸ ¸(
-
-12011817*
-1¸ ¸(
-
-1203863*
-1º º(&
-
-12012366*
-1º' º(0
-
-1203563*
-1º º(&
-
-1203817*
-1º º(&
-
-1203563*
-1º º(&
-
-12512817*
-1Ç Ç($
-
-1258863*
-1É É($
-
-12513066*
-1É% É(:
-
-1253063*
-1É É($
-
-1253317*
-1É É($
-
-1253063*
-1É É($
-
-1256167*
-1É; É(T
-
-1252763*
-1É; É(T
-
-1256466*
-1ÉU É(c
-
-1252263*
-1É; É(T
-
-1252717*
-1É; É(T
-
-1252263*
-1É; É(T
-
-13213567*
-1Í Í(#
-
-13213517*
-1Í Í(#
-
-1324363*
-1Ï% Ï(8
-
-13213766*
-1Ï9 Ï(J
-
-1324063*
-1Ï% Ï(8
-
-1324317*
-1Ï% Ï(8
-
-1324063*
-1Ï% Ï(8
-
-13213929*
-1Ð Ð(2
-
-13213917*
-1Ð	 Ð(
-
-1326167*
-1Ð5 Ð(N
-
-1322763*
-1Ð5 Ð(N
-
-1326466*
-1ÐO Ð(]
-
-1322263*
-1Ð5 Ð(N
-
-1322717*
-1Ð5 Ð(N
-
-1322263*
-1Ð5 Ð(N
-
-13213529*
-1Ñ! Ñ(8
-
-13213517*
-1Ñ	 Ñ( 
-
-14114456*
-1ÖI Ö(Q
-
-14114617*
-1Ö Ö(#
-
-14114429*
-1ÖR Ö(V
-
-14114417*
-1ÖI Ö(Q
-
-1418863*
-1Ø Ø($
-
-14114866*
-1Ø% Ø(9
-
-1413063*
-1Ø Ø($
-
-1413317*
-1Ø Ø($
-
-1413063*
-1Ø Ø($
-
-1416167*
-1Ø: Ø(S
-
-1412763*
-1Ø: Ø(S
-
-1416466*
-1ØT Ø(b
-
-1412263*
-1Ø: Ø(S
-
-1412717*
-1Ø: Ø(S
-
-1412263*
-1Ø: Ø(S
-
-1504363*
-1Þ Þ(#
-
-15013766*
-1Þ$ Þ(5
-
-1504063*
-1Þ Þ(#
-
-1504317*
-1Þ Þ(#
-
-1504063*
-1Þ Þ(#
-
-999767*
-1ã ã(
-
-999556*
-1ã7 ã(S
-
-999717*
-1ã ã(
-
-999529*
-1ãT ã(p
-
-999517*
-1ã7 ã(S
-
-9915429*
-1í$ í(>
-
-9915417*
-1í	 í(#
-
-9915629*
-1ò$ ò(>
-
-9915617*
-1ò	 ò(#
-
-999766*
-1„ „(%
-
-706867*
-1ˆ ˆ(
-
-705456*
-1ˆ7 ˆ(S
-
-706817*
-1ˆ ˆ(
-
-705429*
-1ˆT ˆ(p
-
-705417*
-1ˆ7 ˆ(S
-
-7015429*
-1‘$ ‘(>
-
-7015417*
-1‘	 ‘(#
-
-7015629*
-1–$ –(>
-
-7015617*
-1–	 –(#
-
-706866*
-1¨ ¨(%

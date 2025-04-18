@@ -1,10 +1,11 @@
-<div (click)="showEstateDetail()" class="max-w-screen-sm my-3 mt-24 border-4 border-secondary h-max mx-auto pt-5 px-5 bg-white shadow-lg rounded-lg cursor-pointer">
-  <div class="relative w-96 h-60 mx-auto overflow-hidden rounded-lg bg-gray-200">
+<div  class="max-w-screen-sm my-3 mt-24 border-4 border-secondary h-max mx-auto pt-5 px-5 bg-white shadow-lg rounded-lg ">
+  <div class="relative w-full h-auto overflow-visible rounded-lg">
     <app-image-slider [photos]="photos" [sliderConfig]="sliderConfig"></app-image-slider>
   </div>
+  
   <div class="p-2">
     <div class="p-6">
-      <h2 class="text-2xl text-text font-bold mb-4">{{ estatePreview.title }}</h2>
+      <h2 (click)="showEstateDetail()" class="cursor-pointer hover:underline text-2xl text-text font-bold mb-4">{{ estatePreview.title }}</h2>
       <p #description class="text-text mb-3 whitespace-pre-line" [ngClass]="{ 'line-clamp-3': true }">
         {{ estatePreview.description }}
       </p>

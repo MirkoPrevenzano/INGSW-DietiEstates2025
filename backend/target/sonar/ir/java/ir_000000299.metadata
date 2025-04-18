@@ -1,7 +1,0 @@
-com.dietiEstates.backend.service.PdfService#createFont(Ljava/lang/String;FLjava/awt/Color;)Lcom/lowagie/text/Font;
-false
-6d2c9332085a74f27c526d961d37d3e0
-com.lowagie.text.FontFactory#getFont(Ljava/lang/String;)Lcom/lowagie/text/Font;
-==
-setColor com.lowagie.text.Font#setColor(Ljava/awt/Color;)V
-setSize com.lowagie.text.Font#setSize(F)V

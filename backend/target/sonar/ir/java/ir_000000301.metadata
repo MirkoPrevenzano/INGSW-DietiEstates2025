@@ -1,7 +1,0 @@
-com.dietiEstates.backend.service.PdfService#createParagraph(Lcom/lowagie/text/Font;Ljava/lang/String;)Lcom/lowagie/text/Paragraph;
-false
-8bac73145064b297f19634e2fa1f8eea
-com.lowagie.text.Paragraph#<init>(Ljava/lang/String;Lcom/lowagie/text/Font;)V
-com.lowagie.text.Paragraph#instance-init#
-==
-setAlignment com.lowagie.text.Paragraph#setAlignment(I)V

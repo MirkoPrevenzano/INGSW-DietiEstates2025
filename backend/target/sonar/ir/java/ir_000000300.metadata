@@ -1,8 +1,0 @@
-com.dietiEstates.backend.service.PdfService#createCell(Ljava/awt/Color;F)Lcom/lowagie/text/pdf/PdfPCell;
-false
-8e5b148bc66fe5debc43f1abc1db90a0
-com.lowagie.text.pdf.PdfPCell#<init>()V
-com.lowagie.text.pdf.PdfPCell#instance-init#
-==
-setBackgroundColor com.lowagie.text.Rectangle#setBackgroundColor(Ljava/awt/Color;)V
-setPadding com.lowagie.text.pdf.PdfPCell#setPadding(F)V

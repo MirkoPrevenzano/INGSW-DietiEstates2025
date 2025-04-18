@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../../_service/rest-backend/login/login.service';
 import { CommonModule } from '@angular/common';
-import { LoginWithGoogleComponent } from './login-with-google/login-with-google.component';
+import { LoginWithGoogleComponent } from '../login-with-google/login-with-google.component';
 import { AuthService } from '../../_service/auth/auth.service';
 import { FormFieldComponent } from '../form-field/form-field.component';
 import { PasswordFieldComponent } from '../password-field/password-field.component';

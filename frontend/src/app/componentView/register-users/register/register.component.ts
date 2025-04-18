@@ -9,6 +9,7 @@ import { PasswordFieldComponent } from '../../password-field/password-field.comp
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ButtonCustomComponent } from '../../button-custom/button-custom.component';
+import { LoginWithGoogleComponent } from '../../login-with-google/login-with-google.component';
 
 @Component({
     selector: 'app-register',
@@ -18,7 +19,8 @@ import { ButtonCustomComponent } from '../../button-custom/button-custom.compone
       FormFieldComponent,
       PasswordFieldComponent,
       RouterModule,
-      ButtonCustomComponent
+      ButtonCustomComponent,
+      LoginWithGoogleComponent
     ],
     templateUrl: './register.component.html',
     styleUrl: './register.component.scss'

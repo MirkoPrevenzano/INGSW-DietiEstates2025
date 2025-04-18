@@ -1,70 +1,0 @@
-
-’com.dietiEstates.backend.controller.CustomerController#viewRealEstate(Ljava/lang/String;Ljava/lang/Long;)Lorg/springframework/http/ResponseEntity;™
-Ž/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/controller/CustomerController.java1 (?"startingBlock*±
-startingBlock	? (›±
-®
-@ (Y
-%4"
-__annotate*T
-
-__unknown_file (86
-4org.springframework.web.bind.annotation.PathVariable*:
-
-__unknown_file (
-
-usernamejava.lang.String\
-Z
-a (i
-usernamejava.lang.String"__annotation*"
-
-__unknown_file (
-
-%4*
-1*å
-
-1 (ô
-ñ
- ("9
-%03org.springframework.http.ResponseEntity$BodyBuilder"aorg.springframework.http.ResponseEntity#ok()Lorg/springframework/http/ResponseEntity$BodyBuilder;*G
-
-__unknown_file (+")
-'org.springframework.http.ResponseEntity¸
-µ
-( (76
-%10com.dietiEstates.backend.service.CustomerService"__id*k
-
-__unknown_file (O*M8
-6com.dietiEstates.backend.controller.CustomerController"
-customerServiceåâ
-( (^8
-%22com.dietiEstates.backend.dto.RealEstateCreationDTO"—com.dietiEstates.backend.service.CustomerService#viewRealEstate(Ljava/lang/String;Ljava/lang/Long;)Lcom/dietiEstates/backend/dto/RealEstateCreationDTO;*T
-
-__unknown_file (8
-6
-%10com.dietiEstates.backend.service.CustomerService*:
-
-__unknown_file (
-
-usernamejava.lang.String*<
-
-__unknown_file ( 
-
-realEstateIdjava.lang.Long22viewRealEstate(Ljava/lang/String;Ljava/lang/Long;)þû
- (_-
-%3'org.springframework.http.ResponseEntity"uorg.springframework.http.ResponseEntity$BodyBuilder#body(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;*W
-
-__unknown_file (;
-9
-%03org.springframework.http.ResponseEntity$BodyBuilder*V
-
-__unknown_file (:
-8
-%22com.dietiEstates.backend.dto.RealEstateCreationDTO2body(Ljava/lang/Object;)";
- (`/
--
-%3'org.springframework.http.ResponseEntity:(
-@ (j
-usernamejava.lang.String:+
-	k (š
-realEstateIdjava.lang.LongB:8
-6com.dietiEstates.backend.controller.CustomerControllerH

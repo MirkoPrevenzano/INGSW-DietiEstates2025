@@ -1,251 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789020611*java2.Bâ
-N
-Isrc/main/java/com/dietiEstates/backend/controller/CustomerController.java2
-
-package4
-(
-#com.dietiEstates.backend.controller5
-;
-6com.dietiEstates.backend.controller.CustomerController7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-CustomerController12
-<
-6org.springframework.web.bind.annotation.RestController14
-
-unknown15
-
-annotated by16
-
-
-uses17
-<
-6org.springframework.web.bind.annotation.RequestMapping19
-$
-lombok.RequiredArgsConstructor21
-
-lombok.extern.slf4j.Slf4j23
-L
-Fcom.dietiEstates.backend.controller.CustomerController.customerService25
-
-field26
-
-private27
-
-customerService28
-6
-0com.dietiEstates.backend.service.CustomerService30
-
-is type31
-™
-’com.dietiEstates.backend.controller.CustomerController#viewRealEstate(Ljava/lang/String;Ljava/lang/Long;)Lorg/springframework/http/ResponseEntity;33
-
-method34
-
-viewRealEstate35
--
-'org.springframework.http.ResponseEntity37
-
-returns38
-8
-2org.springframework.web.bind.annotation.GetMapping40
-8
-2com.dietiEstates.backend.dto.RealEstateCreationDTO42
-:
-4org.springframework.web.bind.annotation.PathVariable44
-9
-3org.springframework.http.ResponseEntity$BodyBuilder46
-
-
-references47
-{
-uorg.springframework.http.ResponseEntity$BodyBuilder#body(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;49
-
-calls50
-g
-aorg.springframework.http.ResponseEntity#ok()Lorg/springframework/http/ResponseEntity$BodyBuilder;52
-ž
-—com.dietiEstates.backend.service.CustomerService#viewRealEstate(Ljava/lang/String;Ljava/lang/Long;)Lcom/dietiEstates/backend/dto/RealEstateCreationDTO;54J
-
-1
-12Z
-
-3	
-354jÃ
-
-43
-434415
-
-29
-293015
-
-51
-515215
-
-20
-202115
-
-18
-181915
-
-45
-454615
-
-53
-535415
-
-41
-414215
-
-13
-131415
-
-22
-222315
-
-48
-484915
-
-39
-394015
-@
-32:
-323334 *
-1 (26:3B
-	
-9
-10
-
-
-11
-35
-
-36
-363715
-@
-24:
-242526 *
-1 (26:3B
-	
-9
-27
-
-
-11
-28
-9
-64
-678 *
-1 ( :3B
-	
-9
-10
-
-
-11
-12rØ
-
-61316*
-1 (
-
-61317*
-1 (
-
-61816*
-1 (
-
-61817*
-1 (
-
-62016*
-1 (
-
-62017*
-1 (
-
-62216*
-1 (
-
-62217*
-1 (
-
-242931*
-1 ("
-
-242917*
-1 ("
-
-242917*
-1# (2
-
-323638*
-1 (
-
-323916*
-1 (
-
-323917*
-1 (
-
-323617*
-1 (
-
-324117*
-1 (0
-
-324316*
-1A (B
-
-324317*
-1B (N
-
-324316*
-1l (m
-
-324317*
-1m (y
-
-323638*
-1 (
-
-324547*
-1 (
-
-324850*
-1$ ((
-
-324538*
-1 (
-
-323647*
-1 (
-
-325150*
-1 (!
-
-324138*
-1) (8
-
-322947*
-1) (8
-
-325350*
-19 (G
-
-322447*
-1) (8
-
-322917*
-1) (8
-
-322447*
-1) (8

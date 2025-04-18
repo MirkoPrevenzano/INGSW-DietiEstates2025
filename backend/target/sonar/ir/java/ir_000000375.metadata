@@ -1,8 +1,0 @@
-com.dietiEstates.backend.controller.RealEstateAgentController#aaaa(Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;)Lorg/springframework/http/ResponseEntity;
-false
-8137cc14bc0674b2dcab5666cd71d526
-org.springframework.data.domain.PageRequest#of(II)Lorg/springframework/data/domain/PageRequest;
-org.springframework.http.ResponseEntity#ok()Lorg/springframework/http/ResponseEntity$BodyBuilder;
-==
-body org.springframework.http.ResponseEntity$BodyBuilder#body(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;
-getRealEstateStats com.dietiEstates.backend.service.RealEstateAgentService#getRealEstateStats(Ljava/lang/String;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;

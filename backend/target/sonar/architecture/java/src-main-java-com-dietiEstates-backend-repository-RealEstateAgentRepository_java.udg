@@ -1,97 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021562*java2.B∑
-U
-Psrc/main/java/com/dietiEstates/backend/repository/RealEstateAgentRepository.java2
-
-package4
-(
-#com.dietiEstates.backend.repository5
-B
-=com.dietiEstates.backend.repository.RealEstateAgentRepository7
-
-	interface8
-
-access9
-
-public10
-
-simple name11
-
-RealEstateAgentRepository12
-;
-5org.springframework.data.jpa.repository.JpaRepository14
-
-unknown15
-
-
-implements16
-/
-)org.springframework.stereotype.Repository18
-
-annotated by19
-
-
-uses20
-4
-.com.dietiEstates.backend.model.RealEstateAgent22
-z
-tcom.dietiEstates.backend.repository.RealEstateAgentRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;24
-
-method25
-
-findByUsername26J
-
-1
-12Z
-
-3	
-354jπ
-@
-23:
-232425 *
-1 (26:3B
-	
-9
-10
-
-
-11
-26
-
-21
-212215
-
-17
-171815
-
-13
-131415
-9
-64
-678 *
-1 (+:3B
-	
-9
-10
-
-
-11
-12rù
-
-61316*
-14 (A
-
-61719*
-1 (
-
-61720*
-1 (
-
-61320*
-14 (A
-
-62120*
-1B (Q
-
-232120*
-1 (

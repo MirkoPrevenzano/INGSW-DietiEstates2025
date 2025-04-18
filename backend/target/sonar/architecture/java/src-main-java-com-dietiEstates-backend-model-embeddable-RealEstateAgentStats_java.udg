@@ -1,408 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789020991*java2.BŒ
-V
-Qsrc/main/java/com/dietiEstates/backend/model/embeddable/RealEstateAgentStats.java2
-
-package4
-.
-)com.dietiEstates.backend.model.embeddable5
-C
->com.dietiEstates.backend.model.embeddable.RealEstateAgentStats7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-RealEstateAgentStats12
-$
-jakarta.persistence.Embeddable14
-
-unknown15
-
-annotated by16
-
-
-uses17
-
-lombok.Data19
-
-lombok.NoArgsConstructor21
-]
-Wcom.dietiEstates.backend.model.embeddable.RealEstateAgentStats.totalUploadedRealEstates23
-
-field24
-
-private25
-
-totalUploadedRealEstates26
- 
-jakarta.persistence.Column28
-Y
-Scom.dietiEstates.backend.model.embeddable.RealEstateAgentStats.totalSoldRealEstates30
-
-totalSoldRealEstates31
-[
-Ucom.dietiEstates.backend.model.embeddable.RealEstateAgentStats.totalRentedRealEstates33
-
-totalRentedRealEstates34
-P
-Jcom.dietiEstates.backend.model.embeddable.RealEstateAgentStats.salesIncome36
-
-salesIncome37
-R
-Lcom.dietiEstates.backend.model.embeddable.RealEstateAgentStats.rentalsIncome39
-
-rentalsIncome40
-Q
-Kcom.dietiEstates.backend.model.embeddable.RealEstateAgentStats.totalIncomes42
-
-totalIncomes43
-#
-jakarta.persistence.Transient45
-X
-Rcom.dietiEstates.backend.model.embeddable.RealEstateAgentStats.salesToRentalsRatio47
-
-salesToRentalsRatio48
-X
-Rcom.dietiEstates.backend.model.embeddable.RealEstateAgentStats.rentalsToSalesRatio50
-
-rentalsToSalesRatio51
-P
-Jcom.dietiEstates.backend.model.embeddable.RealEstateAgentStats.successRate53
-
-successRate54
-Y
-Scom.dietiEstates.backend.model.embeddable.RealEstateAgentStats#getCompletedDeals()D56
-
-method57
-
-getCompletedDeals58
-
-
-references59
-W
-Qcom.dietiEstates.backend.model.embeddable.RealEstateAgentStats#getTotalIncomes()D61
-
-getTotalIncomes62
-^
-Xcom.dietiEstates.backend.model.embeddable.RealEstateAgentStats#getSalesToRentalsRatio()D64
-
-getSalesToRentalsRatio65
-^
-Xcom.dietiEstates.backend.model.embeddable.RealEstateAgentStats#getRentalsToSalesRatio()D67
-
-getRentalsToSalesRatio68
-
-calls69
-V
-Pcom.dietiEstates.backend.model.embeddable.RealEstateAgentStats#getSuccessRate()D71
-
-getSuccessRate72J
-
-1
-12Z
-
-3	
-354j»
-9
-64
-678 *
-1 (":3B
-	
-9
-10
-
-
-11
-12
-@
-46:
-464724 *
-11 1(26:3B
-	
-9
-25
-
-
-11
-48
-@
-49:
-495024 *
-14 4(26:3B
-	
-9
-25
-
-
-11
-51
-@
-70:
-707157 *
-1V V(26:3B
-	
-9
-10
-
-
-11
-72
-@
-29:
-293024 *
-1 (26:3B
-	
-9
-25
-
-
-11
-31
-
-44
-444515
-@
-63:
-636457 *
-1F F(26:3B
-	
-9
-10
-
-
-11
-65
-
-13
-131415
-@
-52:
-525324 *
-17 7(26:3B
-	
-9
-25
-
-
-11
-54
-@
-38:
-383924 *
-1( ((26:3B
-	
-9
-25
-
-
-11
-40
-
-27
-272815
-@
-32:
-323324 *
-1 (26:3B
-	
-9
-25
-
-
-11
-34
-@
-22:
-222324 *
-1 (26:3B
-	
-9
-25
-
-
-11
-26
-@
-55:
-555657 *
-1< <(26:3B
-	
-9
-10
-
-
-11
-58
-@
-60:
-606157 *
-1A A(26:3B
-	
-9
-10
-
-
-11
-62
-@
-66:
-666757 *
-1N N(26:3B
-	
-9
-10
-
-
-11
-68
-
-18
-181915
-
-20
-202115
-@
-35:
-353624 *
-1" "(26:3B
-	
-9
-25
-
-
-11
-37
-@
-41:
-414224 *
-1. .(26:3B
-	
-9
-25
-
-
-11
-43r”
-
-61316*
-1 (
-
-61317*
-1 (
-
-61816*
-1 (
-
-61817*
-1 (
-
-62016*
-1 (
-
-62017*
-1 (
-
-222716*
-1 (
-
-222717*
-1 (
-
-292716*
-1 (
-
-292717*
-1 (
-
-322716*
-1 (
-
-322717*
-1 (
-
-352716*
-1" "(
-
-352717*
-1" "(
-
-382716*
-1( ((
-
-382717*
-1( ((
-
-414416*
-1. .(
-
-414417*
-1. .(
-
-464416*
-11 1(
-
-464417*
-11 1(
-
-494416*
-14 4(
-
-494417*
-14 4(
-
-524416*
-17 7(
-
-524417*
-17 7(
-
-552959*
-1> >($
-
-553259*
-1>' >(=
-
-603859*
-1C C(
-
-603559*
-1C  C(+
-
-632259*
-1H H($
-
-632959*
-1I I(3
-
-632259*
-1I> I(V
-
-66659*
-1P P("
-
-666369*
-1P P("
-
-66659*
-1Q# Q(9
-
-666369*
-1Q# Q(9
-
-702259*
-1X X($
-
-70659*
-1Y Y(0
-
-705569*
-1Y Y(0
-
-702259*
-1Y6 Y(N

@@ -9,6 +9,7 @@ import { PasswordFieldComponent } from '../../password-field/password-field.comp
 import { ignoreElements } from 'rxjs';
 import { Router } from '@angular/router';
 import { ButtonCustomComponent } from '../../button-custom/button-custom.component';
+import { LoginWithGoogleComponent } from '../../login-with-google/login-with-google.component';
 
 @Component({
   selector: 'app-agent-registrate',
@@ -17,7 +18,8 @@ import { ButtonCustomComponent } from '../../button-custom/button-custom.compone
     FormFieldComponent, 
     CommonModule,
     PasswordFieldComponent,
-    ButtonCustomComponent
+    ButtonCustomComponent,
+    LoginWithGoogleComponent
   ],
   templateUrl: '../register/register.component.html',
 })

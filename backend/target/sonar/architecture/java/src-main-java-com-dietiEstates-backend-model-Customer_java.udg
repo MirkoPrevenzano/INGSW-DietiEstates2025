@@ -1,377 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789019151*java2.Bë
-?
-:src/main/java/com/dietiEstates/backend/model/Customer.java2
-
-package4
-#
-com.dietiEstates.backend.model5
-,
-'com.dietiEstates.backend.model.Customer7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-Customer12
-)
-#com.dietiEstates.backend.model.User14
-
-unknown15
-
-extends16
- 
-jakarta.persistence.Entity18
-
-annotated by19
-
-
-uses20
-
-jakarta.persistence.Table22
-*
-$jakarta.persistence.UniqueConstraint24
-
-lombok.Data26
-
-lombok.EqualsAndHashCode28
-
-lombok.NoArgsConstructor30
-
-lombok.ToString32
-+
-%jakarta.persistence.AttributeOverride34
- 
-jakarta.persistence.Column36
-C
-=com.dietiEstates.backend.model.Customer.isAuthWithExternalAPI38
-
-field39
-
-private40
-
-isAuthWithExternalAPI41
-F
-@com.dietiEstates.backend.model.Customer.customerViewsRealEstates43
-
-customerViewsRealEstates44
-#
-jakarta.persistence.OneToMany46
-#
-jakarta.persistence.FetchType48
-(
-"jakarta.persistence.FetchType.LAZY50
-
-
-references51
-%
-jakarta.persistence.CascadeType53
--
-'jakarta.persistence.CascadeType.PERSIST55
-+
-%jakarta.persistence.CascadeType.MERGE57
-,
-&jakarta.persistence.CascadeType.REMOVE59
-<
-6com.dietiEstates.backend.model.CustomerViewsRealEstate61
-
-ycom.dietiEstates.backend.model.Customer#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V63
-
-method64
-
-calls65
-ƒ
-}com.dietiEstates.backend.model.Customer#addCustomerViewsRealEstate(Lcom/dietiEstates/backend/model/CustomerViewsRealEstate;)V67
- 
-addCustomerViewsRealEstate68
-
-	has param69
-
-is type70
-‡
-€com.dietiEstates.backend.model.Customer#removeCustomerViewsRealEstate(Lcom/dietiEstates/backend/model/CustomerViewsRealEstate;)V72
-#
-removeCustomerViewsRealEstate73J
-
-1
-12Z
-
-3	
-354jí
-
-13
-131415
-
-17
-171815
-@
-42:
-424339 *
-1# #(26:3B
-	
-9
-40
-
-
-11
-44
-
-54
-545515
-
-45
-454615
-
-52
-525315
-
-49
-495015
-
-60
-606115
-
-27
-272815
-
-21
-212215
-@
-71:
-717264 *
-1: :(26:3B
-	
-9
-10
-
-
-11
-73
-
-35
-353615
-@
-62:
-626364 *
-1+ +(26:3B
-	
-9
-10
-
-
-11
-12
-@
-37:
-373839 *
-1 (26:3B
-	
-9
-40
-
-
-11
-41
-
-58
-585915
-
-56
-565715
-@
-66:
-666764 *
-12 2(26:3B
-	
-9
-10
-
-
-11
-68
-
-23
-232415
-
-25
-252615
-
-31
-313215
-
-33
-333415
-9
-64
-678 *
-1 (:3B
-	
-9
-10
-
-
-11
-12
-
-29
-293015
-
-47
-474815r­
-
-
-61316*
-1 (#
-
-61719*
-1 (
-
-61720*
-1 (
-
-62119*
-1 (
-
-62120*
-1 (
-
-62319*
-1 (
-
-62320*
-1 (-
-
-62519*
-1 (
-
-62520*
-1 (
-
-62719*
-1 (
-
-62720*
-1 (
-
-62919*
-1 (
-
-62920*
-1 (
-
-63119*
-1 (
-
-63120*
-1 (
-
-
-63319*
-1 (
-
-63320*
-1 (
-
-63519*
-1. (/
-
-63520*
-1/ (5
-
-61320*
-1 (#
-
-373519*
-1 (
-
-373520*
-1 (
-
-424519*
-1# #(
-
-424520*
-1# #(
-
-424720*
-1$ $(!
-
-424720*
-1$" $(&
-
-424951*
-1$" $(&
-
-425220*
-1% %(&
-
-425220*
-1%' %(.
-
-425451*
-1%' %(.
-
-425220*
-1%0 %(;
-
-425220*
-1%< %(A
-
-425651*
-1%< %(A
-
-425220*
-1%C %(N
-
-425220*
-1%O %(U
-
-425851*
-1%O %(U
-
-426020*
-1' '()
-
-62665*
-1+ +(
-
-666069*
-12, 2(C
-
-666070*
-12D 2(^
-
-666020*
-12, 2(C
-
-66620*
-14	 4(
-
-66651*
-14	 4(
-
-664251*
-14 4(&
-
-716069*
-1:/ :(F
-
-716070*
-1:G :(f
-
-716020*
-1:/ :(F
-
-71620*
-1<	 <(
-
-71651*
-1<	 <(
-
-714251*
-1< <(&

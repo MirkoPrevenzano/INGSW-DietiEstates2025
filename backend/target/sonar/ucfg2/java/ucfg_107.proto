@@ -1,311 +1,0 @@
-
-¿com.dietiEstates.backend.config.security.interceptor.AuthorizationInterceptor#preHandle(Ljakarta/servlet/http/HttpServletRequest;Ljakarta/servlet/http/HttpServletResponse;Ljava/lang/Object;)Z°
-¥/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/config/security/interceptor/AuthorizationInterceptor.java ("startingBlock*õ
-2* *(ñî
-+ +(^
-
-%8void"Yjakarta.servlet.http.HttpServletResponse#setHeader(Ljava/lang/String;Ljava/lang/String;)V*R
-
-__unknown_file (6
-4
-response(jakarta.servlet.http.HttpServletResponse*%
-
-__unknown_file (	
-Error*O
-
-__unknown_file (31
-/You are trying to access other users'resources!2/setHeader(Ljava/lang/String;Ljava/lang/String;)a
-_
-,# ,(:)
-%9#org.springframework.http.HttpStatus"__id*"
-
-__unknown_file (
-""™–
-,# ,(B
-
-%10int",org.springframework.http.HttpStatus#value()I*G
-
-__unknown_file (+
-)
-%9#org.springframework.http.HttpStatus2value()ÞÛ
-, ,(C
-%11void"6jakarta.servlet.http.HttpServletResponse#setStatus(I)V*R
-
-__unknown_file (6
-4
-response(jakarta.servlet.http.HttpServletResponse*(
-
-__unknown_file (
-
-
-%10int2setStatus(I)"
-- -(
-""*!
-3& &("
-' '( 
-""*À
-startingBlock (5®
-«
- (!
-%12"
-__annotate*:
-
-__unknown_file (
-java.lang.SuppressWarnings*P
-
-__unknown_file (4
-2
-request'jakarta.servlet.http.HttpServletRequest¦
-£
- (
-%13"
-__annotate*2
-
-__unknown_file (
-java.lang.Override*P
-
-__unknown_file (4
-2
-request'jakarta.servlet.http.HttpServletRequest´
-±
- (%
-%14"
-__annotate*@
-
-__unknown_file ($"
- org.springframework.lang.NonNull*P
-
-__unknown_file (4
-2
-request'jakarta.servlet.http.HttpServletRequest¾
-»
-9 (@2
-request'jakarta.servlet.http.HttpServletRequest"__annotation*#
-
-__unknown_file (
-
-%12*#
-
-__unknown_file (
-
-%13*#
-
-__unknown_file (
-
-%14°
-­
- (!
-%15"
-__annotate*:
-
-__unknown_file (
-java.lang.SuppressWarnings*R
-
-__unknown_file (6
-4
-response(jakarta.servlet.http.HttpServletResponse¨
-¥
- (
-%16"
-__annotate*2
-
-__unknown_file (
-java.lang.Override*R
-
-__unknown_file (6
-4
-response(jakarta.servlet.http.HttpServletResponse¶
-³
- (%
-%17"
-__annotate*@
-
-__unknown_file ($"
- org.springframework.lang.NonNull*R
-
-__unknown_file (6
-4
-response(jakarta.servlet.http.HttpServletResponseÀ
-½
-: (B4
-response(jakarta.servlet.http.HttpServletResponse"__annotation*#
-
-__unknown_file (
-
-%15*#
-
-__unknown_file (
-
-%16*#
-
-__unknown_file (
-
-%17—
-”
- (!
-%18"
-__annotate*:
-
-__unknown_file (
-java.lang.SuppressWarnings*9
-
-__unknown_file (
-
-handlerjava.lang.Object
-Œ
- (
-%19"
-__annotate*2
-
-__unknown_file (
-java.lang.Override*9
-
-__unknown_file (
-
-handlerjava.lang.Object
-š
- (%
-%20"
-__annotate*@
-
-__unknown_file ($"
- org.springframework.lang.NonNull*9
-
-__unknown_file (
-
-handlerjava.lang.Object§
-¤
-- (4
-handlerjava.lang.Object"__annotation*#
-
-__unknown_file (
-
-%18*#
-
-__unknown_file (
-
-%19*#
-
-__unknown_file (
-
-%20*
-7*ÿ
-4$ $(çä
-$ $(5
-%7boolean",java.lang.String#equals(Ljava/lang/Object;)Z*>
-
-__unknown_file ("
- 
-pathUsernamejava.lang.String*?
-
-__unknown_file (#
-!
-tokenUsernamejava.lang.String2equals(Ljava/lang/Object;)*
-2
-3*–
-5"' "(4
-}
-"' "(<
-%6boolean"	__compare*
-"5 "(7
-!=*/
-"' "(4#
-!
-tokenUsernamejava.lang.String*
-"8 "(<
-""*
-4
-1*Å
-6+ (8—
-”
-+ (H
-%3java.lang.Object"__mapGet*<
-
-__unknown_file ( 
-
-pathvariablesjava.util.Map*(
-
-__unknown_file (
-
-usernamej
-h
- (I 
-pathUsernamejava.lang.String"__id*4
-
-__unknown_file (
-
-%3java.lang.Objectº·
- ,  (p
-%4java.lang.Object"Qjakarta.servlet.ServletRequest#getAttribute(Ljava/lang/String;)Ljava/lang/Object;*P
-
-__unknown_file (4
-2
-request'jakarta.servlet.http.HttpServletRequest*L
-
-__unknown_file (0.
-,com.dietiEstates.backend.model.User.username2 getAttribute(Ljava/lang/String;)k
-i
-   (q!
-tokenUsernamejava.lang.String"__id*4
-
-__unknown_file (
-
-%4java.lang.Object~
-|
-" "(#
-%5boolean"	__compare*
-" "(
-!=*.
-" "("
- 
-pathUsernamejava.lang.String*
-" "(#
-""*
-5
-1*ò
-7" ()N
-L
-7 (f
-%0java.lang.String"__id*"
-
-__unknown_file (
-""¢Ÿ
-" (g
-%1java.lang.Object"Qjakarta.servlet.ServletRequest#getAttribute(Ljava/lang/String;)Ljava/lang/Object;*P
-
-__unknown_file (4
-2
-request'jakarta.servlet.http.HttpServletRequest*4
-
-__unknown_file (
-
-%0java.lang.String2 getAttribute(Ljava/lang/String;)h
-f
- (h
-pathvariablesjava.util.Map"__id*4
-
-__unknown_file (
-
-%1java.lang.Object|
-z
- ( 
-%2boolean"	__compare*
- (
-!=*,
- ( 
-
-pathvariablesjava.util.Map*
- ( 
-""*
-6
-1*!
-11 1("
-1 1(
-"":>
- (A2
-request'jakarta.servlet.http.HttpServletRequest:@
- (C4
-response(jakarta.servlet.http.HttpServletResponse:'
- (4
-handlerjava.lang.ObjectBQO
-Mcom.dietiEstates.backend.config.security.interceptor.AuthorizationInterceptorHX

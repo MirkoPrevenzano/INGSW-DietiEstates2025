@@ -1,812 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789022001*java2.Bã!
-H
-Csrc/main/java/com/dietiEstates/backend/service/CustomerService.java2
-
-package4
-%
- com.dietiEstates.backend.service5
-5
-0com.dietiEstates.backend.service.CustomerService7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-CustomerService12
-,
-&org.springframework.stereotype.Service14
-
-unknown15
-
-annotated by16
-
-
-uses17
-$
-lombok.RequiredArgsConstructor19
-
-lombok.extern.slf4j.Slf4j21
-H
-Bcom.dietiEstates.backend.service.CustomerService.JFreeChartService23
-
-field24
-
-private25
-
-JFreeChartService26
-8
-2com.dietiEstates.backend.service.JFreeChartService28
-
-is type29
-D
->com.dietiEstates.backend.service.CustomerService.CSVController31
-
-CSVController32
-7
-1com.dietiEstates.backend.controller.CSVController34
-K
-Ecom.dietiEstates.backend.service.CustomerService.realEstateRepository36
-
-realEstateRepository37
->
-8com.dietiEstates.backend.repository.RealEstateRepository39
-I
-Ccom.dietiEstates.backend.service.CustomerService.customerRepository41
-
-customerRepository42
-<
-6com.dietiEstates.backend.repository.CustomerRepository44
-B
-<com.dietiEstates.backend.service.CustomerService.modelMapper46
-
-modelMapper47
-!
-org.modelmapper.ModelMapper49
-F
-@com.dietiEstates.backend.service.CustomerService.passwordEncoder51
-
-passwordEncoder52
-B
-<org.springframework.security.crypto.password.PasswordEncoder54
-û
-ócom.dietiEstates.backend.service.CustomerService#viewRealEstate(Ljava/lang/String;Ljava/lang/Long;)Lcom/dietiEstates/backend/dto/RealEstateCreationDTO;56
-
-method57
-
-viewRealEstate58
-8
-2com.dietiEstates.backend.dto.RealEstateCreationDTO60
-
-returns61
--
-'com.dietiEstates.backend.model.Customer63
-
-
-references64
-s
-mcom.dietiEstates.backend.repository.CustomerRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;66
-
-calls67
-/
-)com.dietiEstates.backend.model.RealEstate69
-8
-2org.springframework.data.repository.CrudRepository71
-i
-corg.springframework.data.repository.CrudRepository#findById(Ljava/lang/Object;)Ljava/util/Optional;73
-¥
-≠com.dietiEstates.backend.service.CustomerService#realEstateCreationDTOMapper(Lcom/dietiEstates/backend/model/RealEstate;)Lcom/dietiEstates/backend/dto/RealEstateCreationDTO;75
-<
-6com.dietiEstates.backend.model.CustomerViewsRealEstate77
-c
-]org.springframework.data.repository.CrudRepository#save(Ljava/lang/Object;)Ljava/lang/Object;79
-É
-}com.dietiEstates.backend.model.Customer#addCustomerViewsRealEstate(Lcom/dietiEstates/backend/model/CustomerViewsRealEstate;)V81
-!
-realEstateCreationDTOMapper82
-
-	has param83
-1
-+com.dietiEstates.backend.dto.EstateDescribe85
-1
-+com.dietiEstates.backend.dto.EstateFeatures87
-9
-3com.dietiEstates.backend.dto.EstateLocationFeatures89
--
-'com.dietiEstates.backend.dto.AddressDTO91
-L
-Forg.modelmapper.ModelMapper#map(Ljava/lang/Object;Ljava/lang/Object;)V93
-6
-0com.dietiEstates.backend.model.RealEstateForSale95
-?
-9com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO97
-6
-0com.dietiEstates.backend.model.RealEstateForRent99
-@
-9com.dietiEstates.backend.dto.RealEstateForRentCreationDTO101
-√
-ªcom.dietiEstates.backend.service.CustomerService#authenticateWithExternalAPI(Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdToken$Payload;)Lcom/dietiEstates/backend/model/Customer;103
-"
-authenticateWithExternalAPI104
-I
-Bcom.google.api.client.googleapis.auth.oauth2.GoogleIdToken$Payload106
-A
-:com.google.api.client.googleapis.auth.oauth2.GoogleIdToken108
-f
-_com.google.api.client.googleapis.auth.oauth2.GoogleIdToken$Payload#getEmail()Ljava/lang/String;110
-Õ
-≈com.dietiEstates.backend.service.CustomerService#generateCustomerAPI(Ljava/lang/String;Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdToken$Payload;)Lcom/dietiEstates/backend/model/Customer;112
-
-generateCustomerAPI113
--
-&com.google.api.client.util.GenericData115
-W
-Pcom.google.api.client.util.GenericData#get(Ljava/lang/Object;)Ljava/lang/Object;117
-v
-oorg.springframework.security.crypto.password.PasswordEncoder#encode(Ljava/lang/CharSequence;)Ljava/lang/String;119
-b
-[com.dietiEstates.backend.service.CustomerService#generateRandomPassword()Ljava/lang/String;121
-
-generateRandomPassword122J
-
-1
-12Z
-
-3	
-354jÃ
-@
-50:
-505124 *
-14 4(26:3B
-	
-9
-25
-
-
-11
-52
-@
-74:
-747557 *
-1a a(26:3B
-	
-9
-25
-
-
-11
-82
-
-18
-181915
-
-88
-888915
-@
-55:
-555657 *
-18 8(26:3B
-	
-9
-10
-
-
-11
-58
-
-76
-767715
-
-59
-596015
-
-70
-707115
-
-98
-989915
-
-86
-868715
-F
-120?
-12012157 *
-1√ √(26:3B
-	
-9
-25
-
-11
-122
-
-48
-484915
-@
-45:
-454624 *
-13 3(26:3B
-	
-9
-25
-
-
-11
-47
-@
-22:
-222324 *
-1. .(26:3B
-	
-9
-25
-
-
-11
-26
-
-13
-131415
-
-109
-10911015
-
-68
-686915
-
-96
-969715
-
-84
-848515
-
-94
-949515
-
-78
-787915
-
-92
-929315
-
-114
-11411515
-9
-64
-678 *
-1+ +(:3B
-	
-9
-10
-
-
-11
-12
-
-105
-10510615
-@
-40:
-404124 *
-12 2(26:3B
-	
-9
-25
-
-
-11
-42
-
-65
-656615
-@
-30:
-303124 *
-10 0(26:3B
-	
-9
-25
-
-
-11
-32
-
-43
-434415
-
-27
-272815
-@
-35:
-353624 *
-11 1(26:3B
-	
-9
-25
-
-
-11
-37
-
-107
-10710815
-
-118
-11811915
-
-90
-909115
-F
-111?
-11111257 *
-1∏ ∏(26:3B
-	
-9
-25
-
-11
-113
-
-20
-202115
-
-53
-535415
-
-100
-10010115
-F
-102?
-10210357 *
-1û û(26:3B
-	
-9
-10
-
-11
-104
-
-33
-333415
-
-80
-808115
-
-116
-11611715
-
-72
-727315
-
-62
-626315
-
-38
-383915rô
-
-61316*
-1( ((
-
-61317*
-1( ((	
-
-61816*
-1) )(
-
-61817*
-1) )(
-
-62016*
-1* *(
-
-62017*
-1* *(
-
-222729*
-1. .($
-
-222717*
-1. .($
-
-222717*
-1.% .(6
-
-303329*
-10 0( 
-
-303317*
-10 0( 
-
-303317*
-10! 0(.
-
-353829*
-11 1('
-
-353817*
-11 1('
-
-353817*
-11( 1(<
-
-404329*
-12 2(%
-
-404317*
-12 2(%
-
-404317*
-12& 2(8
-
-454829*
-13 3(
-
-454817*
-13 3(
-
-454817*
-13 3(*
-
-505329*
-14 4("
-
-505317*
-14 4("
-
-505317*
-14# 4(2
-
-555961*
-18 8(!
-
-555917*
-18 8(!
-
-556229*
-1: :(
-
-556217*
-1:	 :(
-
-556261*
-1: :(/
-
-554364*
-1: :(/
-
-556567*
-1:0 :(>
-
-554064*
-1: :(/
-
-554317*
-1: :(/
-
-554064*
-1: :(/
-
-556829*
-1; ;(
-
-556817*
-1;	 ;(
-
-556861*
-1;! ;(5
-
-557064*
-1;! ;(5
-
-557267*
-1;6 ;(>
-
-553564*
-1;! ;(5
-
-553817*
-1;! ;(5
-
-553564*
-1;! ;(5
-
-555929*
-1= =(4
-
-555917*
-1=	 =(
-
-555961*
-1=7 =(R
-
-55664*
-1=7 =(R
-
-557467*
-1=7 =(R
-
-557629*
-1D) D(@
-
-557617*
-1D D((
-
-557617*
-1J J(-
-
-557629*
-1N1 N(I
-
-557617*
-1N N(0
-
-556261*
-1S S(/
-
-557064*
-1S S(/
-
-557867*
-1S0 S(4
-
-554064*
-1S S(/
-
-554317*
-1S S(/
-
-554064*
-1S S(/
-
-556264*
-1Y Y(
-
-558067*
-1Y Y(4
-
-556261*
-1Z Z(#
-
-557064*
-1Z Z(#
-
-557867*
-1Z$ Z((
-
-554064*
-1Z Z(#
-
-554317*
-1Z Z(#
-
-554064*
-1Z Z(#
-
-745961*
-1a a(*
-
-746883*
-1aG a(Q
-
-745917*
-1a a(*
-
-746829*
-1aR a(\
-
-746817*
-1aG a(Q
-
-748429*
-1q  q(.
-
-748417*
-1q q(
-
-748629*
-1u  u(.
-
-748617*
-1u u(
-
-748667*
-1u5 u(C
-
-748829*
-1Å( Å(>
-
-748817*
-1Å Å('
-
-748867*
-1ÅE Å([
-
-749029*
-1á á(#
-
-749017*
-1á á(
-
-744864*
-1á& á(1
-
-749267*
-1á2 á(5
-
-744564*
-1á& á(1
-
-744817*
-1á& á(1
-
-744564*
-1á& á(1
-
-749017*
-1áO á(Y
-
-749417*
-1ä* ä(;
-
-749429*
-1å' å(8
-
-749417*
-1å å(&
-
-749417*
-1å< å(M
-
-749667*
-1é  é(<
-
-749829*
-1í' í(8
-
-749817*
-1í í(&
-
-749817*
-1í< í(M
-
-7410067*
-1ï  ï(<
-
-1026261*
-1û û(
-
-10210583*
-1û1 û(>
-
-1026217*
-1û û(
-
-10210529*
-1ûG û(N
-
-10210717*
-1û1 û(>
-
-10210517*
-1û? û(F
-
-10210564*
-1û? û(F
-
-10210564*
-1ü ü(
-
-10210967*
-1ü  ü((
-
-1026217*
-1£ £(
-
-1024364*
-1£+ £(=
-
-1026567*
-1£> £(L
-
-1024064*
-1£+ £(=
-
-1024317*
-1£+ £(=
-
-1024064*
-1£+ £(=
-
-1026261*
-1® ®( 
-
-1026261*
-1≠ ≠(#
-
-102664*
-1≠ ≠(#
-
-10211167*
-1≠ ≠(#
-
-1116261*
-1∏ ∏(
-
-11110583*
-1∏8 ∏(E
-
-1116217*
-1∏ ∏(
-
-11110529*
-1∏N ∏(U
-
-11110717*
-1∏8 ∏(E
-
-11110517*
-1∏F ∏(M
-
-11110564*
-1∏F ∏(M
-
-1116229*
-1π π(
-
-1116217*
-1π	 π(
-
-11111464*
-1∫ ∫(!
-
-11111667*
-1∫" ∫(%
-
-1115364*
-1ª ª(-
-
-11111867*
-1ª. ª(4
-
-1115064*
-1ª ª(-
-
-1115317*
-1ª ª(-
-
-1115064*
-1ª ª(-
-
-111664*
-1ª5 ª(K
-
-11112067*
-1ª5 ª(K
-
-11111464*
-1Ω Ω($
-
-11111667*
-1Ω% Ω((
-
-1116261*
-1¿ ¿("
-
-1117064*
-1¿ ¿("
-
-1117867*
-1¿# ¿('
-
-1114064*
-1¿ ¿("
-
-1114317*
-1¿ ¿("
-
-1114064*
-1¿ ¿("

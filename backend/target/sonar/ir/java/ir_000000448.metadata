@@ -1,5 +1,0 @@
-com.dietiEstates.backend.service.RealEstateService#search2(Ljava/util/Map;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;
-false
-3e1e8c4911602a1544e207d2e1561765
-==
-findRealEstateByFilters2 com.dietiEstates.backend.repository.CustomRepository#findRealEstateByFilters2(Ljava/util/Map;Lorg/springframework/data/domain/Pageable;)Ljava/util/List;

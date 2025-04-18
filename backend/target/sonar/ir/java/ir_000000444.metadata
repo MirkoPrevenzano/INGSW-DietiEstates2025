@@ -1,7 +1,0 @@
-com.dietiEstates.backend.model.User#getAuthorities()Ljava/util/Collection;
-false
-d9468f8763909a5e63e31888cb70ea23
-java.lang.Enum#name()Ljava/lang/String;
-java.util.List#of(Ljava/lang/Object;)Ljava/util/List;
-org.springframework.security.core.authority.SimpleGrantedAuthority#<init>(Ljava/lang/String;)V
-org.springframework.security.core.authority.SimpleGrantedAuthority#instance-init#

@@ -1,7 +1,0 @@
-com.dietiEstates.backend.config.S3Config#s3Client()Lsoftware/amazon/awssdk/services/s3/S3Client;
-false
-0470b24a0f3fd1d9696ae480475e9ed4
-software.amazon.awssdk.services.s3.S3Client#builder()Lsoftware/amazon/awssdk/services/s3/S3ClientBuilder;
-==
-build software.amazon.awssdk.utils.builder.SdkBuilder#build()Ljava/lang/Object;
-region software.amazon.awssdk.awscore.client.builder.AwsClientBuilder#region(Lsoftware/amazon/awssdk/regions/Region;)Lsoftware/amazon/awssdk/awscore/client/builder/AwsClientBuilder;

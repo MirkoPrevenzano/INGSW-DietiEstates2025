@@ -1,592 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021595*java2.BÙ
-P
-Ksrc/main/java/com/dietiEstates/backend/config/UserDetailsServiceConfig.java2
-
-package4
-$
-com.dietiEstates.backend.config5
-=
-8com.dietiEstates.backend.config.UserDetailsServiceConfig7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-UserDetailsServiceConfig12
-:
-4org.springframework.context.annotation.Configuration14
-
-unknown15
-
-annotated by16
-
-
-uses17
-$
-lombok.RequiredArgsConstructor19
-
-lombok.extern.slf4j.Slf4j21
-Q
-Kcom.dietiEstates.backend.config.UserDetailsServiceConfig.customerRepository23
-
-field24
-
-private25
-
-customerRepository26
-<
-6com.dietiEstates.backend.repository.CustomerRepository28
-
-is type29
-X
-Rcom.dietiEstates.backend.config.UserDetailsServiceConfig.realEstateAgentRepository31
-
-realEstateAgentRepository32
-C
-=com.dietiEstates.backend.repository.RealEstateAgentRepository34
-V
-Pcom.dietiEstates.backend.config.UserDetailsServiceConfig.administratorRepository36
-
-administratorRepository37
-A
-;com.dietiEstates.backend.repository.AdministratorRepository39
-N
-Hcom.dietiEstates.backend.config.UserDetailsServiceConfig.passwordEncoder41
-
-passwordEncoder42
-B
-<org.springframework.security.crypto.password.PasswordEncoder44
-Q
-Kcom.dietiEstates.backend.config.UserDetailsServiceConfig.httpServletRequest46
-
-httpServletRequest47
--
-'jakarta.servlet.http.HttpServletRequest49
-<
-6org.springframework.beans.factory.annotation.Autowired51
-–
-com.dietiEstates.backend.config.UserDetailsServiceConfig#userDetailsService()Lorg/springframework/security/core/userdetails/UserDetailsService;53
-
-method54
-
-userDetailsService55
-F
-@org.springframework.security.core.userdetails.UserDetailsService57
-
-returns58
-1
-+org.springframework.context.annotation.Bean60
-@
-:com.dietiEstates.backend.config.UserDetailsServiceConfig$162
-
-	protected63
-£
-œcom.dietiEstates.backend.config.UserDetailsServiceConfig$1#loadUserByUsername(Ljava/lang/String;)Lorg/springframework/security/core/userdetails/UserDetails;65
-
-loadUserByUsername66
-?
-9org.springframework.security.core.userdetails.UserDetails68
-M
-Gorg.springframework.security.core.userdetails.UsernameNotFoundException70
-$
-jakarta.servlet.ServletRequest72
-
-
-references73
-W
-Qjakarta.servlet.ServletRequest#getParameter(Ljava/lang/String;)Ljava/lang/String;75
-
-calls76
--
-'com.dietiEstates.backend.model.Customer78
-s
-mcom.dietiEstates.backend.repository.CustomerRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;80
-)
-#com.dietiEstates.backend.model.Role82
-3
--com.dietiEstates.backend.model.Role.ROLE_USER84
-4
-.com.dietiEstates.backend.model.RealEstateAgent86
-z
-tcom.dietiEstates.backend.repository.RealEstateAgentRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;88
-4
-.com.dietiEstates.backend.model.Role.ROLE_AGENT90
-2
-,com.dietiEstates.backend.model.Administrator92
-x
-rcom.dietiEstates.backend.repository.AdministratorRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;94
-w
-qorg.springframework.security.crypto.password.PasswordEncoder#matches(Ljava/lang/CharSequence;Ljava/lang/String;)Z96
-_
-Yorg.springframework.security.core.userdetails.UserDetails#getPassword()Ljava/lang/String;98
-<
-5com.dietiEstates.backend.model.Role.ROLE_UNAUTHORIZED100
-5
-.com.dietiEstates.backend.model.Role.ROLE_ADMIN102
-<
-5com.dietiEstates.backend.model.Role.ROLE_COLLABORATOR104J
-
-1
-12Z
-
-3	
-354j‹	
-
-89
-899015
-
-69
-697015
-
-48
-484915
-
-18
-181915
-@
-52:
-525354 *
-1, ,(26:3B
-	
-9
-10
-
-
-11
-55
-
-56
-565715
-
-103
-10310415
-
-50
-505115
-
-85
-858615
-@
-35:
-353624 *
-1$ $(26:3B
-	
-9
-25
-
-
-11
-37
-A
-64;
-646554 *
-11 1(261:3B
-	
-9
-10
-
-
-11
-66
-
-74
-747515
-
-101
-10110215
-
-91
-919215
-
-67
-676815
-
-93
-939415
-@
-22:
-222324 *
-1" "(26:3B
-	
-9
-25
-
-
-11
-26
-
-81
-818215
-
-97
-979815
-
-87
-878815
-@
-30:
-303124 *
-1# #(26:3B
-	
-9
-25
-
-
-11
-32
-
-71
-717215
-
-79
-798015
-
-27
-272815
-@
-45:
-454624 *
-1' '(26:3B
-	
-9
-25
-
-
-11
-47
-
-95
-959615
-
-38
-383915
-4
-61.
-61628 *
-10 0(	252:3B
-	
-9
-63
-
-13
-131415
-@
-40:
-404124 *
-1% %(26:3B
-	
-9
-25
-
-
-11
-42
-
-20
-202115
-
-43
-434415
-
-99
-9910015
-9
-64
-678 *
-1   (&:3B
-	
-9
-10
-
-
-11
-12
-
-83
-838415
-
-59
-596015
-
-77
-777815
-
-33
-333415rú
-
-61316*
-1 (
-
-61317*
-1 (
-
-61816*
-1 (
-
-61817*
-1 (
-
-62016*
-1 (
-
-62017*
-1 (
-
-222729*
-1" "(%
-
-222717*
-1" "(%
-
-222717*
-1"& "(8
-
-303329*
-1# #(,
-
-303317*
-1# #(,
-
-303317*
-1#- #(F
-
-353829*
-1$ $(*
-
-353817*
-1$ $(*
-
-353817*
-1$+ $(B
-
-404329*
-1% %("
-
-404317*
-1% %("
-
-404317*
-1%# %(2
-
-454829*
-1( ((
-
-455016*
-1' '(
-
-455017*
-1' '(
-
-454817*
-1( ((
-
-454817*
-1(  ((2
-
-525658*
-1- -(
-
-525916*
-1, ,(
-
-525917*
-1, ,(
-
-
-525617*
-1- -(
-
-646758*
-12 2(
-
-646717*
-12 2(
-
-646917*
-12K 2(d
-
-647173*
-14 4(*
-
-647476*
-14+ 4(7
-
-644573*
-14 4(*
-
-644817*
-14 4(*
-
-644573*
-14 4(*
-
-647717*
-18" 8(*
-
-642773*
-187 8(I
-
-647976*
-18J 8(X
-
-642273*
-187 8(I
-
-642717*
-187 8(I
-
-642273*
-187 8(I
-
-646976*
-1<' <(@
-
-647758*
-1A A(%
-
-648117*
-1A4 A(8
-
-648117*
-1A9 A(B
-
-648373*
-1A9 A(B
-
-647758*
-1B$ B(,
-
-648517*
-1H" H(1
-
-643373*
-1HE H(^
-
-648776*
-1H_ H(m
-
-643073*
-1HE H(^
-
-643317*
-1HE H(^
-
-643073*
-1HE H(^
-
-646976*
-1L' L(@
-
-648558*
-1Q Q(,
-
-648117*
-1Q; Q(?
-
-648117*
-1Q@ Q(J
-
-648973*
-1Q@ Q(J
-
-648558*
-1R$ R(3
-
-649117*
-1X" X(/
-
-643873*
-1XA X(X
-
-649376*
-1XY X(g
-
-643573*
-1XA X(X
-
-643817*
-1XA X(X
-
-643573*
-1XA X(X
-
-646976*
-1\' \(@
-
-644373*
-1^! ^(0
-
-649576*
-1^1 ^(8
-
-644073*
-1^! ^(0
-
-644317*
-1^! ^(0
-
-644073*
-1^! ^(0
-
-646773*
-1^D ^(Q
-
-649776*
-1^X ^(c
-
-649158*
-1^D ^(Q
-
-649158*
-1a a(*
-
-648117*
-1a9 a(=
-
-648117*
-1a> a(O
-
-649973*
-1a> a(O
-
-649158*
-1b$ b(1
-
-649158*
-1d! d(.
-
-649158*
-1g g(*
-
-648117*
-1g9 g(=
-
-648117*
-1g> g(H
-
-6410173*
-1g> g(H
-
-649158*
-1h$ h(1
-
-649158*
-1l l(&
-
-648117*
-1l5 l(9
-
-648117*
-1l: l(K
-
-6410373*
-1l: l(K
-
-649158*
-1m  m(-

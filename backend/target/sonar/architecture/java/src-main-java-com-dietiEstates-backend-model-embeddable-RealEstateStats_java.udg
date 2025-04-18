@@ -1,154 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789019482*java2.Bå
-Q
-Lsrc/main/java/com/dietiEstates/backend/model/embeddable/RealEstateStats.java2
-
-package4
-.
-)com.dietiEstates.backend.model.embeddable5
->
-9com.dietiEstates.backend.model.embeddable.RealEstateStats7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-RealEstateStats12
-$
-jakarta.persistence.Embeddable14
-
-unknown15
-
-annotated by16
-
-
-uses17
-
-lombok.Data19
-
-lombok.NoArgsConstructor21
-K
-Ecom.dietiEstates.backend.model.embeddable.RealEstateStats.viewsNumber23
-
-field24
-
-private25
-
-viewsNumber26
- 
-jakarta.persistence.Column28
-L
-Fcom.dietiEstates.backend.model.embeddable.RealEstateStats.visitsNumber30
-
-visitsNumber31
-L
-Fcom.dietiEstates.backend.model.embeddable.RealEstateStats.offersNumber33
-
-offersNumber34J
-
-1
-12Z
-
-3	
-354j—
-@
-22:
-222324 *
-1 (26:3B
-	
-9
-25
-
-
-11
-26
-
-27
-272815
-9
-64
-678 *
-1 (:3B
-	
-9
-10
-
-
-11
-12
-@
-32:
-323324 *
-1 (26:3B
-	
-9
-25
-
-
-11
-34
-
-18
-181915
-
-13
-131415
-
-20
-202115
-@
-29:
-293024 *
-1 (26:3B
-	
-9
-25
-
-
-11
-31ræ
-
-61316*
-1
- 
-(
-
-61317*
-1
- 
-(
-
-61816*
-1 (
-
-61817*
-1 (
-
-62016*
-1 (
-
-62017*
-1 (
-
-222716*
-1 (
-
-222717*
-1 (
-
-292716*
-1 (
-
-292717*
-1 (
-
-322716*
-1 (
-
-322717*
-1 (

@@ -1,595 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789019509*java2.B¢
-D
-?src/main/java/com/dietiEstates/backend/model/Administrator.java2
-
-package4
-#
-com.dietiEstates.backend.model5
-1
-,com.dietiEstates.backend.model.Administrator7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-Administrator12
-)
-#com.dietiEstates.backend.model.User14
-
-unknown15
-
-extends16
- 
-jakarta.persistence.Entity18
-
-annotated by19
-
-
-uses20
-
-jakarta.persistence.Table22
-*
-$jakarta.persistence.UniqueConstraint24
-
-lombok.Data26
-
-lombok.EqualsAndHashCode28
-
-lombok.NoArgsConstructor30
-
-lombok.ToString32
-+
-%jakarta.persistence.AttributeOverride34
- 
-jakarta.persistence.Column36
-=
-7com.dietiEstates.backend.model.Administrator.agencyName38
-
-field39
-
-private40
-
-
-agencyName41
-:
-4com.dietiEstates.backend.model.Administrator.manager43
-
-manager44
-
-is type45
-#
-jakarta.persistence.ManyToOne47
-#
-jakarta.persistence.FetchType49
-)
-#jakarta.persistence.FetchType.EAGER51
-
-
-references52
-$
-jakarta.persistence.JoinColumn54
-$
-jakarta.persistence.ForeignKey56
-@
-:com.dietiEstates.backend.model.Administrator.collaborators58
-
-collaborators59
-#
-jakarta.persistence.OneToMany61
-(
-"jakarta.persistence.FetchType.LAZY63
-%
-jakarta.persistence.CascadeType65
--
-'jakarta.persistence.CascadeType.PERSIST67
-+
-%jakarta.persistence.CascadeType.MERGE69
-,
-&jakarta.persistence.CascadeType.REMOVE71
-C
-=com.dietiEstates.backend.model.Administrator.realEstateAgents73
-
-realEstateAgents74
-4
-.com.dietiEstates.backend.model.RealEstateAgent76
-ó
-êcom.dietiEstates.backend.model.Administrator#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V78
-
-method79
-
-calls80
-s
-mcom.dietiEstates.backend.model.Administrator#addCollaborator(Lcom/dietiEstates/backend/model/Administrator;)V82
-
-addCollaborator83
-
-	has param84
-v
-pcom.dietiEstates.backend.model.Administrator#removeCollaborator(Lcom/dietiEstates/backend/model/Administrator;)V86
-
-removeCollaborator87
-x
-rcom.dietiEstates.backend.model.Administrator#addRealEstateAgent(Lcom/dietiEstates/backend/model/RealEstateAgent;)V89
-
-addRealEstateAgent90
-{
-ucom.dietiEstates.backend.model.Administrator#removeRealEstateAgent(Lcom/dietiEstates/backend/model/RealEstateAgent;)V92
-
-removeRealEstateAgent93J
-
-1
-12Z
-
-3	
-354j≈
-
-13
-131415
-
-17
-171815
-@
-77:
-777879 *
-1A A(26:3B
-	
-9
-10
-
-
-11
-12
-@
-81:
-818279 *
-1I I(26:3B
-	
-9
-10
-
-
-11
-83
-
-60
-606115
-
-46
-464715
-@
-42:
-424339 *
-1+ +(26:3B
-	
-9
-40
-
-
-11
-44
-
-75
-757615
-
-21
-212215
-@
-91:
-919279 *
-1[ [(26:3B
-	
-9
-10
-
-
-11
-93
-9
-64
-678 *
-1" "(:3B
-	
-9
-10
-
-
-11
-12
-
-68
-686915
-
-23
-232415
-
-31
-313215
-@
-37:
-373839 *
-1$ $(26:3B
-	
-9
-40
-
-
-11
-41
-@
-88:
-888979 *
-1U U(26:3B
-	
-9
-10
-
-
-11
-90
-
-33
-333415
-
-48
-484915
-
-55
-555615
-
-66
-666715
-
-53
-535415
-
-64
-646515
-
-62
-626315
-
-27
-272815
-
-50
-505115
-
-35
-353615
-@
-57:
-575839 *
-13 3(26:3B
-	
-9
-40
-
-
-11
-59
-
-70
-707115
-
-25
-252615
-@
-85:
-858679 *
-1O O(26:3B
-	
-9
-10
-
-
-11
-87
-@
-72:
-727339 *
-19 9(26:3B
-	
-9
-40
-
-
-11
-74
-
-29
-293015rÛ
-
-61316*
-1"$ "((
-
-61719*
-1 (
-
-61720*
-1 (
-
-62119*
-1 (
-
-62120*
-1 (
-
-62319*
-1 (
-
-62320*
-1 (-
-
-62519*
-1 (
-
-62520*
-1 (
-
-62719*
-1 (
-
-62720*
-1 (
-
-62919*
-1 (
-
-62920*
-1 (
-
-63119*
-1 (
-
-63120*
-1 (
-
-
-63319*
-1   (
-
-63320*
-1   (
-
-63519*
-1! !(
-
-63520*
-1! !($
-
-61320*
-1"$ "((
-
-373519*
-1$ $(
-
-373520*
-1$ $(
-
-42645*
-11 1(
-
-424619*
-1+ +(
-
-424620*
-1+ +(
-
-424820*
-1+ +(!
-
-424820*
-1+" +('
-
-425052*
-1+" +('
-
-425319*
-1- -(
-
-425320*
-1- -(
-
-425519*
-10 0(
-
-425520*
-10 0()
-
-42620*
-11 1(
-
-42620*
-11 1("
-
-576019*
-13 3(
-
-576020*
-13 3(
-
-574820*
-14 4(!
-
-574820*
-14" 4(&
-
-576252*
-14" 4(&
-
-576420*
-15 5(&
-
-576420*
-15' 5(.
-
-576652*
-15' 5(.
-
-576420*
-150 5(;
-
-576420*
-15< 5(A
-
-576852*
-15< 5(A
-
-576420*
-15C 5(N
-
-576420*
-15O 5(U
-
-577052*
-15O 5(U
-
-57620*
-17 7(
-
-726019*
-19 9(
-
-726020*
-19 9(
-
-724820*
-1: :(!
-
-724820*
-1:" :(&
-
-726252*
-1:" :(&
-
-726420*
-1; ;(&
-
-726420*
-1;' ;(.
-
-726652*
-1;' ;(.
-
-726420*
-1;0 ;(;
-
-726420*
-1;< ;(A
-
-726852*
-1;< ;(A
-
-726420*
-1;C ;(N
-
-726420*
-1;O ;(U
-
-727052*
-1;O ;(U
-
-727520*
-1= =(!
-
-77680*
-1A A(
-
-77620*
-1D	 D(
-
-77652*
-1D	 D(
-
-773752*
-1D D(
-
-81684*
-1I! I(.
-
-81645*
-1I/ I(>
-
-81620*
-1I! I(.
-
-81620*
-1K K(
-
-81652*
-1K K(
-
-815752*
-1K K(
-
-81620*
-1L# L('
-
-81652*
-1L# L('
-
-85684*
-1O$ O(1
-
-85645*
-1O2 O(A
-
-85620*
-1O$ O(1
-
-85620*
-1Q	 Q(
-
-85652*
-1Q	 Q(
-
-855752*
-1Q Q(
-
-887584*
-1U$ U(3
-
-887545*
-1U4 U(F
-
-887520*
-1U$ U(3
-
-88620*
-1W W(
-
-88652*
-1W W(
-
-887252*
-1W W(
-
-88620*
-1X, X(0
-
-88652*
-1X, X(0
-
-917584*
-1[' [(6
-
-917545*
-1[7 [(N
-
-917520*
-1[' [(6
-
-91620*
-1]	 ](
-
-91652*
-1]	 ](
-
-917252*
-1] ](

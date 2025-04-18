@@ -1,8 +1,0 @@
-com.dietiEstates.backend.service.ValidatorService#emailValidator(Ljava/lang/String;)V
-false
-ae8291fa66aa81f251f6dc914179f889
-java.lang.IllegalArgumentException#<init>(Ljava/lang/String;)V
-java.lang.IllegalArgumentException#instance-init#
-java.lang.String#length()I
-java.util.regex.Matcher#matches()Z
-java.util.regex.Pattern#matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;

@@ -1,213 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021446*java2.B¬
-G
-Bsrc/main/java/com/dietiEstates/backend/dto/RealEstateStatsDTO.java2
-
-package4
-!
-com.dietiEstates.backend.dto5
-4
-/com.dietiEstates.backend.dto.RealEstateStatsDTO7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-RealEstateStatsDTO12
-
-lombok.Data14
-
-unknown15
-
-annotated by16
-
-
-uses17
-
-lombok.NoArgsConstructor19
-$
-lombok.RequiredArgsConstructor21
-8
-2com.dietiEstates.backend.dto.RealEstateStatsDTO.id23
-
-field24
-
-private25
-
-id26
-
-lombok.NonNull28
-;
-5com.dietiEstates.backend.dto.RealEstateStatsDTO.title30
-
-title31
-C
-=com.dietiEstates.backend.dto.RealEstateStatsDTO.uploadingDate33
-
-uploadingDate34
-A
-;com.dietiEstates.backend.dto.RealEstateStatsDTO.viewsNumber36
-
-viewsNumber37
-B
-<com.dietiEstates.backend.dto.RealEstateStatsDTO.visitsNumber39
-
-visitsNumber40
-B
-<com.dietiEstates.backend.dto.RealEstateStatsDTO.offersNumber42
-
-offersNumber43J
-
-1
-12Z
-
-3	
-354j—
-@
-38:
-383924 *
-1 (26:3B
-	
-9
-25
-
-
-11
-40
-@
-32:
-323324 *
-1 (26:3B
-	
-9
-25
-
-
-11
-34
-@
-22:
-222324 *
-1 (26:3B
-	
-9
-25
-
-
-11
-26
-
-27
-272815
-9
-64
-678 *
-1 ( :3B
-	
-9
-10
-
-
-11
-12
-
-13
-131415
-
-20
-202115
-@
-29:
-293024 *
-1 (26:3B
-	
-9
-25
-
-
-11
-31
-@
-41:
-414224 *
-1 (26:3B
-	
-9
-25
-
-
-11
-43
-@
-35:
-353624 *
-1 (26:3B
-	
-9
-25
-
-
-11
-37
-
-18
-181915rà
-
-61316*
-1 (
-
-61317*
-1 (
-
-61816*
-1 (
-
-61817*
-1 (
-
-62016*
-1 (
-
-62017*
-1 (
-
-222716*
-1 (
-
-222717*
-1 (
-
-292716*
-1 (
-
-292717*
-1 (
-
-322716*
-1 (
-
-322717*
-1 (
-
-352716*
-1 (
-
-352717*
-1 (
-
-382716*
-1 (
-
-382717*
-1 (
-
-412716*
-1 (
-
-412717*
-1 (

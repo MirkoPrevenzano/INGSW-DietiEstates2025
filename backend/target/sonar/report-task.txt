@@ -1,7 +1,0 @@
-organization=mirkoprevenzano
-projectKey=MirkoPrevenzano_INGSW-DietiEstates2025
-serverUrl=https://sonarcloud.io
-serverVersion=8.0.0.62042
-dashboardUrl=https://sonarcloud.io/dashboard?id=MirkoPrevenzano_INGSW-DietiEstates2025
-ceTaskId=AZY9h8xZ4Vqin5GYzG4Z
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZY9h8xZ4Vqin5GYzG4Z

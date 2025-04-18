@@ -11,6 +11,7 @@ import { Router, RouterModule } from '@angular/router';
 import {  ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ButtonCustomComponent } from '../../button-custom/button-custom.component';
+import { LoginWithGoogleComponent } from '../../login-with-google/login-with-google.component';
 
 @Component({
   selector: 'app-customer-registrate',
@@ -20,7 +21,8 @@ import { ButtonCustomComponent } from '../../button-custom/button-custom.compone
     FormFieldComponent,
     PasswordFieldComponent,
     RouterModule,
-    ButtonCustomComponent
+    ButtonCustomComponent,
+    LoginWithGoogleComponent
   ],
   templateUrl: '../register/register.component.html',
   styleUrl: './customer-registrate.component.scss'

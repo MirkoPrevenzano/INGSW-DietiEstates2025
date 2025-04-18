@@ -1,580 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021152*java2.B‰
-^
-Ysrc/main/java/com/dietiEstates/backend/config/security/filter/JWTAuthorizationFilter.java2
-
-package4
-4
-/com.dietiEstates.backend.config.security.filter5
-K
-Fcom.dietiEstates.backend.config.security.filter.JWTAuthorizationFilter7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-JWTAuthorizationFilter12
-9
-3org.springframework.web.filter.OncePerRequestFilter14
-
-unknown15
-
-extends16
-
-lombok.extern.slf4j.Slf4j18
-
-annotated by19
-
-
-uses20
-Ñ
-Êcom.dietiEstates.backend.config.security.filter.JWTAuthorizationFilter#doFilterInternal(Ljakarta/servlet/http/HttpServletRequest;Ljakarta/servlet/http/HttpServletResponse;Ljakarta/servlet/FilterChain;)V22
-
-method23
-
-	protected24
-
-doFilterInternal25
--
-'jakarta.servlet.http.HttpServletRequest27
-
-	has param28
-.
-(jakarta.servlet.http.HttpServletResponse30
-!
-jakarta.servlet.FilterChain32
-
-is type33
-&
- org.springframework.lang.NonNull35
-&
- jakarta.servlet.ServletException37
-
-
-references38
-P
-Jjakarta.servlet.http.HttpServletRequest#getServletPath()Ljava/lang/String;40
-
-calls41
-n
-hjakarta.servlet.FilterChain#doFilter(Ljakarta/servlet/ServletRequest;Ljakarta/servlet/ServletResponse;)V43
-]
-Wjakarta.servlet.http.HttpServletRequest#getHeader(Ljava/lang/String;)Ljava/lang/String;45
-*
-$org.springframework.http.HttpHeaders47
-8
-2org.springframework.http.HttpHeaders.AUTHORIZATION49
-)
-#com.auth0.jwt.interfaces.DecodedJWT51
-
-returns52
-7
-1com.dietiEstates.backend.config.security.JWTUtils54
-|
-vcom.dietiEstates.backend.config.security.JWTUtils#verifyToken(Ljava/lang/String;)Lcom/auth0/jwt/interfaces/DecodedJWT;56
-&
- com.auth0.jwt.interfaces.Payload58
-E
-?com.auth0.jwt.interfaces.Payload#getSubject()Ljava/lang/String;60
-$
-com.auth0.jwt.interfaces.Claim62
-R
-Lcom.auth0.jwt.interfaces.Claim#asArray(Ljava/lang/Class;)[Ljava/lang/Object;64
-c
-]com.auth0.jwt.interfaces.Payload#getClaim(Ljava/lang/String;)Lcom/auth0/jwt/interfaces/Claim;66
-H
-Borg.springframework.security.core.authority.SimpleGrantedAuthority68
-U
-Oorg.springframework.security.authentication.UsernamePasswordAuthenticationToken70
-M
-Gorg.springframework.security.authentication.AbstractAuthenticationToken72
-m
-gorg.springframework.security.authentication.AbstractAuthenticationToken#setDetails(Ljava/lang/Object;)V74
-N
-Horg.springframework.security.web.authentication.WebAuthenticationDetails76
-T
-Norg.springframework.security.web.authentication.WebAuthenticationDetailsSource78
-×
-Ðorg.springframework.security.web.authentication.WebAuthenticationDetailsSource#buildDetails(Ljakarta/servlet/http/HttpServletRequest;)Lorg/springframework/security/web/authentication/WebAuthenticationDetails;80
-?
-9org.springframework.security.core.context.SecurityContext82
-‡
-€org.springframework.security.core.context.SecurityContext#setAuthentication(Lorg/springframework/security/core/Authentication;)V84
-E
-?org.springframework.security.core.context.SecurityContextHolder86
-Ž
-‡org.springframework.security.core.context.SecurityContextHolder#getContext()Lorg/springframework/security/core/context/SecurityContext;88
-$
-jakarta.servlet.ServletRequest90
-X
-Rjakarta.servlet.ServletRequest#setAttribute(Ljava/lang/String;Ljava/lang/Object;)V92
-M
-Gorg.springframework.security.core.userdetails.UsernameNotFoundException94
-_
-Yjakarta.servlet.http.HttpServletResponse#setHeader(Ljava/lang/String;Ljava/lang/String;)V96
-<
-6jakarta.servlet.http.HttpServletResponse#setStatus(I)V98
-*
-#org.springframework.http.HttpStatus100
-3
-,org.springframework.http.HttpStatus#value()I102
-7
-0org.springframework.http.HttpStatus.UNAUTHORIZED104
-8
-1com.auth0.jwt.exceptions.JWTVerificationException106J
-
-1
-12Z
-
-3	
-354j§
-
-75
-757615
-
-59
-596015
-
-93
-939415
-
-26
-262715
-
-39
-394015
-
-95
-959615
-
-50
-505115
-
-97
-979815
-
-13
-131415
-
-67
-676815
-
-87
-878815
-
-36
-363715
-
-63
-636415
-9
-64
-678 *
-1" "($:3B
-	
-9
-10
-
-
-11
-12
-
-48
-484915
-@
-21:
-212223 *
-1$ $(26:3B
-	
-9
-24
-
-
-11
-25
-
-83
-838415
-
-42
-424315
-
-85
-858615
-
-61
-616215
-
-44
-444515
-
-105
-10510615
-
-101
-10110215
-
-79
-798015
-
-89
-899015
-
-46
-464715
-
-31
-313215
-
-73
-737415
-
-77
-777815
-
-99
-9910015
-
-17
-171815
-
-91
-919215
-
-53
-535415
-
-55
-555615
-
-81
-818215
-
-103
-10310415
-
-71
-717215
-
-65
-656615
-
-34
-343515
-
-29
-293015
-
-69
-697015
-
-57
-575815r¬
-
-61316*
-1"- "(A
-
-61719*
-1! !(
-
-61720*
-1! !(
-
-61320*
-1"- "(A
-
-212628*
-1%. %(@
-
-212928*
-1&. &(A
-
-213128*
-1'. '(9
-
-212633*
-1%A %(H
-
-213419*
-1%% %(&
-
-213420*
-1%& %(-
-
-212620*
-1%. %(@
-
-212933*
-1&B &(J
-
-213419*
-1&% &(&
-
-213420*
-1&& &(-
-
-212920*
-1&. &(A
-
-213133*
-1': '(E
-
-213419*
-1'% '(&
-
-213420*
-1'& '(-
-
-213120*
-1'. '(9
-
-213620*
-1'N '(^
-
-212638*
-1) )(
-
-213941*
-1) )("
-
-212638*
-1)9 )(@
-
-213941*
-1)A )(O
-
-212638*
-1* *(
-
-213941*
-1* *("
-
-212638*
-1*@ *(G
-
-213941*
-1*H *(V
-
-212638*
-1*s *(z
-
-213941*
-1*{ *(‰
-
-213138*
-1- -(
-
-214241*
-1- -(!
-
-212638*
-11& 1(-
-
-214441*
-11. 1(7
-
-214620*
-118 1(C
-
-214838*
-11D 1(Q
-
-215033*
-18 8(&
-
-215020*
-18 8(
-
-215052*
-18) 8(1
-
-215338*
-18) 8(1
-
-215541*
-182 8(=
-
-215320*
-18) 8(1
-
-215738*
-1:# :(-
-
-215941*
-1:. :(8
-
-216138*
-1;" ;(,
-
-216341*
-1;? ;(F
-
-216152*
-1;" ;(,
-
-215738*
-1;" ;(,
-
-216541*
-1;- ;(5
-
-216720*
-1< <(2
-
-216741*
-1=D =(Z
-
-216933*
-1?5 ?(H
-
-216920*
-1? ?(4
-
-216941*
-1?O ?(r
-
-217138*
-1@ @($
-
-217341*
-1@% @(/
-
-217552*
-1@0 @(3
-
-217738*
-1@0 @(3
-
-217941*
-1@U @(a
-
-217741*
-1@4 @(R
-
-218138*
-1A A(&
-
-218341*
-1A4 A(E
-
-218152*
-1A A(&
-
-218538*
-1A A(&
-
-218741*
-1A' A(1
-
-218520*
-1A A(&
-
-218938*
-1D D(
-
-219141*
-1D D(%
-
-213138*
-1E E(
-
-214241*
-1E E(%
-
-219333*
-1G. G(/
-
-219320*
-1G G(-
-
-212938*
-1J J(
-
-219541*
-1J J(#
-
-212938*
-1K K(
-
-219741*
-1K K(#
-
-219938*
-1K$ K(.
-
-2110141*
-1K< K(A
-
-219920*
-1K$ K(.
-
-219920*
-1K/ K(;
-
-2110338*
-1K/ K(;
-
-2110533*
-1M- M(.
-
-2110520*
-1M M(,
-
-212938*
-1P P(
-
-219541*
-1P P(#
-
-212938*
-1Q Q(
-
-219741*
-1Q Q(#
-
-219938*
-1Q$ Q(.
-
-2110141*
-1Q< Q(A
-
-219920*
-1Q$ Q(.
-
-219920*
-1Q/ Q(;
-
-2110338*
-1Q/ Q(;
-
-212938*
-1W W(
-
-219541*
-1W W(
-
-212938*
-1X X(
-
-219741*
-1X X(
-
-219938*
-1X  X(*
-
-2110141*
-1X8 X(=
-
-219920*
-1X  X(*
-
-219920*
-1X+ X(7
-
-2110338*
-1X+ X(7

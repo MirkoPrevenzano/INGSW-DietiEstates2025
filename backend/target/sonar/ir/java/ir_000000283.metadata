@@ -1,5 +1,0 @@
-com.dietiEstates.backend.model.RealEstateForRent#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/time/LocalDateTime;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/String;Lcom/dietiEstates/backend/model/embeddable/InternalRealEstateFeatures;Lcom/dietiEstates/backend/model/embeddable/ExternalRealEstateFeatures;Ljava/lang/Double;Ljava/lang/Integer;)V
-false
-698068708fa6cead45ff030071b9f979
-==
-<init> com.dietiEstates.backend.model.RealEstate#<init>(Ljava/lang/String;Ljava/lang/String;Ljava/time/LocalDateTime;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/String;Lcom/dietiEstates/backend/model/embeddable/InternalRealEstateFeatures;Lcom/dietiEstates/backend/model/embeddable/ExternalRealEstateFeatures;)V

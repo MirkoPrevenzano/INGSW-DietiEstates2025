@@ -1,316 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789022101*java2.Bá
-J
-Esrc/main/java/com/dietiEstates/backend/config/security/WebConfig.java2
-
-package4
--
-(com.dietiEstates.backend.config.security5
-7
-2com.dietiEstates.backend.config.security.WebConfig7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-	WebConfig12
-H
-Borg.springframework.web.servlet.config.annotation.WebMvcConfigurer14
-
-unknown15
-
-
-implements16
-:
-4org.springframework.context.annotation.Configuration18
-
-annotated by19
-
-
-uses20
-$
-lombok.RequiredArgsConstructor22
-Q
-Kcom.dietiEstates.backend.config.security.WebConfig.authorizationInterceptor24
-
-field25
-
-private26
-
-authorizationInterceptor27
-S
-Mcom.dietiEstates.backend.config.security.interceptor.AuthorizationInterceptor29
-
-is type30
-“
-Œcom.dietiEstates.backend.config.security.WebConfig#addInterceptors(Lorg/springframework/web/servlet/config/annotation/InterceptorRegistry;)V32
-
-method33
-
-addInterceptors34
-K
-Eorg.springframework.web.servlet.config.annotation.InterceptorRegistry36
-
-	has param37
-&
- org.springframework.lang.NonNull39
-O
-Iorg.springframework.web.servlet.config.annotation.InterceptorRegistration41
-
-returns42
-
-
-references43
-Ü
-Õorg.springframework.web.servlet.config.annotation.InterceptorRegistry#addInterceptor(Lorg/springframework/web/servlet/HandlerInterceptor;)Lorg/springframework/web/servlet/config/annotation/InterceptorRegistration;45
-
-calls46
-Œ
-…com.dietiEstates.backend.config.security.WebConfig#addCorsMappings(Lorg/springframework/web/servlet/config/annotation/CorsRegistry;)V48
-
-addCorsMappings49
-D
->org.springframework.web.servlet.config.annotation.CorsRegistry51
-H
-Borg.springframework.web.servlet.config.annotation.CorsRegistration53
-±
-ªorg.springframework.web.servlet.config.annotation.CorsRegistration#exposedHeaders([Ljava/lang/String;)Lorg/springframework/web/servlet/config/annotation/CorsRegistration;55
-¡
-šorg.springframework.web.servlet.config.annotation.CorsRegistration#allowCredentials(Z)Lorg/springframework/web/servlet/config/annotation/CorsRegistration;57
-±
-ªorg.springframework.web.servlet.config.annotation.CorsRegistration#allowedHeaders([Ljava/lang/String;)Lorg/springframework/web/servlet/config/annotation/CorsRegistration;59
-±
-ªorg.springframework.web.servlet.config.annotation.CorsRegistration#allowedMethods([Ljava/lang/String;)Lorg/springframework/web/servlet/config/annotation/CorsRegistration;61
-±
-ªorg.springframework.web.servlet.config.annotation.CorsRegistration#allowedOrigins([Ljava/lang/String;)Lorg/springframework/web/servlet/config/annotation/CorsRegistration;63
-¨
-¡org.springframework.web.servlet.config.annotation.CorsRegistry#addMapping(Ljava/lang/String;)Lorg/springframework/web/servlet/config/annotation/CorsRegistration;65J
-
-1
-12Z
-
-3	
-354jÁ
-
-28
-282915
-
-40
-404115
-@
-47:
-474833 *
-1 (26:3B
-	
-9
-10
-
-
-11
-49
-
-64
-646515
-@
-23:
-232425 *
-1 (26:3B
-	
-9
-26
-
-
-11
-27
-9
-64
-678 *
-1 (:3B
-	
-9
-10
-
-
-11
-12
-
-21
-212215
-
-56
-565715
-@
-31:
-313233 *
-1 (26:3B
-	
-9
-10
-
-
-11
-34
-
-50
-505115
-
-17
-171815
-
-62
-626315
-
-35
-353615
-
-38
-383915
-
-52
-525315
-
-60
-606115
-
-13
-131415
-
-44
-444515
-
-54
-545515
-
-58
-585915rè
-
-61316*
-1# (3
-
-61719*
-1 (
-
-61720*
-1 (
-
-62119*
-1 (
-
-62120*
-1 (
-
-61320*
-1# (3
-
-232830*
-1 (+
-
-232820*
-1 (+
-
-232820*
-1, (D
-
-313537*
-1* (=
-
-313530*
-1> (F
-
-313819*
-1! ("
-
-313820*
-1" ()
-
-313520*
-1* (=
-
-314042*
-1	 (
-
-313543*
-1	 (
-
-314446*
-1 ( 
-
-312820*
-1! (9
-
-312343*
-1! (9
-
-475037*
-1 *  (6
-
-475030*
-1 7  (?
-
-473819*
-1 !  ("
-
-473820*
-1 "  ()
-
-475020*
-1 *  (6
-
-475242*
-1"	 "(
-
-475243*
-1"	 "(
-
-475446*
-1&0 &(>
-
-475242*
-1"	 "(
-
-475243*
-1"	 "(
-
-475646*
-1%0 %(@
-
-475242*
-1"	 "(
-
-475243*
-1"	 "(
-
-475846*
-1$0 $(>
-
-475242*
-1"	 "(
-
-475243*
-1"	 "(
-
-476046*
-1#0 #(>
-
-475242*
-1"	 "(
-
-475243*
-1"	 "(
-
-476246*
-1"$ "(2
-
-475242*
-1"	 "(
-
-475043*
-1"	 "(
-
-476446*
-1" "(

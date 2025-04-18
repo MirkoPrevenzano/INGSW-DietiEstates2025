@@ -1,5 +1,0 @@
-com.dietiEstates.backend.service.RealEstateAgentService#getBarChartStats()[Ljava/lang/Integer;
-false
-ff58544addf23742a6818c25f771a8e1
-==
-mockBarChartStats com.dietiEstates.backend.service.MockingStatsService#mockBarChartStats()[Ljava/lang/Integer;

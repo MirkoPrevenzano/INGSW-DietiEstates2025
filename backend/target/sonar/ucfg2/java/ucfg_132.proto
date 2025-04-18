@@ -1,130 +1,0 @@
-
-·com.dietiEstates.backend.controller.AdministratorController#updatePassword(Ljava/lang/String;Lcom/dietiEstates/backend/dto/OldNewPasswordDTO;)Lorg/springframework/http/ResponseEntity;ž
-“/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/controller/AdministratorController.java` `(+"startingBlock*‹
-13e e(!ô
-ñ
-e e(&9
-%23org.springframework.http.ResponseEntity$BodyBuilder"aorg.springframework.http.ResponseEntity#ok()Lorg/springframework/http/ResponseEntity$BodyBuilder;*G
-
-__unknown_file (+")
-'org.springframework.http.ResponseEntity*
-12*Ô
-14d d( Ç
-Ä
-d d( ;
-%05com.dietiEstates.backend.service.AdministratorService"__id*u
-
-__unknown_file (Y*W=
-;com.dietiEstates.backend.controller.AdministratorController"
-administratorServiceóð
-d d(L
-
-%1void"‰com.dietiEstates.backend.service.AdministratorService#updatePassword(Ljava/lang/String;Lcom/dietiEstates/backend/dto/OldNewPasswordDTO;)V*Y
-
-__unknown_file (=
-;
-%05com.dietiEstates.backend.service.AdministratorService*:
-
-__unknown_file (
-
-usernamejava.lang.String*a
-
-__unknown_file (E
-C
-oldNewPasswordDTO.com.dietiEstates.backend.dto.OldNewPasswordDTO2RupdatePassword(Ljava/lang/String;Lcom/dietiEstates/backend/dto/OldNewPasswordDTO;)*
-13*á	
-startingBlock`+ `(|²
-¯
-`, `(9
-%12"
-__annotate*T
-
-__unknown_file (86
-4org.springframework.web.bind.annotation.PathVariable*:
-
-__unknown_file (
-
-usernamejava.lang.String]
-[
-`A `(I
-usernamejava.lang.String"__annotation*#
-
-__unknown_file (
-
-%12ž
-›
-
-__unknown_file (
-%13"__id*r
-
-__unknown_file (V*T
-C
-oldNewPasswordDTO.com.dietiEstates.backend.dto.OldNewPasswordDTO"
-newPasswordž
-›
-
-__unknown_file (
-%14"__id*r
-
-__unknown_file (V*T
-C
-oldNewPasswordDTO.com.dietiEstates.backend.dto.OldNewPasswordDTO"
-oldPasswordš
-—
-`K `(W
-%15"
-__annotate*S
-
-__unknown_file (75
-3org.springframework.web.bind.annotation.RequestBody*#
-
-__unknown_file (
-
-%13–
-“
-`j `({T
-C
-oldNewPasswordDTO.com.dietiEstates.backend.dto.OldNewPasswordDTO"
-newPassword"__annotation*#
-
-__unknown_file (
-
-%15š
-—
-`K `(W
-%16"
-__annotate*S
-
-__unknown_file (75
-3org.springframework.web.bind.annotation.RequestBody*#
-
-__unknown_file (
-
-%14–
-“
-`j `({T
-C
-oldNewPasswordDTO.com.dietiEstates.backend.dto.OldNewPasswordDTO"
-oldPassword"__annotation*#
-
-__unknown_file (
-
-%16*
-14*K
-11e e(/";
-e e(//
--
-%3'org.springframework.http.ResponseEntity*ž
-12e e(.‡„
-e e(.-
-%3'org.springframework.http.ResponseEntity"gorg.springframework.http.ResponseEntity$HeadersBuilder#build()Lorg/springframework/http/ResponseEntity;*W
-
-__unknown_file (;
-9
-%23org.springframework.http.ResponseEntity$BodyBuilder2build()*
-11:(
-`, `(J
-usernamejava.lang.String:O
-`K `({C
-oldNewPasswordDTO.com.dietiEstates.backend.dto.OldNewPasswordDTOB?=
-;com.dietiEstates.backend.controller.AdministratorControllerH

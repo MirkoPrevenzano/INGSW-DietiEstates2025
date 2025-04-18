@@ -1,171 +1,0 @@
-
-¢com.dietiEstates.backend.controller.AuthenticationController#standardRegistration(Lcom/dietiEstates/backend/dto/UserDTO;)Lorg/springframework/http/ResponseEntity;Ÿ
-”/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend/src/main/java/com/dietiEstates/backend/controller/AuthenticationController.java5 (I"startingBlock*®
-startingBlockI (g
-
-
-__unknown_file (
-%9"__id*W
-
-__unknown_file (;*9
-/
-userDTO$com.dietiEstates.backend.dto.UserDTO"
-name‡
-„
-
-__unknown_file (
-%10"__id*[
-
-__unknown_file (?*=
-/
-userDTO$com.dietiEstates.backend.dto.UserDTO"
-
-password†
-ƒ
-
-__unknown_file (
-%11"__id*Z
-
-__unknown_file (>*<
-/
-userDTO$com.dietiEstates.backend.dto.UserDTO"	
-surname‡
-„
-
-__unknown_file (
-%12"__id*[
-
-__unknown_file (?*=
-/
-userDTO$com.dietiEstates.backend.dto.UserDTO"
-
-username™
-–
-J (V
-%13"
-__annotate*S
-
-__unknown_file (75
-3org.springframework.web.bind.annotation.RequestBody*"
-
-__unknown_file (
-
-%9z
-x
-_ (f9
-/
-userDTO$com.dietiEstates.backend.dto.UserDTO"
-name"__annotation*#
-
-__unknown_file (
-
-%13š
-—
-J (V
-%14"
-__annotate*S
-
-__unknown_file (75
-3org.springframework.web.bind.annotation.RequestBody*#
-
-__unknown_file (
-
-%11}
-{
-_ (f<
-/
-userDTO$com.dietiEstates.backend.dto.UserDTO"	
-surname"__annotation*#
-
-__unknown_file (
-
-%14š
-—
-J (V
-%15"
-__annotate*S
-
-__unknown_file (75
-3org.springframework.web.bind.annotation.RequestBody*#
-
-__unknown_file (
-
-%10~
-|
-_ (f=
-/
-userDTO$com.dietiEstates.backend.dto.UserDTO"
-
-password"__annotation*#
-
-__unknown_file (
-
-%15š
-—
-J (V
-%16"
-__annotate*S
-
-__unknown_file (75
-3org.springframework.web.bind.annotation.RequestBody*#
-
-__unknown_file (
-
-%12~
-|
-_ (f=
-/
-userDTO$com.dietiEstates.backend.dto.UserDTO"
-
-username"__annotation*#
-
-__unknown_file (
-
-%16*
-10*J
-7" "(a";
-" "(a/
--
-%3'org.springframework.http.ResponseEntity*—
-8" "(`‚ÿ
-" "(`-
-%3'org.springframework.http.ResponseEntity"uorg.springframework.http.ResponseEntity$BodyBuilder#body(Ljava/lang/Object;)Lorg/springframework/http/ResponseEntity;*W
-
-__unknown_file (;
-9
-%03org.springframework.http.ResponseEntity$BodyBuilder*Z
-
-__unknown_file (>
-<
-%26com.dietiEstates.backend.dto.AuthenticationResponseDTO2body(Ljava/lang/Object;)*
-7*Ä
-9", "(AÊ
-Ç
-", "(A<
-%16com.dietiEstates.backend.service.AuthenticationService"__id*w
-
-__unknown_file ([*Y>
-<com.dietiEstates.backend.controller.AuthenticationController"
-authenticationServiceâß
-", "(_<
-%26com.dietiEstates.backend.dto.AuthenticationResponseDTO"«com.dietiEstates.backend.service.AuthenticationService#standardRegistration(Lcom/dietiEstates/backend/dto/UserDTO;)Lcom/dietiEstates/backend/dto/AuthenticationResponseDTO;*Z
-
-__unknown_file (>
-<
-%16com.dietiEstates.backend.service.AuthenticationService*M
-
-__unknown_file (1
-/
-userDTO$com.dietiEstates.backend.dto.UserDTO2<standardRegistration(Lcom/dietiEstates/backend/dto/UserDTO;)*
-8*Š
-10" "(!ô
-ñ
-" "(&9
-%03org.springframework.http.ResponseEntity$BodyBuilder"aorg.springframework.http.ResponseEntity#ok()Lorg/springframework/http/ResponseEntity$BodyBuilder;*G
-
-__unknown_file (+")
-'org.springframework.http.ResponseEntity*
-9:;
-J (f/
-userDTO$com.dietiEstates.backend.dto.UserDTOB@>
-<com.dietiEstates.backend.controller.AuthenticationControllerH

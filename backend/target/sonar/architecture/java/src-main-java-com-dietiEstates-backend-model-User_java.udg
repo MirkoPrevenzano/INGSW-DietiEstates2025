@@ -1,402 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789022124*java2.B¶
-;
-6src/main/java/com/dietiEstates/backend/model/User.java2
-
-package4
-#
-com.dietiEstates.backend.model5
-(
-#com.dietiEstates.backend.model.User7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-
-User12
-?
-9org.springframework.security.core.userdetails.UserDetails14
-
-unknown15
-
-
-implements16
-*
-$jakarta.persistence.MappedSuperclass18
-
-annotated by19
-
-
-uses20
-
-lombok.Data22
-
-lombok.NoArgsConstructor24
-$
-lombok.RequiredArgsConstructor26
-0
-*com.dietiEstates.backend.model.User.userId28
-
-field29
-
-private30
-
-userId31
-
-jakarta.persistence.Id33
-(
-"jakarta.persistence.GeneratedValue35
-(
-"jakarta.persistence.GenerationType37
-1
-+jakarta.persistence.GenerationType.IDENTITY39
-
-
-references40
-.
-(com.dietiEstates.backend.model.User.name42
-
-
-name43
-
-lombok.NonNull45
- 
-jakarta.persistence.Column47
-1
-+com.dietiEstates.backend.model.User.surname49
-
-surname50
-2
-,com.dietiEstates.backend.model.User.username52
-
-username53
-2
-,com.dietiEstates.backend.model.User.password55
-
-password56
-.
-(com.dietiEstates.backend.model.User.role58
-
-	protected59
-
-
-role60
-)
-#com.dietiEstates.backend.model.Role62
-
-is type63
-$
-jakarta.persistence.Enumerated65
-"
-jakarta.persistence.EnumType67
-)
-#jakarta.persistence.EnumType.STRING69
-#
-jakarta.persistence.Transient71
-P
-Jcom.dietiEstates.backend.model.User#getAuthorities()Ljava/util/Collection;73
-
-method74
-
-getAuthorities75
-H
-Borg.springframework.security.core.authority.SimpleGrantedAuthority77
-
-calls78J
-
-1
-12Z
-
-3	
-354j›
-9
-64
-678 *
-1 (:3B
-	
-9
-10
-
-
-11
-12
-
-25
-252615
-
-76
-767715
-
-36
-363715
-
-68
-686915
-@
-72:
-727374 *
-1< <(26:3B
-	
-9
-10
-
-
-11
-75
-@
-57:
-575829 *
-16 6(26:3B
-	
-9
-59
-
-
-11
-60
-@
-51:
-515229 *
-1, ,(26:3B
-	
-9
-30
-
-
-11
-53
-
-13
-131415
-
-61
-616215
-
-44
-444515
-@
-48:
-484929 *
-1' '(26:3B
-	
-9
-30
-
-
-11
-50
-
-70
-707115
-@
-27:
-272829 *
-1 (26:3B
-	
-9
-30
-
-
-11
-31
-
-32
-323315
-
-34
-343515
-
-38
-383915
-
-64
-646515
-@
-54:
-545529 *
-11 1(26:3B
-	
-9
-30
-
-
-11
-56
-
-46
-464715
-
-66
-666715
-
-21
-212215
-@
-41:
-414229 *
-1" "(26:3B
-	
-9
-30
-
-
-11
-43
-
-17
-171815
-
-23
-232415rÜ
-
-
-61316*
-1' (2
-
-61719*
-1 (
-
-61720*
-1 (
-
-62119*
-1 (
-
-62120*
-1 (
-
-62319*
-1 (
-
-62320*
-1 (
-
-62519*
-1 (
-
-62520*
-1 (
-
-61320*
-1' (2
-
-273219*
-1 (
-
-273220*
-1 (
-
-273419*
-1 (
-
-273420*
-1 (
-
-273620*
-1  (.
-
-273620*
-1/ (7
-
-273840*
-1/ (7
-
-414419*
-1" "(
-
-414420*
-1" "(
-
-414619*
-1# #(
-
-414620*
-1# #(
-
-484419*
-1' '(
-
-484420*
-1' '(
-
-484619*
-1( ((
-
-484620*
-1( ((
-
-514419*
-1, ,(
-
-514420*
-1, ,(
-
-514619*
-1- -(
-
-514620*
-1- -(
-
-544419*
-11 1(
-
-544420*
-11 1(
-
-544619*
-12 2(
-
-544620*
-12 2(
-
-576163*
-18 8(	
-
-576419*
-16 6(
-
-576420*
-16 6(
-
-576620*
-16 6(
-
-576620*
-16 6( 
-
-576840*
-16 6( 
-
-577019*
-17 7(
-
-577020*
-17 7(
-
-576120*
-18 8(	
-
-576120*
-18
- 8(
-
-727620*
-1= =(-
-
-727678*
-1? ?(2
-
-725740*
-1?3 ?(7
-
-726120*
-1?3 ?(7
-
-725740*
-1?3 ?(7

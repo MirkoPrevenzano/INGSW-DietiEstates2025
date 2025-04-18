@@ -1,359 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021623*java2.Bè
-N
-Isrc/main/java/com/dietiEstates/backend/model/CustomerViewsRealEstate.java2
-
-package4
-#
-com.dietiEstates.backend.model5
-;
-6com.dietiEstates.backend.model.CustomerViewsRealEstate7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-CustomerViewsRealEstate12
- 
-jakarta.persistence.Entity14
-
-unknown15
-
-annotated by16
-
-
-uses17
-
-jakarta.persistence.Table19
-
-lombok.Data21
-
-lombok.NoArgsConstructor23
-$
-lombok.RequiredArgsConstructor25
-V
-Pcom.dietiEstates.backend.model.CustomerViewsRealEstate.customerViewsRealEstateId27
-
-field28
-
-private29
-
-customerViewsRealEstateId30
-I
-Ccom.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId32
-
-is type33
-$
-jakarta.persistence.EmbeddedId35
-
-lombok.NonNull37
-E
-?com.dietiEstates.backend.model.CustomerViewsRealEstate.viewDate39
-
-viewDate40
- 
-jakarta.persistence.Column42
-E
-?com.dietiEstates.backend.model.CustomerViewsRealEstate.customer44
-
-customer45
--
-'com.dietiEstates.backend.model.Customer47
- 
-jakarta.persistence.MapsId49
-#
-jakarta.persistence.ManyToOne51
-#
-jakarta.persistence.FetchType53
-)
-#jakarta.persistence.FetchType.EAGER55
-
-
-references56
-$
-jakarta.persistence.JoinColumn58
-$
-jakarta.persistence.ForeignKey60
-G
-Acom.dietiEstates.backend.model.CustomerViewsRealEstate.realEstate62
-
-
-realEstate63
-/
-)com.dietiEstates.backend.model.RealEstate65J
-
-1
-12Z
-
-3	
-354jó
-@
-43:
-434428 *
-1* *(26:3B
-	
-9
-29
-
-
-11
-45
-
-48
-484915
-
-59
-596015
-
-13
-131415
-
-31
-313215
-
-36
-363715
-@
-61:
-616228 *
-14 4(26:3B
-	
-9
-29
-
-
-11
-63
-
-24
-242515
-
-50
-505115
-
-57
-575815
-9
-64
-678 *
-1 (%:3B
-	
-9
-10
-
-
-11
-12
-
-34
-343515
-@
-38:
-383928 *
-1" "(26:3B
-	
-9
-29
-
-
-11
-40
-
-54
-545515
-
-18
-181915
-
-41
-414215
-
-20
-202115
-
-64
-646515
-
-46
-464715
-
-22
-222315
-@
-26:
-262728 *
-1 (26:3B
-	
-9
-29
-
-
-11
-30
-
-52
-525315rç
-
-61316*
-1 (
-
-61317*
-1 (
-
-61816*
-1 (
-
-61817*
-1 (
-
-62016*
-1 (
-
-62017*
-1 (
-
-62216*
-1 (
-
-62217*
-1 (
-
-62416*
-1 (
-
-62417*
-1 (
-
-263133*
-1   (&
-
-263416*
-1 (
-
-263417*
-1 (
-
-263616*
-1 (
-
-263617*
-1 (
-
-263117*
-1   (&
-
-263117*
-1 '  (@
-
-383616*
-1" "(
-
-383617*
-1" "(
-
-384116*
-1# #(
-
-384117*
-1# #(
-
-434633*
-12 2(
-
-433616*
-1* *(
-
-433617*
-1* *(
-
-434816*
-1+ +(
-
-434817*
-1+ +(
-
-435016*
-1, ,(
-
-435017*
-1, ,(
-
-435217*
-1, ,(!
-
-435217*
-1," ,('
-
-435456*
-1," ,('
-
-435716*
-1. .(
-
-435717*
-1. .(
-
-435916*
-11 1(
-
-435917*
-11 1()
-
-434617*
-12 2(
-
-434617*
-12 2(
-
-616433*
-1< <(
-
-613616*
-14 4(
-
-613617*
-14 4(
-
-614816*
-15 5(
-
-614817*
-15 5(
-
-615016*
-16 6(
-
-615017*
-16 6(
-
-615217*
-16 6(!
-
-615217*
-16" 6('
-
-615456*
-16" 6('
-
-615716*
-18 8(
-
-615717*
-18 8(
-
-615916*
-1; ;(
-
-615917*
-1; ;()
-
-616417*
-1< <(
-
-616417*
-1< <("

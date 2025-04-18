@@ -1,238 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789021781*java2.Bî
-I
-Dsrc/main/java/com/dietiEstates/backend/dto/RealEstatePreviewDTO.java2
-
-package4
-!
-com.dietiEstates.backend.dto5
-6
-1com.dietiEstates.backend.dto.RealEstatePreviewDTO7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-RealEstatePreviewDTO12
-
-lombok.Data14
-
-unknown15
-
-annotated by16
-
-
-uses17
-
-lombok.NoArgsConstructor19
-$
-lombok.RequiredArgsConstructor21
-:
-4com.dietiEstates.backend.dto.RealEstatePreviewDTO.id23
-
-field24
-
-private25
-
-id26
-
-lombok.NonNull28
-=
-7com.dietiEstates.backend.dto.RealEstatePreviewDTO.title30
-
-title31
-C
-=com.dietiEstates.backend.dto.RealEstatePreviewDTO.description33
-
-description34
-=
-7com.dietiEstates.backend.dto.RealEstatePreviewDTO.price36
-
-price37
->
-8com.dietiEstates.backend.dto.RealEstatePreviewDTO.street39
-
-street40
-A
-;com.dietiEstates.backend.dto.RealEstatePreviewDTO.longitude42
-
-	longitude43
-@
-:com.dietiEstates.backend.dto.RealEstatePreviewDTO.latitude45
-
-latitude46J
-
-1
-12Z
-
-3	
-354jÙ
-@
-32:
-323324 *
-1 (26:3B
-	
-9
-25
-
-
-11
-34
-
-27
-272815
-@
-22:
-222324 *
-1 (26:3B
-	
-9
-25
-
-
-11
-26
-
-13
-131415
-
-20
-202115
-@
-38:
-383924 *
-1 (26:3B
-	
-9
-25
-
-
-11
-40
-9
-64
-678 *
-1 (":3B
-	
-9
-10
-
-
-11
-12
-@
-35:
-353624 *
-1 (26:3B
-	
-9
-25
-
-
-11
-37
-@
-29:
-293024 *
-1 (26:3B
-	
-9
-25
-
-
-11
-31
-@
-41:
-414224 *
-1 (26:3B
-	
-9
-25
-
-
-11
-43
-
-18
-181915
-@
-44:
-444524 *
-1! !(26:3B
-	
-9
-25
-
-
-11
-46r–
-
-61316*
-1
- 
-(
-
-61317*
-1
- 
-(
-
-61816*
-1 (
-
-61817*
-1 (
-
-62016*
-1 (
-
-62017*
-1 (
-
-222716*
-1 (
-
-222717*
-1 (
-
-292716*
-1 (
-
-292717*
-1 (
-
-322716*
-1 (
-
-322717*
-1 (
-
-352716*
-1 (
-
-352717*
-1 (
-
-382716*
-1 (
-
-382717*
-1 (
-
-412716*
-1 (
-
-412717*
-1 (
-
-442716*
-1! !(
-
-442717*
-1! !(

@@ -1,755 +1,0 @@
-
-1.0&MirkoPrevenzano_INGSW-DietiEstates2025JavaFrontend"1744789019038*java2.BÇ%
-N
-Isrc/main/java/com/dietiEstates/backend/service/AuthenticationService.java2
-
-package4
-%
- com.dietiEstates.backend.service5
-;
-6com.dietiEstates.backend.service.AuthenticationService7
-
-
-class8
-
-access9
-
-public10
-
-simple name11
-
-AuthenticationService12
-,
-&org.springframework.stereotype.Service14
-
-unknown15
-
-annotated by16
-
-
-uses17
-$
-lombok.RequiredArgsConstructor19
-
-lombok.extern.slf4j.Slf4j21
-O
-Icom.dietiEstates.backend.service.AuthenticationService.customerRepository23
-
-field24
-
-private25
-
-customerRepository26
-<
-6com.dietiEstates.backend.repository.CustomerRepository28
-
-is type29
-H
-Bcom.dietiEstates.backend.service.AuthenticationService.modelMapper31
-
-modelMapper32
-!
-org.modelmapper.ModelMapper34
-L
-Fcom.dietiEstates.backend.service.AuthenticationService.passwordEncoder36
-
-passwordEncoder37
-B
-<org.springframework.security.crypto.password.PasswordEncoder39
-M
-Gcom.dietiEstates.backend.service.AuthenticationService.validatorService41
-
-validatorService42
-7
-1com.dietiEstates.backend.service.ValidatorService44
-L
-Fcom.dietiEstates.backend.service.AuthenticationService.customerService46
-
-customerService47
-6
-0com.dietiEstates.backend.service.CustomerService49
-²
-«com.dietiEstates.backend.service.AuthenticationService#standardRegistration(Lcom/dietiEstates/backend/dto/UserDTO;)Lcom/dietiEstates/backend/dto/AuthenticationResponseDTO;51
-
-method52
-
-standardRegistration53
-<
-6com.dietiEstates.backend.dto.AuthenticationResponseDTO55
-
-returns56
-*
-$com.dietiEstates.backend.dto.UserDTO58
-
-	has param59
-&
- org.modelmapper.MappingException61
-
-
-references62
-[
-Ucom.dietiEstates.backend.service.ValidatorService#emailValidator(Ljava/lang/String;)V64
-
-calls65
-^
-Xcom.dietiEstates.backend.service.ValidatorService#passwordValidator(Ljava/lang/String;)V67
-s
-mcom.dietiEstates.backend.repository.CustomerRepository#findByUsername(Ljava/lang/String;)Ljava/util/Optional;69
--
-'com.dietiEstates.backend.model.Customer71
-\
-Vorg.modelmapper.ModelMapper#map(Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;73
-u
-oorg.springframework.security.crypto.password.PasswordEncoder#encode(Ljava/lang/CharSequence;)Ljava/lang/String;75
-?
-9org.springframework.security.core.userdetails.UserDetails77
-_
-Yorg.springframework.security.core.userdetails.UserDetails#getPassword()Ljava/lang/String;79
-8
-2org.springframework.data.repository.CrudRepository81
-c
-]org.springframework.data.repository.CrudRepository#save(Ljava/lang/Object;)Ljava/lang/Object;83
-)
-#com.dietiEstates.backend.model.Role85
-3
--com.dietiEstates.backend.model.Role.ROLE_USER87
-7
-1com.dietiEstates.backend.config.security.JWTUtils89
-›
-”com.dietiEstates.backend.config.security.JWTUtils#generateAccessToken(Lorg/springframework/security/core/userdetails/UserDetails;)Ljava/lang/String;91
-
-–com.dietiEstates.backend.service.AuthenticationService#authenticateWithGoogle(Ljava/util/Map;)Lcom/dietiEstates/backend/dto/AuthenticationResponseDTO;93
-
-authenticateWithGoogle94
-H
-Bcom.google.api.client.googleapis.auth.oauth2.GoogleIdToken$Payload96
-@
-:com.google.api.client.googleapis.auth.oauth2.GoogleIdToken98
-¨
- com.dietiEstates.backend.service.AuthenticationService#verifyGoogleToken(Ljava/lang/String;)Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdToken$Payload;100
-Ã
-»com.dietiEstates.backend.service.CustomerService#authenticateWithExternalAPI(Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdToken$Payload;)Lcom/dietiEstates/backend/model/Customer;102
-I
-Borg.springframework.security.core.authority.SimpleGrantedAuthority104
-9
-2org.springframework.security.core.userdetails.User106
-`
-Yorg.springframework.security.core.userdetails.UserDetails#getUsername()Ljava/lang/String;108
-
-verifyGoogleToken109
-I
-Bcom.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier111
-Q
-Jcom.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier$Builder113
-ž
-–com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier$Builder#build()Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdTokenVerifier;115
-Â
-ºcom.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier$Builder#setAudience(Ljava/util/Collection;)Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdTokenVerifier$Builder;117
-:
-3com.google.api.client.http.javanet.NetHttpTransport119
-9
-2com.google.api.client.json.jackson2.JacksonFactory121
-¡
-™com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier#verify(Ljava/lang/String;)Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdToken;123
-“
-‹com.google.api.client.googleapis.auth.oauth2.GoogleIdToken#getPayload()Lcom/google/api/client/googleapis/auth/oauth2/GoogleIdToken$Payload;125J
-
-1
-12Z
-
-3	
-354jý
-
-
-63
-636415
-@
-92:
-929352 *
-1V V(26:3B
-	
-9
-10
-
-
-11
-94
-
-18
-181915
-
-103
-10310415
-
-105
-10510615
-
-80
-808115
-
-112
-11211315
-
-114
-11411515
-
-33
-333415
-
-110
-11011115
-
-13
-131415
-
-76
-767715
-
-122
-12212315
-
-84
-848515
-
-118
-11811915
-
-82
-828315
-@
-22:
-222324 *
-1# #(26:3B
-	
-9
-25
-
-
-11
-26
-
-48
-484915
-
-78
-787915
-
-95
-959615
-
-68
-686915
-
-120
-12012115
-
-27
-272815
-
-43
-434415
-
-116
-11611715
-@
-35:
-353624 *
-1% %(26:3B
-	
-9
-25
-
-
-11
-37
-@
-40:
-404124 *
-1& &(26:3B
-	
-9
-25
-
-
-11
-42
-B
-99<
-9910052 *
-1l l(26:3B
-	
-9
-25
-
-11
-109
-
-97
-979815
-
-72
-727315
-
-107
-10710815
-
-54
-545515
-
-74
-747515
-
-20
-202115
-9
-64
-678 *
-1! !(#:3B
-	
-9
-10
-
-
-11
-12
-
-38
-383915
-
-88
-888915
-
-101
-10110215
-
-57
-575815
-
-124
-12412515
-
-86
-868715
-@
-30:
-303124 *
-1$ $(26:3B
-	
-9
-25
-
-
-11
-32
-
-90
-909115
-@
-45:
-454624 *
-1' '(26:3B
-	
-9
-25
-
-
-11
-47
-
-66
-666715
-@
-50:
-505152 *
-1* *(26:3B
-	
-9
-10
-
-
-11
-53
-
-70
-707115
-
-60
-606115r×
-
-61316*
-1 (
-
-61317*
-1 (	
-
-61816*
-1 (
-
-61817*
-1 (
-
-62016*
-1   (
-
-62017*
-1   (
-
-222729*
-1# #(%
-
-222717*
-1# #(%
-
-222717*
-1#& #(8
-
-303329*
-1$ $(
-
-303317*
-1$ $(
-
-303317*
-1$ $(*
-
-353829*
-1% %("
-
-353817*
-1% %("
-
-353817*
-1%# %(2
-
-404329*
-1& &(#
-
-404317*
-1& &(#
-
-404317*
-1&$ &(4
-
-454829*
-1' '("
-
-454817*
-1' '("
-
-454817*
-1'# '(2
-
-505456*
-1* *(%
-
-505759*
-1*; *(B
-
-505417*
-1* *(%
-
-505729*
-1*C *(J
-
-505717*
-1*; *(B
-
-506017*
-1*m *(}
-
-504362*
-1. .(
-
-506365*
-1. .(,
-
-504062*
-1. .(
-
-504317*
-1. .(
-
-504062*
-1. .(
-
-504362*
-1/ /(
-
-506665*
-1/ /(/
-
-504062*
-1/ /(
-
-504317*
-1/ /(
-
-504062*
-1/ /(
-
-502762*
-17 7(
-
-506865*
-17 7(-
-
-502262*
-17 7(
-
-502717*
-17 7(
-
-502262*
-17 7(
-
-507029*
-1= =(
-
-507017*
-1=	 =(
-
-507056*
-1@ @(#
-
-503362*
-1@ @(#
-
-507265*
-1@$ @('
-
-503062*
-1@ @(#
-
-503317*
-1@ @(#
-
-503062*
-1@ @(#
-
-507017*
-1@1 @(9
-
-506029*
-1B! B("
-
-506017*
-1B B( 
-
-503862*
-1G G(-
-
-507465*
-1G. G(4
-
-503562*
-1G G(-
-
-503817*
-1G G(-
-
-503562*
-1G G(-
-
-507662*
-1G5 G(=
-
-507865*
-1G> G(I
-
-507056*
-1H H(&
-
-508062*
-1H H(&
-
-508265*
-1H' H(+
-
-502262*
-1H H(&
-
-502717*
-1H H(&
-
-502262*
-1H H(&
-
-508417*
-1L L(
-
-508417*
-1L L((
-
-508662*
-1L L((
-
-508862*
-1M. M(6
-
-509065*
-1M7 M(J
-
-508817*
-1M. M(6
-
-925456*
-1V V(%
-
-925417*
-1V V(%
-
-929529*
-1X X(&
-
-929717*
-1X	 X(
-
-929517*
-1X X(
-
-929562*
-1X X(
-
-929556*
-1X) X(:
-
-92662*
-1X) X(:
-
-929965*
-1X) X(:
-
-927029*
-1Y Y(
-
-927017*
-1Y	 Y(
-
-927056*
-1Y Y((
-
-924862*
-1Y Y((
-
-9210165*
-1Y) Y(D
-
-924562*
-1Y Y((
-
-924817*
-1Y Y((
-
-924562*
-1Y Y((
-
-9210317*
-1[ [(*
-
-9210365*
-1\ \('
-
-928417*
-1\( \(,
-
-928417*
-1\- \(6
-
-928662*
-1\- \(6
-
-928862*
-1` `( 
-
-929065*
-1`! `(4
-
-928817*
-1` `( 
-
-9210565*
-1a a(
-
-927662*
-1b b(
-
-9210765*
-1b b(!
-
-927662*
-1c c(
-
-927865*
-1c c(!
-
-999556*
-1l l(
-
-999717*
-1l l(
-
-999517*
-1l l("
-
-999562*
-1l l("
-
-9911029*
-1o# o(+
-
-9911017*
-1o o("
-
-9911056*
-1o. o(1
-
-9911262*
-1o. o(1
-
-9911465*
-1q q(
-
-9911256*
-1o. o(1
-
-9911262*
-1o. o(1
-
-9911665*
-1p p(!
-
-9911017*
-1o2 o(G
-
-9911265*
-1oH o(O
-
-9911865*
-1oT o(d
-
-9912065*
-1ol o(z
-
-999729*
-1s s("
-
-999717*
-1s s(
-
-999756*
-1s% s(-
-
-9911062*
-1s% s(-
-
-9912265*
-1s. s(4
-
-999556*
-1t( t(/
-
-999762*
-1t( t(/
-
-9912465*
-1t0 t(:
