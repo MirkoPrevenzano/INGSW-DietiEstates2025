@@ -15,14 +15,16 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.ForeignKey;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
+
 @Entity(name = "Administrator")
-@Table(name = "administrator", 
+@Table(name = "administrator",
        uniqueConstraints = @UniqueConstraint(name = "administrator_uk", columnNames = "username"))
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -76,10 +78,10 @@ public class Administrator extends User
        newCollaborator.setManager(this);
     }  
     
-    public void removeCollaborator(Administrator managerToRemove)
+    public void removeCollaborator(Administrator collaboratorToRemove)
     {
-        this.collaborators.remove(managerToRemove);
-        managerToRemove.setManager(null);
+        this.collaborators.remove(collaboratorToRemove);
+        collaboratorToRemove.setManager(null);
     }
 
     public void addRealEstateAgent(RealEstateAgent newRealEstateAgent) 

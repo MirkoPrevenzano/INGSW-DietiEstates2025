@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import jakarta.persistence.ForeignKey;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -20,8 +21,9 @@ import java.time.LocalDateTime;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 
 
+
 @Entity(name = "CustomerViewsRealEstate")
-@Table(name = "customer_view_real_estate")
+@Table(name = "customer_views_real_estate")
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -32,7 +34,7 @@ public class CustomerViewsRealEstate
     private CustomerViewsRealEstateId customerViewsRealEstateId;
         
     @NonNull    
-    @Column(name = "viewed_date", 
+    @Column(name = "view_date", 
             nullable = false, 
             updatable = true)
     private LocalDateTime viewDate;
@@ -46,7 +48,7 @@ public class CustomerViewsRealEstate
     @JoinColumn(name = "customer_id", 
                 nullable = false, 
                 updatable = true,
-                foreignKey = @ForeignKey(name = "customer_view_real_estate_fk"))
+                foreignKey = @ForeignKey(name = "customer_views_real_estate_fk"))
     private Customer customer;
 
     @NonNull
@@ -59,4 +61,3 @@ public class CustomerViewsRealEstate
                 foreignKey = @ForeignKey(name = "real_estate_is_viewed_by_customer_fk"))
     private RealEstate realEstate;
 }
-
