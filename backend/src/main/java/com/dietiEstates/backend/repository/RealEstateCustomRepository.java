@@ -14,7 +14,7 @@ import com.dietiEstates.backend.dto.RealEstateStatsDTO;
 
 
 
-public interface CustomRepository 
+public interface RealEstateCustomRepository 
 {
     Page<RealEstatePreviewDTO> findRealEstateByFilters(Map<String,String> filters, Pageable page);
     List<RealEstatePreviewDTO> findRealEstateByFilters2(Map<String,String> filters, Pageable page);

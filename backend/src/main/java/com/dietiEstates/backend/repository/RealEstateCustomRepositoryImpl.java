@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
-public class CustomRepositoryImpl implements CustomRepository 
+public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepository 
 {
     @PersistenceContext
     private EntityManager entityManager;
