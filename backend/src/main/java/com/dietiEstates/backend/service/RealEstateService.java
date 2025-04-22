@@ -27,23 +27,6 @@ public class RealEstateService
 
 
 
-    public RealEstatePreviewsFirstPageDTO search(Map<String,String> filters, Pageable page)
-    {
-        Page<RealEstatePreviewDTO> realEstatePreviewsPage = realEstateRepository.findRealEstateByFilters(filters, page);
-
-        RealEstatePreviewsFirstPageDTO RealEstatePreviewsFirstPageDTO = new RealEstatePreviewsFirstPageDTO(realEstatePreviewsPage.getContent(),
-                                                                                                        realEstatePreviewsPage.getTotalElements(), 
-                                                                                                        realEstatePreviewsPage.getTotalPages());
-        return RealEstatePreviewsFirstPageDTO;
-    }
-    
-
-    public List<RealEstatePreviewDTO> search2(Map<String,String> filters, Pageable page)
-    {
-        return realEstateRepository.findRealEstateByFilters2(filters, page);
-    }
-
-
     public RealEstatePreviewsFirstPageDTO search3(Map<String,String> filters, Pageable page)
     {
         LatLongMinMax latLongMinMax = findByRadiusService.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 

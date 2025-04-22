@@ -16,8 +16,6 @@ import com.dietiEstates.backend.dto.RealEstateStatsDTO;
 
 public interface RealEstateCustomRepository 
 {
-    Page<RealEstatePreviewDTO> findRealEstateByFilters(Map<String,String> filters, Pageable page);
-    List<RealEstatePreviewDTO> findRealEstateByFilters2(Map<String,String> filters, Pageable page);
     Page<RealEstatePreviewDTO> findRealEstateByFilters3(Map<String,String> filters, Pageable page, LatLongMinMax latLongMinMax);
     List<RealEstatePreviewDTO> findRealEstateByFilters4(Map<String,String> filters, Pageable page, LatLongMinMax latLongMinMax);
     List<RealEstateRecentDTO> findRecentRealEstates(Long agentId, Integer limit);

@@ -23,6 +23,7 @@ import com.dietiEstates.backend.service.RealEstateService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+
 //mettere nel customer controller (idea)
 @RestController
 @RequestMapping(path = "/real-estate")
@@ -32,33 +33,7 @@ public class RealEstateController
 {
     private final RealEstateService realEstateService;
 
-
-
-    @GetMapping(path = "search")
-    public ResponseEntity<RealEstatePreviewsFirstPageDTO> a(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit, @RequestParam Map<String,String> filters) 
-    {
-        RealEstatePreviewsFirstPageDTO realEstatePreviewsFirstPageDTO = realEstateService.search(filters, PageRequest.of(page, limit));
-
-        for(RealEstatePreviewDTO realEstate : realEstatePreviewsFirstPageDTO.getRealEstatePreviews())
-            log.info(realEstate.getLatitude().toString() + " : " + realEstate.getLongitude().toString()); 
-        
-        log.info(realEstatePreviewsFirstPageDTO.getTotalElements().toString() + " : " + realEstatePreviewsFirstPageDTO.getTotalPages().toString());
-        
-        return ResponseEntity.ok(realEstatePreviewsFirstPageDTO);
-    }
-
     
-    @GetMapping(path = "search2")
-    public ResponseEntity<List<RealEstatePreviewDTO>> aa(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit, @RequestParam Map<String,String> filters) 
-    {
-        List<RealEstatePreviewDTO> realEstates = realEstateService.search2(filters, PageRequest.of(page, limit));
-
-         for(RealEstatePreviewDTO realEstate : realEstates)
-            log.info(realEstate.getLatitude().toString() + " : " + realEstate.getLongitude().toString()); 
-            
-        return ResponseEntity.ok(realEstates);
-    }
-
 
     @GetMapping(path = "search3")
     public ResponseEntity<RealEstatePreviewsFirstPageDTO> aaa(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit, @RequestParam Map<String,String> filters) 
