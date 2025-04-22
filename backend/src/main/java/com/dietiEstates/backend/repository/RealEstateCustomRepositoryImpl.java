@@ -41,18 +41,16 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
     @Override
     public Page<RealEstatePreviewDTO> findRealEstateByFilters3(Map<String,String> filters, Pageable page, LatLongMinMax latLongMinMax) 
     {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<RealEstatePreviewDTO> query = cb.createQuery(RealEstatePreviewDTO.class);
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstatePreviewDTO.class);
         
-        Root<RealEstate> realEstate = query.from(RealEstate.class);
-        Root<Address> address = query.from(Address.class);
+
+        Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
+        Root<Address> address = criteriaQuery.from(Address.class);
     
+
         Path<String> energyClass = realEstate.get("energyClass");
-        Path<Double> price = realEstate.get("price");
-        //VEDERE COME FARE con city
-        Path<String> city = address.get("city");
-        Path<Double> latitude = address.get("latitude");
-        Path<Double> longitude = address.get("longitude");        
+        Path<Double> price = realEstate.get("price");     
         Path<Integer> roomsNumber = realEstate.get("internalFeatures").get("roomsNumber");
         Path<Boolean> airConditioning = realEstate.get("internalFeatures").get("airConditioning");
         Path<Boolean> heating = realEstate.get("internalFeatures").get("heating");
@@ -66,204 +64,154 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
         Path<Boolean> nearPark = realEstate.get("externalFeatures").get("nearPark");
         Path<Boolean> nearSchool = realEstate.get("externalFeatures").get("nearSchool");
         Path<Boolean> nearPublicTransport = realEstate.get("externalFeatures").get("nearPublicTransport");
+        Path<Double> latitude = address.get("latitude");
+        Path<Double> longitude = address.get("longitude");   
+
 
         List<Predicate> predicates = new ArrayList<>();
 
-        predicates.add(cb.ge(latitude, latLongMinMax.getLatMin()));
-        predicates.add(cb.le(latitude, latLongMinMax.getLatMax()));
-        predicates.add(cb.le(longitude, latLongMinMax.getLongMin()));
-        predicates.add(cb.ge(longitude, latLongMinMax.getLongMax()));
-
-/*         String condoFeeParam = filters.get("condoFee");
-        if(condoFeeParam != null)
-            predicates.add(cb.gt(condoFee, Double.valueOf(condoFeeParam)));
-
-        String energyClassParam = filters.get("energyClass");
-        if(energyClassParam != null)
-                predicates.add(cb.equal(energyClass, energyClassParam));
-
-        String sizeParam = filters.get("size");
-        if(sizeParam != null)
-            predicates.add(cb.gt(size, Double.valueOf(sizeParam)));
-
-        String roomsNumberParam = filters.get("rooms");
-        if(roomsNumberParam != null)
-            predicates.add(cb.gt(roomsNumber, Integer.valueOf(roomsNumberParam)));
-
-        String airConditioningParam = filters.get("airConditioning");
-        if(airConditioningParam != null)
-                predicates.add(cb.equal(airConditioning, Boolean.valueOf(airConditioningParam)));
-         
-        String heatingParam = filters.get("heating");
-        if(heatingParam != null)
-                predicates.add(cb.equal(heating, Boolean.valueOf(heatingParam)));
-         
-        String elevatorParam = filters.get("elevator");
-        if(elevatorParam != null)
-                predicates.add(cb.equal(elevator, Boolean.valueOf(elevatorParam)));
-         
-        String conciergeParam = filters.get("concierge");
-        if(conciergeParam != null)
-                predicates.add(cb.equal(concierge, Boolean.valueOf(conciergeParam)));
-         
-        String terraceParam = filters.get("terrace");
-        if(terraceParam != null)
-            predicates.add(cb.equal(terrace, Boolean.valueOf(terraceParam)));
-        
-        String garageParam = filters.get("garage");
-        if(garageParam != null)
-            predicates.add(cb.equal(garage, Boolean.valueOf(garageParam)));
-         
-        String balconyParam = filters.get("balcony");
-        if(balconyParam != null)
-            predicates.add(cb.equal(balcony, Boolean.valueOf(balconyParam)));
-
-        String gardenParam = filters.get("garden");
-        if(gardenParam != null)
-            predicates.add(cb.equal(garden, Boolean.valueOf(gardenParam)));
-
-        String swimmingPoolParam = filters.get("swimmingPool");
-        if(swimmingPoolParam != null)
-            predicates.add(cb.equal(swimmingPool, Boolean.valueOf(swimmingPoolParam))); */
+        predicates.add(criteriaBuilder.ge(latitude, latLongMinMax.getLatMin()));
+        predicates.add(criteriaBuilder.le(latitude, latLongMinMax.getLatMax()));
+        predicates.add(criteriaBuilder.le(longitude, latLongMinMax.getLongMin()));
+        predicates.add(criteriaBuilder.ge(longitude, latLongMinMax.getLongMax()));
               
         for(Map.Entry<String,String> entry : filters.entrySet())
         {
             if(entry.getKey().equals("minPrice"))
             {
-                predicates.add(cb.ge(price, Double.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.ge(price, Double.valueOf(entry.getValue())));
             } 
 
             if(entry.getKey().equals("maxPrice"))
             {
-                predicates.add(cb.le(price, Double.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.le(price, Double.valueOf(entry.getValue())));
             } 
 
             if(entry.getKey().equals("energyClass"))
             {
-                predicates.add(cb.equal(energyClass, entry.getValue()));
+                predicates.add(criteriaBuilder.equal(energyClass, entry.getValue()));
             } 
 
             if(entry.getKey().equals("rooms"))
             {
-                predicates.add(cb.gt(roomsNumber, Integer.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.gt(roomsNumber, Integer.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasAirConditioning"))
             {
-                predicates.add(cb.equal(airConditioning, Boolean.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.equal(airConditioning, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasHeating"))
             {
-                predicates.add(cb.equal(heating, Boolean.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.equal(heating, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasElevator"))
             {
-                predicates.add(cb.equal(elevator, Boolean.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.equal(elevator, Boolean.valueOf(entry.getValue())));
             }
 
             if(entry.getKey().equals("hasConcierge"))
             {
-                predicates.add(cb.equal(concierge, Boolean.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.equal(concierge, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasTerrace"))
             {
-                predicates.add(cb.equal(terrace, Boolean.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.equal(terrace, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasGarage"))
             {
-                predicates.add(cb.equal(garage, Boolean.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.equal(garage, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasBalcony"))
             {
-                predicates.add(cb.equal(balcony, Boolean.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.equal(balcony, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasGarden"))
             {
-                predicates.add(cb.equal(garden, Boolean.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.equal(garden, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasSwimmingPool"))
             {
-                predicates.add(cb.equal(swimmingPool, Boolean.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.equal(swimmingPool, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("isNearPark"))
             {
-                predicates.add(cb.equal(nearPark, Boolean.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.equal(nearPark, Boolean.valueOf(entry.getValue())));
             } 
 
             if(entry.getKey().equals("isNearSchool"))
             {
-                predicates.add(cb.equal(nearSchool, Boolean.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.equal(nearSchool, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("isNearPublicTransport"))
             {
-                predicates.add(cb.equal(nearPublicTransport, Boolean.valueOf(entry.getValue())));
+                predicates.add(criteriaBuilder.equal(nearPublicTransport, Boolean.valueOf(entry.getValue())));
             }  
-            
-            if(entry.getKey().equals("city"))
-            {
-                predicates.add(cb.equal(city, entry.getValue()));
-            } 
         } 
 
-/*         CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
-        Root<RealEstate> filteredRealEstatesCount = countQuery.from(RealEstate.class);
-        countQuery.select(cb.count(filteredRealEstatesCount))
-                  .where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
+        /* 
+            Root<?> r
+            String realEstateType = filters.get("type");
+            if(forSale)
+                r = criteriaQuery.from(RealEstateForSale.class);
+            else
+                r = criteriaQuery.from(RealEstateForRent.class);                
 
-        Long count = entityManager.createQuery(countQuery).getSingleResult(); */
+        */
 
-        Root<RealEstateForSale> realEstateForSale;
-        Root<RealEstateForRent> realEstateForRent;
+
+        Root<?> realEstateForSale;
+        Root<?> realEstateForRent;
 
         String realEstateType = filters.get("type");
         //realEstate = factory.getTypeQuery(realEstateType);
         if(realEstateType != null && realEstateType.equals("For Sale"))
         {
-            realEstateForSale = query.from(RealEstateForSale.class);
-            predicates.add(cb.equal(realEstate.get("realEstateId"), realEstateForSale.get("realEstateId")));
-            predicates.add(cb.equal(realEstate.get("realEstateId"), address.get("addressId")));
+            realEstateForSale = criteriaQuery.from(RealEstateForSale.class);
+            predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), realEstateForSale.get("realEstateId")));
+            predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), address.get("addressId")));
             
-            query.select(cb.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
+            criteriaQuery.select(criteriaBuilder.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
                                                                               realEstate.get("title"),
                                                                               realEstate.get("description"),
                                                                               realEstate.get("price"),
                                                                               address.get("street"),
                                                                               address.get("longitude"),
                                                                               address.get("latitude")))
-                 .where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
+                 .where(criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()])));
         }
         else if(realEstateType != null && realEstateType.equals("For Rent"))
         {
-            realEstateForRent = query.from(RealEstateForRent.class);
-            predicates.add(cb.equal(realEstate.get("realEstateId"), realEstateForRent.get("realEstateId")));
-            predicates.add(cb.equal(realEstate.get("realEstateId"), address.get("addressId")));
-            query.select(cb.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
+            realEstateForRent = criteriaQuery.from(RealEstateForRent.class);
+            predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), realEstateForRent.get("realEstateId")));
+            predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), address.get("addressId")));
+            criteriaQuery.select(criteriaBuilder.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
                                                                               realEstate.get("title"),
                                                                               realEstate.get("description"),
                                                                               realEstate.get("price"),
                                                                               address.get("street"),
                                                                               address.get("longitude"),
                                                                               address.get("latitude")))                 
-                .where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
+                .where(criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()])));
         }
 
 
 
 
-        CriteriaBuilder cb2 = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Long> countQuery = cb2.createQuery(Long.class);
+        CriteriaBuilder criteriaBuilder2 = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Long> criteriaCountQuery = criteriaBuilder2.createQuery(Long.class);
         
-        Root<RealEstate> realEstate2 = countQuery.from(RealEstate.class);
-        Root<Address> address2 = countQuery.from(Address.class);
+        Root<RealEstate> realEstate2 = criteriaCountQuery.from(RealEstate.class);
+        Root<Address> address2 = criteriaCountQuery.from(Address.class);
     
         Path<String> energyClass2 = realEstate2.get("energyClass");
         Path<Double> price2 = realEstate2.get("price");
@@ -287,96 +235,96 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
 
         List<Predicate> predicates2 = new ArrayList<>();
 
-        predicates2.add(cb2.ge(latitude2, latLongMinMax.getLatMin()));
-        predicates2.add(cb2.le(latitude2, latLongMinMax.getLatMax()));
-        predicates2.add(cb2.le(longitude2, latLongMinMax.getLongMin()));
-        predicates2.add(cb2.ge(longitude2, latLongMinMax.getLongMax()));
+        predicates2.add(criteriaBuilder2.ge(latitude2, latLongMinMax.getLatMin()));
+        predicates2.add(criteriaBuilder2.le(latitude2, latLongMinMax.getLatMax()));
+        predicates2.add(criteriaBuilder2.le(longitude2, latLongMinMax.getLongMin()));
+        predicates2.add(criteriaBuilder2.ge(longitude2, latLongMinMax.getLongMax()));
 
         for(Map.Entry<String,String> entry : filters.entrySet())
         {
             if(entry.getKey().equals("minPrice"))
             {
-                predicates2.add(cb2.ge(price2, Double.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.ge(price2, Double.valueOf(entry.getValue())));
             } 
 
             if(entry.getKey().equals("maxPrice"))
             {
-                predicates2.add(cb2.le(price2, Double.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.le(price2, Double.valueOf(entry.getValue())));
             } 
 
             if(entry.getKey().equals("energyClass"))
             {
-                predicates2.add(cb2.equal(energyClass2, entry.getValue()));
+                predicates2.add(criteriaBuilder2.equal(energyClass2, entry.getValue()));
             } 
 
             if(entry.getKey().equals("rooms"))
             {
-                predicates2.add(cb2.gt(roomsNumber2, Integer.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.gt(roomsNumber2, Integer.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasAirConditioning"))
             {
-                predicates2.add(cb2.equal(airConditioning2, Boolean.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.equal(airConditioning2, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasHeating"))
             {
-                predicates2.add(cb2.equal(heating2, Boolean.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.equal(heating2, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasElevator"))
             {
-                predicates2.add(cb2.equal(elevator2, Boolean.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.equal(elevator2, Boolean.valueOf(entry.getValue())));
             }
 
             if(entry.getKey().equals("hasConcierge"))
             {
-                predicates2.add(cb2.equal(concierge2, Boolean.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.equal(concierge2, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasTerrace"))
             {
-                predicates2.add(cb2.equal(terrace2, Boolean.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.equal(terrace2, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasGarage"))
             {
-                predicates2.add(cb2.equal(garage2, Boolean.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.equal(garage2, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasBalcony"))
             {
-                predicates2.add(cb2.equal(balcony2, Boolean.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.equal(balcony2, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasGarden"))
             {
-                predicates2.add(cb2.equal(garden2, Boolean.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.equal(garden2, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("hasSwimmingPool"))
             {
-                predicates2.add(cb2.equal(swimmingPool2, Boolean.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.equal(swimmingPool2, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("isNearPark"))
             {
-                predicates2.add(cb2.equal(nearPark2, Boolean.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.equal(nearPark2, Boolean.valueOf(entry.getValue())));
             } 
 
             if(entry.getKey().equals("isNearSchool"))
             {
-                predicates2.add(cb2.equal(nearSchool2, Boolean.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.equal(nearSchool2, Boolean.valueOf(entry.getValue())));
             }  
 
             if(entry.getKey().equals("isNearPublicTransport"))
             {
-                predicates2.add(cb2.equal(nearPublicTransport2, Boolean.valueOf(entry.getValue())));
+                predicates2.add(criteriaBuilder2.equal(nearPublicTransport2, Boolean.valueOf(entry.getValue())));
             }  
             
             if(entry.getKey().equals("city"))
             {
-                predicates2.add(cb2.equal(city2, entry.getValue()));
+                predicates2.add(criteriaBuilder2.equal(city2, entry.getValue()));
             } 
         } 
 
@@ -388,29 +336,29 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
         //realEstate = factory.getTypeQuery(realEstateType);
         if(realEstateType2 != null && realEstateType2.equals("For Sale"))
         {
-            realEstateForSale2 = countQuery.from(RealEstateForSale.class);
-            predicates2.add(cb.equal(realEstate2.get("realEstateId"), realEstateForSale2.get("realEstateId")));
-            predicates2.add(cb.equal(realEstate2.get("realEstateId"), address2.get("addressId")));
+            realEstateForSale2 = criteriaCountQuery.from(RealEstateForSale.class);
+            predicates2.add(criteriaBuilder.equal(realEstate2.get("realEstateId"), realEstateForSale2.get("realEstateId")));
+            predicates2.add(criteriaBuilder.equal(realEstate2.get("realEstateId"), address2.get("addressId")));
             
-            countQuery.select(cb.count(realEstateForSale2))
-                      .where(cb.and(predicates2.toArray(new Predicate[predicates2.size()])));
+            criteriaCountQuery.select(criteriaBuilder.count(realEstateForSale2))
+                      .where(criteriaBuilder.and(predicates2.toArray(new Predicate[predicates2.size()])));
         }
         else if(realEstateType2 != null && realEstateType2.equals("For Rent"))
         {
-            realEstateForRent2 = countQuery.from(RealEstateForRent.class);
-            predicates2.add(cb.equal(realEstate2.get("realEstateId"), realEstateForRent2.get("realEstateId")));
-            predicates2.add(cb.equal(realEstate2.get("realEstateId"), address2.get("addressId")));
+            realEstateForRent2 = criteriaCountQuery.from(RealEstateForRent.class);
+            predicates2.add(criteriaBuilder.equal(realEstate2.get("realEstateId"), realEstateForRent2.get("realEstateId")));
+            predicates2.add(criteriaBuilder.equal(realEstate2.get("realEstateId"), address2.get("addressId")));
             
-            countQuery.select(cb.count(realEstateForRent2))
-                      .where(cb.and(predicates2.toArray(new Predicate[predicates2.size()])));
+            criteriaCountQuery.select(criteriaBuilder.count(realEstateForRent2))
+                      .where(criteriaBuilder.and(predicates2.toArray(new Predicate[predicates2.size()])));
         }
 
 
 
 
-        Long count = entityManager.createQuery(countQuery).getSingleResult();
+        Long count = entityManager.createQuery(criteriaCountQuery).getSingleResult();
 
-        List<RealEstatePreviewDTO> list = entityManager.createQuery(query).setFirstResult((int)page.getOffset()).setMaxResults(page.getPageSize())
+        List<RealEstatePreviewDTO> list = entityManager.createQuery(criteriaQuery).setFirstResult((int)page.getOffset()).setMaxResults(page.getPageSize())
                             .getResultList(); 
 
         PageImpl<RealEstatePreviewDTO> pageImpl = new PageImpl<>(list, page, count);
@@ -422,10 +370,10 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
     public List<RealEstatePreviewDTO> findRealEstateByFilters4(Map<String,String> filters, Pageable page, LatLongMinMax latLongMinMax) 
     {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<RealEstatePreviewDTO> query = cb.createQuery(RealEstatePreviewDTO.class);
+        CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = cb.createQuery(RealEstatePreviewDTO.class);
         
-        Root<RealEstate> realEstate = query.from(RealEstate.class);
-        Root<Address> address = query.from(Address.class);
+        Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
+        Root<Address> address = criteriaQuery.from(Address.class);
     
         Path<String> energyClass = realEstate.get("energyClass");
         Path<Double> price = realEstate.get("price");
@@ -549,10 +497,10 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
         //realEstate = factory.getTypeQuery(realEstateType);
         if(realEstateType != null && realEstateType.equals("For Sale"))
         {
-            realEstateForSale = query.from(RealEstateForSale.class);
+            realEstateForSale = criteriaQuery.from(RealEstateForSale.class);
             predicates.add(cb.equal(realEstate.get("realEstateId"), realEstateForSale.get("realEstateId")));
             predicates.add(cb.equal(realEstate.get("realEstateId"), address.get("addressId")));
-            query.select(cb.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
+            criteriaQuery.select(cb.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
                                                                               realEstate.get("title"),
                                                                               realEstate.get("description"),
                                                                               realEstate.get("price"),
@@ -563,10 +511,10 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
         }
         else if(realEstateType != null && realEstateType.equals("For Rent"))
         {
-            realEstateForRent = query.from(RealEstateForRent.class);
+            realEstateForRent = criteriaQuery.from(RealEstateForRent.class);
             predicates.add(cb.equal(realEstate.get("realEstateId"), realEstateForRent.get("realEstateId")));
             predicates.add(cb.equal(realEstate.get("realEstateId"), address.get("addressId")));
-            query.select(cb.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
+            criteriaQuery.select(cb.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
                                                                               realEstate.get("title"),
                                                                               realEstate.get("description"),
                                                                               realEstate.get("price"),
@@ -576,7 +524,7 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
                 .where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
         }
 
-        List<RealEstatePreviewDTO> list = entityManager.createQuery(query).setFirstResult((int)page.getOffset()).setMaxResults(page.getPageSize())
+        List<RealEstatePreviewDTO> list = entityManager.createQuery(criteriaQuery).setFirstResult((int)page.getOffset()).setMaxResults(page.getPageSize())
                             .getResultList();
 
         return list;
@@ -646,4 +594,11 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
         return id;
     }   
 
+
+
+
+    private void filtersQuery()
+    {
+        ; /*TODO*/
+    }
 }

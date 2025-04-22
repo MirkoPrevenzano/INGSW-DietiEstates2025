@@ -50,6 +50,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor
             }
         }
 
+        log.info("Authorization Interceptor is OK!");
         return true;
     }
 }

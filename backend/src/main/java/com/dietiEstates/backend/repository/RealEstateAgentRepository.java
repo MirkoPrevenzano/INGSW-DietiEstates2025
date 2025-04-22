@@ -13,5 +13,5 @@ import com.dietiEstates.backend.model.RealEstateAgent;
 @Repository
 public interface RealEstateAgentRepository extends JpaRepository<RealEstateAgent,Long> 
 {
-    Optional<RealEstateAgent> findByUsername(String username);
+    public Optional<RealEstateAgent> findByUsername(String username);
 }

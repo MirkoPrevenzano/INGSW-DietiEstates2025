@@ -13,5 +13,5 @@ import com.dietiEstates.backend.model.Customer;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer,Long>
 {
-    Optional<Customer> findByUsername(String email);
+    public Optional<Customer> findByUsername(String email);
 }
