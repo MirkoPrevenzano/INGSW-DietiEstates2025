@@ -17,6 +17,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.ForeignKey;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -28,6 +29,7 @@ import java.util.List;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.RealEstateStats;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
+
 
 
 @Entity(name = "RealEstate")
@@ -43,14 +45,12 @@ public class RealEstate
     @Column(name = "real_estate_id")
     private Long realEstateId;
 
-    @Column(name = "title",
-            nullable = false, 
+    @Column(nullable = false, 
             updatable = true, 
             columnDefinition = "text")
     private String title;
 
-    @Column(name = "description",
-            nullable = false, 
+    @Column(nullable = false, 
             updatable = true, 
             columnDefinition = "text")
     private String description;
@@ -60,8 +60,7 @@ public class RealEstate
             updatable = false)    
     private LocalDateTime uploadingDate;
     
-    @Column(name = "price",
-            nullable = false, 
+    @Column(nullable = false, 
             updatable = true)
     private Double price;
 
@@ -120,7 +119,7 @@ public class RealEstate
     public RealEstate(String title, String description, LocalDateTime uploadingDate, Double price, Double condoFee, String energyClass,
                       InternalRealEstateFeatures internalFeatures, ExternalRealEstateFeatures externalFeatures)
     {
-        this.title= title;
+        this.title = title;
         this.description = description;
         this.uploadingDate = uploadingDate;
         this.price = price;

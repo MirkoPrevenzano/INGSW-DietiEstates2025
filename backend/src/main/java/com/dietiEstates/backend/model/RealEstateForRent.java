@@ -11,15 +11,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
+
 @Entity(name = "RealEstateForRent")
 @Table(name = "real_estate_for_rent")
-@PrimaryKeyJoinColumn(name = "real_estate_for_rent_id", foreignKey = @ForeignKey(name = "real_estate_for_rent_fk"))
+@PrimaryKeyJoinColumn(name = "real_estate_for_rent_id",
+                      foreignKey = @ForeignKey(name = "real_estate_for_rent_to_real_estate_fk"))
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)

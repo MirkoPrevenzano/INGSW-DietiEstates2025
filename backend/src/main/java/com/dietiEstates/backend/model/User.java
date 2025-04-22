@@ -15,10 +15,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Transient;
+
 import lombok.NonNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+
 
 
 @MappedSuperclass
@@ -56,7 +58,7 @@ public abstract class User implements UserDetails
     Role role;
 
 
-
+    
     @Override
     public Collection<SimpleGrantedAuthority> getAuthorities() 
     {

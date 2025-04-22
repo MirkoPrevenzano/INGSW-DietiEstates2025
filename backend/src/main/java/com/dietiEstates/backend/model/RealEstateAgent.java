@@ -18,10 +18,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.ForeignKey;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
 
 
 @Entity(name = "RealEstateAgent")
@@ -45,7 +47,7 @@ public class RealEstateAgent extends User
                cascade = {})
     @JoinColumn(name = "admin_id", 
                 nullable = false, 
-                updatable = false,
+                updatable = true,
                 foreignKey = @ForeignKey(name = "real_estate_agent_to_admin_fk"))
     private Administrator administrator;
 

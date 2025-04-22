@@ -58,7 +58,7 @@ public class Address
      private String postalCode;
 
      @NonNull
-     @Column(name = "house_number", 
+     @Column(name = "house_number",
              nullable = false, 
              updatable = true)
      private Integer houseNumber;
@@ -72,6 +72,7 @@ public class Address
      @Column(nullable = false, 
              updatable = true)
      private Double latitude;
+
 
      
      @MapsId
