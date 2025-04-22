@@ -1161,11 +1161,10 @@ public class CustomRepositoryImpl implements CustomRepository
         CriteriaQuery<Long> query = cb.createQuery(Long.class);
         
         Root<RealEstate> realEstate = query.from(RealEstate.class);
-        Root<RealEstateAgent> realEstateAgent = query.from(RealEstateAgent.class);
     
         query.select(realEstate.get("realEstateId"))
-             .where(cb.equal(realEstateAgent.get("userId"), agentId))
-             .orderBy(cb.desc(realEstate.get("realEstateId")));
+        .where(cb.equal(realEstate.get("realEstateAgent").get("userId"), agentId))
+        .orderBy(cb.desc(realEstate.get("realEstateId")));
 
         Long id = entityManager.createQuery(query)
                                .setMaxResults(1)
@@ -1175,28 +1174,3 @@ public class CustomRepositoryImpl implements CustomRepository
     }   
 
 }
-
-
-
-/* @Override
-public List<RealEstateRecentDTO> findRecentRealEstates(Long agentId, Integer limit) 
-{
-    CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-    CriteriaQuery<RealEstateRecentDTO> query = cb.createQuery(RealEstateRecentDTO.class);
-    
-    Root<RealEstate> realEstate = query.from(RealEstate.class);
-    Root<Address> address = query.from(Address.class);
-
-    List<Predicate> predicates = new ArrayList<>();
-
-    predicates.add(cb.equal(realEstate.get("realEstateAgent").get("userId"), agentId));
-    predicates.add(cb.equal(realEstate.get("realEstateId"), address.get("addressId")));
-
-    query.select(cb.construct(RealEstateRecentDTO.class, realEstate.get("realEstateId"), address.get("country"), realEstate.get("description"), realEstate.get("uploadingDate")))
-         .where(cb.and(predicates.toArray(new Predicate[predicates.size()])))
-         .orderBy(cb.desc(realEstate.get("uploadingDate")));
-
-    return entityManager.createQuery(query)
-                        .setMaxResults(limit)
-                        .getResultList();
-} */
