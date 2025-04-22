@@ -48,6 +48,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter
             return;
         }
         
+        log.info("Attempting JWT Authorization...");
+
         String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         if(authorizationHeader != null && authorizationHeader.startsWith("Bearer "))
