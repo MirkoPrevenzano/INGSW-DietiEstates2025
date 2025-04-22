@@ -3,7 +3,8 @@
   COSE DA FARE CON IL FRONTEND
   - nella visualizzazione dell'estate indicare lo stato di vendita e le info delle agent
   - L'agente deve poter accedere al dettaglio dei propri estate
-  -vedere responsive
+    - vedere responsive
+
 
 
 

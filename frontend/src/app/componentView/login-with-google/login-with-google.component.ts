@@ -38,7 +38,7 @@ export class LoginWithGoogleComponent implements OnInit  {
     if (typeof google !== 'undefined') {
       google.accounts.id.renderButton(
         document.getElementById('google-signin-button'),
-        { theme: 'outline', size: 'large' }
+        { theme: 'outline', size: 'medium' }
       );
     }
   }

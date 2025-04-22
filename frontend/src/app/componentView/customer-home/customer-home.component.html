@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<div class="relative h-full bg-cover bg-back" >   
+<div class="relative  md:py-32 lg:py-44 h-max bg-cover bg-back" >   
   <div class="relative  flex flex-col items-center justify-center h-full text-primary p-6">
     <h1 class="text-5xl font-extrabold mb-10 drop-shadow-lg">Welcome, Customer</h1> 
     
@@ -28,7 +28,6 @@
         <app-button-custom
           text="Select Location on Map"
           (clickEvent)="openMap()"
-          [width]=225
           color="bg-secondary"
         ></app-button-custom>
 
