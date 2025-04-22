@@ -12,10 +12,12 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
 
 
 @Entity(name = "Customer")
@@ -24,8 +26,10 @@ import lombok.ToString;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-@ToString(callSuper = true, exclude = "customerViewsRealEstates")
-@AttributeOverride(name = "userId", column = @Column(name = "customer_id"))
+@ToString(callSuper = true, 
+          exclude = "customerViewsRealEstates")
+@AttributeOverride(name = "userId", 
+                   column = @Column(name = "customer_id"))
 public class Customer extends User
 {
     @Column(name = "is_auth_with_external_api", nullable = false, columnDefinition = "boolean default false")

@@ -1,8 +1,6 @@
 
 package com.dietiEstates.backend.config.security.interceptor;
 
-import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -30,7 +28,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor
     {
         Map pathvariables = (Map) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
 
-        if(pathvariables != null)
+        if(!(pathvariables.isEmpty()))
         {
             String pathUsername = (String) pathvariables.get("username");
             String tokenUsername = (String) request.getAttribute("com.dietiEstates.backend.model.User.username");

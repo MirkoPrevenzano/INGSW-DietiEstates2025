@@ -10,11 +10,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+
 
 
 @Entity(name = "Address")
@@ -56,7 +58,7 @@ public class Address
      private String postalCode;
 
      @NonNull
-     @Column(name = "house_number", 
+     @Column(name = "house_number",
              nullable = false, 
              updatable = true)
      private Integer houseNumber;
@@ -71,11 +73,12 @@ public class Address
              updatable = true)
      private Double latitude;
 
+
      
      @MapsId
      @OneToOne(fetch = FetchType.EAGER, 
                cascade = {},
-               orphanRemoval = true)
+               orphanRemoval = false)
      @JoinColumn(name = "real_estate_id",
                  nullable = false,
                  updatable = true,

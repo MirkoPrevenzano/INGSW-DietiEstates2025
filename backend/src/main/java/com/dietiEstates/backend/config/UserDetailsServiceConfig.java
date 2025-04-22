@@ -7,10 +7,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.dietiEstates.backend.config.security.Role;
 import com.dietiEstates.backend.model.Administrator;
 import com.dietiEstates.backend.model.Customer;
 import com.dietiEstates.backend.model.RealEstateAgent;
-import com.dietiEstates.backend.model.Role;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateAgentRepository;

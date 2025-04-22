@@ -1,5 +1,6 @@
 
-package com.dietiEstates.backend.model;
+package com.dietiEstates.backend.config.security;
+
 
 
 public enum Role 

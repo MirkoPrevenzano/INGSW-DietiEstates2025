@@ -7,10 +7,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.config.security.JWTUtils;
+import com.dietiEstates.backend.config.security.Role;
 import com.dietiEstates.backend.dto.AuthenticationResponseDTO;
 import com.dietiEstates.backend.dto.UserDTO;
 import com.dietiEstates.backend.model.Customer;
-import com.dietiEstates.backend.model.Role;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.service.CustomerService;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;

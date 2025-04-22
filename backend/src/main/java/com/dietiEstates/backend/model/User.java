@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.dietiEstates.backend.config.security.Role;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -15,10 +17,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Transient;
+
 import lombok.NonNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+
 
 
 @MappedSuperclass
@@ -56,7 +60,7 @@ public abstract class User implements UserDetails
     Role role;
 
 
-
+    
     @Override
     public Collection<SimpleGrantedAuthority> getAuthorities() 
     {

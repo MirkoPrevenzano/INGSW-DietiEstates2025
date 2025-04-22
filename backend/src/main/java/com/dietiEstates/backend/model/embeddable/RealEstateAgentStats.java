@@ -4,8 +4,10 @@ package com.dietiEstates.backend.model.embeddable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Transient;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 
 @Embeddable
@@ -14,31 +16,31 @@ import lombok.NoArgsConstructor;
 public class RealEstateAgentStats 
 {
     @Column(name = "total_uploaded_real_estates", 
-            nullable = true,
+            nullable = false,
             updatable = true,
             columnDefinition = "int default 0")
     private int totalUploadedRealEstates;
 
     @Column(name = "total_sold_real_estates", 
-            nullable = true,
+            nullable = false,
             updatable = true,
             columnDefinition = "int default 0")
     private int totalSoldRealEstates;    
     
     @Column(name = "total_rented_real_estates", 
-            nullable = true,
+            nullable = false,
             updatable = true,
             columnDefinition = "int default 0")
     private int totalRentedRealEstates;
 
     @Column(name = "sales_income", 
-            nullable = true,
+            nullable = false,
             updatable = true,
             columnDefinition = "double precision default 0")
     private double salesIncome;
 
     @Column(name = "rentals_income", 
-            nullable = true,
+            nullable = false,
             updatable = true,
             columnDefinition = "double precision default 0")
     private double rentalsIncome; 
@@ -47,40 +49,21 @@ public class RealEstateAgentStats
     private double totalIncomes;  
 
     @Transient
-    private double salesToRentalsRatio;    
-        
+    private int completedDeals;
+
     @Transient
-    private double rentalsToSalesRatio;    
-        
-    @Transient
-    private double successRate;
+    private int successRate;
 
 
-
-    public double getCompletedDeals()
-    {
-        return totalSoldRealEstates + totalRentedRealEstates;
-    }
-
+    
     public double getTotalIncomes()
     {
         return rentalsIncome + salesIncome;
     }
 
-    public double getSalesToRentalsRatio()
+    public int getCompletedDeals()
     {
-        if(totalUploadedRealEstates != 0)
-            return ((double) (totalSoldRealEstates * 100)) / totalUploadedRealEstates;
-        else
-            return 0;   
-    }
-
-    public double getRentalsToSalesRatio()
-    {
-        if(getSalesToRentalsRatio() != 0)
-            return (double) 100 - getSalesToRentalsRatio();
-        else
-            return 0;   
+        return totalSoldRealEstates + totalRentedRealEstates;
     }
 
     public double getSuccessRate()

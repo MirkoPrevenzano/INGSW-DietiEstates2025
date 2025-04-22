@@ -14,7 +14,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.dietiEstates.backend.config.security.filter.JWTAuthenticationFilter;
 import com.dietiEstates.backend.config.security.filter.JWTAuthorizationFilter;
-import com.dietiEstates.backend.model.Role;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

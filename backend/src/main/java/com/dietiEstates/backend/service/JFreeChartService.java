@@ -31,8 +31,8 @@ public class JFreeChartService
 
         if(realEstateAgent.getRealEstateAgentStats().getTotalUploadedRealEstates() != 0)
         {
-            dataset.setValue("SALES", Double.valueOf(realEstateAgent.getRealEstateAgentStats().getSalesToRentalsRatio()));
-            dataset.setValue("RENTALS", Double.valueOf(100.0 - realEstateAgent.getRealEstateAgentStats().getSalesToRentalsRatio()));
+            dataset.setValue("SALES", Double.valueOf(realEstateAgent.getRealEstateAgentStats().getTotalSoldRealEstates()));
+            dataset.setValue("RENTALS", Double.valueOf(realEstateAgent.getRealEstateAgentStats().getTotalRentedRealEstates()));
         }
         else
         {
@@ -72,8 +72,8 @@ public class JFreeChartService
 
         if(realEstateAgent.getRealEstateAgentStats().getTotalUploadedRealEstates() != 0)
         {
-            dataset.setValue("COMPLETED DEALS", Double.valueOf(realEstateAgent.getRealEstateAgentStats().getSuccessRate()));
-            dataset.setValue("TOTAL REAL ESTATES", Double.valueOf(100.0 - realEstateAgent.getRealEstateAgentStats().getSuccessRate()));
+            dataset.setValue("COMPLETED DEALS", Double.valueOf(realEstateAgent.getRealEstateAgentStats().getCompletedDeals()));
+            dataset.setValue("TOTAL REAL ESTATES", Double.valueOf(realEstateAgent.getRealEstateAgentStats().getTotalUploadedRealEstates()));
         }
         else
         {
