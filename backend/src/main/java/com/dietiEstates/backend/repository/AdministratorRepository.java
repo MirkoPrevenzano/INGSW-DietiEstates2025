@@ -9,8 +9,9 @@ import org.springframework.stereotype.Repository;
 import com.dietiEstates.backend.model.Administrator;
 
 
+
 @Repository
 public interface AdministratorRepository extends JpaRepository<Administrator,Long> 
 {
-   Optional<Administrator> findByUsername(String username);
+    public Optional<Administrator> findByUsername(String username);
 }

@@ -54,8 +54,8 @@ GET http://localhost:8080/agent/c/recent-real-estates/1 HTTP/1.1
 Authorization: Bearer 
 
 
-GET http://localhost:8080/real-estate/search3?page=0&limit=3&type=For%20Sale&lat=4&lon=2&radius=10000hasBalcony=true HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjIiwicm9sZXMiOlsiUk9MRV9BR0VOVCJdLCJleHAiOjE3NDE5ODI3MDQsImlhdCI6MTc0MDI3NzY3MX0.venEMjKR1d8bWHl6Sxcj2i_H50NJNZmIjgU7oX-uyMc
+GET http://localhost:8080/real-estate/search3?page=0&limit=3&type=For%20Sale&lat=4.9&lon=2&radius=1000000 HTTP/1.1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjIiwicm9sZXMiOlsiUk9MRV9BR0VOVCJdLCJleHAiOjE3NDUzNjUyNjEsImlhdCI6MTc0NTI3ODg2MX0.Dwk1jOVON1XIcbCF2IUinEYuDDT_BoV5ao6GAea6jUc
 
 
 GET http://localhost:8080/real-estate/search4?page=0&limit=3&type=For%20Sale&lat=4&lon=2&radius=10000hasBbalcony=true HTTP/1.1
@@ -72,4 +72,3 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjIiwicm9sZ
 
 GET http://localhost:8080/agent/c/general-stats HTTP/1.1
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjIiwicm9sZXMiOlsiUk9MRV9BR0VOVCJdLCJleHAiOjE3NDIyMTE0NTMsImlhdCI6MTc0MDUwNjQyMH0.YIyL4hdt3QGx8eVa5iCcGSJQm4IoVWPOEdjAIfH--Vg
-

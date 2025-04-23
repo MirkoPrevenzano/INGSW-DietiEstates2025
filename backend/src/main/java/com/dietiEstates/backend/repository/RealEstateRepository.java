@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 import com.dietiEstates.backend.model.RealEstate;
 
 
+
 @Repository
-public interface RealEstateRepository extends JpaRepository<RealEstate,Long>, CustomRepository
+public interface RealEstateRepository extends JpaRepository<RealEstate,Long>, RealEstateCustomRepository
 {
 }

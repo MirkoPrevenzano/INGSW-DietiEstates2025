@@ -79,17 +79,17 @@ public class BackendApplication
     {
         return args -> 
         {  
-             /*Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@", "ak");
+           /* Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@", "ak");
             administrator.setPassword(passwordEncoder.encode(administrator.getPassword()));
-            administrator = administratorRepository.save(administrator);*/
+            administrator = administratorRepository.save(administrator);
 
-/* 
+
             RealEstateAgent agent = (new RealEstateAgent("a","b","c",passwordEncoder.encode("ssssssssssssssssssss22A@")));
             agent.setAdministrator(administrator);
             administrator.addRealEstateAgent(agent);
-            administrator = administratorRepository.save(administrator);
+            administrator = administratorRepository.save(administrator); */
 
-            administrator.getRealEstateAgents().get(0).getRealEstateAgentStats().setTotalUploadedRealEstates(200);
+           /*administrator.getRealEstateAgents().get(0).getRealEstateAgentStats().setTotalUploadedRealEstates(200);
             administrator.getRealEstateAgents().get(0).getRealEstateAgentStats().setTotalRentedRealEstates(20);;
             administrator.getRealEstateAgents().get(0).getRealEstateAgentStats().setTotalSoldRealEstates(45);
             administrator.getRealEstateAgents().get(0).getRealEstateAgentStats().setRentalsIncome(1.60000);

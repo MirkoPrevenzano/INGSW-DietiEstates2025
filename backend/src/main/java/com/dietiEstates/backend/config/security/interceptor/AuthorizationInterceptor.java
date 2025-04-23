@@ -26,6 +26,8 @@ public class AuthorizationInterceptor implements HandlerInterceptor
                              @NonNull HttpServletResponse response, 
                              @NonNull Object handler) throws Exception 
     {
+        log.info("Attempting Authorization...");
+
         Map pathvariables = (Map) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
 
         if(!(pathvariables.isEmpty()))
@@ -48,6 +50,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor
             }
         }
 
+        log.info("Authorization Interceptor is OK!");
         return true;
     }
 }

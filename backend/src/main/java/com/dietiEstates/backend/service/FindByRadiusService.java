@@ -20,17 +20,17 @@ public class FindByRadiusService
 
     public LatLongMinMax calcoloLatLongMinMax(Integer radius, Double lat0, Double long0)
 	{		
-		System.out.println(radius);
-		System.out.println(lat0);
-		System.out.println(long0);
+		System.out.println("radius: " + radius);
+		System.out.println("lat0: " + lat0);
+		System.out.println("long0: " + long0);
 		
 		double latitudeVariation = (double) radius / distancePerLatitudeGrade;
 		double longitudeVariation = (double) radius / distancePerLongitudeGrade * Math.cos(lat0);
 
 		System.out.println("");
 		System.out.println("");
-		System.out.println(latitudeVariation);
-		System.out.println(longitudeVariation);
+		System.out.println("latitudeVariation: " + latitudeVariation);
+		System.out.println("longitudeVariation: " + longitudeVariation);
 
 		double latMin;
 		double latMax;
@@ -44,10 +44,10 @@ public class FindByRadiusService
 
 		System.out.println("");
 		System.out.println("");
-		System.out.println(latMin);
-		System.out.println(latMax);
-		System.out.println(longMin);
-		System.out.println(longMax);
+		System.out.println("latMin: " + latMin);
+		System.out.println("latMax: " + latMax);
+		System.out.println("longMin: " + longMin);
+		System.out.println("longMax: " + longMax);
 
         return new LatLongMinMax(latMin, latMax, longMin, longMax);
 	}
