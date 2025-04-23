@@ -1,0 +1,9 @@
+packaging.specifiers.Specifier._compare_equal
+false
+03b8dc16b98ff9f7509e0f67c19acbc9
+packaging.specifiers._pad_version
+packaging.specifiers._version_split
+packaging.utils.canonicalize_version
+packaging.version.Version.__init__
+==
+endswith

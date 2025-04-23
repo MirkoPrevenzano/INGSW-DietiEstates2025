@@ -1,0 +1,33 @@
+import { writeFileSync } from 'fs';
+import { config } from 'dotenv';
+
+// Carica le variabili dal file .env
+const env = config().parsed;
+
+// Genera il contenuto del file environment.ts
+const environmentFileContent = `
+export const environment = {
+  production: false,
+  googleApiKey: '${env.GOOGLE_API_KEY}',
+  sonarToken: '${env.SONAR_TOKEN}',
+  geoapifyToken: '${env.GEOAPIFY_TOKEN}'
+};
+`;
+
+// Scrive il file environment.ts
+writeFileSync('./src/environments/environment.ts', environmentFileContent);
+
+// Genera il contenuto del file environment.prod.ts
+const environmentProdFileContent = `
+export const environment = {
+  production: true,
+  googleApiKey: '${env.GOOGLE_API_KEY}',
+  sonarToken: '${env.SONAR_TOKEN}',
+  geoapifyToken: '${env.GEOAPIFY_TOKEN}'
+};
+`;
+
+// Scrive il file environment.prod.ts
+writeFileSync('./src/environments/environment.prod.ts', environmentProdFileContent);
+
+console.log('Environment files generated successfully.');

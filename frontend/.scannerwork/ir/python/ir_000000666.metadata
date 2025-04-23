@@ -1,0 +1,6 @@
+gyp.xcode_emulation.XcodeSettings.GetBundleJavaFolderPath
+false
+315cbc0d0ae66c3e7d41de9da87c7e00
+os.path.join
+==
+GetBundleResourceFolder

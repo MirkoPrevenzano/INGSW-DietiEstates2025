@@ -1,0 +1,17 @@
+gyp.generator.msvs._AdjustSourcesForRules
+false
+ce0babea2955812620e31123b38b8722
+builtins.__has_next
+builtins.int
+builtins.iter
+builtins.next
+gyp.common.OrderedSet.__init__
+gyp.generator.msvs._FindRuleTriggerFiles
+gyp.generator.msvs._FixPath
+gyp.generator.msvs._FixPaths
+gyp.generator.msvs._RuleInputsAndOutputs
+==
+discard
+get
+remove
+update

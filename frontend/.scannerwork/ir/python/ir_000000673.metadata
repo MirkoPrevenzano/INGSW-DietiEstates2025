@@ -1,0 +1,9 @@
+gyp.xcode_emulation.XcodeSettings.GetProductType
+false
+8a250064bc1145c45d5a56308a2bbef9
+==
+_IsBundle
+_IsIosAppExtension
+_IsIosWatchApp
+_IsIosWatchKitExtension
+_IsXCUiTest

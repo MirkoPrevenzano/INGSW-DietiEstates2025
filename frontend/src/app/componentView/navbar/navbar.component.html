@@ -27,7 +27,9 @@
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4 ">
               <i 
-              (click)="goHome()" 
+              (click)="goHome()"
+              (keydown)="goHome()"
+              (keyup)="goHome()" 
               class="fas fa-home cursor-pointer mt-2 fa-2x text-back transition-colors duration-300">
             </i>
         </div>

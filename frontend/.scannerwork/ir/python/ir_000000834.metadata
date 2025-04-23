@@ -1,0 +1,7 @@
+gyp.generator.msvs._GetMSBuildExternalBuilderTargets
+false
+5a3f646932497ce2d90d81a5c01c1700
+gyp.generator.msvs._BuildCommandLineForRuleRaw
+==
+append
+get

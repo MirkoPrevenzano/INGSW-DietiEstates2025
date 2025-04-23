@@ -1,0 +1,7 @@
+gyp.xcode_emulation.XcodeSettings.GetCflagsObjC
+false
+ca53c32a1828c7ecd08b2cca9244bb93
+==
+_AddObjectiveCARCFlags
+_AddObjectiveCGarbageCollectionFlags
+_AddObjectiveCMissingPropertySynthesisFlags

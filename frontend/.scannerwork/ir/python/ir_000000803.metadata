@@ -1,0 +1,13 @@
+gyp.generator.msvs._PrepareListOfSources
+false
+5216d08a06734dbe2d8c92440bb40ca4
+builtins.__has_next
+builtins.int
+builtins.iter
+builtins.next
+gyp.common.OrderedSet.__init__
+gyp.generator.msvs._AddNormalizedSources
+==
+add
+get
+update

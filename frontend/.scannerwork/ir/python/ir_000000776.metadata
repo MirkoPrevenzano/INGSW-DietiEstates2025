@@ -1,0 +1,13 @@
+gyp.generator.msvs._EscapeVCProjCommandLineArgListItem
+false
+646fb829ecad7c807187251e96f0bd58
+builtins.__has_next
+builtins.iter
+builtins.len
+builtins.next
+builtins.print
+range.__init__
+==
+join
+split
+sub

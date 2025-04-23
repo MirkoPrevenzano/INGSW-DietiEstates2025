@@ -1,0 +1,306 @@
+
+0gyp.xcode_emulation.XcodeSettings.GetProductTypeà
+|/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/frontend/node_modules/node-gyp/gyp/pylib/gyp/xcode_emulation.pyÑ Ñ("2*á
+2
+Ö Ö(6lj
+
+Ü Ü($
+%28*A
+
+__unknown_file (%#
+!gyp.xcode_emulation.XcodeSettings2_IsIosAppExtension*
+13
+12*ó
+13
+á ä(ca
+
+á á(#
+%26*A
+
+__unknown_file (%#
+!gyp.xcode_emulation.XcodeSettings2	_IsBundleh
+f
+
+â  â()
+%27"__id*K
+
+__unknown_file (/*-#
+!gyp.xcode_emulation.XcodeSettings"
+spec"6
+
+ã ã(9(&
+$com.apple.product-type.app-extension*∫
+4
+ü £( 
+
+ü £(
+%1"dict≥
+∞
+
+† †(B
+%2"__mapSet*"
+
+__unknown_file (
+
+%1**
+
+__unknown_file (
+
+executable*B
+
+__unknown_file (&$
+"com.apple.product-type.application≥
+∞
+
+° °(B
+%3"__mapSet*"
+
+__unknown_file (
+
+%1*/
+
+__unknown_file (
+loadable_module*=
+
+__unknown_file (!
+com.apple.product-type.bundleµ
+≤
+
+¢ ¢(D
+%4"__mapSet*"
+
+__unknown_file (
+
+%1*.
+
+__unknown_file (
+shared_library*@
+
+__unknown_file ($"
+ com.apple.product-type.frameworkg
+e
+
+£ £(
+%5"__id*K
+
+__unknown_file (/*-#
+!gyp.xcode_emulation.XcodeSettings"
+specus
+
+£ £(
+%6"__mapGet*"
+
+__unknown_file (
+
+%5*$
+
+__unknown_file (
+type2__getitem__sq
+
+ü £( 
+%7"__mapGet*"
+
+__unknown_file (
+
+%1*"
+
+__unknown_file (
+
+%62__getitem__"
+
+ü £( 
+
+%7*à	
+5
+• ™( 
+
+• ™(
+%8"dict¨
+©
+
+¶ ¶(;
+%9"__mapSet*"
+
+__unknown_file (
+
+%8**
+
+__unknown_file (
+
+executable*;
+
+__unknown_file (
+com.apple.product-type.toolΩ
+∫
+
+ß ß(K
+%10"__mapSet*"
+
+__unknown_file (
+
+%8*/
+
+__unknown_file (
+loadable_module*F
+
+__unknown_file (*(
+&com.apple.product-type.library.dynamicº
+π
+
+® ®(J
+%11"__mapSet*"
+
+__unknown_file (
+
+%8*.
+
+__unknown_file (
+shared_library*F
+
+__unknown_file (*(
+&com.apple.product-type.library.dynamicª
+∏
+
+© ©(I
+%12"__mapSet*"
+
+__unknown_file (
+
+%8*.
+
+__unknown_file (
+static_library*E
+
+__unknown_file ()'
+%com.apple.product-type.library.statich
+f
+
+™ ™(
+%13"__id*K
+
+__unknown_file (/*-#
+!gyp.xcode_emulation.XcodeSettings"
+specwu
+
+™ ™(
+%14"__mapGet*#
+
+__unknown_file (
+
+%13*$
+
+__unknown_file (
+type2__getitem__us
+
+• ™( 
+%15"__mapGet*"
+
+__unknown_file (
+
+%8*#
+
+__unknown_file (
+
+%142__getitem__"
+
+• ™( 
+
+%15*|
+6
+û û(ca
+
+û û(
+%16*A
+
+__unknown_file (%#
+!gyp.xcode_emulation.XcodeSettings2	_IsBundle*
+4
+5*ö
+7
+ô ú(ca
+
+ô ô(#
+%17*A
+
+__unknown_file (%#
+!gyp.xcode_emulation.XcodeSettings2	_IsBundleh
+f
+
+õ  õ()
+%18"__id*K
+
+__unknown_file (/*-#
+!gyp.xcode_emulation.XcodeSettings"
+spec":
+
+ù ù(=,*
+(com.apple.product-type.bundle.ui-testing*~
+8
+ò ò(ec
+
+ò ò(
+%19*A
+
+__unknown_file (%#
+!gyp.xcode_emulation.XcodeSettings2_IsXCUiTest*
+6
+7*ù
+9
+ì ñ(ca
+
+ì ì(#
+%20*A
+
+__unknown_file (%#
+!gyp.xcode_emulation.XcodeSettings2	_IsBundleh
+f
+
+ï  ï()
+%21"__id*K
+
+__unknown_file (/*-#
+!gyp.xcode_emulation.XcodeSettings"
+spec"=
+
+ó ó(@/-
++com.apple.product-type.application.watchapp*Ç
+10
+í í( hf
+
+í í( 
+%22*A
+
+__unknown_file (%#
+!gyp.xcode_emulation.XcodeSettings2_IsIosWatchApp*
+8
+9*ú
+11
+ç ê(ca
+
+ç ç(#
+%23*A
+
+__unknown_file (%#
+!gyp.xcode_emulation.XcodeSettings2	_IsBundleh
+f
+
+è+ è(4
+%24"__id*K
+
+__unknown_file (/*-#
+!gyp.xcode_emulation.XcodeSettings"
+spec";
+
+ë ë(>-+
+)com.apple.product-type.watchkit-extension*ç
+12
+å å()qo
+
+å å()
+%25*A
+
+__unknown_file (%#
+!gyp.xcode_emulation.XcodeSettings2_IsIosWatchKitExtension*
+10
+11B%#
+!gyp.xcode_emulation.XcodeSettingsH

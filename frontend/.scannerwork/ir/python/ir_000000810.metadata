@@ -1,0 +1,12 @@
+gyp.generator.msvs._GetPathOfProject
+false
+ff840f383120930420efe331dcdd3e5f
+gyp.common.BuildFile
+gyp.common.RelativePath
+gyp.generator.msvs._GetDefaultConfiguration
+os.path.abspath
+os.path.dirname
+os.path.join
+==
+ProjectExtension
+get

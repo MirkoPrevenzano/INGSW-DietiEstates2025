@@ -1,0 +1,8 @@
+gyp.generator.eclipse.GenerateOutputForConfig
+false
+698004274e9c80b0faf7a99b8eb5e831
+gyp.generator.eclipse.GenerateCdtSettingsFile
+gyp.generator.eclipse.GenerateClasspathFile
+os.path.join
+==
+get

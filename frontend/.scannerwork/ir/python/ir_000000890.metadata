@@ -1,0 +1,15 @@
+gyp.generator.make.MakefileWriter.WriteMakeRule
+false
+0125995a33c0196664a7033021b8b856
+builtins.__has_next
+builtins.iter
+builtins.len
+builtins.next
+hashlib.sha1
+==
+WriteLn
+encode
+format
+hexdigest
+insert
+join

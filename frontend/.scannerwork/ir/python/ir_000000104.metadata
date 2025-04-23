@@ -1,0 +1,10 @@
+test_gyp.Runner.run
+false
+58426a81b33e2e150b3035e1af033ecf
+builtins.__has_next
+builtins.iter
+builtins.next
+time.time
+==
+erase_current_line
+run_test

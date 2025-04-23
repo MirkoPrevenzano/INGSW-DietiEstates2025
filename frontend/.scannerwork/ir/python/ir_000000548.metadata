@@ -1,0 +1,8 @@
+gyp.generator.ninja.ComputeOutputDir
+false
+c67f466cf2e91ed2df846d2533da1ac2
+os.path.join
+os.path.normpath
+os.path.relpath
+==
+get

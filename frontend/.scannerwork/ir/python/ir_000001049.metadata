@@ -1,0 +1,11 @@
+gyp.generator.xcode.AddSourceToTarget
+false
+c3398651248a0f30cdbdfd4465a529c0
+posixpath.basename
+posixpath.splitext
+==
+AddFile
+AddOrGetFileInRootGroup
+FrameworksPhase
+SourcesPhase
+lower

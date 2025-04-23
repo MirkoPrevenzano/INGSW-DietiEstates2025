@@ -1,0 +1,7 @@
+gyp.generator.ninja.QuoteShellArgument
+false
+dd9897d0f4f63b1b00fd42d5e3686d8b
+gyp.msvs_emulation.QuoteForRspFile
+re.match
+==
+replace

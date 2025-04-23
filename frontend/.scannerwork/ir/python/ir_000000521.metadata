@@ -1,0 +1,8 @@
+gyp.generator.ninja.NinjaWriter.GypPathToUniqueOutput
+false
+f4bb4b7e7ab8238734f7270ed132f3ae
+os.path.join
+os.path.normpath
+os.path.split
+==
+ExpandSpecial

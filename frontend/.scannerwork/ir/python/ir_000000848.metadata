@@ -1,0 +1,12 @@
+gyp.win_tool.WinTool._UseSeparateMspdbsrv
+false
+5fb17de8d05b352e57cbc8fdecf43f6c
+builtins.__has_next
+builtins.iter
+builtins.len
+builtins.next
+os.getpid
+re.sub
+==
+group
+match

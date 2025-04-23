@@ -1,0 +1,14 @@
+gyp.msvs_emulation._ExtractImportantEnvironment
+false
+a8fcd40cdeba318a04d0edab26c32917
+builtins.__has_next
+builtins.iter
+builtins.next
+os.path.dirname
+re.match
+==
+count
+lower
+split
+splitlines
+upper

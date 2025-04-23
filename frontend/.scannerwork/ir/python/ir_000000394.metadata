@@ -1,0 +1,8 @@
+gyp.msvs_emulation.MsvsSettings.BuildCygwinBashCommandLine
+false
+41e125fecd7ba9f721224605a0581baa
+os.path.join
+os.path.normpath
+==
+join
+replace

@@ -1,0 +1,6 @@
+gyp.generator.make.MakefileWriter.ComputeMacBundleOutput
+false
+754d7b9e76790e08a5ce18c3af3a394d
+os.path.join
+==
+GetWrapperName

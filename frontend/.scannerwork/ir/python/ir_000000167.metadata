@@ -1,0 +1,13 @@
+gyp.xcodeproj_file.XCHierarchicalElement.Hashables
+false
+da983bb22b9f4a3629d51778be552cb7
+builtins.__has_next
+builtins.iter
+builtins.next
+==
+Hashables
+PBXProjectAncestor
+PathFromSourceTreeAndPath
+append
+extend
+split

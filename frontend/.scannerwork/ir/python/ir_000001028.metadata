@@ -1,0 +1,8 @@
+gyp.mac_tool.MacTool._InstallProvisioningProfile
+false
+c7c4cd29a24bd073d4d554cd7d6451d8
+os.path.join
+shutil.copy2
+==
+_FindProvisioningProfile
+_GetSubstitutions

@@ -1,0 +1,13 @@
+gyp.input.ValidateRulesInTarget
+false
+8e69aeb59f11679771557609c7c12b75
+builtins.__has_next
+builtins.iter
+builtins.len
+builtins.next
+os.path.splitext
+==
+append
+extend
+get
+startswith

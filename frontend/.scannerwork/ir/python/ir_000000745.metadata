@@ -1,0 +1,10 @@
+gyp.generator.android.AndroidMkWriter.ComputeDeps
+false
+0c2d846e26aab5cee9bfde3a476fe541
+builtins.__has_next
+builtins.iter
+builtins.next
+gyp.common.uniquer
+==
+append
+extend

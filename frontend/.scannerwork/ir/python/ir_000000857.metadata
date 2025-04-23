@@ -1,0 +1,15 @@
+gyp.win_tool.WinTool.ExecMidlWrapper
+false
+95a9145755517bf9f692d613f0e58b86
+builtins.__has_next
+builtins.iter
+builtins.list
+builtins.next
+builtins.print
+subprocess.Popen.__init__
+==
+_GetEnv
+communicate
+decode
+splitlines
+startswith

@@ -1,0 +1,10 @@
+gyp.xcode_emulation.XcodeSettings.GetPerTargetSetting
+false
+1e9a03f398feecc24a9a7287fd8b503c
+builtins.__has_next
+builtins.iter
+builtins.next
+builtins.sorted
+==
+get
+keys

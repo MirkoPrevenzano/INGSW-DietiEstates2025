@@ -1,0 +1,9 @@
+gyp.generator.msvs._GetMSBuildExtensionTargets
+false
+fd07ce5b3a4a65148b09c6754f9d08c9
+builtins.__has_next
+builtins.iter
+builtins.next
+builtins.sorted
+==
+append

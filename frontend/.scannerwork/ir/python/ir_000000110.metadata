@@ -1,0 +1,11 @@
+gyp.FindBuildFiles
+false
+380f1ddd4c84f56b378c45e985f2aec7
+builtins.__has_next
+builtins.iter
+builtins.next
+==
+append
+endswith
+getcwd
+listdir

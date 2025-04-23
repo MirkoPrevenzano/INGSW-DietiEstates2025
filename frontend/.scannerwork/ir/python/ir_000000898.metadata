@@ -1,0 +1,7 @@
+gyp.generator.make.MakefileWriter.Absolutify
+false
+178d1be399294d37a39ec4f17604ffaf
+os.path.join
+os.path.normpath
+==
+rstrip

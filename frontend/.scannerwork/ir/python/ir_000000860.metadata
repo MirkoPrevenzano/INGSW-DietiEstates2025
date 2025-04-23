@@ -1,0 +1,8 @@
+gyp.win_tool.WinTool.ExecClCompile
+false
+ebf0a70f9f480cce5d3eb19156df2b77
+os.path.relpath
+subprocess.call
+==
+extend
+split

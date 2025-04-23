@@ -3,12 +3,15 @@ import { CommonModule } from '@angular/common';
 import { LoginService } from '../../_service/rest-backend/login/login.service';
 import { AuthService } from '../../_service/auth/auth.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment.prod';
 
 declare const google: any;
 
 @Component({
     selector: 'app-login-with-google',
-    imports: [CommonModule],
+    imports: [
+      CommonModule
+    ],
     templateUrl: './login-with-google.component.html',
     styleUrls: ['./login-with-google.component.scss']
 })
@@ -24,17 +27,15 @@ export class LoginWithGoogleComponent implements OnInit  {
 
   
   ngOnInit(): void {
-    // Ensure google object is available
     if (typeof google !== 'undefined') {
       google.accounts.id.initialize({
-        client_id: '699354462746-9ale2lg8onjqvafu9aiopmd0fo82j3b4.apps.googleusercontent.com',
+        client_id: environment.googleApiKey,
         callback: this.handleCredentialResponse.bind(this)
       });
     }
   }
 
   ngAfterViewInit(): void {
-    // Ensure google object is available
     if (typeof google !== 'undefined') {
       google.accounts.id.renderButton(
         document.getElementById('google-signin-button'),
@@ -58,7 +59,6 @@ export class LoginWithGoogleComponent implements OnInit  {
         )
       }
     })
-    // Handle the response and authenticate the user
   }
 
 }

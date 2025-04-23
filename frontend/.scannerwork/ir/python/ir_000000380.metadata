@@ -1,0 +1,8 @@
+gyp.msvs_emulation.MsvsSettings._GetPchFlags
+false
+a223ae862296f93d2d488e07aac30eda
+gyp.msvs_emulation._LanguageMatchesForPch
+os.path.split
+os.path.splitext
+==
+_TargetConfig

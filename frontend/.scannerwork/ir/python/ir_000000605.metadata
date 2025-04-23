@@ -1,0 +1,9 @@
+packaging._parser._parse_requirement_marker
+false
+4bcdf17b153875c777c6e499de4d6807
+packaging._parser._parse_marker
+==
+check
+consume
+raise_syntax_error
+read

@@ -1,0 +1,4 @@
+gyp.mac_tool.MacTool._ConvertToBinary
+false
+a10b76300af0154c2467bca4a0156b9f
+subprocess.check_call

@@ -1,0 +1,6 @@
+gyp.MSVSUtil._GetLargePdbShimCcPath
+false
+6242a71da781ce81ba7538cf65b6298b
+os.path.abspath
+os.path.dirname
+os.path.join

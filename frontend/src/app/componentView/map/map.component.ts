@@ -4,6 +4,7 @@ import { Coordinate } from '../../model/coordinate';
 import { EstateLocationFeatures } from '../../model/estateLocationFeatures';
 import { MapService } from '../../_service/map-service/map.service';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../environments/environment.prod';
 
 @Component({
   selector: 'app-map',
@@ -23,7 +24,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
   @Output() nearbyPOI = new EventEmitter<EstateLocationFeatures>()
   @Output() mapReady = new EventEmitter<Map>();
 
-  private readonly geoapifyKey = 'c0324c2c2afb488980eae981c7906a43';
+  private readonly geoapifyKey = environment.geoapifyToken;
   private mapInstance!:Map
 
   constructor(

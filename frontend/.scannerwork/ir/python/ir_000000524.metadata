@@ -1,0 +1,9 @@
+gyp.generator.ninja.NinjaWriter._WinIdlRule
+false
+1366e955d2081f765c1ca94e02e15b97
+==
+GetIdlBuildData
+GypPathToNinja
+append
+build
+extend

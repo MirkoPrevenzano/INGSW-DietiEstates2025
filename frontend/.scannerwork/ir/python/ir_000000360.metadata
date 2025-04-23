@@ -1,0 +1,10 @@
+gyp.msvs_emulation.MsvsSettings.GetVSMacroEnv
+false
+78617ab625f59de23c134fd3ba4c4347
+gyp.msvs_emulation.GetGlobalVSMacroEnv
+os.path.join
+==
+GetArch
+GetExtension
+get
+update

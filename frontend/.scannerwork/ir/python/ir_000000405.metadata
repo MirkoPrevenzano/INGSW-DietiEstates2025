@@ -1,0 +1,6 @@
+gyp.msvs_emulation.PrecompiledHeader.GetFlagsModifications
+false
+f344d2d2820b4a4b3e2b0dadb2b99dc5
+map.__init__
+==
+_PchHeader

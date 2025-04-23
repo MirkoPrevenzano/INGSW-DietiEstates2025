@@ -39,7 +39,8 @@ export class CustomerRegistrateComponent extends RegisterComponent{
   }
   
   protected override onRegisterUser(userRequest: RegisterRequest): void {
-    if(this.registerValidation.isEmailInvalid(this.registerForm!.value.username))
+    const username = this.registerForm.value.username ?? ''
+    if(this.registerValidation.isEmailInvalid(username))
     {
       this.notify.warning('E-mail not valid')
     }

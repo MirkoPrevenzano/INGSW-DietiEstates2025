@@ -16,10 +16,10 @@ export class SelectPlaceComponent implements OnInit{
   
   ngOnInit(): void {
     const addressEstate:Address=this.estateDataService.getAddress()
-    if(addressEstate)
+    if(addressEstate.latitude && addressEstate.longitude)
     {
-      this.onCoordinateChanged({ lat: addressEstate.latitude!, lon: addressEstate.longitude! })
-      this.onClickMarker({ lat: addressEstate.latitude!, lon: addressEstate.longitude! })
+      this.onCoordinateChanged({ lat: addressEstate.latitude, lon: addressEstate.longitude })
+      this.onClickMarker({ lat: addressEstate.latitude, lon: addressEstate.longitude })
     }
 
   }

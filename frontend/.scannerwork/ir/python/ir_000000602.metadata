@@ -1,0 +1,5 @@
+packaging._parser.parse_requirement
+false
+affad1079a350b6bafd244f191afd2c0
+packaging._parser._parse_requirement
+packaging._tokenizer.Tokenizer.__init__

@@ -1,0 +1,11 @@
+gyp.xcode_emulation.MergeGlobalXcodeSettingsToSpec
+false
+97c9372d816b5bf5f7f40b703b877d1a
+builtins.__has_next
+builtins.iter
+builtins.next
+==
+copy
+get
+update
+values

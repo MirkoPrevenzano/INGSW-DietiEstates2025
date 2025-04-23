@@ -1,0 +1,12 @@
+gyp.xcode_emulation.XcodeSettings._MapLinkerFlagFilename
+false
+cf5ffe0ddd87d3163d6f562072249859
+builtins.__has_next
+builtins.iter
+builtins.next
+re.compile
+==
+group
+join
+match
+startswith

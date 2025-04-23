@@ -1,0 +1,17 @@
+gyp.win_tool.WinTool.ExecLinkWrapper
+false
+1c92e2d3e7b967428410743bbf6643f9
+builtins.__has_next
+builtins.iter
+builtins.list
+builtins.next
+builtins.print
+subprocess.Popen.__init__
+==
+_GetEnv
+_UseSeparateMspdbsrv
+communicate
+decode
+replace
+splitlines
+startswith

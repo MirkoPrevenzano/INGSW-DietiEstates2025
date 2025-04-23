@@ -1,0 +1,5 @@
+gyp.generator.ninja.GenerateCompileDBWithNinja
+false
+5d5dc11e48712c3f868b2286748b9cb8
+shutil.which
+subprocess.check_output

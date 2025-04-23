@@ -1,0 +1,137 @@
+
+:gyp.xcodeproj_file.XCBuildConfiguration.AppendBuildSetting‡
+{/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/frontend/node_modules/node-gyp/gyp/pylib/gyp/xcodeproj_file.py† †("2*¾
+2
+‡ ‡(7t
+r
+
+‡ ‡(&
+%9"__id*X
+
+__unknown_file (<*:)
+'gyp.xcodeproj_file.XCBuildConfiguration"
+_properties}
+
+‡ ‡(7
+%10"__mapGet*"
+
+__unknown_file (
+
+%9*-
+
+__unknown_file (
+buildSettings2__getitem__mk
+
+‡ ‡(7
+%11*#
+
+__unknown_file (
+
+%10*#
+
+__unknown_file (
+
+key2__contains__?
+=
+
+‡ ‡(7
+%12"not*#
+
+__unknown_file (
+
+%11*
+4
+5*9
+3
+xcodeproj_file.py"
+‹ ‹(
+implicit return*é
+4
+‰ ‰(<t
+r
+
+‰ ‰(
+%1"__id*X
+
+__unknown_file (<*:)
+'gyp.xcodeproj_file.XCBuildConfiguration"
+_properties~|
+
+‰ ‰()
+%2"__mapGet*"
+
+__unknown_file (
+
+%1*-
+
+__unknown_file (
+buildSettings2__getitem__tr
+
+‰ ‰(.
+%3"__mapGet*"
+
+__unknown_file (
+
+%2*#
+
+__unknown_file (
+
+key2__getitem__ge
+
+‰ ‰(<
+%4*"
+
+__unknown_file (
+
+%3*%
+
+__unknown_file (	
+
+value2append*
+3*Ê
+5
+ˆ ˆ(7
+
+ˆ5 ˆ(7
+%5"listt
+r
+
+ˆ ˆ(
+%7"__id*X
+
+__unknown_file (<*:)
+'gyp.xcodeproj_file.XCBuildConfiguration"
+_properties~|
+
+ˆ ˆ(-
+%8"__mapGet*"
+
+__unknown_file (
+
+%7*-
+
+__unknown_file (
+buildSettings2__getitem__¡ž
+
+ˆ ˆ(7
+%6"dict.__setitem__*"
+
+__unknown_file (
+
+%8*#
+
+__unknown_file (
+
+key*"
+
+__unknown_file (
+
+%52__setitem__*
+4:
+
+†! †($
+key:
+
+†& †(+
+valueB+)
+'gyp.xcodeproj_file.XCBuildConfigurationH

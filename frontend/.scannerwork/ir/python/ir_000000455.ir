@@ -1,0 +1,2604 @@
+
+Ž
+	#__main__€/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/frontend/node_modules/node-gyp/gyp/pylib/gyp/MSVSSettings.#__main__ˆ]#‹"ManifestResourceCompile"str!k"VCResourceCompilerTool"str»"OpenMP"strœ"ResourceOnlyDLL"str%Ÿ"IgnoreAllDefaultLibraries"str®"ForceSafeILImage"strg"VCMIDLTool"str"³"InputResourceManifests"strÉ"StripPrivateSymbols"str(ú"AdditionalLibraryDirectories"str#ð"EFI Boot Service Driver"str”"DisplayLibrary"str¶"PreventDllBinding"strNoneNoneType©"ForcedUsingFiles"str£"Level2"str#µ"PreprocessorDefinitions"str¨	"Verbose"strì"GenerateServerFiles"str—	"16Bytes"stræ	"Culture"strÁ"ForceFileOutput"str%¶"DefaultThreadingAttribute"str"ø"AdditionalDependencies"str "Name"strÉ"UseFAT32Workaround"strŽ"OutputDirectory"strÅ"EmbedManifest"strÅ"StackCommitSize"strî"ProcessorNumber"str"MachineMIPSFPU"str«	"Itanium"str‰"DelayLoadDLLs"str€"OldFormat"str“"4Bytes"str(ç"UninitializedLocalUsageCheck"strÄ"PrecompiledHeader"strÕ"ItaniumImage"str¦"TargetEnvironment"str)ô"UseUnicodeForAssemblerListing"strE"IntDir"str›"HeapCommitSize"strw"MASM"str•"FunctionOrder"strN"^(.*)_excluded$"strý"ErrorCheckEnumRange"strÌ"FavorSizeOrSpeed"strÄ"Async"strÃ"2"strÞ"Fast"str«"MapExports"strì"LinkVerboseICF"str""true"str¥"Level3"str±"OmitDefaultLibName"strÖ"UACUIAccess"strG"OutDir"strŸ"TurnOffAllWarnings"str""str%Ð"TurnOffAssemblyGeneration"strœ
+"Unsigned"str$ö"GeneratePreprocessedFile"strì"Native"str)«"GenerateXMLDocumentationFiles"str•"8Bytes"strÁ"VerboseOutput"strÅ"4"strµ"EnableErrorChecks"strÑ"AssemblerOutput"str ¬"OptimizeForWindows98"str'Š"InterfaceIdentifierFileName"str¹"RuntimeTypeInfo"str"MachineMIPSFPU16"str„"MachineEBC"str§"Level4"str³"OmitFramePointers"str©"NoExtensions"strµ"Prompt"strµ"KeepComments"str!¿"PrecompiledHeaderFile"str+Ç!"UndefinePreprocessorDefinitions"strã	"Default"str"‘"DebugInformationFormat"str"AllowIsolation"str%™"DisableLanguageExtensions"strs"VCManifestTool"str‹"CompileAsCpp"str µ"ModuleDefinitionFile"strÒ"TypeLibraryFile"strÓ
+"X64Image"stré"EnableFastChecks"strž"Signed"str`"ClCompile"strl"ResourceCompile"strÇ"StackReserveSize"strŸ"EnablePREfast"str$×"UseSafeExceptionHandlers"str#Í"CreateHotPatchableImage"str”"SendErrorReport"strÉ"UseFullPaths"str ±"GenerateCatalogFiles"str(Ÿ"EnableEnhancedInstructionSet"str#£"StreamingSIMDExtensions"strè	"Console"strJ"|"strü
+"FastCall"str–"TypeLibraryName"strÈ"Create"strº"Send"strñ"Optimization"strô
+"MinSpace"str#ä"CreateHotpatchableImage"str$—"GenerateDebugInformation"str'Ð"ManifestFromManagedAssembly"strÿ"MachineX86"strï"BrowseInformation"strð"LinkVerboseSAFESEH"strø"Full"str("EnableFiberSafeOptimizations"str€"MultiThreaded"str#ª"AdditionalManifestFiles"str%«"AdvancedVectorExtensions2"str"í"ResourceOutputFileName"str…"BaseAddress"str—"ProgramDatabase"str#Ø"UseUnicodeResponseFiles"str·"EnableCustom"strÄ	"Enabled"str!Ô"TypeLibraryResourceID"strŸ"SwapRunFromNet"strð"TrackerLogDirectory"str "Ascii"strª"EnableAllWarnings"str±"ErrorReporting"strû"UACExecutionLevel"strš"DefaultCharType"str)Ë"SupportUnloadOfDelayLoadedDLL"strþ	"StdCall"str"HeapReserveSize"str·"OutputFile"strµ"OutputManifestFile"str¢"GenerateManifest"str#Ò"OutputResourceManifests"strç"OnlyExplicitInline"str!¯"MergedIDLBaseFileName"str "false"strØ	"Version"strî"EFI Application"str&ª"UseLibraryDependencyInputs"str(ß"ApplicationConfigurationMode"str%™"IgnoreDefaultLibraryNames"str"Õ"LinkTimeCodeGeneration"str!•"BrowseInformationFile"str!â"RandomizedBaseAddress"str!¸"MTAThreadingAttribute"str™"EditAndContinue"str¸"ObjectFile"str©"ManifestFile"str*¥ "ForceConformanceInForLoopScope"str Î"GenerateCategoryTags"strÏ"WDM"str"Ù"AssemblyAndMachineCode"str$“"AssemblerListingLocation"strÜ"Strict"str‘"EntryPointSymbol"str´"CLRThreadAttribute"strÇ"8"strÐ"Speed"str¡"IgnoreEmbeddedIDL"strÒ"3"strý"AsInvoker"str#›"DisableSpecificWarnings"str!Œ"StructMemberAlignment"str%Æ"MultiplyDefinedSymbolOnly"str¯"ComponentFileName"str½"UpdateFileHashes"str†"CompileAs"strø"CallingConvention"strÎ"0"str·"RegistrarScriptFile"strÙ"DLLDataFileName"str—"BufferSecurityCheck"str‚"MultiThreadedDebug"strÓ"NoListing"str‘"ProxyFileName"str#“"RedirectOutputAndErrors"stræ"Stub"strŒ"MkTypLibCompatible"str!ÿ"ErrorCheckRefPointers"str!º"STAThreadingAttribute"str!Û"AssemblyAndSourceCode"str­"X64"strê	"Windows"str#À"DataExecutionPrevention"strÞ"LargeAddressAware"str!Ý"ValidateAllParameters"str#¦"TreatLibWarningAsErrors"strÚ"PGInstrument"strß"SystemDlls"strù"POSIX"str!ù"ErrorCheckAllocations"str"å"StackFrameRuntimeCheck"strÚ"BuildingInIDE"str­"MapFileName"str"¶"PreprocessKeepComments"str»"ShowIncludes"str¿"ExceptionHandling"str$ÿ"AddModuleNamesToAssembly"strÎ	"Neither"strò"LinkVerboseCLR"str¯"MinimalRebuild"strç16intÎ"SwapRunFromCD"strã"GenerateClientFiles"strÏ"CompileAsWinRT"str‹"MachineMIPS16"str$Í"XMLDocumentationFileName"str!‡"CLRUnmanagedCodeCheck"str£"ImportLibrary"str¹"ReplacementsFile"str§"ForcedIncludeFiles"strÌ"EnableDPIAwareness"str±"MergeSections"strþ"NewFormat"strh"Midl"str™"GenerateMapFile"str¡"Level1"str%Ç"DependencyInformationFile"str ò"NullTerminateStrings"strª"ForceIJWImage"str("AdditionalIncludeDirectories"strÁ"1"str³"MidlCommandFile"str"NoErrorReport"str&‘"AdditionalUsingDirectories"strû"ErrorCheckBounds"strd"Link"str%­"IgnoreStandardIncludePath"strÂ"Sync"stro"VCLibrarianTool"str Ã"UsePrecompiledHeader"strÜ"FixedBaseAddress"str ì"PreprocessOutputPath"stræ"LanguageStandard"str…"GenerateTypeLibrary"str$¿"SpecifySectionAttributes"strÚ"DllDataFileName"strö
+"MaxSpeed"str½"SmallerTypeCheck"str"1Byte"str³"IntrinsicFunctions"str%Ø"UseLinkTimeCodeGeneration"str#·"ProgramDataBaseFileName"str#I"(\$\((?:%s)\))(?:[\\/]+)"str‘"QueueForNextLogin"str—"MachineTHUMB"str!“"ForceSymbolReferences"strÔ"/J"strà"OptimizeReferences"str”
+"OldStyle"strÆ
+"NotUsing"str÷"CPreprocessOptions"str²	"LinkDLL"str"‡"MinimumRequiredVersion"str¢"RemoveObjects"str!Á"SuppressStartupBanner"str!Ó"DefaultCharIsUnsigned"str‰"MachineMIPS"str¤"IgnoreImportLibrary"str¼"OpenMPSupport"strÉ"Driver"strä"ShowProgress"str!†"MultiThreadedDebugDLL"str™"MachineX64"strÇ"SyncCThrow"strö"ServerStubFile"str "SwapRunFromNET"strþ"RuntimeLibrary"strÜ"ValidateParameters"str‘"2Bytes"str‰"CompileAsC"strž"AssemblyDebug"str¥"KeyContainer"str»	"Profile"str$"EmbedManagedResourceFile"str)°"ImageHasSafeExceptionHandlers"str÷"SubSystem"str"NoEntryPoint"strˆ"ProjectReference"str×"All"str¹"PerUserRedirection"strÚ"EnableCOMDATFolding"str‹"DelaySign"str$¥"StreamingSIMDExtensions2"str‡"HeaderFileName"strô"EFI Runtime"str¦"LinkIncremental"str)ò"TreatSpecificWarningsAsErrors"str­"AssemblyIdentity"str$§"AdvancedVectorExtensions"str °"FunctionLevelLinking"strÞ
+"PGUpdate"str%ê"MultiProcessorCompilation"str¯"ARM64"strè"LanguageStandard_C"strØ"FloatingPointModel"strÚ	"Precise"strá"BasicRuntimeChecks"str)¸"SupportNobindOfDelayLoadedDLL"str·"Queue"str"EnableUAC"str#ƒ"GenerateStublessProxies"strp"Lib"strÅ»"Code to validate and convert settings of the Microsoft build tools.
+
+This file contains code to validate and convert settings of the Microsoft
+build tools.  The function ConvertToMSBuildSettings(), ValidateMSVSSettings(),
+and ValidateMSBuildSettings() are the entry points.
+
+This file was created by comparing the projects created by Visual Studio 2008
+and Visual Studio 2010 for all available settings through the user interface.
+The MSBuild schemas were also considered.  They are typically found in the
+MSBuild install directory, e.g. c:\Program Files (x86)\MSBuild
+"str„"MultiThreadedDLL"strÁ"RegisterOutput"str%Ã"TreatWChar_tAsBuiltInType"str.Å$"UndefineAllPreprocessorDefinitions"str Ã"ManifestResourceFile"str"WarningLevel"str¬"ForcePureILImage"str¡"NotSet"str$ø"SuppressCompilerWarnings"strö"WindowsCE"str&¯"EnableFunctionLevelLinking"str ˆ"ExportNamedFunctions"strÐ"WarnAsError"str$²"EnableIntrinsicFunctions"strÑ"TreatWarningAsError"str"AdditionalOptions"str"ErrorCheckStubData"strû"TypeLibFormat"strÈ"UndefinedSymbolOnly"str¹"ObjectFileName"strä"TerminalServerAware"str§"CLRImageType"str ƒ"AssemblyLinkResource"str'Á"PrecompiledHeaderOutputFile"strÃ"SetChecksum"str¿"ProgramDatabaseFile"str§	"KeyFile"str*š "IgnoreSpecificDefaultLibraries"str$¾"PrecompiledHeaderThrough"str*Ö "Detect64BitPortabilityProblems"strÒ"Size"str#¨"LinkLibraryDependencies"str´"LinkStatus"strç"LinkVerbose"str”"MachineSH4"strù"TargetMachine"str‚"MachineARM"str¿"StringPooling"strt
+"Manifest"str&‰"TreatLinkerWarningAsErrors"str½"SectionAlignment"str³"None"strz"ARMASM"strÑ
+"X86Image"strÚ"CLRSupportLastError"str©"Win32"str*ü "AdditionalManifestDependencies"str&¿"UpdateFileHashesSearchPath"strì
+"Disabled"str»"MSDOSStubFileName"str "RequireAdministrator"strò	"EFI ROM"str‹"LinkErrorReporting"str!½"ProfileGuidedDatabase"strÊ"Use"strî"LinkVerboseREF"stré"AnySuitable"strÜ"PGOptimization"str$Ë"WholeProgramOptimization"strú"Cdecl"str_"VCCLCompilerTool"str#£"FloatingPointExceptions"strÿ"HighestAvailable"str"¡"ExpandAttributedSource"str†"MachineIA64"strá"ClientStubFile"strÕ"AssemblyCode"str"PromptImmediately"strÍ"UpOnly"strc"VCLinkerTool"strô
+"LocaleID"strÜ"CompileAsManaged"str#ä"InlineFunctionExpansion"stré"LinkVerboseLib"str€"VectorCall"str%Ô"SuppressDependencyElement"str"‚ôG
+E
+ (_msvs_validators"
+#new-object##new-object#"2dictJ
+H
+ (_msbuild_validators"
+#new-object##new-object#"2dictR
+P
+ ( _msvs_to_msbuild_converters"
+#new-object##new-object#"2dictL
+J
+   (_msbuild_name_of_tool"
+#new-object##new-object#"2dict5
+3
+0 >%closure"
+#new-object##new-object#"O
+M
+0 >"?
+#set-field# _msvs_validators#set-field# _msvs_validators"*U
+S
+0 >"E
+#set-field# _msbuild_validators#set-field# _msbuild_validators"*e
+c
+0 >	"U
+'#set-field# _msvs_to_msbuild_converters'#set-field# _msvs_to_msbuild_converters"*Y
+W
+0 >
+"I
+!#set-field# _msbuild_name_of_tool!#set-field# _msbuild_name_of_tool"*'
+%
+0 >"
+?python-partial-apply?*V
+T
+
+Ü Ü(_boolean"
+#new-object##new-object#"2gyp.MSVSSettings._BooleanP
+N
+
+Ü Ü("1
+__init__"gyp.MSVSSettings._Boolean.__init__" *2NoneType$
+"
+
+Ý Ý("
+?python-unknown?V
+T
+
+Ý Ý(_integer"
+#new-object##new-object#"2gyp.MSVSSettings._IntegerQ
+O
+
+Ý Ý("1
+__init__"gyp.MSVSSettings._Integer.__init__" *2NoneTypeT
+R
+
+ß
+ ß(_string"
+#new-object##new-object#"2gyp.MSVSSettings._StringO
+M
+
+ß
+ ß("0
+__init__!gyp.MSVSSettings._String.__init__" *2NoneTypeW
+U
+
+à à(
+_file_name"
+#new-object##new-object#"2gyp.MSVSSettings._StringO
+M
+
+à à("0
+__init__!gyp.MSVSSettings._String.__init__" *2NoneTypeY
+W
+
+á á(_folder_name"
+#new-object##new-object#"2gyp.MSVSSettings._StringO
+M
+
+á á("0
+__init__!gyp.MSVSSettings._String.__init__" *2NoneType[
+Y
+
+â â(
+_file_list"
+#new-object##new-object#"2gyp.MSVSSettings._StringListS
+Q
+
+â â("4
+__init__%gyp.MSVSSettings._StringList.__init__" *2NoneType]
+[
+
+ã ã(_folder_list"
+#new-object##new-object#"2gyp.MSVSSettings._StringListS
+Q
+
+ã ã("4
+__init__%gyp.MSVSSettings._StringList.__init__" *2NoneType]
+[
+
+ä ä(_string_list"
+#new-object##new-object#"2gyp.MSVSSettings._StringListS
+Q
+
+ä ä("4
+__init__%gyp.MSVSSettings._StringList.__init__" *2NoneType7
+5
+
+ç ç(3"
+#new-object##new-object#"2list=
+;
+
+ç ç(3"'
+#array-add-last##array-add-last#"*=
+;
+
+ç ç(3!"'
+#array-add-last##array-add-last#"* =
+;
+
+ç ç(3#"'
+#array-add-last##array-add-last#"*"$
+"
+
+ç ç(4$"
+?python-unknown?`
+^
+
+ç ç(4%_newly_boolean"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationV
+T
+
+ç ç(4&"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *%$2NoneType7
+5
+õ ˆ'%closure"
+#new-object##new-object#"Q
+O
+õ ˆ("?
+#set-field# _msvs_validators#set-field# _msvs_validators"*'W
+U
+õ ˆ)"E
+#set-field# _msbuild_validators#set-field# _msbuild_validators"*'g
+e
+õ ˆ*"U
+'#set-field# _msvs_to_msbuild_converters'#set-field# _msvs_to_msbuild_converters"*')
+'
+õ ˆ+"
+?python-partial-apply?*'7
+5
+Ž ¥,%closure"
+#new-object##new-object#"Q
+O
+Ž ¥-"?
+#set-field# _msvs_validators#set-field# _msvs_validators"*,W
+U
+Ž ¥."E
+#set-field# _msbuild_validators#set-field# _msbuild_validators"*,g
+e
+Ž ¥/"U
+'#set-field# _msvs_to_msbuild_converters'#set-field# _msvs_to_msbuild_converters"*,)
+'
+Ž ¥0"
+?python-partial-apply?*,7
+5
+¥ ¶1%closure"
+#new-object##new-object#"Q
+O
+¥ ¶2"?
+#set-field# _msvs_validators#set-field# _msvs_validators"*1g
+e
+¥ ¶3"U
+'#set-field# _msvs_to_msbuild_converters'#set-field# _msvs_to_msbuild_converters"*1)
+'
+¥ ¶4"
+?python-partial-apply?*17
+5
+¶ È5%closure"
+#new-object##new-object#"W
+U
+¶ È6"E
+#set-field# _msbuild_validators#set-field# _msbuild_validators"*5g
+e
+¶ È7"U
+'#set-field# _msvs_to_msbuild_converters'#set-field# _msvs_to_msbuild_converters"*5)
+'
+¶ È8"
+?python-partial-apply?*57
+5
+È Þ9%closure"
+#new-object##new-object#"Q
+O
+È Þ:"?
+#set-field# _msvs_validators#set-field# _msvs_validators"*9A
+?
+È Þ;"/
+#set-field# _boolean#set-field# _boolean"*9g
+e
+È Þ<"U
+'#set-field# _msvs_to_msbuild_converters'#set-field# _msvs_to_msbuild_converters"*9)
+'
+È Þ="
+?python-partial-apply?*97
+5
+Þ ÷>%closure"
+#new-object##new-object#"Q
+O
+Þ ÷?"?
+#set-field# _msvs_validators#set-field# _msvs_validators"*>A
+?
+Þ ÷@"/
+#set-field# _boolean#set-field# _boolean"*>W
+U
+Þ ÷A"E
+#set-field# _msbuild_validators#set-field# _msbuild_validators"*>g
+e
+Þ ÷B"U
+'#set-field# _msvs_to_msbuild_converters'#set-field# _msvs_to_msbuild_converters"*>)
+'
+Þ ÷C"
+?python-partial-apply?*>Y
+W
+
+÷" ÷(6Dfix_vc_macro_slashes_regex_list"
+#new-object##new-object#"2tuple=
+;
+
+÷" ÷(6F"'
+#array-add-last##array-add-last#"*DE=
+;
+
+÷" ÷(6H"'
+#array-add-last##array-add-last#"*DG(
+&
+
+ù" ù(KK"
+join" *JD2str8/
+-
+
+ù ù(KL"
+	#binop %#	#binop %#"*IKR
+P
+
+ø ú(Mfix_vc_macro_slashes_regex"
+compile
+re.compile*L2
+re.PatternK
+I
+
+ý ý(3O_EXCLUDED_SUFFIX_RE"
+compile
+re.compile*N2
+re.Pattern7
+5
+€ ™P%closure"
+#new-object##new-object#"W
+U
+€ ™Q"E
+#set-field# _EXCLUDED_SUFFIX_RE#set-field# _EXCLUDED_SUFFIX_RE"*PO)
+'
+€ ™R"
+?python-partial-apply?*P7
+5
+™ ¦S%closure"
+#new-object##new-object#"e
+c
+™ ¦T"S
+&#set-field# fix_vc_macro_slashes_regex&#set-field# fix_vc_macro_slashes_regex"*SM)
+'
+™ ¦U"
+?python-partial-apply?*S7
+5
+½ íV%closure"
+#new-object##new-object#"g
+e
+½ íW"U
+'#set-field# _msvs_to_msbuild_converters'#set-field# _msvs_to_msbuild_converters"*V)
+'
+½ íX"
+?python-partial-apply?*V7
+5
+í øY%closure"
+#new-object##new-object#"Q
+O
+í øZ"?
+#set-field# _msvs_validators#set-field# _msvs_validators"*Y)
+'
+í ø["
+?python-partial-apply?*Y7
+5
+ø ƒ\%closure"
+#new-object##new-object#"W
+U
+ø ƒ]"E
+#set-field# _msbuild_validators#set-field# _msbuild_validators"*\)
+'
+ø ƒ^"
+?python-partial-apply?*\S
+Q
+
+§ §(1a_compile"
+#new-object##new-object#"2gyp.MSVSSettings._ToolO
+M
+
+§ §(1b".
+__init__gyp.MSVSSettings._Tool.__init__" *a_`2NoneTypeP
+N
+
+¨ ¨(%e_link"
+#new-object##new-object#"2gyp.MSVSSettings._ToolO
+M
+
+¨ ¨(%f".
+__init__gyp.MSVSSettings._Tool.__init__" *ecd2NoneTypeP
+N
+
+© ©(#i_midl"
+#new-object##new-object#"2gyp.MSVSSettings._ToolO
+M
+
+© ©(#j".
+__init__gyp.MSVSSettings._Tool.__init__" *igh2NoneTypeN
+L
+
+ª ª(8m_rc"
+#new-object##new-object#"2gyp.MSVSSettings._ToolO
+M
+
+ª ª(8n".
+__init__gyp.MSVSSettings._Tool.__init__" *mkl2NoneTypeO
+M
+
+« «(&q_lib"
+#new-object##new-object#"2gyp.MSVSSettings._ToolO
+M
+
+« «(&r".
+__init__gyp.MSVSSettings._Tool.__init__" *qop2NoneTypeT
+R
+
+¬ ¬(/u	_manifest"
+#new-object##new-object#"2gyp.MSVSSettings._ToolO
+M
+
+¬ ¬(/v".
+__init__gyp.MSVSSettings._Tool.__init__" *ust2NoneTypeP
+N
+
+­ ­(x_masm"
+#new-object##new-object#"2gyp.MSVSSettings._ToolO
+M
+
+­ ­(y".
+__init__gyp.MSVSSettings._Tool.__init__" *xww2NoneTypeR
+P
+
+®
+ ®(#{_armasm"
+#new-object##new-object#"2gyp.MSVSSettings._ToolO
+M
+
+®
+ ®(#|".
+__init__gyp.MSVSSettings._Tool.__init__" *{zz2NoneType8
+6
+± ±(}"%
+_AddToolgyp.MSVSSettings._AddTool*a8
+6
+² ²(~"%
+_AddToolgyp.MSVSSettings._AddTool*e8
+6
+³ ³("%
+_AddToolgyp.MSVSSettings._AddTool*i9
+7
+´ ´(€"%
+_AddToolgyp.MSVSSettings._AddTool*m9
+7
+µ µ("%
+_AddToolgyp.MSVSSettings._AddTool*q9
+7
+¶ ¶(‚"%
+_AddToolgyp.MSVSSettings._AddTool*u9
+7
+· ·(ƒ"%
+_AddToolgyp.MSVSSettings._AddTool*x9
+7
+¸ ¸(„"%
+_AddToolgyp.MSVSSettings._AddTool*{8
+6
+
+º º(…"
+#new-object##new-object#"2dict8
+6
+º º(†"!
+#array-write##array-write#"*…8
+6
+
+»* »(,‡"
+#new-object##new-object#"2dict9
+7
+» »(,‰"!
+#array-write##array-write#"*ˆ‡8
+6
+
+¼1 ¼(3Š"
+#new-object##new-object#"2dict9
+7
+¼ ¼(3Œ"!
+#array-write##array-write#"*‹Š6
+4
+Ä Ä(=Ž"
+_Samegyp.MSVSSettings._Same*a6
+4
+Å Å(2"
+_Samegyp.MSVSSettings._Same*a6
+4
+Æ Æ(;’"
+_Samegyp.MSVSSettings._Same*a‘6
+4
+Ç Ç(7”"
+_Samegyp.MSVSSettings._Same*a“6
+4
+È È(4–"
+_Samegyp.MSVSSettings._Same*a•6
+4
+É É(0˜"
+_Samegyp.MSVSSettings._Same*a—6
+4
+Ê Ê(6š"
+_Samegyp.MSVSSettings._Same*a™6
+4
+Ë Ë(8œ"
+_Samegyp.MSVSSettings._Same*a›6
+4
+Ì Ì(9ž"
+_Samegyp.MSVSSettings._Same*a6
+4
+Í Í(* "
+_Samegyp.MSVSSettings._Same*aŸ6
+4
+Î Î(3¢"
+_Samegyp.MSVSSettings._Same*a¡6
+4
+Ï Ï(4¤"
+_Samegyp.MSVSSettings._Same*a£6
+4
+Ð Ð(;¦"
+_Samegyp.MSVSSettings._Same*a¥6
+4
+Ñ Ñ(1¨"
+_Samegyp.MSVSSettings._Same*a§6
+4
+Ò Ò(/ª"
+_Samegyp.MSVSSettings._Same*a©6
+4
+Ó Ó(:¬"
+_Samegyp.MSVSSettings._Same*a«6
+4
+Ô Ô(6®"
+_Samegyp.MSVSSettings._Same*a­6
+4
+Õ Õ(+°"
+_Samegyp.MSVSSettings._Same*a¯6
+4
+Ö Ö(/²"
+_Samegyp.MSVSSettings._Same*a±6
+4
+× ×(.´"
+_Samegyp.MSVSSettings._Same*a³6
+4
+Ø Ø(8¶"
+_Samegyp.MSVSSettings._Same*aµ6
+4
+Ù Ù(6¸"
+_Samegyp.MSVSSettings._Same*a·6
+4
+Ú Ú(,º"
+_Samegyp.MSVSSettings._Same*a¹6
+4
+Û Û()¼"
+_Samegyp.MSVSSettings._Same*a»6
+4
+Ü Ü(-¾"
+_Samegyp.MSVSSettings._Same*a½6
+4
+Ý Ý(*À"
+_Samegyp.MSVSSettings._Same*a¿6
+4
+Þ Þ(2Â"
+_Samegyp.MSVSSettings._Same*aÁ6
+4
+ß ß(6Ä"
+_Samegyp.MSVSSettings._Same*aÃ6
+4
+à à(?Æ"
+_Samegyp.MSVSSettings._Same*aÅ6
+4
+á á(@È"
+_Samegyp.MSVSSettings._Same*aÇ6
+4
+â â()Ê"
+_Samegyp.MSVSSettings._Same*aÉ6
+4
+ã ã(5Ì"
+_Samegyp.MSVSSettings._Same*aË6
+4
+ä ä(7Î"
+_Samegyp.MSVSSettings._Same*aÍ6
+4
+å å(+Ð"
+_Samegyp.MSVSSettings._Same*aÏ8
+6
+
+ë ñ(	Ò"
+#new-object##new-object#"2list@
+>
+
+ë ñ(	Ô"'
+#array-add-last##array-add-last#"*ÒÓ@
+>
+
+ë ñ(	Ö"'
+#array-add-last##array-add-last#"*ÒÕ@
+>
+
+ë ñ(	Ø"'
+#array-add-last##array-add-last#"*Ò×@
+>
+
+ë ñ(	Ú"'
+#array-add-last##array-add-last#"*ÒÙ@
+>
+
+ë ñ(	Ü"'
+#array-add-last##array-add-last#"*ÒÛ%
+#
+
+ê ò(Ý"
+?python-unknown?Q
+O
+
+ê ò(Þ"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+ê ò(ß"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *ÞÒÝ2NoneType7
+5
+ç ó(à"
+_Samegyp.MSVSSettings._Same*aÑÞ8
+6
+
+ø ý(	â"
+#new-object##new-object#"2list@
+>
+
+ø ý(	ä"'
+#array-add-last##array-add-last#"*âã@
+>
+
+ø ý(	æ"'
+#array-add-last##array-add-last#"*âå@
+>
+
+ø ý(	è"'
+#array-add-last##array-add-last#"*âç@
+>
+
+ø ý(	ê"'
+#array-add-last##array-add-last#"*âé%
+#
+
+÷ þ(ë"
+?python-unknown?Q
+O
+
+÷ þ(ì"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+÷ þ(í"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *ìâë2NoneType7
+5
+ô ÿ(î"
+_Samegyp.MSVSSettings._Same*aáì8
+6
+
+0 (Ið"
+#new-object##new-object#"2list?
+=
+
+0 (Iñ"'
+#array-add-last##array-add-last#"*ð ?
+=
+
+0 (Iò"'
+#array-add-last##array-add-last#"*ð"?
+=
+
+0 (Ió"'
+#array-add-last##array-add-last#"*ð"%
+#
+
+# (Jô"
+?python-unknown?Q
+O
+
+# (Jõ"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+# (Jö"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *õðô2NoneType7
+5
+€ ‚(÷"
+_Samegyp.MSVSSettings._Same*aïõ8
+6
+
+† †(?ù"
+#new-object##new-object#"2list@
+>
+
+† †(?û"'
+#array-add-last##array-add-last#"*ùú@
+>
+
+† †(?ý"'
+#array-add-last##array-add-last#"*ùü@
+>
+
+† †(?ÿ"'
+#array-add-last##array-add-last#"*ùþ@
+>
+
+† †(?"'
+#array-add-last##array-add-last#"*ù€%
+#
+
+† †(@‚"
+?python-unknown?Q
+O
+
+† †(@ƒ"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+† †(@„"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *ƒù‚2NoneType7
+5
+ƒ ‡(…"
+_Samegyp.MSVSSettings._Same*aøƒ8
+6
+
+‹ ‹(:‡"
+#new-object##new-object#"2list@
+>
+
+‹ ‹(:ˆ"'
+#array-add-last##array-add-last#"*‡ã@
+>
+
+‹ ‹(:Š"'
+#array-add-last##array-add-last#"*‡‰@
+>
+
+‹ ‹(:Œ"'
+#array-add-last##array-add-last#"*‡‹%
+#
+
+‹ ‹(;"
+?python-unknown?Q
+O
+
+‹ ‹(;Ž"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+‹ ‹(;"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *Ž‡2NoneType7
+5
+ˆ Œ("
+_Samegyp.MSVSSettings._Same*a†Ž8
+6
+
+‘ —(	’"
+#new-object##new-object#"2list?
+=
+
+‘ —(	“"'
+#array-add-last##array-add-last#"*’@
+>
+
+‘ —(	•"'
+#array-add-last##array-add-last#"*’”?
+=
+
+‘ —(	–"'
+#array-add-last##array-add-last#"*’ @
+>
+
+‘ —(	˜"'
+#array-add-last##array-add-last#"*’—@
+>
+
+‘ —(	š"'
+#array-add-last##array-add-last#"*’™%
+#
+
+ ˜(›"
+?python-unknown?Q
+O
+
+ ˜(œ"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+ ˜("5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *œ’›2NoneType7
+5
+ ™(ž"
+_Samegyp.MSVSSettings._Same*a‘œ8
+6
+
+ž ¦(	 "
+#new-object##new-object#"2list@
+>
+
+ž ¦(	¢"'
+#array-add-last##array-add-last#"* ¡@
+>
+
+ž ¦(	¤"'
+#array-add-last##array-add-last#"* £@
+>
+
+ž ¦(	¦"'
+#array-add-last##array-add-last#"* ¥@
+>
+
+ž ¦(	¨"'
+#array-add-last##array-add-last#"* §@
+>
+
+ž ¦(	ª"'
+#array-add-last##array-add-last#"* ©@
+>
+
+ž ¦(	¬"'
+#array-add-last##array-add-last#"* «%
+#
+
+ §(­"
+?python-unknown?Q
+O
+
+ §(®"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+ §(¯"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *® ­2NoneType7
+5
+š ¨(°"
+_Samegyp.MSVSSettings._Same*aŸ®8
+6
+
+­ ±(	²"
+#new-object##new-object#"2list@
+>
+
+­ ±(	´"'
+#array-add-last##array-add-last#"*²³@
+>
+
+­ ±(	¶"'
+#array-add-last##array-add-last#"*²µ@
+>
+
+­ ±(	¸"'
+#array-add-last##array-add-last#"*²·8
+6
+
+² ²(¹"
+#new-object##new-object#"2list@
+>
+
+² ²(»"'
+#array-add-last##array-add-last#"*¹ºQ
+O
+
+¬ ³(¼"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+¬ ³(½"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *¼²¹2NoneType7
+5
+© ´(¾"
+_Samegyp.MSVSSettings._Same*a±¼8
+6
+
+¸ ¸(+À"
+#new-object##new-object#"2list?
+=
+
+¸ ¸(+Á"'
+#array-add-last##array-add-last#"*À @
+>
+
+¸ ¸(+Ã"'
+#array-add-last##array-add-last#"*ÀÂ@
+>
+
+¸ ¸(+Å"'
+#array-add-last##array-add-last#"*ÀÄ8
+6
+
+¸1 ¸(?Æ"
+#new-object##new-object#"2list@
+>
+
+¸1 ¸(?È"'
+#array-add-last##array-add-last#"*ÆÇQ
+O
+
+¸ ¸(@É"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+¸ ¸(@Ê"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *ÉÀÆ2NoneType7
+5
+µ ¹(Ë"
+_Samegyp.MSVSSettings._Same*a¿É8
+6
+
+»/ »(KÍ"
+#new-object##new-object#"2list@
+>
+
+»/ »(KÏ"'
+#array-add-last##array-add-last#"*ÍÎ@
+>
+
+»/ »(KÑ"'
+#array-add-last##array-add-last#"*ÍÐ@
+>
+
+»/ »(KÓ"'
+#array-add-last##array-add-last#"*ÍÒ%
+#
+
+»" »(LÔ"
+?python-unknown?Q
+O
+
+»" »(LÕ"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+»" »(LÖ"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *ÕÍÔ2NoneType7
+5
+º ¼(×"
+_Samegyp.MSVSSettings._Same*aÌÕ8
+6
+
+À À(.Ù"
+#new-object##new-object#"2list@
+>
+
+À À(.Û"'
+#array-add-last##array-add-last#"*ÙÚ@
+>
+
+À À(.Ý"'
+#array-add-last##array-add-last#"*ÙÜ@
+>
+
+À À(.ß"'
+#array-add-last##array-add-last#"*ÙÞ%
+#
+
+À À(/à"
+?python-unknown?Q
+O
+
+À À(/á"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+À À(/â"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *áÙà2NoneType7
+5
+½ Á(ã"
+_Samegyp.MSVSSettings._Same*aØá8
+6
+
+Æ Æ(8å"
+#new-object##new-object#"2list@
+>
+
+Æ Æ(8æ"'
+#array-add-last##array-add-last#"*åã@
+>
+
+Æ Æ(8è"'
+#array-add-last##array-add-last#"*åç@
+>
+
+Æ Æ(8ê"'
+#array-add-last##array-add-last#"*åé8
+6
+
+Ç Ç(ë"
+#new-object##new-object#"2list@
+>
+
+Ç Ç(í"'
+#array-add-last##array-add-last#"*ëìQ
+O
+
+Å È(î"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+Å È(ï"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *îåë2NoneType7
+5
+Â É(ð"
+_Samegyp.MSVSSettings._Same*aäî8
+6
+
+Í Í(=ò"
+#new-object##new-object#"2list@
+>
+
+Í Í(=ó"'
+#array-add-last##array-add-last#"*òì@
+>
+
+Í Í(=õ"'
+#array-add-last##array-add-last#"*òô@
+>
+
+Í Í(=÷"'
+#array-add-last##array-add-last#"*òö@
+>
+
+Í Í(=ù"'
+#array-add-last##array-add-last#"*òø%
+#
+
+Í Í(>ú"
+?python-unknown?Q
+O
+
+Í Í(>û"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+Í Í(>ü"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *ûòú2NoneType7
+5
+Ê Î(ý"
+_Samegyp.MSVSSettings._Same*añû8
+6
+
+Ó Ø(	ÿ"
+#new-object##new-object#"2list@
+>
+
+Ó Ø(	"'
+#array-add-last##array-add-last#"*ÿ€@
+>
+
+Ó Ø(	ƒ"'
+#array-add-last##array-add-last#"*ÿ‚@
+>
+
+Ó Ø(	…"'
+#array-add-last##array-add-last#"*ÿ„@
+>
+
+Ó Ø(	‡"'
+#array-add-last##array-add-last#"*ÿ†%
+#
+
+Ò Ù(ˆ"
+?python-unknown?Q
+O
+
+Ò Ù(‰"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+Ò Ù(Š"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *‰ÿˆ2NoneType7
+5
+Ï Ú(‹"
+_Samegyp.MSVSSettings._Same*aþ‰8
+6
+
+ß æ(	"
+#new-object##new-object#"2list@
+>
+
+ß æ(	Ž"'
+#array-add-last##array-add-last#"*ã@
+>
+
+ß æ(	"'
+#array-add-last##array-add-last#"*@
+>
+
+ß æ(	’"'
+#array-add-last##array-add-last#"*‘@
+>
+
+ß æ(	”"'
+#array-add-last##array-add-last#"*“@
+>
+
+ß æ(	–"'
+#array-add-last##array-add-last#"*•@
+>
+
+ß æ(	˜"'
+#array-add-last##array-add-last#"*—%
+#
+
+Þ ç(™"
+?python-unknown?Q
+O
+
+Þ ç(š"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+Þ ç(›"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *š™2NoneType7
+5
+Û è(œ"
+_Samegyp.MSVSSettings._Same*aŒš8
+6
+
+í ó(	ž"
+#new-object##new-object#"2list@
+>
+
+í ó(	 "'
+#array-add-last##array-add-last#"*žŸ@
+>
+
+í ó(	¢"'
+#array-add-last##array-add-last#"*ž¡@
+>
+
+í ó(	¤"'
+#array-add-last##array-add-last#"*ž£@
+>
+
+í ó(	¦"'
+#array-add-last##array-add-last#"*ž¥@
+>
+
+í ó(	¨"'
+#array-add-last##array-add-last#"*ž§8
+6
+
+ô ô(!©"
+#new-object##new-object#"2list@
+>
+
+ô ô(!«"'
+#array-add-last##array-add-last#"*©ªQ
+O
+
+ì õ(¬"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+ì õ(­"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *¬ž©2NoneType7
+5
+é ö(®"
+_Samegyp.MSVSSettings._Same*a¬>
+<
+ù û(±"%
+_Renamedgyp.MSVSSettings._Renamed*a¯°>
+<
+ü ü(N´"%
+_Renamedgyp.MSVSSettings._Renamed*a²³>
+<
+ý ý(F·"%
+_Renamedgyp.MSVSSettings._Renamed*aµ¶>
+<
+þ þ(>º"%
+_Renamedgyp.MSVSSettings._Renamed*a¸¹>
+<
+ÿ ÿ(7½"%
+_Renamedgyp.MSVSSettings._Renamed*a»¼>
+<
+€ ‚(À"%
+_Renamedgyp.MSVSSettings._Renamed*a¾¿>
+<
+ƒ …(Â"%
+_Renamedgyp.MSVSSettings._Renamed*a¿Á8
+6
+
+‹ ‹(%Å"
+#new-object##new-object#"2list@
+>
+
+‹ ‹(%Ç"'
+#array-add-last##array-add-last#"*ÅÆ@
+>
+
+‹ ‹(%É"'
+#array-add-last##array-add-last#"*ÅÈ@
+>
+
+‹ ‹(%Ë"'
+#array-add-last##array-add-last#"*ÅÊ%
+#
+
+Š Œ(Ì"
+?python-unknown?Q
+O
+
+Š Œ(Í"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+Š Œ(Î"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *ÍÅÌ2NoneType?
+=
+† (Ï"%
+_Renamedgyp.MSVSSettings._Renamed*aÃÄÍ>
+<
+Ž Ž(BÒ"%
+_Renamedgyp.MSVSSettings._Renamed*aÐÑe
+c
+ (EÕ"M
+_ConvertedToAdditionalOption-gyp.MSVSSettings._ConvertedToAdditionalOption*aÓÔ>
+<
+“ “(?×"'
+	_MSVSOnlygyp.MSVSSettings._MSVSOnly*aÖ>
+<
+” ”(8Ù"'
+	_MSVSOnlygyp.MSVSSettings._MSVSOnly*aØD
+B
+— —(1Û"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*aÚ8
+6
+
+™/ ™(1Ý"
+#new-object##new-object#"2list8
+6
+
+™7 ™(HÞ"
+#new-object##new-object#"2list?
+=
+
+™7 ™(Hß"'
+#array-add-last##array-add-last#"*Þ ?
+=
+
+™7 ™(Hà"'
+#array-add-last##array-add-last#"*Þ"Q
+O
+
+™" ™(Iá"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+™" ™(Iâ"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *áÝÞ2NoneTypeE
+C
+˜ š(ã"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*aÜáD
+B
+› ›(;å"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*aäD
+B
+œ œ(3ç"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*aæD
+B
+ (5é"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*aèD
+B
+ž ž(=ë"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*aêD
+B
+Ÿ Ÿ(7í"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*aìD
+B
+   (3ï"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*aîD
+B
+¡ ¡(;ñ"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*aðD
+B
+¢ ¢(Eó"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*aòD
+B
+£ £(Aõ"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*aôi
+g
+¦ ¦(E÷"S
+_CustomGeneratePreprocessedFile0gyp.MSVSSettings._CustomGeneratePreprocessedFile*aö6
+4
+® ®(2ù"
+_Samegyp.MSVSSettings._Same*eø6
+4
+¯ ¯(:û"
+_Samegyp.MSVSSettings._Same*eú6
+4
+± ±(:ý"
+_Samegyp.MSVSSettings._Same*eü6
+4
+² ²(/þ"
+_Samegyp.MSVSSettings._Same*e6
+4
+³ ³(4€"
+_Samegyp.MSVSSettings._Same*eÿ6
+4
+´ ´((‚"
+_Samegyp.MSVSSettings._Same*e6
+4
+µ µ(0„"
+_Samegyp.MSVSSettings._Same*eƒ6
+4
+¶ ¶($†"
+_Samegyp.MSVSSettings._Same*e…6
+4
+· ·(/ˆ"
+_Samegyp.MSVSSettings._Same*e‡6
+4
+¸ ¸()Š"
+_Samegyp.MSVSSettings._Same*e‰6
+4
+¹ ¹(#Œ"
+_Samegyp.MSVSSettings._Same*e‹6
+4
+º º(4Ž"
+_Samegyp.MSVSSettings._Same*e6
+4
+» »(#"
+_Samegyp.MSVSSettings._Same*e6
+4
+¼ ¼()’"
+_Samegyp.MSVSSettings._Same*e‘6
+4
+½ ½(1”"
+_Samegyp.MSVSSettings._Same*e“6
+4
+¾ ¾()–"
+_Samegyp.MSVSSettings._Same*e•6
+4
+¿ ¿(2˜"
+_Samegyp.MSVSSettings._Same*e—6
+4
+À À()š"
+_Samegyp.MSVSSettings._Same*e™6
+4
+Á Á('œ"
+_Samegyp.MSVSSettings._Same*e›6
+4
+Â Â((ž"
+_Samegyp.MSVSSettings._Same*e6
+4
+Ã Ã(3 "
+_Samegyp.MSVSSettings._Same*eŸ6
+4
+Ä Ä(+¢"
+_Samegyp.MSVSSettings._Same*e¡6
+4
+Å Å()¤"
+_Samegyp.MSVSSettings._Same*e£6
+4
+Æ Æ((¦"
+_Samegyp.MSVSSettings._Same*e¥6
+4
+Ç Ç(#¨"
+_Samegyp.MSVSSettings._Same*e§6
+4
+È È((ª"
+_Samegyp.MSVSSettings._Same*e©6
+4
+É É($¬"
+_Samegyp.MSVSSettings._Same*e«6
+4
+Ê Ê('®"
+_Samegyp.MSVSSettings._Same*e­6
+4
+Ë Ë(1°"
+_Samegyp.MSVSSettings._Same*e¯6
+4
+Ì Ì(&²"
+_Samegyp.MSVSSettings._Same*e±6
+4
+Í Í(+´"
+_Samegyp.MSVSSettings._Same*e³6
+4
+Î Î(0¶"
+_Samegyp.MSVSSettings._Same*eµ6
+4
+Ï Ï(&¸"
+_Samegyp.MSVSSettings._Same*e·6
+4
+Ð Ð(,º"
+_Samegyp.MSVSSettings._Same*e¹6
+4
+Ñ Ñ(!¼"
+_Samegyp.MSVSSettings._Same*e»6
+4
+Ò Ò(1¾"
+_Samegyp.MSVSSettings._Same*e½6
+4
+Ó Ó(/À"
+_Samegyp.MSVSSettings._Same*e¿6
+4
+Ô Ô((Â"
+_Samegyp.MSVSSettings._Same*eÁ6
+4
+Õ Õ(%Ä"
+_Samegyp.MSVSSettings._Same*eÃ6
+4
+Ö Ö((Æ"
+_Samegyp.MSVSSettings._Same*eÅ6
+4
+× ×()È"
+_Samegyp.MSVSSettings._Same*eÇ6
+4
+Ø Ø(/Ê"
+_Samegyp.MSVSSettings._Same*eÉ6
+4
+Ù Ù(7Ì"
+_Samegyp.MSVSSettings._Same*eË6
+4
+Ú Ú(/Í"
+_Samegyp.MSVSSettings._Same*eÁ6
+4
+Û Û('Ï"
+_Samegyp.MSVSSettings._Same*eÎ6
+4
+Ü Ü(3Ñ"
+_Samegyp.MSVSSettings._Same*eÐ6
+4
+Ý Ý(+Ó"
+_Samegyp.MSVSSettings._Same*eÒ6
+4
+Þ Þ(/Õ"
+_Samegyp.MSVSSettings._Same*eÔ6
+4
+ß ß(%×"
+_Samegyp.MSVSSettings._Same*eÖ6
+4
+à à( Ù"
+_Samegyp.MSVSSettings._Same*eØ6
+4
+â â(3Û"
+_Samegyp.MSVSSettings._Same*eÚ%6
+4
+ã ã(0Ý"
+_Samegyp.MSVSSettings._Same*eÜ%6
+4
+ä ä(1ß"
+_Samegyp.MSVSSettings._Same*eÞ%6
+4
+å å(2á"
+_Samegyp.MSVSSettings._Same*eà%6
+4
+æ æ(5ã"
+_Samegyp.MSVSSettings._Same*eâ%6
+4
+ç ç(3å"
+_Samegyp.MSVSSettings._Same*eä%8
+6
+
+ê ô(æ"
+#new-object##new-object#"2list@
+>
+
+ê ô(ç"'
+#array-add-last##array-add-last#"*æ¡@
+>
+
+ê ô(é"'
+#array-add-last##array-add-last#"*æè@
+>
+
+ê ô(ë"'
+#array-add-last##array-add-last#"*æê@
+>
+
+ê ô(í"'
+#array-add-last##array-add-last#"*æì@
+>
+
+ê ô(ï"'
+#array-add-last##array-add-last#"*æî@
+>
+
+ê ô(ñ"'
+#array-add-last##array-add-last#"*æð@
+>
+
+ê ô(ó"'
+#array-add-last##array-add-last#"*æò@
+>
+
+ê ô(õ"'
+#array-add-last##array-add-last#"*æô@
+>
+
+ê ô(÷"'
+#array-add-last##array-add-last#"*æö8
+6
+
+õ õ(ø"
+#new-object##new-object#"2list@
+>
+
+õ õ(ú"'
+#array-add-last##array-add-last#"*øùi
+g
+
+é ö(û_subsystem_enumeration"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+é ö(ü"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *ûæø2NoneType8
+6
+
+ù Œ(ý"
+#new-object##new-object#"2list@
+>
+
+ù Œ(þ"'
+#array-add-last##array-add-last#"*ý¡@
+>
+
+ù Œ(€"'
+#array-add-last##array-add-last#"*ýÿ?
+=
+
+ù Œ("'
+#array-add-last##array-add-last#"*ý @
+>
+
+ù Œ(ƒ"'
+#array-add-last##array-add-last#"*ý‚@
+>
+
+ù Œ(…"'
+#array-add-last##array-add-last#"*ý„@
+>
+
+ù Œ(‡"'
+#array-add-last##array-add-last#"*ý†?
+=
+
+ù Œ(ˆ"'
+#array-add-last##array-add-last#"*ý @
+>
+
+ù Œ(Š"'
+#array-add-last##array-add-last#"*ý‰@
+>
+
+ù Œ(Œ"'
+#array-add-last##array-add-last#"*ý‹@
+>
+
+ù Œ(Ž"'
+#array-add-last##array-add-last#"*ý@
+>
+
+ù Œ("'
+#array-add-last##array-add-last#"*ý?
+=
+
+ù Œ(‘"'
+#array-add-last##array-add-last#"*ý ?
+=
+
+ù Œ(’"'
+#array-add-last##array-add-last#"*ý ?
+=
+
+ù Œ(“"'
+#array-add-last##array-add-last#"*ý @
+>
+
+ù Œ(•"'
+#array-add-last##array-add-last#"*ý”?
+=
+
+ù Œ(–"'
+#array-add-last##array-add-last#"*ý @
+>
+
+ù Œ(˜"'
+#array-add-last##array-add-last#"*ý—@
+>
+
+ù Œ(š"'
+#array-add-last##array-add-last#"*ý™%
+#
+
+ø (›"
+?python-unknown?n
+l
+
+ø (œ_target_machine_enumeration"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+ø ("5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *œý›2NoneType8
+6
+
+) (>Ÿ"
+#new-object##new-object#"2list?
+=
+
+) (> "'
+#array-add-last##array-add-last#"*Ÿ?
+=
+
+) (>¡"'
+#array-add-last##array-add-last#"*Ÿ"?
+=
+
+) (>¢"'
+#array-add-last##array-add-last#"*Ÿ %
+#
+
+ (?£"
+?python-unknown?Q
+O
+
+ (?¤"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+ (?¥"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *¤Ÿ£2NoneType7
+5
+ ‘(¦"
+_Samegyp.MSVSSettings._Same*ež¤8
+6
+
+– ›(	¨"
+#new-object##new-object#"2list@
+>
+
+– ›(	©"'
+#array-add-last##array-add-last#"*¨ã@
+>
+
+– ›(	«"'
+#array-add-last##array-add-last#"*¨ª@
+>
+
+– ›(	­"'
+#array-add-last##array-add-last#"*¨¬@
+>
+
+– ›(	¯"'
+#array-add-last##array-add-last#"*¨®%
+#
+
+• œ(°"
+?python-unknown?Q
+O
+
+• œ(±"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+• œ(²"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *±¨°2NoneType7
+5
+’ (³"
+_Samegyp.MSVSSettings._Same*e§±8
+6
+
+¢ ¦(	µ"
+#new-object##new-object#"2list@
+>
+
+¢ ¦(	·"'
+#array-add-last##array-add-last#"*µ¶@
+>
+
+¢ ¦(	¹"'
+#array-add-last##array-add-last#"*µ¸@
+>
+
+¢ ¦(	»"'
+#array-add-last##array-add-last#"*µº%
+#
+
+¡ §(¼"
+?python-unknown?Q
+O
+
+¡ §(½"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+¡ §(¾"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *½µ¼2NoneType7
+5
+ž ¨(¿"
+_Samegyp.MSVSSettings._Same*e´½8
+6
+
+¬ ¬(&Á"
+#new-object##new-object#"2list?
+=
+
+¬ ¬(&Â"'
+#array-add-last##array-add-last#"*Á?
+=
+
+¬ ¬(&Ã"'
+#array-add-last##array-add-last#"*Á ?
+=
+
+¬ ¬(&Ä"'
+#array-add-last##array-add-last#"*Á"%
+#
+
+¬ ¬('Å"
+?python-unknown?Q
+O
+
+¬ ¬('Æ"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+¬ ¬('Ç"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *ÆÁÅ2NoneType7
+5
+© ­(È"
+_Samegyp.MSVSSettings._Same*eÀÆ8
+6
+
+± ±(6Ê"
+#new-object##new-object#"2list@
+>
+
+± ±(6Ë"'
+#array-add-last##array-add-last#"*Ê¡@
+>
+
+± ±(6Ì"'
+#array-add-last##array-add-last#"*ÊÉ@
+>
+
+± ±(6Î"'
+#array-add-last##array-add-last#"*ÊÍ@
+>
+
+± ±(6Ð"'
+#array-add-last##array-add-last#"*ÊÏ%
+#
+
+± ±(7Ñ"
+?python-unknown?Q
+O
+
+± ±(7Ò"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+± ±(7Ó"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *ÒÊÑ2NoneType7
+5
+® ²(Ô"
+_Samegyp.MSVSSettings._Same*eÉÒ8
+6
+
+· ½(	Ö"
+#new-object##new-object#"2list@
+>
+
+· ½(	×"'
+#array-add-last##array-add-last#"*Öã@
+>
+
+· ½(	Ù"'
+#array-add-last##array-add-last#"*ÖØ@
+>
+
+· ½(	Û"'
+#array-add-last##array-add-last#"*ÖÚ@
+>
+
+· ½(	Ý"'
+#array-add-last##array-add-last#"*ÖÜ@
+>
+
+· ½(	ß"'
+#array-add-last##array-add-last#"*ÖÞ%
+#
+
+¶ ¾(à"
+?python-unknown?Q
+O
+
+¶ ¾(á"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+¶ ¾(â"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *áÖà2NoneType7
+5
+³ ¿(ã"
+_Samegyp.MSVSSettings._Same*eÕá8
+6
+
+Ä Ä(3å"
+#new-object##new-object#"2list@
+>
+
+Ä Ä(3æ"'
+#array-add-last##array-add-last#"*å¡@
+>
+
+Ä Ä(3è"'
+#array-add-last##array-add-last#"*åç@
+>
+
+Ä Ä(3ê"'
+#array-add-last##array-add-last#"*åé8
+6
+
+Å Ê(	ë"
+#new-object##new-object#"2list@
+>
+
+Å Ê(	í"'
+#array-add-last##array-add-last#"*ëì@
+>
+
+Å Ê(	ï"'
+#array-add-last##array-add-last#"*ëî@
+>
+
+Å Ê(	ñ"'
+#array-add-last##array-add-last#"*ëð@
+>
+
+Å Ê(	ó"'
+#array-add-last##array-add-last#"*ëòQ
+O
+
+Ã Ë(ô"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+Ã Ë(õ"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *ôåë2NoneType7
+5
+À Ì(ö"
+_Samegyp.MSVSSettings._Same*eäô7
+5
+Í Í(1ø"
+_Samegyp.MSVSSettings._Same*e÷û7
+5
+Î Î(:ú"
+_Samegyp.MSVSSettings._Same*eùœ8
+6
+
+Ó ×(	ü"
+#new-object##new-object#"2list@
+>
+
+Ó ×(	þ"'
+#array-add-last##array-add-last#"*üý@
+>
+
+Ó ×(	€"'
+#array-add-last##array-add-last#"*üÿ@
+>
+
+Ó ×(	‚"'
+#array-add-last##array-add-last#"*ü%
+#
+
+Ò Ø(ƒ"
+?python-unknown?Q
+O
+
+Ò Ø(„"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+Ò Ø(…"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *„üƒ2NoneType7
+5
+Ï Ù(†"
+_Samegyp.MSVSSettings._Same*eû„6
+4
+Ú Ú(/ˆ"
+_Samegyp.MSVSSettings._Same*e‡6
+4
+Û Û(4Š"
+_Samegyp.MSVSSettings._Same*e‰8
+6
+
+ä è(	Œ"
+#new-object##new-object#"2list@
+>
+
+ä è(	Ž"'
+#array-add-last##array-add-last#"*Œ@
+>
+
+ä è(	"'
+#array-add-last##array-add-last#"*Œ@
+>
+
+ä è(	’"'
+#array-add-last##array-add-last#"*Œ‘8
+6
+
+é é(“"
+#new-object##new-object#"2list@
+>
+
+é é(•"'
+#array-add-last##array-add-last#"*“”Q
+O
+
+ã ê(–"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+ã ê(—"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *–Œ“2NoneType?
+=
+ß ë(˜"%
+_Renamedgyp.MSVSSettings._Renamed*e±‹–>
+<
+ì î(›"%
+_Renamedgyp.MSVSSettings._Renamed*e™š>
+<
+ï ï(<ž"%
+_Renamedgyp.MSVSSettings._Renamed*eœ>
+<
+ð ð(=¡"%
+_Renamedgyp.MSVSSettings._Renamed*eŸ 9
+7
+ò ò(/£"!
+_Movedgyp.MSVSSettings._Moved*e¢9
+7
+ó ó(2¥"!
+_Movedgyp.MSVSSettings._Moved*e¤9
+7
+ô ô(4§"!
+_Movedgyp.MSVSSettings._Moved*e¦%:
+8
+õ õ(F©"!
+_Movedgyp.MSVSSettings._Moved*e¨ˆ:
+8
+ö ö(I«"!
+_Movedgyp.MSVSSettings._Moved*eªˆ>
+<
+ù ù(8­"'
+	_MSVSOnlygyp.MSVSSettings._MSVSOnly*e¬%>
+<
+ú ú(5®"'
+	_MSVSOnlygyp.MSVSSettings._MSVSOnly*eØD
+B
+ý ý(.¯"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*eÚD
+B
+þ þ(>±"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*e°D
+B
+ÿ ÿ((³"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*e²D
+B
+€ €(+µ"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*e´D
+B
+ (2·"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*e¶D
+B
+‚ ‚(>¹"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*e¸D
+B
+ƒ ƒ(8º"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*eðD
+B
+„ „(4¼"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*e»D
+B
+… …(1¾"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*e½D
+B
+† †(8À"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*e¿8
+6
+
+‹ ‹(
+Â"
+#new-object##new-object#"2list8
+6
+
+Œ ‘(	Ã"
+#new-object##new-object#"2list@
+>
+
+Œ ‘(	Å"'
+#array-add-last##array-add-last#"*ÃÄ@
+>
+
+Œ ‘(	Ç"'
+#array-add-last##array-add-last#"*ÃÆ@
+>
+
+Œ ‘(	É"'
+#array-add-last##array-add-last#"*ÃÈQ
+O
+
+Š ’(Ê"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+Š ’(Ë"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *ÊÂÃ2NoneTypeE
+C
+‡ “(Ì"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*eÁÊ8
+6
+
+˜ ˜(
+Î"
+#new-object##new-object#"2list8
+6
+
+™ ž(	Ï"
+#new-object##new-object#"2list@
+>
+
+™ ž(	Ð"'
+#array-add-last##array-add-last#"*ÏÄ@
+>
+
+™ ž(	Ò"'
+#array-add-last##array-add-last#"*ÏÑ@
+>
+
+™ ž(	Ô"'
+#array-add-last##array-add-last#"*ÏÓ@
+>
+
+™ ž(	Ö"'
+#array-add-last##array-add-last#"*ÏÕQ
+O
+
+— Ÿ(×"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+— Ÿ(Ø"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *×ÎÏ2NoneTypeE
+C
+”  (Ù"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*eÍ×8
+6
+
+¥ ¥(
+Û"
+#new-object##new-object#"2list8
+6
+
+¦ «(	Ü"
+#new-object##new-object#"2list@
+>
+
+¦ «(	Ý"'
+#array-add-last##array-add-last#"*ÜÄ@
+>
+
+¦ «(	Þ"'
+#array-add-last##array-add-last#"*Üì@
+>
+
+¦ «(	à"'
+#array-add-last##array-add-last#"*ÜßQ
+O
+
+¤ ¬(á"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+¤ ¬(â"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *áÛÜ2NoneTypeE
+C
+¡ ­(ã"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*eÚá6
+4
+´ ´(-ä"
+_Samegyp.MSVSSettings._Same*m6
+4
+µ µ(8å"
+_Samegyp.MSVSSettings._Same*mM
+K
+
+¶ ¶(/è"
+#new-object##new-object#"2gyp.MSVSSettings._IntegerT
+R
+
+¶ ¶(/é"1
+__init__"gyp.MSVSSettings._Integer.__init__" *èç2NoneType7
+5
+¶ ¶(0ê"
+_Samegyp.MSVSSettings._Same*mæè6
+4
+· ·(1ë"
+_Samegyp.MSVSSettings._Same*m­6
+4
+¸ ¸(3ì"
+_Samegyp.MSVSSettings._Same*mµ6
+4
+¹ ¹(-î"
+_Samegyp.MSVSSettings._Same*mí6
+4
+º º($ï"
+_Samegyp.MSVSSettings._Same*mä6
+4
+¾ ¾(-ð"
+_Samegyp.MSVSSettings._Same*mÁ6
+4
+¿ ¿(;ñ"
+_Samegyp.MSVSSettings._Same*mÇD
+B
+Â Â(3ó"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*mòD
+B
+Ã Ã(6ô"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*mð6
+4
+Ê Ê(:õ"
+_Samegyp.MSVSSettings._Same*i6
+4
+Ë Ë(/ö"
+_Samegyp.MSVSSettings._Same*i6
+4
+Ì Ì(+ø"
+_Samegyp.MSVSSettings._Same*i÷6
+4
+Í Í(/ú"
+_Samegyp.MSVSSettings._Same*iù6
+4
+Î Î(*ü"
+_Samegyp.MSVSSettings._Same*iû6
+4
+Ï Ï(-þ"
+_Samegyp.MSVSSettings._Same*iý6
+4
+Ð Ð(/€"
+_Samegyp.MSVSSettings._Same*iÿ6
+4
+Ñ Ñ(,‚"
+_Samegyp.MSVSSettings._Same*i6
+4
+Ò Ò(1„"
+_Samegyp.MSVSSettings._Same*iƒ6
+4
+Ó Ó(-†"
+_Samegyp.MSVSSettings._Same*i…6
+4
+Ô Ô(*ˆ"
+_Samegyp.MSVSSettings._Same*i‡6
+4
+Õ Õ(3‰"
+_Samegyp.MSVSSettings._Same*i­6
+4
+Ö Ö(7‹"
+_Samegyp.MSVSSettings._Same*iŠ6
+4
+× ×(,"
+_Samegyp.MSVSSettings._Same*iŒ6
+4
+Ø Ø(("
+_Samegyp.MSVSSettings._Same*iŽ6
+4
+Ù Ù(5"
+_Samegyp.MSVSSettings._Same*iµ6
+4
+Ú Ú()’"
+_Samegyp.MSVSSettings._Same*i‘6
+4
+Û Û(3”"
+_Samegyp.MSVSSettings._Same*i“6
+4
+Ü Ü(/•"
+_Samegyp.MSVSSettings._Same*iÁ6
+4
+Ý Ý(+—"
+_Samegyp.MSVSSettings._Same*i–6
+4
+Þ Þ(=˜"
+_Samegyp.MSVSSettings._Same*iÇ6
+4
+ß ß(%™"
+_Samegyp.MSVSSettings._Same*iÐ8
+6
+
+ä ä(0›"
+#new-object##new-object#"2list@
+>
+
+ä ä(0"'
+#array-add-last##array-add-last#"*›œ@
+>
+
+ä ä(0Ÿ"'
+#array-add-last##array-add-last#"*›ž@
+>
+
+ä ä(0¡"'
+#array-add-last##array-add-last#"*› %
+#
+
+ä ä(1¢"
+?python-unknown?Q
+O
+
+ä ä(1£"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+ä ä(1¤"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *£›¢2NoneType7
+5
+á å(¥"
+_Samegyp.MSVSSettings._Same*iš£8
+6
+
+ê ð(	§"
+#new-object##new-object#"2list@
+>
+
+ê ð(	¨"'
+#array-add-last##array-add-last#"*§¡@
+>
+
+ê ð(	ª"'
+#array-add-last##array-add-last#"*§©@
+>
+
+ê ð(	¬"'
+#array-add-last##array-add-last#"*§«@
+>
+
+ê ð(	®"'
+#array-add-last##array-add-last#"*§­@
+>
+
+ê ð(	°"'
+#array-add-last##array-add-last#"*§¯%
+#
+
+é ñ(±"
+?python-unknown?Q
+O
+
+é ñ(²"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+é ñ(³"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *²§±2NoneType7
+5
+æ ò(´"
+_Samegyp.MSVSSettings._Same*i¦²8
+6
+
+ö ö(0¶"
+#new-object##new-object#"2list@
+>
+
+ö ö(0¸"'
+#array-add-last##array-add-last#"*¶·@
+>
+
+ö ö(0¹"'
+#array-add-last##array-add-last#"*¶³@
+>
+
+ö ö(0º"'
+#array-add-last##array-add-last#"*¶×%
+#
+
+ö ö(1»"
+?python-unknown?Q
+O
+
+ö ö(1¼"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+ö ö(1½"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *¼¶»2NoneType7
+5
+ó ÷(¾"
+_Samegyp.MSVSSettings._Same*iµ¼8
+6
+
+û û(/¿"
+#new-object##new-object#"2list@
+>
+
+û û(/À"'
+#array-add-last##array-add-last#"*¿¡@
+>
+
+û û(/Â"'
+#array-add-last##array-add-last#"*¿Á@
+>
+
+û û(/Ä"'
+#array-add-last##array-add-last#"*¿Ã@
+>
+
+û û(/Æ"'
+#array-add-last##array-add-last#"*¿Å@
+>
+
+û û(/È"'
+#array-add-last##array-add-last#"*¿Ç%
+#
+
+û û(0É"
+?python-unknown?Q
+O
+
+û û(0Ê"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+û û(0Ë"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *Ê¿É2NoneType7
+5
+ø ü(Ì"
+_Samegyp.MSVSSettings._Same*iŒÊ8
+6
+
+€	 €	(*Í"
+#new-object##new-object#"2list@
+>
+
+€	 €	(*Ï"'
+#array-add-last##array-add-last#"*ÍÎ@
+>
+
+€	 €	(*Ð"'
+#array-add-last##array-add-last#"*ÍÁ@
+>
+
+€	 €	(*Ñ"'
+#array-add-last##array-add-last#"*ÍÃ@
+>
+
+€	 €	(*Ó"'
+#array-add-last##array-add-last#"*ÍÒ@
+>
+
+€	 €	(*Ô"'
+#array-add-last##array-add-last#"*ÍÅ%
+#
+
+€	 €	(+Õ"
+?python-unknown?Q
+O
+
+€	 €	(+Ö"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+€	 €	(+×"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *ÖÍÕ2NoneType7
+5
+ý 	(Ø"
+_Samegyp.MSVSSettings._Same*iÖ>
+<
+ƒ	 ƒ	(AÛ"%
+_Renamedgyp.MSVSSettings._Renamed*iÙÚ>
+<
+„	 „	(HÞ"%
+_Renamedgyp.MSVSSettings._Renamed*iÜÝD
+B
+‡	 ‡	(=à"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*ißD
+B
+ˆ	 ˆ	(1â"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*iá8
+6
+
+Š	/ Š	(1ä"
+#new-object##new-object#"2list8
+6
+
+Š	7 Š	(Gå"
+#new-object##new-object#"2list@
+>
+
+Š	7 Š	(Gç"'
+#array-add-last##array-add-last#"*åæ@
+>
+
+Š	7 Š	(Gè"'
+#array-add-last##array-add-last#"*å³Q
+O
+
+Š	" Š	(Hé"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+Š	" Š	(Hê"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *éäå2NoneTypeE
+C
+‰	 ‹	(ë"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*iãé8
+6
+
+	/ 	(1í"
+#new-object##new-object#"2list8
+6
+
+	7 	(Gî"
+#new-object##new-object#"2list@
+>
+
+	7 	(Gï"'
+#array-add-last##array-add-last#"*îæ@
+>
+
+	7 	(Gð"'
+#array-add-last##array-add-last#"*î³Q
+O
+
+	" 	(Hñ"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+	" 	(Hò"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *ñíî2NoneTypeE
+C
+Œ	 Ž	(ó"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*iìñD
+B
+	 	()õ"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*iôD
+B
+	 	(1÷"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*iöD
+B
+‘	 ‘	(9ù"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*iøD
+B
+’	 ’	(8ú"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*ið8
+6
+
+”	) ”	(+ü"
+#new-object##new-object#"2list8
+6
+
+”	1 ”	(Ký"
+#new-object##new-object#"2list@
+>
+
+”	1 ”	(Kÿ"'
+#array-add-last##array-add-last#"*ýþ@
+>
+
+”	1 ”	(K"'
+#array-add-last##array-add-last#"*ý€Q
+O
+
+”	 ”	(L‚"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+”	 ”	(Lƒ"5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *‚üý2NoneTypeE
+C
+“	 •	(„"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*iû‚6
+4
+œ	 œ	(1…"
+_Samegyp.MSVSSettings._Same*qø6
+4
+	 	(9†"
+_Samegyp.MSVSSettings._Same*qú6
+4
+ž	 ž	(.‡"
+_Samegyp.MSVSSettings._Same*q6
+4
+Ÿ	 Ÿ	(1‰"
+_Samegyp.MSVSSettings._Same*qˆ6
+4
+ 	  	(-Š"
+_Samegyp.MSVSSettings._Same*q“6
+4
+¡	 ¡	(2‹"
+_Samegyp.MSVSSettings._Same*qŸ6
+4
+¢	 ¢	(9Œ"
+_Samegyp.MSVSSettings._Same*qš6
+4
+£	 £	(/"
+_Samegyp.MSVSSettings._Same*qµ6
+4
+¤	 ¤	(%Ž"
+_Samegyp.MSVSSettings._Same*q·6
+4
+¥	 ¥	(."
+_Samegyp.MSVSSettings._Same*qÁ6
+4
+¦	 ¦	(0"
+_Samegyp.MSVSSettings._Same*qØ6
+4
+§	 §	(/‘"
+_Samegyp.MSVSSettings._Same*qÕ7
+5
+¨	 ¨	(9’"
+_Samegyp.MSVSSettings._Same*qùœ:
+8
+¬	 ¬	(E“"!
+_Movedgyp.MSVSSettings._Moved*q¨ˆD
+B
+®	 ®	(-•"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*q”8
+6
+
+³	 ³	(
+–"
+#new-object##new-object#"2list8
+6
+
+´	 ¹	(	—"
+#new-object##new-object#"2list@
+>
+
+´	 ¹	(	˜"'
+#array-add-last##array-add-last#"*—@
+>
+
+´	 ¹	(	™"'
+#array-add-last##array-add-last#"*—‘@
+>
+
+´	 ¹	(	š"'
+#array-add-last##array-add-last#"*—”@
+>
+
+´	 ¹	(	›"'
+#array-add-last##array-add-last#"*—Q
+O
+
+²	 º	(œ"
+#new-object##new-object#"2gyp.MSVSSettings._EnumerationZ
+X
+
+²	 º	("5
+__init__&gyp.MSVSSettings._Enumeration.__init__" *œ–—2NoneTypeE
+C
+¯	 »	(ž"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*q±œD
+B
+¼	 ¼	(5Ÿ"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*q‡D
+B
+½	 ½	(&¡"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*q D
+B
+¾	 ¾	(/£"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*q¢E
+C
+¿	 ¿	(7¤"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*q÷ûD
+B
+À	 À	(7¥"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*qðD
+B
+Á	 Á	(7§"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*q¦D
+B
+Â	 Â	('©"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*q¨6
+4
+Ê	 Ê	(7«"
+_Samegyp.MSVSSettings._Same*uª6
+4
+Ë	 Ë	(3¬"
+_Samegyp.MSVSSettings._Same*u6
+4
+Ì	 Ì	(-®"
+_Samegyp.MSVSSettings._Same*u­6
+4
+Í	 Í	(1°"
+_Samegyp.MSVSSettings._Same*u¯6
+4
+Î	 Î	(2²"
+_Samegyp.MSVSSettings._Same*u±6
+4
+Ï	 Ï	(3´"
+_Samegyp.MSVSSettings._Same*u³6
+4
+Ð	 Ð	(2¶"
+_Samegyp.MSVSSettings._Same*uµ6
+4
+Ñ	 Ñ	(3¸"
+_Samegyp.MSVSSettings._Same*u·6
+4
+Ò	 Ò	(0º"
+_Samegyp.MSVSSettings._Same*u¹6
+4
+Ó	 Ó	(3»"
+_Samegyp.MSVSSettings._Same*uÁ6
+4
+Ô	 Ô	(/¼"
+_Samegyp.MSVSSettings._Same*uÒ6
+4
+Õ	 Õ	(.¾"
+_Samegyp.MSVSSettings._Same*u½6
+4
+Ö	 Ö	(:À"
+_Samegyp.MSVSSettings._Same*u¿6
+4
+×	 ×	(+Â"
+_Samegyp.MSVSSettings._Same*uÁP
+N
+Ú	 à	(Ä"5
+_MovedAndRenamed!gyp.MSVSSettings._MovedAndRenamed*uÃ‹í9
+7
+á	 á	(0Æ"!
+_Movedgyp.MSVSSettings._Moved*uÅ>
+<
+ä	 ä	(=È"'
+	_MSVSOnlygyp.MSVSSettings._MSVSOnly*uÇ>
+<
+å	 å	(4Ê"'
+	_MSVSOnlygyp.MSVSSettings._MSVSOnly*uÉ>
+<
+æ	 æ	(9Ë"'
+	_MSVSOnlygyp.MSVSSettings._MSVSOnly*uØD
+B
+é	 é	(7Í"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*uÌD
+B
+ê	 ê	(9Ï"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*uÎD
+B
+ë	 í	(Ñ"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*uÐD
+B
+î	 î	(;Ó"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*uÒD
+B
+ï	 ï	(>Õ"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*uÔD
+B
+ð	 ð	(<Ö"-
+_MSBuildOnlygyp.MSVSSettings._MSBuildOnly*uð6
+4
+ø	 ø	(2Ø"
+_Samegyp.MSVSSettings._Same*x×
+ø	 ø	(2 *y/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/frontend/node_modules/node-gyp/gyp/pylib/gyp/MSVSSettings.py

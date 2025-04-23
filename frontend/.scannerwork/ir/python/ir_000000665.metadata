@@ -1,0 +1,6 @@
+gyp.xcode_emulation.XcodeSettings.GetBundleExecutableFolderPath
+false
+2fe4d6b714574373f72c0cce2ccf8494
+os.path.join
+==
+GetBundleContentsFolderPath

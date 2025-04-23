@@ -1,0 +1,9 @@
+gyp.generator.msvs._GenerateMSBuildRulePropsFile
+false
+f24d8aa606eed4737fdae770c4eb7e20
+builtins.__has_next
+builtins.iter
+builtins.next
+==
+WriteXmlIfChanged
+extend

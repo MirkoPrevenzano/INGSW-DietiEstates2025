@@ -1,0 +1,11 @@
+gyp.input.MakePathRelative
+false
+89c60dfcefe0811523b117b41d4b4fad
+gyp.common.RelativePath
+os.path.dirname
+os.path.join
+os.path.normpath
+==
+endswith
+match
+replace

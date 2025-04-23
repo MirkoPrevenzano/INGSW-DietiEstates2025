@@ -1,0 +1,14 @@
+gyp.generator.ninja.NinjaWriter.GetPostbuildCommand
+false
+658301b36383b11e9c6fc3020c24d676
+gyp.common.EncodePOSIXShellList
+gyp.generator.ninja.QuoteShellArgument
+gyp.xcode_emulation.GetSpecPostbuildCommands
+os.path.join
+os.path.normpath
+==
+AddImplicitPostbuilds
+ComputeExportEnvString
+GetSortedXcodePostbuildEnv
+insert
+join

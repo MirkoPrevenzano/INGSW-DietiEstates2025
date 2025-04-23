@@ -84,12 +84,12 @@ export class AddressEstatesComponent implements AfterViewInit, OnChanges {
   private handleStreetSelect(street: any): void {
     console.log(street)
     if (street) {
-      this.streetInput.setValue(street.properties.street as string || '');
-      this.houseNumberInput.nativeElement.value = street.properties.housenumber || '';
-      this.stateInput.setValue(street.properties.state as string || '');
-      this.countryInput.setValue(street.properties.country as string || '');
-      this.postCodeInput.setValue(street.properties.postcode as string || '');
-      this.cityInput.setValue(street.properties.city as string || '');
+      this.streetInput.setValue(street.properties.street as string ?? '');
+      this.houseNumberInput.nativeElement.value = street.properties.housenumber ?? '';
+      this.stateInput.setValue(street.properties.state as string ?? '');
+      this.countryInput.setValue(street.properties.country as string ?? '');
+      this.postCodeInput.setValue(street.properties.postcode as string ?? '');
+      this.cityInput.setValue(street.properties.city as string ?? '');
     }
   }
 
@@ -110,8 +110,10 @@ export class AddressEstatesComponent implements AfterViewInit, OnChanges {
 
   
   checkAddress(): void {
-   const message = document.getElementById('message') as HTMLElement;
+   const message = document.getElementById('message');
    const address:Address = this.getAddress()
+    if(!message)
+      throw new Error("Element with id 'message'")
 
     if (this.addressVerificationService.isEmptyField(address)) {
       this.selectFieldWarning();
@@ -119,7 +121,7 @@ export class AddressEstatesComponent implements AfterViewInit, OnChanges {
     }
 
     this.addressVerificationService.verifyAddress(address).then(result => {
-      let features = result.features || [];
+      let features = result.features ?? [];
       const confidenceLevelToAccept = 0.25;
       features = features.filter((feature: { properties: { rank: { confidence: number; }; }; }) => feature.properties.rank.confidence >= confidenceLevelToAccept);
 

@@ -1,0 +1,9 @@
+gyp.mac_tool.MacTool.ExecCodeSignBundle
+false
+896d3e58a053050b87e5c3a8e869de81
+subprocess.check_call
+==
+_GetCFBundleIdentifier
+_InstallEntitlements
+_InstallProvisioningProfile
+extend

@@ -1,0 +1,11 @@
+gyp.generator.make.MakefileWriter.WriteAndroidNdkModuleRule.DepsToModules
+false
+fcd63219c342a3a8fdb0aeb19971a100
+builtins.__has_next
+builtins.iter
+builtins.next
+os.path.basename
+==
+append
+endswith
+startswith

@@ -1,0 +1,13 @@
+gyp.xml_fix._Replacement_writexml
+false
+b6384a34c2d05af6c2f631152130445a
+builtins.__has_next
+builtins.iter
+builtins.next
+builtins.sorted
+gyp.xml_fix._Replacement_write_data
+==
+_get_attributes
+keys
+write
+writexml

@@ -1,0 +1,4 @@
+gyp.generator.ninja.AddArch
+false
+95db9833d048a4643b09dea7f61eb2a5
+os.path.splitext

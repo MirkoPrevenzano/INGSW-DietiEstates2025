@@ -1,0 +1,14 @@
+gyp.generator.msvs._GetMSBuildGlobalProperties
+false
+11c39a67b3b8cc0da03b2653523351b9
+builtins.__has_next
+builtins.iter
+builtins.next
+gyp.generator.msvs._ConfigPlatform
+gyp.generator.msvs._ConfigWindowsTargetPlatformVersion
+os.path.splitext
+str.__init__
+==
+append
+get
+values

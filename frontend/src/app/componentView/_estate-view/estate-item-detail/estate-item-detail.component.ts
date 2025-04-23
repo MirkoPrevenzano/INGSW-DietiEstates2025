@@ -12,7 +12,6 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { UploadPhotoService } from '../../../_service/rest-backend/upload-photo/upload-photo.service';
 import { GetEstateDetailService } from '../../../_service/rest-backend/get-estate-detail.service';
-import { ReadPhotoService } from '../../../_service/read-photo/read-photo.service';
 import { NotFoundComponent } from '../../not-found/not-found.component';
 import { ToastrService } from 'ngx-toastr';
 
@@ -37,7 +36,6 @@ export class EstateItemDetailComponent implements OnInit{
   route = inject(ActivatedRoute)
   uploadPhotosService = inject(UploadPhotoService)
   estateService = inject(GetEstateDetailService)
-  readPhoto = inject(ReadPhotoService)
   notifyService = inject(ToastrService)
   notFound404=false
   @Input() estate!: Estate;
@@ -86,7 +84,6 @@ export class EstateItemDetailComponent implements OnInit{
     this.uploadPhotosService.getPhotos(this.realEstateId).subscribe({
       next: (base64Photo:string[]) => {
         this.photos = base64Photo.map(photo => `data:image/jpeg;base64,${photo}`);
-        console.log("Foto caricate nello slider:", this.photos);
       },
       error: (err) => {
         this.notifyService.error(err.headers.get('error'))

@@ -1,0 +1,8 @@
+test_gyp.Runner.print_results
+false
+e6394f170246561b275b4ba778e77a76
+builtins.len
+builtins.print
+builtins.sorted
+==
+join

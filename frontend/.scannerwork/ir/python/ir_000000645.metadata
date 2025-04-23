@@ -1,0 +1,11 @@
+gyp.xcode_emulation.XcodeSettings._ConvertConditionalKeys
+false
+1b15a96f5af221bcb2a4e8c6469d2e8a
+builtins.__has_next
+builtins.iter
+builtins.next
+builtins.print
+==
+endswith
+join
+split

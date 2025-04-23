@@ -1,0 +1,15 @@
+gyp.generator.ninja.NinjaWriter.WriteActionsRulesCopies
+false
+4206c583de298cbb23f4b844267a3e88
+==
+IsIosFramework
+WriteActions
+WriteCollapsedDependencies
+WriteCopies
+WriteMacBundleResources
+WriteMacInfoPlist
+WriteMacXCassets
+WriteRules
+WriteWinIdlFiles
+WriteiOSFrameworkHeaders
+get

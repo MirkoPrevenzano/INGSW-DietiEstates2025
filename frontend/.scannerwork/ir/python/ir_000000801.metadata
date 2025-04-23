@@ -1,0 +1,8 @@
+gyp.generator.msvs._AddConfigurationToMSVS
+false
+0d511d8384f84fc7db5ed188aeff65db
+gyp.generator.msvs._ConfigFullName
+gyp.generator.msvs._ConvertToolsToExpectedForm
+gyp.generator.msvs._GetMSVSAttributes
+==
+AddConfig

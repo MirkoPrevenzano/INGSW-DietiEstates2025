@@ -1,0 +1,10 @@
+gyp.generator.ninja.NinjaWriter.GypPathToNinja
+false
+a67ec411b815c767f5e8911f2bc66b3d
+gyp.msvs_emulation.ExpandMacros
+gyp.xcode_emulation.ExpandEnvVars
+os.path.join
+os.path.normpath
+==
+ExpandSpecial
+startswith

@@ -1,0 +1,6 @@
+gyp.generator.ninja.NinjaWriter.GetSortedXcodePostbuildEnv
+false
+8cc298a45bc971d966a71fc5ea0dc899
+==
+GetPerTargetSetting
+GetSortedXcodeEnv

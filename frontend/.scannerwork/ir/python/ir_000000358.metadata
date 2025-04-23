@@ -1,0 +1,8 @@
+gyp.msvs_emulation.GetGlobalVSMacroEnv
+false
+5c9a76e508beee631f4523eab5ed9c5d
+gyp.msvs_emulation._FindDirectXInstallation
+os.path.join
+==
+Path
+get

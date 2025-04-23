@@ -1,0 +1,5 @@
+gyp.generator.compile_commands_json.AddCommandsForTarget.resolve
+false
+cb12ecf78d837629cef26c10dc15ca05
+os.path.abspath
+os.path.join

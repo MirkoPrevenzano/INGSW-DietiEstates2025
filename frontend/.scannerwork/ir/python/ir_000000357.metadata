@@ -1,0 +1,14 @@
+gyp.msvs_emulation._FindDirectXInstallation
+false
+748e4ad61afc9b0dd2fc62d4d472ea61
+builtins.__has_next
+builtins.hasattr
+builtins.iter
+builtins.next
+subprocess.Popen.__init__
+==
+communicate
+decode
+get
+split
+splitlines

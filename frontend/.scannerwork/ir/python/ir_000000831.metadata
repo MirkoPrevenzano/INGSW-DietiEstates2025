@@ -1,0 +1,12 @@
+gyp.generator.msvs._VerifySourcesExist
+false
+3da31fff12edbfdf428cd6a1ef8b9fc3
+builtins.__has_next
+builtins.iter
+builtins.next
+gyp.generator.msvs._VerifySourcesExist
+os.path.exists
+os.path.join
+==
+append
+extend

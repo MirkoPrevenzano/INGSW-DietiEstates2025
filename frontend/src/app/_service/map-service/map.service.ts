@@ -1,13 +1,14 @@
 import { ElementRef, Injectable } from '@angular/core';
-import { Browser, map, Map, marker, Marker, tileLayer } from 'leaflet';
+import { Browser, map, Map, tileLayer } from 'leaflet';
 import { Coordinate } from '../../model/coordinate';
 import { MarkerService } from './marker-service/marker.service';
+import { environment } from '../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapService {
-  private readonly geoapifyKey = 'c0324c2c2afb488980eae981c7906a43'; // Sostituisci con la tua chiave API di Geoapify
+  private readonly geoapifyKey = environment.geoapifyToken
   private mapInstance!: Map
 
 

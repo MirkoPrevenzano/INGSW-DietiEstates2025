@@ -1,0 +1,8 @@
+gyp.generator.msvs._GetMSBuildExtensions
+false
+677cae7d10df92b18e68fb0756b03a08
+builtins.__has_next
+builtins.iter
+builtins.next
+==
+append

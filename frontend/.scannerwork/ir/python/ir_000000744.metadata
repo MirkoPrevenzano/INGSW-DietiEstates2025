@@ -1,0 +1,9 @@
+gyp.generator.android.AndroidMkWriter.ExtractIncludesFromCFlags
+false
+3c05aa16f8d461fe495c6f6e60e82691
+builtins.__has_next
+builtins.iter
+builtins.next
+==
+append
+startswith

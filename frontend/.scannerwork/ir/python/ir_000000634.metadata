@@ -1,0 +1,8 @@
+gyp.flock_tool.FlockTool.ExecFlock
+false
+4302834a8b89787ac044a555dca82e5d
+fcntl.fcntl
+os.open
+subprocess.call
+==
+startswith

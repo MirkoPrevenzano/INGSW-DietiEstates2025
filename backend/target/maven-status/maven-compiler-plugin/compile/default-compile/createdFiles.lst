@@ -44,7 +44,6 @@ com/dietiEstates/backend/repository/AddressRepository.class
 com/dietiEstates/backend/controller/AuthenticationController.class
 com/dietiEstates/backend/controller/PdfController.class
 com/dietiEstates/backend/dto/AgentDTO.class
-com/dietiEstates/backend/model/Role.class
 com/dietiEstates/backend/controller/RealEstateController.class
 com/dietiEstates/backend/model/RealEstateForSale.class
 com/dietiEstates/backend/model/RealEstate.class

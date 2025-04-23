@@ -18,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes),
     provideHttpClient(
-      withFetch(), // use the Fetch API instead of XMLHttpRequests
+      withFetch(), 
       withInterceptors([authInterceptor])
     ),
     importProvidersFrom(BrowserModule),

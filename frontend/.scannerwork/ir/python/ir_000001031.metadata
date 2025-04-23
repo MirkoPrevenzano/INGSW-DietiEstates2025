@@ -1,0 +1,6 @@
+gyp.mac_tool.MacTool._GetCFBundleIdentifier
+false
+7b0bb4683bb99348ec4d61d15ec06e6d
+os.path.join
+==
+_LoadPlistMaybeBinary

@@ -1,0 +1,10 @@
+gyp.generator.make.MakefileWriter.ComputeDeps
+false
+2e589ffb03d17f661245afbc1a82d506
+builtins.__has_next
+builtins.iter
+builtins.next
+gyp.common.uniquer
+==
+append
+extend

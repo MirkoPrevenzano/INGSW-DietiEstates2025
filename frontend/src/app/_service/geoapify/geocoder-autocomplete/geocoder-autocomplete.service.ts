@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import { GeocoderAutocomplete, LocationType } from '@geoapify/geocoder-autocomplete';
+import { environment } from '../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeocoderAutocompleteService {
-  private readonly geoapifyKey = 'c0324c2c2afb488980eae981c7906a43';
+  private readonly geoapifyKey = environment.geoapifyToken;
 
   createAutocomplete(elementId: string, type: string, allowNonVerifiedHouseNumber: boolean = false, allowNonVerifiedStreet: boolean = false): GeocoderAutocomplete {
+    const element= document.getElementById(elementId)
+    if(!element)
+      throw new Error(`Element with id "${elementId}"`)
     return new GeocoderAutocomplete(
-      document.getElementById(elementId) as HTMLElement,
+      element,
       this.geoapifyKey,
       {
         type: type as LocationType,

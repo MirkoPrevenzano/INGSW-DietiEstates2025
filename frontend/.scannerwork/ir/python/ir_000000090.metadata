@@ -1,0 +1,6 @@
+packaging.tags.interpreter_version
+false
+3b3920f778e487e51cccbf9f439fe709
+packaging.tags._get_config_var
+packaging.tags._version_nodot
+str.__init__

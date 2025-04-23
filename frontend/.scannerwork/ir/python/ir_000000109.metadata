@@ -1,0 +1,10 @@
+gyp.EscapeForCString
+false
+cbdc39b2ec8e503ec91f70ad27415983
+builtins.__has_next
+builtins.chr
+builtins.iter
+builtins.next
+builtins.ord
+==
+encode

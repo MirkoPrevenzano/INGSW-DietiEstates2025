@@ -1,0 +1,12 @@
+gyp.generator.make.MakefileWriter.WriteMacInfoPlist
+false
+4d501917130e290f7439a0d3e80928e8
+gyp.xcode_emulation.GetMacInfoPlist
+os.path.basename
+==
+GetSortedXcodeEnv
+WriteDoCmd
+WriteList
+WriteMakeRule
+WriteSortedXcodeEnv
+append

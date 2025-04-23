@@ -1,0 +1,7 @@
+gyp.input_test.TestFindCycles.test_cycle_self_reference
+false
+80fc654a9c5d9c952b0546f6f7f6624a
+==
+FindCycles
+_create_dependency
+assertEqual

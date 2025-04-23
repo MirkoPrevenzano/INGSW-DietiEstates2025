@@ -1,0 +1,7 @@
+gyp.xcodeproj_file.PBXNativeTarget.FrameworksPhase
+false
+964e10d8e93fb90bd460e1f3db282008
+gyp.xcodeproj_file.PBXFrameworksBuildPhase.__init__
+==
+AppendProperty
+GetBuildPhaseByType

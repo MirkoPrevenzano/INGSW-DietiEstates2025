@@ -1,0 +1,9 @@
+gyp.generator.cmake.SetFileProperty
+false
+8e34ad9658704ffcf2c0350f62e0cae4
+builtins.__has_next
+builtins.iter
+builtins.next
+gyp.generator.cmake.CMakeStringEscape
+==
+write

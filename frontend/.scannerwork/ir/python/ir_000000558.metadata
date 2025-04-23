@@ -1,0 +1,9 @@
+gyp.generator.ninja_test.TestPrefixesAndSuffixes.test_BinaryNamesWindows
+false
+ed80af711bd11626b9e1392490a2cd8f
+==
+ComputeOutputFileName
+NinjaWriter
+assertTrue
+endswith
+startswith

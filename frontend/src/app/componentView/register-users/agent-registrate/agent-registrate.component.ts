@@ -6,7 +6,6 @@ import { RegisterRequest } from '../../../model/registerRequest';
 import { FormFieldComponent } from '../../form-field/form-field.component';
 import { CommonModule } from '@angular/common';
 import { PasswordFieldComponent } from '../../password-field/password-field.component';
-import { ignoreElements } from 'rxjs';
 import { Router } from '@angular/router';
 import { ButtonCustomComponent } from '../../button-custom/button-custom.component';
 import { LoginWithGoogleComponent } from '../../login-with-google/login-with-google.component';

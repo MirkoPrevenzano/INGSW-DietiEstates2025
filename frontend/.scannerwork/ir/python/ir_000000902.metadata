@@ -1,0 +1,6 @@
+gyp.generator.make.GenerateOutput.CalculateMakefilePath
+false
+334ed7a955144e189751089698945c7f
+gyp.common.RelativePath
+os.path.dirname
+os.path.join

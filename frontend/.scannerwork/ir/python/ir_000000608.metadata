@@ -1,0 +1,5 @@
+packaging._parser.parse_marker
+false
+388fae34b47c41db66135d7f592fb22e
+packaging._parser._parse_full_marker
+packaging._tokenizer.Tokenizer.__init__

@@ -16,9 +16,10 @@ export class RecentlyEstatePopupComponent {
   
   ngOnInit(): void {
     const user = localStorage.getItem('user');
-    this.agentService.recentyRealEstate(user!).subscribe( result=>{
-      this.recentListings = result
-    })
+    if(user)
+      this.agentService.recentyRealEstate(user).subscribe( result=>{
+        this.recentListings = result
+      })
   }
 
   truncate(text: string, limit: number): string {

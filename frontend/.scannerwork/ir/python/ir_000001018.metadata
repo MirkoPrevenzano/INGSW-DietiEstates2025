@@ -1,0 +1,15 @@
+gyp.mac_tool.MacTool.ExecCopyBundleResource
+false
+4b1df99a6a6c2dd2f312a9d3d54147bd
+os.path.exists
+os.path.isdir
+os.path.splitext
+os.unlink
+shutil.copy
+shutil.copytree
+==
+_ConvertToBinary
+_CopyStringsFile
+_CopyXIBFile
+lower
+rmtree

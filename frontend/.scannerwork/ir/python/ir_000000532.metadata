@@ -1,0 +1,10 @@
+gyp.generator.ninja.NinjaWriter.WriteiOSFrameworkHeaders
+false
+0c569d6c35bf1c071a46a872070afe79
+filter.__init__
+map.__init__
+==
+ComputeMacBundleOutput
+GypPathToUniqueOutput
+build
+extend

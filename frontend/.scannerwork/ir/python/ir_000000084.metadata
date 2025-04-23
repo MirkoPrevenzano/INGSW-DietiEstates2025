@@ -1,0 +1,11 @@
+packaging.tags._cpython_abis
+false
+d87dc8a5f9db2f6473e528eb25aa9004
+builtins.hasattr
+builtins.tuple
+packaging.tags._get_config_var
+packaging.tags._version_nodot
+==
+append
+format
+insert

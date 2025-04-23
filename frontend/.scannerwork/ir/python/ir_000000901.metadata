@@ -1,0 +1,10 @@
+gyp.generator.make.PerformBuild
+false
+d9f64ce17bd912287056b636a526ca90
+builtins.__has_next
+builtins.iter
+builtins.next
+builtins.print
+subprocess.check_call
+==
+append

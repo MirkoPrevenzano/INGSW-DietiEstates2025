@@ -1,0 +1,9 @@
+gyp.generator.msvs._EscapeCppDefineForMSVS
+false
+5e29a6f2256774b7b20e4bd356c8f02b
+builtins.ord
+gyp.generator.msvs._EscapeCommandLineArgumentForMSVS
+gyp.generator.msvs._EscapeEnvironmentVariableExpansion
+gyp.generator.msvs._EscapeVCProjCommandLineArgListItem
+==
+replace

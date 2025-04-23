@@ -1,0 +1,12 @@
+gyp.MSVSUserFile._FindCommandInPath
+false
+9adce77e78e2d2d5d88a55323be0bc91
+builtins.__has_next
+builtins.iter
+builtins.next
+os.access
+os.path.isfile
+os.path.join
+==
+get
+split

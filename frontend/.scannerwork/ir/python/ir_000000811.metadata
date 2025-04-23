@@ -1,0 +1,9 @@
+gyp.generator.msvs.CalculateVariables
+false
+003fdaa9e7c403ad862d42592cb0a78a
+gyp.common.GetFlavor
+==
+SelectVisualStudioVersion
+ShortName
+find
+get

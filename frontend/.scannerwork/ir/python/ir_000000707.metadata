@@ -1,0 +1,11 @@
+gyp.xcode_emulation.XcodeSettings._GetIOSCodeSignIdentityKey
+false
+81912ab45f7b342364ae4a9283e604b9
+builtins.__has_next
+builtins.iter
+builtins.next
+subprocess.check_output
+==
+get
+split
+splitlines

@@ -1,0 +1,11 @@
+gyp.generator.ninja.NinjaWriter.ComputeOutput
+false
+7375108178f99510e6dbce336acd972c
+gyp.generator.ninja.AddArch
+os.path.join
+==
+ComputeOutputFileName
+ExpandSpecial
+GetExecutablePath
+GetOutputName
+GypPathToUniqueOutput

@@ -1,0 +1,7 @@
+gyp.MSVSSettings_test.TestSequenceFunctions.testConvertToMSBuildSettings_warnings
+false
+5112809864d9373588eeb13e9ece3f8e
+==
+ConvertToMSBuildSettings
+_ExpectedWarnings
+assertEqual

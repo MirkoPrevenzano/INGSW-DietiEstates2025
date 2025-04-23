@@ -1,0 +1,7 @@
+gyp.xcode_emulation_test.TestXcodeSettings.test_GetCflags
+false
+b84b0a09be93f7faddb3a30535210f0a
+gyp.xcode_emulation.XcodeSettings.__init__
+==
+GetCflags
+assertEqual

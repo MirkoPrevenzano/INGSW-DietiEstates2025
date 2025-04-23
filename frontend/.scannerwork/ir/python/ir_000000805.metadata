@@ -1,0 +1,12 @@
+gyp.generator.msvs._AddActions
+false
+e4adbfe192edb5dc0a924953ca46a5f1
+builtins.__has_next
+builtins.iter
+builtins.next
+gyp.generator.msvs._AddActionStep
+gyp.generator.msvs._BuildCommandLineForRule
+set.__init__
+==
+add
+get

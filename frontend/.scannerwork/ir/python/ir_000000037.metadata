@@ -1,0 +1,8 @@
+gyp.generator.eclipse.GenerateClasspathFile
+false
+32bdb69ea3dfa03ce251001ed242910e
+gyp.common.EnsureDirExists
+gyp.generator.eclipse.GenerateClasspathFile.AddElements
+gyp.generator.eclipse.GetJavaJars
+gyp.generator.eclipse.GetJavaSourceDirs
+os.path.join

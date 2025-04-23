@@ -1,0 +1,10 @@
+gyp.MSVSUserFile.Writer.AddDebugSettings
+false
+0df19a54303c88425dfc6d0c0eff7a27
+gyp.MSVSUserFile._FindCommandInPath
+gyp.MSVSUserFile._QuoteWin32CommandLineArgs
+socket.gethostname
+==
+AddConfig
+append
+join

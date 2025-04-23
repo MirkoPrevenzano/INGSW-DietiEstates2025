@@ -89,7 +89,7 @@ export class CreateEstatesComponent implements OnInit{
   }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.estate.type = params['type'] || 'For Sale';
+      this.estate.type = params['type'] ?? 'For Sale';
     });
     
     this.address = this.estateDataService.getAddress()
@@ -175,9 +175,10 @@ export class CreateEstatesComponent implements OnInit{
   }
 
   submit(){
-    this.searchPoi({lat:this.address.latitude!, lon:this.address.longitude!}).subscribe((response:any)=>{
-     this.estate=this.createEstate()
-    })
+    if(this.address.latitude && this.address.longitude)
+      this.searchPoi({lat:this.address.latitude, lon:this.address.longitude}).subscribe(()=>{
+        this.estate=this.createEstate()
+      })
 
     this.createEstateService.createEstate(this.estate).subscribe({
       next: (response: any) => {

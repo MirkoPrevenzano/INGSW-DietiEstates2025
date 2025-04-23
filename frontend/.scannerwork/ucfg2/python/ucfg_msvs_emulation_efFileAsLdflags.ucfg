@@ -1,0 +1,64 @@
+
+4gyp.msvs_emulation.MsvsSettings._GetDefFileAsLdflags‡
+{/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/frontend/node_modules/node-gyp/gyp/pylib/gyp/msvs_emulation.pyñ ñ("2*õ
+2
+ò ó(C•’
+
+ô ô(5
+%3*?
+
+__unknown_file (#!
+gyp.msvs_emulation.MsvsSettings*1
+
+__unknown_file (
+
+gyp_to_build_path2
+GetDefFileD
+B
+
+ô ô(5
+
+def_file"__id*"
+
+__unknown_file (
+
+%3*
+3
+4*9
+3
+msvs_emulation.py"
+ø ø(
+implicit return*Ø
+4
+ö ö(2W
+U
+
+ö ö(1
+%1"__concat*
+
+ö ö(&
+	/DEF:"%s"*
+
+ö) ö(1
+
+
+def_fileig
+
+ö ö(2
+%2*'
+
+__unknown_file (
+	
+ldflags*"
+
+__unknown_file (
+
+%12append*
+3:
+
+ñ# ñ(*	
+ldflags:!
+
+ñ, ñ(=
+gyp_to_build_pathB#!
+gyp.msvs_emulation.MsvsSettingsH

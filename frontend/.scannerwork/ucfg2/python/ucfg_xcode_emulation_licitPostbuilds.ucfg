@@ -1,0 +1,99 @@
+
+7gyp.xcode_emulation.XcodeSettings.AddImplicitPostbuildsˆ
+|/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/frontend/node_modules/node-gyp/gyp/pylib/gyp/xcode_emulation.py×	 ×	("2*ù
+2
+Ú	 Û	(˜•
+
+Ý	 Ý	(Q
+%1*A
+
+__unknown_file (%#
+!gyp.xcode_emulation.XcodeSettings**
+
+__unknown_file (
+
+
+configname*&
+
+__unknown_file (
+
+
+output*-
+
+__unknown_file (
+
+output_binary*%
+
+__unknown_file (	
+
+quiet2_GetTargetPostbuilds?
+=
+
+Ý	 Ý	(Q
+pre"__id*"
+
+__unknown_file (
+
+%1ÆÃ
+
+Þ	 Þ	(@
+%2*A
+
+__unknown_file (%#
+!gyp.xcode_emulation.XcodeSettings**
+
+__unknown_file (
+
+
+configname*-
+
+__unknown_file (
+
+output_binary2_GetIOSPostbuilds@
+>
+
+Þ	 Þ	(@
+post"__id*"
+
+__unknown_file (
+
+%2k
+i
+
+ß	 ß	(&
+%3"__concat*
+
+ß	 ß	(
+
+pre*
+
+ß	 ß	(
+
+
+postbuilds*
+
+ß	" ß	(&
+
+post"
+
+ß	 ß	(&
+
+%3:
+
+Ø	 Ø	(
+
+configname:
+
+Ø	 Ø	( 
+output:
+
+Ø	" Ø	(/
+output_binary:
+
+Ø	1 Ø	(>
+
+postbuilds:
+
+Ø	@ Ø	(K
+quietB%#
+!gyp.xcode_emulation.XcodeSettingsH

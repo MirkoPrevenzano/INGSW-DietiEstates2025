@@ -1,0 +1,9 @@
+gyp.generator.msvs._GetMSBuildSources
+false
+958f4aeb94bdca70d711bdd71c00db52
+builtins.__has_next
+builtins.iter
+builtins.next
+gyp.generator.msvs._AddSources2
+==
+append

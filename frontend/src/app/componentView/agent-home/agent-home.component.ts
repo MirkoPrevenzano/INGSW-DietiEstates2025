@@ -27,11 +27,12 @@ export class AgentHomeComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
-   const user= localStorage.getItem('user')!
-   this.agentService.recentyRealEstate(user).subscribe(response=>{
-    const uploadingDate = new Date(response[0].uploadingDate);
-   
-   })
+   const user= localStorage.getItem('user')
+   if(user)
+    this.agentService.recentyRealEstate(user).subscribe(response=>{
+      //const uploadingDate = new Date(response[0].uploadingDate);
+    
+    })
   }
 
   

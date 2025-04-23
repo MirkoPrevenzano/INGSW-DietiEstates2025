@@ -1,0 +1,255 @@
+
+!gyp.generator.make.MakefileWriterá
+{/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/frontend/node_modules/node-gyp/gyp/pylib/gyp/generator/make.pyé é("2*†
+2
+è è(.
+}
+
+è è(.8#
+!gyp.generator.make.MakefileWriter"
+generator_flags"__id*/
+
+__unknown_file (
+
+generator_flagsm
+k
+
+ê ê(/#
+!gyp.generator.make.MakefileWriter"
+flavor"__id*&
+
+__unknown_file (
+
+
+flavor
+
+í# í(%
+%17"dictw
+u
+
+í í(%<#
+!gyp.generator.make.MakefileWriter"
+suffix_rules_srcdir"__id*#
+
+__unknown_file (
+
+%17
+
+ì$ ì(&
+%18"dictx
+v
+
+ì ì(&=#
+!gyp.generator.make.MakefileWriter"
+suffix_rules_objdir1"__id*#
+
+__unknown_file (
+
+%18
+
+î$ î(&
+%19"dictx
+v
+
+î î(&=#
+!gyp.generator.make.MakefileWriter"
+suffix_rules_objdir2"__id*#
+
+__unknown_file (
+
+%19SQ
+
+ó ó(7
+%20*5
+
+__unknown_file (
+
+COMPILABLE_EXTENSIONS2items*
+3
+5*Y
+3	
+make.py53
+Ω Ω(
+%1"!gyp.generator.make.MakefileWriter"
+Ω Ω(
+
+%1*˚
+5
+ô £(v
+t
+
+ô ô($
+%2"__id*Z
+
+__unknown_file (>*<#
+!gyp.generator.make.MakefileWriter"
+suffix_rules_srcdir
+
+ö ¢(
+%3"dict∫
+∑
+
+ú †(&
+%4"__concat*i
+
+ú ü([Y
+W\
+$(obj).$(TOOLSET)/$(TARGET)/%%.o: $(srcdir)/%%%s FORCE_DO_CMD
+\t@$(call do_cmd,%s,1)
+*
+
+† †(
+
+ext*
+
+†  †(%	
+
+valueå
+â
+
+õ °(
+%5"__mapSet*"
+
+__unknown_file (
+
+%3*#
+
+__unknown_file (
+
+ext*"
+
+__unknown_file (
+
+%4db
+
+ô £(
+%6*"
+
+__unknown_file (
+
+%2*"
+
+__unknown_file (
+
+%32updatew
+u
+
+¶ ¶(%
+%7"__id*[
+
+__unknown_file (?*=#
+!gyp.generator.make.MakefileWriter"
+suffix_rules_objdir1
+
+ß Ø(
+%8"dict¬
+ø
+
+© ≠(&
+%9"__concat*q
+
+© ¨(ca
+_\
+$(obj).$(TOOLSET)/$(TARGET)/%%.o: $(obj).$(TOOLSET)/%%%s FORCE_DO_CMD
+\t@$(call do_cmd,%s,1)
+*
+
+≠ ≠(
+
+ext*
+
+≠  ≠(%	
+
+valueç
+ä
+
+® Æ(
+%10"__mapSet*"
+
+__unknown_file (
+
+%8*#
+
+__unknown_file (
+
+ext*"
+
+__unknown_file (
+
+%9ec
+
+¶ ∞(
+%11*"
+
+__unknown_file (
+
+%7*"
+
+__unknown_file (
+
+%82updatex
+v
+
+± ±(%
+%12"__id*[
+
+__unknown_file (?*=#
+!gyp.generator.make.MakefileWriter"
+suffix_rules_objdir2
+
+≤ ∫(
+%13"dict∏
+µ
+
+¥ ∏(&
+%14"__concat*f
+
+¥ ∑(XV
+T\
+$(obj).$(TOOLSET)/$(TARGET)/%%.o: $(obj)/%%%s FORCE_DO_CMD
+\t@$(call do_cmd,%s,1)
+*
+
+∏ ∏(
+
+ext*
+
+∏  ∏(%	
+
+valueè
+å
+
+≥ π(
+%15"__mapSet*#
+
+__unknown_file (
+
+%13*#
+
+__unknown_file (
+
+ext*#
+
+__unknown_file (
+
+%14ge
+
+± ª(
+%16*#
+
+__unknown_file (
+
+%12*#
+
+__unknown_file (
+
+%132update*
+3
+5:
+
+é é(&
+generator_flags:
+
+é( é(.
+flavorB%#
+!gyp.generator.make.MakefileWriterH

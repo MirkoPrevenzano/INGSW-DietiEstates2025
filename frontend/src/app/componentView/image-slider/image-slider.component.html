@@ -1,21 +1,13 @@
 <!DOCTYPE html>
-<!--<ngx-slick-carousel [config]="sliderConfig">
-    <div ngxSlickItem *ngFor="let photo of photos" class="slide">
-        <div class="w-full h-full flex items-center justify-center bg-gray-200">
-            <img [src]="photo" class="max-w-full max-h-full object-contain" alt="estate">
-        </div>
-    </div>
-</ngx-slick-carousel>-->
-
 <div class="container">
-    <div class="slider-wrapper">
-      <div class="slider" #slider>
-        <img *ngFor="let photo of photos; let i = index" [src]="photo" [alt]="'Slide ' + (i + 1)" [id]="'slide-' + i">
-      </div>
+  <div class="slider-wrapper">
+    <div class="slider" #slider>
+      <img *ngFor="let photo of photos; let i = index" [src]="photo" [alt]="'Slide ' + (i + 1)" [id]="'slide-' + i">
+    </div>
       <div class="slider-nav">
         <a *ngFor="let photo of photos; let i = index" href="#" (click)="scrollToSlide(i, $event)"></a>
     </div>
-    </div>
   </div>
+</div>
 
   

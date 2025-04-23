@@ -1,0 +1,124 @@
+
+gyp.generator.analyzer.Target‹
+/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/frontend/node_modules/node-gyp/gyp/pylib/gyp/generator/analyzer.pyï ï("2*£
+
+2
+ð ð(
+
+ð ð(
+%2"setc
+a
+
+ð ð()
+gyp.generator.analyzer.Target"
+deps"__id*"
+
+__unknown_file (
+
+%2y
+w
+
+ñ ñ(,1
+gyp.generator.analyzer.Target"
+match_status"__id*0
+
+__unknown_file (
+
+MATCH_STATUS_TBD
+
+ò ò(
+%3"seth
+f
+
+ò ò(.
+gyp.generator.analyzer.Target"
+	back_deps"__id*"
+
+__unknown_file (
+
+%3e
+c
+
+ó ó()
+gyp.generator.analyzer.Target"
+name"__id*$
+
+__unknown_file (
+
+namei
+g
+
+ö ö(,
+gyp.generator.analyzer.Target"	
+visited"__id*%
+
+__unknown_file (	
+
+Falsep
+n
+
+÷ ÷(#3
+gyp.generator.analyzer.Target"
+requires_build"__id*%
+
+__unknown_file (	
+
+Falsez
+x
+
+ø ø(-=
+gyp.generator.analyzer.Target"
+added_to_compile_targets"__id*%
+
+__unknown_file (	
+
+Falsej
+h
+
+ù ù(-
+gyp.generator.analyzer.Target"
+
+in_roots"__id*%
+
+__unknown_file (	
+
+Falseo
+m
+
+ú ú("2
+gyp.generator.analyzer.Target"
+is_executable"__id*%
+
+__unknown_file (	
+
+Falses
+q
+
+û û(&6
+gyp.generator.analyzer.Target"
+is_static_library"__id*%
+
+__unknown_file (	
+
+False{
+y
+
+ü ü(.>
+gyp.generator.analyzer.Target"
+is_or_has_linked_ancestor"__id*%
+
+__unknown_file (	
+
+False*
+3*U
+3
+analyzer.py/-
+ÿ ÿ
+%1"gyp.generator.analyzer.Target"
+ÿ ÿ
+
+%1:
+
+ï ï(
+nameB!
+gyp.generator.analyzer.TargetH

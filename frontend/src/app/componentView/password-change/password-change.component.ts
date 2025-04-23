@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators,  } from '@angular/forms';
 import { PasswordChangeService } from '../../_service/rest-backend/password-change/password-change.service';
 import { PasswordFieldComponent } from '../password-field/password-field.component';
@@ -21,7 +21,7 @@ import { LoginService } from '../../_service/rest-backend/login/login.service';
     templateUrl: './password-change.component.html',
     styleUrl: './password-change.component.scss'
 })
-export class PasswordChangeComponent {
+export class PasswordChangeComponent implements OnInit{
     constructor(
       private readonly passwordService:PasswordChangeService,
       private readonly loginService:LoginService,
@@ -31,18 +31,31 @@ export class PasswordChangeComponent {
       private readonly authService:AuthService
     ){}
 
+    ngOnInit(): void {
+      this.passwordForm.valueChanges.subscribe(values => {
+        this.oldPassword = values.oldPassword ?? '';
+        this.newPassword = values.newPassword ?? '';
+        this.confirmPassword = values.confirmNewPassword ?? '';
+      });
+    }
+
     passwordForm = new FormGroup({
       oldPassword: new FormControl('', [Validators.required]),
       newPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
       confirmNewPassword: new FormControl('', [Validators.required])
     });
 
+    oldPassword = ''
+    newPassword = ''
+    confirmPassword = ''
+
+
     onChangePassword(){
      
       if (this.passwordChangeControlService.isValidNewPassword(
-        this.passwordForm.value.newPassword!,
-        this.passwordForm.value.oldPassword!,
-        this.passwordForm.value.confirmNewPassword!
+        this.newPassword,
+        this.oldPassword,
+        this.confirmPassword
       )) {
         this.passwordChange()
       }
@@ -51,8 +64,8 @@ export class PasswordChangeComponent {
 
     passwordChange() {
       this.passwordService.passwordChange({
-        oldPassword: this.passwordForm.value.oldPassword as string,
-        newPassword: this.passwordForm.value.newPassword as string,
+        oldPassword: this.oldPassword,
+        newPassword: this.newPassword
       }).subscribe({
         error: (err) => {
           this.notify.warning(err.headers.get('error'))
@@ -71,9 +84,13 @@ export class PasswordChangeComponent {
       })
   }
   reloadLogin() {
+    const user = this.authService.getUser()
+    if(!user){
+      throw new Error("Error user")
+    }
     this.loginService.login({
-      username: this.authService.getUser()!,
-      password: this.passwordForm.value.newPassword as string,
+      username: user,
+      password: this.newPassword,
       role: "admin"
     }).subscribe({
       next: (response) => {
@@ -90,9 +107,10 @@ export class PasswordChangeComponent {
   }
 
   isMatch(): boolean {
+
     return this.passwordChangeControlService.isMatch(
-      this.passwordForm.value.newPassword!,
-      this.passwordForm.value.confirmNewPassword!
+      this.oldPassword ,
+      this.confirmPassword
     );
   }
 

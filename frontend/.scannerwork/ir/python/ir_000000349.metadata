@@ -1,0 +1,6 @@
+gyp.MSVSVersion._CreateVersion
+false
+36e11c15cb9aa544e6cc2ba3d4f81e36
+gyp.MSVSVersion.VisualStudioVersion.__init__
+os.path.normpath
+str.__init__

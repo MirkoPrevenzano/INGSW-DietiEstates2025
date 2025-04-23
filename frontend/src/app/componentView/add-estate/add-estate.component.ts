@@ -23,7 +23,8 @@ export class AddEstateComponent {
   onSubmit(): void {
     if (this.typeForm.valid) {
       const listingType = this.typeForm.get('listingType')?.value;
-      this.typeEstate.emit(listingType!)
+      if(listingType)
+        this.typeEstate.emit(listingType)
     }
   }
   

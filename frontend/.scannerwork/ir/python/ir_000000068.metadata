@@ -1,0 +1,11 @@
+flatted._transform
+false
+4ce9d4af59a73ffa0b3c53e273b70f4b
+builtins.__has_next
+builtins.iter
+builtins.next
+flatted._is_array
+flatted._is_object
+flatted._relate
+==
+append

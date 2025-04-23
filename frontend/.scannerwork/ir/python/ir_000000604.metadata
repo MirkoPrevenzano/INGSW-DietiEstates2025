@@ -1,0 +1,10 @@
+packaging._parser._parse_requirement_details
+false
+832f56da643f5edcbbcfc18ec9569263
+packaging._parser._parse_requirement_marker
+packaging._parser._parse_specifier
+==
+check
+consume
+expect
+read

@@ -1,0 +1,9 @@
+gyp.input.ProcessConditionsInDict
+false
+7b63e0c28954cdf2a3f53fceaccb4848
+builtins.__has_next
+builtins.iter
+builtins.next
+gyp.input.EvalCondition
+gyp.input.MergeDicts
+gyp.input.ProcessVariablesAndConditionsInDict

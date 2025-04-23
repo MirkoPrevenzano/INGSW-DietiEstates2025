@@ -1,0 +1,11 @@
+gyp.mac_tool.MacTool.ExecCopyIosFrameworkHeaders
+false
+1119886562fcfc88cff5497d5d384e05
+builtins.__has_next
+builtins.iter
+builtins.next
+os.makedirs
+os.path.basename
+os.path.exists
+os.path.join
+shutil.copy

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../../_service/rest-backend/login/login.service';
 import { CommonModule } from '@angular/common';
@@ -26,7 +26,10 @@ import { PasswordValidatorService } from '../../_service/password-validator/pass
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
+  password = ''
+  userType = ''
+  username = ''
 
   constructor(
     private readonly loginService: LoginService,
@@ -43,6 +46,16 @@ export class LoginComponent {
     password: new FormControl('')
   });
 
+  ngOnInit(): void {
+    this.loginForm.valueChanges.subscribe(values => {
+      this.password = values.password ?? ''
+      this.userType = values.userType ?? ''
+      this.username = values.username ?? ''
+    });
+  }
+
+  
+
   signIn() {
     if (this.isInvalidForm()) {
       const toastrConfig: Partial<IndividualConfig> = {
@@ -51,7 +64,7 @@ export class LoginComponent {
       this.notifyToastr.warning("Please fill out all fields before submitting.", "Form Incomplete", toastrConfig);
     }
     else if (this.isValidField()) {
-      this.authenticateUser();
+      this.authenticateUser()
     }
     
   }
@@ -63,7 +76,7 @@ export class LoginComponent {
       this.notifyToastr.warning("Please enter a valid email address.", "Invalid Email Format");
       isValid=false
     }
-    let errorPassword = this.passwordValidator.validatePassword(this.loginForm.value.password ?? '')
+    let errorPassword = this.passwordValidator.validatePassword(this.password)
     if(errorPassword.length>0){
       const formattedErrorMessage = errorPassword.map(msg => `<b>=></b>${msg}`).join('<br>'); // Avvolgi ogni elemento con <li> e unisci
       this.notifyToastr.warning('<center><b>Password not secure</b></center><br> ' + formattedErrorMessage+'', '', {
@@ -76,27 +89,27 @@ export class LoginComponent {
 
   isInvalidForm() {
     return this.loginForm.invalid ||
-           this.loginForm.value.username === '' ||
-           this.loginForm.value.password === '';
+           this.username ||
+           this.password
   }
 
   isValidUsername() {
     if (this.loginForm.value.userType === 'customer') {
-      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      return emailPattern.test(this.loginForm.value.username as string);
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+      return emailPattern.test(this.username)
     }
     return true;
   }
 
   authenticateUser() {
     this.loginService.login({
-      username: this.loginForm.value.username as string,
-      password: this.loginForm.value.password as string,
-      role: this.loginForm.value.userType as string
+      username: this.username,
+      password: this.password,
+      role: this.userType
     }).subscribe({
       next: (response) => {
-        const token = response.accessToken;
-        this.authService.updateToken(token);
+        const token = response.accessToken
+        this.authService.updateToken(token)
         setTimeout(()=>{
           this.redirectHomePage()
         },0)
@@ -109,9 +122,9 @@ export class LoginComponent {
 
 
   redirectHomePage() {
-    const path = this.redirectHomeService.determineDefaultHome(); // Chiamata al servizio
-    this.router.navigateByUrl(path);
-    this.notifyToastr.success(`Welcome ${this.loginForm.value.username}`);
+    const path = this.redirectHomeService.determineDefaultHome()
+    this.router.navigateByUrl(path)
+    this.notifyToastr.success(`Welcome ${this.username}`)
     
   }
  

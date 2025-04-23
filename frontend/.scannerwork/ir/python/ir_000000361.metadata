@@ -1,0 +1,6 @@
+gyp.msvs_emulation.MsvsSettings.ConvertVSMacros
+false
+8fbe0ea9677cf9e26c42466166dc4d1e
+gyp.msvs_emulation.ExpandMacros
+==
+GetVSMacroEnv

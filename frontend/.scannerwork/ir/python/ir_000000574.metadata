@@ -1,0 +1,9 @@
+gyp.ninja_syntax.Writer.comment
+false
+6d31bde995558e229af7d4f4362b769c
+builtins.__has_next
+builtins.iter
+builtins.next
+textwrap.wrap
+==
+write

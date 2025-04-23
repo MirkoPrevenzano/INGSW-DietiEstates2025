@@ -33,7 +33,7 @@ export class MarkerService {
             newMarker.bindPopup(popupContent.innerHTML, popupOptions);
           }
           this.markerInstance = newMarker.addTo(mapInstance);
-          this.markers.push(newMarker); // Aggiungi il marker all'array
+          this.markers.push(newMarker); 
 
         }, 500);
 

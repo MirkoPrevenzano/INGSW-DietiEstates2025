@@ -1,0 +1,9 @@
+gyp.xcode_emulation.GetStdout
+false
+17d63a5e6a7c8735294a57ec04c412cb
+subprocess.Popen.__init__
+==
+communicate
+decode
+rstrip
+write

@@ -1,0 +1,7 @@
+packaging._tokenizer.Tokenizer.expect
+false
+b82f8a32c1b519469c1fe4e6ff89b46a
+==
+check
+raise_syntax_error
+read

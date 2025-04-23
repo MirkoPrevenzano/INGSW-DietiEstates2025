@@ -1,0 +1,8 @@
+gyp.xcodeproj_file.PBXProject.RootGroupsTakeOverOnlyChildren
+false
+2b8e1123aef17727d11f1b68d37dcd3b
+builtins.__has_next
+builtins.iter
+builtins.next
+==
+TakeOverOnlyChild

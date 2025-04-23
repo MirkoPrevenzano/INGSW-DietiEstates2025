@@ -1,0 +1,13 @@
+gyp.msvs_emulation.MsvsSettings._GetLdManifestFlags
+false
+e1266e7334995a2b744f853cc56ade1a
+os.path.join
+==
+EnsureDirExists
+WriteOnDiff
+_GetAdditionalManifestFiles
+_Setting
+_TargetConfig
+append
+close
+write

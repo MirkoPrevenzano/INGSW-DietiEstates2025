@@ -1,0 +1,6 @@
+packaging.specifiers.Specifier.contains
+false
+3d2e48a73d6633aba8d534234a677af6
+packaging.specifiers._coerce_version
+==
+_get_operator

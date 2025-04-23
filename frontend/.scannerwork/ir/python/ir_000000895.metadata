@@ -1,0 +1,6 @@
+gyp.generator.make.MakefileWriter.GetSortedXcodePostbuildEnv
+false
+29a31d0e8299ca88bd73c30570a66d3c
+==
+GetPerTargetSetting
+GetSortedXcodeEnv

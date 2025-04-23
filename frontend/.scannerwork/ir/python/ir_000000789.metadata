@@ -1,0 +1,9 @@
+gyp.generator.msvs._GenerateProject
+false
+19452ce306126b247b05c3c012047433
+gyp.generator.msvs._GenerateMSBuildProject
+gyp.generator.msvs._GenerateMSVSProject
+gyp.generator.msvs._GetDefaultConfiguration
+==
+UsesVcxproj
+get

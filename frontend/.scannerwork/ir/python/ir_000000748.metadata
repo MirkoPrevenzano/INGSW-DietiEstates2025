@@ -1,0 +1,6 @@
+gyp.generator.android.AndroidMkWriter.LocalPathify
+false
+8edd71844359ece17e131d4e3cadb743
+os.path.isabs
+os.path.join
+os.path.normpath

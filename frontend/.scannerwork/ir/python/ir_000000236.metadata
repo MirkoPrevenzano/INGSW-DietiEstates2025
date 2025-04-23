@@ -1,0 +1,13 @@
+gyp.xcodeproj_file.PBXNativeTarget.__init__
+false
+ac33fdd64257bb9d63a44955874790b2
+builtins.len
+gyp.xcodeproj_file.PBXFileReference.__init__
+==
+AppendChild
+PBXProjectAncestor
+ProductsGroup
+SetBuildSetting
+SetProperty
+__init__
+startswith

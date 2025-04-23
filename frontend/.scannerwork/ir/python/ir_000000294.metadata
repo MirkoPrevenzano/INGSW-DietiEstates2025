@@ -1,0 +1,5 @@
+packaging._structures.InfinityType.__hash__
+false
+59ec4fdea5e10559bb133099b46aea03
+builtins.hash
+builtins.repr

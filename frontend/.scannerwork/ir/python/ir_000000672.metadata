@@ -1,0 +1,7 @@
+gyp.xcode_emulation.XcodeSettings.GetBundlePlistPath
+false
+14e056f609854cc04976db37e55495e8
+os.path.join
+==
+GetBundleContentsFolderPath
+IsIosFramework

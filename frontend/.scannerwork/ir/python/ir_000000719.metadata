@@ -1,0 +1,8 @@
+gyp.xcode_emulation.GetStdoutQuiet
+false
+ee544805da007964630861b820949239
+subprocess.Popen.__init__
+==
+communicate
+decode
+rstrip

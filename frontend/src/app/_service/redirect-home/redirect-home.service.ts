@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({

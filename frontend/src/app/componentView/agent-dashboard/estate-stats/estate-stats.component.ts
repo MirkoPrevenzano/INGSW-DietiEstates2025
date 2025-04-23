@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AgentService } from '../../../_service/rest-backend/agent/agent.service';
 import { EstateStats } from '../../../model/estateStats';
 import { RouterLink } from '@angular/router';

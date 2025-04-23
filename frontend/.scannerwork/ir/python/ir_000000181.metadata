@@ -1,0 +1,11 @@
+gyp.xcodeproj_file.PBXGroup.TakeOverOnlyChild
+false
+f63a1b2e061a7bd0f1ab8076a5bb18ff
+builtins.__has_next
+builtins.iter
+builtins.len
+builtins.next
+posixpath.join
+==
+Name
+TakeOverOnlyChild

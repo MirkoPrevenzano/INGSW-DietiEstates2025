@@ -1,0 +1,12 @@
+gyp.xcode_emulation.XcodeSettings.GetCflagsCC
+false
+39200a931c419e6b300fc1cd9fb71d69
+builtins.__has_next
+builtins.iter
+builtins.next
+==
+_Appendf
+_Settings
+_Test
+append
+get

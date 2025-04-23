@@ -1,0 +1,5 @@
+gyp.generator.ninja.OpenOutput
+false
+ceda6185435f9ffcfd43580710fcaf17
+builtins.open
+gyp.common.EnsureDirExists

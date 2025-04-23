@@ -1,0 +1,5 @@
+packaging.specifiers.SpecifierSet.__and__
+false
+bc316e128b37449d810cde097c8e81c2
+frozenset.__init__
+packaging.specifiers.SpecifierSet.__init__

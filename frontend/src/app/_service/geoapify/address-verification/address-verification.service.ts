@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Address } from '../../../model/address';
 import { Coordinate } from '../../../model/coordinate';
+import { environment } from '../../../../environments/environment.prod';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddressVerificationService {
-  private readonly geoapifyKey = 'c0324c2c2afb488980eae981c7906a43';
+  private readonly geoapifyKey = environment.geoapifyToken;
 
   async verifyAddress(address:Address): Promise<any> {
     const url = `https://api.geoapify.com/v1/geocode/search?housenumber=${encodeURIComponent(address.houseNumber)}&street=${encodeURIComponent(address.street)}&postcode=${encodeURIComponent(address.postalCode)}&city=${encodeURIComponent(address.city)}&state=${encodeURIComponent(address.state)}&country=${encodeURIComponent(address.country)}&apiKey=${this.geoapifyKey}`;

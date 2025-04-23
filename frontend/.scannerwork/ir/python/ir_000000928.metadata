@@ -1,0 +1,6 @@
+gyp.common.GetEnvironFallback
+false
+1ad209b1dd653b6ab3aa1454903b4d86
+builtins.__has_next
+builtins.iter
+builtins.next

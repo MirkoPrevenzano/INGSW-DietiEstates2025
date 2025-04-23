@@ -1,0 +1,9 @@
+gyp.msvs_emulation.QuoteForRspFile
+false
+e87d89c5d6aa2b5bb7839e052ab7ecaf
+os.path.normpath
+==
+count
+find
+replace
+sub

@@ -1,0 +1,6 @@
+gyp.generator.xcode_test.TestEscapeXcodeDefine.test_Escaping
+false
+205d1bdb0bb22a15c46b550427680363
+==
+EscapeXcodeDefine
+assertEqual

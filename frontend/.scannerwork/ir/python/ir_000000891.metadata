@@ -1,0 +1,15 @@
+gyp.generator.make.MakefileWriter.WriteAndroidNdkModuleRule
+false
+3b6fe69b13c194a7faa4091a75959edb
+builtins.__has_next
+builtins.iter
+builtins.list
+builtins.next
+filter.__init__
+gyp.generator.make.CalculateVariables
+gyp.generator.make.MakefileWriter.WriteAndroidNdkModuleRule.DepsToModules
+map.__init__
+os.path.splitext
+==
+WriteList
+WriteLn

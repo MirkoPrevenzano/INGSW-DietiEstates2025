@@ -1,0 +1,9 @@
+gyp.generator.ninja.NinjaWriter.WriteMacBundle
+false
+bcd64f4f4d521a98347ba3d35494aef5
+==
+AppendPostbuildVariable
+ComputeMacBundleOutput
+GetFrameworkVersion
+append
+build

@@ -1,0 +1,13 @@
+packaging.markers.default_environment
+false
+cc4552e5aa938c291c46fa2707732ae8
+packaging.markers.format_full_version
+platform.machine
+platform.python_implementation
+platform.python_version
+platform.python_version_tuple
+platform.release
+platform.system
+platform.version
+==
+join

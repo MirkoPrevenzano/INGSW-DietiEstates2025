@@ -1,0 +1,10 @@
+gyp.MSVSVersion._RegistryQueryBase
+false
+ea3a7c9550ee88aae26a3a5f948ffb2e
+os.path.join
+subprocess.Popen.__init__
+==
+communicate
+decode
+extend
+get

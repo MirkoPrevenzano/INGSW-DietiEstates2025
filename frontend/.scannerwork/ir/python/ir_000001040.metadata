@@ -1,0 +1,11 @@
+gyp.MSVSProject.Writer._GetSpecForConfiguration
+false
+d766dcc1dbcba5785e8eec80116a6a94
+builtins.__has_next
+builtins.iter
+builtins.next
+gyp.MSVSProject.Tool.__init__
+==
+_GetSpecification
+append
+copy

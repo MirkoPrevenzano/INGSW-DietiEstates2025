@@ -1,0 +1,14 @@
+gyp.generator.msvs._ConvertMSVSBuildAttributes
+false
+e048accbe3f244506fb04f0aeea5550c
+builtins.__has_next
+builtins.iter
+builtins.next
+builtins.print
+gyp.generator.msvs._ConvertMSVSCharacterSet
+gyp.generator.msvs._ConvertMSVSConfigurationType
+gyp.generator.msvs._GetMSVSAttributes
+gyp.generator.msvs._GetMSVSConfigurationType
+==
+ConvertVCMacrosToMSBuild
+endswith

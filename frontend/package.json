@@ -1,10 +1,12 @@
 {
   "name": "dieti-estates-frontend",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "generate-env": "node generate-env.js",
+    "start": "npm run generate-env && ng serve",
+    "build": "npm run generate-env && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -37,11 +39,15 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^19.0.1",
     "@angular-devkit/build-angular": "^19.0.6",
     "@angular/cli": "^19.0.7",
     "@angular/compiler-cli": "^19.0.6",
+    "@types/dotenv-webpack": "^7.0.8",
     "@types/jasmine": "^5.1.0",
     "autoprefixer": "^10.4.20",
+    "dotenv": "^16.5.0",
+    "dotenv-webpack": "^8.1.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

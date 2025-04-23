@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Coordinate } from '../../../model/coordinate';
 import { from, Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PoiService {
-  private readonly geoapifyKey = 'c0324c2c2afb488980eae981c7906a43'; // Sostituisci con la tua chiave API di Geoapify
+  private readonly geoapifyKey = environment.geoapifyToken
   private readonly defaultRadius: number = 1000;
 
   constructor(private readonly http: HttpClient) { }

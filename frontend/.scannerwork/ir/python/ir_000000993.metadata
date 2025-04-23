@@ -1,0 +1,9 @@
+gyp.generator.analyzer._WasGypIncludeFileModified
+false
+bef4d3246ff7a3e970d42eeba1e44707
+builtins.__has_next
+builtins.iter
+builtins.next
+builtins.print
+gyp.generator.analyzer._ToGypPath
+os.path.normpath

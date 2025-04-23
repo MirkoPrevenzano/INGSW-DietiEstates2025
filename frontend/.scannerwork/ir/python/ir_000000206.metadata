@@ -1,0 +1,9 @@
+gyp.xcodeproj_file.XCBuildPhase.AddFile
+false
+40c863b56a6568a0d7599164c7178c77
+gyp.xcodeproj_file.PBXBuildFile.__init__
+==
+AddOrGetFileByPath
+AppendBuildFile
+FileGroup
+_AddBuildFileToDicts

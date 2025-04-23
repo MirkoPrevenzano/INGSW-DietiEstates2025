@@ -1,0 +1,4 @@
+packaging.specifiers.Specifier._get_operator
+false
+41d9006eeb6a3e6347560d932890779b
+builtins.getattr

@@ -1,0 +1,6 @@
+gyp.generator.xcode_test.TestEscapeXcodeDefine.test_InheritedRemainsUnescaped
+false
+85de7273f2a540818debe87b40b305e6
+==
+EscapeXcodeDefine
+assertEqual

@@ -1,0 +1,10 @@
+packaging.metadata._Validator._process_dynamic
+false
+9dd64705929d632cd5a196430853768a
+builtins.__has_next
+builtins.iter
+builtins.list
+builtins.next
+map.__init__
+==
+_invalid_metadata

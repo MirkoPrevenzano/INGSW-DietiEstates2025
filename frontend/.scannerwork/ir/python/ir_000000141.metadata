@@ -1,0 +1,13 @@
+gyp.generator.cmake.PerformBuild
+false
+5e3cb577f3fc0110c686c2adb1702d10
+builtins.__has_next
+builtins.iter
+builtins.next
+builtins.print
+os.path.join
+os.path.normpath
+os.path.relpath
+subprocess.check_call
+==
+get

@@ -1,0 +1,8 @@
+gyp.msvs_emulation.MsvsSettings.GetLibFlags
+false
+e259265e0db0c6710956f8ca55fff264
+gyp.msvs_emulation.MsvsSettings._GetWrapper.__init__
+==
+_GetAdditionalLibraryDirectories
+_TargetConfig
+extend

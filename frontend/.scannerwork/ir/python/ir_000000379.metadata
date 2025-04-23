@@ -1,0 +1,9 @@
+gyp.msvs_emulation.MsvsSettings.GetCflags
+false
+dac73a85e5562442924847ed3d143ad1
+float.__init__
+gyp.msvs_emulation.MsvsSettings._GetWrapper.__init__
+==
+_TargetConfig
+append
+extend

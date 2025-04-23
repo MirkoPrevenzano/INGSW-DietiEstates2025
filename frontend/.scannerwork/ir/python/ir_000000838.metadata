@@ -1,0 +1,11 @@
+gyp.generator.msvs._AddMSBuildAction
+false
+d916fec1837ac7211aef93ba8f4e8adb
+gyp.generator.msvs._FixPath
+gyp.generator.msvs._FixPaths
+==
+ConvertVCMacrosToMSBuild
+add
+append
+extend
+join

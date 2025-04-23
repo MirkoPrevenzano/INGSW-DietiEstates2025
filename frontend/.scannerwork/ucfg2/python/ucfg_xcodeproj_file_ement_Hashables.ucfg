@@ -1,0 +1,301 @@
+
+2gyp.xcodeproj_file.XCHierarchicalElement.Hashablesá
+{/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/frontend/node_modules/node-gyp/gyp/pylib/gyp/xcodeproj_file.pyÚ Ú("2*ñ
+2
+Û â(sq
+
+ã ã(,
+%22*H
+
+__unknown_file (,*
+(gyp.xcodeproj_file.XCHierarchicalElement2PBXProjectAncestorQ
+O
+
+ã ã(8
+%23"__id*4
+
+__unknown_file (*
+
+%22"
+_properties|z
+
+ã ã(E
+%24"__mapGet*#
+
+__unknown_file (
+
+%23*)
+
+__unknown_file (
+	mainGroup2__getitem__¥
+±
+
+ã ã(E
+%25"	__compare*"
+
+__unknown_file (
+==*H
+
+__unknown_file (,*
+(gyp.xcodeproj_file.XCHierarchicalElement*#
+
+__unknown_file (
+
+%24*
+10
+11*ú
+4
+• •()t
+r
+
+• •((
+%1"__id*X
+
+__unknown_file (<*:*
+(gyp.xcodeproj_file.XCHierarchicalElement"
+
+_hashablesxv
+
+• •()
+%2"list.extend*)
+
+__unknown_file (
+
+	hashables*"
+
+__unknown_file (
+
+%12extend"
+
+ß ß(
+
+	hashables*§
+6
+¢ ¢(Cs
+q
+
+¢! ¢(/
+%3"__id*W
+
+__unknown_file (;*9*
+(gyp.xcodeproj_file.XCHierarchicalElement"
+	__class__L
+J
+
+¢! ¢(8
+%4"__id*0
+
+__unknown_file (*
+
+%3"
+
+__name__M
+K
+
+¢! ¢(B
+%5"__concat*
+
+¢! ¢(8
+
+%4*
+
+¢; ¢(B	
+.pathxv
+
+¢ ¢(C
+%6"list.append*)
+
+__unknown_file (
+
+	hashables*"
+
+__unknown_file (
+
+%52append}
+
+£ £(+
+%7"list.append*)
+
+__unknown_file (
+
+	hashables*)
+
+__unknown_file (
+
+	component2append*
+4
+6*ñ
+7
+† †(2N
+L
+
+†$ †(1
+%8"__id*2
+
+__unknown_file (*
+
+	posixpath"
+sepec
+
+† †(2
+%9*$
+
+__unknown_file (
+
+path*"
+
+__unknown_file (
+
+%82splitF
+D
+
+† †(2
+
+components"__id*"
+
+__unknown_file (
+
+%9*
+4
+6*÷
+8
+û û(/zx
+
+û û(/
+%10*H
+
+__unknown_file (,*
+(gyp.xcodeproj_file.XCHierarchicalElement2PathFromSourceTreeAndPathA
+?
+
+û û(/
+path"__id*#
+
+__unknown_file (
+
+%10*
+4
+7*î
+9
+ó ó(?t
+r
+
+ó ó(+
+%11"__id*W
+
+__unknown_file (;*9*
+(gyp.xcodeproj_file.XCHierarchicalElement"
+	__class__N
+L
+
+ó ó(4
+%12"__id*1
+
+__unknown_file (*
+
+%11"
+
+__name__O
+M
+
+ó ó(>
+%13"__concat*
+
+ó ó(4
+
+%12*
+
+ó7 ó(>	
+.namezx
+
+ó ó(?
+%14"list.append*)
+
+__unknown_file (
+
+	hashables*#
+
+__unknown_file (
+
+%132appendv
+t
+
+ò ò(-
+%15"__id*Y
+
+__unknown_file (=*;*
+(gyp.xcodeproj_file.XCHierarchicalElement"
+_propertieswu
+
+ò ò(5
+%16"__mapGet*#
+
+__unknown_file (
+
+%15*$
+
+__unknown_file (
+name2__getitem__zx
+
+ò ò(6
+%17"list.append*)
+
+__unknown_file (
+
+	hashables*#
+
+__unknown_file (
+
+%162append*
+8*Â
+10
+è è(
+
+è è(
+%18"listF
+D
+
+è è(
+	hashables"__id*#
+
+__unknown_file (
+
+%18v
+t
+
+î î(%
+%19"__id*Y
+
+__unknown_file (=*;*
+(gyp.xcodeproj_file.XCHierarchicalElement"
+_propertiesnl
+
+î î(%
+%20*#
+
+__unknown_file (
+
+%19*$
+
+__unknown_file (
+name2__contains__*
+8
+9*ø
+11
+ç ç(+ïí
+
+ç ç(+
+%21*(
+
+__unknown_file (
+
+
+XCObject*H
+
+__unknown_file (,*
+(gyp.xcodeproj_file.XCHierarchicalElement2	Hashables"
+
+ç ç(+
+
+%21B,*
+(gyp.xcodeproj_file.XCHierarchicalElementH

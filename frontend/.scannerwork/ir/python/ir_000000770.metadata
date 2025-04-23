@@ -1,0 +1,12 @@
+gyp.generator.msvs._RuleInputsAndOutputs
+false
+3d92ac7f92062028a44cd6ddfe8a4860
+builtins.__has_next
+builtins.iter
+builtins.next
+gyp.common.OrderedSet.__init__
+gyp.generator.msvs._FixPaths
+gyp.generator.msvs._RuleExpandPath
+==
+add
+get
