@@ -6,6 +6,13 @@
 
 
 
+**Cosa fare nello use-case
+**
+Attore utente generalizzazione di customer, amministratore e gestore amministratore. Utente fa solo login. Amministratore e gestore sono perfetti così (levare solamente il caso d'uso login ereditato da utente)
+Agente immobiliare accede e esporta restano così, levare login e inserire solo carica immobile in collaborazione con geoapify. L'agente immobiliare può visualizzare i propri estate
+
+Customer può registrarsi e fare login con google ma può anche registrarsi normalmente. Effettua ricerche (vedere se meglio come unico use-case o due separati se su mappa o località) e visualizza immobile
+
 
 
 
