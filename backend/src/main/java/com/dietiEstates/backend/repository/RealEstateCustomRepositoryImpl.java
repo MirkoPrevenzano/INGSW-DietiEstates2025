@@ -169,40 +169,26 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
         */
 
 
-        Root<?> realEstateForSale;
-        Root<?> realEstateForRent;
+        Root<?> realEstateType;
+        //Root<?> realEstateForRent;
 
-        String realEstateType = filters.get("type");
-        //realEstate = factory.getTypeQuery(realEstateType);
-        if(realEstateType != null && realEstateType.equals("For Sale"))
-        {
-            realEstateForSale = criteriaQuery.from(RealEstateForSale.class);
-            predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), realEstateForSale.get("realEstateId")));
-            predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), address.get("addressId")));
+        String realEstateTypeS = filters.get("type");
+        if(realEstateTypeS.equals("For Sale"))
+            realEstateType = criteriaQuery.from(RealEstateForSale.class);
+        else
+            realEstateType = criteriaQuery.from(RealEstateForRent.class);
+
+        predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), realEstateType.get("realEstateId")));
+        predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), address.get("addressId")));
             
-            criteriaQuery.select(criteriaBuilder.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
-                                                                              realEstate.get("title"),
-                                                                              realEstate.get("description"),
-                                                                              realEstate.get("price"),
-                                                                              address.get("street"),
-                                                                              address.get("longitude"),
-                                                                              address.get("latitude")))
-                 .where(criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()])));
-        }
-        else if(realEstateType != null && realEstateType.equals("For Rent"))
-        {
-            realEstateForRent = criteriaQuery.from(RealEstateForRent.class);
-            predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), realEstateForRent.get("realEstateId")));
-            predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), address.get("addressId")));
-            criteriaQuery.select(criteriaBuilder.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
-                                                                              realEstate.get("title"),
-                                                                              realEstate.get("description"),
-                                                                              realEstate.get("price"),
-                                                                              address.get("street"),
-                                                                              address.get("longitude"),
-                                                                              address.get("latitude")))                 
-                .where(criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()])));
-        }
+        criteriaQuery.select(criteriaBuilder.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
+                                                                                               realEstate.get("title"),
+                                                                                               realEstate.get("description"),
+                                                                                               realEstate.get("price"),
+                                                                                               address.get("street"),
+                                                                                               address.get("longitude"),
+                                                                                               address.get("latitude")))
+                     .where(criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()])));
 
 
 
@@ -360,6 +346,12 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
 
         List<RealEstatePreviewDTO> list = entityManager.createQuery(criteriaQuery).setFirstResult((int)page.getOffset()).setMaxResults(page.getPageSize())
                             .getResultList(); 
+
+        System.out.printf("\n%s: %d\n", "count da countQuery", count);
+        System.out.printf("\n%s: %d\n", "count da size list", list.size());
+/*         
+        log.info("\n%s: %d\n", "count da countQuery", count);
+        log.info("\n%s: %d\n", "count da size list", list.size()); */
 
         PageImpl<RealEstatePreviewDTO> pageImpl = new PageImpl<>(list, page, count);
         return pageImpl;

@@ -1,6 +1,6 @@
 
 POST http://localhost:8080/agent/c/create-real-estate-for-sale HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjIiwicm9sZXMiOlsiUk9MRV9BR0VOVCJdLCJleHAiOjE3NDUzNjUyNjEsImlhdCI6MTc0NTI3ODg2MX0.Dwk1jOVON1XIcbCF2IUinEYuDDT_BoV5ao6GAea6jUc
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjIiwicm9sZXMiOlsiUk9MRV9BR0VOVCJdLCJleHAiOjE3NDU3NzAyNDcsImlhdCI6MTc0NTY4Mzg0N30.f6MEBPzQQ0GHc9V8eD-qcRaqeI4RMVpumu9Mkva_3HM
 Content-Type: application/json 
 
 {
@@ -55,7 +55,7 @@ Authorization: Bearer
 
 
 GET http://localhost:8080/real-estate/search3?page=0&limit=3&type=For%20Sale&lat=4.9&lon=2&radius=1000000 HTTP/1.1
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjIiwicm9sZXMiOlsiUk9MRV9BR0VOVCJdLCJleHAiOjE3NDUzNjUyNjEsImlhdCI6MTc0NTI3ODg2MX0.Dwk1jOVON1XIcbCF2IUinEYuDDT_BoV5ao6GAea6jUc
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjIiwicm9sZXMiOlsiUk9MRV9BR0VOVCJdLCJleHAiOjE3NDU3NzAyNDcsImlhdCI6MTc0NTY4Mzg0N30.f6MEBPzQQ0GHc9V8eD-qcRaqeI4RMVpumu9Mkva_3HM
 
 
 GET http://localhost:8080/real-estate/search4?page=0&limit=3&type=For%20Sale&lat=4&lon=2&radius=10000hasBbalcony=true HTTP/1.1
