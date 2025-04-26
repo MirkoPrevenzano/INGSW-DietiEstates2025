@@ -62,27 +62,30 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
     {
         CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = filtersQuery(filters, latLongMinMax);
 
-        List<RealEstatePreviewDTO> list = entityManager.createQuery(criteriaQuery)
-                                                       .setFirstResult((int)page.getOffset())
-                                                       .setMaxResults(page.getPageSize())
-                                                       .getResultList(); 
-        return list;
+        List<RealEstatePreviewDTO> pageList = entityManager.createQuery(criteriaQuery)
+                                                           .setFirstResult((int)page.getOffset())
+                                                           .setMaxResults(page.getPageSize())
+                                                           .getResultList(); 
+        return pageList;
     }
 
 
     @Override
     public List<RealEstateRecentDTO> findRecentRealEstates(Long agentId, Integer limit) 
     {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<RealEstateRecentDTO> query = cb.createQuery(RealEstateRecentDTO.class);
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<RealEstateRecentDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstateRecentDTO.class);
         
-        Root<RealEstate> realEstate = query.from(RealEstate.class);
+        Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
     
-        query.select(cb.construct(RealEstateRecentDTO.class, realEstate.get("realEstateId"), realEstate.get("title"), realEstate.get("description"), realEstate.get("uploadingDate")))
-             .where(cb.equal(realEstate.get("realEstateAgent").get("userId"), agentId))
-             .orderBy(cb.desc(realEstate.get("uploadingDate")));
+        criteriaQuery.select(criteriaBuilder.construct(RealEstateRecentDTO.class, realEstate.get("realEstateId"), 
+                                                                                              realEstate.get("title"), 
+                                                                                              realEstate.get("description"), 
+                                                                                              realEstate.get("uploadingDate")))
+                     .where(criteriaBuilder.equal(realEstate.get("realEstateAgent").get("userId"), agentId))
+                     .orderBy(criteriaBuilder.desc(realEstate.get("uploadingDate")));
 
-        return entityManager.createQuery(query)
+        return entityManager.createQuery(criteriaQuery)
                             .setMaxResults(limit)
                             .getResultList();
     }
@@ -91,21 +94,21 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
     @Override
     public List<RealEstateStatsDTO> findRealEstateStats2(Long agentId, Pageable page) 
     {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<RealEstateStatsDTO> query = cb.createQuery(RealEstateStatsDTO.class);
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<RealEstateStatsDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstateStatsDTO.class);
         
-        Root<RealEstate> realEstate = query.from(RealEstate.class);
+        Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
     
-        query.select(cb.construct(RealEstateStatsDTO.class, realEstate.get("realEstateId"), 
-                                                                         realEstate.get("title"), 
-                                                                         realEstate.get("uploadingDate"), 
-                                                                         realEstate.get("realEstateStats").get("viewsNumber"),
-                                                                         realEstate.get("realEstateStats").get("visitsNumber"),
-                                                                         realEstate.get("realEstateStats").get("offersNumber")))
-             .where(cb.equal(realEstate.get("realEstateAgent").get("userId"), agentId))
-             .orderBy(cb.asc(realEstate.get("realEstateId")));
+        criteriaQuery.select(criteriaBuilder.construct(RealEstateStatsDTO.class, realEstate.get("realEstateId"), 
+                                                                                             realEstate.get("title"), 
+                                                                                             realEstate.get("uploadingDate"), 
+                                                                                             realEstate.get("realEstateStats").get("viewsNumber"),
+                                                                                             realEstate.get("realEstateStats").get("visitsNumber"),
+                                                                                             realEstate.get("realEstateStats").get("offersNumber")))
+             .where(criteriaBuilder.equal(realEstate.get("realEstateAgent").get("userId"), agentId))
+             .orderBy(criteriaBuilder.asc(realEstate.get("realEstateId")));
 
-        List<RealEstateStatsDTO> list = entityManager.createQuery(query)
+        List<RealEstateStatsDTO> list = entityManager.createQuery(criteriaQuery)
                                                      .setFirstResult((int)page.getOffset())
                                                      .setMaxResults(page.getPageSize())
                                                      .getResultList();
@@ -117,16 +120,16 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
     @Override
     public Long findLastRealEstate(Long agentId) 
     {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Long> query = cb.createQuery(Long.class);
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
         
-        Root<RealEstate> realEstate = query.from(RealEstate.class);
+        Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
     
-        query.select(realEstate.get("realEstateId"))
-        .where(cb.equal(realEstate.get("realEstateAgent").get("userId"), agentId))
-        .orderBy(cb.desc(realEstate.get("realEstateId")));
+        criteriaQuery.select(realEstate.get("realEstateId"))
+                     .where(criteriaBuilder.equal(realEstate.get("realEstateAgent").get("userId"), agentId))
+                     .orderBy(criteriaBuilder.desc(realEstate.get("realEstateId")));
 
-        Long id = entityManager.createQuery(query)
+        Long id = entityManager.createQuery(criteriaQuery)
                                .setMaxResults(1)
                                .getSingleResult();
 
