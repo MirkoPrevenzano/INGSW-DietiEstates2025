@@ -92,7 +92,7 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
 
 
     @Override
-    public List<RealEstateStatsDTO> findRealEstateStats2(Long agentId, Pageable page) 
+    public List<RealEstateStatsDTO> findRealEstateStats(Long agentId, Pageable page) 
     {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<RealEstateStatsDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstateStatsDTO.class);
