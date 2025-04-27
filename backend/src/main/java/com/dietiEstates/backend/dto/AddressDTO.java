@@ -7,6 +7,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 
+
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -36,4 +37,3 @@ public class AddressDTO
     @NonNull
     private Double latitude;
 }
-

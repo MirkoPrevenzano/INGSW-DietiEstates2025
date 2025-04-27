@@ -7,11 +7,12 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 
+
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class AuthenticationResponseDTO 
 {
     @NonNull
-    private String JWTtoken;
+    private String jwtToken;
 }

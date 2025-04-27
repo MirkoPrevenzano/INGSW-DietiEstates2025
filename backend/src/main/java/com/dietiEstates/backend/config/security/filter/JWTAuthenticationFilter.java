@@ -2,8 +2,6 @@
 package com.dietiEstates.backend.config.security.filter;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -19,6 +17,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 
 import com.dietiEstates.backend.config.security.JWTUtils;
+import com.dietiEstates.backend.dto.AuthenticationResponseDTO;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.FilterChain;
@@ -85,13 +85,11 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         // restituisco token nell'header
         String accessToken = JWTUtils.generateAccessToken(user);
-        response.setHeader("accessToken", accessToken);
+        response.setHeader("jwtToken", accessToken);
         
         // restituisco token come json nel body
-        Map<String,String> tokens = new HashMap<>(); 
-        tokens.put("accessToken", accessToken);
-
+        AuthenticationResponseDTO authenticationResponseDTO = new AuthenticationResponseDTO(accessToken);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        new ObjectMapper().writeValue(response.getOutputStream(), tokens);
+        new ObjectMapper().writeValue(response.getOutputStream(), authenticationResponseDTO);
     }    
 }
