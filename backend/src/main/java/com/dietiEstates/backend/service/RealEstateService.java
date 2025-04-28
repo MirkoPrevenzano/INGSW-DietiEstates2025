@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.dto.RealEstatePreviewsFirstPageDTO;
-import com.dietiEstates.backend.dto.LatLongMinMax;
+import com.dietiEstates.backend.extra.LatLongMinMax;
 import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 

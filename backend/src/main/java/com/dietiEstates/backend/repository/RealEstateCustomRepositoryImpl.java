@@ -9,10 +9,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import com.dietiEstates.backend.dto.LatLongMinMax;
 import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
 import com.dietiEstates.backend.dto.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.RealEstateStatsDTO;
+import com.dietiEstates.backend.extra.LatLongMinMax;
 import com.dietiEstates.backend.model.Address;
 import com.dietiEstates.backend.model.RealEstate;
 import com.dietiEstates.backend.model.RealEstateForRent;

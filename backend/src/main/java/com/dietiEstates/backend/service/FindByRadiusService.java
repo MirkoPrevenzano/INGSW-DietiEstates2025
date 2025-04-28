@@ -3,7 +3,7 @@ package com.dietiEstates.backend.service;
 
 import org.springframework.stereotype.Service;
 
-import com.dietiEstates.backend.dto.LatLongMinMax;
+import com.dietiEstates.backend.extra.LatLongMinMax;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

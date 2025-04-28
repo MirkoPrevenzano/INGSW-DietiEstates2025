@@ -1,6 +1,9 @@
 
 package com.dietiEstates.backend.dto;
 
+import com.dietiEstates.backend.extra.EstateDescribe;
+import com.dietiEstates.backend.extra.EstateFeatures;
+import com.dietiEstates.backend.extra.EstateLocationFeatures;
 import com.dietiEstates.backend.model.Address;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
