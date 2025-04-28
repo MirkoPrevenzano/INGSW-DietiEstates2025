@@ -9,11 +9,10 @@ const environmentFileContent = `
 export const environment = {
   production: false,
   googleApiKey: '${env.GOOGLE_API_KEY}',
-  sonarToken: '${env.SONAR_TOKEN}',
   geoapifyToken: '${env.GEOAPIFY_TOKEN}'
 };
 `;
-
+//ciao
 // Scrive il file environment.ts
 writeFileSync('./src/environments/environment.ts', environmentFileContent);
 
@@ -22,7 +21,6 @@ const environmentProdFileContent = `
 export const environment = {
   production: true,
   googleApiKey: '${env.GOOGLE_API_KEY}',
-  sonarToken: '${env.SONAR_TOKEN}',
   geoapifyToken: '${env.GEOAPIFY_TOKEN}'
 };
 `;
