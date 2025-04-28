@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dietiEstates.backend.dto.AdminRegistrationDTO;
-import com.dietiEstates.backend.dto.AdministratorDTO;
 import com.dietiEstates.backend.dto.OldNewPasswordDTO;
 import com.dietiEstates.backend.dto.UserDTO;
 import com.dietiEstates.backend.service.AdministratorService;
@@ -37,20 +36,6 @@ public class AdministratorController
     public ResponseEntity<String> aa() 
     {
         return ResponseEntity.badRequest().body("sdfgsdg");
-    }
-
-    @PostMapping(path = "create-admin")
-    public ResponseEntity<?> createAdmin(@RequestBody AdministratorDTO administratorDTO) 
-    {
-        try 
-        {
-            administratorService.createAdmin(administratorDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        } 
-        catch (IllegalArgumentException e) 
-        {
-            return ResponseEntity.badRequest().header("Error", e.getMessage()).body(null);
-        }
     }
     
 

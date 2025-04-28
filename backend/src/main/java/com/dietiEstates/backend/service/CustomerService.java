@@ -11,7 +11,6 @@ import com.dietiEstates.backend.dto.AddressDTO;
 import com.dietiEstates.backend.dto.EstateDescribe;
 import com.dietiEstates.backend.dto.EstateFeatures;
 import com.dietiEstates.backend.dto.EstateLocationFeatures;
-import com.dietiEstates.backend.dto.RealEstateCompleteDTO;
 import com.dietiEstates.backend.dto.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;

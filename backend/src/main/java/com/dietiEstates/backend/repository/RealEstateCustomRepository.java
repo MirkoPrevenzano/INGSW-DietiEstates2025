@@ -19,6 +19,6 @@ public interface RealEstateCustomRepository
     public Page<RealEstatePreviewDTO> findRealEstateByFilters3(Map<String,String> filters, Pageable page, LatLongMinMax latLongMinMax);
     public List<RealEstatePreviewDTO> findRealEstateByFilters4(Map<String,String> filters, Pageable page, LatLongMinMax latLongMinMax);
     public List<RealEstateRecentDTO> findRecentRealEstates(Long agentId, Integer limit);
-    public List<RealEstateStatsDTO> findRealEstateStats2(Long agentId, Pageable page);
+    public List<RealEstateStatsDTO> findRealEstateStats(Long agentId, Pageable page);
     public Long findLastRealEstate(Long agentId);
 }

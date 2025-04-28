@@ -4,7 +4,6 @@ package com.dietiEstates.backend.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dietiEstates.backend.dto.RealEstateCompleteDTO;
 import com.dietiEstates.backend.dto.RealEstateCreationDTO;
 import com.dietiEstates.backend.model.RealEstate;
 import com.dietiEstates.backend.service.CustomerService;

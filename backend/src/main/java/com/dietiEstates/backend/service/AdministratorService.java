@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.dto.AdminRegistrationDTO;
-import com.dietiEstates.backend.dto.AdministratorDTO;
 import com.dietiEstates.backend.dto.OldNewPasswordDTO;
 import com.dietiEstates.backend.dto.UserDTO;
 import com.dietiEstates.backend.model.Administrator;
@@ -34,41 +33,7 @@ public class AdministratorService
     private final PasswordEncoder passwordEncoder;
     private final ValidatorService validatorService;
     private final MockingStatsService mockingStatsService;
-
-
-    public void createAdmin(AdministratorDTO administratorDTO) throws IllegalArgumentException, MappingException
-    {
-        if(administratorRepository.findByUsername(administratorDTO.getUsername()).isPresent())
-        {
-            log.error("This username is already present!");
-            throw new IllegalArgumentException("This username is already present!");
-        }
-
-        try 
-        {
-            validatorService.passwordValidator(administratorDTO.getPassword());
-        } 
-        catch (IllegalArgumentException e) 
-        {
-            log.error(e.getMessage());
-            throw e;
-        }
-
-        Administrator administrator;
-        try 
-        {
-            administrator = modelMapper.map(administratorDTO, Administrator.class);
-        } 
-        catch (MappingException e) 
-        {
-            log.error("Problems while mapping! Probably the source object was NULL!");
-            throw e;
-        }
-        administrator.setPassword(passwordEncoder.encode(administrator.getPassword()));
-        administrator = administratorRepository.save(administrator);
-
-        log.info("Administrator was created successfully!");
-    }
+    
 
 
     @Transactional

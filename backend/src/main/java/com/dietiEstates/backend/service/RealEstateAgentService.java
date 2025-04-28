@@ -213,7 +213,7 @@ public class RealEstateAgentService
     
     public List<RealEstateStatsDTO> getRealEstateStats(String username, Pageable page) 
     {
-        return realEstateRepository.findRealEstateStats2(realEstateAgentRepository.findByUsername(username).get().getUserId(), 
+        return realEstateRepository.findRealEstateStats(realEstateAgentRepository.findByUsername(username).get().getUserId(), 
                                                         page);
     }
 
