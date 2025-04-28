@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.config.security;
+package com.dietiEstates.backend.enums;
 
 
 
