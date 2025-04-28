@@ -49,9 +49,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-*.class
-
-
 # Backend
 backend/HELP.md
 backend/target
