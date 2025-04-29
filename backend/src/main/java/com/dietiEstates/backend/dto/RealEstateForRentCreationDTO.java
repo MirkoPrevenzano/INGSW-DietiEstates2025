@@ -4,14 +4,13 @@ package com.dietiEstates.backend.dto;
 import com.dietiEstates.backend.extra.RealEstateBooleanFeatures;
 import com.dietiEstates.backend.extra.RealEstateLocationFeatures;
 import com.dietiEstates.backend.extra.RealEstateMainFeatures;
-import com.dietiEstates.backend.model.Address;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+
 
 
 @Data
