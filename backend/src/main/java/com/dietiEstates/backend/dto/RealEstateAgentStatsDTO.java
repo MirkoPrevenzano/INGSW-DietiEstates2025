@@ -2,10 +2,12 @@
 package com.dietiEstates.backend.dto;
 
 import com.dietiEstates.backend.model.embeddable.RealEstateAgentStats;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+
 
 
 @Data
