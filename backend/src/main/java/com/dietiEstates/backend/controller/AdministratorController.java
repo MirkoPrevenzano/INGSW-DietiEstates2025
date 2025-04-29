@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dietiEstates.backend.dto.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.OldNewPasswordDTO;
-import com.dietiEstates.backend.dto.UserDTO;
+import com.dietiEstates.backend.dto.AgentCustomerRegistrationDTO;
 import com.dietiEstates.backend.service.AdministratorService;
 
 import lombok.RequiredArgsConstructor;
@@ -59,11 +59,11 @@ public class AdministratorController
     
 
     @PostMapping(path = "{username}/create-real-estate-agent")
-    public ResponseEntity<?> createRealEstateAgent(@PathVariable String username, @RequestBody UserDTO realEstateAgentDTO) 
+    public ResponseEntity<?> createRealEstateAgent(@PathVariable String username, @RequestBody AgentCustomerRegistrationDTO agentCustomerRegistrationDTO) 
     {
         try 
         {
-            administratorService.createRealEstateAgent(username, realEstateAgentDTO);
+            administratorService.createRealEstateAgent(username, agentCustomerRegistrationDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } 
         catch (UsernameNotFoundException e)

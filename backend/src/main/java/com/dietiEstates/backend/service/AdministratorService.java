@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.dto.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.OldNewPasswordDTO;
-import com.dietiEstates.backend.dto.UserDTO;
+import com.dietiEstates.backend.dto.AgentCustomerRegistrationDTO;
 import com.dietiEstates.backend.model.Administrator;
 import com.dietiEstates.backend.model.RealEstateAgent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
@@ -76,7 +76,7 @@ public class AdministratorService
 
 
     @Transactional
-    public void createRealEstateAgent(String username, UserDTO realEstateAgentDTO) throws UsernameNotFoundException, 
+    public void createRealEstateAgent(String username, AgentCustomerRegistrationDTO agentCustomerRegistrationDTO) throws UsernameNotFoundException, 
                                                                                           IllegalArgumentException, MappingException
     {
         Optional<Administrator> administratorOptional = administratorRepository.findByUsername(username);
@@ -87,7 +87,7 @@ public class AdministratorService
         }
         Administrator administrator = administratorOptional.get();
 
-        if(realEstateAgentRepository.findByUsername(realEstateAgentDTO.getUsername()).isPresent())
+        if(realEstateAgentRepository.findByUsername(agentCustomerRegistrationDTO.getUsername()).isPresent())
         {
             log.error("This username is already present!");
             throw new IllegalArgumentException("This username is already present!");
@@ -95,7 +95,7 @@ public class AdministratorService
 
         try 
         {
-            validatorService.passwordValidator(realEstateAgentDTO.getPassword());
+            validatorService.passwordValidator(agentCustomerRegistrationDTO.getPassword());
         } 
         catch (IllegalArgumentException e) 
         {
@@ -106,7 +106,7 @@ public class AdministratorService
         RealEstateAgent realEstateAgent;
         try 
         {
-            realEstateAgent = modelMapper.map(realEstateAgentDTO, RealEstateAgent.class);
+            realEstateAgent = modelMapper.map(agentCustomerRegistrationDTO, RealEstateAgent.class);
         } 
         catch (MappingException e) 
         {
