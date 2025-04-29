@@ -3,20 +3,20 @@ package com.dietiEstates.backend.extra;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.NonNull;
 
 
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class EstateDescribe 
+public class RealEstateMainFeatures 
 {
     @NonNull
-    private String description;
+    private String title;
 
     @NonNull
-    private String title;
+    private String description;
     
     @NonNull
     private Double price;
@@ -25,23 +25,23 @@ public class EstateDescribe
     private Double condoFee;
     
     @NonNull
-    private String energyClass;
-    
-    @NonNull
     private Double size;
 
     @NonNull
     private Integer roomsNumber;
 
     @NonNull
-    private String estateCondition;
-
-    @NonNull
-    private String furnitureCondition;
+    private Integer floorNumber;
 
     @NonNull
     private Integer parkingSpacesNumber;
 
     @NonNull
-    private Integer floorNumber;
+    private String energyClass;
+    
+    @NonNull
+    private String estateCondition;
+
+    @NonNull
+    private String furnitureCondition;
 }

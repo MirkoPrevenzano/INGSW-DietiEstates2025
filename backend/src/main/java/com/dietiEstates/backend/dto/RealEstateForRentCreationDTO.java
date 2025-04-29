@@ -1,9 +1,9 @@
 
 package com.dietiEstates.backend.dto;
 
-import com.dietiEstates.backend.extra.EstateDescribe;
-import com.dietiEstates.backend.extra.EstateFeatures;
-import com.dietiEstates.backend.extra.EstateLocationFeatures;
+import com.dietiEstates.backend.extra.RealEstateBooleanFeatures;
+import com.dietiEstates.backend.extra.RealEstateLocationFeatures;
+import com.dietiEstates.backend.extra.RealEstateMainFeatures;
 import com.dietiEstates.backend.model.Address;
 
 import lombok.Data;
@@ -28,11 +28,11 @@ public class RealEstateForRentCreationDTO extends RealEstateCreationDTO
 
 
 
-    public RealEstateForRentCreationDTO(AddressDTO address, EstateDescribe estateDescribe, 
-                                        EstateFeatures estateFeatures, EstateLocationFeatures estateLocationFeatures, 
+    public RealEstateForRentCreationDTO(AddressDTO address, RealEstateMainFeatures realEstateMainFeatures, 
+                                        RealEstateBooleanFeatures realEstateBooleanFeatures, RealEstateLocationFeatures realEstateLocationFeatures, 
                                         Double securityDeposit, Integer contractYears)
     {
-        super(address, estateDescribe, estateFeatures, estateLocationFeatures);
+        super(address, realEstateMainFeatures, realEstateBooleanFeatures, realEstateLocationFeatures);
         this.securityDeposit = securityDeposit;
         this.contractYears = contractYears;
     }

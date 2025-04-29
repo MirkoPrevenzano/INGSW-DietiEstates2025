@@ -1,9 +1,9 @@
 
 package com.dietiEstates.backend.dto;
 
-import com.dietiEstates.backend.extra.EstateDescribe;
-import com.dietiEstates.backend.extra.EstateFeatures;
-import com.dietiEstates.backend.extra.EstateLocationFeatures;
+import com.dietiEstates.backend.extra.RealEstateMainFeatures;
+import com.dietiEstates.backend.extra.RealEstateBooleanFeatures;
+import com.dietiEstates.backend.extra.RealEstateLocationFeatures;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,13 +21,13 @@ public class RealEstateCreationDTO
     private AddressDTO address;
 
     @NonNull
-    private EstateDescribe estateDescribe;
+    private RealEstateMainFeatures realEstateMainFeatures;
 
     @NonNull
-    private EstateFeatures estateFeatures;
+    private RealEstateBooleanFeatures realEstateBooleanFeatures;
 
     @NonNull
-    private EstateLocationFeatures estateLocationFeatures;
+    private RealEstateLocationFeatures realEstateLocationFeatures;
 
 }
 
