@@ -12,7 +12,7 @@ import org.springframework.data.domain.Pageable;
 import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
 import com.dietiEstates.backend.dto.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.RealEstateStatsDTO;
-import com.dietiEstates.backend.extra.LatLongMinMax;
+import com.dietiEstates.backend.extra.CoordinatesMinMax;
 import com.dietiEstates.backend.model.Address;
 import com.dietiEstates.backend.model.RealEstate;
 import com.dietiEstates.backend.model.RealEstateForRent;
@@ -39,9 +39,9 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
 
 
     @Override
-    public Page<RealEstatePreviewDTO> findRealEstateByFilters3(Map<String,String> filters, Pageable page, LatLongMinMax latLongMinMax) 
+    public Page<RealEstatePreviewDTO> findRealEstateByFilters3(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax) 
     {
-        CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = filtersQuery(filters, latLongMinMax);
+        CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = filtersQuery(filters, coordinatesMinMax);
 
         List<RealEstatePreviewDTO> pageList = entityManager.createQuery(criteriaQuery)
                                                            .setFirstResult((int)page.getOffset())
@@ -58,9 +58,9 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
 
 
     @Override
-    public List<RealEstatePreviewDTO> findRealEstateByFilters4(Map<String,String> filters, Pageable page, LatLongMinMax latLongMinMax) 
+    public List<RealEstatePreviewDTO> findRealEstateByFilters4(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax) 
     {
-        CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = filtersQuery(filters, latLongMinMax);
+        CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = filtersQuery(filters, coordinatesMinMax);
 
         List<RealEstatePreviewDTO> pageList = entityManager.createQuery(criteriaQuery)
                                                            .setFirstResult((int)page.getOffset())
@@ -140,7 +140,7 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
 
 
     @SuppressWarnings("null")
-    private CriteriaQuery<RealEstatePreviewDTO> filtersQuery(Map<String,String> filters, LatLongMinMax latLongMinMax)
+    private CriteriaQuery<RealEstatePreviewDTO> filtersQuery(Map<String,String> filters, CoordinatesMinMax coordinatesMinMax)
     {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstatePreviewDTO.class);
@@ -171,10 +171,10 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
 
         List<Predicate> predicates = new ArrayList<>();
 
-        predicates.add(criteriaBuilder.ge(latitude, latLongMinMax.getLatMin()));
-        predicates.add(criteriaBuilder.le(latitude, latLongMinMax.getLatMax()));
-        predicates.add(criteriaBuilder.le(longitude, latLongMinMax.getLongMin()));
-        predicates.add(criteriaBuilder.ge(longitude, latLongMinMax.getLongMax()));
+        predicates.add(criteriaBuilder.ge(latitude, coordinatesMinMax.getLatMin()));
+        predicates.add(criteriaBuilder.le(latitude, coordinatesMinMax.getLatMax()));
+        predicates.add(criteriaBuilder.le(longitude, coordinatesMinMax.getLongMin()));
+        predicates.add(criteriaBuilder.ge(longitude, coordinatesMinMax.getLongMax()));
               
         for(Map.Entry<String,String> entry : filters.entrySet())
         {

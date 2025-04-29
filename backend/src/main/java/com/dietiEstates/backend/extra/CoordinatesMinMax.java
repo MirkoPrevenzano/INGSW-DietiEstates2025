@@ -6,10 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
+
+
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class LatLongMinMax 
+public class CoordinatesMinMax 
 {
     @NonNull
     private Double latMin;

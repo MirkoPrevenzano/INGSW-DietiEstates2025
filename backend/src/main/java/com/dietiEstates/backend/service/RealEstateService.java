@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.dto.RealEstatePreviewsFirstPageDTO;
-import com.dietiEstates.backend.extra.LatLongMinMax;
+import com.dietiEstates.backend.extra.CoordinatesMinMax;
 import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 
@@ -29,11 +29,11 @@ public class RealEstateService
 
     public RealEstatePreviewsFirstPageDTO search3(Map<String,String> filters, Pageable page)
     {
-        LatLongMinMax latLongMinMax = findByRadiusService.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
+        CoordinatesMinMax coordinatesMinMax = findByRadiusService.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
                                                                                Double.valueOf(filters.get("lat")), 
                                                                                Double.valueOf(filters.get("lon")));
 
-        Page<RealEstatePreviewDTO> realEstatePreviewsPage = realEstateRepository.findRealEstateByFilters3(filters, page, latLongMinMax);
+        Page<RealEstatePreviewDTO> realEstatePreviewsPage = realEstateRepository.findRealEstateByFilters3(filters, page, coordinatesMinMax);
 
         RealEstatePreviewsFirstPageDTO RealEstatePreviewsFirstPageDTO = new RealEstatePreviewsFirstPageDTO(realEstatePreviewsPage.getContent(),
                                                                                                         realEstatePreviewsPage.getTotalElements(), 
@@ -44,10 +44,10 @@ public class RealEstateService
 
     public List<RealEstatePreviewDTO> search4(Map<String,String> filters, Pageable page)
     {
-        LatLongMinMax latLongMinMax = findByRadiusService.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
+        CoordinatesMinMax coordinatesMinMax = findByRadiusService.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
                                                                                Double.valueOf(filters.get("lat")), 
                                                                                Double.valueOf(filters.get("lon")));
                                                                                
-        return realEstateRepository.findRealEstateByFilters4(filters, page, latLongMinMax);
+        return realEstateRepository.findRealEstateByFilters4(filters, page, coordinatesMinMax);
     }
 }

@@ -3,7 +3,7 @@ package com.dietiEstates.backend.service;
 
 import org.springframework.stereotype.Service;
 
-import com.dietiEstates.backend.extra.LatLongMinMax;
+import com.dietiEstates.backend.extra.CoordinatesMinMax;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +18,7 @@ public class FindByRadiusService
 	private int distancePerLongitudeGrade = 78000;
     
 
-    public LatLongMinMax calcoloLatLongMinMax(Integer radius, Double lat0, Double long0)
+    public CoordinatesMinMax calcoloLatLongMinMax(Integer radius, Double lat0, Double long0)
 	{		
 		System.out.println("radius: " + radius);
 		System.out.println("lat0: " + lat0);
@@ -49,6 +49,6 @@ public class FindByRadiusService
 		System.out.println("longMin: " + longMin);
 		System.out.println("longMax: " + longMax);
 
-        return new LatLongMinMax(latMin, latMax, longMin, longMax);
+        return new CoordinatesMinMax(latMin, latMax, longMin, longMax);
 	}
 }
