@@ -3,9 +3,14 @@ package com.dietiEstates.backend.service;
 
 import org.springframework.stereotype.Service;
 
+import com.dietiEstates.backend.enums.NotaryDeedState;
+import com.dietiEstates.backend.extra.EnumInterface;
+
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Arrays;
 import java.util.regex.Pattern;
+
 
 
 @Service
@@ -26,7 +31,8 @@ public class ValidatorService
     private static final Pattern passwordPattern3 = Pattern.compile("[!-/,:-@,{-}]+");
 
 
-    void emailValidator(String email) throws IllegalArgumentException
+
+    public void emailValidator(String email) throws IllegalArgumentException
     {
         if(!(emailPattern.matcher(email).matches() && email.length() <= 320))
         {
@@ -35,7 +41,7 @@ public class ValidatorService
     }
 
 
-    void passwordValidator(String password) throws IllegalArgumentException
+    public void passwordValidator(String password) throws IllegalArgumentException
     {
         if(!(password.length() >= 10 && passwordPattern1.matcher(password).find() 
             && passwordPattern2.matcher(password).find() && passwordPattern3.matcher(password).find()))
@@ -44,6 +50,29 @@ public class ValidatorService
         }         
     }
     
+    
+    public <E extends Enum<E>> E enumValidator(Class<E> enumClass, String value) 
+    {
+        for(E e : enumClass.getEnumConstants())
+        {
+            System.out.printf("e.name = %s\nvalue: %s\n\n", ((EnumInterface) e).getValue(), value);
+            if ( ((EnumInterface) e).getValue().equalsIgnoreCase(value) )
+            {
+                return e;
+            }
+        }
+
+        throw new IllegalArgumentException("VALORE ENUM SBAGLIATO! Classe: " + enumClass.getSimpleName());
+    }
+
+
+    public <E extends Enum<E>> E fromValue(Class<E> enumClass, String value) 
+    {
+        return Arrays.stream(enumClass.getEnumConstants())
+                     .filter(e -> ((EnumInterface) e).getValue().equalsIgnoreCase(value))
+                     .findFirst()
+                     .orElseThrow(() -> new IllegalArgumentException("Valore non valido per enum " + enumClass.getSimpleName()));
+    }
 
     //TODO methods:
     //usernamevalidator  

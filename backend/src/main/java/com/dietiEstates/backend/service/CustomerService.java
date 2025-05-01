@@ -103,8 +103,8 @@ public class CustomerService
 
                 Double size = realEstate.getInternalFeatures().getSize();
                 Integer roomsNumber = realEstate.getInternalFeatures().getRoomsNumber();
-                String estateCondition = realEstate.getInternalFeatures().getEstateCondition();
-                String furnitureCondition = realEstate.getInternalFeatures().getFurnitureCondition();
+                String estateCondition = realEstate.getInternalFeatures().getEstateCondition().getValue();
+                String furnitureCondition = realEstate.getInternalFeatures().getFurnitureCondition().getValue();
 
                 Integer parkingSpacesNumber = realEstate.getExternalFeatures().getParkingSpacesNumber();
                 Integer floorNumber = realEstate.getExternalFeatures().getFloorNumber();

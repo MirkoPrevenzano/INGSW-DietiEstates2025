@@ -1,9 +1,9 @@
 
 package com.dietiEstates.backend.enums;
 
+import com.dietiEstates.backend.extra.EnumInterface;
 
-
-public enum EstateCondition 
+public enum EstateCondition implements EnumInterface
 {
     UNDER_CONSTRUCTION("Under construction"), 
     NEW("new"), 
@@ -14,6 +14,17 @@ public enum EstateCondition
     EXCELLENT("Excellent");
     
 
-    
-    EstateCondition(String string) {}
+    private final String value;
+
+
+    EstateCondition(String value) 
+    {
+        this.value = value;
+    };
+
+
+    public String getValue() 
+    {
+        return this.value;
+    }
 }

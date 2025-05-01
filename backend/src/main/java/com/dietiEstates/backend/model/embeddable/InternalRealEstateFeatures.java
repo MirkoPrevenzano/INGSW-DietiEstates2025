@@ -1,9 +1,13 @@
 
 package com.dietiEstates.backend.model.embeddable;
 
+import com.dietiEstates.backend.enums.EstateCondition;
+import com.dietiEstates.backend.enums.FurnitureCondition;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -29,16 +33,18 @@ public class InternalRealEstateFeatures
     private Integer roomsNumber;
 
     @NonNull
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "estate_condition", 
             nullable = false, 
             updatable = true)
-    private String estateCondition;
+    private EstateCondition estateCondition;
 
     @NonNull
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "furniture_condition", 
             nullable = false, 
             updatable = true)
-    private String furnitureCondition;
+    private FurnitureCondition furnitureCondition;
 
     @Column(name = "air_conditioning",
             nullable = true, 

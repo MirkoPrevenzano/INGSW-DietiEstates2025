@@ -21,6 +21,9 @@ import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.RealEstateStatsDTO;
+import com.dietiEstates.backend.enums.EstateCondition;
+import com.dietiEstates.backend.enums.FurnitureCondition;
+import com.dietiEstates.backend.enums.NotaryDeedState;
 import com.dietiEstates.backend.model.Address;
 import com.dietiEstates.backend.model.Photo;
 import com.dietiEstates.backend.model.RealEstate;
@@ -50,6 +53,7 @@ public class RealEstateAgentService
     private final S3Service s3Service;
     private final MockingStatsService mockingStatsService;
     private final ModelMapper modelMapper;
+    private final ValidatorService validatorService;
 
 
 
@@ -237,8 +241,8 @@ public class RealEstateAgentService
         InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(realEstateForRentCreationDTO.getRealEstateMainFeatures().getSize(), 
                                                                        realEstateForRentCreationDTO.getRealEstateMainFeatures().getRoomsNumber(), 
-                                                                       realEstateForRentCreationDTO.getRealEstateMainFeatures().getEstateCondition(), 
-                                                                       realEstateForRentCreationDTO.getRealEstateMainFeatures().getFurnitureCondition());
+                                                                       EstateCondition.valueOf(realEstateForRentCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
+                                                                       FurnitureCondition.valueOf(realEstateForRentCreationDTO.getRealEstateMainFeatures().getEstateCondition()));
         ExternalRealEstateFeatures externalRealEstateFeatures = 
                                         new ExternalRealEstateFeatures(realEstateForRentCreationDTO.getRealEstateMainFeatures().getParkingSpacesNumber(), 
                                                                        realEstateForRentCreationDTO.getRealEstateMainFeatures().getFloorNumber());
@@ -273,8 +277,8 @@ public class RealEstateAgentService
         InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(realEstateForSaleCreationDTO.getRealEstateMainFeatures().getSize(), 
                                                                        realEstateForSaleCreationDTO.getRealEstateMainFeatures().getRoomsNumber(), 
-                                                                       realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEstateCondition(), 
-                                                                       realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFurnitureCondition());
+                                                                       validatorService.enumValidator(EstateCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
+                                                                       validatorService.enumValidator(FurnitureCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()));
         ExternalRealEstateFeatures externalRealEstateFeatures = 
                                         new ExternalRealEstateFeatures(realEstateForSaleCreationDTO.getRealEstateMainFeatures().getParkingSpacesNumber(), 
                                                                        realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFloorNumber());
