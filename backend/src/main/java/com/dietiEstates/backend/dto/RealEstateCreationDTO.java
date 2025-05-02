@@ -18,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class RealEstateCreationDTO
 {
     @NonNull
-    private AddressDTO address;
+    private AddressDTO addressDTO;
 
     @NonNull
     private RealEstateMainFeatures realEstateMainFeatures;

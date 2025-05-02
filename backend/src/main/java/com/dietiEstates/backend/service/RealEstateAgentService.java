@@ -71,7 +71,7 @@ public class RealEstateAgentService
         
         RealEstateForSale realEstateForSale = realEstateForSaleMapper(realEstateForSaleCreationDTO);
 
-        Address address = modelMapper.map(realEstateForSaleCreationDTO.getAddress(), Address.class);
+        Address address = modelMapper.map(realEstateForSaleCreationDTO.getAddressDTO(), Address.class);
         realEstateForSale.addAddress(address);
 
         mockingStatsService.mockEstateStats(realEstateForSale);
@@ -103,7 +103,7 @@ public class RealEstateAgentService
 
         RealEstateForRent realEstateForRent = realEstateForRentMapper(realEstateForRentCreationDTO);
 
-        Address address = modelMapper.map(realEstateForRentCreationDTO.getAddress(), Address.class);
+        Address address = modelMapper.map(realEstateForRentCreationDTO.getAddressDTO(), Address.class);
         realEstateForRent.addAddress(address);
 
         mockingStatsService.mockEstateStats(realEstateForRent);

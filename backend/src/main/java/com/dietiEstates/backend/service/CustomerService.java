@@ -132,21 +132,21 @@ public class CustomerService
                 realEstateLocationFeatures.setNearPublicTransport(realEstate.getExternalFeatures().isNearPublicTransport());
 
 
-                AddressDTO address = modelMapper.map(realEstate.getAddress(), AddressDTO.class);
+                AddressDTO addressDTO = modelMapper.map(realEstate.getAddress(), AddressDTO.class);
 
 
                 if(realEstate instanceof RealEstateForSale)
                 {
                     RealEstateForSale realEstateForSale = (RealEstateForSale) realEstate;
                     String notaryDeedState = realEstateForSale.getNotaryDeedState().getValue();
-                    return new RealEstateForSaleCreationDTO(address, realEstateMainFeatures, realEstateBooleanFeatures, realEstateLocationFeatures, notaryDeedState);
+                    return new RealEstateForSaleCreationDTO(addressDTO, realEstateMainFeatures, realEstateBooleanFeatures, realEstateLocationFeatures, notaryDeedState);
                 }
                 else
                 {
                     RealEstateForRent realEstateForSale = (RealEstateForRent) realEstate;
                     Double securityDeposit = realEstateForSale.getSecurityDeposit();
                     Integer contractYears = realEstateForSale.getContractYears();
-                    return new RealEstateForRentCreationDTO(address, realEstateMainFeatures, realEstateBooleanFeatures, realEstateLocationFeatures, securityDeposit, contractYears);
+                    return new RealEstateForRentCreationDTO(addressDTO, realEstateMainFeatures, realEstateBooleanFeatures, realEstateLocationFeatures, securityDeposit, contractYears);
                 }
             }
             

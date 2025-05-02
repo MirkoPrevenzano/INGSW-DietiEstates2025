@@ -24,11 +24,11 @@ public class RealEstateForSaleCreationDTO extends RealEstateCreationDTO
 
 
 
-    public RealEstateForSaleCreationDTO(AddressDTO address, RealEstateMainFeatures realEstateMainFeatures, 
+    public RealEstateForSaleCreationDTO(AddressDTO addressDTO, RealEstateMainFeatures realEstateMainFeatures, 
                                         RealEstateBooleanFeatures realEstateBooleanFeatures, RealEstateLocationFeatures realEstateLocationFeatures, 
                                         String notaryDeedState)
     {
-        super(address, realEstateMainFeatures, realEstateBooleanFeatures, realEstateLocationFeatures);
+        super(addressDTO, realEstateMainFeatures, realEstateBooleanFeatures, realEstateLocationFeatures);
         this.notaryDeedState = notaryDeedState;
     }
 }

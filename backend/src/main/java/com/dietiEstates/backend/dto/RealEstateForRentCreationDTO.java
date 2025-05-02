@@ -27,11 +27,11 @@ public class RealEstateForRentCreationDTO extends RealEstateCreationDTO
 
 
 
-    public RealEstateForRentCreationDTO(AddressDTO address, RealEstateMainFeatures realEstateMainFeatures, 
+    public RealEstateForRentCreationDTO(AddressDTO addressDTO, RealEstateMainFeatures realEstateMainFeatures, 
                                         RealEstateBooleanFeatures realEstateBooleanFeatures, RealEstateLocationFeatures realEstateLocationFeatures, 
                                         Double securityDeposit, Integer contractYears)
     {
-        super(address, realEstateMainFeatures, realEstateBooleanFeatures, realEstateLocationFeatures);
+        super(addressDTO, realEstateMainFeatures, realEstateBooleanFeatures, realEstateLocationFeatures);
         this.securityDeposit = securityDeposit;
         this.contractYears = contractYears;
     }
