@@ -65,15 +65,6 @@ public class ValidatorService
         throw new IllegalArgumentException("VALORE ENUM SBAGLIATO! Classe: " + enumClass.getSimpleName());
     }
 
-
-    public <E extends Enum<E>> E fromValue(Class<E> enumClass, String value) 
-    {
-        return Arrays.stream(enumClass.getEnumConstants())
-                     .filter(e -> ((EnumInterface) e).getValue().equalsIgnoreCase(value))
-                     .findFirst()
-                     .orElseThrow(() -> new IllegalArgumentException("Valore non valido per enum " + enumClass.getSimpleName()));
-    }
-
     //TODO methods:
     //usernamevalidator  
 }

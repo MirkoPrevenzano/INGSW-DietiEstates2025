@@ -99,7 +99,7 @@ public class CustomerService
                 String description = realEstate.getDescription();
                 Double price = realEstate.getPrice();
                 Double condoFee = realEstate.getCondoFee();
-                String energyClass = realEstate.getEnergyClass();
+                String energyClass = realEstate.getEnergyClass().getValue();
 
                 Double size = realEstate.getInternalFeatures().getSize();
                 Integer roomsNumber = realEstate.getInternalFeatures().getRoomsNumber();
@@ -138,7 +138,7 @@ public class CustomerService
                 if(realEstate instanceof RealEstateForSale)
                 {
                     RealEstateForSale realEstateForSale = (RealEstateForSale) realEstate;
-                    String notaryDeedState = realEstateForSale.getNotaryDeedState();
+                    String notaryDeedState = realEstateForSale.getNotaryDeedState().getValue();
                     return new RealEstateForSaleCreationDTO(address, realEstateMainFeatures, realEstateBooleanFeatures, realEstateLocationFeatures, notaryDeedState);
                 }
                 else

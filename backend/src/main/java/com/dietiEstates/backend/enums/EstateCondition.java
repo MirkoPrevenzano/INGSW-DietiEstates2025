@@ -6,7 +6,7 @@ import com.dietiEstates.backend.extra.EnumInterface;
 public enum EstateCondition implements EnumInterface
 {
     UNDER_CONSTRUCTION("Under construction"), 
-    NEW("new"), 
+    NEW("New"), 
     TO_RENOVATE("To renovate"), 
     RENOVATED("Renovated"), 
     HABITABLE("Habitable"),

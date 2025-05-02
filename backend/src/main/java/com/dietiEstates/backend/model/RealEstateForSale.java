@@ -3,11 +3,15 @@ package com.dietiEstates.backend.model;
 
 import java.time.LocalDateTime;
 
+import com.dietiEstates.backend.enums.EnergyClass;
+import com.dietiEstates.backend.enums.NotaryDeedState;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
@@ -29,16 +33,17 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class RealEstateForSale extends RealEstate 
 {
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "notary_deed_state",
             nullable = false, 
             updatable = true)    
-    private String notaryDeedState;
+    private NotaryDeedState notaryDeedState;
 
 
     
-    public RealEstateForSale(String title,String description, LocalDateTime uploadingDate, Double price, Double condoFee, String energyClass,
+    public RealEstateForSale(String title,String description, LocalDateTime uploadingDate, Double price, Double condoFee, EnergyClass energyClass,
                              InternalRealEstateFeatures internalFeatures, ExternalRealEstateFeatures externalFeatures,
-                             String notaryDeedState)
+                             NotaryDeedState notaryDeedState)
     {
         super(title,description, uploadingDate, price, condoFee, energyClass, internalFeatures, externalFeatures);
         this.notaryDeedState = notaryDeedState;

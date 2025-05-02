@@ -5,6 +5,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +30,7 @@ import java.util.List;
 
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.RealEstateStats;
+import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 
 
@@ -69,10 +72,11 @@ public class RealEstate
             updatable = true)         
     private Double condoFee;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "energy_class",
             nullable = false, 
             updatable = true)         
-    private String energyClass;
+    private EnergyClass energyClass;
 
     @Embedded 
     private InternalRealEstateFeatures internalFeatures;
@@ -116,7 +120,7 @@ public class RealEstate
 
 
 
-    public RealEstate(String title, String description, LocalDateTime uploadingDate, Double price, Double condoFee, String energyClass,
+    public RealEstate(String title, String description, LocalDateTime uploadingDate, Double price, Double condoFee, EnergyClass energyClass,
                       InternalRealEstateFeatures internalFeatures, ExternalRealEstateFeatures externalFeatures)
     {
         this.title = title;

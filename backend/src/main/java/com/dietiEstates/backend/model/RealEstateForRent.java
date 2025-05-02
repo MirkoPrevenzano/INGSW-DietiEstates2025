@@ -3,6 +3,7 @@ package com.dietiEstates.backend.model;
 
 import java.time.LocalDateTime;
 
+import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
 
@@ -41,7 +42,7 @@ public class RealEstateForRent extends RealEstate
 
 
 
-    public RealEstateForRent(String title, String description, LocalDateTime uploadingDate, Double price, Double condoFee, String energyClass,
+    public RealEstateForRent(String title, String description, LocalDateTime uploadingDate, Double price, Double condoFee, EnergyClass energyClass,
                              InternalRealEstateFeatures internalFeatures, ExternalRealEstateFeatures externalFeatures,
                              Double securityDeposit, Integer contractYears)
     {

@@ -21,6 +21,7 @@ import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.RealEstateStatsDTO;
+import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.EstateCondition;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.NotaryDeedState;
@@ -234,15 +235,15 @@ public class RealEstateAgentService
         String description = realEstateForRentCreationDTO.getRealEstateMainFeatures().getDescription();
         Double price = realEstateForRentCreationDTO.getRealEstateMainFeatures().getPrice();
         Double condoFee = realEstateForRentCreationDTO.getRealEstateMainFeatures().getCondoFee();
-        String energyClass = realEstateForRentCreationDTO.getRealEstateMainFeatures().getEnergyClass();
+        EnergyClass energyClass = validatorService.enumValidator(EnergyClass.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getEnergyClass()); 
         Double securityDeposit = realEstateForRentCreationDTO.getSecurityDeposit();
         Integer contractYears = realEstateForRentCreationDTO.getContractYears();
 
         InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(realEstateForRentCreationDTO.getRealEstateMainFeatures().getSize(), 
                                                                        realEstateForRentCreationDTO.getRealEstateMainFeatures().getRoomsNumber(), 
-                                                                       EstateCondition.valueOf(realEstateForRentCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
-                                                                       FurnitureCondition.valueOf(realEstateForRentCreationDTO.getRealEstateMainFeatures().getEstateCondition()));
+                                                                       validatorService.enumValidator(EstateCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
+                                                                       validatorService.enumValidator(FurnitureCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()));
         ExternalRealEstateFeatures externalRealEstateFeatures = 
                                         new ExternalRealEstateFeatures(realEstateForRentCreationDTO.getRealEstateMainFeatures().getParkingSpacesNumber(), 
                                                                        realEstateForRentCreationDTO.getRealEstateMainFeatures().getFloorNumber());
@@ -271,8 +272,8 @@ public class RealEstateAgentService
         String description = realEstateForSaleCreationDTO.getRealEstateMainFeatures().getDescription();
         Double price = realEstateForSaleCreationDTO.getRealEstateMainFeatures().getPrice();
         Double condoFee = realEstateForSaleCreationDTO.getRealEstateMainFeatures().getCondoFee();
-        String energyClass = realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEnergyClass();
-        String notaryDeedState = realEstateForSaleCreationDTO.getNotaryDeedState();
+        EnergyClass energyClass = validatorService.enumValidator(EnergyClass.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEnergyClass()); 
+        NotaryDeedState notaryDeedState = validatorService.enumValidator(NotaryDeedState.class, realEstateForSaleCreationDTO.getNotaryDeedState());
 
         InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(realEstateForSaleCreationDTO.getRealEstateMainFeatures().getSize(), 
