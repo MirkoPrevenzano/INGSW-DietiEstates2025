@@ -21,9 +21,9 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class RealEstateMapper 
+public class RealEstateMappingUtil
 {
-    private final ValidatorService validatorService;
+    private final ValidationUtil validationUtil;
 
 
     
@@ -33,15 +33,15 @@ public class RealEstateMapper
         String description = realEstateForRentCreationDTO.getRealEstateMainFeatures().getDescription();
         Double price = realEstateForRentCreationDTO.getRealEstateMainFeatures().getPrice();
         Double condoFee = realEstateForRentCreationDTO.getRealEstateMainFeatures().getCondoFee();
-        EnergyClass energyClass = validatorService.enumValidator(EnergyClass.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getEnergyClass()); 
+        EnergyClass energyClass = validationUtil.enumValidator(EnergyClass.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getEnergyClass()); 
         Double securityDeposit = realEstateForRentCreationDTO.getSecurityDeposit();
         Integer contractYears = realEstateForRentCreationDTO.getContractYears();
 
         InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(realEstateForRentCreationDTO.getRealEstateMainFeatures().getSize(), 
                                                                        realEstateForRentCreationDTO.getRealEstateMainFeatures().getRoomsNumber(), 
-                                                                       validatorService.enumValidator(EstateCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
-                                                                       validatorService.enumValidator(FurnitureCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()));
+                                                                       validationUtil.enumValidator(EstateCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
+                                                                       validationUtil.enumValidator(FurnitureCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()));
         ExternalRealEstateFeatures externalRealEstateFeatures = 
                                         new ExternalRealEstateFeatures(realEstateForRentCreationDTO.getRealEstateMainFeatures().getParkingSpacesNumber(), 
                                                                        realEstateForRentCreationDTO.getRealEstateMainFeatures().getFloorNumber());
@@ -71,14 +71,14 @@ public class RealEstateMapper
         String description = realEstateForSaleCreationDTO.getRealEstateMainFeatures().getDescription();
         Double price = realEstateForSaleCreationDTO.getRealEstateMainFeatures().getPrice();
         Double condoFee = realEstateForSaleCreationDTO.getRealEstateMainFeatures().getCondoFee();
-        EnergyClass energyClass = validatorService.enumValidator(EnergyClass.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEnergyClass()); 
-        NotaryDeedState notaryDeedState = validatorService.enumValidator(NotaryDeedState.class, realEstateForSaleCreationDTO.getNotaryDeedState());
+        EnergyClass energyClass = validationUtil.enumValidator(EnergyClass.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEnergyClass()); 
+        NotaryDeedState notaryDeedState = validationUtil.enumValidator(NotaryDeedState.class, realEstateForSaleCreationDTO.getNotaryDeedState());
 
         InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(realEstateForSaleCreationDTO.getRealEstateMainFeatures().getSize(), 
                                                                        realEstateForSaleCreationDTO.getRealEstateMainFeatures().getRoomsNumber(), 
-                                                                       validatorService.enumValidator(EstateCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
-                                                                       validatorService.enumValidator(FurnitureCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()));
+                                                                       validationUtil.enumValidator(EstateCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
+                                                                       validationUtil.enumValidator(FurnitureCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()));
         ExternalRealEstateFeatures externalRealEstateFeatures = 
                                         new ExternalRealEstateFeatures(realEstateForSaleCreationDTO.getRealEstateMainFeatures().getParkingSpacesNumber(), 
                                                                        realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFloorNumber());

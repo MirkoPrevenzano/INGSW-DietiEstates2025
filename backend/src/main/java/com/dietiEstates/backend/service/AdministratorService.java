@@ -17,8 +17,8 @@ import com.dietiEstates.backend.model.Administrator;
 import com.dietiEstates.backend.model.RealEstateAgent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.RealEstateAgentRepository;
-import com.dietiEstates.backend.utils.MockingStatsService;
-import com.dietiEstates.backend.utils.ValidatorService;
+import com.dietiEstates.backend.utils.MockingStatsUtil;
+import com.dietiEstates.backend.utils.ValidationUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,8 +33,8 @@ public class AdministratorService
     private final RealEstateAgentRepository realEstateAgentRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
-    private final ValidatorService validatorService;
-    private final MockingStatsService mockingStatsService;
+    private final ValidationUtil validationUtil;
+    private final MockingStatsUtil mockingStatsUtil;
     
 
 
@@ -97,7 +97,7 @@ public class AdministratorService
 
         try 
         {
-            validatorService.passwordValidator(agentCustomerRegistrationDTO.getPassword());
+            validationUtil.passwordValidator(agentCustomerRegistrationDTO.getPassword());
         } 
         catch (IllegalArgumentException e) 
         {
@@ -117,7 +117,7 @@ public class AdministratorService
         }
         realEstateAgent.setPassword(passwordEncoder.encode(realEstateAgent.getPassword()));
 
-        mockingStatsService.mockAgentStats(realEstateAgent);
+        mockingStatsUtil.mockAgentStats(realEstateAgent);
 
         administrator.addRealEstateAgent(realEstateAgent);
         administrator = administratorRepository.save(administrator);
@@ -150,7 +150,7 @@ public class AdministratorService
         
         try 
         {
-            validatorService.passwordValidator(oldNewPasswordDTO.getNewPassword());
+            validationUtil.passwordValidator(oldNewPasswordDTO.getNewPassword());
         } 
         catch (IllegalArgumentException e) 
         {

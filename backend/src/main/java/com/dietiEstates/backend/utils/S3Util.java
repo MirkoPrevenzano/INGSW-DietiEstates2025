@@ -4,6 +4,7 @@ package com.dietiEstates.backend.utils;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -18,10 +19,10 @@ import software.amazon.awssdk.services.s3.model.NoSuchKeyException;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 
-@Service
+@Component
 @RequiredArgsConstructor
 @Slf4j
-public class S3Service 
+public class S3Util
 {
     private final S3Client s3Client;
 

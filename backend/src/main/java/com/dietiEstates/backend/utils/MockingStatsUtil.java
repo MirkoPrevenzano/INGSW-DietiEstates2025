@@ -3,6 +3,7 @@ package com.dietiEstates.backend.utils;
 
 import java.util.Random;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.model.RealEstate;
@@ -11,9 +12,9 @@ import com.dietiEstates.backend.model.RealEstateAgent;
 import lombok.extern.slf4j.Slf4j;
 
 
-@Service
+@Component
 @Slf4j
-public class MockingStatsService 
+public class MockingStatsUtil
 {
     private static Integer[] a = new Integer[12];
     private Random rand = new Random();

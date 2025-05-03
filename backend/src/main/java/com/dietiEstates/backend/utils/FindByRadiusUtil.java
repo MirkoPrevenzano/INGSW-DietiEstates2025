@@ -1,6 +1,7 @@
 
 package com.dietiEstates.backend.utils;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
@@ -9,10 +10,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
-@Service
+@Component
 @RequiredArgsConstructor
 @Slf4j
-public class FindByRadiusService 
+public class FindByRadiusUtil 
 {
     private int distancePerLatitudeGrade = 111320;
 	private int distancePerLongitudeGrade = 78000;

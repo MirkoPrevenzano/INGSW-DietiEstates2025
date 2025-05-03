@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.supercsv.cellprocessor.constraint.NotNull;
 import org.supercsv.cellprocessor.ift.CellProcessor;
@@ -27,10 +28,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
-@Service
+@Component
 @RequiredArgsConstructor
 @Slf4j
-public class CsvService 
+public class CsvUtil
 {
     private final RealEstateAgentRepository realEstateAgentRepository;
     private final RealEstateAgentService realEstateAgentService;

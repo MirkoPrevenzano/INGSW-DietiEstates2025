@@ -2,6 +2,7 @@
 package com.dietiEstates.backend.utils;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.enums.NotaryDeedState;
@@ -18,9 +19,9 @@ import java.util.regex.Pattern;
 
 
 
-@Service
+@Component
 @Slf4j
-public class ValidatorService 
+public class ValidationUtil
 {
     private static final Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]" 
                                                               + "[a-zA-Z0-9!#$%&'*+/=?^_`{|}~.-]*" 

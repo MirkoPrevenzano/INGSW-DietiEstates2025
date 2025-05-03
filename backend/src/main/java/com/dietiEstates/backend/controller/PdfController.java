@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dietiEstates.backend.utils.PdfService;
+import com.dietiEstates.backend.utils.PdfUtil;
 import com.lowagie.text.DocumentException;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PdfController 
 {
-    private final PdfService pdfService;
+    private final PdfUtil pdfUtil;
        
     
     //Il controller bisogna che chiama solo il metodo del service
@@ -43,7 +43,7 @@ public class PdfController
 
         try 
         {  
-            pdfService.writePdfResponse(username, response);
+            pdfUtil.writePdfResponse(username, response);
         } 
         catch (DocumentException | IOException e) 
         {

@@ -13,7 +13,7 @@ import com.dietiEstates.backend.dto.AgentCustomerRegistrationDTO;
 import com.dietiEstates.backend.model.Customer;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.service.CustomerService;
-import com.dietiEstates.backend.utils.ValidatorService;
+import com.dietiEstates.backend.utils.ValidationUtil;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -36,7 +36,7 @@ public class AuthenticationService
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
-    private final ValidatorService validatorService;
+    private final ValidationUtil validationUtil;
     private final CustomerService customerService;
 
 
@@ -44,8 +44,8 @@ public class AuthenticationService
     {
         try 
         {
-            validatorService.emailValidator(userDTO.getUsername());
-            validatorService.passwordValidator(userDTO.getPassword());
+            validationUtil.emailValidator(userDTO.getUsername());
+            validationUtil.passwordValidator(userDTO.getPassword());
         } 
         catch (IllegalArgumentException e) 
         {

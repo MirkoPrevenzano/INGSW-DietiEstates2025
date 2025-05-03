@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dietiEstates.backend.utils.CsvService;
+import com.dietiEstates.backend.utils.CsvUtil;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -21,11 +21,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CSVController 
 {
-    private final CsvService csvService;
+    private final CsvUtil csvUtil;
+    
+
     
     @GetMapping(value = "/{username}/exportCSV")
     public void exportToCSV(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {
-        csvService.writeCsvResponse(username,response);
+        csvUtil.writeCsvResponse(username,response);
     }
 }

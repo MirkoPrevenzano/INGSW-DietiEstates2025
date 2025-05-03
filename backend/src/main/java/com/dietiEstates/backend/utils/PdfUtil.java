@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 
 import org.springframework.format.datetime.standard.DateTimeFormatterFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.model.RealEstate;
@@ -37,10 +38,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
-@Service
+@Component
 @RequiredArgsConstructor
 @Slf4j
-public class PdfService extends PdfPageEventHelper
+public class PdfUtil extends PdfPageEventHelper
 {
     private final RealEstateAgentRepository realEstateAgentRepository;
 
@@ -55,7 +56,7 @@ public class PdfService extends PdfPageEventHelper
 
             PdfWriter p = PdfWriter.getInstance(document, response.getOutputStream());
 
-            p.setPageEvent(new PdfService(realEstateAgentRepository));
+            p.setPageEvent(new PdfUtil(realEstateAgentRepository));
             document.open();
 
             Font paragraphFont = createFont(FontFactory.HELVETICA_BOLD, 22, Color.BLUE);

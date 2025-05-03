@@ -1,6 +1,8 @@
 
 package com.dietiEstates.backend;
 
+import java.util.Optional;
+
 import org.springframework.boot.CommandLineRunner;
 /*import java.time.Date;
 import java.util.ArrayList;
@@ -47,13 +49,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.dietiEstates.backend.model.Administrator;
 import com.dietiEstates.backend.model.RealEstateAgent;
+import com.dietiEstates.backend.model.User;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateAgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.service.JFreeChartService;
 import com.dietiEstates.backend.service.RealEstateAgentService;
-import com.dietiEstates.backend.service.S3Service;
+import com.dietiEstates.backend.utils.JFreeChartUtil;
+import com.dietiEstates.backend.utils.S3Util;
+import com.dietiEstates.backend.utils.ValidationUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -72,14 +76,14 @@ public class BackendApplication
 
     @Bean
     CommandLineRunner commandLineRunner(CustomerRepository customerRepository, AdministratorRepository administratorRepository, 
-                                        S3Service s3Service, RealEstateAgentRepository realEstateAgentRepository,
+                                        S3Util s3Util, RealEstateAgentRepository realEstateAgentRepository,
                                         RealEstateRepository realEstateRepository,
                                         RealEstateAgentService realEstateAgentService,
-                                        JFreeChartService jFreeChartService)
+                                        JFreeChartUtil jFreeChartUtil, ValidationUtil validationUtil)
     {
         return args -> 
         {  
-/*             Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@", "ak");
+            Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@", "ak");
             administrator.setPassword(passwordEncoder.encode(administrator.getPassword()));
             administrator = administratorRepository.save(administrator);
 
@@ -87,7 +91,8 @@ public class BackendApplication
             RealEstateAgent agent = (new RealEstateAgent("a","b","c",passwordEncoder.encode("ssssssssssssssssssss22A@")));
             agent.setAdministrator(administrator);
             administrator.addRealEstateAgent(agent);
-            administrator = administratorRepository.save(administrator); */
+            administrator = administratorRepository.save(administrator);
+
 
            /*administrator.getRealEstateAgents().get(0).getRealEstateAgentStats().setTotalUploadedRealEstates(200);
             administrator.getRealEstateAgents().get(0).getRealEstateAgentStats().setTotalRentedRealEstates(20);;

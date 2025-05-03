@@ -14,7 +14,7 @@ import com.dietiEstates.backend.model.RealEstateAgent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateAgentRepository;
-import com.dietiEstates.backend.utils.ValidatorService;
+import com.dietiEstates.backend.utils.ValidationUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class UserDetailsServiceConfig
     private final RealEstateAgentRepository realEstateAgentRepository;
     private final AdministratorRepository administratorRepository;
     private final PasswordEncoder passwordEncoder;
-    private final ValidatorService validatorService;
+    private final ValidationUtil validationUtil;
     
     @Autowired
     private HttpServletRequest httpServletRequest;
@@ -56,7 +56,7 @@ public class UserDetailsServiceConfig
                     case "customer" :
                     {
                         Optional<Customer> optionalCustomer = customerRepository.findByUsername(username);
-                        Customer customer = validatorService.optionalUserValidator(optionalCustomer, username);
+                        Customer customer = validationUtil.optionalUserValidator(optionalCustomer, username);
                         customer.setRole(Role.ROLE_USER);
                         return customer;
                     }
@@ -64,7 +64,7 @@ public class UserDetailsServiceConfig
                     case "agent" :
                     {
                         Optional<RealEstateAgent> optionalRealEstateAgent = realEstateAgentRepository.findByUsername(username);
-                        RealEstateAgent realEstateAgent = validatorService.optionalUserValidator(optionalRealEstateAgent, username);
+                        RealEstateAgent realEstateAgent = validationUtil.optionalUserValidator(optionalRealEstateAgent, username);
                         realEstateAgent.setRole(Role.ROLE_AGENT);
                         return realEstateAgent;                       
                     }
@@ -72,7 +72,7 @@ public class UserDetailsServiceConfig
                     case "admin" :
                     {
                         Optional<Administrator> optionalAdministrator = administratorRepository.findByUsername(username);
-                        Administrator administrator = validatorService.optionalUserValidator(optionalAdministrator, username);
+                        Administrator administrator = validationUtil.optionalUserValidator(optionalAdministrator, username);
 
                         if(passwordEncoder.matches("default", administrator.getPassword()))
                         {

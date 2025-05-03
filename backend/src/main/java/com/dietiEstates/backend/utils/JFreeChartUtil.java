@@ -10,6 +10,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.model.RealEstateAgent;
@@ -18,12 +19,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
-@Service
+@Component
 @RequiredArgsConstructor
 @Slf4j
-public class JFreeChartService
+public class JFreeChartUtil
 {
-    private final MockingStatsService mockingStatsService;
+    private final MockingStatsUtil mockingStatsUtil;
 
     public void createPieChart(RealEstateAgent realEstateAgent)
     {
@@ -124,7 +125,7 @@ public class JFreeChartService
         final String november = "NOV";
         final String december = "DEC";
 
-        Integer[] valuePerMonth = mockingStatsService.mockBarChartStats();
+        Integer[] valuePerMonth = mockingStatsUtil.mockBarChartStats();
 
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
         dataset.addValue( valuePerMonth[0], soldRentedEstates , january );

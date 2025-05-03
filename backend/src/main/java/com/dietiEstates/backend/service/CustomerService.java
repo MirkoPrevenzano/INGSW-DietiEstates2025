@@ -25,7 +25,7 @@ import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.utils.JFreeChartService;
+import com.dietiEstates.backend.utils.JFreeChartUtil;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -44,7 +44,7 @@ import java.util.UUID;
 public class CustomerService 
 {
 
-    private final JFreeChartService JFreeChartService;
+    private final JFreeChartUtil jFreeChartUtil;
 
     private final CSVController CSVController;
     private final RealEstateRepository realEstateRepository;

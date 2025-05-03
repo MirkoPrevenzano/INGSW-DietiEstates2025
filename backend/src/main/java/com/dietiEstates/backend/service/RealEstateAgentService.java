@@ -37,9 +37,9 @@ import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.RealEstateAgentStats;
 import com.dietiEstates.backend.repository.RealEstateAgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.utils.MockingStatsService;
-import com.dietiEstates.backend.utils.S3Service;
-import com.dietiEstates.backend.utils.ValidatorService;
+import com.dietiEstates.backend.utils.MockingStatsUtil;
+import com.dietiEstates.backend.utils.S3Util;
+import com.dietiEstates.backend.utils.ValidationUtil;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -55,10 +55,10 @@ public class RealEstateAgentService
 {
     private final RealEstateAgentRepository realEstateAgentRepository;
     private final RealEstateRepository realEstateRepository;
-    private final S3Service s3Service;
-    private final MockingStatsService mockingStatsService;
+    private final S3Util s3Util;
+    private final MockingStatsUtil mockingStatsUtil;
     private final ModelMapper modelMapper;
-    private final ValidatorService validatorService;
+    private final ValidationUtil validationUtil;
 
 
 
@@ -66,7 +66,7 @@ public class RealEstateAgentService
     public Long createRealEstateForSale(String username, RealEstateForSaleCreationDTO realEstateForSaleCreationDTO)  throws UsernameNotFoundException
     {
         Optional<RealEstateAgent> optionalRealEstateAgent = realEstateAgentRepository.findByUsername(username);
-        RealEstateAgent realEstateAgent = validatorService.optionalUserValidator(optionalRealEstateAgent, username);
+        RealEstateAgent realEstateAgent = validationUtil.optionalUserValidator(optionalRealEstateAgent, username);
         
         RealEstateForSale realEstateForSale = realEstateForSaleMapper(realEstateForSaleCreationDTO);
 
@@ -74,7 +74,7 @@ public class RealEstateAgentService
         Address address = modelMapper.map(realEstateForSaleCreationDTO.getAddressDTO(), Address.class);
         realEstateForSale.addAddress(address);
 
-        mockingStatsService.mockEstateStats(realEstateForSale);
+        mockingStatsUtil.mockEstateStats(realEstateForSale);
 
         realEstateAgent.addRealEstate(realEstateForSale);
 
@@ -94,7 +94,7 @@ public class RealEstateAgentService
     public Long createRealEstateForRent(String username, RealEstateForRentCreationDTO realEstateForRentCreationDTO) throws UsernameNotFoundException
     {
         Optional<RealEstateAgent> optionalRealEstateAgent = realEstateAgentRepository.findByUsername(username);
-        RealEstateAgent realEstateAgent = validatorService.optionalUserValidator(optionalRealEstateAgent, username);
+        RealEstateAgent realEstateAgent = validationUtil.optionalUserValidator(optionalRealEstateAgent, username);
 
         RealEstateForRent realEstateForRent = realEstateForRentMapper(realEstateForRentCreationDTO);
 
@@ -102,7 +102,7 @@ public class RealEstateAgentService
         Address address = modelMapper.map(realEstateForRentCreationDTO.getAddressDTO(), Address.class);
         realEstateForRent.addAddress(address);
 
-        mockingStatsService.mockEstateStats(realEstateForRent);
+        mockingStatsUtil.mockEstateStats(realEstateForRent);
 
         int newTotalUploadedRealEstates = realEstateAgent.getRealEstateAgentStats().getTotalUploadedRealEstates() + 1;
         realEstateAgent.getRealEstateAgentStats().setTotalUploadedRealEstates(newTotalUploadedRealEstates);
@@ -119,7 +119,7 @@ public class RealEstateAgentService
     public void uploadPhoto(String username, MultipartFile[] files, Long realEstateId) throws IllegalArgumentException, RuntimeException
     {
         Optional<RealEstate> optionalRealEstate = realEstateRepository.findById(realEstateId);
-        RealEstate realEstate = validatorService.optionalRealEstateValidator(optionalRealEstate, realEstateId);
+        RealEstate realEstate = validationUtil.optionalRealEstateValidator(optionalRealEstate, realEstateId);
         
 /*         if(files.length < 3 || files.length > 10)
         {
@@ -150,7 +150,7 @@ public class RealEstateAgentService
             String photoKey = UUID.randomUUID().toString();
             try 
             {
-                s3Service.putObject("%s".formatted(photoKey), multipartFile.getBytes());
+                s3Util.putObject("%s".formatted(photoKey), multipartFile.getBytes());
             } 
             catch (SdkException | IOException e) 
             {
@@ -179,7 +179,7 @@ public class RealEstateAgentService
 
         for(Photo photo : photos)
         {
-            photosBytes.add(s3Service.getObject(photo.getAmazonS3Key()));
+            photosBytes.add(s3Util.getObject(photo.getAmazonS3Key()));
         }
 
         String[] phoStrings = new String[photosBytes.size()];
@@ -200,7 +200,7 @@ public class RealEstateAgentService
 
     public RealEstateAgentStatsDTO getAgentStats(String username) 
     {
-        Integer[] estatesPerMonth = mockingStatsService.mockBarChartStats();
+        Integer[] estatesPerMonth = mockingStatsUtil.mockBarChartStats();
         RealEstateAgentStats realEstateAgentStats = realEstateAgentRepository.findByUsername(username).get().getRealEstateAgentStats();
         RealEstateAgentStatsDTO realEstateAgentStatsDTO = new RealEstateAgentStatsDTO(realEstateAgentStats, estatesPerMonth);
         return realEstateAgentStatsDTO;
@@ -215,7 +215,7 @@ public class RealEstateAgentService
 
     public Integer[] getBarChartStats() 
     {
-        return mockingStatsService.mockBarChartStats();
+        return mockingStatsUtil.mockBarChartStats();
     }
 
 
@@ -226,15 +226,15 @@ public class RealEstateAgentService
         String description = realEstateForRentCreationDTO.getRealEstateMainFeatures().getDescription();
         Double price = realEstateForRentCreationDTO.getRealEstateMainFeatures().getPrice();
         Double condoFee = realEstateForRentCreationDTO.getRealEstateMainFeatures().getCondoFee();
-        EnergyClass energyClass = validatorService.enumValidator(EnergyClass.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getEnergyClass()); 
+        EnergyClass energyClass = validationUtil.enumValidator(EnergyClass.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getEnergyClass()); 
         Double securityDeposit = realEstateForRentCreationDTO.getSecurityDeposit();
         Integer contractYears = realEstateForRentCreationDTO.getContractYears();
 
         InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(realEstateForRentCreationDTO.getRealEstateMainFeatures().getSize(), 
                                                                        realEstateForRentCreationDTO.getRealEstateMainFeatures().getRoomsNumber(), 
-                                                                       validatorService.enumValidator(EstateCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
-                                                                       validatorService.enumValidator(FurnitureCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()));
+                                                                       validationUtil.enumValidator(EstateCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
+                                                                       validationUtil.enumValidator(FurnitureCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()));
         ExternalRealEstateFeatures externalRealEstateFeatures = 
                                         new ExternalRealEstateFeatures(realEstateForRentCreationDTO.getRealEstateMainFeatures().getParkingSpacesNumber(), 
                                                                        realEstateForRentCreationDTO.getRealEstateMainFeatures().getFloorNumber());
@@ -263,14 +263,14 @@ public class RealEstateAgentService
         String description = realEstateForSaleCreationDTO.getRealEstateMainFeatures().getDescription();
         Double price = realEstateForSaleCreationDTO.getRealEstateMainFeatures().getPrice();
         Double condoFee = realEstateForSaleCreationDTO.getRealEstateMainFeatures().getCondoFee();
-        EnergyClass energyClass = validatorService.enumValidator(EnergyClass.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEnergyClass()); 
-        NotaryDeedState notaryDeedState = validatorService.enumValidator(NotaryDeedState.class, realEstateForSaleCreationDTO.getNotaryDeedState());
+        EnergyClass energyClass = validationUtil.enumValidator(EnergyClass.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEnergyClass()); 
+        NotaryDeedState notaryDeedState = validationUtil.enumValidator(NotaryDeedState.class, realEstateForSaleCreationDTO.getNotaryDeedState());
 
         InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(realEstateForSaleCreationDTO.getRealEstateMainFeatures().getSize(), 
                                                                        realEstateForSaleCreationDTO.getRealEstateMainFeatures().getRoomsNumber(), 
-                                                                       validatorService.enumValidator(EstateCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
-                                                                       validatorService.enumValidator(FurnitureCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()));
+                                                                       validationUtil.enumValidator(EstateCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
+                                                                       validationUtil.enumValidator(FurnitureCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()));
         ExternalRealEstateFeatures externalRealEstateFeatures = 
                                         new ExternalRealEstateFeatures(realEstateForSaleCreationDTO.getRealEstateMainFeatures().getParkingSpacesNumber(), 
                                                                        realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFloorNumber());

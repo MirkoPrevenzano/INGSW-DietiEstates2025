@@ -12,7 +12,7 @@ import com.dietiEstates.backend.dto.RealEstatePreviewsFirstPageDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
 import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.utils.FindByRadiusService;
+import com.dietiEstates.backend.utils.FindByRadiusUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,13 +24,13 @@ import lombok.extern.slf4j.Slf4j;
 public class RealEstateService 
 {
     private final RealEstateRepository realEstateRepository;
-    private final FindByRadiusService findByRadiusService;
+    private final FindByRadiusUtil findByRadiusUtil;
 
 
 
     public RealEstatePreviewsFirstPageDTO search3(Map<String,String> filters, Pageable page)
     {
-        CoordinatesMinMax coordinatesMinMax = findByRadiusService.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
+        CoordinatesMinMax coordinatesMinMax = findByRadiusUtil.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
                                                                                Double.valueOf(filters.get("lat")), 
                                                                                Double.valueOf(filters.get("lon")));
 
@@ -45,7 +45,7 @@ public class RealEstateService
 
     public List<RealEstatePreviewDTO> search4(Map<String,String> filters, Pageable page)
     {
-        CoordinatesMinMax coordinatesMinMax = findByRadiusService.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
+        CoordinatesMinMax coordinatesMinMax = findByRadiusUtil.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
                                                                                Double.valueOf(filters.get("lat")), 
                                                                                Double.valueOf(filters.get("lon")));
                                                                                
