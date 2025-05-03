@@ -14,6 +14,7 @@ import com.dietiEstates.backend.model.RealEstateAgent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateAgentRepository;
+import com.dietiEstates.backend.service.ValidatorService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,7 @@ public class UserDetailsServiceConfig
     private final RealEstateAgentRepository realEstateAgentRepository;
     private final AdministratorRepository administratorRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ValidatorService validatorService;
     
     @Autowired
     private HttpServletRequest httpServletRequest;
@@ -53,60 +55,41 @@ public class UserDetailsServiceConfig
                 {
                     case "customer" :
                     {
-                        Optional<Customer> customer = customerRepository.findByUsername(username);
-                        if(customer.isEmpty())
-                        {
-                            log.error("Customer not found in database!");
-                            throw new UsernameNotFoundException("Customer not found in database!");
-                        }
-                        else
-                        {
-                            log.info("Customer found in database: {}", username);
-                            customer.get().setRole(Role.ROLE_USER);
-                            return customer.get();
-                        }
+                        Optional<Customer> optionalCustomer = customerRepository.findByUsername(username);
+                        Customer customer = validatorService.optionalUserValidator(optionalCustomer, username);
+                        customer.setRole(Role.ROLE_USER);
+                        return customer;
                     }
 
                     case "agent" :
                     {
-                        Optional<RealEstateAgent> realEstateAgent = realEstateAgentRepository.findByUsername(username);
-                        if(realEstateAgent.isEmpty())
-                        {
-                            log.error("Agent not found in database!");
-                            throw new UsernameNotFoundException("Agent not found in database!");
-                        }
-                        else
-                        {
-                            log.info("Agent found in database: {}", username);
-                            realEstateAgent.get().setRole(Role.ROLE_AGENT);
-                            return realEstateAgent.get();
-                        }                        
+                        Optional<RealEstateAgent> optionalRealEstateAgent = realEstateAgentRepository.findByUsername(username);
+                        RealEstateAgent realEstateAgent = validatorService.optionalUserValidator(optionalRealEstateAgent, username);
+                        realEstateAgent.setRole(Role.ROLE_AGENT);
+                        return realEstateAgent;                       
                     }
 
                     case "admin" :
                     {
-                        Optional<Administrator> administrator = administratorRepository.findByUsername(username);
-                        if(administrator.isEmpty())
+                        Optional<Administrator> optionalAdministrator = administratorRepository.findByUsername(username);
+                        Administrator administrator = validatorService.optionalUserValidator(optionalAdministrator, username);
+
+                        if(passwordEncoder.matches("default", administrator.getPassword()))
                         {
-                            log.error("Administrator not found in database!");
-                            throw new UsernameNotFoundException("Administrator not found in database!");
+                            log.info("{} is a NOT AUTHORIZED administrator", username);
+                            administrator.setRole(Role.ROLE_UNAUTHORIZED);
+                            return administrator;                           
                         }
-                        else if(passwordEncoder.matches("default", administrator.get().getPassword()))
+                        else if(administrator.getUserId() == 1)
                         {
-                            log.info("Administrator (NOT AUTHORIZED) found in database: {}", username);
-                            administrator.get().setRole(Role.ROLE_UNAUTHORIZED);
-                            return administrator.get();                           
-                        }
-                        else if(administrator.get().getUserId() == 1)
-                        {
-                            log.info("Administrator (ADMIN) found in database: {}", username);
-                            administrator.get().setRole(Role.ROLE_ADMIN);
-                            return administrator.get();                           
+                            log.info("{} is an ADMIN administrator", username);
+                            administrator.setRole(Role.ROLE_ADMIN);
+                            return administrator;                           
                         }
                         
-                        log.info("Administrator (COLLABORATOR) found in database: {}", username);
-                        administrator.get().setRole(Role.ROLE_COLLABORATOR);
-                        return administrator.get();                           
+                        log.info("{} is a COLLABORATOR administrator", username);
+                        administrator.setRole(Role.ROLE_COLLABORATOR);
+                        return administrator;                           
                     }
 
                     default : 

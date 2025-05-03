@@ -25,7 +25,6 @@ import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.EstateCondition;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.NotaryDeedState;
-import com.dietiEstates.backend.factory.RealEstateFactory;
 import com.dietiEstates.backend.model.Address;
 import com.dietiEstates.backend.model.Photo;
 import com.dietiEstates.backend.model.RealEstate;
@@ -57,35 +56,28 @@ public class RealEstateAgentService
     private final MockingStatsService mockingStatsService;
     private final ModelMapper modelMapper;
     private final ValidatorService validatorService;
-    private final RealEstateFactory realEstateFactory;
 
 
 
     @Transactional
     public Long createRealEstateForSale(String username, RealEstateForSaleCreationDTO realEstateForSaleCreationDTO)  throws UsernameNotFoundException
     {
-        Optional<RealEstateAgent> realEstateAgentOptional = realEstateAgentRepository.findByUsername(username);
-        if(realEstateAgentOptional.isEmpty())
-        {
-            log.error("Agent not found in database");
-            throw new UsernameNotFoundException("Agent not found in database");
-        }
-        RealEstateAgent realEstateAgent = realEstateAgentOptional.get();
+        Optional<RealEstateAgent> optionalRealEstateAgent = realEstateAgentRepository.findByUsername(username);
+        RealEstateAgent realEstateAgent = validatorService.optionalUserValidator(optionalRealEstateAgent, username);
         
-        //RealEstateForSale realEstateForSale = realEstateForSaleMapper(realEstateForSaleCreationDTO);
+        RealEstateForSale realEstateForSale = realEstateForSaleMapper(realEstateForSaleCreationDTO);
 
-        RealEstate realEstate = realEstateFactory.createRealEstateFromDTO(realEstateForSaleCreationDTO);
 
         Address address = modelMapper.map(realEstateForSaleCreationDTO.getAddressDTO(), Address.class);
-        realEstate.addAddress(address);
+        realEstateForSale.addAddress(address);
 
-        mockingStatsService.mockEstateStats(realEstate);
+        mockingStatsService.mockEstateStats(realEstateForSale);
 
-        realEstateAgent.addRealEstate(realEstate);
+        realEstateAgent.addRealEstate(realEstateForSale);
 
         int newTotalUploadedRealEstates = realEstateAgent.getRealEstateAgentStats().getTotalUploadedRealEstates() + 1;
         realEstateAgent.getRealEstateAgentStats().setTotalUploadedRealEstates(newTotalUploadedRealEstates);
-        realEstateAgent.addRealEstate(realEstate);
+        realEstateAgent.addRealEstate(realEstateForSale);
 
         realEstateAgent = realEstateAgentRepository.save(realEstateAgent);
 
@@ -98,26 +90,20 @@ public class RealEstateAgentService
     @Transactional
     public Long createRealEstateForRent(String username, RealEstateForRentCreationDTO realEstateForRentCreationDTO) throws UsernameNotFoundException
     {
-        Optional<RealEstateAgent> realEstateAgentOptional = realEstateAgentRepository.findByUsername(username);
-        if(realEstateAgentOptional.isEmpty())
-        {
-            log.error("Agent not found in database");
-            throw new UsernameNotFoundException("Agent not found in database");
-        }
-        RealEstateAgent realEstateAgent = realEstateAgentOptional.get();
+        Optional<RealEstateAgent> optionalRealEstateAgent = realEstateAgentRepository.findByUsername(username);
+        RealEstateAgent realEstateAgent = validatorService.optionalUserValidator(optionalRealEstateAgent, username);
 
-        //RealEstateForRent realEstateForRent = realEstateForRentMapper(realEstateForRentCreationDTO);
+        RealEstateForRent realEstateForRent = realEstateForRentMapper(realEstateForRentCreationDTO);
 
-        RealEstate realEstate = realEstateFactory.createRealEstateFromDTO(realEstateForRentCreationDTO);
 
         Address address = modelMapper.map(realEstateForRentCreationDTO.getAddressDTO(), Address.class);
-        realEstate.addAddress(address);
+        realEstateForRent.addAddress(address);
 
-        mockingStatsService.mockEstateStats(realEstate);
+        mockingStatsService.mockEstateStats(realEstateForRent);
 
         int newTotalUploadedRealEstates = realEstateAgent.getRealEstateAgentStats().getTotalUploadedRealEstates() + 1;
         realEstateAgent.getRealEstateAgentStats().setTotalUploadedRealEstates(newTotalUploadedRealEstates);
-        realEstateAgent.addRealEstate(realEstate);
+        realEstateAgent.addRealEstate(realEstateForRent);
         
         realEstateAgent = realEstateAgentRepository.save(realEstateAgent);
 
@@ -129,13 +115,8 @@ public class RealEstateAgentService
 
     public void uploadPhoto(String username, MultipartFile[] files, Long realEstateId) throws IllegalArgumentException, RuntimeException
     {
-        Optional<RealEstate> realEstateOptional = realEstateRepository.findById(realEstateId);
-        if(realEstateOptional.isEmpty())
-        {
-            log.error("Real Estate not found in database");
-            throw new IllegalArgumentException("Real Estate not found in database");
-        }
-        RealEstate realEstate = realEstateOptional.get();
+        Optional<RealEstate> optionalRealEstate = realEstateRepository.findById(realEstateId);
+        RealEstate realEstate = validatorService.optionalRealEstateValidator(optionalRealEstate, realEstateId);
         
 /*         if(files.length < 3 || files.length > 10)
         {

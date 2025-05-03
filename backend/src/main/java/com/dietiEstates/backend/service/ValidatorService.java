@@ -1,14 +1,19 @@
 
 package com.dietiEstates.backend.service;
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.enums.NotaryDeedState;
 import com.dietiEstates.backend.extra.EnumInterface;
+import com.dietiEstates.backend.model.Administrator;
+import com.dietiEstates.backend.model.RealEstate;
+import com.dietiEstates.backend.model.User;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 
@@ -65,6 +70,32 @@ public class ValidatorService
         throw new IllegalArgumentException("VALORE ENUM SBAGLIATO! Classe: " + enumClass.getSimpleName());
     }
 
+
+    public <U extends User> U optionalUserValidator(Optional<U> optionalUser, String username) 
+    {
+        if(optionalUser.isEmpty())
+        {
+            log.error("User not found in database");
+            throw new UsernameNotFoundException("User not found in database!");
+        }    
+
+        log.info("User found in database: {}", username);
+        return optionalUser.get();   
+    }
+
+    public <R extends RealEstate> R optionalRealEstateValidator(Optional<R> optionalRealEstate, Long id) 
+    {
+        if(optionalRealEstate.isEmpty())
+        {
+            log.error("User not found in database");
+            throw new UsernameNotFoundException("User not found in database!");
+        }    
+
+        log.info("User found in database: {}", id);
+        return optionalRealEstate.get();   
+    }
+
+    
     //TODO methods:
     //usernamevalidator  
 }
