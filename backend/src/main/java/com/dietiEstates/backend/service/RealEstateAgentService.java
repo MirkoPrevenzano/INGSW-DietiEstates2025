@@ -25,12 +25,14 @@ import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.EstateCondition;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.NotaryDeedState;
+import com.dietiEstates.backend.factory.RealEstateFactory;
 import com.dietiEstates.backend.model.Address;
 import com.dietiEstates.backend.model.Photo;
 import com.dietiEstates.backend.model.RealEstate;
 import com.dietiEstates.backend.model.RealEstateAgent;
 import com.dietiEstates.backend.model.RealEstateForRent;
 import com.dietiEstates.backend.model.RealEstateForSale;
+import com.dietiEstates.backend.model.User;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.RealEstateAgentStats;
@@ -55,6 +57,7 @@ public class RealEstateAgentService
     private final MockingStatsService mockingStatsService;
     private final ModelMapper modelMapper;
     private final ValidatorService validatorService;
+    private final RealEstateFactory realEstateFactory;
 
 
 
@@ -69,18 +72,20 @@ public class RealEstateAgentService
         }
         RealEstateAgent realEstateAgent = realEstateAgentOptional.get();
         
-        RealEstateForSale realEstateForSale = realEstateForSaleMapper(realEstateForSaleCreationDTO);
+        //RealEstateForSale realEstateForSale = realEstateForSaleMapper(realEstateForSaleCreationDTO);
+
+        RealEstate realEstate = realEstateFactory.createRealEstateFromDTO(realEstateForSaleCreationDTO);
 
         Address address = modelMapper.map(realEstateForSaleCreationDTO.getAddressDTO(), Address.class);
-        realEstateForSale.addAddress(address);
+        realEstate.addAddress(address);
 
-        mockingStatsService.mockEstateStats(realEstateForSale);
+        mockingStatsService.mockEstateStats(realEstate);
 
-        realEstateAgent.addRealEstate(realEstateForSale);
+        realEstateAgent.addRealEstate(realEstate);
 
         int newTotalUploadedRealEstates = realEstateAgent.getRealEstateAgentStats().getTotalUploadedRealEstates() + 1;
         realEstateAgent.getRealEstateAgentStats().setTotalUploadedRealEstates(newTotalUploadedRealEstates);
-        realEstateAgent.addRealEstate(realEstateForSale);
+        realEstateAgent.addRealEstate(realEstate);
 
         realEstateAgent = realEstateAgentRepository.save(realEstateAgent);
 
@@ -101,16 +106,18 @@ public class RealEstateAgentService
         }
         RealEstateAgent realEstateAgent = realEstateAgentOptional.get();
 
-        RealEstateForRent realEstateForRent = realEstateForRentMapper(realEstateForRentCreationDTO);
+        //RealEstateForRent realEstateForRent = realEstateForRentMapper(realEstateForRentCreationDTO);
+
+        RealEstate realEstate = realEstateFactory.createRealEstateFromDTO(realEstateForRentCreationDTO);
 
         Address address = modelMapper.map(realEstateForRentCreationDTO.getAddressDTO(), Address.class);
-        realEstateForRent.addAddress(address);
+        realEstate.addAddress(address);
 
-        mockingStatsService.mockEstateStats(realEstateForRent);
+        mockingStatsService.mockEstateStats(realEstate);
 
         int newTotalUploadedRealEstates = realEstateAgent.getRealEstateAgentStats().getTotalUploadedRealEstates() + 1;
         realEstateAgent.getRealEstateAgentStats().setTotalUploadedRealEstates(newTotalUploadedRealEstates);
-        realEstateAgent.addRealEstate(realEstateForRent);
+        realEstateAgent.addRealEstate(realEstate);
         
         realEstateAgent = realEstateAgentRepository.save(realEstateAgent);
 
