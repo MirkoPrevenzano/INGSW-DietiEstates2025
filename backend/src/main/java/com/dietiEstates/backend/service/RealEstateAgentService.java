@@ -37,6 +37,9 @@ import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.RealEstateAgentStats;
 import com.dietiEstates.backend.repository.RealEstateAgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
+import com.dietiEstates.backend.utils.MockingStatsService;
+import com.dietiEstates.backend.utils.S3Service;
+import com.dietiEstates.backend.utils.ValidatorService;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

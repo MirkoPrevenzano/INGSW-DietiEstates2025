@@ -42,15 +42,16 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
-*.properties
 
 
 # System files
 .DS_Store
 Thumbs.db
 
+
 # Backend
 backend/HELP.md
 backend/target
 !**/src/main/**/target/
 !**/src/test/**/target/
+*.properties

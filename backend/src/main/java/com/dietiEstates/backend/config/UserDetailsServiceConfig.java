@@ -14,7 +14,7 @@ import com.dietiEstates.backend.model.RealEstateAgent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateAgentRepository;
-import com.dietiEstates.backend.service.ValidatorService;
+import com.dietiEstates.backend.utils.ValidatorService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

@@ -25,6 +25,8 @@ import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
+import com.dietiEstates.backend.utils.JFreeChartService;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;

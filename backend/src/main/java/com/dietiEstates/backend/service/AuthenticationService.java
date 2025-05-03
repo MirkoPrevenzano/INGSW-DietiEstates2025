@@ -13,6 +13,7 @@ import com.dietiEstates.backend.dto.AgentCustomerRegistrationDTO;
 import com.dietiEstates.backend.model.Customer;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.service.CustomerService;
+import com.dietiEstates.backend.utils.ValidatorService;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.json.jackson2.JacksonFactory;
