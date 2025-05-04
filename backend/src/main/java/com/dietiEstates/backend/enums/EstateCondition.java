@@ -1,9 +1,11 @@
 
 package com.dietiEstates.backend.enums;
 
-import com.dietiEstates.backend.extra.EnumInterface;
+import com.dietiEstates.backend.extra.ValidableEnum;
 
-public enum EstateCondition implements EnumInterface
+
+
+public enum EstateCondition implements ValidableEnum
 {
     UNDER_CONSTRUCTION("Under construction"), 
     NEW("New"), 

@@ -1,9 +1,11 @@
 
 package com.dietiEstates.backend.enums;
 
-import com.dietiEstates.backend.extra.EnumInterface;
+import com.dietiEstates.backend.extra.ValidableEnum;
 
-public enum FurnitureCondition implements EnumInterface
+
+
+public enum FurnitureCondition implements ValidableEnum
 {
     NOT_FOURNISHED("Not fournished"), 
     PARTIALLY_FOURNISHED("Partially fournished"), 

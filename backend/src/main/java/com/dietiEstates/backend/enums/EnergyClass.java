@@ -1,11 +1,11 @@
 
 package com.dietiEstates.backend.enums;
 
-import com.dietiEstates.backend.extra.EnumInterface;
+import com.dietiEstates.backend.extra.ValidableEnum;
 
 
 
-public enum EnergyClass implements EnumInterface
+public enum EnergyClass implements ValidableEnum
 {
     A("A"),
     B("B"),

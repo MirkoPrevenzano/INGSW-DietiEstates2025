@@ -3,7 +3,7 @@ package com.dietiEstates.backend.extra;
 
 
 
-public interface EnumInterface 
+public interface ValidableEnum 
 {
     public String getValue();
 }
