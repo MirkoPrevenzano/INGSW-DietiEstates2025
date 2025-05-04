@@ -8,6 +8,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.HandlerMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,20 +27,24 @@ public class AuthorizationInterceptor implements HandlerInterceptor
                              @NonNull HttpServletResponse response, 
                              @NonNull Object handler) throws Exception 
     {
-        log.info("Attempting Authorization...");
+        log.info("Attempting Authorization Interceptor...");
+
+        long preHandleStartTime = System.currentTimeMillis();
+        request.setAttribute("preHandleStartTime", preHandleStartTime);
 
         Map pathvariables = (Map) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
 
-        if(!(pathvariables.isEmpty()))
+        if(pathvariables != null)
         {
             String pathUsername = (String) pathvariables.get("username");
-            String tokenUsername = (String) request.getAttribute("com.dietiEstates.backend.model.User.username");
+            String tokenUsername = (String) request.getAttribute("tokenUsername");
 
             if(pathUsername != null && tokenUsername != null)
             {
                 if(pathUsername.equals(tokenUsername))
                 {
                     log.info("Authorization Interceptor is OK!");
+                    log.info("Request to handler \"{}\" allowed. URI: {}.", handler, request.getRequestURI());
                     return true;
                 }
 
@@ -51,6 +56,19 @@ public class AuthorizationInterceptor implements HandlerInterceptor
         }
 
         log.info("Authorization Interceptor is OK!");
+        log.info("Request to handler \"{}\" allowed. URI: {}.", handler, request.getRequestURI());
         return true;
     }
+
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) 
+    {
+        long preHandleStartTime = (Long) request.getAttribute("preHandleStartTime");
+        long handlerDuration = System.currentTimeMillis() - preHandleStartTime;
+
+        log.info("Request to handler \"{}\" completed successfully. Response status: {}. Duration: {} ms", 
+                handler, response.getStatus(), handlerDuration);
+    }
+
 }

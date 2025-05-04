@@ -1,8 +1,6 @@
 
 package com.dietiEstates.backend;
 
-import java.util.Optional;
-
 import org.springframework.boot.CommandLineRunner;
 /*import java.time.Date;
 import java.util.ArrayList;
@@ -47,10 +45,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.dietiEstates.backend.factory.RealEstateRootFactory;
 import com.dietiEstates.backend.model.Administrator;
 import com.dietiEstates.backend.model.RealEstateAgent;
-import com.dietiEstates.backend.model.User;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateAgentRepository;
