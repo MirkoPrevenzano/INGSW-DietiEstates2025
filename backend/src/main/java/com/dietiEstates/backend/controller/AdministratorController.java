@@ -31,7 +31,7 @@ public class AdministratorController
 
 
 
-    @PostMapping(path = "{username}/create-collaborator")
+    @PostMapping(path = "/create-collaborator")
     public ResponseEntity<?> createCollaborator(@RequestBody AdminRegistrationDTO adminRegistrationDTO) 
     {
         try 
@@ -41,16 +41,16 @@ public class AdministratorController
         } 
         catch (UsernameNotFoundException e)
         {
-            return ResponseEntity.notFound().header("Error", e.getMessage()).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).header("Error", e.getMessage()).build();
         }
         catch (IllegalArgumentException e) 
         {
-            return ResponseEntity.badRequest().header("Error", e.getMessage()).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).header("Error", e.getMessage()).build();
         }
     }
     
 
-    @PostMapping(path = "{username}/create-real-estate-agent")
+    @PostMapping(path = "/{username}/create-real-estate-agent")
     public ResponseEntity<?> createRealEstateAgent(@PathVariable String username, @RequestBody AgentCustomerRegistrationDTO agentCustomerRegistrationDTO) 
     {
         try 
@@ -60,30 +60,30 @@ public class AdministratorController
         } 
         catch (UsernameNotFoundException e)
         {
-            return ResponseEntity.notFound().header("Error", e.getMessage()).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).header("Error", e.getMessage()).build();
         }
         catch (IllegalArgumentException e) 
         {
-            return ResponseEntity.badRequest().header("Error", e.getMessage()).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).header("Error", e.getMessage()).build();
         }
     }
 
 
-    @PutMapping(path = "{username}/update-password")
+    @PutMapping(path = "/{username}/update-password")
     public ResponseEntity<?> updatePassword(@PathVariable String username, @RequestBody OldNewPasswordDTO oldNewPasswordDTO) 
     {
         try 
         {
             administratorService.updatePassword(username, oldNewPasswordDTO);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.status(HttpStatus.OK).build();
         } 
-/*         catch (UsernameNotFoundException e) 
+        catch (UsernameNotFoundException e) 
         {
-            return ResponseEntity.notFound().header("Error", e.getMessage()).build();
-        } */
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).header("Error", e.getMessage()).build();
+        }
         catch (IllegalArgumentException e) 
         {
-            return ResponseEntity.badRequest().header("Error", e.getMessage()).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).header("Error", e.getMessage()).build();
         }
     }
 }

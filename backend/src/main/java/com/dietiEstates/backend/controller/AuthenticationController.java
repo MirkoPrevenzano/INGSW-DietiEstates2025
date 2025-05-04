@@ -1,8 +1,14 @@
 
 package com.dietiEstates.backend.controller;
 
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.dietiEstates.backend.dto.AuthenticationResponseDTO;
 import com.dietiEstates.backend.dto.AgentCustomerRegistrationDTO;
@@ -11,11 +17,8 @@ import com.dietiEstates.backend.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-import java.util.Map;
+
+
 @RestController
 @RequestMapping(path = "/auth")
 @RequiredArgsConstructor
@@ -26,17 +29,16 @@ public class AuthenticationController
 
     
 
-    @PostMapping(path = "standard-registration")
-    public ResponseEntity<AuthenticationResponseDTO> standardRegistration(@RequestBody AgentCustomerRegistrationDTO agentCustomerRegistrationDTO) 
+    @PostMapping(path = "customer-registration")
+    public ResponseEntity<AuthenticationResponseDTO> customerRegistration(@RequestBody AgentCustomerRegistrationDTO agentCustomerRegistrationDTO) 
     {
         try 
         {
-            return ResponseEntity.ok().body(authenticationService.standardRegistration(agentCustomerRegistrationDTO));
+            return ResponseEntity.ok().body(authenticationService.customerRegistration(agentCustomerRegistrationDTO));
         } 
         catch (IllegalArgumentException e) 
         {
-            return ResponseEntity.badRequest().header("Error", e.getMessage())
-                                              .header("ACCESS_CONTROL_EXPOSE_HEADER", "Error").body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).header("Error", e.getMessage()).build();
         }
     }
 

@@ -40,7 +40,7 @@ public class AuthenticationService
     private final CustomerService customerService;
 
 
-    public AuthenticationResponseDTO standardRegistration(AgentCustomerRegistrationDTO userDTO) throws IllegalArgumentException, MappingException
+    public AuthenticationResponseDTO customerRegistration(AgentCustomerRegistrationDTO userDTO) throws IllegalArgumentException, MappingException
     {
         try 
         {
