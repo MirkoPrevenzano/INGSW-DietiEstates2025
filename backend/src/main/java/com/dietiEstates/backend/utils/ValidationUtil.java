@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.enums.NotaryDeedState;
-import com.dietiEstates.backend.extra.EnumInterface;
+import com.dietiEstates.backend.extra.ValidableEnum;
 import com.dietiEstates.backend.model.Administrator;
 import com.dietiEstates.backend.model.RealEstate;
 import com.dietiEstates.backend.model.User;
@@ -61,8 +61,8 @@ public class ValidationUtil
     {
         for(E e : enumClass.getEnumConstants())
         {
-            System.out.printf("e.name = %s\nvalue: %s\n\n", ((EnumInterface) e).getValue(), value);
-            if ( ((EnumInterface) e).getValue().equalsIgnoreCase(value) )
+            System.out.printf("e.name = %s\nvalue: %s\n\n", ((ValidableEnum) e).getValue(), value);
+            if ( ((ValidableEnum) e).getValue().equalsIgnoreCase(value) )
             {
                 return e;
             }
