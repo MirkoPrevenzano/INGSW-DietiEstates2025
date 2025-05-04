@@ -57,7 +57,7 @@ public class UserDetailsServiceConfig
                     {
                         Optional<Customer> optionalCustomer = customerRepository.findByUsername(username);
                         Customer customer = validationUtil.optionalUserValidator(optionalCustomer, username);
-                        customer.setRole(Role.ROLE_USER);
+                        customer.setRole(Role.ROLE_CUSTOMER);
                         return customer;
                     }
 

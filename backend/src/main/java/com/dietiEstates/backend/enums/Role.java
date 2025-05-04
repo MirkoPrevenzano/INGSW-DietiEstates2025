@@ -5,7 +5,7 @@ package com.dietiEstates.backend.enums;
 
 public enum Role 
 {
-    ROLE_USER,
+    ROLE_CUSTOMER,
     ROLE_AGENT,
     ROLE_ADMIN,
     ROLE_COLLABORATOR,

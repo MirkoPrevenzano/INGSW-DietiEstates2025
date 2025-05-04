@@ -74,7 +74,7 @@ public class AuthenticationService
 
         log.info("Customer was registrated successfully!");
 
-        customer.setRole(Role.ROLE_USER);
+        customer.setRole(Role.ROLE_CUSTOMER);
         return new AuthenticationResponseDTO(JWTUtils.generateAccessToken(customer));
     }
 
@@ -90,7 +90,7 @@ public class AuthenticationService
         Customer user = customerService.authenticateWithExternalAPI(payload);
         // Genera il token di autenticazione 
         Collection<SimpleGrantedAuthority> authorities = Collections.singletonList(
-            new SimpleGrantedAuthority(Role.ROLE_USER.name()) // Imposta il ruolo come ROLE_CUSTOMER
+            new SimpleGrantedAuthority(Role.ROLE_CUSTOMER.name()) // Imposta il ruolo come ROLE_CUSTOMER
         );
     
         // Genera il token di autenticazione

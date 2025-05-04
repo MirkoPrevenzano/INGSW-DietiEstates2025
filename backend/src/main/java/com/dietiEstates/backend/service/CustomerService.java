@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import com.dietiEstates.backend.controller.CSVController;
 import com.dietiEstates.backend.dto.AddressDTO;
 import com.dietiEstates.backend.dto.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
@@ -45,8 +44,6 @@ public class CustomerService
 {
 
     private final JFreeChartUtil jFreeChartUtil;
-
-    private final CSVController CSVController;
     private final RealEstateRepository realEstateRepository;
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;

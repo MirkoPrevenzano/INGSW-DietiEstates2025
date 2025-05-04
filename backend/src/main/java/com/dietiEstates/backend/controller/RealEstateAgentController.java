@@ -1,6 +1,10 @@
 
 package com.dietiEstates.backend.controller;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +25,11 @@ import com.dietiEstates.backend.dto.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.RealEstateStatsDTO;
 import com.dietiEstates.backend.model.embeddable.RealEstateAgentStats;
 import com.dietiEstates.backend.service.RealEstateAgentService;
+import com.dietiEstates.backend.utils.CsvUtil;
+import com.dietiEstates.backend.utils.PdfUtil;
+import com.lowagie.text.DocumentException;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,6 +41,8 @@ import lombok.extern.slf4j.Slf4j;
 public class RealEstateAgentController 
 {
     private final RealEstateAgentService realEstateAgentService;
+    private final CsvUtil csvUtil;
+    private final PdfUtil pdfUtil;
 
 
 
@@ -77,6 +87,37 @@ public class RealEstateAgentController
             log.info(recentRealEstateDTO.toString());
 
         return ResponseEntity.ok(realEstates);
+    }
+
+
+    @GetMapping(value = "/{username}/exportCSV")
+    public void exportToCSV(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
+    {
+        csvUtil.writeCsvResponse(username,response);
+    }
+       
+    
+    //Il controller bisogna che chiama solo il metodo del service
+    @GetMapping("{username}/exportPDF")
+    public void exportToPDF(@PathVariable("username") String username, HttpServletResponse response) throws DocumentException, IOException 
+    {
+        response.setContentType("application/pdf");
+
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename="+username + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue); 
+
+        try 
+        {  
+            pdfUtil.writePdfResponse(username, response);
+        } 
+        catch (DocumentException | IOException e) 
+        {
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            response.setHeader("Error", "Errore durante l'esportazione del PDF!"); 
+        }
     }
 
 
