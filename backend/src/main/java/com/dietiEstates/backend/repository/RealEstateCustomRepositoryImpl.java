@@ -13,6 +13,7 @@ import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
 import com.dietiEstates.backend.dto.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.RealEstateStatsDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
+import com.dietiEstates.backend.factory.RealEstateRootFactory;
 import com.dietiEstates.backend.model.Address;
 import com.dietiEstates.backend.model.RealEstate;
 import com.dietiEstates.backend.model.RealEstateForRent;
@@ -260,15 +261,8 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
         } 
 
 
-        Root<?> realEstateType = null;
-
         String type = filters.get("type");
-        if(type.equals("For Sale"))
-            realEstateType = criteriaQuery.from(RealEstateForSale.class);
-        else if(type.equals("For Rent"))
-            realEstateType = criteriaQuery.from(RealEstateForRent.class);
-        else
-            ; // throw Exception; 
+        Root<?> realEstateType = RealEstateRootFactory.createRealEstateRootFromType(type, criteriaQuery);
 
         predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), realEstateType.get("realEstateId")));
         predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), address.get("addressId")));

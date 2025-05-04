@@ -47,6 +47,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.dietiEstates.backend.factory.RealEstateRootFactory;
 import com.dietiEstates.backend.model.Administrator;
 import com.dietiEstates.backend.model.RealEstateAgent;
 import com.dietiEstates.backend.model.User;
@@ -92,7 +93,6 @@ public class BackendApplication
             agent.setAdministrator(administrator);
             administrator.addRealEstateAgent(agent);
             administrator = administratorRepository.save(administrator);
-
 
            /*administrator.getRealEstateAgents().get(0).getRealEstateAgentStats().setTotalUploadedRealEstates(200);
             administrator.getRealEstateAgents().get(0).getRealEstateAgentStats().setTotalRentedRealEstates(20);;
