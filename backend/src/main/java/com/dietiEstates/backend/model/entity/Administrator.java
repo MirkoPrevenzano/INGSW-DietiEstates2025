@@ -37,13 +37,6 @@ import lombok.ToString;
                    column = @Column(name = "admin_id"))
 public class Administrator extends User
 {
-    @Column(name = "agency_name", 
-            nullable = false, 
-            updatable = true)
-    private String agencyName;
-
-
-
     @ManyToOne(fetch = FetchType.EAGER,
                cascade = {})
     @JoinColumn(name = "manager_id", 
@@ -66,10 +59,9 @@ public class Administrator extends User
 
 
 
-    public Administrator(String name, String surname, String username, String password, String agencyName) 
+    public Administrator(String name, String surname, String username, String password) 
     {
         super(name, surname, username, password);
-        this.agencyName = agencyName;
     }
 
 

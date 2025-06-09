@@ -68,8 +68,7 @@ public class AdministratorService
         }
 
         collaborator.setPassword(passwordEncoder.encode("default"));
-        collaborator.setAgencyName(admin.getAgencyName());
-
+        
         admin.addCollaborator(collaborator);
         admin = administratorRepository.save(admin);
 

@@ -80,7 +80,7 @@ public class BackendApplication
     {
         return args -> 
         {  
-            Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@", "ak");
+            Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@");
             administrator.setPassword(passwordEncoder.encode(administrator.getPassword()));
             administrator = administratorRepository.save(administrator);
 
