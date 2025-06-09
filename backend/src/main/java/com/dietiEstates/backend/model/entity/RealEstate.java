@@ -49,8 +49,7 @@ public class RealEstate
     private Long realEstateId;
 
     @Column(nullable = false, 
-            updatable = true, 
-            columnDefinition = "text")
+            updatable = true)
     private String title;
 
     @Column(nullable = false, 
