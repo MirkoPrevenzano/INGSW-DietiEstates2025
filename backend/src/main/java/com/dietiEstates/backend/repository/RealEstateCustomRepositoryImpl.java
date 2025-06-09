@@ -14,8 +14,8 @@ import com.dietiEstates.backend.dto.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.RealEstateStatsDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
 import com.dietiEstates.backend.factory.RealEstateRootFactory;
-import com.dietiEstates.backend.model.RealEstate;
 import com.dietiEstates.backend.model.entity.Address;
+import com.dietiEstates.backend.model.entity.RealEstate;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

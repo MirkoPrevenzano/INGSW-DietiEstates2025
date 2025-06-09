@@ -18,8 +18,8 @@ import org.supercsv.io.CsvListWriter;
 import org.supercsv.io.ICsvListWriter;
 import org.supercsv.prefs.CsvPreference;
 
-import com.dietiEstates.backend.model.RealEstate;
-import com.dietiEstates.backend.model.RealEstateAgent;
+import com.dietiEstates.backend.model.entity.RealEstate;
+import com.dietiEstates.backend.model.entity.RealEstateAgent;
 import com.dietiEstates.backend.repository.RealEstateAgentRepository;
 import com.dietiEstates.backend.service.RealEstateAgentService;
 

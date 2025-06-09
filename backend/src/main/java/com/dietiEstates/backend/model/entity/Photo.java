@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.model;
+package com.dietiEstates.backend.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

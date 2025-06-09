@@ -11,10 +11,10 @@ import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.EstateCondition;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.NotaryDeedState;
-import com.dietiEstates.backend.model.RealEstateForRent;
-import com.dietiEstates.backend.model.RealEstateForSale;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
+import com.dietiEstates.backend.model.entity.RealEstateForRent;
+import com.dietiEstates.backend.model.entity.RealEstateForSale;
 
 import lombok.RequiredArgsConstructor;
 

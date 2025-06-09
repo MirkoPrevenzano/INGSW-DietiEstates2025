@@ -1,8 +1,9 @@
 
 package com.dietiEstates.backend.factory;
  
-import com.dietiEstates.backend.model.RealEstateForRent;
-import com.dietiEstates.backend.model.RealEstateForSale;
+import com.dietiEstates.backend.model.entity.RealEstateForRent;
+import com.dietiEstates.backend.model.entity.RealEstateForSale;
+
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 

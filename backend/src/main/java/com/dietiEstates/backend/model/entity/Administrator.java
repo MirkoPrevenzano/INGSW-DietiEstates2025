@@ -1,8 +1,10 @@
 
-package com.dietiEstates.backend.model;
+package com.dietiEstates.backend.model.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.dietiEstates.backend.model.User;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.CascadeType;

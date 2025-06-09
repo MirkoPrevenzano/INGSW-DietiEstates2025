@@ -1,9 +1,10 @@
 
-package com.dietiEstates.backend.model;
+package com.dietiEstates.backend.model.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dietiEstates.backend.model.User;
 import com.dietiEstates.backend.model.embeddable.RealEstateAgentStats;
 
 import jakarta.persistence.AttributeOverride;

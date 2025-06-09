@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dietiEstates.backend.dto.RealEstateCreationDTO;
-import com.dietiEstates.backend.model.RealEstate;
+import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.service.CustomerService;
 
 import lombok.RequiredArgsConstructor;

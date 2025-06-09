@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import com.dietiEstates.backend.dto.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;
-import com.dietiEstates.backend.model.RealEstate;
+import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.utils.RealEstateMappingUtil;
 import lombok.RequiredArgsConstructor;
 

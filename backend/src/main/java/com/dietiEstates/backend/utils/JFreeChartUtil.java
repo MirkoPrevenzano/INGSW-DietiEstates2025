@@ -13,7 +13,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.dietiEstates.backend.model.RealEstateAgent;
+import com.dietiEstates.backend.model.entity.RealEstateAgent;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

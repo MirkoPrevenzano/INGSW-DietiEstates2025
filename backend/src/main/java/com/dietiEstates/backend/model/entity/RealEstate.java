@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.model;
+package com.dietiEstates.backend.model.entity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -30,7 +30,6 @@ import java.util.List;
 
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.RealEstateStats;
-import com.dietiEstates.backend.model.entity.Address;
 import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 

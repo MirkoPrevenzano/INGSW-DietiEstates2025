@@ -13,10 +13,10 @@ import org.springframework.format.datetime.standard.DateTimeFormatterFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.dietiEstates.backend.model.RealEstate;
-import com.dietiEstates.backend.model.RealEstateAgent;
 import com.dietiEstates.backend.model.embeddable.RealEstateAgentStats;
 import com.dietiEstates.backend.model.embeddable.RealEstateStats;
+import com.dietiEstates.backend.model.entity.RealEstate;
+import com.dietiEstates.backend.model.entity.RealEstateAgent;
 import com.dietiEstates.backend.repository.RealEstateAgentRepository;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;

@@ -2,8 +2,6 @@
 package com.dietiEstates.backend.model.entity;
 
 
-import com.dietiEstates.backend.model.RealEstate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
