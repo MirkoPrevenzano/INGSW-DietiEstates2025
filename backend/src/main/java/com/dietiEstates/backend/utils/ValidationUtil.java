@@ -61,6 +61,7 @@ public class ValidationUtil
     {
         for(E e : enumClass.getEnumConstants())
         {
+            //e.name();
             System.out.printf("e.name = %s\nvalue: %s\n\n", ((ValidableEnum) e).getValue(), value);
             if ( ((ValidableEnum) e).getValue().equalsIgnoreCase(value) )
             {

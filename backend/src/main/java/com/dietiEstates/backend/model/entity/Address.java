@@ -1,5 +1,8 @@
 
-package com.dietiEstates.backend.model;
+package com.dietiEstates.backend.model.entity;
+
+
+import com.dietiEstates.backend.model.RealEstate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -72,7 +75,6 @@ public class Address
      @Column(nullable = false, 
              updatable = true)
      private Double latitude;
-
 
      
      @MapsId
