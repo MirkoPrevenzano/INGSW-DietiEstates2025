@@ -29,57 +29,57 @@ public class ExternalRealEstateFeatures
             updatable = true)
     private Integer floorNumber;
     
-    @Column(nullable = true, 
-            updatable = true,
-            columnDefinition = "boolean default false")    
-    private boolean elevator;
+    @NonNull
+    @Column(nullable = false, 
+            updatable = true)    
+    private Boolean elevator;
 
-    @Column(nullable = true, 
-            updatable = true,
-            columnDefinition = "boolean default false")     
-    private boolean concierge;
+    @NonNull
+    @Column(nullable = false, 
+            updatable = true)     
+    private Boolean concierge;
 
-    @Column(nullable = true, 
-            updatable = true,
-            columnDefinition = "boolean default false") 
-    private boolean terrace;
+    @NonNull
+    @Column(nullable = false, 
+            updatable = true) 
+    private Boolean terrace;
 
-    @Column(nullable = true, 
-            updatable = true,
-            columnDefinition = "boolean default false") 
-    private boolean garage;
+    @NonNull
+    @Column(nullable = false, 
+            updatable = true) 
+    private Boolean garage;
 
-    @Column(nullable = true, 
-            updatable = true,
-            columnDefinition = "boolean default false") 
-    private boolean balcony;
+    @NonNull
+    @Column(nullable = false, 
+            updatable = true) 
+    private Boolean balcony;
 
-    @Column(nullable = true, 
-            updatable = true,
-            columnDefinition = "boolean default false") 
-    private boolean garden;
+    @NonNull
+    @Column(nullable = false, 
+            updatable = true) 
+    private Boolean garden;
 
+    @NonNull
     @Column(name = "swimming_pool",
-            nullable = true, 
-            updatable = true,
-            columnDefinition = "boolean default false") 
-    private boolean swimmingPool;
+            nullable = false, 
+            updatable = true) 
+    private Boolean swimmingPool;
 
+    @NonNull
     @Column(name = "near_park",
-            nullable = true, 
-            updatable = true,
-            columnDefinition = "boolean default false")     
-    private boolean nearPark;
+            nullable = false, 
+            updatable = true)     
+    private Boolean nearPark;
 
+    @NonNull
     @Column(name = "near_school",
-            nullable = true, 
-            updatable = true,
-            columnDefinition = "boolean default false")   
-    private boolean nearSchool; 
+            nullable = false, 
+            updatable = true)   
+    private Boolean nearSchool; 
 
+    @NonNull
     @Column(name = "near_public_transport",
-            nullable = true, 
-            updatable = true,
-            columnDefinition = "boolean default false")   
-    private boolean nearPublicTransport;
+            nullable = false, 
+            updatable = true)   
+    private Boolean nearPublicTransport;
 }

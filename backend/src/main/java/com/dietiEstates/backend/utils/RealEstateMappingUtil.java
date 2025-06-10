@@ -41,24 +41,22 @@ public class RealEstateMappingUtil
                                         new InternalRealEstateFeatures(realEstateForRentCreationDTO.getRealEstateMainFeatures().getSize(), 
                                                                        realEstateForRentCreationDTO.getRealEstateMainFeatures().getRoomsNumber(), 
                                                                        validationUtil.enumValidator(EstateCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
-                                                                       validationUtil.enumValidator(FurnitureCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()));
+                                                                       validationUtil.enumValidator(FurnitureCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()),
+                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getAirConditioning(),
+                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getHeating());
         ExternalRealEstateFeatures externalRealEstateFeatures = 
                                         new ExternalRealEstateFeatures(realEstateForRentCreationDTO.getRealEstateMainFeatures().getParkingSpacesNumber(), 
-                                                                       realEstateForRentCreationDTO.getRealEstateMainFeatures().getFloorNumber());
-        
-        internalRealEstateFeatures.setAirConditioning(realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getAirConditioning());
-        internalRealEstateFeatures.setHeating(realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getHeating());
-
-        externalRealEstateFeatures.setElevator(realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getElevator());
-        externalRealEstateFeatures.setConcierge(realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getConcierge());
-        externalRealEstateFeatures.setTerrace(realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getTerrace());
-        externalRealEstateFeatures.setGarage(realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getGarage());
-        externalRealEstateFeatures.setBalcony(realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getBalcony());
-        externalRealEstateFeatures.setGarden(realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getGarden());
-        externalRealEstateFeatures.setSwimmingPool(realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getSwimmingPool());
-        externalRealEstateFeatures.setNearPark(realEstateForRentCreationDTO.getRealEstateLocationFeatures().getNearPark());
-        externalRealEstateFeatures.setNearSchool(realEstateForRentCreationDTO.getRealEstateLocationFeatures().getNearSchool());
-        externalRealEstateFeatures.setNearPublicTransport(realEstateForRentCreationDTO.getRealEstateLocationFeatures().getNearPublicTransport());
+                                                                       realEstateForRentCreationDTO.getRealEstateMainFeatures().getFloorNumber(),
+                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getElevator(),
+                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getConcierge(),
+                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getTerrace(),
+                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getGarage(),
+                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getBalcony(),
+                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getGarden(),
+                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getSwimmingPool(),
+                                                                       realEstateForRentCreationDTO.getRealEstateLocationFeatures().getNearPark(),
+                                                                       realEstateForRentCreationDTO.getRealEstateLocationFeatures().getNearSchool(),
+                                                                       realEstateForRentCreationDTO.getRealEstateLocationFeatures().getNearPublicTransport());
     
         return new RealEstateForRent(title, description, LocalDateTime.now(), price, condoFee, energyClass, 
                                      internalRealEstateFeatures, externalRealEstateFeatures, securityDeposit, contractYears);
@@ -78,24 +76,23 @@ public class RealEstateMappingUtil
                                         new InternalRealEstateFeatures(realEstateForSaleCreationDTO.getRealEstateMainFeatures().getSize(), 
                                                                        realEstateForSaleCreationDTO.getRealEstateMainFeatures().getRoomsNumber(), 
                                                                        validationUtil.enumValidator(EstateCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
-                                                                       validationUtil.enumValidator(FurnitureCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()));
+                                                                       validationUtil.enumValidator(FurnitureCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()),
+                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getAirConditioning(),
+                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getHeating());
         ExternalRealEstateFeatures externalRealEstateFeatures = 
                                         new ExternalRealEstateFeatures(realEstateForSaleCreationDTO.getRealEstateMainFeatures().getParkingSpacesNumber(), 
-                                                                       realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFloorNumber());
-        
-        internalRealEstateFeatures.setAirConditioning(realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getAirConditioning());
-        internalRealEstateFeatures.setHeating(realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getHeating());
-
-        externalRealEstateFeatures.setElevator(realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getElevator());
-        externalRealEstateFeatures.setConcierge(realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getConcierge());
-        externalRealEstateFeatures.setTerrace(realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getTerrace());
-        externalRealEstateFeatures.setGarage(realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getGarage());
-        externalRealEstateFeatures.setBalcony(realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getBalcony());
-        externalRealEstateFeatures.setGarden(realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getGarden());
-        externalRealEstateFeatures.setSwimmingPool(realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getSwimmingPool());
-        externalRealEstateFeatures.setNearPark(realEstateForSaleCreationDTO.getRealEstateLocationFeatures().getNearPark());
-        externalRealEstateFeatures.setNearSchool(realEstateForSaleCreationDTO.getRealEstateLocationFeatures().getNearSchool());
-        externalRealEstateFeatures.setNearPublicTransport(realEstateForSaleCreationDTO.getRealEstateLocationFeatures().getNearPublicTransport());
+                                                                       realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFloorNumber(),
+                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getElevator(),
+                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getConcierge(),
+                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getTerrace(),
+                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getGarage(),
+                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getBalcony(),
+                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getGarden(),
+                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getSwimmingPool(),
+                                                                       realEstateForSaleCreationDTO.getRealEstateLocationFeatures().getNearPark(),
+                                                                       realEstateForSaleCreationDTO.getRealEstateLocationFeatures().getNearSchool(),
+                                                                       realEstateForSaleCreationDTO.getRealEstateLocationFeatures().getNearPublicTransport());
+                                                                       
 
         return new RealEstateForSale(title, description, LocalDateTime.now(), price, condoFee, energyClass, 
                                      internalRealEstateFeatures, externalRealEstateFeatures, notaryDeedState);

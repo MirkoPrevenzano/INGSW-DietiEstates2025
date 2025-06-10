@@ -46,14 +46,14 @@ public class InternalRealEstateFeatures
             updatable = true)
     private FurnitureCondition furnitureCondition;
 
+    @NonNull
     @Column(name = "air_conditioning",
             nullable = true, 
-            updatable = true,
-            columnDefinition = "boolean default false")     
-    private boolean airConditioning;
+            updatable = true)   
+    private Boolean airConditioning;
 
+    @NonNull
     @Column(nullable = true, 
-            updatable = true,
-            columnDefinition = "boolean default false")  
-    private boolean heating;
+            updatable = true)
+    private Boolean heating;
 }

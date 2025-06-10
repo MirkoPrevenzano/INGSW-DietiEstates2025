@@ -114,21 +114,21 @@ public class CustomerService
 
 
                 RealEstateBooleanFeatures realEstateBooleanFeatures = new RealEstateBooleanFeatures();
-                realEstateBooleanFeatures.setAirConditioning(realEstate.getInternalFeatures().isAirConditioning());
-                realEstateBooleanFeatures.setHeating(realEstate.getInternalFeatures().isHeating());
-                realEstateBooleanFeatures.setBalcony(realEstate.getExternalFeatures().isBalcony());
-                realEstateBooleanFeatures.setElevator(realEstate.getExternalFeatures().isElevator());
-                realEstateBooleanFeatures.setConcierge(realEstate.getExternalFeatures().isConcierge());
-                realEstateBooleanFeatures.setGarage(realEstate.getExternalFeatures().isGarage());
-                realEstateBooleanFeatures.setGarden(realEstate.getExternalFeatures().isGarden());
-                realEstateBooleanFeatures.setSwimmingPool(realEstate.getExternalFeatures().isSwimmingPool());
-                realEstateBooleanFeatures.setTerrace(realEstate.getExternalFeatures().isTerrace());
+                realEstateBooleanFeatures.setAirConditioning(realEstate.getInternalFeatures().getAirConditioning());
+                realEstateBooleanFeatures.setHeating(realEstate.getInternalFeatures().getHeating());
+                realEstateBooleanFeatures.setBalcony(realEstate.getExternalFeatures().getBalcony());
+                realEstateBooleanFeatures.setElevator(realEstate.getExternalFeatures().getElevator());
+                realEstateBooleanFeatures.setConcierge(realEstate.getExternalFeatures().getConcierge());
+                realEstateBooleanFeatures.setGarage(realEstate.getExternalFeatures().getGarage());
+                realEstateBooleanFeatures.setGarden(realEstate.getExternalFeatures().getGarden());
+                realEstateBooleanFeatures.setSwimmingPool(realEstate.getExternalFeatures().getSwimmingPool());
+                realEstateBooleanFeatures.setTerrace(realEstate.getExternalFeatures().getTerrace());
 
 
                 RealEstateLocationFeatures realEstateLocationFeatures = new RealEstateLocationFeatures();
-                realEstateLocationFeatures.setNearPark(realEstate.getExternalFeatures().isNearPark());
-                realEstateLocationFeatures.setNearSchool(realEstate.getExternalFeatures().isNearSchool());
-                realEstateLocationFeatures.setNearPublicTransport(realEstate.getExternalFeatures().isNearPublicTransport());
+                realEstateLocationFeatures.setNearPark(realEstate.getExternalFeatures().getNearPark());
+                realEstateLocationFeatures.setNearSchool(realEstate.getExternalFeatures().getNearSchool());
+                realEstateLocationFeatures.setNearPublicTransport(realEstate.getExternalFeatures().getNearPublicTransport());
 
 
                 AddressDTO addressDTO = modelMapper.map(realEstate.getAddress(), AddressDTO.class);
