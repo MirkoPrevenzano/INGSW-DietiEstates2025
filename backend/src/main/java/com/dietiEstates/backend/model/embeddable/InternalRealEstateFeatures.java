@@ -1,7 +1,7 @@
 
 package com.dietiEstates.backend.model.embeddable;
 
-import com.dietiEstates.backend.enums.EstateCondition;
+import com.dietiEstates.backend.enums.PropertyCondition;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 
 import jakarta.persistence.Column;
@@ -37,7 +37,7 @@ public class InternalRealEstateFeatures
     @Column(name = "estate_condition", 
             nullable = false, 
             updatable = true)
-    private EstateCondition estateCondition;
+    private PropertyCondition propertyCondition;
 
     @NonNull
     @Enumerated(value = EnumType.STRING)

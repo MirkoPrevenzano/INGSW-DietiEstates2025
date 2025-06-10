@@ -21,7 +21,7 @@ import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.RealEstateStatsDTO;
 import com.dietiEstates.backend.enums.EnergyClass;
-import com.dietiEstates.backend.enums.EstateCondition;
+import com.dietiEstates.backend.enums.PropertyCondition;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.NotaryDeedState;
 import com.dietiEstates.backend.factory.RealEstateFactory;

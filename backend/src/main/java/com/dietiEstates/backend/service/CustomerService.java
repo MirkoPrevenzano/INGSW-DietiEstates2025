@@ -102,7 +102,7 @@ public class CustomerService
 
                 Double size = realEstate.getInternalFeatures().getSize();
                 Integer roomsNumber = realEstate.getInternalFeatures().getRoomsNumber();
-                String estateCondition = realEstate.getInternalFeatures().getEstateCondition().getValue();
+                String propertyCondition = realEstate.getInternalFeatures().getPropertyCondition().getValue();
                 String furnitureCondition = realEstate.getInternalFeatures().getFurnitureCondition().getValue();
 
                 Integer parkingSpacesNumber = realEstate.getExternalFeatures().getParkingSpacesNumber();
@@ -110,7 +110,7 @@ public class CustomerService
 
                 RealEstateMainFeatures realEstateMainFeatures = new RealEstateMainFeatures(title, description, price, condoFee, size, 
                                                                    roomsNumber, parkingSpacesNumber, floorNumber, 
-                                                                   energyClass, estateCondition, furnitureCondition);
+                                                                   energyClass, propertyCondition, furnitureCondition);
 
 
                 RealEstateBooleanFeatures realEstateBooleanFeatures = new RealEstateBooleanFeatures();

@@ -5,7 +5,7 @@ import com.dietiEstates.backend.extra.ValidableEnum;
 
 
 
-public enum EstateCondition implements ValidableEnum
+public enum PropertyCondition implements ValidableEnum
 {
     UNDER_CONSTRUCTION("Under construction"), 
     NEW("New"), 
@@ -20,7 +20,7 @@ public enum EstateCondition implements ValidableEnum
     private final String value;
 
 
-    EstateCondition(String value) 
+    PropertyCondition(String value) 
     {
         this.value = value;
     };

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.enums.EnergyClass;
-import com.dietiEstates.backend.enums.EstateCondition;
+import com.dietiEstates.backend.enums.PropertyCondition;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.NotaryDeedState;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
@@ -40,7 +40,7 @@ public class RealEstateMappingUtil
         InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(realEstateForRentCreationDTO.getRealEstateMainFeatures().getSize(), 
                                                                        realEstateForRentCreationDTO.getRealEstateMainFeatures().getRoomsNumber(), 
-                                                                       validationUtil.enumValidator(EstateCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
+                                                                       validationUtil.enumValidator(PropertyCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getPropertyCondition()), 
                                                                        validationUtil.enumValidator(FurnitureCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()),
                                                                        realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getAirConditioning(),
                                                                        realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getHeating());
@@ -75,7 +75,7 @@ public class RealEstateMappingUtil
         InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(realEstateForSaleCreationDTO.getRealEstateMainFeatures().getSize(), 
                                                                        realEstateForSaleCreationDTO.getRealEstateMainFeatures().getRoomsNumber(), 
-                                                                       validationUtil.enumValidator(EstateCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEstateCondition()), 
+                                                                       validationUtil.enumValidator(PropertyCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getPropertyCondition()), 
                                                                        validationUtil.enumValidator(FurnitureCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()),
                                                                        realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getAirConditioning(),
                                                                        realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getHeating());

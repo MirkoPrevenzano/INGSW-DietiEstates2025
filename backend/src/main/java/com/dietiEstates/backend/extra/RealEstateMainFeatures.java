@@ -40,7 +40,7 @@ public class RealEstateMainFeatures
     private String energyClass;
     
     @NonNull
-    private String estateCondition;
+    private String propertyCondition;
 
     @NonNull
     private String furnitureCondition;
