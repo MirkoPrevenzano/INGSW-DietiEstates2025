@@ -24,7 +24,7 @@ import com.dietiEstates.backend.model.entity.RealEstateForRent;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.utils.JFreeChartUtil;
+import com.dietiEstates.backend.util.JFreeChartUtil;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 

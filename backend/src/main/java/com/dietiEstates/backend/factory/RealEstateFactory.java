@@ -6,7 +6,8 @@ import com.dietiEstates.backend.dto.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.model.entity.RealEstate;
-import com.dietiEstates.backend.utils.RealEstateMappingUtil;
+import com.dietiEstates.backend.util.RealEstateMappingUtil;
+
 import lombok.RequiredArgsConstructor;
 
 

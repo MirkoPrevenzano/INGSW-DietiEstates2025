@@ -25,8 +25,8 @@ import com.dietiEstates.backend.dto.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.RealEstateStatsDTO;
 import com.dietiEstates.backend.model.embeddable.RealEstateAgentStats;
 import com.dietiEstates.backend.service.RealEstateAgentService;
-import com.dietiEstates.backend.utils.CsvUtil;
-import com.dietiEstates.backend.utils.PdfUtil;
+import com.dietiEstates.backend.util.CsvUtil;
+import com.dietiEstates.backend.util.PdfUtil;
 import com.lowagie.text.DocumentException;
 
 import jakarta.servlet.http.HttpServletResponse;

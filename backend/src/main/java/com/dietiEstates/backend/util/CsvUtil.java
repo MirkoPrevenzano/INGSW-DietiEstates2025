@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.utils;
+package com.dietiEstates.backend.util;
 
 import java.io.FileWriter;
 import java.io.IOException;

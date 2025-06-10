@@ -17,8 +17,8 @@ import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.RealEstateAgent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.RealEstateAgentRepository;
-import com.dietiEstates.backend.utils.MockingStatsUtil;
-import com.dietiEstates.backend.utils.ValidationUtil;
+import com.dietiEstates.backend.util.MockingStatsUtil;
+import com.dietiEstates.backend.util.ValidationUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

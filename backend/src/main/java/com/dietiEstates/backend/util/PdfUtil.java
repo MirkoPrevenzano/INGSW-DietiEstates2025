@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.utils;
+package com.dietiEstates.backend.util;
 
 import java.awt.Color;
 import java.io.FileOutputStream;

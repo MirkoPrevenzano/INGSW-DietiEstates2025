@@ -52,9 +52,9 @@ import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateAgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.RealEstateAgentService;
-import com.dietiEstates.backend.utils.JFreeChartUtil;
-import com.dietiEstates.backend.utils.S3Util;
-import com.dietiEstates.backend.utils.ValidationUtil;
+import com.dietiEstates.backend.util.JFreeChartUtil;
+import com.dietiEstates.backend.util.S3Util;
+import com.dietiEstates.backend.util.ValidationUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

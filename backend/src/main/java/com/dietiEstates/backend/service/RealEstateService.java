@@ -12,7 +12,7 @@ import com.dietiEstates.backend.dto.RealEstatePreviewsFirstPageDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
 import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.utils.FindByRadiusUtil;
+import com.dietiEstates.backend.util.FindByRadiusUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
