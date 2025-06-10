@@ -16,13 +16,16 @@ public enum EnergyClass implements ValidableEnum
     G("G");
 
 
+
     private final String value;
+
 
 
     EnergyClass(String value) 
     {
         this.value = value;
     };
+
 
 
     public String getValue() 

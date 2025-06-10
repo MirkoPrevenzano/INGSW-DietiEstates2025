@@ -15,6 +15,7 @@ public enum EstateCondition implements ValidableEnum
     GOOD("Good"), 
     EXCELLENT("Excellent");
     
+    
 
     private final String value;
 
@@ -25,6 +26,7 @@ public enum EstateCondition implements ValidableEnum
     };
 
 
+    
     public String getValue() 
     {
         return this.value;

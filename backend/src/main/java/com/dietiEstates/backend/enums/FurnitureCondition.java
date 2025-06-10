@@ -12,7 +12,9 @@ public enum FurnitureCondition implements ValidableEnum
     WELL_FOURNISHED("Well fournished");
 
     
+
     private final String value;
+
 
 
     FurnitureCondition(String value) 
@@ -21,6 +23,7 @@ public enum FurnitureCondition implements ValidableEnum
     };
 
 
+    
     public String getValue() 
     {
         return this.value;

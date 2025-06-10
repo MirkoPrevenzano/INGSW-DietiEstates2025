@@ -12,7 +12,9 @@ public enum NotaryDeedState implements ValidableEnum
     BARE_PROPERTY("Bare property");
 
 
+
     private final String value;
+
 
 
     NotaryDeedState(String value) 
@@ -20,6 +22,7 @@ public enum NotaryDeedState implements ValidableEnum
         this.value = value;
     };
 
+    
 
     public String getValue() 
     {
