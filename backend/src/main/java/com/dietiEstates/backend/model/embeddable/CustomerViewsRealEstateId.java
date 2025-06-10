@@ -28,10 +28,10 @@ public class CustomerViewsRealEstateId implements Serializable
     @Override
     public boolean equals(Object o) 
     {
-        if (this == o) 
+        if(this == o) 
             return true;
 
-        if (o == null || this.getClass() != o.getClass()) 
+        if(o == null || this.getClass() != o.getClass()) 
             return false;
 
         CustomerViewsRealEstateId that = (CustomerViewsRealEstateId) o;

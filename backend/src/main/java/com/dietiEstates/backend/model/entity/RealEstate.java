@@ -108,7 +108,7 @@ public class RealEstate
     @JoinColumn(name = "real_estate_id", 
                 nullable = false, 
                 updatable = true, 
-                foreignKey = @ForeignKey(name = "real_estate_to_photo_fk"))
+                foreignKey = @ForeignKey(name = "photo_to_real_estate_fk"))
     private List<Photo> photos = new ArrayList<>();
 
     @OneToMany(mappedBy = "realEstate",
