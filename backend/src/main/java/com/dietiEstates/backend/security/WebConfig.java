@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.config.security;
+package com.dietiEstates.backend.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.dietiEstates.backend.config.security.interceptor.AuthorizationInterceptor;
+import com.dietiEstates.backend.security.interceptor.AuthorizationInterceptor;
 
 import lombok.RequiredArgsConstructor;
 

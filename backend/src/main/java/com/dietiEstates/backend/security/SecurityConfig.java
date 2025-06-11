@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.config.security;
+package com.dietiEstates.backend.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,10 +12,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.dietiEstates.backend.config.security.filter.JWTAuthenticationFilter;
-import com.dietiEstates.backend.config.security.filter.JWTAuthorizationFilter;
 import com.dietiEstates.backend.enums.Role;
-
+import com.dietiEstates.backend.security.filter.JWTAuthenticationFilter;
+import com.dietiEstates.backend.security.filter.JWTAuthorizationFilter;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

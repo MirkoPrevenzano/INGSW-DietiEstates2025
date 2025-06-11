@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.config.security.filter;
+package com.dietiEstates.backend.security.filter;
 
 import java.io.IOException;
 
@@ -16,10 +16,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 
-import com.dietiEstates.backend.config.security.JWTUtils;
 import com.dietiEstates.backend.dto.AuthenticationResponseDTO;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.dietiEstates.backend.security.JWTUtils;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

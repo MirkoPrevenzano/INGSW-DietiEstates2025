@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.config.security.interceptor;
+package com.dietiEstates.backend.security.interceptor;
 
 import java.util.Map;
 

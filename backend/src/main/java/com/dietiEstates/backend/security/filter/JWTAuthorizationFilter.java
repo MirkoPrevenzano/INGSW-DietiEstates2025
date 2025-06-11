@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.config.security.filter;
+package com.dietiEstates.backend.security.filter;
 
 import static java.util.Arrays.stream;
 
@@ -19,8 +19,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-
-import com.dietiEstates.backend.config.security.JWTUtils;
+import com.dietiEstates.backend.security.JWTUtils;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

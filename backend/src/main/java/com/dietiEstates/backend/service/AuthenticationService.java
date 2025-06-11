@@ -6,7 +6,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.dietiEstates.backend.config.security.JWTUtils;
 import com.dietiEstates.backend.enums.Role;
 import com.dietiEstates.backend.model.entity.Customer;
 import com.dietiEstates.backend.dto.AuthenticationResponseDTO;
@@ -17,6 +16,7 @@ import com.dietiEstates.backend.util.ValidationUtil;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.dietiEstates.backend.security.JWTUtils;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import java.util.Collections;
 import java.util.Optional;
