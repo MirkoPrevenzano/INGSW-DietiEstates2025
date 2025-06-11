@@ -33,23 +33,23 @@ public class FindByRadiusUtil
 		System.out.println("latitudeVariation: " + latitudeVariation);
 		System.out.println("longitudeVariation: " + longitudeVariation);
 
-		double latMin;
-		double latMax;
-		double longMin;
-		double longMax;
+		double minLatitude;
+		double maxLatitude;
+		double minLongitude;
+		double maxLongitude;
 
-		latMin = lat0 - latitudeVariation;
-		latMax = lat0 + latitudeVariation;
-		longMin = long0 - longitudeVariation;
-		longMax = long0 + longitudeVariation;
+		minLatitude = lat0 - latitudeVariation;
+		maxLatitude = lat0 + latitudeVariation;
+		minLongitude = long0 - longitudeVariation;
+		maxLongitude = long0 + longitudeVariation;
 
 		System.out.println("");
 		System.out.println("");
-		System.out.println("latMin: " + latMin);
-		System.out.println("latMax: " + latMax);
-		System.out.println("longMin: " + longMin);
-		System.out.println("longMax: " + longMax);
+		System.out.println("minLatitude: " + minLatitude);
+		System.out.println("maxLatitude: " + maxLatitude);
+		System.out.println("minLongitude: " + minLongitude);
+		System.out.println("maxLongitude: " + maxLongitude);
 
-        return new CoordinatesMinMax(latMin, latMax, longMin, longMax);
+        return new CoordinatesMinMax(minLatitude, maxLatitude, minLongitude, maxLongitude);
 	}
 }

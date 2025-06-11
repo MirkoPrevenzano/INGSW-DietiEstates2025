@@ -14,14 +14,14 @@ import lombok.RequiredArgsConstructor;
 public class CoordinatesMinMax 
 {
     @NonNull
-    private Double latMin;
+    private Double minLatitude;
 
     @NonNull
-    private Double latMax;
+    private Double maxLatitude;
 
     @NonNull
-    private Double longMin;
+    private Double minLongitude;
 
     @NonNull
-    private Double longMax;
+    private Double maxLongitude;
 }

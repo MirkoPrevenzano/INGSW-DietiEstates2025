@@ -170,10 +170,10 @@ public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepositor
 
         List<Predicate> predicates = new ArrayList<>();
 
-        predicates.add(criteriaBuilder.ge(latitude, coordinatesMinMax.getLatMin()));
-        predicates.add(criteriaBuilder.le(latitude, coordinatesMinMax.getLatMax()));
-        predicates.add(criteriaBuilder.le(longitude, coordinatesMinMax.getLongMin()));
-        predicates.add(criteriaBuilder.ge(longitude, coordinatesMinMax.getLongMax()));
+        predicates.add(criteriaBuilder.ge(latitude, coordinatesMinMax.getMinLatitude()));
+        predicates.add(criteriaBuilder.le(latitude, coordinatesMinMax.getMaxLatitude()));
+        predicates.add(criteriaBuilder.le(longitude, coordinatesMinMax.getMinLongitude()));
+        predicates.add(criteriaBuilder.ge(longitude, coordinatesMinMax.getMaxLongitude()));
               
         for(Map.Entry<String,String> entry : filters.entrySet())
         {
