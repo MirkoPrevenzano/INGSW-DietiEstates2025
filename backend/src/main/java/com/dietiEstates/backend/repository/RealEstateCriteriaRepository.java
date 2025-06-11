@@ -14,7 +14,7 @@ import com.dietiEstates.backend.extra.CoordinatesMinMax;
 
 
 
-public interface RealEstateCustomRepository 
+public interface RealEstateCriteriaRepository 
 {
     public Page<RealEstatePreviewDTO> findRealEstateByFilters3(Map<String,String> filters, Pageable page, CoordinatesMinMax latLongMinMax);
     public List<RealEstatePreviewDTO> findRealEstateByFilters4(Map<String,String> filters, Pageable page, CoordinatesMinMax latLongMinMax);

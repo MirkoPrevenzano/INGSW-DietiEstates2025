@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
-public class RealEstateCustomRepositoryImpl implements RealEstateCustomRepository 
+public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepository 
 {
     @PersistenceContext
     private EntityManager entityManager;
