@@ -18,7 +18,8 @@ public class RealEstateFactory
 {
     private final RealEstateMappingUtil realEstateMappingUtil;
     
-    public RealEstate createRealEstateFromDTO(RealEstateCreationDTO realEstateCreationDTO) 
+    
+    public RealEstate createFromDTO(RealEstateCreationDTO realEstateCreationDTO) 
     {
         if(realEstateCreationDTO instanceof RealEstateForRentCreationDTO)
             return realEstateMappingUtil.realEstateForRentMapper((RealEstateForRentCreationDTO) realEstateCreationDTO);

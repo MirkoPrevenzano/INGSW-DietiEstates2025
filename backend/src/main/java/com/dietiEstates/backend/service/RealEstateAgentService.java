@@ -69,7 +69,7 @@ public class RealEstateAgentService
         Optional<RealEstateAgent> optionalRealEstateAgent = realEstateAgentRepository.findByUsername(username);
         RealEstateAgent realEstateAgent = validationUtil.optionalUserValidator(optionalRealEstateAgent, username);
         
-        RealEstate realEstate = realEstateFactory.createRealEstateFromDTO(realEstateForSaleCreationDTO);
+        RealEstate realEstate = realEstateFactory.createFromDTO(realEstateForSaleCreationDTO);
 
 
         Address address = modelMapper.map(realEstateForSaleCreationDTO.getAddressDTO(), Address.class);
@@ -97,7 +97,7 @@ public class RealEstateAgentService
         Optional<RealEstateAgent> optionalRealEstateAgent = realEstateAgentRepository.findByUsername(username);
         RealEstateAgent realEstateAgent = validationUtil.optionalUserValidator(optionalRealEstateAgent, username);
 
-        RealEstate realEstate = realEstateFactory.createRealEstateFromDTO(realEstateForRentCreationDTO);
+        RealEstate realEstate = realEstateFactory.createFromDTO(realEstateForRentCreationDTO);
 
 
         Address address = modelMapper.map(realEstateForRentCreationDTO.getAddressDTO(), Address.class);

@@ -260,7 +260,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
 
         String type = filters.get("type");
-        Root<?> realEstateType = RealEstateRootFactory.createRealEstateRootFromType(type, criteriaQuery);
+        Root<?> realEstateType = RealEstateRootFactory.createFromType(type, criteriaQuery);
 
         predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), realEstateType.get("realEstateId")));
         predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), address.get("addressId")));

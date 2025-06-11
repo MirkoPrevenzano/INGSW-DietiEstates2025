@@ -13,13 +13,14 @@ public final class RealEstateRootFactory
 {
     private RealEstateRootFactory() {};
     
-   public static Root<?> createRealEstateRootFromType(String realEstateType, CriteriaQuery<?> criteriaQuery)
-   {
-        if(realEstateType.equals("For Sale"))
-            return criteriaQuery.from(RealEstateForSale.class);
-        else if(realEstateType.equals("For Rent"))
-            return criteriaQuery.from(RealEstateForRent.class);
-        else
-            return null;
-   }
+
+    public static Root<?> createFromType(String realEstateType, CriteriaQuery<?> criteriaQuery)
+    {
+            if(realEstateType.equals("For Sale"))
+                return criteriaQuery.from(RealEstateForSale.class);
+            else if(realEstateType.equals("For Rent"))
+                return criteriaQuery.from(RealEstateForRent.class);
+            else
+                return null;
+    }
 }
