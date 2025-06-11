@@ -34,7 +34,7 @@ public class RealEstateService
                                                                                Double.valueOf(filters.get("lat")), 
                                                                                Double.valueOf(filters.get("lon")));
 
-        Page<RealEstatePreviewDTO> realEstatePreviewsPage = realEstateRepository.findRealEstateByFilters3(filters, page, coordinatesMinMax);
+        Page<RealEstatePreviewDTO> realEstatePreviewsPage = realEstateRepository.findPreviewsByFiltersFirstPage(filters, page, coordinatesMinMax);
 
         RealEstatePreviewsFirstPageDTO RealEstatePreviewsFirstPageDTO = new RealEstatePreviewsFirstPageDTO(realEstatePreviewsPage.getContent(),
                                                                                                         realEstatePreviewsPage.getTotalElements(), 
@@ -49,6 +49,6 @@ public class RealEstateService
                                                                                Double.valueOf(filters.get("lat")), 
                                                                                Double.valueOf(filters.get("lon")));
                                                                                
-        return realEstateRepository.findRealEstateByFilters4(filters, page, coordinatesMinMax);
+        return realEstateRepository.findPreviewsByFilters(filters, page, coordinatesMinMax);
     }
 }

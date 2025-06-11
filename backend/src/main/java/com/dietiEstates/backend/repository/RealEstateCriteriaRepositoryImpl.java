@@ -38,7 +38,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
 
     @Override
-    public Page<RealEstatePreviewDTO> findRealEstateByFilters3(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax) 
+    public Page<RealEstatePreviewDTO> findPreviewsByFiltersFirstPage(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax) 
     {
         CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = filtersQuery(filters, coordinatesMinMax);
 
@@ -57,7 +57,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
 
     @Override
-    public List<RealEstatePreviewDTO> findRealEstateByFilters4(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax) 
+    public List<RealEstatePreviewDTO> findPreviewsByFilters(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax) 
     {
         CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = filtersQuery(filters, coordinatesMinMax);
 
@@ -70,13 +70,13 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
 
     @Override
-    public List<RealEstateRecentDTO> findRecentRealEstates(Long agentId, Integer limit) 
+    public List<RealEstateRecentDTO> findRecentsByAgent(Long agentId, Integer limit) 
     {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+/*         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<RealEstateRecentDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstateRecentDTO.class);
-        
+
         Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
-    
+                
         criteriaQuery.select(criteriaBuilder.construct(RealEstateRecentDTO.class, realEstate.get("realEstateId"), 
                                                                                               realEstate.get("title"), 
                                                                                               realEstate.get("description"), 
@@ -86,14 +86,33 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
         return entityManager.createQuery(criteriaQuery)
                             .setMaxResults(limit)
+                            .getResultList(); */
+
+
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<RealEstateRecentDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstateRecentDTO.class);
+
+        Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
+
+        Path<Long> agentIdOfRealEstate = realEstate.get("realEstateAgent").get("userId");
+
+        criteriaQuery.select(criteriaBuilder.construct(RealEstateRecentDTO.class, realEstate.get("realEstateId"), 
+                                                                                              realEstate.get("title"), 
+                                                                                              realEstate.get("description"), 
+                                                                                              realEstate.get("uploadingDate")))
+                     .where(criteriaBuilder.equal(agentIdOfRealEstate, agentId))
+                     .orderBy(criteriaBuilder.desc(realEstate.get("uploadingDate")));
+
+        return entityManager.createQuery(criteriaQuery)
+                            .setMaxResults(limit)
                             .getResultList();
     }
 
 
     @Override
-    public List<RealEstateStatsDTO> findRealEstateStats(Long agentId, Pageable page) 
+    public List<RealEstateStatsDTO> findStatsByAgent(Long agentId, Pageable page) 
     {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+/*         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<RealEstateStatsDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstateStatsDTO.class);
         
         Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
@@ -112,20 +131,46 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
                                                      .setMaxResults(page.getPageSize())
                                                      .getResultList();
 
+        return list; */
+
+
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<RealEstateStatsDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstateStatsDTO.class);
+        
+        Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
+
+        Path<Long> agentIdOfRealEstate = realEstate.get("realEstateAgent").get("userId");
+
+        criteriaQuery.select(criteriaBuilder.construct(RealEstateStatsDTO.class, realEstate.get("realEstateId"), 
+                                                                                             realEstate.get("title"), 
+                                                                                             realEstate.get("uploadingDate"), 
+                                                                                             realEstate.get("realEstateStats").get("viewsNumber"),
+                                                                                             realEstate.get("realEstateStats").get("visitsNumber"),
+                                                                                             realEstate.get("realEstateStats").get("offersNumber")))
+                    .where(criteriaBuilder.equal(agentIdOfRealEstate, agentId))
+                    .orderBy(criteriaBuilder.asc(realEstate.get("realEstateId")));
+
+        List<RealEstateStatsDTO> list = entityManager.createQuery(criteriaQuery)
+                                                     .setFirstResult((int)page.getOffset())
+                                                     .setMaxResults(page.getPageSize())
+                                                     .getResultList();
+
         return list;
     }       
     
 
     @Override
-    public Long findLastRealEstate(Long agentId) 
+    public Long findLastUploadedByAgent(Long agentId) 
     {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
         
         Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
     
+        Path<Long> agentIdOfRealEstate = realEstate.get("realEstateAgent").get("userId");
+
         criteriaQuery.select(realEstate.get("realEstateId"))
-                     .where(criteriaBuilder.equal(realEstate.get("realEstateAgent").get("userId"), agentId))
+                     .where(criteriaBuilder.equal(agentIdOfRealEstate, agentId))
                      .orderBy(criteriaBuilder.desc(realEstate.get("realEstateId")));
 
         Long id = entityManager.createQuery(criteriaQuery)
@@ -138,6 +183,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
 
 
+    
     @SuppressWarnings("null")
     private CriteriaQuery<RealEstatePreviewDTO> filtersQuery(Map<String,String> filters, CoordinatesMinMax coordinatesMinMax)
     {
@@ -147,7 +193,31 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
         Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
         Root<Address> address = criteriaQuery.from(Address.class);
-    
+        Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), criteriaQuery);
+
+
+        List<Predicate> predicates = getPredicates(filters, coordinatesMinMax, criteriaBuilder, realEstate, address, realEstateType); 
+
+        criteriaQuery.select(criteriaBuilder.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
+                                                                                               realEstate.get("title"),
+                                                                                               realEstate.get("description"),
+                                                                                               realEstate.get("price"),
+                                                                                               address.get("street"),
+                                                                                               address.get("longitude"),
+                                                                                               address.get("latitude")))
+                     .where(criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()])));    
+        
+        return criteriaQuery;
+    }
+
+
+
+    private List<Predicate> getPredicates(Map<String, String> filters, CoordinatesMinMax coordinatesMinMax, CriteriaBuilder criteriaBuilder, 
+                                          Root<RealEstate> realEstate, Root<Address> address, Root<?> realEstateType) 
+    {
+        Path<Long> realEstateId = realEstate.get("realEstateId");
+        Path<Long> realEstateTypeId = realEstateType.get("realEstateId");
+        Path<Long> addressId = address.get("addressId");
 
         Path<String> energyClass = realEstate.get("energyClass");
         Path<Double> price = realEstate.get("price");     
@@ -170,6 +240,9 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
         List<Predicate> predicates = new ArrayList<>();
 
+        predicates.add(criteriaBuilder.equal(realEstateId, realEstateTypeId));
+        predicates.add(criteriaBuilder.equal(realEstateId, addressId));
+            
         predicates.add(criteriaBuilder.ge(latitude, coordinatesMinMax.getMinLatitude()));
         predicates.add(criteriaBuilder.le(latitude, coordinatesMinMax.getMaxLatitude()));
         predicates.add(criteriaBuilder.le(longitude, coordinatesMinMax.getMinLongitude()));
@@ -256,24 +329,8 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
             {
                 predicates.add(criteriaBuilder.equal(nearPublicTransport, Boolean.valueOf(entry.getValue())));
             }  
-        } 
+        }
 
-
-        String type = filters.get("type");
-        Root<?> realEstateType = RealEstateRootFactory.createFromType(type, criteriaQuery);
-
-        predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), realEstateType.get("realEstateId")));
-        predicates.add(criteriaBuilder.equal(realEstate.get("realEstateId"), address.get("addressId")));
-            
-        criteriaQuery.select(criteriaBuilder.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
-                                                                                               realEstate.get("title"),
-                                                                                               realEstate.get("description"),
-                                                                                               realEstate.get("price"),
-                                                                                               address.get("street"),
-                                                                                               address.get("longitude"),
-                                                                                               address.get("latitude")))
-                     .where(criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()])));    
-        
-        return criteriaQuery;
+        return predicates;
     }
 }

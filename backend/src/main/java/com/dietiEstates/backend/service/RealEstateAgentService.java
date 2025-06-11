@@ -87,7 +87,7 @@ public class RealEstateAgentService
 
         log.info("Real Estate For Sale was created successfully!");
 
-        return realEstateRepository.findLastRealEstate(realEstateAgent.getUserId());
+        return realEstateRepository.findLastUploadedByAgent(realEstateAgent.getUserId());
     }
 
 
@@ -113,7 +113,7 @@ public class RealEstateAgentService
 
         log.info("Real Estate For Sale was created successfully!");
 
-        return realEstateRepository.findLastRealEstate(realEstateAgent.getUserId());
+        return realEstateRepository.findLastUploadedByAgent(realEstateAgent.getUserId());
     }
 
 
@@ -195,7 +195,7 @@ public class RealEstateAgentService
 
     public List<RealEstateRecentDTO> findRecentRealEstates(String username, Integer limit) 
     {
-        return realEstateRepository.findRecentRealEstates(realEstateAgentRepository.findByUsername(username).get().getUserId(), limit);
+        return realEstateRepository.findRecentsByAgent(realEstateAgentRepository.findByUsername(username).get().getUserId(), limit);
     }
 
 
@@ -210,7 +210,7 @@ public class RealEstateAgentService
     
     public List<RealEstateStatsDTO> getRealEstateStats(String username, Pageable page) 
     {
-        return realEstateRepository.findRealEstateStats(realEstateAgentRepository.findByUsername(username).get().getUserId(), 
+        return realEstateRepository.findStatsByAgent(realEstateAgentRepository.findByUsername(username).get().getUserId(), 
                                                         page);
     }
 
