@@ -38,7 +38,7 @@ import com.dietiEstates.backend.model.entity.RealEstateForSale;
 import com.dietiEstates.backend.repository.RealEstateAgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.util.MockingStatsUtil;
-import com.dietiEstates.backend.util.S3Util;
+import com.dietiEstates.backend.util.AmazonS3Util;
 import com.dietiEstates.backend.util.ValidationUtil;
 
 import jakarta.transaction.Transactional;
@@ -55,7 +55,7 @@ public class RealEstateAgentService
 {
     private final RealEstateAgentRepository realEstateAgentRepository;
     private final RealEstateRepository realEstateRepository;
-    private final S3Util s3Util;
+    private final AmazonS3Util amazonS3Util;
     private final MockingStatsUtil mockingStatsUtil;
     private final ModelMapper modelMapper;
     private final ValidationUtil validationUtil;
@@ -151,7 +151,7 @@ public class RealEstateAgentService
             String photoKey = UUID.randomUUID().toString();
             try 
             {
-                s3Util.putObject("%s".formatted(photoKey), multipartFile.getBytes());
+                amazonS3Util.putObject("%s".formatted(photoKey), multipartFile.getBytes());
             } 
             catch (SdkException | IOException e) 
             {
@@ -180,7 +180,7 @@ public class RealEstateAgentService
 
         for(Photo photo : photos)
         {
-            photosBytes.add(s3Util.getObject(photo.getAmazonS3Key()));
+            photosBytes.add(amazonS3Util.getObject(photo.getAmazonS3Key()));
         }
 
         String[] phoStrings = new String[photosBytes.size()];

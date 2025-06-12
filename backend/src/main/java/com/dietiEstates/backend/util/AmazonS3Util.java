@@ -22,7 +22,7 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class S3Util
+public class AmazonS3Util
 {
     private final S3Client s3Client;
 

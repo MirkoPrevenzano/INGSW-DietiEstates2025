@@ -53,7 +53,7 @@ import com.dietiEstates.backend.repository.RealEstateAgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.RealEstateAgentService;
 import com.dietiEstates.backend.util.JFreeChartUtil;
-import com.dietiEstates.backend.util.S3Util;
+import com.dietiEstates.backend.util.AmazonS3Util;
 import com.dietiEstates.backend.util.ValidationUtil;
 
 import lombok.RequiredArgsConstructor;
@@ -73,7 +73,7 @@ public class BackendApplication
 
     @Bean
     CommandLineRunner commandLineRunner(CustomerRepository customerRepository, AdministratorRepository administratorRepository, 
-                                        S3Util s3Util, RealEstateAgentRepository realEstateAgentRepository,
+                                        AmazonS3Util s3Util, RealEstateAgentRepository realEstateAgentRepository,
                                         RealEstateRepository realEstateRepository,
                                         RealEstateAgentService realEstateAgentService,
                                         JFreeChartUtil jFreeChartUtil, ValidationUtil validationUtil)
