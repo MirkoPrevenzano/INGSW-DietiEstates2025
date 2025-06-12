@@ -12,19 +12,21 @@ import lombok.RequiredArgsConstructor;
 
 
 
-@Component
-@RequiredArgsConstructor
-public class RealEstateFactory 
+//@Component
+//@RequiredArgsConstructor
+public final class RealEstateFactory 
 {
-    private final RealEstateMappingUtil realEstateMappingUtil;
+    //private final RealEstateMappingUtil realEstateMappingUtil;
     
+    private RealEstateFactory() {};
+
     
-    public RealEstate createFromDTO(RealEstateCreationDTO realEstateCreationDTO) 
+    public static RealEstate createFromDTO(RealEstateCreationDTO realEstateCreationDTO) 
     {
         if(realEstateCreationDTO instanceof RealEstateForRentCreationDTO)
-            return realEstateMappingUtil.realEstateForRentMapper((RealEstateForRentCreationDTO) realEstateCreationDTO);
+            return RealEstateMappingUtil.realEstateForRentMapper((RealEstateForRentCreationDTO) realEstateCreationDTO);
         else if(realEstateCreationDTO instanceof RealEstateForSaleCreationDTO)
-            return realEstateMappingUtil.realEstateForSaleMapper((RealEstateForSaleCreationDTO) realEstateCreationDTO);
+            return RealEstateMappingUtil.realEstateForSaleMapper((RealEstateForSaleCreationDTO) realEstateCreationDTO);
         else
             return null;
     };

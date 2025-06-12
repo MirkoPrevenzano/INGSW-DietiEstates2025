@@ -16,8 +16,8 @@ import com.dietiEstates.backend.extra.CoordinatesMinMax;
 
 public interface RealEstateCriteriaRepository 
 {
-    public Page<RealEstatePreviewDTO> findPreviewsByFiltersFirstPage(Map<String,String> filters, Pageable page, CoordinatesMinMax latLongMinMax);
-    public List<RealEstatePreviewDTO> findPreviewsByFilters(Map<String,String> filters, Pageable page, CoordinatesMinMax latLongMinMax);
+    public Page<RealEstatePreviewDTO> findPreviewsByFiltersFirstPage(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax);
+    public List<RealEstatePreviewDTO> findPreviewsByFilters(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax);
     public List<RealEstateRecentDTO> findRecentsByAgent(Long agentId, Integer limit);
     public List<RealEstateStatsDTO> findStatsByAgent(Long agentId, Pageable page);
     public Long findLastUploadedByAgent(Long agentId);

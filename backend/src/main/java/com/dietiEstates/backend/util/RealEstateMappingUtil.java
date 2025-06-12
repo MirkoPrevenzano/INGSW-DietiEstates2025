@@ -17,13 +17,15 @@ import com.dietiEstates.backend.model.entity.RealEstateForRent;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;
 
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.UtilityClass;
 
 
-@Component
-@RequiredArgsConstructor
+//@Component
+//@RequiredArgsConstructor
+@UtilityClass
 public class RealEstateMappingUtil
 {
-    private final ValidationUtil validationUtil;
+   // private final ValidationUtil validationUtil;
 
 
     
@@ -33,15 +35,15 @@ public class RealEstateMappingUtil
         String description = realEstateForRentCreationDTO.getRealEstateMainFeatures().getDescription();
         Double price = realEstateForRentCreationDTO.getRealEstateMainFeatures().getPrice();
         Double condoFee = realEstateForRentCreationDTO.getRealEstateMainFeatures().getCondoFee();
-        EnergyClass energyClass = validationUtil.enumValidator(EnergyClass.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getEnergyClass()); 
+        EnergyClass energyClass = ValidationUtil.enumValidator(EnergyClass.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getEnergyClass()); 
         Double securityDeposit = realEstateForRentCreationDTO.getSecurityDeposit();
         Integer contractYears = realEstateForRentCreationDTO.getContractYears();
 
         InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(realEstateForRentCreationDTO.getRealEstateMainFeatures().getSize(), 
                                                                        realEstateForRentCreationDTO.getRealEstateMainFeatures().getRoomsNumber(), 
-                                                                       validationUtil.enumValidator(PropertyCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getPropertyCondition()), 
-                                                                       validationUtil.enumValidator(FurnitureCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()),
+                                                                       ValidationUtil.enumValidator(PropertyCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getPropertyCondition()), 
+                                                                       ValidationUtil.enumValidator(FurnitureCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()),
                                                                        realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getAirConditioning(),
                                                                        realEstateForRentCreationDTO.getRealEstateBooleanFeatures().getHeating());
         ExternalRealEstateFeatures externalRealEstateFeatures = 
@@ -69,14 +71,14 @@ public class RealEstateMappingUtil
         String description = realEstateForSaleCreationDTO.getRealEstateMainFeatures().getDescription();
         Double price = realEstateForSaleCreationDTO.getRealEstateMainFeatures().getPrice();
         Double condoFee = realEstateForSaleCreationDTO.getRealEstateMainFeatures().getCondoFee();
-        EnergyClass energyClass = validationUtil.enumValidator(EnergyClass.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEnergyClass()); 
-        NotaryDeedState notaryDeedState = validationUtil.enumValidator(NotaryDeedState.class, realEstateForSaleCreationDTO.getNotaryDeedState());
+        EnergyClass energyClass = ValidationUtil.enumValidator(EnergyClass.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getEnergyClass()); 
+        NotaryDeedState notaryDeedState = ValidationUtil.enumValidator(NotaryDeedState.class, realEstateForSaleCreationDTO.getNotaryDeedState());
 
         InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(realEstateForSaleCreationDTO.getRealEstateMainFeatures().getSize(), 
                                                                        realEstateForSaleCreationDTO.getRealEstateMainFeatures().getRoomsNumber(), 
-                                                                       validationUtil.enumValidator(PropertyCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getPropertyCondition()), 
-                                                                       validationUtil.enumValidator(FurnitureCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()),
+                                                                       ValidationUtil.enumValidator(PropertyCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getPropertyCondition()), 
+                                                                       ValidationUtil.enumValidator(FurnitureCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeatures().getFurnitureCondition()),
                                                                        realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getAirConditioning(),
                                                                        realEstateForSaleCreationDTO.getRealEstateBooleanFeatures().getHeating());
         ExternalRealEstateFeatures externalRealEstateFeatures = 

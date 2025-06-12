@@ -11,6 +11,7 @@ import com.dietiEstates.backend.model.User;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.RealEstate;
 
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
@@ -19,7 +20,8 @@ import java.util.regex.Pattern;
 
 
 
-@Component
+//@Component
+@UtilityClass
 @Slf4j
 public class ValidationUtil
 {

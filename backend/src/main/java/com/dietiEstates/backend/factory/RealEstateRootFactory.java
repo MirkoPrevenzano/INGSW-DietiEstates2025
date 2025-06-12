@@ -8,7 +8,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
 
-
+//@Utili
 public final class RealEstateRootFactory 
 {
     private RealEstateRootFactory() {};
