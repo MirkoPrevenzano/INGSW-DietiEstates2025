@@ -76,7 +76,7 @@ public class BackendApplication
                                         AmazonS3Util s3Util, RealEstateAgentRepository realEstateAgentRepository,
                                         RealEstateRepository realEstateRepository,
                                         RealEstateAgentService realEstateAgentService,
-                                        JFreeChartUtil jFreeChartUtil, ValidationUtil validationUtil)
+                                        JFreeChartUtil jFreeChartUtil)
     {
         return args -> 
         {  

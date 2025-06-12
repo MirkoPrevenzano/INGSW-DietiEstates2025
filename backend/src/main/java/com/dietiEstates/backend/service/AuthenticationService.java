@@ -36,7 +36,7 @@ public class AuthenticationService
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
-    private final ValidationUtil validationUtil;
+    //private final ValidationUtil validationUtil;
     private final CustomerService customerService;
 
 
@@ -44,8 +44,8 @@ public class AuthenticationService
     {
         try 
         {
-            validationUtil.emailValidator(userDTO.getUsername());
-            validationUtil.passwordValidator(userDTO.getPassword());
+            ValidationUtil.emailValidator(userDTO.getUsername());
+            ValidationUtil.passwordValidator(userDTO.getPassword());
         } 
         catch (IllegalArgumentException e) 
         {

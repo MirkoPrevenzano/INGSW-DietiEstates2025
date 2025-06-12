@@ -21,6 +21,6 @@ public final class RealEstateRootFactory
             else if(realEstateType.equals("For Rent"))
                 return criteriaQuery.from(RealEstateForRent.class);
             else
-                return null;
+                return null; // TODO: lanciare eccezione.
     }
 }

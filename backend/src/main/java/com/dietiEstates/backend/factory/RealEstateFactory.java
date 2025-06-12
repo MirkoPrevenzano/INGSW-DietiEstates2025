@@ -25,6 +25,6 @@ public final class RealEstateFactory
         else if(realEstateCreationDTO instanceof RealEstateForSaleCreationDTO)
             return RealEstateMappingUtil.realEstateForSaleMapper((RealEstateForSaleCreationDTO) realEstateCreationDTO);
         else
-            return null;
+            return null; // TODO: lanciare eccezione.
     };
 }

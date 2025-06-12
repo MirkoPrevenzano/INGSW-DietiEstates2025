@@ -33,7 +33,7 @@ public class AdministratorService
     private final RealEstateAgentRepository realEstateAgentRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
-    private final ValidationUtil validationUtil;
+    //private final ValidationUtil validationUtil;
     private final MockingStatsUtil mockingStatsUtil;
     
 
@@ -96,7 +96,7 @@ public class AdministratorService
 
         try 
         {
-            validationUtil.passwordValidator(agentCustomerRegistrationDTO.getPassword());
+            ValidationUtil.passwordValidator(agentCustomerRegistrationDTO.getPassword());
         } 
         catch (IllegalArgumentException e) 
         {
@@ -149,7 +149,7 @@ public class AdministratorService
         
         try 
         {
-            validationUtil.passwordValidator(oldNewPasswordDTO.getNewPassword());
+            ValidationUtil.passwordValidator(oldNewPasswordDTO.getNewPassword());
         } 
         catch (IllegalArgumentException e) 
         {

@@ -58,8 +58,8 @@ public class RealEstateAgentService
     private final AmazonS3Util amazonS3Util;
     private final MockingStatsUtil mockingStatsUtil;
     private final ModelMapper modelMapper;
-    private final ValidationUtil validationUtil;
-    private final RealEstateFactory realEstateFactory;
+    //private final ValidationUtil validationUtil;
+    //private final RealEstateFactory realEstateFactory;
 
 
 
@@ -67,9 +67,9 @@ public class RealEstateAgentService
     public Long createRealEstateForSale(String username, RealEstateForSaleCreationDTO realEstateForSaleCreationDTO)  throws UsernameNotFoundException
     {
         Optional<RealEstateAgent> optionalRealEstateAgent = realEstateAgentRepository.findByUsername(username);
-        RealEstateAgent realEstateAgent = validationUtil.optionalUserValidator(optionalRealEstateAgent, username);
+        RealEstateAgent realEstateAgent = ValidationUtil.optionalUserValidator(optionalRealEstateAgent, username);
         
-        RealEstate realEstate = realEstateFactory.createFromDTO(realEstateForSaleCreationDTO);
+        RealEstate realEstate = RealEstateFactory.createFromDTO(realEstateForSaleCreationDTO);
 
 
         Address address = modelMapper.map(realEstateForSaleCreationDTO.getAddressDTO(), Address.class);
@@ -95,9 +95,9 @@ public class RealEstateAgentService
     public Long createRealEstateForRent(String username, RealEstateForRentCreationDTO realEstateForRentCreationDTO) throws UsernameNotFoundException
     {
         Optional<RealEstateAgent> optionalRealEstateAgent = realEstateAgentRepository.findByUsername(username);
-        RealEstateAgent realEstateAgent = validationUtil.optionalUserValidator(optionalRealEstateAgent, username);
+        RealEstateAgent realEstateAgent = ValidationUtil.optionalUserValidator(optionalRealEstateAgent, username);
 
-        RealEstate realEstate = realEstateFactory.createFromDTO(realEstateForRentCreationDTO);
+        RealEstate realEstate = RealEstateFactory.createFromDTO(realEstateForRentCreationDTO);
 
 
         Address address = modelMapper.map(realEstateForRentCreationDTO.getAddressDTO(), Address.class);
@@ -120,7 +120,7 @@ public class RealEstateAgentService
     public void uploadPhoto(String username, MultipartFile[] files, Long realEstateId) throws IllegalArgumentException, RuntimeException
     {
         Optional<RealEstate> optionalRealEstate = realEstateRepository.findById(realEstateId);
-        RealEstate realEstate = validationUtil.optionalRealEstateValidator(optionalRealEstate, realEstateId);
+        RealEstate realEstate = ValidationUtil.optionalRealEstateValidator(optionalRealEstate, realEstateId);
         
 /*         if(files.length < 3 || files.length > 10)
         {

@@ -20,8 +20,8 @@ import com.auth0.jwt.JWTVerifier;
 @UtilityClass
 public class JWTUtils 
 {
-    private static final String SECRET_KEY = "w4nw7RJyMobORgdBx4cj80GjLUMBSscPaZ1HOiiQlwo="; // generated with: openssl rand -base64 32
-    private static final Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY.getBytes());
+    private final String SECRET_KEY = "w4nw7RJyMobORgdBx4cj80GjLUMBSscPaZ1HOiiQlwo="; // generated with: openssl rand -base64 32
+    private final Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY.getBytes());
 
     
 
