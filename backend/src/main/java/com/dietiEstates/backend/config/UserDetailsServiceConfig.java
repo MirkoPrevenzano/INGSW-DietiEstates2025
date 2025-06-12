@@ -36,7 +36,7 @@ public class UserDetailsServiceConfig
     private final RealEstateAgentRepository realEstateAgentRepository;
     private final AdministratorRepository administratorRepository;
     private final PasswordEncoder passwordEncoder;
-    private final ValidationUtil validationUtil;
+    //private final ValidationUtil validationUtil;
     
     @Autowired
     private HttpServletRequest httpServletRequest;
@@ -56,25 +56,27 @@ public class UserDetailsServiceConfig
                     case "customer" :
                     {
                         Optional<Customer> optionalCustomer = customerRepository.findByUsername(username);
-                        Customer customer = validationUtil.optionalUserValidator(optionalCustomer, username);
+                        Customer customer = ValidationUtil.optionalUserValidator(optionalCustomer, username);
                         customer.setRole(Role.ROLE_CUSTOMER);
                         return customer;
                     }
 
+
                     case "agent" :
                     {
                         Optional<RealEstateAgent> optionalRealEstateAgent = realEstateAgentRepository.findByUsername(username);
-                        RealEstateAgent realEstateAgent = validationUtil.optionalUserValidator(optionalRealEstateAgent, username);
+                        RealEstateAgent realEstateAgent = ValidationUtil.optionalUserValidator(optionalRealEstateAgent, username);
                         realEstateAgent.setRole(Role.ROLE_AGENT);
                         return realEstateAgent;                       
                     }
 
+
                     case "admin" :
                     {
                         Optional<Administrator> optionalAdministrator = administratorRepository.findByUsername(username);
-                        Administrator administrator = validationUtil.optionalUserValidator(optionalAdministrator, username);
+                        Administrator administrator = ValidationUtil.optionalUserValidator(optionalAdministrator, username);
 
-                        if(passwordEncoder.matches("default", administrator.getPassword()))
+/*                         if(passwordEncoder.matches("default", administrator.getPassword()))
                         {
                             log.info("{} is a NOT AUTHORIZED administrator", username);
                             administrator.setRole(Role.ROLE_UNAUTHORIZED);
@@ -89,9 +91,27 @@ public class UserDetailsServiceConfig
                         
                         log.info("{} is a COLLABORATOR administrator", username);
                         administrator.setRole(Role.ROLE_COLLABORATOR);
-                        return administrator;                           
+                        return administrator;   */    
+                        
+                        if(passwordEncoder.matches("default", administrator.getPassword()))
+                        {
+                            log.info("{} is a NOT AUTHORIZED administrator", username);
+                            administrator.setRole(Role.ROLE_UNAUTHORIZED);
+                        }
+                        else if(administrator.getUserId() == 1)
+                        {
+                            log.info("{} is an ADMIN administrator", username);
+                            administrator.setRole(Role.ROLE_ADMIN);
+                        }
+                        else
+                        {
+                            log.info("{} is a COLLABORATOR administrator", username);
+                            administrator.setRole(Role.ROLE_COLLABORATOR);
+                        }
+                        return administrator;  
                     }
 
+                    
                     default : 
                     {
                         log.error("Wrong role inserted!");
