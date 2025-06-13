@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @Slf4j
-public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter
+public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 {
     private final DaoAuthenticationProvider daoAuthenticationProvider;
 

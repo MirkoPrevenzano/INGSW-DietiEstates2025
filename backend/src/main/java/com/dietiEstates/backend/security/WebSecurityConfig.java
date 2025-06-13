@@ -13,8 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.dietiEstates.backend.enums.Role;
-import com.dietiEstates.backend.security.filter.JWTAuthenticationFilter;
-import com.dietiEstates.backend.security.filter.JWTAuthorizationFilter;
+import com.dietiEstates.backend.security.filter.JwtAuthenticationFilter;
+import com.dietiEstates.backend.security.filter.JwtAuthorizationFilter;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ public class WebSecurityConfig
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {
-        JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter(daoAuthenticationProvider);          
+        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(daoAuthenticationProvider);          
 
         http.csrf(csrfCustomizer -> csrfCustomizer.disable())
             .cors(Customizer.withDefaults())
@@ -60,7 +60,7 @@ public class WebSecurityConfig
             //.exceptionHandling(a -> a.accessDeniedPage("/admin/aa").accessDeniedHandler(new AccessDeniedHandlerImpl()))   
 
             .addFilter(jwtAuthenticationFilter)
-            .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
            
 
         return http.build();
