@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.security;
+package com.dietiEstates.backend.util;
 
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -18,7 +18,7 @@ import com.auth0.jwt.JWTVerifier;
 
 
 @UtilityClass
-public class JWTUtils 
+public class JwtUtil 
 {
     private final String SECRET_KEY = "w4nw7RJyMobORgdBx4cj80GjLUMBSscPaZ1HOiiQlwo="; // generated with: openssl rand -base64 32
     private final Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY.getBytes());

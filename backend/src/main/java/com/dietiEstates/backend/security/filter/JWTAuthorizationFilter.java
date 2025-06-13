@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.dietiEstates.backend.security.JWTUtils;
+import com.dietiEstates.backend.util.JwtUtil;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -72,10 +72,10 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter
 
                 String token = authorizationHeader.substring("Bearer ".length());
                 
-                if(JWTUtils.verifyToken(token) == true)  
+                if(JwtUtil.verifyToken(token) == true)  
                 {
-                    String username = JWTUtils.extractSubject(token);
-                    String[] roles = JWTUtils.extractRoles(token);
+                    String username = JwtUtil.extractSubject(token);
+                    String[] roles = JwtUtil.extractRoles(token);
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
                     stream(roles).forEach(role -> {authorities.add(new SimpleGrantedAuthority(role));});
 

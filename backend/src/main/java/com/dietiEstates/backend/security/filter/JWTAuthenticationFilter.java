@@ -17,9 +17,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 
 import com.dietiEstates.backend.dto.AuthenticationResponseDTO;
-
+import com.dietiEstates.backend.util.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.dietiEstates.backend.security.JWTUtils;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -84,7 +83,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         UserDetails user = (UserDetails) authenticationResult.getPrincipal();
 
         // restituisco token nell'header
-        String accessToken = JWTUtils.generateAccessToken(user);
+        String accessToken = JwtUtil.generateAccessToken(user);
         response.setHeader("jwtToken", accessToken);
         
         // restituisco token come json nel body

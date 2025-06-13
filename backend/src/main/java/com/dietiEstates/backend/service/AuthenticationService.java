@@ -12,11 +12,11 @@ import com.dietiEstates.backend.dto.AuthenticationResponseDTO;
 import com.dietiEstates.backend.dto.AgentCustomerRegistrationDTO;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.service.CustomerService;
+import com.dietiEstates.backend.util.JwtUtil;
 import com.dietiEstates.backend.util.ValidationUtil;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.dietiEstates.backend.security.JWTUtils;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import java.util.Collections;
 import java.util.Optional;
@@ -75,7 +75,7 @@ public class AuthenticationService
         log.info("Customer was registrated successfully!");
 
         customer.setRole(Role.ROLE_CUSTOMER);
-        return new AuthenticationResponseDTO(JWTUtils.generateAccessToken(customer));
+        return new AuthenticationResponseDTO(JwtUtil.generateAccessToken(customer));
     }
 
 
@@ -94,7 +94,7 @@ public class AuthenticationService
         );
     
         // Genera il token di autenticazione
-        String token = JWTUtils.generateAccessToken(
+        String token = JwtUtil.generateAccessToken(
             new User(
                 user.getUsername(),
                 user.getPassword(),
