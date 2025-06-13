@@ -3,7 +3,9 @@ package com.dietiEstates.backend.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
+import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -14,8 +16,9 @@ import lombok.RequiredArgsConstructor;
 
 
 @Configuration
+@EnableWebMvc
 @RequiredArgsConstructor
-public class WebConfig implements WebMvcConfigurer
+public class WebMvcConfig implements WebMvcConfigurer
 {
     private final AuthorizationInterceptor authorizationInterceptor;
 
@@ -35,6 +38,7 @@ public class WebConfig implements WebMvcConfigurer
                                               .allowedMethods("GET","POST","PUT","OPTIONS")
                                               .allowedHeaders("*")
                                               .allowCredentials(true)
-                                              .exposedHeaders("error");
+                                              .exposedHeaders("error")
+                                              .maxAge(900);
     }    
 }

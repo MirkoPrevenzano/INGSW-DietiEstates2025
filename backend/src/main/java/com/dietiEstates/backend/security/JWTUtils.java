@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import lombok.experimental.UtilityClass;
@@ -25,20 +26,64 @@ public class JWTUtils
 
     
 
+
     public String generateAccessToken(UserDetails userDetails)
     {
         String accessToken = JWT.create()
                                 .withSubject(userDetails.getUsername())
-                                .withClaim("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                                 .withIssuedAt(new Date(System.currentTimeMillis()))
                                 .withExpiresAt(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000))
+                                .withClaim("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                                 .sign(algorithm);
         
         return accessToken;
     }
 
 
-    public DecodedJWT verifyToken(String token)
+    public boolean verifyToken(String token)
+    {
+        /* JWTVerifier jwtVerifier = JWT.require(algorithm).build();
+        return jwtVerifier.verify(token); */
+        if(getDecodedJWT(token) != null)
+            return true;
+
+        return false;
+    }
+
+
+    public String extractSubject(String token) 
+    {
+        return getDecodedJWT(token).getSubject();
+    }
+
+
+    public String extractIssuer(String token) 
+    {
+        return getDecodedJWT(token).getIssuer();
+    }
+
+
+    public String extractIssuingDate(String token) 
+    {
+        return getDecodedJWT(token).getIssuer();
+    }
+
+
+    public Date extractExpirationDate(String token) 
+    {
+        return getDecodedJWT(token).getExpiresAt();
+    }
+
+
+    public String[] extractRoles(String token) 
+    {
+        return getDecodedJWT(token).getClaim("roles").asArray(String.class);
+    }
+
+
+
+
+    private DecodedJWT getDecodedJWT(String token)
     {
         JWTVerifier jwtVerifier = JWT.require(algorithm).build();
         return jwtVerifier.verify(token);

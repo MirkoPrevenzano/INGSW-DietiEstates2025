@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @EnableMethodSecurity
 @RequiredArgsConstructor
 @Slf4j
-public class SecurityConfig
+public class WebSecurityConfig
 {
     private final DaoAuthenticationProvider daoAuthenticationProvider;
 
@@ -58,11 +58,10 @@ public class SecurityConfig
                 authorizeHttpRequestsCustomizer.anyRequest().authenticated())
 
             //.exceptionHandling(a -> a.accessDeniedPage("/admin/aa").accessDeniedHandler(new AccessDeniedHandlerImpl()))   
-            //.authorizeHttpRequests(a -> a.requestMatchers("/auth/path/**").hasAuthority("ROLE_USER"))
-			.addFilter(jwtAuthenticationFilter)
+
+            .addFilter(jwtAuthenticationFilter)
             .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
            
-             
 
         return http.build();
     }

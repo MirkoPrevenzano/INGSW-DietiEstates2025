@@ -18,7 +18,6 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import com.dietiEstates.backend.security.JWTUtils;
 
 import jakarta.servlet.FilterChain;
@@ -55,7 +54,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter
         {
             try 
             {
-                String token = authorizationHeader.substring("Bearer ".length());
+/*                 String token = authorizationHeader.substring("Bearer ".length());
                 DecodedJWT decodedJWT = JWTUtils.verifyToken(token);  
 
                 String username = decodedJWT.getSubject();
@@ -69,7 +68,25 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter
                 log.info("JWT Authorization is OK!");
 
                 request.setAttribute("tokenUsername", username);
-                filterChain.doFilter(request, response);  
+                filterChain.doFilter(request, response);  */ 
+
+                String token = authorizationHeader.substring("Bearer ".length());
+                
+                if(JWTUtils.verifyToken(token) == true)  
+                {
+                    String username = JWTUtils.extractSubject(token);
+                    String[] roles = JWTUtils.extractRoles(token);
+                    Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+                    stream(roles).forEach(role -> {authorities.add(new SimpleGrantedAuthority(role));});
+
+                    UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,null, authorities);
+                    authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authenticationToken);   
+                    
+                    log.info("JWT Authorization is OK!");
+                    request.setAttribute("tokenUsername", username);
+                    filterChain.doFilter(request, response); 
+                }                    
             } 
             catch (UsernameNotFoundException e)
             {
