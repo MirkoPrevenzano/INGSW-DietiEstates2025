@@ -1,10 +1,6 @@
 
 package com.dietiEstates.backend.dto;
 
-import com.dietiEstates.backend.extra.RealEstateMainFeaturesDTO;
-import com.dietiEstates.backend.extra.RealEstateBooleanFeaturesDTO;
-import com.dietiEstates.backend.extra.RealEstateLocationFeaturesDTO;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
