@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class AdminRegistrationDTO 
+public class UserRegistrationDTO 
 {
     @NonNull
     private String name;
@@ -21,4 +21,7 @@ public class AdminRegistrationDTO
 
     @NonNull
     private String username;
+
+    @NonNull
+    private String password;
 }

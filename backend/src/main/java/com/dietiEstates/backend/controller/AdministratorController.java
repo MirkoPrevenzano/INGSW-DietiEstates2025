@@ -11,9 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.dietiEstates.backend.dto.AdminRegistrationDTO;
+import com.dietiEstates.backend.dto.UserRegistrationDTO;
 import com.dietiEstates.backend.dto.OldNewPasswordDTO;
-import com.dietiEstates.backend.dto.AgentCustomerRegistrationDTO;
 import com.dietiEstates.backend.service.AdministratorService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,11 +31,11 @@ public class AdministratorController
 
 
     @PostMapping(path = "/create-collaborator")
-    public ResponseEntity<?> createCollaborator(@RequestBody AdminRegistrationDTO adminRegistrationDTO) 
+    public ResponseEntity<?> createCollaborator(@RequestBody UserRegistrationDTO userRegistrationDTO) 
     {
         try 
         {
-            administratorService.createCollaborator(adminRegistrationDTO);
+            administratorService.createCollaborator(userRegistrationDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } 
         catch (UsernameNotFoundException e)
@@ -51,11 +50,11 @@ public class AdministratorController
     
 
     @PostMapping(path = "/{username}/create-real-estate-agent")
-    public ResponseEntity<?> createRealEstateAgent(@PathVariable String username, @RequestBody AgentCustomerRegistrationDTO agentCustomerRegistrationDTO) 
+    public ResponseEntity<?> createRealEstateAgent(@PathVariable String username, @RequestBody UserRegistrationDTO userRegistrationDTO) 
     {
         try 
         {
-            administratorService.createRealEstateAgent(username, agentCustomerRegistrationDTO);
+            administratorService.createRealEstateAgent(username, userRegistrationDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } 
         catch (UsernameNotFoundException e)

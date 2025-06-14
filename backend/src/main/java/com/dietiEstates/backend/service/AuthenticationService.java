@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.dietiEstates.backend.enums.Role;
 import com.dietiEstates.backend.model.entity.Customer;
 import com.dietiEstates.backend.dto.AuthenticationResponseDTO;
-import com.dietiEstates.backend.dto.AgentCustomerRegistrationDTO;
+import com.dietiEstates.backend.dto.UserRegistrationDTO;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.service.CustomerService;
 import com.dietiEstates.backend.util.JwtUtil;
@@ -40,7 +40,7 @@ public class AuthenticationService
     private final CustomerService customerService;
 
 
-    public AuthenticationResponseDTO customerRegistration(AgentCustomerRegistrationDTO userDTO) throws IllegalArgumentException, MappingException
+    public AuthenticationResponseDTO customerRegistration(UserRegistrationDTO userDTO) throws IllegalArgumentException, MappingException
     {
         try 
         {

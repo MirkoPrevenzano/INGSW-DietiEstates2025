@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.dietiEstates.backend.dto.AuthenticationResponseDTO;
-import com.dietiEstates.backend.dto.AgentCustomerRegistrationDTO;
+import com.dietiEstates.backend.dto.UserRegistrationDTO;
 import com.dietiEstates.backend.service.AuthenticationService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,11 +30,11 @@ public class AuthenticationController
     
 
     @PostMapping(path = "customer-registration")
-    public ResponseEntity<AuthenticationResponseDTO> customerRegistration(@RequestBody AgentCustomerRegistrationDTO agentCustomerRegistrationDTO) 
+    public ResponseEntity<AuthenticationResponseDTO> customerRegistration(@RequestBody UserRegistrationDTO userRegistrationDTO) 
     {
         try 
         {
-            return ResponseEntity.ok().body(authenticationService.customerRegistration(agentCustomerRegistrationDTO));
+            return ResponseEntity.ok().body(authenticationService.customerRegistration(userRegistrationDTO));
         } 
         catch (IllegalArgumentException e) 
         {

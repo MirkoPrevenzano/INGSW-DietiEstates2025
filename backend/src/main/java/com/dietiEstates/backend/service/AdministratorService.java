@@ -10,9 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dietiEstates.backend.dto.AdminRegistrationDTO;
+import com.dietiEstates.backend.dto.UserRegistrationDTO;
 import com.dietiEstates.backend.dto.OldNewPasswordDTO;
-import com.dietiEstates.backend.dto.AgentCustomerRegistrationDTO;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.RealEstateAgent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
@@ -39,7 +38,7 @@ public class AdministratorService
 
 
     @Transactional
-    public void createCollaborator(AdminRegistrationDTO adminRegistrationDTO) throws UsernameNotFoundException, 
+    public void createCollaborator(UserRegistrationDTO userRegistrationDTO) throws UsernameNotFoundException, 
                                                                                     IllegalArgumentException, MappingException
     {
         Optional<Administrator> adminOptional = administratorRepository.findById(1l);
@@ -50,7 +49,7 @@ public class AdministratorService
         }
         Administrator admin = adminOptional.get();
 
-        if(administratorRepository.findByUsername(adminRegistrationDTO.getUsername()).isPresent())
+        if(administratorRepository.findByUsername(userRegistrationDTO.getUsername()).isPresent())
         {
             log.error("This username is already present!");
             throw new IllegalArgumentException("This username is already present!");
@@ -59,7 +58,7 @@ public class AdministratorService
         Administrator collaborator;
         try 
         {
-            collaborator = modelMapper.map(adminRegistrationDTO, Administrator.class);
+            collaborator = modelMapper.map(userRegistrationDTO, Administrator.class);
         } 
         catch (MappingException e) 
         {
@@ -77,7 +76,7 @@ public class AdministratorService
 
 
     @Transactional
-    public void createRealEstateAgent(String username, AgentCustomerRegistrationDTO agentCustomerRegistrationDTO) throws UsernameNotFoundException, 
+    public void createRealEstateAgent(String username, UserRegistrationDTO userRegistrationDTO) throws UsernameNotFoundException, 
                                                                                           IllegalArgumentException, MappingException
     {
         Optional<Administrator> administratorOptional = administratorRepository.findByUsername(username);
@@ -88,7 +87,7 @@ public class AdministratorService
         }
         Administrator administrator = administratorOptional.get();
 
-        if(realEstateAgentRepository.findByUsername(agentCustomerRegistrationDTO.getUsername()).isPresent())
+        if(realEstateAgentRepository.findByUsername(userRegistrationDTO.getUsername()).isPresent())
         {
             log.error("This username is already present!");
             throw new IllegalArgumentException("This username is already present!");
@@ -96,7 +95,7 @@ public class AdministratorService
 
         try 
         {
-            ValidationUtil.passwordValidator(agentCustomerRegistrationDTO.getPassword());
+            ValidationUtil.passwordValidator(userRegistrationDTO.getPassword());
         } 
         catch (IllegalArgumentException e) 
         {
@@ -107,7 +106,7 @@ public class AdministratorService
         RealEstateAgent realEstateAgent;
         try 
         {
-            realEstateAgent = modelMapper.map(agentCustomerRegistrationDTO, RealEstateAgent.class);
+            realEstateAgent = modelMapper.map(userRegistrationDTO, RealEstateAgent.class);
         } 
         catch (MappingException e) 
         {
