@@ -10,9 +10,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dietiEstates.backend.dto.AdminRegistrationDTO;
-import com.dietiEstates.backend.dto.AgentRegistrationDTO;
-import com.dietiEstates.backend.dto.UpdatePasswordDTO;
+import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
+import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
+import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;

@@ -11,10 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.dietiEstates.backend.dto.CustomerRegistrationDTO;
-import com.dietiEstates.backend.dto.AdminRegistrationDTO;
-import com.dietiEstates.backend.dto.AgentRegistrationDTO;
-import com.dietiEstates.backend.dto.UpdatePasswordDTO;
+import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
+import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
+import com.dietiEstates.backend.dto.request.CustomerRegistrationDTO;
+import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
 import com.dietiEstates.backend.service.AdministratorService;
 
 import lombok.RequiredArgsConstructor;

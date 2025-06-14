@@ -9,9 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
-import com.dietiEstates.backend.dto.RealEstateRecentDTO;
-import com.dietiEstates.backend.dto.RealEstateStatsDTO;
+import com.dietiEstates.backend.dto.response.RealEstatePreviewDTO;
+import com.dietiEstates.backend.dto.response.RealEstateRecentDTO;
+import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
 import com.dietiEstates.backend.factory.RealEstateRootFactory;
 import com.dietiEstates.backend.model.entity.Address;

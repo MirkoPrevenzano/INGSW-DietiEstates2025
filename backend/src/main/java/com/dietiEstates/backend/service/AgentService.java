@@ -15,11 +15,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dietiEstates.backend.config.ModelMapperConfig;
-import com.dietiEstates.backend.dto.AgentStatsDTO;
-import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
-import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;
-import com.dietiEstates.backend.dto.RealEstateRecentDTO;
-import com.dietiEstates.backend.dto.RealEstateStatsDTO;
+import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
+import com.dietiEstates.backend.dto.response.AgentStatsDTO;
+import com.dietiEstates.backend.dto.response.RealEstateRecentDTO;
+import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
 import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.PropertyCondition;
 import com.dietiEstates.backend.enums.FurnitureCondition;

@@ -1,5 +1,10 @@
 
-package com.dietiEstates.backend.dto;
+package com.dietiEstates.backend.dto.request;
+
+import com.dietiEstates.backend.dto.AddressDTO;
+import com.dietiEstates.backend.dto.RealEstateBooleanFeaturesDTO;
+import com.dietiEstates.backend.dto.RealEstateLocationFeaturesDTO;
+import com.dietiEstates.backend.dto.RealEstateMainFeaturesDTO;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

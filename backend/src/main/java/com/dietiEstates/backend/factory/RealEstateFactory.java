@@ -1,9 +1,9 @@
 
 package com.dietiEstates.backend.factory;
  
-import com.dietiEstates.backend.dto.RealEstateCreationDTO;
-import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
-import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.util.RealEstateMappingUtil;
 

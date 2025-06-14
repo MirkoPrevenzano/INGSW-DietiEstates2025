@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dietiEstates.backend.dto.RealEstatePreviewsFirstPageDTO;
+import com.dietiEstates.backend.dto.response.RealEstatePreviewDTO;
+import com.dietiEstates.backend.dto.response.RealEstatePreviewsFirstPageDTO;
 import com.dietiEstates.backend.model.entity.RealEstate;
-import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.RealEstateService;
 

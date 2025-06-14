@@ -1,5 +1,7 @@
 
-package com.dietiEstates.backend.dto;
+package com.dietiEstates.backend.dto.response;
+
+import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,5 @@
 
-package com.dietiEstates.backend.dto;
-
+package com.dietiEstates.backend.dto.request;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class AgentPublicInfoDTO 
+public class CustomerRegistrationDTO 
 {
     @NonNull
     private String name;
@@ -22,4 +21,7 @@ public class AgentPublicInfoDTO
 
     @NonNull
     private String username;
+
+    @NonNull
+    private String password;
 }

@@ -13,7 +13,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import com.dietiEstates.backend.dto.AuthenticationResponseDTO;
+
+import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
 import com.dietiEstates.backend.util.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

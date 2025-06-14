@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.dto;
+package com.dietiEstates.backend.dto.response;
 
 import com.dietiEstates.backend.model.embeddable.AgentStats;
 

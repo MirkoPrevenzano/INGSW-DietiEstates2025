@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.dto;
+package com.dietiEstates.backend.dto.request;
 
 import lombok.NonNull;
 import lombok.Data;

@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Component;
 
-import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
-import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.PropertyCondition;
 import com.dietiEstates.backend.enums.FurnitureCondition;

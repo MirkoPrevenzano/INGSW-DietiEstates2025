@@ -1,5 +1,7 @@
 
-package com.dietiEstates.backend.dto;
+package com.dietiEstates.backend.dto.response;
+
+import java.time.LocalDateTime;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,11 +9,10 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 
-
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RealEstatePreviewDTO
+public class RealEstateStatsDTO 
 {
     @NonNull
     private Long id;
@@ -20,17 +21,14 @@ public class RealEstatePreviewDTO
     private String title;
 
     @NonNull
-    private String description;
+    private LocalDateTime uploadingDate;
 
     @NonNull
-    private Double price;
+    private Long viewsNumber;
 
-    @NonNull    
-    private String street;
-    
     @NonNull
-    private Double longitude;
-    
+    private Long visitsNumber;
+
     @NonNull
-    private Double latitude; 
+    private Long offersNumber;
 }

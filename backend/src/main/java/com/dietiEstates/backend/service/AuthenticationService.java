@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.enums.Role;
 import com.dietiEstates.backend.model.entity.Customer;
-import com.dietiEstates.backend.dto.AuthenticationResponseDTO;
-import com.dietiEstates.backend.dto.CustomerRegistrationDTO;
+import com.dietiEstates.backend.dto.request.CustomerRegistrationDTO;
+import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.service.CustomerService;
 import com.dietiEstates.backend.util.JwtUtil;

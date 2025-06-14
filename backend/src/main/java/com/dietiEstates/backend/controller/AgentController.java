@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dietiEstates.backend.dto.AgentStatsDTO;
-import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
-import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;
-import com.dietiEstates.backend.dto.RealEstateRecentDTO;
-import com.dietiEstates.backend.dto.RealEstateStatsDTO;
+import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
+import com.dietiEstates.backend.dto.response.AgentStatsDTO;
+import com.dietiEstates.backend.dto.response.RealEstateRecentDTO;
+import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
 import com.dietiEstates.backend.model.embeddable.AgentStats;
 import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.util.CsvUtil;

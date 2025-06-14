@@ -10,8 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.dietiEstates.backend.dto.AuthenticationResponseDTO;
-import com.dietiEstates.backend.dto.CustomerRegistrationDTO;
+import com.dietiEstates.backend.dto.request.CustomerRegistrationDTO;
+import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
 import com.dietiEstates.backend.service.AuthenticationService;
 
 import lombok.RequiredArgsConstructor;

@@ -8,9 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.dietiEstates.backend.dto.RealEstatePreviewsFirstPageDTO;
+import com.dietiEstates.backend.dto.response.RealEstatePreviewDTO;
+import com.dietiEstates.backend.dto.response.RealEstatePreviewsFirstPageDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
-import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.util.FindByRadiusUtil;
 
