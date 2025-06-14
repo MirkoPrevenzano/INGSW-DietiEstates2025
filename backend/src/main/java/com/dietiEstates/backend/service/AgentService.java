@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dietiEstates.backend.config.ModelMapperConfig;
-import com.dietiEstates.backend.dto.RealEstateAgentStatsDTO;
+import com.dietiEstates.backend.dto.AgentStatsDTO;
 import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateRecentDTO;
@@ -28,14 +28,14 @@ import com.dietiEstates.backend.factory.RealEstateFactory;
 import com.dietiEstates.backend.model.User;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
-import com.dietiEstates.backend.model.embeddable.RealEstateAgentStats;
+import com.dietiEstates.backend.model.embeddable.AgentStats;
 import com.dietiEstates.backend.model.entity.Address;
 import com.dietiEstates.backend.model.entity.Photo;
 import com.dietiEstates.backend.model.entity.RealEstate;
-import com.dietiEstates.backend.model.entity.RealEstateAgent;
+import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.model.entity.RealEstateForRent;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;
-import com.dietiEstates.backend.repository.RealEstateAgentRepository;
+import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.util.MockingStatsUtil;
 import com.dietiEstates.backend.util.AmazonS3Util;
@@ -51,9 +51,9 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class RealEstateAgentService 
+public class AgentService 
 {
-    private final RealEstateAgentRepository realEstateAgentRepository;
+    private final AgentRepository agentRepository;
     private final RealEstateRepository realEstateRepository;
     private final AmazonS3Util amazonS3Util;
     private final MockingStatsUtil mockingStatsUtil;
@@ -66,8 +66,8 @@ public class RealEstateAgentService
     @Transactional
     public Long createRealEstateForSale(String username, RealEstateForSaleCreationDTO realEstateForSaleCreationDTO)  throws UsernameNotFoundException
     {
-        Optional<RealEstateAgent> optionalRealEstateAgent = realEstateAgentRepository.findByUsername(username);
-        RealEstateAgent realEstateAgent = ValidationUtil.optionalUserValidator(optionalRealEstateAgent, username);
+        Optional<Agent> optionalRealEstateAgent = agentRepository.findByUsername(username);
+        Agent agent = ValidationUtil.optionalUserValidator(optionalRealEstateAgent, username);
         
         RealEstate realEstate = RealEstateFactory.createFromDTO(realEstateForSaleCreationDTO);
 
@@ -77,25 +77,25 @@ public class RealEstateAgentService
 
         mockingStatsUtil.mockEstateStats(realEstate);
 
-        realEstateAgent.addRealEstate(realEstate);
+        agent.addRealEstate(realEstate);
 
-        int newTotalUploadedRealEstates = realEstateAgent.getRealEstateAgentStats().getTotalUploadedRealEstates() + 1;
-        realEstateAgent.getRealEstateAgentStats().setTotalUploadedRealEstates(newTotalUploadedRealEstates);
-        realEstateAgent.addRealEstate(realEstate);
+        int newTotalUploadedRealEstates = agent.getAgentStats().getTotalUploadedRealEstates() + 1;
+        agent.getAgentStats().setTotalUploadedRealEstates(newTotalUploadedRealEstates);
+        agent.addRealEstate(realEstate);
 
-        realEstateAgent = realEstateAgentRepository.save(realEstateAgent);
+        agent = agentRepository.save(agent);
 
         log.info("Real Estate For Sale was created successfully!");
 
-        return realEstateRepository.findLastUploadedByAgent(realEstateAgent.getUserId());
+        return realEstateRepository.findLastUploadedByAgent(agent.getUserId());
     }
 
 
     @Transactional
     public Long createRealEstateForRent(String username, RealEstateForRentCreationDTO realEstateForRentCreationDTO) throws UsernameNotFoundException
     {
-        Optional<RealEstateAgent> optionalRealEstateAgent = realEstateAgentRepository.findByUsername(username);
-        RealEstateAgent realEstateAgent = ValidationUtil.optionalUserValidator(optionalRealEstateAgent, username);
+        Optional<Agent> optionalRealEstateAgent = agentRepository.findByUsername(username);
+        Agent agent = ValidationUtil.optionalUserValidator(optionalRealEstateAgent, username);
 
         RealEstate realEstate = RealEstateFactory.createFromDTO(realEstateForRentCreationDTO);
 
@@ -105,15 +105,15 @@ public class RealEstateAgentService
 
         mockingStatsUtil.mockEstateStats(realEstate);
 
-        int newTotalUploadedRealEstates = realEstateAgent.getRealEstateAgentStats().getTotalUploadedRealEstates() + 1;
-        realEstateAgent.getRealEstateAgentStats().setTotalUploadedRealEstates(newTotalUploadedRealEstates);
-        realEstateAgent.addRealEstate(realEstate);
+        int newTotalUploadedRealEstates = agent.getAgentStats().getTotalUploadedRealEstates() + 1;
+        agent.getAgentStats().setTotalUploadedRealEstates(newTotalUploadedRealEstates);
+        agent.addRealEstate(realEstate);
         
-        realEstateAgent = realEstateAgentRepository.save(realEstateAgent);
+        agent = agentRepository.save(agent);
 
         log.info("Real Estate For Sale was created successfully!");
 
-        return realEstateRepository.findLastUploadedByAgent(realEstateAgent.getUserId());
+        return realEstateRepository.findLastUploadedByAgent(agent.getUserId());
     }
 
 
@@ -195,22 +195,22 @@ public class RealEstateAgentService
 
     public List<RealEstateRecentDTO> findRecentRealEstates(String username, Integer limit) 
     {
-        return realEstateRepository.findRecentsByAgent(realEstateAgentRepository.findByUsername(username).get().getUserId(), limit);
+        return realEstateRepository.findRecentsByAgent(agentRepository.findByUsername(username).get().getUserId(), limit);
     }
 
 
-    public RealEstateAgentStatsDTO getAgentStats(String username) 
+    public AgentStatsDTO getAgentStats(String username) 
     {
         Integer[] estatesPerMonth = mockingStatsUtil.mockBarChartStats();
-        RealEstateAgentStats realEstateAgentStats = realEstateAgentRepository.findByUsername(username).get().getRealEstateAgentStats();
-        RealEstateAgentStatsDTO realEstateAgentStatsDTO = new RealEstateAgentStatsDTO(realEstateAgentStats, estatesPerMonth);
-        return realEstateAgentStatsDTO;
+        AgentStats agentStats = agentRepository.findByUsername(username).get().getAgentStats();
+        AgentStatsDTO agentStatsDTO = new AgentStatsDTO(agentStats, estatesPerMonth);
+        return agentStatsDTO;
     }
 
     
     public List<RealEstateStatsDTO> getRealEstateStats(String username, Pageable page) 
     {
-        return realEstateRepository.findStatsByAgent(realEstateAgentRepository.findByUsername(username).get().getUserId(), 
+        return realEstateRepository.findStatsByAgent(agentRepository.findByUsername(username).get().getUserId(), 
                                                         page);
     }
 

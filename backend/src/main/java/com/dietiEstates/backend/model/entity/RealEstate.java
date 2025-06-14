@@ -96,11 +96,11 @@ public class RealEstate
 
     @ManyToOne(fetch = FetchType.EAGER,
                cascade = {})
-    @JoinColumn(name = "real_estate_agent_id", 
+    @JoinColumn(name = "agent_id", 
                 nullable = false, 
                 updatable = true, 
-                foreignKey = @ForeignKey(name = "real_estate_to_real_estate_agent_fk"))
-    private RealEstateAgent realEstateAgent;
+                foreignKey = @ForeignKey(name = "real_estate_to_agent_fk"))
+    private Agent agent;
 
     @OneToMany(fetch = FetchType.LAZY, 
                cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @Data
 @NoArgsConstructor
-public class RealEstateAgentStats 
+public class AgentStats 
 {
     @Column(name = "total_uploaded_real_estates", 
             nullable = false,

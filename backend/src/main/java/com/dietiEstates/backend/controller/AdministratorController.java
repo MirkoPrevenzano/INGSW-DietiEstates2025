@@ -50,11 +50,11 @@ public class AdministratorController
     
 
     @PostMapping(path = "/{username}/create-real-estate-agent")
-    public ResponseEntity<?> createRealEstateAgent(@PathVariable String username, @RequestBody UserRegistrationDTO userRegistrationDTO) 
+    public ResponseEntity<?> createAgent(@PathVariable String username, @RequestBody UserRegistrationDTO userRegistrationDTO) 
     {
         try 
         {
-            administratorService.createRealEstateAgent(username, userRegistrationDTO);
+            administratorService.createAgent(username, userRegistrationDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } 
         catch (UsernameNotFoundException e)

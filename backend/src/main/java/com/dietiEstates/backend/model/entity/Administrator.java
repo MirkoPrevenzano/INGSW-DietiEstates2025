@@ -32,7 +32,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @ToString(callSuper = true, 
-          exclude = {"collaborators", "realEstateAgents"})
+          exclude = {"collaborators", "agents"})
 @AttributeOverride(name = "userId", 
                    column = @Column(name = "admin_id"))
 public class Administrator extends User
@@ -55,7 +55,7 @@ public class Administrator extends User
                fetch = FetchType.LAZY,
                cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
                orphanRemoval = true)
-    private List<RealEstateAgent> realEstateAgents = new ArrayList<>();
+    private List<Agent> agents = new ArrayList<>();
 
 
 
@@ -78,15 +78,15 @@ public class Administrator extends User
         collaboratorToRemove.setManager(null);
     }
 
-    public void addRealEstateAgent(RealEstateAgent newRealEstateAgent) 
+    public void addAgent(Agent newAgent) 
     {
-       this.realEstateAgents.add(newRealEstateAgent);
-       newRealEstateAgent.setAdministrator(this);
+       this.agents.add(newAgent);
+       newAgent.setAdministrator(this);
     }  
     
-    public void removeRealEstateAgent(RealEstateAgent realEstateAgentToRemove)
+    public void removeAgent(Agent agentToRemove)
     {
-        this.realEstateAgents.remove(realEstateAgentToRemove);
-        realEstateAgentToRemove.setAdministrator(null);
+        this.agents.remove(agentToRemove);
+        agentToRemove.setAdministrator(null);
     }
 }

@@ -19,9 +19,9 @@ import org.supercsv.io.ICsvListWriter;
 import org.supercsv.prefs.CsvPreference;
 
 import com.dietiEstates.backend.model.entity.RealEstate;
-import com.dietiEstates.backend.model.entity.RealEstateAgent;
-import com.dietiEstates.backend.repository.RealEstateAgentRepository;
-import com.dietiEstates.backend.service.RealEstateAgentService;
+import com.dietiEstates.backend.model.entity.Agent;
+import com.dietiEstates.backend.repository.AgentRepository;
+import com.dietiEstates.backend.service.AgentService;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -33,14 +33,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CsvUtil
 {
-    private final RealEstateAgentRepository realEstateAgentRepository;
-    private final RealEstateAgentService realEstateAgentService;
+    private final AgentRepository agentRepository;
+    private final AgentService agentService;
 
 
 
     public void writeCsvResponse(String username, HttpServletResponse response) throws IOException 
     {   
-        RealEstateAgent realEstateAgent = realEstateAgentRepository.findByUsername(username).get();
+        Agent agent = agentRepository.findByUsername(username).get();
 
         response.setContentType("text/csv");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
@@ -56,22 +56,22 @@ public class CsvUtil
             listWriter = new CsvListWriter(response.getWriter(), CsvPreference.EXCEL_PREFERENCE);  
             //listWriter2 = new CsvListWriter(new FileWriter("sfsfs.csv"), CsvPreference.EXCEL_PREFERENCE);
 
-            writeAgentInfo(realEstateAgent, listWriter);
+            writeAgentInfo(agent, listWriter);
 
             listWriter.writeHeader("");
             listWriter.writeHeader("");
 
-            writeAgentStats(realEstateAgent, listWriter);
+            writeAgentStats(agent, listWriter);
 
             listWriter.writeHeader("");
             listWriter.writeHeader("");
 
-            writeRealEstatesStats(realEstateAgent, listWriter);
+            writeRealEstatesStats(agent, listWriter);
 
             listWriter.writeHeader("");
             listWriter.writeHeader("");
 
-            writeRealEstatesPerMonthStats(realEstateAgent, listWriter);
+            writeRealEstatesPerMonthStats(agent, listWriter);
 
             log.info("CSV esportato correttamente");  
         }
@@ -92,46 +92,46 @@ public class CsvUtil
 
 
 
-    private void writeAgentInfo(RealEstateAgent realEstateAgent, ICsvListWriter listWriter) throws IOException 
+    private void writeAgentInfo(Agent agent, ICsvListWriter listWriter) throws IOException 
     {
         listWriter.writeHeader("AGENT INFO");
         final String[] agentHeader = {"Name", "Surname", "Username"};
         listWriter.writeHeader(agentHeader);
         final CellProcessor[] agentProcessors = getAgentProcessors();
-        List<Object> listObjects = Arrays.asList(new Object[] {realEstateAgent.getName(), 
-                                                               realEstateAgent.getSurname(),
-                                                               realEstateAgent.getUsername()});   
+        List<Object> listObjects = Arrays.asList(new Object[] {agent.getName(), 
+                                                               agent.getSurname(),
+                                                               agent.getUsername()});   
 
         listWriter.write(listObjects, agentProcessors);
     }
     
 
-    private void writeAgentStats(RealEstateAgent realEstateAgent, ICsvListWriter listWriter) throws IOException 
+    private void writeAgentStats(Agent agent, ICsvListWriter listWriter) throws IOException 
     {
         listWriter.writeHeader("AGENT STATS");
         final String[] agentStatsHeader = {"TotalUploadedRealEstates", "TotalSoldRealEstates", "TotalRentedRealEstates", 
                                            "SalesIncome", "RentalsIncome", "Total Incomes", "Success Rate"};
         listWriter.writeHeader(agentStatsHeader);
         final CellProcessor[] agentStatsProcessors = getAgentStatsProcessors();
-        List<Object> listObjects = Arrays.asList(new Object[] {realEstateAgent.getRealEstateAgentStats().getTotalUploadedRealEstates(), 
-                                                               realEstateAgent.getRealEstateAgentStats().getTotalSoldRealEstates(),
-                                                               realEstateAgent.getRealEstateAgentStats().getTotalRentedRealEstates(),
-                                                               realEstateAgent.getRealEstateAgentStats().getSalesIncome(),
-                                                               realEstateAgent.getRealEstateAgentStats().getRentalsIncome(),
-                                                               realEstateAgent.getRealEstateAgentStats().getTotalIncomes(),
-                                                               realEstateAgent.getRealEstateAgentStats().getSuccessRate()});  
+        List<Object> listObjects = Arrays.asList(new Object[] {agent.getAgentStats().getTotalUploadedRealEstates(), 
+                                                               agent.getAgentStats().getTotalSoldRealEstates(),
+                                                               agent.getAgentStats().getTotalRentedRealEstates(),
+                                                               agent.getAgentStats().getSalesIncome(),
+                                                               agent.getAgentStats().getRentalsIncome(),
+                                                               agent.getAgentStats().getTotalIncomes(),
+                                                               agent.getAgentStats().getSuccessRate()});  
 
         listWriter.write(listObjects, agentStatsProcessors);
     }
 
 
-    private void writeRealEstatesStats(RealEstateAgent realEstateAgent, ICsvListWriter listWriter) throws IOException 
+    private void writeRealEstatesStats(Agent agent, ICsvListWriter listWriter) throws IOException 
     {
         listWriter.writeHeader("REAL ESTATES STATS");
         final String[] realEstateStatsHeader = {"Title", "UploadingDate", "ViewsNumber", "VisitsNumber", "OffersNumber"};
         final CellProcessor[] realEstateProcessors = getEstateStatsProcessors();
         listWriter.writeHeader(realEstateStatsHeader);
-        List<RealEstate> realEstates = realEstateAgent.getRealEstates();
+        List<RealEstate> realEstates = agent.getRealEstates();
         if(realEstates.size() > 0)
         {
             for( final RealEstate realEstate : realEstates ) 
@@ -150,12 +150,12 @@ public class CsvUtil
     }
 
 
-    private void writeRealEstatesPerMonthStats(RealEstateAgent realEstateAgent, ICsvListWriter listWriter) throws IOException 
+    private void writeRealEstatesPerMonthStats(Agent agent, ICsvListWriter listWriter) throws IOException 
     {
         listWriter.writeHeader("REAL ESTATES STATS PER MONTH");
         final String[] realEstateStatsHeader = {"JAN", "FEB", "MAR", "APR", "MAY", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
         listWriter.writeHeader(realEstateStatsHeader);
-        Integer[] aa = realEstateAgentService.getBarChartStats();
+        Integer[] aa = agentService.getBarChartStats();
         
         List<Integer> listObjects = Arrays.asList(aa);   
         listWriter.write(listObjects);

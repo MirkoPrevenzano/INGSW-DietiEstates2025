@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dietiEstates.backend.model.User;
-import com.dietiEstates.backend.model.embeddable.RealEstateAgentStats;
+import com.dietiEstates.backend.model.embeddable.AgentStats;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.CascadeType;
@@ -27,20 +27,20 @@ import lombok.ToString;
 
 
 
-@Entity(name = "RealEstateAgent")
-@Table(name = "real_estate_agent", 
-       uniqueConstraints = @UniqueConstraint(name = "real_estate_agent_uk", columnNames = "username"))
+@Entity(name = "Agent")
+@Table(name = "agent", 
+       uniqueConstraints = @UniqueConstraint(name = "agent_uk", columnNames = "username"))
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @ToString(callSuper = true, 
           exclude = "realEstates")
 @AttributeOverride(name = "userId", 
-                   column = @Column(name = "real_estate_agent_id"))
-public class RealEstateAgent extends User 
+                   column = @Column(name = "agent_id"))
+public class Agent extends User 
 {
     @Embedded
-    RealEstateAgentStats realEstateAgentStats = new RealEstateAgentStats();
+    AgentStats agentStats = new AgentStats();
 
 
 
@@ -49,10 +49,10 @@ public class RealEstateAgent extends User
     @JoinColumn(name = "admin_id", 
                 nullable = false, 
                 updatable = true,
-                foreignKey = @ForeignKey(name = "real_estate_agent_to_admin_fk"))
+                foreignKey = @ForeignKey(name = "agent_to_admin_fk"))
     private Administrator administrator;
 
-    @OneToMany(mappedBy = "realEstateAgent", 
+    @OneToMany(mappedBy = "agent", 
                fetch = FetchType.LAZY,
                cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
                orphanRemoval = true)
@@ -60,7 +60,7 @@ public class RealEstateAgent extends User
 
 
 
-    public RealEstateAgent(String name, String surname, String username, String password) 
+    public Agent(String name, String surname, String username, String password) 
     {
         super(name, surname, username, password);
     }
@@ -70,12 +70,12 @@ public class RealEstateAgent extends User
     public void addRealEstate(RealEstate newRealEstate) 
     {
        this.realEstates.add(newRealEstate);
-       newRealEstate.setRealEstateAgent(this);
+       newRealEstate.setAgent(this);
     }  
     
     public void removeRealEstate(RealEstate realEstateToRemove)
     {
         this.realEstates.remove(realEstateToRemove);
-        realEstateToRemove.setRealEstateAgent(null);
+        realEstateToRemove.setAgent(null);
     }
 }

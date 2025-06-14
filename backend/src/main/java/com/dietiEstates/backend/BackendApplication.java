@@ -23,7 +23,7 @@ import com.dietiEstates.backend.model.Administrator;
 import com.dietiEstates.backend.model.Customer;
 import com.dietiEstates.backend.model.Photo;
 import com.dietiEstates.backend.model.RealEstate;
-import com.dietiEstates.backend.model.RealEstateAgent;
+import com.dietiEstates.backend.model.Agent;
 import com.dietiEstates.backend.model.RealEstateForRent;
 import com.dietiEstates.backend.model.RealEstateForSale;
 import com.dietiEstates.backend.model.User;
@@ -34,7 +34,7 @@ import com.dietiEstates.backend.model.embeddable.RealEstateStats;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.repository.AdministratorRepository;
 import com.dietiEstates.backend.model.repository.CustomerRepository;
-import com.dietiEstates.backend.model.repository.RealEstateAgentRepository;
+import com.dietiEstates.backend.model.repository.AgentRepository;
 import com.dietiEstates.backend.model.repository.RealEstateForRentRepository;
 import com.dietiEstates.backend.model.repository.RealEstateForSaleRepository;
 import com.dietiEstates.backend.model.repository.RealEstateRepository;
@@ -46,12 +46,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.dietiEstates.backend.model.entity.Administrator;
-import com.dietiEstates.backend.model.entity.RealEstateAgent;
+import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
-import com.dietiEstates.backend.repository.RealEstateAgentRepository;
+import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.service.RealEstateAgentService;
+import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.util.JFreeChartUtil;
 import com.dietiEstates.backend.util.AmazonS3Util;
 import com.dietiEstates.backend.util.ValidationUtil;
@@ -73,9 +73,9 @@ public class BackendApplication
 
     @Bean
     CommandLineRunner commandLineRunner(CustomerRepository customerRepository, AdministratorRepository administratorRepository, 
-                                        AmazonS3Util s3Util, RealEstateAgentRepository realEstateAgentRepository,
+                                        AmazonS3Util s3Util, AgentRepository agentRepository,
                                         RealEstateRepository realEstateRepository,
-                                        RealEstateAgentService realEstateAgentService,
+                                        AgentService agentService,
                                         JFreeChartUtil jFreeChartUtil)
     {
         return args -> 
@@ -85,21 +85,21 @@ public class BackendApplication
             administrator = administratorRepository.save(administrator);
 
 
-            RealEstateAgent agent = (new RealEstateAgent("a","b","c",passwordEncoder.encode("ssssssssssssssssssss22A@")));
+            Agent agent = (new Agent("a","b","c",passwordEncoder.encode("ssssssssssssssssssss22A@")));
             agent.setAdministrator(administrator);
-            administrator.addRealEstateAgent(agent);
+            administrator.addAgent(agent);
             administrator = administratorRepository.save(administrator);
 
-           /*administrator.getRealEstateAgents().get(0).getRealEstateAgentStats().setTotalUploadedRealEstates(200);
-            administrator.getRealEstateAgents().get(0).getRealEstateAgentStats().setTotalRentedRealEstates(20);;
-            administrator.getRealEstateAgents().get(0).getRealEstateAgentStats().setTotalSoldRealEstates(45);
-            administrator.getRealEstateAgents().get(0).getRealEstateAgentStats().setRentalsIncome(1.60000);
-            administrator.getRealEstateAgents().get(0).getRealEstateAgentStats().setSalesIncome(20.90000);
+           /*administrator.getAgents().get(0).getAgentStats().setTotalUploadedRealEstates(200);
+            administrator.getAgents().get(0).getAgentStats().setTotalRentedRealEstates(20);;
+            administrator.getAgents().get(0).getAgentStats().setTotalSoldRealEstates(45);
+            administrator.getAgents().get(0).getAgentStats().setRentalsIncome(1.60000);
+            administrator.getAgents().get(0).getAgentStats().setSalesIncome(20.90000);
 
             administratorRepository.save(administrator);  
 
-            jFreeChartService.createPieChart(administrator.getRealEstateAgents().get(0));
-            jFreeChartService.createPieChart2(administrator.getRealEstateAgents().get(0));
+            jFreeChartService.createPieChart(administrator.getAgents().get(0));
+            jFreeChartService.createPieChart2(administrator.getAgents().get(0));
             jFreeChartService.createBarChart();*/
 /*             
             InternalRealEstateFeatures internalRealEstateFeatures = new InternalRealEstateFeatures(20.0, 5, 
@@ -111,11 +111,11 @@ public class BackendApplication
                                                                   internalRealEstateFeatures, externalRealEstateFeatures, 43.1, 5);
             agent.addRealEstate(realEstate);
             agent.addRealEstate(realEstate2);
-            realEstateAgentRepository.save(agent);
+            agentRepository.save(agent);
 
 
 
-            RealEstateAgent agent2 = (new RealEstateAgent("a","b","cc",passwordEncoder.encode("ssssssssssssssssssss22A@")));
+            Agent agent2 = (new Agent("a","b","cc",passwordEncoder.encode("ssssssssssssssssssss22A@")));
             agent2.setAdministrator(administrator);
             RealEstateForSale realEstate3 = new RealEstateForSale("cecececec", "a", LocalDateTime.now(), 20.5, 26.7, 
                                                                 "cecececec", internalRealEstateFeatures, externalRealEstateFeatures, "cecececec");
@@ -123,7 +123,7 @@ public class BackendApplication
                                                                   internalRealEstateFeatures, externalRealEstateFeatures, 43.1, 5);
             agent2.addRealEstate(realEstate3);
             agent2.addRealEstate(realEstate4);
-            realEstateAgentRepository.save(agent2); */
+            agentRepository.save(agent2); */
 
             // log.info(new String(foo));
         };
@@ -131,7 +131,7 @@ public class BackendApplication
 
     /*@Bean
     public CommandLineRunner commandLineRunner(AdministratorRepository administratorRepository,
-                                               RealEstateAgentRepository realEstateAgentRepository,
+                                               AgentRepository agentRepository,
                                                CustomerRepository customerRepository,
                                                RealEstateForRentRepository realEstateForRentRepository,
                                                RealEstateForSaleRepository realEstateForSaleRepository,
@@ -186,8 +186,8 @@ public class BackendApplication
            System.out.println("*** TEST RELAZIONE ADMIN-AGENTI ***");
            System.out.println();
 
-           User user2 = new RealEstateAgent("bebebeb", "bebebeb", "bebebeb", "bebebeb");
-           RealEstateAgent realEstateAgent = (RealEstateAgent)user2;
+           User user2 = new Agent("bebebeb", "bebebeb", "bebebeb", "bebebeb");
+           Agent agent = (Agent)user2;
 
 
            System.out.println("CASCADE TYPE PERSIST DA RELAZIONE MANYTOONE - NON NECESSARIO");
@@ -196,7 +196,7 @@ public class BackendApplication
            System.out.println("CASCADE TYPE PERSIST DA RELAZIONE ONETOMANY - OK");
            Administrator admin5 = new Administrator("bababab","bababab","bababab", 
                                                     "bababab", "bababab");
-           admin5.addRealEstateAgent(realEstateAgent);
+           admin5.addAgent(agent);
            administratorRepository.save(admin5);
 
 
@@ -204,9 +204,9 @@ public class BackendApplication
 
 
            System.out.println("CASCADE TYPE MERGE DA RELAZIONE ONETOMANY - OK");
-           RealEstateAgent realEstateAgent2 = new RealEstateAgent("bibibib", "bibibib", 
+           Agent agent2 = new Agent("bibibib", "bibibib", 
                                                                   "bibibib", "bibibib");
-           admin5.addRealEstateAgent(realEstateAgent2);
+           admin5.addAgent(agent2);
            admin5 = administratorRepository.save(admin5);
 
 
@@ -215,7 +215,7 @@ public class BackendApplication
 
            System.out.println("CASCADE TYPE REMOVE DA RELAZIONE MANYTOONE - OK");
            administratorRepository.deleteById(7l); // funziona con orphanRemoval = true
-           admin5.getRealEstateAgents().clear(); // bisogna settare a null anche gli admin presenti negli oggetti realEstateAgent...
+           admin5.getAgents().clear(); // bisogna settare a null anche gli admin presenti negli oggetti agent...
 
 
 
@@ -226,10 +226,10 @@ public class BackendApplication
            System.out.println();
 
 
-           User user3 = new RealEstateAgent("cicicic", "cicicic", "cicicic", 
+           User user3 = new Agent("cicicic", "cicicic", "cicicic", 
                                             "cicicic");
-           RealEstateAgent realEstateAgent3 = (RealEstateAgent)user3;
-           realEstateAgent3.setAdministrator(admin3Updated);
+           Agent agent3 = (Agent)user3;
+           agent3.setAdministrator(admin3Updated);
 
 
            System.out.println("CASCADE TYPE PERSIST DA RELAZIONE MANYTOONE - NON NECESSARIO");
@@ -242,8 +242,8 @@ public class BackendApplication
            RealEstateForSale realEstate = new RealEstateForSale("cecececec", Date.now(), 26.7, "cecececec",
                                                          internalRealEstateFeatures, externalRealEstateFeatures, 
                                                          20.5, "cecececec");
-           realEstateAgent3.addRealEstate(realEstate);
-           realEstateAgentRepository.save(realEstateAgent3);
+           agent3.addRealEstate(realEstate);
+           agentRepository.save(agent3);
 
 
            System.out.println("CASCADE TYPE MERGE DA RELAZIONE MANYTOONE - NON NECESSARIO");
@@ -253,16 +253,16 @@ public class BackendApplication
            RealEstateForRent realEstate2 = new RealEstateForRent("cecececec", Date.now(), 26.7, "cecececec",
                                                          internalRealEstateFeatures, externalRealEstateFeatures, 
                                                          20.5, 15.3, 6);           
-           realEstateAgent3.addRealEstate(realEstate2);
-           realEstateAgent3 = realEstateAgentRepository.save(realEstateAgent3);
+           agent3.addRealEstate(realEstate2);
+           agent3 = agentRepository.save(agent3);
 
 
            System.out.println("CASCADE TYPE REMOVE DA RELAZIONE MANYTOONE - NON NECESSARIO");
 
 
            System.out.println("CASCADE TYPE REMOVE DA RELAZIONE ONETOMANY - OK");
-           //realEstateAgentRepository.delete(realEstateAgent3);  // funziona con orphanRemoval = true
-           //realEstateAgent3.getRealEstates().clear(); // bisogna settare a null anche gli agenti presenti negli oggetti realEstate...
+           //agentRepository.delete(agent3);  // funziona con orphanRemoval = true
+           //agent3.getRealEstates().clear(); // bisogna settare a null anche gli agenti presenti negli oggetti realEstate...
 
 
 
@@ -289,7 +289,7 @@ public class BackendApplication
            RealEstateForSale realEstate3 = new RealEstateForSale("dadadadad", Date.now(), 26.7, "dadadadad",
                                                          internalRealEstateFeatures, externalRealEstateFeatures, 
                                                          20.5, "dadadadad");   
-           realEstate3.setRealEstateAgent(realEstateAgent3);       
+           realEstate3.setAgent(agent3);       
            CustomerViewsRealEstate customerViewsRealEstate = new CustomerViewsRealEstate(Date.now(), customer, realEstate3);
            customer.addCustomerViewsRealEstate(customerViewsRealEstate);
            customer = customerRepository.save(customer);
@@ -328,7 +328,7 @@ public class BackendApplication
            RealEstateForSale realEstate4 = new RealEstateForSale("elelelelel", Date.now(), 26.7, "elelelel",
                                                          internalRealEstateFeatures, externalRealEstateFeatures, 
                                                          20.5, "elelelelel");            
-           realEstate4.setRealEstateAgent(realEstateAgent3);    
+           realEstate4.setAgent(agent3);    
            
                                                          
            System.out.println("CASCADE TYPE PERSIST DA RELAZIONE ONETONE (REAL ESTATE) - OK");
@@ -370,7 +370,7 @@ public class BackendApplication
            RealEstateForSale realEstate5 = new RealEstateForSale("fafafafaf", Date.now(), 26.7, "fafafafaf",
                                                          internalRealEstateFeatures, externalRealEstateFeatures, 
                                                          20.5, "fafafafaf");            
-           realEstate5.setRealEstateAgent(realEstateAgent3);  
+           realEstate5.setAgent(agent3);  
 
 
            System.out.println("CASCADE TYPE PERSIST DA RELAZIONE ONETOMANY - OK");

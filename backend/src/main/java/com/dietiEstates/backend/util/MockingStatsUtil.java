@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.model.entity.RealEstate;
-import com.dietiEstates.backend.model.entity.RealEstateAgent;
+import com.dietiEstates.backend.model.entity.Agent;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,14 +28,14 @@ public class MockingStatsUtil
     }
 
 
-    public void mockAgentStats(RealEstateAgent realEstateAgent)
+    public void mockAgentStats(Agent agent)
     {        
         int randomTotalUploadedRealEstates = rand.nextInt(25,50);
         int randomTotalSoldRealEstates;
         int randomTotalRentedRealEstates;
 
-        log.info(realEstateAgent.getName());
-        if(realEstateAgent.getName().length() >= 5)
+        log.info(agent.getName());
+        if(agent.getName().length() >= 5)
         {
             randomTotalSoldRealEstates = randomTotalUploadedRealEstates / rand.nextInt(2,6);
             randomTotalRentedRealEstates = randomTotalSoldRealEstates - rand.nextInt(1,5);
@@ -46,11 +46,11 @@ public class MockingStatsUtil
             randomTotalSoldRealEstates = randomTotalRentedRealEstates - rand.nextInt(1,5);
         }
 
-        realEstateAgent.getRealEstateAgentStats().setTotalUploadedRealEstates(randomTotalUploadedRealEstates);
-        realEstateAgent.getRealEstateAgentStats().setTotalSoldRealEstates(randomTotalSoldRealEstates);
-        realEstateAgent.getRealEstateAgentStats().setTotalRentedRealEstates(randomTotalRentedRealEstates);
-        realEstateAgent.getRealEstateAgentStats().setSalesIncome(randomTotalSoldRealEstates * 50000.99);
-        realEstateAgent.getRealEstateAgentStats().setRentalsIncome(randomTotalRentedRealEstates * 1000.99);
+        agent.getAgentStats().setTotalUploadedRealEstates(randomTotalUploadedRealEstates);
+        agent.getAgentStats().setTotalSoldRealEstates(randomTotalSoldRealEstates);
+        agent.getAgentStats().setTotalRentedRealEstates(randomTotalRentedRealEstates);
+        agent.getAgentStats().setSalesIncome(randomTotalSoldRealEstates * 50000.99);
+        agent.getAgentStats().setRentalsIncome(randomTotalRentedRealEstates * 1000.99);
     }
 
     public void mockEstateStats(RealEstate realEstate)

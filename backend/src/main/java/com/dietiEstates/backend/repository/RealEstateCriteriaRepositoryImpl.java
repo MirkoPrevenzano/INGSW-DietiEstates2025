@@ -81,7 +81,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
                                                                                               realEstate.get("title"), 
                                                                                               realEstate.get("description"), 
                                                                                               realEstate.get("uploadingDate")))
-                     .where(criteriaBuilder.equal(realEstate.get("realEstateAgent").get("userId"), agentId))
+                     .where(criteriaBuilder.equal(realEstate.get("agent").get("userId"), agentId))
                      .orderBy(criteriaBuilder.desc(realEstate.get("uploadingDate")));
 
         return entityManager.createQuery(criteriaQuery)
@@ -94,7 +94,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
         Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
 
-        Path<Long> agentIdOfRealEstate = realEstate.get("realEstateAgent").get("userId");
+        Path<Long> agentIdOfRealEstate = realEstate.get("agent").get("userId");
 
         criteriaQuery.select(criteriaBuilder.construct(RealEstateRecentDTO.class, realEstate.get("realEstateId"), 
                                                                                               realEstate.get("title"), 
@@ -123,7 +123,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
                                                                                              realEstate.get("realEstateStats").get("viewsNumber"),
                                                                                              realEstate.get("realEstateStats").get("visitsNumber"),
                                                                                              realEstate.get("realEstateStats").get("offersNumber")))
-             .where(criteriaBuilder.equal(realEstate.get("realEstateAgent").get("userId"), agentId))
+             .where(criteriaBuilder.equal(realEstate.get("agent").get("userId"), agentId))
              .orderBy(criteriaBuilder.asc(realEstate.get("realEstateId")));
 
         List<RealEstateStatsDTO> list = entityManager.createQuery(criteriaQuery)
@@ -139,7 +139,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         
         Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
 
-        Path<Long> agentIdOfRealEstate = realEstate.get("realEstateAgent").get("userId");
+        Path<Long> agentIdOfRealEstate = realEstate.get("agent").get("userId");
 
         criteriaQuery.select(criteriaBuilder.construct(RealEstateStatsDTO.class, realEstate.get("realEstateId"), 
                                                                                              realEstate.get("title"), 
@@ -167,7 +167,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         
         Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
     
-        Path<Long> agentIdOfRealEstate = realEstate.get("realEstateAgent").get("userId");
+        Path<Long> agentIdOfRealEstate = realEstate.get("agent").get("userId");
 
         criteriaQuery.select(realEstate.get("realEstateId"))
                      .where(criteriaBuilder.equal(agentIdOfRealEstate, agentId))

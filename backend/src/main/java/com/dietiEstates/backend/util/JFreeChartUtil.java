@@ -13,7 +13,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.dietiEstates.backend.model.entity.RealEstateAgent;
+import com.dietiEstates.backend.model.entity.Agent;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,14 +26,14 @@ public class JFreeChartUtil
 {
     private final MockingStatsUtil mockingStatsUtil;
 
-    public void createPieChart(RealEstateAgent realEstateAgent)
+    public void createPieChart(Agent agent)
     {
         DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
 
-        if(realEstateAgent.getRealEstateAgentStats().getTotalUploadedRealEstates() != 0)
+        if(agent.getAgentStats().getTotalUploadedRealEstates() != 0)
         {
-            dataset.setValue("SALES", Double.valueOf(realEstateAgent.getRealEstateAgentStats().getTotalSoldRealEstates()));
-            dataset.setValue("RENTALS", Double.valueOf(realEstateAgent.getRealEstateAgentStats().getTotalRentedRealEstates()));
+            dataset.setValue("SALES", Double.valueOf(agent.getAgentStats().getTotalSoldRealEstates()));
+            dataset.setValue("RENTALS", Double.valueOf(agent.getAgentStats().getTotalRentedRealEstates()));
         }
         else
         {
@@ -67,14 +67,14 @@ public class JFreeChartUtil
     }
 
 
-    public void createPieChart2(RealEstateAgent realEstateAgent)
+    public void createPieChart2(Agent agent)
     {
         DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
 
-        if(realEstateAgent.getRealEstateAgentStats().getTotalUploadedRealEstates() != 0)
+        if(agent.getAgentStats().getTotalUploadedRealEstates() != 0)
         {
-            dataset.setValue("COMPLETED DEALS", Double.valueOf(realEstateAgent.getRealEstateAgentStats().getCompletedDeals()));
-            dataset.setValue("TOTAL REAL ESTATES", Double.valueOf(realEstateAgent.getRealEstateAgentStats().getTotalUploadedRealEstates()));
+            dataset.setValue("COMPLETED DEALS", Double.valueOf(agent.getAgentStats().getCompletedDeals()));
+            dataset.setValue("TOTAL REAL ESTATES", Double.valueOf(agent.getAgentStats().getTotalUploadedRealEstates()));
         }
         else
         {

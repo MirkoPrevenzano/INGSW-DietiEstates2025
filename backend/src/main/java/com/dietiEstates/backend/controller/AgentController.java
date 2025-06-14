@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dietiEstates.backend.dto.RealEstateAgentStatsDTO;
+import com.dietiEstates.backend.dto.AgentStatsDTO;
 import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.RealEstateStatsDTO;
-import com.dietiEstates.backend.model.embeddable.RealEstateAgentStats;
-import com.dietiEstates.backend.service.RealEstateAgentService;
+import com.dietiEstates.backend.model.embeddable.AgentStats;
+import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.util.CsvUtil;
 import com.dietiEstates.backend.util.PdfUtil;
 import com.lowagie.text.DocumentException;
@@ -38,9 +38,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(path = "/agent")
 @RequiredArgsConstructor
 @Slf4j
-public class RealEstateAgentController 
+public class AgentController 
 {
-    private final RealEstateAgentService realEstateAgentService;
+    private final AgentService agentService;
     private final CsvUtil csvUtil;
     private final PdfUtil pdfUtil;
 
@@ -52,7 +52,7 @@ public class RealEstateAgentController
         try 
         {
             return ResponseEntity.status(HttpStatus.CREATED.value())
-                                 .body(realEstateAgentService.createRealEstateForSale(username, realEstateForSaleCreationDTO));
+                                 .body(agentService.createRealEstateForSale(username, realEstateForSaleCreationDTO));
                                  
         } 
         catch (UsernameNotFoundException e)
@@ -68,7 +68,7 @@ public class RealEstateAgentController
         try 
         {
             return ResponseEntity.status(HttpStatus.CREATED.value())
-                                 .body(realEstateAgentService.createRealEstateForRent(username, realEstateForRentCreationDTO));
+                                 .body(agentService.createRealEstateForRent(username, realEstateForRentCreationDTO));
 
         } 
         catch (UsernameNotFoundException e)
@@ -81,7 +81,7 @@ public class RealEstateAgentController
     @GetMapping(path = "{username}/recent-real-estates/{limit}")
     public ResponseEntity<List<RealEstateRecentDTO>> aa(@PathVariable("username") String username, @PathVariable("limit") Integer limit) 
     {
-        List<RealEstateRecentDTO> realEstates = realEstateAgentService.findRecentRealEstates(username, limit);
+        List<RealEstateRecentDTO> realEstates = agentService.findRecentRealEstates(username, limit);
 
         for(RealEstateRecentDTO recentRealEstateDTO : realEstates)
             log.info(recentRealEstateDTO.toString());
@@ -122,11 +122,11 @@ public class RealEstateAgentController
 
 
     @GetMapping(path = "{username}/general-stats")
-    public ResponseEntity<RealEstateAgentStatsDTO> aaaaaaa(@PathVariable("username") String username) 
+    public ResponseEntity<AgentStatsDTO> aaaaaaa(@PathVariable("username") String username) 
     {
-        RealEstateAgentStatsDTO realEstateAgentStatsDTO = realEstateAgentService.getAgentStats(username);
+        AgentStatsDTO agentStatsDTO = agentService.getAgentStats(username);
 
-        return ResponseEntity.ok().body(realEstateAgentStatsDTO);
+        return ResponseEntity.ok().body(agentStatsDTO);
     }
 
 
@@ -135,7 +135,7 @@ public class RealEstateAgentController
                                                    @PathVariable("page") Integer page,
                                                    @PathVariable("limit") Integer limit) 
     {
-        List<RealEstateStatsDTO> realEstateStatsDTOs = realEstateAgentService.getRealEstateStats(username, 
+        List<RealEstateStatsDTO> realEstateStatsDTOs = agentService.getRealEstateStats(username, 
                                                                                                  PageRequest.of(page, limit));
         return ResponseEntity.ok().body(realEstateStatsDTOs);
     }
@@ -143,6 +143,6 @@ public class RealEstateAgentController
     @GetMapping(path = "{username}/bar-chart-stats")
     public ResponseEntity<Integer[]> aaaa(@PathVariable("username") String username) 
     {
-        return ResponseEntity.ok().body(realEstateAgentService.getBarChartStats());
+        return ResponseEntity.ok().body(agentService.getBarChartStats());
     }
 }

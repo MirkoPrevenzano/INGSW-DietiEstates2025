@@ -1,7 +1,7 @@
 
 package com.dietiEstates.backend.dto;
 
-import com.dietiEstates.backend.model.embeddable.RealEstateAgentStats;
+import com.dietiEstates.backend.model.embeddable.AgentStats;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +13,10 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RealEstateAgentStatsDTO
+public class AgentStatsDTO
 {
     @NonNull
-    private RealEstateAgentStats realEstateAgentStats;
+    private AgentStats agentStats;
 
     @NonNull
     private Integer[] estatesPerMonths;

@@ -10,10 +10,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.dietiEstates.backend.enums.Role;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Customer;
-import com.dietiEstates.backend.model.entity.RealEstateAgent;
+import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
-import com.dietiEstates.backend.repository.RealEstateAgentRepository;
+import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.util.ValidationUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,7 +33,7 @@ import java.util.Optional;
 public class UserDetailsServiceConfig
 {
     private final CustomerRepository customerRepository;
-    private final RealEstateAgentRepository realEstateAgentRepository;
+    private final AgentRepository agentRepository;
     private final AdministratorRepository administratorRepository;
     private final PasswordEncoder passwordEncoder;
     //private final ValidationUtil validationUtil;
@@ -64,10 +64,10 @@ public class UserDetailsServiceConfig
 
                     case "agent" :
                     {
-                        Optional<RealEstateAgent> optionalRealEstateAgent = realEstateAgentRepository.findByUsername(username);
-                        RealEstateAgent realEstateAgent = ValidationUtil.optionalUserValidator(optionalRealEstateAgent, username);
-                        realEstateAgent.setRole(Role.ROLE_AGENT);
-                        return realEstateAgent;                       
+                        Optional<Agent> optionalAgent = agentRepository.findByUsername(username);
+                        Agent agent = ValidationUtil.optionalUserValidator(optionalAgent, username);
+                        agent.setRole(Role.ROLE_AGENT);
+                        return agent;                       
                     }
 
 

@@ -13,11 +13,11 @@ import org.springframework.format.datetime.standard.DateTimeFormatterFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.dietiEstates.backend.model.embeddable.RealEstateAgentStats;
+import com.dietiEstates.backend.model.embeddable.AgentStats;
 import com.dietiEstates.backend.model.embeddable.RealEstateStats;
 import com.dietiEstates.backend.model.entity.RealEstate;
-import com.dietiEstates.backend.model.entity.RealEstateAgent;
-import com.dietiEstates.backend.repository.RealEstateAgentRepository;
+import com.dietiEstates.backend.model.entity.Agent;
+import com.dietiEstates.backend.repository.AgentRepository;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
@@ -43,12 +43,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PdfUtil extends PdfPageEventHelper
 {
-    private final RealEstateAgentRepository realEstateAgentRepository;
+    private final AgentRepository agentRepository;
 
     
     public void writePdfResponse(String username, HttpServletResponse response) throws DocumentException, IOException 
     {
-        RealEstateAgent realEstateAgent = realEstateAgentRepository.findByUsername(username).get();
+        Agent agent = agentRepository.findByUsername(username).get();
         
         Document document = new Document(PageSize.A4);
         try 
@@ -56,7 +56,7 @@ public class PdfUtil extends PdfPageEventHelper
 
             PdfWriter p = PdfWriter.getInstance(document, response.getOutputStream());
 
-            p.setPageEvent(new PdfUtil(realEstateAgentRepository));
+            p.setPageEvent(new PdfUtil(agentRepository));
             document.open();
 
             Font paragraphFont = createFont(FontFactory.HELVETICA_BOLD, 22, Color.BLUE);
@@ -75,8 +75,8 @@ public class PdfUtil extends PdfPageEventHelper
             document.add(lol2);
 
 
-            writeAgentInfo(document, paragraphFont, cellHeaderFont, cellHeader, cellFont, cell, realEstateAgent);
-            writeAgentStats(document, paragraphFont, cellHeaderFont, cellHeader, cellFont, cell, realEstateAgent);
+            writeAgentInfo(document, paragraphFont, cellHeaderFont, cellHeader, cellFont, cell, agent);
+            writeAgentStats(document, paragraphFont, cellHeaderFont, cellHeader, cellFont, cell, agent);
 
             Image im2 = Image.getInstance("PieChart.jpeg");
             Image im3 = Image.getInstance("PieChart2.jpeg");
@@ -89,7 +89,7 @@ public class PdfUtil extends PdfPageEventHelper
             lol.addCell(cell2);
             document.add(lol);
 
-            writeRealEstateStats(document, paragraphFont, cellHeaderFont, cellHeader, cellFont, cell, realEstateAgent);
+            writeRealEstateStats(document, paragraphFont, cellHeaderFont, cellHeader, cellFont, cell, agent);
             
             Image im4 = Image.getInstance("BarChart.jpeg");
             im4.setAlignment(Element.ALIGN_CENTER);
@@ -159,14 +159,14 @@ public class PdfUtil extends PdfPageEventHelper
     } 
 
     private void writeAgentInfo(Document document, Font paragraphFont, Font cellHeaderFont, PdfPCell cellHeader, 
-                                Font cellFont, PdfPCell cell, RealEstateAgent realEstateAgent) 
+                                Font cellFont, PdfPCell cell, Agent agent) 
     {
         Paragraph agentInfoParagraph = createParagraph(paragraphFont, "AGENT INFO");
         
         PdfPTable agentInfoTable = createTable(3, 80f, new float[] {2.5f, 2.5f, 2.5f});
         String[] agentInfoHeader = {"Name", "Surname", "Username"};
         writeInTable(agentInfoTable, cellHeader, cellHeaderFont, agentInfoHeader);
-        String[] agentInfo = {realEstateAgent.getName(), realEstateAgent.getSurname(), realEstateAgent.getUsername()};
+        String[] agentInfo = {agent.getName(), agent.getSurname(), agent.getUsername()};
         writeInTable(agentInfoTable, cell, cellFont, agentInfo);
         
         document.add(agentInfoParagraph);
@@ -174,32 +174,32 @@ public class PdfUtil extends PdfPageEventHelper
     }
 
     private void writeAgentStats(Document document, Font paragraphFont, Font cellHeaderFont, PdfPCell cellHeader, 
-                                 Font cellFont, PdfPCell cell, RealEstateAgent realEstateAgent) 
+                                 Font cellFont, PdfPCell cell, Agent agent) 
     {
         Paragraph p2 = createParagraph(paragraphFont, "AGENT STATS");
         PdfPTable table2 = createTable(5, 100f, new float[] {2.0f, 2.0f, 2.0f, 2.0f, 2.0f});
         String[] agentStatsHeader = {"Uploaded Real Estates", "Sold Real Estates", "Rented Real Estates", "Sales Income", "Rentals Income" };
         writeInTable(table2, cellHeader, cellHeaderFont, agentStatsHeader);
-        RealEstateAgentStats realEstateAgentStats = realEstateAgent.getRealEstateAgentStats();
-        String[] agentStats = {((Integer)realEstateAgentStats.getTotalUploadedRealEstates()).toString(), 
-                               ((Integer)realEstateAgentStats.getTotalSoldRealEstates()).toString(),
-                               ((Integer)realEstateAgentStats.getTotalRentedRealEstates()).toString(),
-                               ((Double)realEstateAgentStats.getSalesIncome()).toString(),
-                               ((Double)realEstateAgentStats.getRentalsIncome()).toString()};
-        writeInTable(table2, cell, cellFont, agentStats);
+        AgentStats agentStats = agent.getAgentStats();
+        String[] stats = {((Integer)agentStats.getTotalUploadedRealEstates()).toString(), 
+                               ((Integer)agentStats.getTotalSoldRealEstates()).toString(),
+                               ((Integer)agentStats.getTotalRentedRealEstates()).toString(),
+                               ((Double)agentStats.getSalesIncome()).toString(),
+                               ((Double)agentStats.getRentalsIncome()).toString()};
+        writeInTable(table2, cell, cellFont, stats);
 
         document.add(p2);
         document.add(table2);
     }
 
     private void writeRealEstateStats(Document document, Font paragraphFont, Font cellHeaderFont, PdfPCell cellHeader, 
-                                      Font cellFont, PdfPCell cell, RealEstateAgent realEstateAgent) 
+                                      Font cellFont, PdfPCell cell, Agent agent) 
     {
         Paragraph p3 = createParagraph(paragraphFont, "REAL ESTATES STATS");
         PdfPTable table3 = createTable(5, 105f, new float[] {3.0f, 2.5f, 2.0f, 2.0f, 2.0f});
         String[] realEstateStatsHeader = {"Title", "Uploading Date", "Views Number", "Offers Number", "Visits Number"};
         writeInTable(table3, cellHeader, cellHeaderFont, realEstateStatsHeader);
-        List<RealEstate> realEstates = realEstateAgent.getRealEstates();
+        List<RealEstate> realEstates = agent.getRealEstates();
 
         if(realEstates.size() > 0)
         {

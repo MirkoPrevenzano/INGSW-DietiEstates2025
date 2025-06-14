@@ -13,9 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dietiEstates.backend.dto.UserRegistrationDTO;
 import com.dietiEstates.backend.dto.OldNewPasswordDTO;
 import com.dietiEstates.backend.model.entity.Administrator;
-import com.dietiEstates.backend.model.entity.RealEstateAgent;
+import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
-import com.dietiEstates.backend.repository.RealEstateAgentRepository;
+import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.util.MockingStatsUtil;
 import com.dietiEstates.backend.util.ValidationUtil;
 
@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AdministratorService 
 {
     private final AdministratorRepository administratorRepository;
-    private final RealEstateAgentRepository realEstateAgentRepository;
+    private final AgentRepository agentRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     //private final ValidationUtil validationUtil;
@@ -76,7 +76,7 @@ public class AdministratorService
 
 
     @Transactional
-    public void createRealEstateAgent(String username, UserRegistrationDTO userRegistrationDTO) throws UsernameNotFoundException, 
+    public void createAgent(String username, UserRegistrationDTO userRegistrationDTO) throws UsernameNotFoundException, 
                                                                                           IllegalArgumentException, MappingException
     {
         Optional<Administrator> administratorOptional = administratorRepository.findByUsername(username);
@@ -87,7 +87,7 @@ public class AdministratorService
         }
         Administrator administrator = administratorOptional.get();
 
-        if(realEstateAgentRepository.findByUsername(userRegistrationDTO.getUsername()).isPresent())
+        if(agentRepository.findByUsername(userRegistrationDTO.getUsername()).isPresent())
         {
             log.error("This username is already present!");
             throw new IllegalArgumentException("This username is already present!");
@@ -103,21 +103,21 @@ public class AdministratorService
             throw e;
         }
 
-        RealEstateAgent realEstateAgent;
+        Agent agent;
         try 
         {
-            realEstateAgent = modelMapper.map(userRegistrationDTO, RealEstateAgent.class);
+            agent = modelMapper.map(userRegistrationDTO, Agent.class);
         } 
         catch (MappingException e) 
         {
             log.error("Problems while mapping! Probably the source object was different than the one expected!");
             throw e;
         }
-        realEstateAgent.setPassword(passwordEncoder.encode(realEstateAgent.getPassword()));
+        agent.setPassword(passwordEncoder.encode(agent.getPassword()));
 
-        mockingStatsUtil.mockAgentStats(realEstateAgent);
+        mockingStatsUtil.mockAgentStats(agent);
 
-        administrator.addRealEstateAgent(realEstateAgent);
+        administrator.addAgent(agent);
         administrator = administratorRepository.save(administrator);
 
         log.info("Real Estate Agent was created successfully!");

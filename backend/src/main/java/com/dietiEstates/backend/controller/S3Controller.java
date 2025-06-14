@@ -4,7 +4,7 @@ package com.dietiEstates.backend.controller;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.dietiEstates.backend.service.RealEstateAgentService;
+import com.dietiEstates.backend.service.AgentService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Slf4j
 public class S3Controller 
 {
-    private final RealEstateAgentService realEstateAgentService;
+    private final AgentService agentService;
     
 
 
@@ -48,7 +48,7 @@ public class S3Controller
     {
         try 
         {
-            realEstateAgentService.uploadPhoto(username, file, realEstateId);
+            agentService.uploadPhoto(username, file, realEstateId);
             return ResponseEntity.ok().build();            
         } 
         catch (IllegalArgumentException e)
@@ -67,7 +67,7 @@ public class S3Controller
     {        
         try 
         {
-            String[] photos = realEstateAgentService.getPhoto(realEstateId);
+            String[] photos = agentService.getPhoto(realEstateId);
             return ResponseEntity.ok(photos);
         } 
         catch (NoSuchKeyException e) 
