@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class OldNewPasswordDTO 
+public class UpdatePasswordDTO 
 {
     @NonNull
     private String oldPassword;

@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.dto.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.AgentRegistrationDTO;
-import com.dietiEstates.backend.dto.OldNewPasswordDTO;
+import com.dietiEstates.backend.dto.UpdatePasswordDTO;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
@@ -125,7 +125,7 @@ public class AdministratorService
     }
 
 
-    public void updatePassword(String username, OldNewPasswordDTO oldNewPasswordDTO) throws UsernameNotFoundException, 
+    public void updatePassword(String username, UpdatePasswordDTO updatePasswordDTO) throws UsernameNotFoundException, 
                                                                                             IllegalArgumentException, MappingException
     {
         Optional<Administrator> administratorOptional = administratorRepository.findByUsername(username);
@@ -135,13 +135,13 @@ public class AdministratorService
             throw new UsernameNotFoundException("Admin not found in database");
         }
 
-        if(!(passwordEncoder.matches(oldNewPasswordDTO.getOldPassword(), administratorOptional.get().getPassword())))
+        if(!(passwordEncoder.matches(updatePasswordDTO.getOldPassword(), administratorOptional.get().getPassword())))
         {
             log.error("The \"old password\" you have inserted do not correspond to your current password");
             throw new IllegalArgumentException("The \"old password\" you have inserted do not correspond to your current password");
         }
 
-        if((passwordEncoder.matches(oldNewPasswordDTO.getNewPassword(), administratorOptional.get().getPassword())))
+        if((passwordEncoder.matches(updatePasswordDTO.getNewPassword(), administratorOptional.get().getPassword())))
         {
             log.error("The \"new password\" you have inserted can't be equal to your current password");
             throw new IllegalArgumentException("\"The \"new password\" you have inserted can't be equal to your current password");
@@ -149,7 +149,7 @@ public class AdministratorService
         
         try 
         {
-            ValidationUtil.passwordValidator(oldNewPasswordDTO.getNewPassword());
+            ValidationUtil.passwordValidator(updatePasswordDTO.getNewPassword());
         } 
         catch (IllegalArgumentException e) 
         {
@@ -158,7 +158,7 @@ public class AdministratorService
         }
 
         Administrator administrator = administratorOptional.get();
-        administrator.setPassword(passwordEncoder.encode(oldNewPasswordDTO.getNewPassword()));
+        administrator.setPassword(passwordEncoder.encode(updatePasswordDTO.getNewPassword()));
         administrator = administratorRepository.save(administrator);
 
         log.info("Password was updated successfully!");

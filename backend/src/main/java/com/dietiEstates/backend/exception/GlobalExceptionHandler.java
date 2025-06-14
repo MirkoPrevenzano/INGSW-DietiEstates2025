@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.exceptions;
+package com.dietiEstates.backend.exception;
 
 import org.modelmapper.MappingException;
 import org.springframework.http.ResponseEntity;

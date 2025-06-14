@@ -11,9 +11,11 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RealEstateCompleteInfoDTO
+public class RealEstateCompleteDTO
 {
     @NonNull
     private RealEstateCreationDTO realEstateCreationDTO;
-    private AgentInfoDTO agentInfoDTO;    
+
+    @NonNull
+    private AgentPublicInfoDTO agentPublicInfoDTO;    
 }

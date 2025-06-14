@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.dietiEstates.backend.dto.CustomerRegistrationDTO;
 import com.dietiEstates.backend.dto.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.AgentRegistrationDTO;
-import com.dietiEstates.backend.dto.OldNewPasswordDTO;
+import com.dietiEstates.backend.dto.UpdatePasswordDTO;
 import com.dietiEstates.backend.service.AdministratorService;
 
 import lombok.RequiredArgsConstructor;
@@ -71,11 +71,11 @@ public class AdministratorController
 
 
     @PutMapping(path = "/{username}/update-password")
-    public ResponseEntity<?> updatePassword(@PathVariable String username, @RequestBody OldNewPasswordDTO oldNewPasswordDTO) 
+    public ResponseEntity<?> updatePassword(@PathVariable String username, @RequestBody UpdatePasswordDTO updatePasswordDTO) 
     {
         try 
         {
-            administratorService.updatePassword(username, oldNewPasswordDTO);
+            administratorService.updatePassword(username, updatePasswordDTO);
             return ResponseEntity.status(HttpStatus.OK).build();
         } 
         catch (UsernameNotFoundException e) 

@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class AgentInfoDTO 
+public class AgentPublicInfoDTO 
 {
     @NonNull
     private String name;
