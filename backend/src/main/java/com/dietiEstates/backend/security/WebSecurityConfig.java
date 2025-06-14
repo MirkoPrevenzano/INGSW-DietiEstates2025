@@ -3,7 +3,7 @@ package com.dietiEstates.backend.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,14 +28,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WebSecurityConfig
 {
-    private final DaoAuthenticationProvider daoAuthenticationProvider;
-
-
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {
-        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(daoAuthenticationProvider);          
+        JwtAuthorizationFilter jwtAuthorizationFilter = new JwtAuthorizationFilter();
+        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter();
+        jwtAuthenticationFilter.setAuthenticationManager(http.getSharedObject(AuthenticationManager.class));
+
 
         http.csrf(csrfCustomizer -> csrfCustomizer.disable())
             .cors(Customizer.withDefaults())
@@ -60,7 +59,7 @@ public class WebSecurityConfig
             //.exceptionHandling(a -> a.accessDeniedPage("/admin/aa").accessDeniedHandler(new AccessDeniedHandlerImpl()))   
 
             .addFilter(jwtAuthenticationFilter)
-            .addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
            
 
         return http.build();

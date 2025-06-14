@@ -28,7 +28,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 
-
 @Slf4j
 public class JwtAuthorizationFilter extends OncePerRequestFilter
 {
