@@ -10,7 +10,7 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RealEstateLocationFeatures 
+public class RealEstateLocationFeaturesDTO
 {
     @NonNull
     private Boolean nearPark;

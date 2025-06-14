@@ -10,7 +10,7 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RealEstateBooleanFeatures 
+public class RealEstateBooleanFeaturesDTO 
 {
     @NonNull
     private Boolean airConditioning;

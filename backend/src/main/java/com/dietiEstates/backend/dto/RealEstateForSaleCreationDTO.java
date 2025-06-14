@@ -1,9 +1,9 @@
 
 package com.dietiEstates.backend.dto;
 
-import com.dietiEstates.backend.extra.RealEstateBooleanFeatures;
-import com.dietiEstates.backend.extra.RealEstateLocationFeatures;
-import com.dietiEstates.backend.extra.RealEstateMainFeatures;
+import com.dietiEstates.backend.extra.RealEstateBooleanFeaturesDTO;
+import com.dietiEstates.backend.extra.RealEstateLocationFeaturesDTO;
+import com.dietiEstates.backend.extra.RealEstateMainFeaturesDTO;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,11 +24,11 @@ public class RealEstateForSaleCreationDTO extends RealEstateCreationDTO
 
 
 
-    public RealEstateForSaleCreationDTO(AddressDTO addressDTO, RealEstateMainFeatures realEstateMainFeatures, 
-                                        RealEstateBooleanFeatures realEstateBooleanFeatures, RealEstateLocationFeatures realEstateLocationFeatures, 
+    public RealEstateForSaleCreationDTO(AddressDTO addressDTO, RealEstateMainFeaturesDTO realEstateMainFeaturesDTO, 
+                                        RealEstateBooleanFeaturesDTO realEstateBooleanFeaturesDTO, RealEstateLocationFeaturesDTO realEstateLocationFeaturesDTO, 
                                         String notaryDeedState)
     {
-        super(addressDTO, realEstateMainFeatures, realEstateBooleanFeatures, realEstateLocationFeatures);
+        super(addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO);
         this.notaryDeedState = notaryDeedState;
     }
 }

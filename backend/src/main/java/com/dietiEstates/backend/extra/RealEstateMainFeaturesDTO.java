@@ -10,7 +10,7 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RealEstateMainFeatures 
+public class RealEstateMainFeaturesDTO 
 {
     @NonNull
     private String title;

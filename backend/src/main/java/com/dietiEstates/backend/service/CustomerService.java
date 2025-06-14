@@ -10,9 +10,9 @@ import com.dietiEstates.backend.dto.AddressDTO;
 import com.dietiEstates.backend.dto.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;
-import com.dietiEstates.backend.extra.RealEstateBooleanFeatures;
-import com.dietiEstates.backend.extra.RealEstateLocationFeatures;
-import com.dietiEstates.backend.extra.RealEstateMainFeatures;
+import com.dietiEstates.backend.extra.RealEstateBooleanFeaturesDTO;
+import com.dietiEstates.backend.extra.RealEstateLocationFeaturesDTO;
+import com.dietiEstates.backend.extra.RealEstateMainFeaturesDTO;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
@@ -108,27 +108,27 @@ public class CustomerService
                 Integer parkingSpacesNumber = realEstate.getExternalFeatures().getParkingSpacesNumber();
                 Integer floorNumber = realEstate.getExternalFeatures().getFloorNumber();
 
-                RealEstateMainFeatures realEstateMainFeatures = new RealEstateMainFeatures(title, description, price, condoFee, size, 
+                RealEstateMainFeaturesDTO realEstateMainFeaturesDTO = new RealEstateMainFeaturesDTO(title, description, price, condoFee, size, 
                                                                    roomsNumber, parkingSpacesNumber, floorNumber, 
                                                                    energyClass, propertyCondition, furnitureCondition);
 
 
-                RealEstateBooleanFeatures realEstateBooleanFeatures = new RealEstateBooleanFeatures();
-                realEstateBooleanFeatures.setAirConditioning(realEstate.getInternalFeatures().getAirConditioning());
-                realEstateBooleanFeatures.setHeating(realEstate.getInternalFeatures().getHeating());
-                realEstateBooleanFeatures.setBalcony(realEstate.getExternalFeatures().getBalcony());
-                realEstateBooleanFeatures.setElevator(realEstate.getExternalFeatures().getElevator());
-                realEstateBooleanFeatures.setConcierge(realEstate.getExternalFeatures().getConcierge());
-                realEstateBooleanFeatures.setGarage(realEstate.getExternalFeatures().getGarage());
-                realEstateBooleanFeatures.setGarden(realEstate.getExternalFeatures().getGarden());
-                realEstateBooleanFeatures.setSwimmingPool(realEstate.getExternalFeatures().getSwimmingPool());
-                realEstateBooleanFeatures.setTerrace(realEstate.getExternalFeatures().getTerrace());
+                RealEstateBooleanFeaturesDTO realEstateBooleanFeaturesDTO = new RealEstateBooleanFeaturesDTO();
+                realEstateBooleanFeaturesDTO.setAirConditioning(realEstate.getInternalFeatures().getAirConditioning());
+                realEstateBooleanFeaturesDTO.setHeating(realEstate.getInternalFeatures().getHeating());
+                realEstateBooleanFeaturesDTO.setBalcony(realEstate.getExternalFeatures().getBalcony());
+                realEstateBooleanFeaturesDTO.setElevator(realEstate.getExternalFeatures().getElevator());
+                realEstateBooleanFeaturesDTO.setConcierge(realEstate.getExternalFeatures().getConcierge());
+                realEstateBooleanFeaturesDTO.setGarage(realEstate.getExternalFeatures().getGarage());
+                realEstateBooleanFeaturesDTO.setGarden(realEstate.getExternalFeatures().getGarden());
+                realEstateBooleanFeaturesDTO.setSwimmingPool(realEstate.getExternalFeatures().getSwimmingPool());
+                realEstateBooleanFeaturesDTO.setTerrace(realEstate.getExternalFeatures().getTerrace());
 
 
-                RealEstateLocationFeatures realEstateLocationFeatures = new RealEstateLocationFeatures();
-                realEstateLocationFeatures.setNearPark(realEstate.getExternalFeatures().getNearPark());
-                realEstateLocationFeatures.setNearSchool(realEstate.getExternalFeatures().getNearSchool());
-                realEstateLocationFeatures.setNearPublicTransport(realEstate.getExternalFeatures().getNearPublicTransport());
+                RealEstateLocationFeaturesDTO realEstateLocationFeaturesDTO = new RealEstateLocationFeaturesDTO();
+                realEstateLocationFeaturesDTO.setNearPark(realEstate.getExternalFeatures().getNearPark());
+                realEstateLocationFeaturesDTO.setNearSchool(realEstate.getExternalFeatures().getNearSchool());
+                realEstateLocationFeaturesDTO.setNearPublicTransport(realEstate.getExternalFeatures().getNearPublicTransport());
 
 
                 AddressDTO addressDTO = modelMapper.map(realEstate.getAddress(), AddressDTO.class);
@@ -138,14 +138,14 @@ public class CustomerService
                 {
                     RealEstateForSale realEstateForSale = (RealEstateForSale) realEstate;
                     String notaryDeedState = realEstateForSale.getNotaryDeedState().getValue();
-                    return new RealEstateForSaleCreationDTO(addressDTO, realEstateMainFeatures, realEstateBooleanFeatures, realEstateLocationFeatures, notaryDeedState);
+                    return new RealEstateForSaleCreationDTO(addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO, notaryDeedState);
                 }
                 else
                 {
                     RealEstateForRent realEstateForSale = (RealEstateForRent) realEstate;
                     Double securityDeposit = realEstateForSale.getSecurityDeposit();
                     Integer contractYears = realEstateForSale.getContractYears();
-                    return new RealEstateForRentCreationDTO(addressDTO, realEstateMainFeatures, realEstateBooleanFeatures, realEstateLocationFeatures, securityDeposit, contractYears);
+                    return new RealEstateForRentCreationDTO(addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO, securityDeposit, contractYears);
                 }
             }
             
