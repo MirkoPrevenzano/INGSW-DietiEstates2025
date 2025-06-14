@@ -20,9 +20,11 @@ import com.auth0.jwt.JWTVerifier;
 @UtilityClass
 public class JwtUtil 
 {
+    private final String ISSUER = "dieti-estates";
     private final String SECRET_KEY = "w4nw7RJyMobORgdBx4cj80GjLUMBSscPaZ1HOiiQlwo="; // generated with: openssl rand -base64 32
-    private final Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY.getBytes());
-
+    private final long EXPIRATION_TIME = 24 * 60 * 60 * 1000;
+    private final Algorithm ALGORITHM = Algorithm.HMAC256(SECRET_KEY.getBytes());
+    private final JWTVerifier jwtVerifier = JWT.require(ALGORITHM).withIssuer(ISSUER).build();
     
 
 
@@ -30,10 +32,11 @@ public class JwtUtil
     {
         String accessToken = JWT.create()
                                 .withSubject(userDetails.getUsername())
+                                .withIssuer(ISSUER)
                                 .withIssuedAt(new Date(System.currentTimeMillis()))
-                                .withExpiresAt(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000))
+                                .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                                 .withClaim("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
-                                .sign(algorithm);
+                                .sign(ALGORITHM);
         
         return accessToken;
     }
@@ -41,8 +44,6 @@ public class JwtUtil
 
     public boolean verifyToken(String token)
     {
-        /* JWTVerifier jwtVerifier = JWT.require(algorithm).build();
-        return jwtVerifier.verify(token); */
         if(getDecodedJWT(token) != null)
             return true;
 
@@ -81,10 +82,8 @@ public class JwtUtil
 
 
 
-
     private DecodedJWT getDecodedJWT(String token)
     {
-        JWTVerifier jwtVerifier = JWT.require(algorithm).build();
         return jwtVerifier.verify(token);
     }
 }
