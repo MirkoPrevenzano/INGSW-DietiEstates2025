@@ -10,7 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dietiEstates.backend.dto.UserRegistrationDTO;
+import com.dietiEstates.backend.dto.AdminRegistrationDTO;
+import com.dietiEstates.backend.dto.AgentRegistrationDTO;
 import com.dietiEstates.backend.dto.OldNewPasswordDTO;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agent;
@@ -38,7 +39,7 @@ public class AdministratorService
 
 
     @Transactional
-    public void createCollaborator(UserRegistrationDTO userRegistrationDTO) throws UsernameNotFoundException, 
+    public void createCollaborator(AdminRegistrationDTO adminRegistrationDTO) throws UsernameNotFoundException, 
                                                                                     IllegalArgumentException, MappingException
     {
         Optional<Administrator> adminOptional = administratorRepository.findById(1l);
@@ -49,7 +50,7 @@ public class AdministratorService
         }
         Administrator admin = adminOptional.get();
 
-        if(administratorRepository.findByUsername(userRegistrationDTO.getUsername()).isPresent())
+        if(administratorRepository.findByUsername(adminRegistrationDTO.getUsername()).isPresent())
         {
             log.error("This username is already present!");
             throw new IllegalArgumentException("This username is already present!");
@@ -58,7 +59,7 @@ public class AdministratorService
         Administrator collaborator;
         try 
         {
-            collaborator = modelMapper.map(userRegistrationDTO, Administrator.class);
+            collaborator = modelMapper.map(adminRegistrationDTO, Administrator.class);
         } 
         catch (MappingException e) 
         {
@@ -76,7 +77,7 @@ public class AdministratorService
 
 
     @Transactional
-    public void createAgent(String username, UserRegistrationDTO userRegistrationDTO) throws UsernameNotFoundException, 
+    public void createAgent(String username, AgentRegistrationDTO agentRegistrationDTO) throws UsernameNotFoundException, 
                                                                                           IllegalArgumentException, MappingException
     {
         Optional<Administrator> administratorOptional = administratorRepository.findByUsername(username);
@@ -87,7 +88,7 @@ public class AdministratorService
         }
         Administrator administrator = administratorOptional.get();
 
-        if(agentRepository.findByUsername(userRegistrationDTO.getUsername()).isPresent())
+        if(agentRepository.findByUsername(agentRegistrationDTO.getUsername()).isPresent())
         {
             log.error("This username is already present!");
             throw new IllegalArgumentException("This username is already present!");
@@ -95,7 +96,7 @@ public class AdministratorService
 
         try 
         {
-            ValidationUtil.passwordValidator(userRegistrationDTO.getPassword());
+            ValidationUtil.passwordValidator(agentRegistrationDTO.getPassword());
         } 
         catch (IllegalArgumentException e) 
         {
@@ -106,7 +107,7 @@ public class AdministratorService
         Agent agent;
         try 
         {
-            agent = modelMapper.map(userRegistrationDTO, Agent.class);
+            agent = modelMapper.map(agentRegistrationDTO, Agent.class);
         } 
         catch (MappingException e) 
         {

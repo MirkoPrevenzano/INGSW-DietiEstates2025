@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.dietiEstates.backend.enums.Role;
 import com.dietiEstates.backend.model.entity.Customer;
 import com.dietiEstates.backend.dto.AuthenticationResponseDTO;
-import com.dietiEstates.backend.dto.UserRegistrationDTO;
+import com.dietiEstates.backend.dto.CustomerRegistrationDTO;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.service.CustomerService;
 import com.dietiEstates.backend.util.JwtUtil;
@@ -40,12 +40,12 @@ public class AuthenticationService
     private final CustomerService customerService;
 
 
-    public AuthenticationResponseDTO customerRegistration(UserRegistrationDTO userDTO) throws IllegalArgumentException, MappingException
+    public AuthenticationResponseDTO customerRegistration(CustomerRegistrationDTO customerRegistrationDTO) throws IllegalArgumentException, MappingException
     {
         try 
         {
-            ValidationUtil.emailValidator(userDTO.getUsername());
-            ValidationUtil.passwordValidator(userDTO.getPassword());
+            ValidationUtil.emailValidator(customerRegistrationDTO.getUsername());
+            ValidationUtil.passwordValidator(customerRegistrationDTO.getPassword());
         } 
         catch (IllegalArgumentException e) 
         {
@@ -53,7 +53,7 @@ public class AuthenticationService
             throw e;
         }
 
-        if(customerRepository.findByUsername(userDTO.getUsername()).isPresent())
+        if(customerRepository.findByUsername(customerRegistrationDTO.getUsername()).isPresent())
         {
             log.error("This e-mail is already present!");
             throw new IllegalArgumentException("This e-mail is already present!");
@@ -62,7 +62,7 @@ public class AuthenticationService
         Customer customer;
         try 
         {
-            customer = modelMapper.map(userDTO, Customer.class);
+            customer = modelMapper.map(customerRegistrationDTO, Customer.class);
         } 
         catch (MappingException e) 
         {

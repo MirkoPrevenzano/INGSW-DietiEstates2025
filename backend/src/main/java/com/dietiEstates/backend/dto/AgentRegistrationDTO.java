@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class UserRegistrationDTO 
+public class AgentRegistrationDTO 
 {
     @NonNull
     private String name;
