@@ -53,3 +53,5 @@ public class FindByRadiusUtil
         return new CoordinatesMinMax(minLatitude, maxLatitude, minLongitude, maxLongitude);
 	}
 }
+
+double longitudeVariation = (double) radius / (distancePerLongitudeGradeAtEquator * Math.cos(Math.toRadians(lat0)));

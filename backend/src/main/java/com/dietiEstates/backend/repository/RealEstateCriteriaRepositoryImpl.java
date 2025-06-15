@@ -19,6 +19,7 @@ import com.dietiEstates.backend.model.entity.RealEstate;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Path;
@@ -39,18 +40,17 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
     @Override
     public Page<RealEstatePreviewDTO> findPreviewsByFiltersFirstPage(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax) 
-    {
+    {        
         CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = filtersQuery(filters, coordinatesMinMax);
 
-        List<RealEstatePreviewDTO> pageList = entityManager.createQuery(criteriaQuery)
+        TypedQuery<RealEstatePreviewDTO> typedQuery = entityManager.createQuery(criteriaQuery)
                                                            .setFirstResult((int)page.getOffset())
-                                                           .setMaxResults(page.getPageSize())
-                                                           .getResultList(); 
+                                                           .setMaxResults(page.getPageSize());
 
-        List<RealEstatePreviewDTO> totalList = entityManager.createQuery(criteriaQuery)
-                                                            .getResultList(); 
+        List<RealEstatePreviewDTO> pageList = typedQuery.getResultList(); 
+        long totalElements = countPreviewsByFilters(filters, coordinatesMinMax);
         
-        PageImpl<RealEstatePreviewDTO> pageImpl = new PageImpl<>(pageList, page, totalList.size());
+        PageImpl<RealEstatePreviewDTO> pageImpl = new PageImpl<>(pageList, page, totalElements);
 
         return pageImpl;
     }
@@ -72,23 +72,6 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
     @Override
     public List<RealEstateRecentDTO> findRecentsByAgent(Long agentId, Integer limit) 
     {
-/*         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<RealEstateRecentDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstateRecentDTO.class);
-
-        Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
-                
-        criteriaQuery.select(criteriaBuilder.construct(RealEstateRecentDTO.class, realEstate.get("realEstateId"), 
-                                                                                              realEstate.get("title"), 
-                                                                                              realEstate.get("description"), 
-                                                                                              realEstate.get("uploadingDate")))
-                     .where(criteriaBuilder.equal(realEstate.get("agent").get("userId"), agentId))
-                     .orderBy(criteriaBuilder.desc(realEstate.get("uploadingDate")));
-
-        return entityManager.createQuery(criteriaQuery)
-                            .setMaxResults(limit)
-                            .getResultList(); */
-
-
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<RealEstateRecentDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstateRecentDTO.class);
 
@@ -112,28 +95,6 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
     @Override
     public List<RealEstateStatsDTO> findStatsByAgent(Long agentId, Pageable page) 
     {
-/*         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<RealEstateStatsDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstateStatsDTO.class);
-        
-        Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
-    
-        criteriaQuery.select(criteriaBuilder.construct(RealEstateStatsDTO.class, realEstate.get("realEstateId"), 
-                                                                                             realEstate.get("title"), 
-                                                                                             realEstate.get("uploadingDate"), 
-                                                                                             realEstate.get("realEstateStats").get("viewsNumber"),
-                                                                                             realEstate.get("realEstateStats").get("visitsNumber"),
-                                                                                             realEstate.get("realEstateStats").get("offersNumber")))
-             .where(criteriaBuilder.equal(realEstate.get("agent").get("userId"), agentId))
-             .orderBy(criteriaBuilder.asc(realEstate.get("realEstateId")));
-
-        List<RealEstateStatsDTO> list = entityManager.createQuery(criteriaQuery)
-                                                     .setFirstResult((int)page.getOffset())
-                                                     .setMaxResults(page.getPageSize())
-                                                     .getResultList();
-
-        return list; */
-
-
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<RealEstateStatsDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstateStatsDTO.class);
         
@@ -190,11 +151,9 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstatePreviewDTO.class);
         
-
         Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
         Root<Address> address = criteriaQuery.from(Address.class);
         Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), criteriaQuery);
-
 
         List<Predicate> predicates = getPredicates(filters, coordinatesMinMax, criteriaBuilder, realEstate, address, realEstateType); 
 
