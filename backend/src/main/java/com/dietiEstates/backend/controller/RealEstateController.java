@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dietiEstates.backend.dto.response.RealEstatePreviewDTO;
-import com.dietiEstates.backend.dto.response.RealEstatePreviewsFirstPageDTO;
+import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
+import com.dietiEstates.backend.dto.response.RealEstateSearchDTO;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.RealEstateService;
@@ -36,28 +36,16 @@ public class RealEstateController
     
 
     @GetMapping(path = "search3")
-    public ResponseEntity<RealEstatePreviewsFirstPageDTO> aaa(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit, @RequestParam Map<String,String> filters) 
+    public ResponseEntity<RealEstateSearchDTO> aaa(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit, @RequestParam Map<String,String> filters) 
     {
-        RealEstatePreviewsFirstPageDTO realEstatePreviewsFirstPageDTO = realEstateService.search3(filters, PageRequest.of(page, limit));
+        RealEstateSearchDTO realEstateSearchDTO = realEstateService.search3(filters, PageRequest.of(page, limit));
 
-        for(RealEstatePreviewDTO realEstate : realEstatePreviewsFirstPageDTO.getRealEstatePreviews())
+        for(RealEstatePreviewDTO realEstate : realEstateSearchDTO.getRealEstatePreviews())
             log.info(realEstate.getLatitude().toString() + " : " + realEstate.getLongitude().toString()); 
         
-        log.info(realEstatePreviewsFirstPageDTO.getTotalElements().toString() + " : " + realEstatePreviewsFirstPageDTO.getTotalPages().toString());
+        log.info(realEstateSearchDTO.getTotalElements().toString() + " : " + realEstateSearchDTO.getTotalPages().toString());
         
-        return ResponseEntity.ok(realEstatePreviewsFirstPageDTO);
-    }
-
-
-    @GetMapping(path = "search4")
-    public ResponseEntity<List<RealEstatePreviewDTO>> aaaa(@RequestParam("page") Integer page, @RequestParam("limit") Integer limit, @RequestParam Map<String,String> filters) 
-    {
-        List<RealEstatePreviewDTO> realEstates = realEstateService.search4(filters, PageRequest.of(page, limit));
-
-        for(RealEstatePreviewDTO realEstate : realEstates)
-            log.info(realEstate.getLatitude().toString() + " : " + realEstate.getLongitude().toString()); 
-        
-        return ResponseEntity.ok(realEstates);
+        return ResponseEntity.ok(realEstateSearchDTO);
     }
 
 }

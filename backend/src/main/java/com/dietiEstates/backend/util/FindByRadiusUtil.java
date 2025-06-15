@@ -54,4 +54,4 @@ public class FindByRadiusUtil
 	}
 }
 
-double longitudeVariation = (double) radius / (distancePerLongitudeGradeAtEquator * Math.cos(Math.toRadians(lat0)));
+/* double longitudeVariation = (double) radius / (distancePerLongitudeGradeAtEquator * Math.cos(Math.toRadians(lat0))); */

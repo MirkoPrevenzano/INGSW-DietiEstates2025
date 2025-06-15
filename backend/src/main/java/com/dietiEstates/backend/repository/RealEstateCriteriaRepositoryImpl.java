@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import com.dietiEstates.backend.dto.response.RealEstatePreviewDTO;
+import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
 import com.dietiEstates.backend.dto.response.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
@@ -142,8 +142,9 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         
         Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
         Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
+        Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), criteriaQuery);
 
-        List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin); 
+        List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin, realEstateType); 
 
         criteriaQuery.select(criteriaBuilder.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
                                                                                                realEstate.get("title"),
@@ -160,8 +161,11 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
 
     private List<Predicate> getPredicates(CriteriaBuilder criteriaBuilder, Map<String, String> filters, CoordinatesMinMax coordinatesMinMax, 
-                                          Root<RealEstate> realEstate, Join<RealEstate,Address> addressJoin) 
+                                          Root<RealEstate> realEstate, Join<RealEstate,Address> addressJoin, Root<?> realEstateType) 
     {
+        Path<Long> realEstateId = realEstate.get("realEstateId");
+        Path<Long> realEstateTypeId = realEstateType.get("realEstateId");
+
         Path<String> energyClass = realEstate.get("energyClass");
         Path<Double> price = realEstate.get("price");     
         Path<Integer> roomsNumber = realEstate.get("internalFeatures").get("roomsNumber");
@@ -182,10 +186,9 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
 
         List<Predicate> predicates = new ArrayList<>();
-
-        String realEstateType = filters.get("type"); // Ottieni il filtro di tipo dalla mappa
-        predicates.add(RealEstatePredicateFilterFactory.createTypePredicate(criteriaBuilder, realEstate, realEstateType));
             
+        predicates.add(criteriaBuilder.equal(realEstateId, realEstateTypeId));
+
         predicates.add(criteriaBuilder.ge(latitude, coordinatesMinMax.getMinLatitude()));
         predicates.add(criteriaBuilder.le(latitude, coordinatesMinMax.getMaxLatitude()));
         predicates.add(criteriaBuilder.ge(longitude, coordinatesMinMax.getMinLongitude()));
@@ -282,10 +285,12 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
     {
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
+            
             Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
             Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
+            Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), criteriaQuery);
 
-            List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin);
+            List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin, realEstateType);
 
             criteriaQuery.select(criteriaBuilder.count(realEstate))
                          .where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));
