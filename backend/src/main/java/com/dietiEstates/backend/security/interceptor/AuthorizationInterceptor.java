@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.HandlerMapping;
@@ -37,11 +39,15 @@ public class AuthorizationInterceptor implements HandlerInterceptor
         if(pathvariables != null)
         {
             String pathUsername = (String) pathvariables.get("username");
-            String tokenUsername = (String) request.getAttribute("tokenUsername");
+            //String tokenUsername = (String) request.getAttribute("tokenUsername");
 
-            if(pathUsername != null && tokenUsername != null)
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String authenticatedUsername = authentication.getName(); // Ottieni l'username verificato dal JWT
+
+
+            if(pathUsername != null && authenticatedUsername != null)
             {
-                if(pathUsername.equals(tokenUsername))
+                if(pathUsername.equals(authenticatedUsername))
                 {
                     log.info("Authorization Interceptor is OK!");
                     log.info("Request to handler \"{}\" allowed. URI: {}.", handler, request.getRequestURI());
@@ -55,7 +61,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor
             }
         }
 
-        log.info("Authorization Interceptor is OK!");
+        log.info("Authorization Interceptor is OK! (No specific username path check)");
         log.info("Request to handler \"{}\" allowed. URI: {}.", handler, request.getRequestURI());
         return true;
     }

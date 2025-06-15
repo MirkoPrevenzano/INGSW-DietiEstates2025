@@ -83,7 +83,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);   
                     
                     log.info("JWT Authorization is OK!");
-                    request.setAttribute("tokenUsername", username);
+                    //request.setAttribute("tokenUsername", username);
                     filterChain.doFilter(request, response); 
                 }                    
             } 

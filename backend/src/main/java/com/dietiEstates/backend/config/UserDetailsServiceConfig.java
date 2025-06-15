@@ -36,7 +36,6 @@ public class UserDetailsServiceConfig
     private final AgentRepository agentRepository;
     private final AdministratorRepository administratorRepository;
     private final PasswordEncoder passwordEncoder;
-    //private final ValidationUtil validationUtil;
     
     @Autowired
     private HttpServletRequest httpServletRequest;
@@ -74,24 +73,7 @@ public class UserDetailsServiceConfig
                     case "admin" :
                     {
                         Optional<Administrator> optionalAdministrator = administratorRepository.findByUsername(username);
-                        Administrator administrator = ValidationUtil.optionalUserValidator(optionalAdministrator, username);
-
-/*                         if(passwordEncoder.matches("default", administrator.getPassword()))
-                        {
-                            log.info("{} is a NOT AUTHORIZED administrator", username);
-                            administrator.setRole(Role.ROLE_UNAUTHORIZED);
-                            return administrator;                           
-                        }
-                        else if(administrator.getUserId() == 1)
-                        {
-                            log.info("{} is an ADMIN administrator", username);
-                            administrator.setRole(Role.ROLE_ADMIN);
-                            return administrator;                           
-                        }
-                        
-                        log.info("{} is a COLLABORATOR administrator", username);
-                        administrator.setRole(Role.ROLE_COLLABORATOR);
-                        return administrator;   */    
+                        Administrator administrator = ValidationUtil.optionalUserValidator(optionalAdministrator, username);  
                         
                         if(passwordEncoder.matches("default", administrator.getPassword()))
                         {
