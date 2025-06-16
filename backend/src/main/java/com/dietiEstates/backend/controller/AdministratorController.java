@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
-import com.dietiEstates.backend.dto.request.CustomerRegistrationDTO;
 import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
 import com.dietiEstates.backend.service.AdministratorService;
 
@@ -51,7 +50,7 @@ public class AdministratorController
     }
     
 
-    @PostMapping(path = "/{username}/create-real-estate-agent")
+    @PostMapping(path = "/{username}/create-agent")
     public ResponseEntity<?> createAgent(@PathVariable String username, @RequestBody AgentRegistrationDTO agentRegistrationDTO) 
     {
         try 

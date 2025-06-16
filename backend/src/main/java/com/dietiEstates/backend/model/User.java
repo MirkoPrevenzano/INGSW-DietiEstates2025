@@ -10,12 +10,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.dietiEstates.backend.enums.Role;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 import lombok.NonNull;
@@ -25,14 +29,17 @@ import lombok.RequiredArgsConstructor;
 
 
 
-@MappedSuperclass
+//@MappedSuperclass
+@Entity(name = "User")
+@Table(name = "user")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class User implements UserDetails
+public abstract class User implements UserDetails
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
 
     @NonNull

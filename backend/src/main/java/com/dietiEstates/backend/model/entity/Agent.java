@@ -19,7 +19,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.ForeignKey;
-
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -35,10 +37,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true, 
           exclude = "realEstates")
-@AttributeOverride(name = "userId", 
-                   column = @Column(name = "agent_id"))
-public class Agent extends User 
+/* @AttributeOverride(name = "userId", 
+                   column = @Column(name = "agent_id")) */
+public class Agent extends User
 {
+/*         @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId; */
     @Embedded
     AgentStats agentStats = new AgentStats();
 

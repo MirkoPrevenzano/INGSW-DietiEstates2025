@@ -23,7 +23,6 @@ import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.dto.response.AgentStatsDTO;
 import com.dietiEstates.backend.dto.response.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
-import com.dietiEstates.backend.model.embeddable.AgentStats;
 import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.util.CsvUtil;
 import com.dietiEstates.backend.util.PdfUtil;

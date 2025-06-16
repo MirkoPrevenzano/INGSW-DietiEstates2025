@@ -17,7 +17,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.ForeignKey;
-
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -33,10 +35,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true, 
           exclude = {"collaborators", "agents"})
-@AttributeOverride(name = "userId", 
-                   column = @Column(name = "admin_id"))
+/* @AttributeOverride(name = "userId", 
+                   column = @Column(name = "admin_id")) */
 public class Administrator extends User
 {
+/*         @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId; */
+
     @ManyToOne(fetch = FetchType.EAGER,
                cascade = {})
     @JoinColumn(name = "manager_id", 

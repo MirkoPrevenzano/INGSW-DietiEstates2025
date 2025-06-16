@@ -11,6 +11,9 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -30,10 +33,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true, 
           exclude = "customerViewsRealEstates")
-@AttributeOverride(name = "userId", 
-                   column = @Column(name = "customer_id"))
+/* @AttributeOverride(name = "userId", 
+                   column = @Column(name = "customer_id")) */
 public class Customer extends User
 {
+/*         @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userId; */
+
     @Column(name = "is_auth_with_external_api", nullable = false, columnDefinition = "boolean default false")
     private boolean isAuthWithExternalAPI;//valutare se creare una classe d'appoggio
 

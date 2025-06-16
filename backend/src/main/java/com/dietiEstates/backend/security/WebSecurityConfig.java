@@ -50,7 +50,7 @@ public class WebSecurityConfig
                                                                         .hasAnyAuthority(Role.ROLE_ADMIN.name(),
                                                                                          Role.ROLE_COLLABORATOR.name(),
                                                                                          Role.ROLE_UNAUTHORIZED.name())
-                                                                    .requestMatchers("/admin/{username}/create-real-estate-agent")
+                                                                    .requestMatchers("/admin/{username}/create-agent")
                                                                         .hasAnyAuthority(Role.ROLE_ADMIN.name(),
                                                                                          Role.ROLE_COLLABORATOR.name()))
             .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
