@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,4 +49,10 @@ public class RealEstateController
         return ResponseEntity.ok(realEstateSearchDTO);
     }
 
+
+    @GetMapping(path = "ciao")
+    public ResponseEntity<String> aaaa(Authentication authentication) 
+    {
+        return ResponseEntity.ok(realEstateService.getRealEstateDetails(authentication));
+    }
 }

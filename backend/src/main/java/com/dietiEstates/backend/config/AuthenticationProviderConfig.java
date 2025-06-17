@@ -22,7 +22,7 @@ public class AuthenticationProviderConfig
     
 
     @Bean
-    public AuthenticationProvider authenticationProvider()
+    public DaoAuthenticationProvider authenticationProvider()
     {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
 

@@ -7,6 +7,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,20 +23,25 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
+@RequiredArgsConstructor
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 {
+    private final DaoAuthenticationProvider daoAuthenticationProvider;
+
+
+
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException
     {
         log.info("Attempting JWT Authentication...");
 
-        String username = request.getParameter(getUsernameParameter());
-        String password = request.getParameter(getPasswordParameter());
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
@@ -43,7 +49,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         Authentication authentication = null;
         try
         {
-            authentication = this.getAuthenticationManager().authenticate(usernamePasswordAuthenticationToken);
+            authentication = daoAuthenticationProvider.authenticate(usernamePasswordAuthenticationToken);
 
         }
         catch (DisabledException | LockedException e)

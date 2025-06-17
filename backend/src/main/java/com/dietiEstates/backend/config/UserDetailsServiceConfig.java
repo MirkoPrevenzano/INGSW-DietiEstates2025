@@ -50,28 +50,8 @@ public class UserDetailsServiceConfig
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
             {
-                switch(httpServletRequest.getParameter("role"))
-                {
-                    case "customer" :
-                    {
-                        Optional<Customer> optionalCustomer = customerRepository.findByUsername(username);
-                        Customer customer = ValidationUtil.optionalUserValidator(optionalCustomer, username);
-                        customer.setRole(Role.ROLE_CUSTOMER);
-                        return customer;
-                    }
 
 
-                    case "agent" :
-                    {
-                        Optional<Agent> optionalAgent = agentRepository.findByUsername(username);
-                        Agent agent = ValidationUtil.optionalUserValidator(optionalAgent, username);
-                        agent.setRole(Role.ROLE_AGENT);
-                        return agent;                       
-                    }
-
-
-                    case "admin" :
-                    {
                         Optional<Administrator> optionalAdministrator = administratorRepository.findByUsername(username);
                         Administrator administrator = ValidationUtil.optionalUserValidator(optionalAdministrator, username);  
                         
@@ -90,16 +70,7 @@ public class UserDetailsServiceConfig
                             log.info("{} is a COLLABORATOR administrator", username);
                             administrator.setRole(Role.ROLE_COLLABORATOR);
                         }
-                        return administrator;  
-                    }
-
-                    
-                    default : 
-                    {
-                        log.error("Wrong role inserted!");
-                        throw new IllegalArgumentException("Wrong role inserted!");
-                    }
-                }          
+                        return administrator;          
             }
         };
     }
