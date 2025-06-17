@@ -16,6 +16,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 
 import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
+import com.dietiEstates.backend.model.entity.Administrator;
+import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.util.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -79,11 +81,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         log.info("JWT Authentication is OK!");
 
         UserDetails user = (UserDetails) authenticationResult.getPrincipal();
+
         String accessToken = JwtUtil.generateAccessToken(user);
         response.setHeader("jwtToken", accessToken);
         
         AuthenticationResponseDTO authenticationResponseDTO = new AuthenticationResponseDTO(accessToken);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        new ObjectMapper().writeValue(response.getOutputStream(), authenticationResponseDTO);
+        new ObjectMapper().writeValue(response.getOutputStream(), authenticationResponseDTO); 
     }    
 }

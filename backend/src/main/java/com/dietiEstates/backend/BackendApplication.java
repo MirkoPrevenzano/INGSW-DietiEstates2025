@@ -84,44 +84,15 @@ public class BackendApplication
         {  
             Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@");
             administrator.setPassword(passwordEncoder.encode(administrator.getPassword()));
-            System.out.println("\n\nSAVING ADMIN IN ADMIN REPO:");
             administrator = administratorRepository.save(administrator);
 
 
             Agent agent = (new Agent("a","b","c",passwordEncoder.encode("ssssssssssssssssssss22A@")));
-            Agent agent2 = (new Agent("a","b","cd",passwordEncoder.encode("ssssssssssssssssssss22A@")));
-            Agent agent3 = (new Agent("a","b","cs",passwordEncoder.encode("ssssssssssssssssssss22A@")));
-            Agent agent4 = (new Agent("a","b","caz",passwordEncoder.encode("ssssssssssssssssssss22A@")));
-            Agent agent5 = (new Agent("a","b","csaa",passwordEncoder.encode("ssssssssssssssssssss22A@")));
-            Agent agent6 = (new Agent("a","b","caa",passwordEncoder.encode("ssssssssssssssssssss22A@")));
-            Agent agent7 = (new Agent("a","b","css",passwordEncoder.encode("ssssssssssssssssssss22A@")));
-
-/*             agent.setAdministrator(administrator);
-            administrator.addAgent(agent2);
-            administrator.addAgent(agent3);
-            administrator.addAgent(agent4);
-            administrator.addAgent(agent5);
-            administrator.addAgent(agent6);
-            administrator.addAgent(agent7); */
-
-            //administrator.setName("gino");
-
-            System.out.println("\n\nSAVING ADMIN IN ADMIN REPO (WITHOUT UPDATE):");
-/*             agentRepository.save(agent);
-            agentRepository.save(agent2);
-            agentRepository.save(agent3);
-            agentRepository.save(agent4);
-            agentRepository.save(agent5);
-            agentRepository.save(agent6);
-            agentRepository.save(agent7); */
+            administrator.addAgent(agent);
             administrator = administratorRepository.save(administrator);
             
             System.out.println("\n\nFINDING BY USERNAME IN USER REPO:");
-            User user = userRepository.findByUsername("ydk").get();
-
-            System.out.println("\n\nS\n\nAVE USER IN USER REPO:");
-            user.setName("CIRO");
-            userRepository.save(user);
+            userRepository.findByUsername("ydk").get();
 
 
            /*administrator.getAgents().get(0).getAgentStats().setTotalUploadedRealEstates(200);

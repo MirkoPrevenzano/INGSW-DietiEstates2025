@@ -8,11 +8,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.dietiEstates.backend.enums.Role;
+import com.dietiEstates.backend.model.User;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Customer;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
+import com.dietiEstates.backend.repository.UserRepository;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.util.ValidationUtil;
 
@@ -32,13 +34,8 @@ import java.util.Optional;
 @Slf4j
 public class UserDetailsServiceConfig
 {
-    private final CustomerRepository customerRepository;
-    private final AgentRepository agentRepository;
-    private final AdministratorRepository administratorRepository;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    
-    @Autowired
-    private HttpServletRequest httpServletRequest;
 
 
 
@@ -52,25 +49,38 @@ public class UserDetailsServiceConfig
             {
 
 
-                        Optional<Administrator> optionalAdministrator = administratorRepository.findByUsername(username);
-                        Administrator administrator = ValidationUtil.optionalUserValidator(optionalAdministrator, username);  
+                        Optional<User> optionalUser = userRepository.findByUsername(username);
+                        User user = ValidationUtil.optionalUserValidator(optionalUser, username);   
                         
-                        if(passwordEncoder.matches("default", administrator.getPassword()))
+                        if(user instanceof Administrator)
                         {
-                            log.info("{} is a NOT AUTHORIZED administrator", username);
-                            administrator.setRole(Role.ROLE_UNAUTHORIZED);
+                            if(passwordEncoder.matches("default", user.getPassword()))
+                            {
+                                log.info("{} is a NOT AUTHORIZED administrator", username);
+                                user.setRole(Role.ROLE_UNAUTHORIZED);
+                            }
+                            else if(user.getUserId() == 1)
+                            {
+                                log.info("{} is an ADMIN administrator", username);
+                                user.setRole(Role.ROLE_ADMIN);
+                            }
+                            else
+                            {
+                                log.info("{} is a COLLABORATOR administrator", username);
+                                user.setRole(Role.ROLE_COLLABORATOR);
+                            }
                         }
-                        else if(administrator.getUserId() == 1)
+                        else if(user instanceof Agent)
                         {
-                            log.info("{} is an ADMIN administrator", username);
-                            administrator.setRole(Role.ROLE_ADMIN);
+                            user.setRole(Role.ROLE_AGENT);
                         }
                         else
                         {
-                            log.info("{} is a COLLABORATOR administrator", username);
-                            administrator.setRole(Role.ROLE_COLLABORATOR);
-                        }
-                        return administrator;          
+                            user.setRole(Role.ROLE_CUSTOMER);
+                        }      
+                        
+                        return user;  
+
             }
         };
     }
