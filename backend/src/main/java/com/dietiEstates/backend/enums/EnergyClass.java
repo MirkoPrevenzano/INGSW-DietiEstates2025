@@ -7,13 +7,16 @@ import com.dietiEstates.backend.extra.ValidableEnum;
 
 public enum EnergyClass implements ValidableEnum
 {
+    A_PLUS_PLUS("A++"),
+    A_PLUS("A+"),
     A("A"),
     B("B"),
     C("C"),
     D("D"),
     E("E"),
     F("F"),
-    G("G");
+    G("G"),
+    NON_SPECIFICATA("Non specificata");
 
 
 

@@ -49,7 +49,7 @@ public class Agent extends User
 
 
 
-    @ManyToOne(fetch = FetchType.EAGER,
+    @ManyToOne(fetch = FetchType.LAZY,
                cascade = {})
     @JoinColumn(name = "admin_id", 
                 nullable = false, 

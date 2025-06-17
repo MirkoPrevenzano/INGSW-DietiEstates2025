@@ -43,7 +43,7 @@ public class Administrator extends User
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId; */
 
-    @ManyToOne(fetch = FetchType.EAGER,
+    @ManyToOne(fetch = FetchType.LAZY,
                cascade = {})
     @JoinColumn(name = "manager_id", 
                 nullable = true,
