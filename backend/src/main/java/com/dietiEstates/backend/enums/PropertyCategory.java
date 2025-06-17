@@ -1,9 +1,11 @@
 
 package com.dietiEstates.backend.enums;
 
+import com.dietiEstates.backend.extra.ValidableEnum;
 
 
-public class PropertyCategory 
+
+public enum PropertyCategory implements ValidableEnum
 {
     UNDER_CONSTRUCTION("Under construction"), 
     NEW("New"), 
