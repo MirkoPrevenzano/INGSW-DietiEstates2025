@@ -34,6 +34,7 @@ public class UserService implements UserDetailsService
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
     {
+        log.info("\n\nSONO IN USERDETAILSSERVICEEEE\n\n");
 
                         Optional<User> optionalUser = userRepository.findByUsername(username);
                         User user = ValidationUtil.optionalUserValidator(optionalUser, username);   
