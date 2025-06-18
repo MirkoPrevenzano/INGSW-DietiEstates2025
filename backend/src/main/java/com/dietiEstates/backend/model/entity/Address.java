@@ -76,7 +76,7 @@ public class Address
 
      
      @MapsId
-     @OneToOne(fetch = FetchType.EAGER, 
+     @OneToOne(fetch = FetchType.LAZY, 
                cascade = {},
                orphanRemoval = false)
      @JoinColumn(name = "real_estate_id",

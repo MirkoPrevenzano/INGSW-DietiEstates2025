@@ -15,6 +15,7 @@ import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.UserRepository;
+import com.dietiEstates.backend.service.UserService;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.util.ValidationUtil;
 
@@ -34,54 +35,13 @@ import java.util.Optional;
 @Slf4j
 public class UserDetailsServiceConfig
 {
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final UserService userService;
 
 
 
     @Bean
     public UserDetailsService userDetailsService()
     {
-       return new UserDetailsService() 
-       {
-            @Override
-            public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
-            {
-
-
-                        Optional<User> optionalUser = userRepository.findByUsername(username);
-                        User user = ValidationUtil.optionalUserValidator(optionalUser, username);   
-                        
-                        if(user instanceof Administrator)
-                        {
-                            if(passwordEncoder.matches("default", user.getPassword()))
-                            {
-                                log.info("{} is a NOT AUTHORIZED administrator", username);
-                                user.setRole(Role.ROLE_UNAUTHORIZED);
-                            }
-                            else if(user.getUserId() == 1)
-                            {
-                                log.info("{} is an ADMIN administrator", username);
-                                user.setRole(Role.ROLE_ADMIN);
-                            }
-                            else
-                            {
-                                log.info("{} is a COLLABORATOR administrator", username);
-                                user.setRole(Role.ROLE_COLLABORATOR);
-                            }
-                        }
-                        else if(user instanceof Agent)
-                        {
-                            user.setRole(Role.ROLE_AGENT);
-                        }
-                        else
-                        {
-                            user.setRole(Role.ROLE_CUSTOMER);
-                        }      
-                        
-                        return user;  
-
-            }
-        };
+       return userService;
     }
 }

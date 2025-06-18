@@ -17,6 +17,7 @@ import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
 import com.dietiEstates.backend.model.entity.Address;
+import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.model.entity.Customer;
 import com.dietiEstates.backend.model.entity.CustomerViewsRealEstate;
 import com.dietiEstates.backend.model.entity.RealEstate;
@@ -53,8 +54,22 @@ public class CustomerService
 
     public RealEstateCreationDTO viewRealEstate(String username, Long realEstateId) 
     {
+        log.info("\n\nENTRO NEL METODO VIEW REAL ESTATE:\n");
+
+        log.info("\n\nFIND BY USERNAME (CustomerRepo):\n");
         Customer customer = customerRepository.findByUsername(username).get();
+
+        log.info("\n\nFIND BY ID (RealEstateRepo):\n");
         RealEstate realEstate = realEstateRepository.findById(realEstateId).get();
+
+        log.info("\n\nGET AGENT FROM REAL ESTATE:\n");
+        Agent agent = realEstate.getAgent();
+
+/*         if(agent == null)
+            log.error("\n\nAGENT NULL\n\n");
+        else 
+            log.info("{}",agent); */
+
            
         RealEstateCreationDTO realEstateCreationDTO = realEstateCreationDTOMapper(realEstate);
                 
@@ -69,6 +84,7 @@ public class CustomerService
                                                                         customer,
                                                                         realEstate);
         
+                log.info("\n\nGET CUSTOMERVIEWSREALESTATE:\n");
                 List<CustomerViewsRealEstate> customerViewsRealEstateList = customer.getCustomerViewsRealEstates();
         
                 if(customerViewsRealEstateList.size() > 0)
@@ -77,6 +93,7 @@ public class CustomerService
                     {
                         if(customerViewsRealEstate.getCustomerViewsRealEstateId().equals(customerViewsRealEstate2.getCustomerViewsRealEstateId()))
                         {
+                            log.info("\n\nMERGE (CustomerRepo):\n");
                             customerViewsRealEstate2.setViewDate(LocalDateTime.now());
                             customerRepository.save(customer);
                             return realEstateCreationDTO;
@@ -85,6 +102,7 @@ public class CustomerService
                 }
                 
                 customer.addCustomerViewsRealEstate(customerViewsRealEstate);
+                log.info("\n\nSAVE (CustomerRepo):\n");
                 customerRepository.save(customer);
         
                 return realEstateCreationDTO;

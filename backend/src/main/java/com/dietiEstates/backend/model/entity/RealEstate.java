@@ -89,12 +89,12 @@ public class RealEstate
 
 
     @OneToOne(mappedBy = "realEstate",
-              fetch = FetchType.EAGER, 
+              fetch = FetchType.LAZY, 
               cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
               orphanRemoval = true)
     private Address address;
 
-    @ManyToOne(fetch = FetchType.EAGER,
+    @ManyToOne(fetch = FetchType.LAZY,
                cascade = {})
     @JoinColumn(name = "agent_id", 
                 nullable = false, 

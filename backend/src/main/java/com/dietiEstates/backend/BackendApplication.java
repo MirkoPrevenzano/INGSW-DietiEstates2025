@@ -91,10 +91,21 @@ public class BackendApplication
             administrator.addAgent(agent);
             administrator = administratorRepository.save(administrator);
             
-            System.out.println("\n\nFINDING BY USERNAME IN USER REPO:");
-            userRepository.findByUsername("ydk").get();
+            System.out.println("\n\nFINDING BY USERNAME BY USER REPO:");
+            User user = userRepository.findByUsername("ydk").get();
 
 
+            System.out.println("\n\nSAVING USER BY USER REPO WITHOUT UPDATE:");
+            administratorRepository.save((Administrator)user);
+
+
+            System.out.println("\n\nFINDING BY USERNAME BY ADMIN REPO:");
+            Administrator admin = administratorRepository.findByUsername("ydk").get();
+
+
+            System.out.println("\n\nSAVING USER BY ADMIN REPO WITHOUT UPDATE:");
+            administratorRepository.save(admin);
+            
            /*administrator.getAgents().get(0).getAgentStats().setTotalUploadedRealEstates(200);
             administrator.getAgents().get(0).getAgentStats().setTotalRentedRealEstates(20);;
             administrator.getAgents().get(0).getAgentStats().setTotalSoldRealEstates(45);
