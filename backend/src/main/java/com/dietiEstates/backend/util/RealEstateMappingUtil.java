@@ -34,8 +34,6 @@ import lombok.experimental.UtilityClass;
 public class RealEstateMappingUtil
 {
     private final ModelMapper modelMapper;
-   // private final ValidationUtil validationUtil;
-
 
     
     public RealEstateForRent fromDto(RealEstateForRentCreationDTO realEstateForRentCreationDTO)

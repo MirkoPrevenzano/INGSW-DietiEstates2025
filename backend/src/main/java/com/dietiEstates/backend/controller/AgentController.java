@@ -51,7 +51,7 @@ public class AgentController
         try 
         {
             return ResponseEntity.status(HttpStatus.CREATED.value())
-                                 .body(agentService.createRealEstateForSale(username, realEstateForSaleCreationDTO));
+                                 .body(agentService.createRealEstate(username, realEstateForSaleCreationDTO));
                                  
         } 
         catch (UsernameNotFoundException e)
@@ -67,7 +67,7 @@ public class AgentController
         try 
         {
             return ResponseEntity.status(HttpStatus.CREATED.value())
-                                 .body(agentService.createRealEstateForRent(username, realEstateForRentCreationDTO));
+                                 .body(agentService.createRealEstate(username, realEstateForRentCreationDTO));
 
         } 
         catch (UsernameNotFoundException e)

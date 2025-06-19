@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dietiEstates.backend.config.ModelMapperConfig;
+import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.dto.response.AgentStatsDTO;
@@ -63,15 +64,15 @@ public class AgentService
 
 
     @Transactional
-    public Long createRealEstateForSale(String username, RealEstateForSaleCreationDTO realEstateForSaleCreationDTO)  throws UsernameNotFoundException
+    public Long createRealEstate(String username, RealEstateCreationDTO realEstateCreationDTO)  throws UsernameNotFoundException
     {
         Optional<Agent> optionalRealEstateAgent = agentRepository.findByUsername(username);
         Agent agent = ValidationUtil.optionalUserValidator(optionalRealEstateAgent, username);
         
-        RealEstate realEstate = realEstateFactory.createFromDTO(realEstateForSaleCreationDTO);
+        RealEstate realEstate = realEstateFactory.createFromDTO(realEstateCreationDTO);
 
 
-        Address address = modelMapper.map(realEstateForSaleCreationDTO.getAddressDTO(), Address.class);
+        Address address = modelMapper.map(realEstateCreationDTO.getAddressDTO(), Address.class);
         realEstate.addAddress(address);
 
         mockingStatsUtil.mockEstateStats(realEstate);
@@ -89,7 +90,7 @@ public class AgentService
         return realEstateRepository.findLastUploadedByAgent(agent.getUserId());
     }
 
-
+/* 
     @Transactional
     public Long createRealEstateForRent(String username, RealEstateForRentCreationDTO realEstateForRentCreationDTO) throws UsernameNotFoundException
     {
@@ -113,7 +114,7 @@ public class AgentService
         log.info("Real Estate For Sale was created successfully!");
 
         return realEstateRepository.findLastUploadedByAgent(agent.getUserId());
-    }
+    } */
 
 
     public void uploadPhoto(String username, MultipartFile[] files, Long realEstateId) throws IllegalArgumentException, RuntimeException
