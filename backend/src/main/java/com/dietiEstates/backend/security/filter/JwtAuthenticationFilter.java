@@ -44,6 +44,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String role = request.getParameter("role");
+
+        log.info("\n\nrole: {}", role);
+        username += "/" + role;
+        log.info("\n\nusername + role: {}", username);
 
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

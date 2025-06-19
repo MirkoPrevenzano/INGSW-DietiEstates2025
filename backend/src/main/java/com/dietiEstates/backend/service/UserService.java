@@ -13,6 +13,10 @@ import com.dietiEstates.backend.enums.Role;
 import com.dietiEstates.backend.model.User;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agent;
+import com.dietiEstates.backend.model.entity.Customer;
+import com.dietiEstates.backend.repository.AdministratorRepository;
+import com.dietiEstates.backend.repository.AgentRepository;
+import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.UserRepository;
 import com.dietiEstates.backend.util.ValidationUtil;
 
@@ -25,7 +29,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserService implements UserDetailsService
 {
-    private final UserRepository userRepository;
+    private final AdministratorRepository administratorRepository;
+    private final AgentRepository agentRepository;
+    private final CustomerRepository customerRepository;
     private final PasswordEncoder passwordEncoder;
 
 
@@ -36,37 +42,54 @@ public class UserService implements UserDetailsService
     {
         log.info("\n\nSONO IN USERDETAILSSERVICEEEE\n\n");
 
-                        Optional<User> optionalUser = userRepository.findByUsername(username);
-                        User user = ValidationUtil.optionalUserValidator(optionalUser, username);   
-                        
-                        if(user instanceof Administrator)
-                        {
-                            if(passwordEncoder.matches("default", user.getPassword()))
-                            {
-                                log.info("{} is a NOT AUTHORIZED administrator", username);
-                                user.setRole(Role.ROLE_UNAUTHORIZED);
-                            }
-                            else if(user.getUserId() == 1)
-                            {
-                                log.info("{} is an ADMIN administrator", username);
-                                user.setRole(Role.ROLE_ADMIN);
-                            }
-                            else
-                            {
-                                log.info("{} is a COLLABORATOR administrator", username);
-                                user.setRole(Role.ROLE_COLLABORATOR);
-                            }
-                        }
-                        else if(user instanceof Agent)
-                        {
-                            user.setRole(Role.ROLE_AGENT);
-                        }
-                        else
-                        {
-                            user.setRole(Role.ROLE_CUSTOMER);
-                        }      
-                        
-                        return user;
+        int index = username.indexOf("/");
+        String role = username.substring(index + 1);
+        username = username.substring(0, index);
+
+        switch(role) 
+        {
+            case "admin":
+                Optional<Administrator> optionalAdminiistrator = administratorRepository.findByUsername(username);
+                Administrator administrator = ValidationUtil.optionalUserValidator(optionalAdminiistrator, username);   
+                
+                if(passwordEncoder.matches("default", administrator.getPassword()))
+                {
+                    log.info("{} is a NOT AUTHORIZED administrator", username);
+                    administrator.setRole(Role.ROLE_UNAUTHORIZED);
+                }
+                else if(administrator.getUserId() == 1)
+                {
+                    log.info("{} is an ADMIN administrator", username);
+                    administrator.setRole(Role.ROLE_ADMIN);
+                }
+                else
+                {
+                    log.info("{} is a COLLABORATOR administrator", username);
+                    administrator.setRole(Role.ROLE_COLLABORATOR);
+                }
+
+                return administrator;
+
+
+            
+            case "agent":
+                Optional<Agent> optionalAgent = agentRepository.findByUsername(username);
+                Agent agent = ValidationUtil.optionalUserValidator(optionalAgent, username);   
+                agent.setRole(Role.ROLE_AGENT);
+                return agent;
+
+
+            
+            case "customer":            
+                Optional<Customer> optionalCustomer = customerRepository.findByUsername(username);
+                Customer customer = ValidationUtil.optionalUserValidator(optionalCustomer, username);   
+                customer.setRole(Role.ROLE_CUSTOMER); 
+                return customer;
+        
+
+            default:
+                throw new IllegalArgumentException();
+        }    
     }
 
 }
