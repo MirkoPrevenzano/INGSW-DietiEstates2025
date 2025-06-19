@@ -75,6 +75,7 @@ public class UserService implements UserDetailsService
             case "agent":
                 Optional<Agent> optionalAgent = agentRepository.findByUsername(username);
                 Agent agent = ValidationUtil.optionalUserValidator(optionalAgent, username);   
+                log.info("{} is an AGENT", username);
                 agent.setRole(Role.ROLE_AGENT);
                 return agent;
 
@@ -83,12 +84,13 @@ public class UserService implements UserDetailsService
             case "customer":            
                 Optional<Customer> optionalCustomer = customerRepository.findByUsername(username);
                 Customer customer = ValidationUtil.optionalUserValidator(optionalCustomer, username);   
+                log.info("{} is a CUSTOMER", username);
                 customer.setRole(Role.ROLE_CUSTOMER); 
                 return customer;
         
 
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Wrong role inserted!");
         }    
     }
 
