@@ -1,29 +1,31 @@
 
 package com.dietiEstates.backend.factory;
  
+import org.springframework.stereotype.Component;
+
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.util.RealEstateMappingUtil;
 
+import lombok.RequiredArgsConstructor;
 
 
-//@Component
-//@RequiredArgsConstructor
+
+@Component
+@RequiredArgsConstructor
 public final class RealEstateFactory 
 {
-    //private final RealEstateMappingUtil realEstateMappingUtil;
+    private final RealEstateMappingUtil realEstateMappingUtil;
     
-    private RealEstateFactory() {};
-
     
-    public static RealEstate createFromDTO(RealEstateCreationDTO realEstateCreationDTO) 
+    public RealEstate createFromDTO(RealEstateCreationDTO realEstateCreationDTO) 
     {
         if(realEstateCreationDTO instanceof RealEstateForRentCreationDTO)
-            return RealEstateMappingUtil.realEstateForRentMapper((RealEstateForRentCreationDTO) realEstateCreationDTO);
+            return realEstateMappingUtil.fromDto((RealEstateForRentCreationDTO) realEstateCreationDTO);
         else if(realEstateCreationDTO instanceof RealEstateForSaleCreationDTO)
-            return RealEstateMappingUtil.realEstateForSaleMapper((RealEstateForSaleCreationDTO) realEstateCreationDTO);
+            return realEstateMappingUtil.fromDto((RealEstateForSaleCreationDTO) realEstateCreationDTO);
         else
             return null; // TODO: lanciare eccezione.
     };

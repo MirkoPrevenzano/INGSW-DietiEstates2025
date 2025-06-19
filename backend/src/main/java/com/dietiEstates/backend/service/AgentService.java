@@ -58,7 +58,7 @@ public class AgentService
     private final MockingStatsUtil mockingStatsUtil;
     private final ModelMapper modelMapper;
     //private final ValidationUtil validationUtil;
-    //private final RealEstateFactory realEstateFactory;
+    private final RealEstateFactory realEstateFactory;
 
 
 
@@ -68,7 +68,7 @@ public class AgentService
         Optional<Agent> optionalRealEstateAgent = agentRepository.findByUsername(username);
         Agent agent = ValidationUtil.optionalUserValidator(optionalRealEstateAgent, username);
         
-        RealEstate realEstate = RealEstateFactory.createFromDTO(realEstateForSaleCreationDTO);
+        RealEstate realEstate = realEstateFactory.createFromDTO(realEstateForSaleCreationDTO);
 
 
         Address address = modelMapper.map(realEstateForSaleCreationDTO.getAddressDTO(), Address.class);
@@ -96,7 +96,7 @@ public class AgentService
         Optional<Agent> optionalRealEstateAgent = agentRepository.findByUsername(username);
         Agent agent = ValidationUtil.optionalUserValidator(optionalRealEstateAgent, username);
 
-        RealEstate realEstate = RealEstateFactory.createFromDTO(realEstateForRentCreationDTO);
+        RealEstate realEstate = realEstateFactory.createFromDTO(realEstateForRentCreationDTO);
 
 
         Address address = modelMapper.map(realEstateForRentCreationDTO.getAddressDTO(), Address.class);

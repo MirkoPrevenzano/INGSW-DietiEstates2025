@@ -3,8 +3,14 @@ package com.dietiEstates.backend.util;
 
 import java.time.LocalDateTime;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import com.dietiEstates.backend.dto.AddressDTO;
+import com.dietiEstates.backend.dto.RealEstateBooleanFeaturesDTO;
+import com.dietiEstates.backend.dto.RealEstateLocationFeaturesDTO;
+import com.dietiEstates.backend.dto.RealEstateMainFeaturesDTO;
+import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.enums.EnergyClass;
@@ -13,6 +19,8 @@ import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.NotaryDeedState;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
+import com.dietiEstates.backend.model.entity.Address;
+import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.model.entity.RealEstateForRent;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;
 
@@ -20,84 +28,135 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
 
 
-//@Component
-//@RequiredArgsConstructor
-@UtilityClass
+@Component
+@RequiredArgsConstructor
+//@UtilityClass
 public class RealEstateMappingUtil
 {
+    private final ModelMapper modelMapper;
    // private final ValidationUtil validationUtil;
 
 
     
-    public RealEstateForRent realEstateForRentMapper(RealEstateForRentCreationDTO realEstateForRentCreationDTO)
+    public RealEstateForRent fromDto(RealEstateForRentCreationDTO realEstateForRentCreationDTO)
     {
-        String title = realEstateForRentCreationDTO.getRealEstateMainFeaturesDTO().getTitle();
-        String description = realEstateForRentCreationDTO.getRealEstateMainFeaturesDTO().getDescription();
-        Double price = realEstateForRentCreationDTO.getRealEstateMainFeaturesDTO().getPrice();
-        Double condoFee = realEstateForRentCreationDTO.getRealEstateMainFeaturesDTO().getCondoFee();
-        EnergyClass energyClass = ValidationUtil.enumValidator(EnergyClass.class, realEstateForRentCreationDTO.getRealEstateMainFeaturesDTO().getEnergyClass()); 
-        Double securityDeposit = realEstateForRentCreationDTO.getSecurityDeposit();
-        Integer contractYears = realEstateForRentCreationDTO.getContractYears();
+        RealEstate realEstate = fromDtoHelper(realEstateForRentCreationDTO);
+        
+        RealEstateForRent realEstateForRent = new RealEstateForRent(realEstate.getTitle(), realEstate.getDescription(), realEstate.getUploadingDate(), realEstate.getPrice(), realEstate.getCondoFee(), 
+                                                                    realEstate.getEnergyClass(), realEstate.getInternalFeatures(), realEstate.getExternalFeatures(), 
+                                                                    realEstateForRentCreationDTO.getSecurityDeposit(), realEstateForRentCreationDTO.getContractYears());
+        
+        Address address = modelMapper.map(realEstateForRentCreationDTO.getAddressDTO(), Address.class);
+        realEstateForRent.addAddress(address);
 
-        InternalRealEstateFeatures internalRealEstateFeatures = 
-                                        new InternalRealEstateFeatures(realEstateForRentCreationDTO.getRealEstateMainFeaturesDTO().getSize(), 
-                                                                       realEstateForRentCreationDTO.getRealEstateMainFeaturesDTO().getRoomsNumber(), 
-                                                                       ValidationUtil.enumValidator(PropertyCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeaturesDTO().getPropertyCondition()), 
-                                                                       ValidationUtil.enumValidator(FurnitureCondition.class, realEstateForRentCreationDTO.getRealEstateMainFeaturesDTO().getFurnitureCondition()),
-                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeaturesDTO().getAirConditioning(),
-                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeaturesDTO().getHeating());
-        ExternalRealEstateFeatures externalRealEstateFeatures = 
-                                        new ExternalRealEstateFeatures(realEstateForRentCreationDTO.getRealEstateMainFeaturesDTO().getParkingSpacesNumber(), 
-                                                                       realEstateForRentCreationDTO.getRealEstateMainFeaturesDTO().getFloorNumber(),
-                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeaturesDTO().getElevator(),
-                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeaturesDTO().getConcierge(),
-                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeaturesDTO().getTerrace(),
-                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeaturesDTO().getGarage(),
-                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeaturesDTO().getBalcony(),
-                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeaturesDTO().getGarden(),
-                                                                       realEstateForRentCreationDTO.getRealEstateBooleanFeaturesDTO().getSwimmingPool(),
-                                                                       realEstateForRentCreationDTO.getRealEstateLocationFeaturesDTO().getNearPark(),
-                                                                       realEstateForRentCreationDTO.getRealEstateLocationFeaturesDTO().getNearSchool(),
-                                                                       realEstateForRentCreationDTO.getRealEstateLocationFeaturesDTO().getNearPublicTransport());
-    
-        return new RealEstateForRent(title, description, LocalDateTime.now(), price, condoFee, energyClass, 
-                                     internalRealEstateFeatures, externalRealEstateFeatures, securityDeposit, contractYears);
+        return realEstateForRent;
     }
 
 
-    public RealEstateForSale realEstateForSaleMapper(RealEstateForSaleCreationDTO realEstateForSaleCreationDTO)
+    public RealEstateForSale fromDto(RealEstateForSaleCreationDTO realEstateForSaleCreationDTO)
     {
-        String title = realEstateForSaleCreationDTO.getRealEstateMainFeaturesDTO().getTitle();
-        String description = realEstateForSaleCreationDTO.getRealEstateMainFeaturesDTO().getDescription();
-        Double price = realEstateForSaleCreationDTO.getRealEstateMainFeaturesDTO().getPrice();
-        Double condoFee = realEstateForSaleCreationDTO.getRealEstateMainFeaturesDTO().getCondoFee();
-        EnergyClass energyClass = ValidationUtil.enumValidator(EnergyClass.class, realEstateForSaleCreationDTO.getRealEstateMainFeaturesDTO().getEnergyClass()); 
-        NotaryDeedState notaryDeedState = ValidationUtil.enumValidator(NotaryDeedState.class, realEstateForSaleCreationDTO.getNotaryDeedState());
+        RealEstate realEstate = fromDtoHelper(realEstateForSaleCreationDTO);
+        
+        RealEstateForSale realEstateForSale = new RealEstateForSale(realEstate.getTitle(), realEstate.getDescription(), realEstate.getUploadingDate(), realEstate.getPrice(), realEstate.getCondoFee(), 
+                                                                    realEstate.getEnergyClass(), realEstate.getInternalFeatures(), realEstate.getExternalFeatures(), 
+                                                                    ValidationUtil.enumValidator(NotaryDeedState.class, realEstateForSaleCreationDTO.getNotaryDeedState()));
+        
+        Address address = modelMapper.map(realEstateForSaleCreationDTO.getAddressDTO(), Address.class);
+        realEstateForSale.addAddress(address);
 
-        InternalRealEstateFeatures internalRealEstateFeatures = 
-                                        new InternalRealEstateFeatures(realEstateForSaleCreationDTO.getRealEstateMainFeaturesDTO().getSize(), 
-                                                                       realEstateForSaleCreationDTO.getRealEstateMainFeaturesDTO().getRoomsNumber(), 
-                                                                       ValidationUtil.enumValidator(PropertyCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeaturesDTO().getPropertyCondition()), 
-                                                                       ValidationUtil.enumValidator(FurnitureCondition.class, realEstateForSaleCreationDTO.getRealEstateMainFeaturesDTO().getFurnitureCondition()),
-                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeaturesDTO().getAirConditioning(),
-                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeaturesDTO().getHeating());
-        ExternalRealEstateFeatures externalRealEstateFeatures = 
-                                        new ExternalRealEstateFeatures(realEstateForSaleCreationDTO.getRealEstateMainFeaturesDTO().getParkingSpacesNumber(), 
-                                                                       realEstateForSaleCreationDTO.getRealEstateMainFeaturesDTO().getFloorNumber(),
-                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeaturesDTO().getElevator(),
-                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeaturesDTO().getConcierge(),
-                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeaturesDTO().getTerrace(),
-                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeaturesDTO().getGarage(),
-                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeaturesDTO().getBalcony(),
-                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeaturesDTO().getGarden(),
-                                                                       realEstateForSaleCreationDTO.getRealEstateBooleanFeaturesDTO().getSwimmingPool(),
-                                                                       realEstateForSaleCreationDTO.getRealEstateLocationFeaturesDTO().getNearPark(),
-                                                                       realEstateForSaleCreationDTO.getRealEstateLocationFeaturesDTO().getNearSchool(),
-                                                                       realEstateForSaleCreationDTO.getRealEstateLocationFeaturesDTO().getNearPublicTransport());
-                                                                       
-
-        return new RealEstateForSale(title, description, LocalDateTime.now(), price, condoFee, energyClass, 
-                                     internalRealEstateFeatures, externalRealEstateFeatures, notaryDeedState);
+        return realEstateForSale;
     }
-    
+
+
+            
+            public RealEstateCreationDTO realEstateCreationDTOMapper(RealEstate realEstate) 
+            {
+                String title = realEstate.getTitle();
+                String description = realEstate.getDescription();
+                Double price = realEstate.getPrice();
+                Double condoFee = realEstate.getCondoFee();
+                String energyClass = realEstate.getEnergyClass().getValue();
+
+                Double size = realEstate.getInternalFeatures().getSize();
+                Integer roomsNumber = realEstate.getInternalFeatures().getRoomsNumber();
+                String propertyCondition = realEstate.getInternalFeatures().getPropertyCondition().getValue();
+                String furnitureCondition = realEstate.getInternalFeatures().getFurnitureCondition().getValue();
+
+                Integer parkingSpacesNumber = realEstate.getExternalFeatures().getParkingSpacesNumber();
+                Integer floorNumber = realEstate.getExternalFeatures().getFloorNumber();
+
+                RealEstateMainFeaturesDTO realEstateMainFeaturesDTO = new RealEstateMainFeaturesDTO(title, description, price, condoFee, size, 
+                                                                   roomsNumber, parkingSpacesNumber, floorNumber, 
+                                                                   energyClass, propertyCondition, furnitureCondition);
+
+
+                RealEstateBooleanFeaturesDTO realEstateBooleanFeaturesDTO = new RealEstateBooleanFeaturesDTO();
+                realEstateBooleanFeaturesDTO.setAirConditioning(realEstate.getInternalFeatures().getAirConditioning());
+                realEstateBooleanFeaturesDTO.setHeating(realEstate.getInternalFeatures().getHeating());
+                realEstateBooleanFeaturesDTO.setBalcony(realEstate.getExternalFeatures().getBalcony());
+                realEstateBooleanFeaturesDTO.setElevator(realEstate.getExternalFeatures().getElevator());
+                realEstateBooleanFeaturesDTO.setConcierge(realEstate.getExternalFeatures().getConcierge());
+                realEstateBooleanFeaturesDTO.setGarage(realEstate.getExternalFeatures().getGarage());
+                realEstateBooleanFeaturesDTO.setGarden(realEstate.getExternalFeatures().getGarden());
+                realEstateBooleanFeaturesDTO.setSwimmingPool(realEstate.getExternalFeatures().getSwimmingPool());
+                realEstateBooleanFeaturesDTO.setTerrace(realEstate.getExternalFeatures().getTerrace());
+
+
+                RealEstateLocationFeaturesDTO realEstateLocationFeaturesDTO = new RealEstateLocationFeaturesDTO();
+                realEstateLocationFeaturesDTO.setNearPark(realEstate.getExternalFeatures().getNearPark());
+                realEstateLocationFeaturesDTO.setNearSchool(realEstate.getExternalFeatures().getNearSchool());
+                realEstateLocationFeaturesDTO.setNearPublicTransport(realEstate.getExternalFeatures().getNearPublicTransport());
+
+
+                AddressDTO addressDTO = modelMapper.map(realEstate.getAddress(), AddressDTO.class);
+
+
+                if(realEstate instanceof RealEstateForSale)
+                {
+                    RealEstateForSale realEstateForSale = (RealEstateForSale) realEstate;
+                    String notaryDeedState = realEstateForSale.getNotaryDeedState().getValue();
+                    return new RealEstateForSaleCreationDTO(addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO, notaryDeedState);
+                }
+                else
+                {
+                    RealEstateForRent realEstateForSale = (RealEstateForRent) realEstate;
+                    Double securityDeposit = realEstateForSale.getSecurityDeposit();
+                    Integer contractYears = realEstateForSale.getContractYears();
+                    return new RealEstateForRentCreationDTO(addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO, securityDeposit, contractYears);
+                }
+            }
+
+
+
+            private RealEstate fromDtoHelper(RealEstateCreationDTO realEstateCreationDTO)
+            {
+                String title = realEstateCreationDTO.getRealEstateMainFeaturesDTO().getTitle();
+                String description = realEstateCreationDTO.getRealEstateMainFeaturesDTO().getDescription();
+                Double price = realEstateCreationDTO.getRealEstateMainFeaturesDTO().getPrice();
+                Double condoFee = realEstateCreationDTO.getRealEstateMainFeaturesDTO().getCondoFee();
+                EnergyClass energyClass = ValidationUtil.enumValidator(EnergyClass.class, realEstateCreationDTO.getRealEstateMainFeaturesDTO().getEnergyClass());
+
+                InternalRealEstateFeatures internalRealEstateFeatures = 
+                                        new InternalRealEstateFeatures(realEstateCreationDTO.getRealEstateMainFeaturesDTO().getSize(), 
+                                                                       realEstateCreationDTO.getRealEstateMainFeaturesDTO().getRoomsNumber(), 
+                                                                       ValidationUtil.enumValidator(PropertyCondition.class, realEstateCreationDTO.getRealEstateMainFeaturesDTO().getPropertyCondition()), 
+                                                                       ValidationUtil.enumValidator(FurnitureCondition.class, realEstateCreationDTO.getRealEstateMainFeaturesDTO().getFurnitureCondition()),
+                                                                       realEstateCreationDTO.getRealEstateBooleanFeaturesDTO().getAirConditioning(),
+                                                                       realEstateCreationDTO.getRealEstateBooleanFeaturesDTO().getHeating());
+                ExternalRealEstateFeatures externalRealEstateFeatures = 
+                                        new ExternalRealEstateFeatures(realEstateCreationDTO.getRealEstateMainFeaturesDTO().getParkingSpacesNumber(), 
+                                                                       realEstateCreationDTO.getRealEstateMainFeaturesDTO().getFloorNumber(),
+                                                                       realEstateCreationDTO.getRealEstateBooleanFeaturesDTO().getElevator(),
+                                                                       realEstateCreationDTO.getRealEstateBooleanFeaturesDTO().getConcierge(),
+                                                                       realEstateCreationDTO.getRealEstateBooleanFeaturesDTO().getTerrace(),
+                                                                       realEstateCreationDTO.getRealEstateBooleanFeaturesDTO().getGarage(),
+                                                                       realEstateCreationDTO.getRealEstateBooleanFeaturesDTO().getBalcony(),
+                                                                       realEstateCreationDTO.getRealEstateBooleanFeaturesDTO().getGarden(),
+                                                                       realEstateCreationDTO.getRealEstateBooleanFeaturesDTO().getSwimmingPool(),
+                                                                       realEstateCreationDTO.getRealEstateLocationFeaturesDTO().getNearPark(),
+                                                                       realEstateCreationDTO.getRealEstateLocationFeaturesDTO().getNearSchool(),
+                                                                       realEstateCreationDTO.getRealEstateLocationFeaturesDTO().getNearPublicTransport());
+
+                return new RealEstate(title, description, LocalDateTime.now(), price, condoFee, energyClass, internalRealEstateFeatures, externalRealEstateFeatures);
+            }
 }
