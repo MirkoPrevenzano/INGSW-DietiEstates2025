@@ -11,7 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
+import com.dietiEstates.backend.dto.RealEstatePreviewInfoDTO;
 import com.dietiEstates.backend.dto.response.RealEstateSearchDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
 import com.dietiEstates.backend.model.entity.Customer;
@@ -39,7 +39,7 @@ public class RealEstateService
                                                                                Double.valueOf(filters.get("lat")), 
                                                                                Double.valueOf(filters.get("lon")));
 
-        Page<RealEstatePreviewDTO> realEstatePreviewsPage = realEstateRepository.findPreviewsByFilters(filters, page, coordinatesMinMax);
+        Page<RealEstatePreviewInfoDTO> realEstatePreviewsPage = realEstateRepository.findPreviewsByFilters(filters, page, coordinatesMinMax);
 
         RealEstateSearchDTO RealEstatePreviewsFirstPageDTO = new RealEstateSearchDTO(realEstatePreviewsPage.getContent(),
                                                                                                         realEstatePreviewsPage.getTotalElements(), 

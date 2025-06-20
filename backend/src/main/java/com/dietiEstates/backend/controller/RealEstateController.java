@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
+import com.dietiEstates.backend.dto.RealEstatePreviewInfoDTO;
 import com.dietiEstates.backend.dto.response.RealEstateSearchDTO;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.repository.RealEstateRepository;
@@ -41,7 +41,7 @@ public class RealEstateController
     {
         RealEstateSearchDTO realEstateSearchDTO = realEstateService.search3(filters, PageRequest.of(page, limit));
 
-        for(RealEstatePreviewDTO realEstate : realEstateSearchDTO.getRealEstatePreviews())
+        for(RealEstatePreviewInfoDTO realEstate : realEstateSearchDTO.getRealEstatePreviews())
             log.info(realEstate.getLatitude().toString() + " : " + realEstate.getLongitude().toString()); 
         
         log.info(realEstateSearchDTO.getTotalElements().toString() + " : " + realEstateSearchDTO.getTotalPages().toString());

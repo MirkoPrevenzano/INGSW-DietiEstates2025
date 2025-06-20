@@ -65,10 +65,23 @@ public class CustomerService
         log.info("\n\nGET AGENT FROM REAL ESTATE:\n");
         Agent agent = realEstate.getAgent();
 
-/*         if(agent == null)
-            log.error("\n\nAGENT NULL\n\n");
-        else 
-            log.info("{}",agent); */
+/*         
+find user;
+find real estate;
+
+realestate.getAgent 
+modelmapper.map(agentinfo,agent)
+map from realestate to realestate creation
+create realestatecompleteDTO
+
+if(context == customer)
+        updating realestate viewsnumber
+        creazione custviewrealest
+        save custview
+
+return realestatecompleteDTO;
+
+ */
 
            
         RealEstateCreationDTO realEstateCreationDTO = realEstateCreationDTOMapper(realEstate);
@@ -85,7 +98,7 @@ public class CustomerService
                                                                         realEstate);
         
                 log.info("\n\nGET CUSTOMERVIEWSREALESTATE:\n");
-                List<CustomerViewsRealEstate> customerViewsRealEstateList = customer.getCustomerViewsRealEstates();
+/*                 List<CustomerViewsRealEstate> customerViewsRealEstateList = customer.getCustomerViewsRealEstates();
         
                 if(customerViewsRealEstateList.size() > 0)
                 {
@@ -99,7 +112,7 @@ public class CustomerService
                             return realEstateCreationDTO;
                         }  
                     }
-                }
+                } */
                 
                 customer.addCustomerViewsRealEstate(customerViewsRealEstate);
                 log.info("\n\nSAVE (CustomerRepo):\n");

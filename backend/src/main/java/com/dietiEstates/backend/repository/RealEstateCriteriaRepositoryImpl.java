@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import com.dietiEstates.backend.dto.RealEstatePreviewDTO;
+import com.dietiEstates.backend.dto.RealEstatePreviewInfoDTO;
 import com.dietiEstates.backend.dto.response.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
@@ -41,18 +41,18 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
 
     @Override
-    public Page<RealEstatePreviewDTO> findPreviewsByFilters(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax) 
+    public Page<RealEstatePreviewInfoDTO> findPreviewsByFilters(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax) 
     {        
-        CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = getPreviewsQueryByFilters(filters, coordinatesMinMax);
+        CriteriaQuery<RealEstatePreviewInfoDTO> criteriaQuery = getPreviewsQueryByFilters(filters, coordinatesMinMax);
 
-        TypedQuery<RealEstatePreviewDTO> typedQuery = entityManager.createQuery(criteriaQuery)
+        TypedQuery<RealEstatePreviewInfoDTO> typedQuery = entityManager.createQuery(criteriaQuery)
                                                            .setFirstResult((int)page.getOffset())
                                                            .setMaxResults(page.getPageSize());
 
-        List<RealEstatePreviewDTO> pageList = typedQuery.getResultList(); 
+        List<RealEstatePreviewInfoDTO> pageList = typedQuery.getResultList(); 
         long totalElements = countTotalPreviewsByFilters(filters, coordinatesMinMax);
         
-        PageImpl<RealEstatePreviewDTO> pageImpl = new PageImpl<>(pageList, page, totalElements);
+        PageImpl<RealEstatePreviewInfoDTO> pageImpl = new PageImpl<>(pageList, page, totalElements);
 
         return pageImpl;
     }
@@ -135,10 +135,10 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
     
     @SuppressWarnings("null")
-    private CriteriaQuery<RealEstatePreviewDTO> getPreviewsQueryByFilters(Map<String,String> filters, CoordinatesMinMax coordinatesMinMax)
+    private CriteriaQuery<RealEstatePreviewInfoDTO> getPreviewsQueryByFilters(Map<String,String> filters, CoordinatesMinMax coordinatesMinMax)
     {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstatePreviewDTO.class);
+        CriteriaQuery<RealEstatePreviewInfoDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstatePreviewInfoDTO.class);
         
         Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
         Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
@@ -146,7 +146,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
         List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin, realEstateType); 
 
-        criteriaQuery.select(criteriaBuilder.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
+        criteriaQuery.select(criteriaBuilder.construct(RealEstatePreviewInfoDTO.class, realEstate.get("realEstateId"),
                                                                                                realEstate.get("title"),
                                                                                                realEstate.get("description"),
                                                                                                realEstate.get("price"),
@@ -316,7 +316,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import com.dietiEstates.backend.dto.response.RealEstatePreviewDTO;
+import com.dietiEstates.backend.dto.response.RealEstatePreviewInfoDTO;
 import com.dietiEstates.backend.dto.response.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
@@ -347,18 +347,18 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
 
     @Override
-    public Page<RealEstatePreviewDTO> findPreviewsByFilters(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax) 
+    public Page<RealEstatePreviewInfoDTO> findPreviewsByFilters(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax) 
     {        
-        CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = getPreviewsQueryByFilters(filters, coordinatesMinMax);
+        CriteriaQuery<RealEstatePreviewInfoDTO> criteriaQuery = getPreviewsQueryByFilters(filters, coordinatesMinMax);
 
-        TypedQuery<RealEstatePreviewDTO> typedQuery = entityManager.createQuery(criteriaQuery)
+        TypedQuery<RealEstatePreviewInfoDTO> typedQuery = entityManager.createQuery(criteriaQuery)
                                                            .setFirstResult((int)page.getOffset())
                                                            .setMaxResults(page.getPageSize());
 
-        List<RealEstatePreviewDTO> pageList = typedQuery.getResultList(); 
+        List<RealEstatePreviewInfoDTO> pageList = typedQuery.getResultList(); 
         long totalElements = countTotalPreviewsByFilters(filters, coordinatesMinMax);
         
-        PageImpl<RealEstatePreviewDTO> pageImpl = new PageImpl<>(pageList, page, totalElements);
+        PageImpl<RealEstatePreviewInfoDTO> pageImpl = new PageImpl<>(pageList, page, totalElements);
 
         return pageImpl;
     }
@@ -441,10 +441,10 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
     
     @SuppressWarnings("null")
-    private CriteriaQuery<RealEstatePreviewDTO> getPreviewsQueryByFilters(Map<String,String> filters, CoordinatesMinMax coordinatesMinMax)
+    private CriteriaQuery<RealEstatePreviewInfoDTO> getPreviewsQueryByFilters(Map<String,String> filters, CoordinatesMinMax coordinatesMinMax)
     {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<RealEstatePreviewDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstatePreviewDTO.class);
+        CriteriaQuery<RealEstatePreviewInfoDTO> criteriaQuery = criteriaBuilder.createQuery(RealEstatePreviewInfoDTO.class);
         
         Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
         Root<Address> address = criteriaQuery.from(Address.class);
@@ -452,7 +452,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
         List<Predicate> predicates = getPredicates(filters, coordinatesMinMax, criteriaBuilder, realEstate, address, realEstateType); 
 
-        criteriaQuery.select(criteriaBuilder.construct(RealEstatePreviewDTO.class, realEstate.get("realEstateId"),
+        criteriaQuery.select(criteriaBuilder.construct(RealEstatePreviewInfoDTO.class, realEstate.get("realEstateId"),
                                                                                                realEstate.get("title"),
                                                                                                realEstate.get("description"),
                                                                                                realEstate.get("price"),

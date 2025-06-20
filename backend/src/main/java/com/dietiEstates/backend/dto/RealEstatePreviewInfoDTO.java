@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RealEstatePreviewDTO
+public class RealEstatePreviewInfoDTO
 {
     @NonNull
     private Long id;

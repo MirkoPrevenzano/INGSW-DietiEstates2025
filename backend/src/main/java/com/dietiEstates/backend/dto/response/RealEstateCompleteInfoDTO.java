@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class RealEstateCompleteDTO
+public class RealEstateCompleteInfoDTO
 {
     @NonNull
     private RealEstateCreationDTO realEstateCreationDTO;
