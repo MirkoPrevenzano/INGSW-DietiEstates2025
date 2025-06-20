@@ -27,6 +27,8 @@ import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.util.JFreeChartUtil;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
@@ -52,7 +54,7 @@ public class CustomerService
 
 
 
-    public RealEstateCreationDTO viewRealEstate(String username, Long realEstateId) 
+    public RealEstateCreationDTO viewRealEstate(String username, Long realEstateId, Authentication authentication) 
     {
         log.info("\n\nENTRO NEL METODO VIEW REAL ESTATE:\n");
 
@@ -83,6 +85,16 @@ return realestatecompleteDTO;
 
  */
 
+         // 2. Verifica se l'utente autenticato ha il ruolo CUSTOMER
+        if(authentication != null && authentication.isAuthenticated() && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_CUSTOMER"))) 
+        {
+            if(authentication.getPrincipal() instanceof Customer)
+                log.info("\n\nil mio principal è un customerrrr\n\n");
+
+            UserDetails user = (UserDetails) authentication.getPrincipal();
+
+            log.info("\n\n\nSONO NELL'IF DEL CUSTOMERR");
+        }
            
         RealEstateCreationDTO realEstateCreationDTO = realEstateCreationDTOMapper(realEstate);
                 

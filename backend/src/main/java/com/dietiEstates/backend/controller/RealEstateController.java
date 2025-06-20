@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dietiEstates.backend.dto.RealEstatePreviewInfoDTO;
+import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.response.RealEstateSearchDTO;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.repository.RealEstateRepository;
@@ -50,9 +51,9 @@ public class RealEstateController
     }
 
 
-    @GetMapping(path = "ciao")
-    public ResponseEntity<String> aaaa(Authentication authentication) 
+    @GetMapping("/view/{realEstateId}")
+    public ResponseEntity<String> viewRealEstate(@PathVariable("realEstateId") Long realEstateId, Authentication authentication) 
     {
-        return ResponseEntity.ok(realEstateService.getRealEstateDetails(authentication));
+        return ResponseEntity.ok(realEstateService.getRealEstateCompleteInfo(realEstateId, authentication));
     }
 }

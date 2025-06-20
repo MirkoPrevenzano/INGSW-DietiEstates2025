@@ -30,13 +30,14 @@ import lombok.extern.slf4j.Slf4j;
 public class WebSecurityConfig
 {
     private final DaoAuthenticationProvider daoAuthenticationProvider;
+    private final JwtAuthorizationFilter jwtAuthorizationFilter;
 
 
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {
-        JwtAuthorizationFilter jwtAuthorizationFilter = new JwtAuthorizationFilter();
+        //JwtAuthorizationFilter jwtAuthorizationFilter = new JwtAuthorizationFilter();
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(daoAuthenticationProvider);
 
 
