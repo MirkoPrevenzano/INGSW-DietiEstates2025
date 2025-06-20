@@ -86,10 +86,14 @@ return realestatecompleteDTO;
  */
 
          // 2. Verifica se l'utente autenticato ha il ruolo CUSTOMER
-        if(authentication != null && authentication.isAuthenticated() && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_CUSTOMER"))) 
+        if(authentication != null && authentication.isAuthenticated()) 
         {
             if(authentication.getPrincipal() instanceof Customer)
                 log.info("\n\nil mio principal è un customerrrr\n\n");
+
+                if(authentication.getPrincipal() instanceof Agent)
+                log.info("\n\nil mio principal è un agentttt\n\n");
+
 
             UserDetails user = (UserDetails) authentication.getPrincipal();
 
