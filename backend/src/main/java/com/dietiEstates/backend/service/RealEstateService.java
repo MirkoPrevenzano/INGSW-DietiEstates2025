@@ -73,7 +73,6 @@ public class RealEstateService
 
         RealEstateCompleteInfoDTO realEstateCompleteInfoDTO = new RealEstateCompleteInfoDTO(realEstateCreationDTO, agentPublicInfoDTO);
 
-        // 2. Verifica se l'utente autenticato ha il ruolo CUSTOMER
         if(authentication != null && authentication.isAuthenticated() && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_CUSTOMER"))) 
         {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
