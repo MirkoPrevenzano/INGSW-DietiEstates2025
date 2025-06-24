@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.model;
+package com.dietiEstates.backend.model.entity;
 
 import java.util.Collection;
 import java.util.List;

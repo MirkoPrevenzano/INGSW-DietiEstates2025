@@ -4,7 +4,6 @@ package com.dietiEstates.backend.model.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dietiEstates.backend.model.User;
 import com.dietiEstates.backend.model.embeddable.AgentStats;
 
 import jakarta.persistence.AttributeOverride;

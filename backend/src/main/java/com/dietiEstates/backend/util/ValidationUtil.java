@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.enums.NotaryDeedState;
 import com.dietiEstates.backend.extra.ValidableEnum;
-import com.dietiEstates.backend.model.User;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.RealEstate;
+import com.dietiEstates.backend.model.entity.User;
 
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
