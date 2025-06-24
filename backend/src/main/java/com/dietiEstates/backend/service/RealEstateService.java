@@ -19,15 +19,20 @@ import com.dietiEstates.backend.dto.response.AgentPublicInfoDTO;
 import com.dietiEstates.backend.dto.response.RealEstateCompleteInfoDTO;
 import com.dietiEstates.backend.dto.response.RealEstateSearchDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
+import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.entity.Address;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.model.entity.Customer;
+import com.dietiEstates.backend.model.entity.CustomerViewsRealEstate;
 import com.dietiEstates.backend.model.entity.RealEstate;
+import com.dietiEstates.backend.repository.CVRRepository;
+import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.repository.UserRepository;
 import com.dietiEstates.backend.util.FindByRadiusUtil;
 import com.dietiEstates.backend.util.RealEstateMappingUtil;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,8 +45,10 @@ public class RealEstateService
     private final RealEstateRepository realEstateRepository;
     private final FindByRadiusUtil findByRadiusUtil;
     private final UserRepository userRepository;
+    private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
     private final RealEstateMappingUtil realEstateMappingUtil;
+    private final CVRRepository cvrRepository;
 
 
     public RealEstateSearchDTO search3(Map<String,String> filters, Pageable page)
@@ -59,13 +66,14 @@ public class RealEstateService
     }
 
 
+    @Transactional
     public String getRealEstateCompleteInfo(Long realEstateId, Authentication authentication)
     {
         RealEstate realEstate = realEstateRepository.findById(realEstateId)
                                                     .orElseThrow(() -> new IllegalArgumentException("Immobile non trovato con ID: " + realEstateId));
         
         Agent agent = realEstate.getAgent();
-        AgentPublicInfoDTO agentPublicInfoDTO = modelMapper.map(agent, AgentPublicInfoDTO.class);
+        AgentPublicInfoDTO agentPublicInfoDTO = modelMapper.map(agent, AgentPublicInfoDTO.class);        
         RealEstateCreationDTO realEstateCreationDTO = realEstateMappingUtil.realEstateCreationDTOMapper(realEstate);
 
         RealEstateCompleteInfoDTO realEstateCompleteInfoDTO = new RealEstateCompleteInfoDTO(realEstateCreationDTO, agentPublicInfoDTO);
@@ -73,12 +81,22 @@ public class RealEstateService
         // 2. Verifica se l'utente autenticato ha il ruolo CUSTOMER
         if(authentication != null && authentication.isAuthenticated() && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_CUSTOMER"))) 
         {
-            if(authentication.getPrincipal() instanceof Customer)
-                log.info("\n\nil mio principal è un customerrrr\n\n");
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            Customer customer = customerRepository.findByUsername(userDetails.getUsername())
+                                                  .orElseThrow(() -> new IllegalArgumentException("Customer non trovato: " + userDetails.getUsername()));
 
-            UserDetails user = (UserDetails) authentication.getPrincipal();
+            long newViewsNumber = realEstate.getRealEstateStats().getViewsNumber() + 1;
+            realEstate.getRealEstateStats().setViewsNumber(newViewsNumber);
+        
+            CustomerViewsRealEstate customerViewsRealEstate = new CustomerViewsRealEstate(new CustomerViewsRealEstateId(customer.getUserId(), realEstate.getRealEstateId()), 
+                                                                                          LocalDateTime.now(), 
+                                                                                          customer,
+                                                                                          realEstate);
 
-            log.info("\n\n\nSONO NELL'IF DEL CUSTOMERR");
+            //customer.addCustomerViewsRealEstate(customerViewsRealEstate);
+            //cvrRepository.save(customerViewsRealEstate);
+            //customerRepository.save(customer);
+            //realEstateRepository.save(realEstate);
         }
 
         log.info("\n\n\nSONO FUORI IF...");
