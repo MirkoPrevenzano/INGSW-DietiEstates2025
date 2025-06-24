@@ -2,7 +2,6 @@
 package com.dietiEstates.backend.service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Map;
 
 import org.modelmapper.ModelMapper;
@@ -10,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.dto.RealEstatePreviewInfoDTO;
@@ -20,15 +18,13 @@ import com.dietiEstates.backend.dto.response.RealEstateCompleteInfoDTO;
 import com.dietiEstates.backend.dto.response.RealEstateSearchDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
-import com.dietiEstates.backend.model.entity.Address;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.model.entity.Customer;
 import com.dietiEstates.backend.model.entity.CustomerViewsRealEstate;
 import com.dietiEstates.backend.model.entity.RealEstate;
-import com.dietiEstates.backend.repository.CVRRepository;
+//import com.dietiEstates.backend.repository.CVRRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.repository.UserRepository;
 import com.dietiEstates.backend.util.FindByRadiusUtil;
 import com.dietiEstates.backend.util.RealEstateMappingUtil;
 
@@ -44,11 +40,10 @@ public class RealEstateService
 {
     private final RealEstateRepository realEstateRepository;
     private final FindByRadiusUtil findByRadiusUtil;
-    private final UserRepository userRepository;
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
     private final RealEstateMappingUtil realEstateMappingUtil;
-    private final CVRRepository cvrRepository;
+    //private final CVRRepository cvrRepository;
 
 
     public RealEstateSearchDTO search3(Map<String,String> filters, Pageable page)
@@ -67,7 +62,7 @@ public class RealEstateService
 
 
     @Transactional
-    public String getRealEstateCompleteInfo(Long realEstateId, Authentication authentication)
+    public RealEstateCompleteInfoDTO getRealEstateCompleteInfo(Long realEstateId, Authentication authentication)
     {
         RealEstate realEstate = realEstateRepository.findById(realEstateId)
                                                     .orElseThrow(() -> new IllegalArgumentException("Immobile non trovato con ID: " + realEstateId));
@@ -93,14 +88,12 @@ public class RealEstateService
                                                                                           customer,
                                                                                           realEstate);
 
-            //customer.addCustomerViewsRealEstate(customerViewsRealEstate);
+            customer.addCustomerViewsRealEstate(customerViewsRealEstate);
             //cvrRepository.save(customerViewsRealEstate);
             //customerRepository.save(customer);
             //realEstateRepository.save(realEstate);
         }
 
-        log.info("\n\n\nSONO FUORI IF...");
-
-        return "ciao";
+        return realEstateCompleteInfoDTO;
     }
 }
