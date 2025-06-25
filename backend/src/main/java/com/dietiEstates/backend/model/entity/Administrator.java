@@ -41,6 +41,14 @@ public class Administrator extends User
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId; */
 
+    @Column(name = "must_change_password", 
+            nullable = false, 
+            updatable = true,
+            columnDefinition = "boolean default false")
+    private boolean mustChangePassword = false;
+
+
+
     @ManyToOne(fetch = FetchType.LAZY,
                cascade = {})
     @JoinColumn(name = "manager_id", 
