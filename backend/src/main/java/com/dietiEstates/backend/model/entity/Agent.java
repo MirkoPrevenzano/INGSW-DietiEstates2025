@@ -43,6 +43,13 @@ public class Agent extends User
 /*         @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId; */
+
+    @Column(name = "must_change_password", 
+    nullable = false, 
+    updatable = true,
+    columnDefinition = "boolean default false")
+    private boolean mustChangePassword = false;
+
     @Embedded
     AgentStats agentStats = new AgentStats();
 

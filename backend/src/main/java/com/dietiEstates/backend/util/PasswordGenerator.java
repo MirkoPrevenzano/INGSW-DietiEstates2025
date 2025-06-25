@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import lombok.experimental.UtilityClass;
 
+
+@UtilityClass
 public class PasswordGenerator 
 {
     private static final int DEFAULT_PASSWORD_LENGTH = 12;
@@ -40,18 +43,9 @@ public class PasswordGenerator
 
         char[] passwordArrayChars = new char[passwordListChars.size()];
         for (int i = 0; i < passwordListChars.size(); i++) 
-        {
             passwordArrayChars[i] = passwordListChars.get(i);
-        }
+            
 
         return new String(passwordArrayChars);
-    }
-
-    public static void main(String[] args) 
-    {
-        // --- Esempi di Utilizzo ---
-        System.out.println("Password: " + generateRandomPassword());
-        System.out.println("Password: " + generateRandomPassword());
-        System.out.println("Password: " + generateRandomPassword());
     }
 }

@@ -21,7 +21,4 @@ public class AgentRegistrationDTO
 
     @NonNull
     private String username;
-
-    @NonNull
-    private String password;
 }

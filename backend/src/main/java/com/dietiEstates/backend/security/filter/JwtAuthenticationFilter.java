@@ -90,7 +90,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String accessToken = JwtUtil.generateAccessToken(user);
         response.setHeader("jwtToken", accessToken);
         
-        AuthenticationResponseDTO authenticationResponseDTO = new AuthenticationResponseDTO(accessToken);
+        AuthenticationResponseDTO authenticationResponseDTO = new AuthenticationResponseDTO(accessToken,false);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), authenticationResponseDTO); 
     }    

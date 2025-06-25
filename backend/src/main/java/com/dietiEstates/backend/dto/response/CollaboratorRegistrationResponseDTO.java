@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdminRegistrationResponseDTO 
+public class CollaboratorRegistrationResponseDTO 
 {
     private String username;
     private String temporaryPassword;

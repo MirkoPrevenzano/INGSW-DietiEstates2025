@@ -11,9 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
+import com.dietiEstates.backend.dto.request.CollaboratorRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
 import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
+import com.dietiEstates.backend.dto.response.CollaboratorRegistrationResponseDTO;
 import com.dietiEstates.backend.service.AdministratorService;
 
 import lombok.RequiredArgsConstructor;
@@ -32,11 +33,11 @@ public class AdministratorController
 
 
     @PostMapping(path = "/create-collaborator")
-    public ResponseEntity<?> createCollaborator(@RequestBody AdminRegistrationDTO adminRegistrationDTO) 
+    public ResponseEntity<CollaboratorRegistrationResponseDTO> createCollaborator(@RequestBody CollaboratorRegistrationDTO collaboratorRegistrationDTO) 
     {
         try 
         {
-            administratorService.createCollaborator(adminRegistrationDTO);
+            administratorService.createCollaborator(collaboratorRegistrationDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } 
         catch (UsernameNotFoundException e)
