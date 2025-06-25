@@ -15,4 +15,7 @@ public class AuthenticationResponseDTO
 {
     @NonNull
     private String jwtToken;
+
+    @NonNull
+    private Boolean mustChangePassword;
 }
