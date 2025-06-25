@@ -33,12 +33,12 @@ public class AdministratorController
 
 
 
-    @PostMapping(path = "/create-collaborator")
-    public ResponseEntity<CollaboratorRegistrationResponseDTO> createCollaborator(@RequestBody CollaboratorRegistrationDTO collaboratorRegistrationDTO) 
+    @PostMapping(path = "/{username}/create-collaborator")
+    public ResponseEntity<CollaboratorRegistrationResponseDTO> createCollaborator(@PathVariable String username, @RequestBody CollaboratorRegistrationDTO collaboratorRegistrationDTO) 
     {
         try 
         {
-            return ResponseEntity.status(HttpStatus.CREATED).body(administratorService.createCollaborator(collaboratorRegistrationDTO));
+            return ResponseEntity.status(HttpStatus.CREATED).body(administratorService.createCollaborator(username, collaboratorRegistrationDTO));
         } 
         catch (UsernameNotFoundException e)
         {

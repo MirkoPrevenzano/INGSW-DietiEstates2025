@@ -42,10 +42,10 @@ public class AdministratorService
 
 
     @Transactional
-    public CollaboratorRegistrationResponseDTO createCollaborator(CollaboratorRegistrationDTO collaboratorRegistrationDTO) throws UsernameNotFoundException, 
+    public CollaboratorRegistrationResponseDTO createCollaborator(String username, CollaboratorRegistrationDTO collaboratorRegistrationDTO) throws UsernameNotFoundException, 
                                                                                     IllegalArgumentException, MappingException
     {
-        Optional<Administrator> adminOptional = administratorRepository.findById(1l);
+        Optional<Administrator> adminOptional = administratorRepository.findByUsername(username);
         if(adminOptional.isEmpty())
         {
             log.error("Admin not found in database");
