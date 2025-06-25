@@ -45,7 +45,7 @@ public class Administrator extends User
             nullable = false, 
             updatable = true,
             columnDefinition = "boolean default false")
-    private boolean mustChangePassword = false;
+    private Boolean mustChangePassword = false;
 
 
 

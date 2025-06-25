@@ -48,7 +48,7 @@ public class Agent extends User
     nullable = false, 
     updatable = true,
     columnDefinition = "boolean default false")
-    private boolean mustChangePassword = false;
+    private Boolean mustChangePassword = false;
 
     @Embedded
     AgentStats agentStats = new AgentStats();

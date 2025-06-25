@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.dietiEstates.backend.dto.request.CollaboratorRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
 import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
+import com.dietiEstates.backend.dto.response.AgentRegistrationResponseDTO;
 import com.dietiEstates.backend.dto.response.CollaboratorRegistrationResponseDTO;
 import com.dietiEstates.backend.service.AdministratorService;
 
@@ -37,8 +38,7 @@ public class AdministratorController
     {
         try 
         {
-            administratorService.createCollaborator(collaboratorRegistrationDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            return ResponseEntity.status(HttpStatus.CREATED).body(administratorService.createCollaborator(collaboratorRegistrationDTO));
         } 
         catch (UsernameNotFoundException e)
         {
@@ -52,12 +52,11 @@ public class AdministratorController
     
 
     @PostMapping(path = "/{username}/create-agent")
-    public ResponseEntity<?> createAgent(@PathVariable String username, @RequestBody AgentRegistrationDTO agentRegistrationDTO) 
+    public ResponseEntity<AgentRegistrationResponseDTO> createAgent(@PathVariable String username, @RequestBody AgentRegistrationDTO agentRegistrationDTO) 
     {
         try 
         {
-            administratorService.createAgent(username, agentRegistrationDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            return ResponseEntity.status(HttpStatus.CREATED).body(administratorService.createAgent(username, agentRegistrationDTO));
         } 
         catch (UsernameNotFoundException e)
         {

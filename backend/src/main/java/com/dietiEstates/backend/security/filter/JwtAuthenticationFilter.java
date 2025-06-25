@@ -46,9 +46,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String password = request.getParameter("password");
         String role = request.getParameter("role");
 
-        log.info("\n\nrole: {}", role);
         username += "/" + role;
-        log.info("\n\nusername + role: {}", username);
 
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
@@ -88,10 +86,25 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         UserDetails user = (UserDetails) authenticationResult.getPrincipal();
 
         String accessToken = JwtUtil.generateAccessToken(user);
+        Boolean mustChangePassword = getMustChangePassword(user);
+
         response.setHeader("jwtToken", accessToken);
         
-        AuthenticationResponseDTO authenticationResponseDTO = new AuthenticationResponseDTO(accessToken,false);
+        AuthenticationResponseDTO authenticationResponseDTO = new AuthenticationResponseDTO(accessToken, mustChangePassword);
+
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), authenticationResponseDTO); 
     }    
+
+
+
+    private boolean getMustChangePassword(UserDetails user)
+    {
+        if(user instanceof Administrator) 
+            return ((Administrator) user).getMustChangePassword();
+        else if (user instanceof Agent) 
+            return ((Agent) user).getMustChangePassword();
+        
+        return false;
+    }
 }
