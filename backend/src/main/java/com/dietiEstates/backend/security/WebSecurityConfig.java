@@ -60,7 +60,7 @@ public class WebSecurityConfig
                                                                                          Role.ROLE_COLLABORATOR.name()))
             .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
                 authorizeHttpRequestsCustomizer.anyRequest().authenticated())
-
+            
             //.exceptionHandling(a -> a.accessDeniedPage("/admin/aa").accessDeniedHandler(new AccessDeniedHandlerImpl()))   
 
             .addFilter(jwtAuthenticationFilter)
