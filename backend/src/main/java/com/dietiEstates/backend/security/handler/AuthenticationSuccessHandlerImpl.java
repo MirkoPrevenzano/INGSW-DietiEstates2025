@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 
 @Component
-public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler 
+public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler 
 {
 
     @Override
