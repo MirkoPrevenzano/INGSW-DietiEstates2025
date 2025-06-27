@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,16 +30,31 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WebSecurityConfig
 {
-    private final DaoAuthenticationProvider daoAuthenticationProvider;
+    //private final DaoAuthenticationProvider daoAuthenticationProvider;
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
-
+   //private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter(AuthenticationManager authenticationManager)
+    {
+        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter();
+        jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
+        return jwtAuthenticationFilter;
+    }
+
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception
     {
         //JwtAuthorizationFilter jwtAuthorizationFilter = new JwtAuthorizationFilter();
-        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(daoAuthenticationProvider);
+        //JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(daoAuthenticationProvider);
 
 
         http.csrf(csrfCustomizer -> csrfCustomizer.disable())

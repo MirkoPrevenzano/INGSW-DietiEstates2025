@@ -3,6 +3,7 @@ package com.dietiEstates.backend.security.filter;
 import java.io.IOException;
 
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 
 import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
 import com.dietiEstates.backend.model.entity.Administrator;
@@ -29,11 +31,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
+//@Component //
 @Slf4j
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter
 {
-    private final DaoAuthenticationProvider daoAuthenticationProvider;
+    //private final DaoAuthenticationProvider daoAuthenticationProvider;
+    //private final AuthenticationManager authenticationManager;
 
 
 
@@ -54,7 +58,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         Authentication authentication = null;
         try
         {
-            authentication = daoAuthenticationProvider.authenticate(usernamePasswordAuthenticationToken);
+            authentication = getAuthenticationManager().authenticate(usernamePasswordAuthenticationToken);
 
         }
         catch (DisabledException | LockedException e)
