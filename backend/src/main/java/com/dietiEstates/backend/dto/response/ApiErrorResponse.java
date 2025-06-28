@@ -1,7 +1,11 @@
 
 package com.dietiEstates.backend.dto.response;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,21 +15,37 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class ApiErrorResponse 
 {
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'  T: 'HH:mm:ss");
+
     @NonNull
     private Integer status;
 
     @NonNull
-    private String error;
+    private String reason;    
+    
+    @NonNull
+    private String type;
 
     @NonNull
-    private String message;
+    private String description;
 
     @NonNull
     private String path;
 
     @NonNull
-    private LocalDateTime timestamp;
+    private String timestamp;
+
+
+    
+    public ApiErrorResponse(@NonNull Integer status, @NonNull String reason, @NonNull String type, @NonNull String description, @NonNull String path) 
+    {
+        this.status = status;
+        this.reason = reason;
+        this.type = type;
+        this.description = description;
+        this.path = path;
+        this.timestamp = LocalDateTime.now().format(FORMATTER);
+    }
 }

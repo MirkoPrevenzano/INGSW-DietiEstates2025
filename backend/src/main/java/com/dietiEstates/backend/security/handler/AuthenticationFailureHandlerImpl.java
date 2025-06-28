@@ -54,11 +54,11 @@ public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHa
             errorType = "Unknown Authentication Error";
         }
 
-        ErrorResponse errorResponse = new ErrorResponse(statusCode, errorType, errorMessage, request.getRequestURI());
+/*         ErrorResponse errorResponse = new ErrorResponse(statusCode, errorType, errorMessage, request.getRequestURI());
 
         response.setStatus(statusCode);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        objectMapper.writeValue(response.getWriter(), errorResponse);
+        objectMapper.writeValue(response.getWriter(), errorResponse); */
     }
 }

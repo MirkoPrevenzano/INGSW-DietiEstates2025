@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.dietiEstates.backend.enums.Role;
 import com.dietiEstates.backend.security.filter.JwtAuthenticationFilter;
 import com.dietiEstates.backend.security.filter.JwtAuthorizationFilter;
+import com.dietiEstates.backend.security.handler.AccessDeniedHandlerImpl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -77,7 +78,7 @@ public class WebSecurityConfig
             .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
                 authorizeHttpRequestsCustomizer.anyRequest().authenticated())
             
-            //.exceptionHandling(a -> a.accessDeniedPage("/admin/aa").accessDeniedHandler(new AccessDeniedHandlerImpl()))   
+            .exceptionHandling(a -> a.accessDeniedHandler(new AccessDeniedHandlerImpl()))   
 
             .addFilter(jwtAuthenticationFilter)
             .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
