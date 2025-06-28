@@ -80,8 +80,7 @@ public class WebSecurityConfig
             .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
                 authorizeHttpRequestsCustomizer.anyRequest().authenticated())
             
-            .exceptionHandling(a -> a.authenticationEntryPoint(authenticationEntryPointCustomImpl))   
-
+            .exceptionHandling(a -> a.authenticationEntryPoint(authenticationEntryPointCustomImpl).accessDeniedHandler(accessDeniedHandlerCustomImpl))   
             .addFilter(jwtAuthenticationFilter)
             .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
            

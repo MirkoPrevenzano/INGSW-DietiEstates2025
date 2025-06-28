@@ -35,9 +35,7 @@ public class AccessDeniedHandlerCustomImpl implements AccessDeniedHandler
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException 
     {
-        log.error("AccessDeniedException occurred for user: " + request.getUserPrincipal().getName());
-        log.error("AccessDeniedException message: " + accessDeniedException.getMessage());
-        log.error("AccessDeniedException message: " + accessDeniedException.getLocalizedMessage());
+        log.error("Access denied occurred for user: " + request.getUserPrincipal().getName());
         log.error("Attempted access to: " + request.getRequestURI());
 
         int statusCode = HttpStatus.FORBIDDEN.value();

@@ -97,7 +97,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
         else
         {
             log.error("You are not a JWT Bearer!");
-            filterChain.doFilter(request, response); 
+            authenticationEntryPointCustomImpl.commence(request, response, new BadCredentialsException("You are not a JWT Bearer!"));
         }
     }
 }

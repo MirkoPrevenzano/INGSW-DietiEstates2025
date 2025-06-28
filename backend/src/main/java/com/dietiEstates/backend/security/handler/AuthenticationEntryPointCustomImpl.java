@@ -32,8 +32,8 @@ public class AuthenticationEntryPointCustomImpl implements AuthenticationEntryPo
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException 
     {      
-        System.out.println("Authentication failed (unauthenticated): " + authException.getMessage());
-        System.out.println("Attempted access to: " + request.getRequestURI());
+        log.error("Authentication failed: " + authException.getMessage());
+        log.error("Attempted access to: " + request.getRequestURI());
 
         int statusCode = HttpStatus.UNAUTHORIZED.value();
         String errorReason = HttpStatus.UNAUTHORIZED.getReasonPhrase();
