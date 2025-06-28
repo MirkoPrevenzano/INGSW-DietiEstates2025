@@ -42,12 +42,10 @@ public class JwtUtil
     }
 
 
-    public boolean verifyToken(String token)
+    
+    public void verifyToken(String token)
     {
-        if(getDecodedJWT(token) != null)
-            return true;
-
-        return false;
+        getDecodedJWT(token);
     }
 
 

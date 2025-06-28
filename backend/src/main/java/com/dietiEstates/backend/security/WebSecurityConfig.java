@@ -4,7 +4,6 @@ package com.dietiEstates.backend.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -17,7 +16,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.dietiEstates.backend.enums.Role;
 import com.dietiEstates.backend.security.filter.JwtAuthenticationFilter;
 import com.dietiEstates.backend.security.filter.JwtAuthorizationFilter;
-import com.dietiEstates.backend.security.handler.AccessDeniedHandlerImpl;
+import com.dietiEstates.backend.security.handler.AccessDeniedHandlerCustomImpl;
+import com.dietiEstates.backend.security.handler.AuthenticationEntryPointCustomImpl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +33,8 @@ public class WebSecurityConfig
 {
     //private final DaoAuthenticationProvider daoAuthenticationProvider;
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
-    private final AccessDeniedHandlerImpl accessDeniedHandlerImpl;
+    private final AuthenticationEntryPointCustomImpl authenticationEntryPointCustomImpl;
+    private final AccessDeniedHandlerCustomImpl accessDeniedHandlerCustomImpl;
    //private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
 
@@ -79,7 +80,7 @@ public class WebSecurityConfig
             .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
                 authorizeHttpRequestsCustomizer.anyRequest().authenticated())
             
-            .exceptionHandling(a -> a.accessDeniedHandler(accessDeniedHandlerImpl))   
+            .exceptionHandling(a -> a.authenticationEntryPoint(authenticationEntryPointCustomImpl))   
 
             .addFilter(jwtAuthenticationFilter)
             .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);

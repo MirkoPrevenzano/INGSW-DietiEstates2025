@@ -10,6 +10,8 @@ import java.util.Collection;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +23,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.dietiEstates.backend.repository.UserRepository;
+import com.dietiEstates.backend.security.handler.AuthenticationEntryPointCustomImpl;
 import com.dietiEstates.backend.util.JwtUtil;
 
 import jakarta.servlet.FilterChain;
@@ -36,6 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JwtAuthorizationFilter extends OncePerRequestFilter
 {
+    private final AuthenticationEntryPointCustomImpl authenticationEntryPointCustomImpl;
     private final UserRepository userRepository;
 
 
@@ -62,26 +66,9 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
         {
             try 
             {
-/*                 String token = authorizationHeader.substring("Bearer ".length());
-                DecodedJWT decodedJWT = JWTUtils.verifyToken(token);  
-
-                String username = decodedJWT.getSubject();
-                String[] roles = decodedJWT.getClaim("roles").asArray(String.class);
-                Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-                stream(roles).forEach(role -> {authorities.add(new SimpleGrantedAuthority(role));});
-                    
-                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,null, authorities);
-                authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);   
-                log.info("JWT Authorization is OK!");
-
-                request.setAttribute("tokenUsername", username);
-                filterChain.doFilter(request, response);  */ 
-
                 String token = authorizationHeader.substring("Bearer ".length());
-                
-                if(JwtUtil.verifyToken(token) == true)  
-                {
+                JwtUtil.verifyToken(token);
+
                     String username = JwtUtil.extractSubject(token);
                     String[] roles = JwtUtil.extractRoles(token);
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
@@ -94,28 +81,23 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);   
                     
                     log.info("JWT Authorization is OK!");
-                    //request.setAttribute("tokenUsername", username);
                     filterChain.doFilter(request, response); 
-                }                    
             } 
             catch (UsernameNotFoundException e)
             {
                 log.error("{}", e.getMessage());
-                response.setHeader("Error", e.getMessage());
-                response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                authenticationEntryPointCustomImpl.commence(request, response, e);
             }
             catch (JWTVerificationException e) 
             {
                 log.error("{}", e.getMessage());
-                response.setHeader("Error", e.getMessage());
-                response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                authenticationEntryPointCustomImpl.commence(request, response, new BadCredentialsException(e.getMessage()));
             }
         }
         else
         {
             log.error("You are not a JWT Bearer!");
-            response.setHeader("Error", "You are not a JWT Bearer!");
-            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            filterChain.doFilter(request, response); 
         }
     }
 }

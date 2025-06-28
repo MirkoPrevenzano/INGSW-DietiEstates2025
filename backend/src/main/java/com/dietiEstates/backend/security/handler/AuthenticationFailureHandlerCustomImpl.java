@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHandler 
+public class AuthenticationFailureHandlerCustomImpl implements AuthenticationFailureHandler 
 {
 
 /*     @Override

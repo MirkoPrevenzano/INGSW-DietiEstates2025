@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class AccessDeniedHandlerImpl implements AccessDeniedHandler 
+public class AccessDeniedHandlerCustomImpl implements AccessDeniedHandler 
 {
     private final ObjectMapper objectMapper;
 
@@ -37,6 +37,7 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler
     {
         log.error("AccessDeniedException occurred for user: " + request.getUserPrincipal().getName());
         log.error("AccessDeniedException message: " + accessDeniedException.getMessage());
+        log.error("AccessDeniedException message: " + accessDeniedException.getLocalizedMessage());
         log.error("Attempted access to: " + request.getRequestURI());
 
         int statusCode = HttpStatus.FORBIDDEN.value();
