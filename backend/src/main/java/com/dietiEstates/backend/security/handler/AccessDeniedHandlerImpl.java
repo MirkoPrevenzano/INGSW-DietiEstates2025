@@ -19,22 +19,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Component
+@RequiredArgsConstructor
 @Slf4j
 public class AccessDeniedHandlerImpl implements AccessDeniedHandler 
 {
+    private final ObjectMapper objectMapper;
+
+
+
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException 
     {
         log.error("AccessDeniedException occurred for user: " + request.getUserPrincipal().getName());
         log.error("AccessDeniedException message: " + accessDeniedException.getMessage());
-        log.error("AccessDeniedException cause: " + accessDeniedException.getCause());
         log.error("Attempted access to: " + request.getRequestURI());
 
-        int statusCode = HttpStatus.FORBIDDEN.value(); // 403 Forbidden
+        int statusCode = HttpStatus.FORBIDDEN.value();
         String errorReason = HttpStatus.FORBIDDEN.getReasonPhrase();
         String errorType = HttpStatus.FORBIDDEN.series().name();
         String errorDescription = "Accesso negato. Non hai i permessi necessari per questa risorsa.";
@@ -44,6 +49,6 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler
 
         response.setStatus(statusCode);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        new ObjectMapper().writeValue(response.getWriter(), apiErrorResponse);
+        objectMapper.writeValue(response.getWriter(), apiErrorResponse);
     }
 }

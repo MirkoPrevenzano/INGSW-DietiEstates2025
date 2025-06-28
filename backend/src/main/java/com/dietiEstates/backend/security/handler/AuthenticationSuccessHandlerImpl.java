@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,8 +22,5 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
             Authentication authentication) throws IOException, ServletException {
         // TODO Auto-generated method stub
         
-    }
-    
-    
-    
+    }    
 }

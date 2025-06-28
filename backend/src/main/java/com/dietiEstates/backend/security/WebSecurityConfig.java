@@ -33,6 +33,7 @@ public class WebSecurityConfig
 {
     //private final DaoAuthenticationProvider daoAuthenticationProvider;
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
+    private final AccessDeniedHandlerImpl accessDeniedHandlerImpl;
    //private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
 
@@ -78,7 +79,7 @@ public class WebSecurityConfig
             .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
                 authorizeHttpRequestsCustomizer.anyRequest().authenticated())
             
-            .exceptionHandling(a -> a.accessDeniedHandler(new AccessDeniedHandlerImpl()))   
+            .exceptionHandling(a -> a.accessDeniedHandler(accessDeniedHandlerImpl))   
 
             .addFilter(jwtAuthenticationFilter)
             .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
