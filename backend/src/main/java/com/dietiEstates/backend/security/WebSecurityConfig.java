@@ -18,6 +18,8 @@ import com.dietiEstates.backend.security.filter.JwtAuthenticationFilter;
 import com.dietiEstates.backend.security.filter.JwtAuthorizationFilter;
 import com.dietiEstates.backend.security.handler.AccessDeniedHandlerCustomImpl;
 import com.dietiEstates.backend.security.handler.AuthenticationEntryPointCustomImpl;
+import com.dietiEstates.backend.security.handler.AuthenticationFailureHandlerCustomImpl;
+import com.dietiEstates.backend.security.handler.AuthenticationSuccessHandlerCustomImpl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,15 +33,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WebSecurityConfig
 {
-    //private final DaoAuthenticationProvider daoAuthenticationProvider;
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
     private final AuthenticationEntryPointCustomImpl authenticationEntryPointCustomImpl;
     private final AccessDeniedHandlerCustomImpl accessDeniedHandlerCustomImpl;
-   //private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final AuthenticationFailureHandlerCustomImpl authenticationFailureHandlerCustomImpl;
+    private final AuthenticationSuccessHandlerCustomImpl authenticationSuccessHandlerCustomImpl;
+
 
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception 
+    {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
@@ -48,7 +52,11 @@ public class WebSecurityConfig
     public JwtAuthenticationFilter jwtAuthenticationFilter(AuthenticationManager authenticationManager)
     {
         JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter();
+        
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
+        jwtAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandlerCustomImpl);
+        jwtAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandlerCustomImpl);
+
         return jwtAuthenticationFilter;
     }
 
@@ -56,10 +64,6 @@ public class WebSecurityConfig
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception
     {
-        //JwtAuthorizationFilter jwtAuthorizationFilter = new JwtAuthorizationFilter();
-        //JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(daoAuthenticationProvider);
-
-
         http.csrf(csrfCustomizer -> csrfCustomizer.disable())
             .cors(Customizer.withDefaults())
             .httpBasic(Customizer.withDefaults())

@@ -10,8 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.InsufficientAuthenticationException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +32,7 @@ public class AuthenticationEntryPointCustomImpl implements AuthenticationEntryPo
     private final ObjectMapper objectMapper;
 
 
+
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException 
     {      
@@ -38,9 +42,15 @@ public class AuthenticationEntryPointCustomImpl implements AuthenticationEntryPo
         int statusCode = HttpStatus.UNAUTHORIZED.value();
         String errorReason = HttpStatus.UNAUTHORIZED.getReasonPhrase();
         String errorType = HttpStatus.UNAUTHORIZED.series().name();
+        String errorDescription = "Authentication failed! ";
         String errorPath = request.getRequestURI();
         
-        String errorDescription = "Autenticazione richiesta. Devi effettuare il login per accedere a questa risorsa.";
+        if(authException instanceof UsernameNotFoundException)
+            errorDescription += "User not found in database.";
+        else if(authException instanceof BadCredentialsException)
+            errorDescription += "Problem with access token.";
+        else 
+            errorDescription += "You must be authenticated to access this resource.";
 
         ApiErrorResponse apiErrorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
 

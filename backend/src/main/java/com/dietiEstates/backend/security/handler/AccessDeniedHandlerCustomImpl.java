@@ -35,13 +35,13 @@ public class AccessDeniedHandlerCustomImpl implements AccessDeniedHandler
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException 
     {
-        log.error("Access denied occurred for user: " + request.getUserPrincipal().getName());
+        log.error("Denied access occurred for user: " + request.getUserPrincipal().getName());
         log.error("Attempted access to: " + request.getRequestURI());
 
         int statusCode = HttpStatus.FORBIDDEN.value();
         String errorReason = HttpStatus.FORBIDDEN.getReasonPhrase();
         String errorType = HttpStatus.FORBIDDEN.series().name();
-        String errorDescription = "Accesso negato. Non hai i permessi necessari per questa risorsa.";
+        String errorDescription = "Denied access! You don't have the permissions to access this resource.";
         String errorPath = request.getRequestURI();
 
         ApiErrorResponse apiErrorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);

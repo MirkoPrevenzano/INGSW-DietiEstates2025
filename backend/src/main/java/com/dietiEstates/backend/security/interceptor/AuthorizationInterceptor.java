@@ -54,7 +54,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor
                     return true;
                 }
 
-                log.info("You are trying to access other users'resources!");
+                log.error("Denied access! You are trying to access other users'resources.");
                 response.setHeader("Error", "You are trying to access other users'resources!");
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
                 return false;

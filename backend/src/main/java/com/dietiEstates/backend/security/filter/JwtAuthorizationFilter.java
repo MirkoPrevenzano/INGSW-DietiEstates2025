@@ -85,19 +85,19 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
             } 
             catch (UsernameNotFoundException e)
             {
-                log.error("{}", e.getMessage());
+                log.error(e.getMessage());
                 authenticationEntryPointCustomImpl.commence(request, response, e);
             }
             catch (JWTVerificationException e) 
             {
-                log.error("{}", e.getMessage());
+                log.error(e.getMessage());
                 authenticationEntryPointCustomImpl.commence(request, response, new BadCredentialsException(e.getMessage()));
             }
         }
         else
         {
-            log.error("You are not a JWT Bearer!");
-            authenticationEntryPointCustomImpl.commence(request, response, new BadCredentialsException("You are not a JWT Bearer!"));
+            log.error("User is not a JWT Bearer!");
+            authenticationEntryPointCustomImpl.commence(request, response, new BadCredentialsException("User is not a JWT Bearer!"));
         }
     }
 }

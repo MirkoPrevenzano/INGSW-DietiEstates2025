@@ -56,10 +56,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
         Authentication authentication = null;
-        try
-        {
+/*         try
+        { */
             authentication = getAuthenticationManager().authenticate(usernamePasswordAuthenticationToken);
-
+/* 
         }
         catch (DisabledException | LockedException e)
         {
@@ -76,7 +76,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             log.error("You have entered a wrong password!");
             response.setHeader("Error", e.getMessage());
         }  
-    
+     */
         return authentication;
     }
 
