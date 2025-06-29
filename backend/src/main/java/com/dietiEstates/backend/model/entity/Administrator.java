@@ -12,6 +12,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.ForeignKey;
@@ -49,6 +50,13 @@ public class Administrator extends User
 
 
 
+    @OneToOne(mappedBy = "administrator",
+              fetch = FetchType.LAZY, 
+              cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
+              orphanRemoval = true,
+              optional = false)
+    private Agency agency;
+
     @ManyToOne(fetch = FetchType.LAZY,
                cascade = {})
     @JoinColumn(name = "manager_id", 
@@ -77,6 +85,18 @@ public class Administrator extends User
     }
 
 
+
+    public void addAgency(Agency newAgency) 
+    {
+        this.setAgency(newAgency);
+        newAgency.setAdministrator(this);
+    }    
+    
+    public void removeAgency() 
+    {
+        this.getAgency().setAdministrator(null);
+        this.setAgency(null);
+    }
 
     public void addCollaborator(Administrator newCollaborator) 
     {

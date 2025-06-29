@@ -95,7 +95,8 @@ public class RealEstate
     @OneToOne(mappedBy = "realEstate",
               fetch = FetchType.LAZY, 
               cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
-              orphanRemoval = true)
+              orphanRemoval = true,
+              optional = false)
     private Address address;
 
     @ManyToOne(fetch = FetchType.LAZY,
