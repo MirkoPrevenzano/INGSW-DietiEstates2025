@@ -15,12 +15,16 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 
 @Entity(name = "Agency")
 @Table(name = "agency")
 @Data
 @NoArgsConstructor
+@RequiredArgsConstructor
+@ToString(exclude = "administrator")
 public class Agency 
 {
     @Id

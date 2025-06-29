@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.dto.request.CollaboratorRegistrationDTO;
+import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
 import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
 import com.dietiEstates.backend.dto.response.AgentRegistrationResponseDTO;
@@ -39,6 +40,50 @@ public class AdministratorService
     //private final ValidationUtil validationUtil;
     private final MockingStatsUtil mockingStatsUtil;
     
+
+
+    @Transactional
+    public CollaboratorRegistrationResponseDTO adminRegistration(AdminRegistrationDTO collaboratorRegistrationDTO) throws UsernameNotFoundException, 
+                                                                                    IllegalArgumentException, MappingException
+    {
+        Optional<Administrator> adminOptional = administratorRepository.findByUsername(username);
+        if(adminOptional.isEmpty())
+        {
+            log.error("Admin not found in database");
+            throw new UsernameNotFoundException("Admin not found in database");
+        }
+        Administrator admin = adminOptional.get();
+
+        if(administratorRepository.findByUsername(collaboratorRegistrationDTO.getUsername()).isPresent())
+        {
+            log.error("This username is already present!");
+            throw new IllegalArgumentException("This username is already present!");
+        }
+
+        Administrator collaborator;
+        try 
+        {
+            collaborator = modelMapper.map(collaboratorRegistrationDTO, Administrator.class);
+        } 
+        catch (MappingException e) 
+        {
+            log.error("Problems while mapping! Probably the source object was different than the one expected!");
+            throw e;
+        }
+
+        String plainTextPassword = PasswordGenerator.generateRandomPassword();
+        String hashedPassword = passwordEncoder.encode(plainTextPassword);
+
+        collaborator.setPassword(hashedPassword);
+        collaborator.setMustChangePassword(true);
+        
+        admin.addCollaborator(collaborator);
+        admin = administratorRepository.save(admin);
+
+        log.info("Collaborator was created successfully!");
+
+        return new CollaboratorRegistrationResponseDTO(collaborator.getUsername(), plainTextPassword);
+    }
 
 
     @Transactional
