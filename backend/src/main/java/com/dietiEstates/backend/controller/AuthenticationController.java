@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.request.CustomerRegistrationDTO;
 import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
 import com.dietiEstates.backend.service.AuthenticationService;
@@ -28,6 +30,25 @@ public class AuthenticationController
     private final AuthenticationService authenticationService;
 
     
+
+    @PostMapping(path = "/admin-registration")
+    public ResponseEntity<?> adminRegistration(@RequestBody AdminRegistrationDTO adminRegistrationDTO) 
+    {
+        try 
+        {
+            authenticationService.adminRegistration(adminRegistrationDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } 
+        catch (UsernameNotFoundException e)
+        {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).header("Error", e.getMessage()).build();
+        }
+        catch (IllegalArgumentException e) 
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).header("Error", e.getMessage()).build();
+        }
+    }
+
 
     @PostMapping(path = "customer-registration")
     public ResponseEntity<AuthenticationResponseDTO> customerRegistration(@RequestBody CustomerRegistrationDTO userRegistrationDTO) 

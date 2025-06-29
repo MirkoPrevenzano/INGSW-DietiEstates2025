@@ -5,11 +5,16 @@ import org.modelmapper.MappingException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.enums.Role;
+import com.dietiEstates.backend.model.entity.Administrator;
+import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.model.entity.Customer;
+import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.request.CustomerRegistrationDTO;
 import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
+import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.service.CustomerService;
 import com.dietiEstates.backend.util.JwtUtil;
@@ -22,6 +27,8 @@ import java.util.Collections;
 import java.util.Optional;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import java.util.UUID;
@@ -38,6 +45,48 @@ public class AuthenticationService
     private final PasswordEncoder passwordEncoder;
     //private final ValidationUtil validationUtil;
     private final CustomerService customerService;
+    private final AdministratorRepository administratorRepository;
+
+
+    @Transactional
+    public void adminRegistration(AdminRegistrationDTO adminRegistrationDTO) throws UsernameNotFoundException, 
+                                                                                    IllegalArgumentException, MappingException
+    {
+        try 
+        {
+            ValidationUtil.emailValidator(adminRegistrationDTO.getUsername());
+            ValidationUtil.passwordValidator(adminRegistrationDTO.getPassword());
+        } 
+        catch (IllegalArgumentException e) 
+        {
+            log.error(e.getMessage());
+            throw e;
+        }
+
+        if(administratorRepository.findByUsername(adminRegistrationDTO.getUsername()).isPresent())
+        {
+            log.error("This username is already present!");
+            throw new IllegalArgumentException("This username is already present!");
+        }
+
+        Administrator admin;
+        Agency agency;
+        try 
+        {
+            admin = modelMapper.map(adminRegistrationDTO, Administrator.class);
+            agency = modelMapper.map(adminRegistrationDTO, Agency.class);
+        } 
+        catch (MappingException e) 
+        {
+            log.error("Problems while mapping! Probably the source object was different than the one expected!");
+            throw e;
+        }
+        
+        admin.addAgency(agency);
+        admin = administratorRepository.save(admin);
+
+        log.info("Admin (and agency) was created successfully!");
+    }
 
 
     public AuthenticationResponseDTO customerRegistration(CustomerRegistrationDTO customerRegistrationDTO) throws IllegalArgumentException, MappingException

@@ -33,7 +33,7 @@ public class Agency
     @NonNull
     @Column(nullable = false, 
             updatable = true)
-    private String name;
+    private String agencyName;
 
     @NonNull
     @Column(nullable = false, 

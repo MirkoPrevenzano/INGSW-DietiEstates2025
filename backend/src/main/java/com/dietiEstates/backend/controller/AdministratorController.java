@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.dietiEstates.backend.dto.request.CollaboratorRegistrationDTO;
+import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
 import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
 import com.dietiEstates.backend.dto.response.AgentRegistrationResponseDTO;
@@ -30,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AdministratorController
 {
     private final AdministratorService administratorService;
-
+    
 
 
     @PostMapping(path = "/{username}/create-collaborator")

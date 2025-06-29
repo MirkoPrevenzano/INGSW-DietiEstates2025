@@ -24,4 +24,13 @@ public class AdminRegistrationDTO
 
     @NonNull
     private String password;
+
+    @NonNull
+    private String agencyName;
+
+    @NonNull
+    private String businessName;
+
+    @NonNull
+    private String vatNumber;
 }
