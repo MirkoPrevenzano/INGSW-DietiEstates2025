@@ -2,15 +2,19 @@
 package com.dietiEstates.backend.exception;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.modelmapper.MappingException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.dietiEstates.backend.dto.response.ApiErrorResponse;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -19,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 public class GlobalExceptionHandler 
 {
     @ExceptionHandler(MappingException.class)
-    public ResponseEntity<?> handleError(MappingException e) 
+    public ResponseEntity<?> handleMappingExceptions(MappingException e) 
     {
         return ResponseEntity.badRequest().header("Error", 
         "Problems while mapping! Probably the source object was different than the one expected!").body(null);
@@ -28,17 +32,40 @@ public class GlobalExceptionHandler
 
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiErrorResponse> handleValidationExceptions(MethodArgumentNotValidException e) 
+    public ResponseEntity<ApiErrorResponse> handleMethodArgumentNotValidExceptions(MethodArgumentNotValidException e, HttpServletRequest request) 
     {
+        StringBuilder strBuilder = new StringBuilder();
+
+        
+        e.getBindingResult().getAllErrors().forEach((error) -> {
+        String fieldName;
+        try {
+            fieldName = ((FieldError) error).getField();
+
+        } catch (ClassCastException ex) {
+            fieldName = error.getObjectName();
+        }
+        String message = error.getDefaultMessage();
+        strBuilder.append(String.format("%s: %s,  ", fieldName, message));
+        });
+
+        log.info("STR BUILDER : {}", strBuilder);
+        log.info("\n\ne.message : {}", e.getMessage());
+
         Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getFieldErrors().forEach(error -> 
+        e.getBindingResult().getFieldErrors().forEach(error -> 
             errors.put(error.getField(), error.getDefaultMessage()));
         
-        ErrorResponse errorResponse = new ErrorResponse(
-            HttpStatus.BAD_REQUEST.value(),
-            "Validation Failed",
-            errors
-        );
+        log.info("MAP : {}", errors);
+
+        int statusCode = HttpStatus.BAD_REQUEST.value();
+        String errorReason = HttpStatus.BAD_REQUEST.getReasonPhrase();
+        String errorType = HttpStatus.BAD_REQUEST.series().name();
+        String errorDescription = "ERRORE!";
+        String errorPath = request.getRequestURI();
+
+        ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
         
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
+}

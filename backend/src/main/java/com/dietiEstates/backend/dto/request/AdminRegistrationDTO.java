@@ -1,6 +1,8 @@
 
 package com.dietiEstates.backend.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -13,7 +15,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AdminRegistrationDTO 
 {
-    @NonNull
+    //@NonNull
+    //@NotBlank
     private String name;
 
     @NonNull
@@ -32,5 +35,6 @@ public class AdminRegistrationDTO
     private String businessName;
 
     @NonNull
+    @Size(min = 2)
     private String vatNumber;
 }
