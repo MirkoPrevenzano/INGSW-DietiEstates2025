@@ -15,6 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.dietiEstates.backend.enums.Role;
+import com.dietiEstates.backend.security.filter.EndpointFilter;
 import com.dietiEstates.backend.security.filter.JwtAuthenticationFilter;
 import com.dietiEstates.backend.security.filter.JwtAuthorizationFilter;
 import com.dietiEstates.backend.security.handler.AccessDeniedHandlerCustomImpl;
@@ -34,6 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WebSecurityConfig
 {
+    private final EndpointFilter endpointFilter;
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
     private final AuthenticationEntryPointCustomImpl authenticationEntryPointCustomImpl;
     private final AccessDeniedHandlerCustomImpl accessDeniedHandlerCustomImpl;
@@ -87,7 +89,8 @@ public class WebSecurityConfig
             
             .exceptionHandling(a -> a.authenticationEntryPoint(authenticationEntryPointCustomImpl).accessDeniedHandler(accessDeniedHandlerCustomImpl))   
             .addFilter(jwtAuthenticationFilter)
-            .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(endpointFilter, JwtAuthorizationFilter.class);
            
 
         return http.build();
