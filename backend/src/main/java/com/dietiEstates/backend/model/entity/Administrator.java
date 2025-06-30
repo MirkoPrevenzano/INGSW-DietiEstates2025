@@ -90,13 +90,29 @@ public class Administrator extends User
     {
         this.setAgency(newAgency);
         newAgency.setAdministrator(this);
+
+        
     }    
     
     public void removeAgency() 
     {
         this.getAgency().setAdministrator(null);
         this.setAgency(null);
+
+        
     }
+
+
+    public void setAgency(Agency newAgency) 
+    {
+        if (newAgency == null) 
+            this.agency.setAdministrator(null);
+        else 
+            newAgency.setAdministrator(this);
+
+        this.agency = newAgency;
+    }
+
 
     public void addCollaborator(Administrator newCollaborator) 
     {

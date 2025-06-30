@@ -139,6 +139,17 @@ public class RealEstate
 
 
 
+    public void setAddress(Address newAddress) 
+    {
+        if (newAddress == null) 
+            this.address.setRealEstate(null);
+        else 
+			newAddress.setRealEstate(this);
+
+        this.address = newAddress;
+    }
+
+	
     public void addAddress(Address newAddress) 
     {
         this.setAddress(newAddress);

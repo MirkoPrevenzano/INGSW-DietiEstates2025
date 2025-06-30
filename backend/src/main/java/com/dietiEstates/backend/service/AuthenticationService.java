@@ -54,7 +54,6 @@ public class AuthenticationService
     {
         try 
         {
-            ValidationUtil.emailValidator(adminRegistrationDTO.getUsername());
             ValidationUtil.passwordValidator(adminRegistrationDTO.getPassword());
         } 
         catch (IllegalArgumentException e) 
@@ -82,7 +81,7 @@ public class AuthenticationService
             throw e;
         }
         
-        admin.addAgency(agency);
+        admin.setAgency(agency);
         admin = administratorRepository.save(admin);
 
         log.info("Admin (and agency) was created successfully!");
