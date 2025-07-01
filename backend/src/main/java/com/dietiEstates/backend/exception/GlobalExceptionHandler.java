@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.dietiEstates.backend.dto.response.ApiErrorResponse;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,15 +36,13 @@ public class GlobalExceptionHandler
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ApiErrorResponse> handleConstraintViolationExceptions(ConstraintViolationException e, HttpServletRequest request) 
     {
-        
-        //log.info("constraintviolationexc to string : {}", e);
-        log.info("constraintviolationexc  mess : {}", e.getMessage());
-        log.info("constraintviolationexc  cause : {}", e.getCause());
+        log.error("CONSTRAINT VIOLATION EXCEPTION!");
+        log.error(e.getMessage());
 
-        int statusCode = HttpStatus.BAD_REQUEST.value();
-        String errorReason = HttpStatus.BAD_REQUEST.getReasonPhrase();
-        String errorType = HttpStatus.BAD_REQUEST.series().toString();
-        String errorDescription = "ERRORE!";
+        int statusCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
+        String errorReason = HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase();
+        String errorType = HttpStatus.INTERNAL_SERVER_ERROR.series().toString();
+        String errorDescription = "Errore durante il salvataggio dei dati!";
         String errorPath = request.getRequestURI();
 
         ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);

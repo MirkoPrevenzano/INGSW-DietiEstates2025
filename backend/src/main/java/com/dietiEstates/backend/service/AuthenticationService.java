@@ -82,10 +82,7 @@ public class AuthenticationService
         }
         
         admin.setAgency(agency);
-        admin.setName(null);
-        admin = administratorRepository.save(admin);
-
-        log.info("Admin (and agency) was created successfully!");
+        administratorRepository.save(admin);
     }
 
 

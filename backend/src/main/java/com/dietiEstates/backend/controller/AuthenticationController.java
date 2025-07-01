@@ -39,6 +39,7 @@ public class AuthenticationController
         try 
         {
             authenticationService.adminRegistration(adminRegistrationDTO);
+            log.info("Admin (and agency) registered successfully!");
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } 
         catch (UsernameNotFoundException e)
