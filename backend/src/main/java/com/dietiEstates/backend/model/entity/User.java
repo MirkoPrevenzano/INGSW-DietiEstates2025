@@ -21,7 +21,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
-
+import jakarta.validation.constraints.NotNull;
 import lombok.NonNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,7 +42,8 @@ public abstract class User implements UserDetails
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
 
-    @NonNull
+    @NotNull
+    //@NonNull
     @Column(nullable = false, 
             updatable = true)
     private String name;
@@ -68,6 +69,15 @@ public abstract class User implements UserDetails
 
 
     
+    public User(String name, @NonNull String surname, @NonNull String username, @NonNull String password) {
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+}
+
+
+
     @Override
     public Collection<SimpleGrantedAuthority> getAuthorities() 
     {

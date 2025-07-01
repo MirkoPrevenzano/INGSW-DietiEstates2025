@@ -7,6 +7,7 @@ import java.util.Map;
 import org.modelmapper.MappingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.dietiEstates.backend.dto.response.ApiErrorResponse;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -29,6 +31,25 @@ public class GlobalExceptionHandler
         "Problems while mapping! Probably the source object was different than the one expected!").body(null);
     }
 
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<ApiErrorResponse> handleConstraintViolationExceptions(ConstraintViolationException e, HttpServletRequest request) 
+    {
+        
+        //log.info("constraintviolationexc to string : {}", e);
+        log.info("constraintviolationexc  mess : {}", e.getMessage());
+        log.info("constraintviolationexc  cause : {}", e.getCause());
+
+        int statusCode = HttpStatus.BAD_REQUEST.value();
+        String errorReason = HttpStatus.BAD_REQUEST.getReasonPhrase();
+        String errorType = HttpStatus.BAD_REQUEST.series().toString();
+        String errorDescription = "ERRORE!";
+        String errorPath = request.getRequestURI();
+
+        ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+        
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
 
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
