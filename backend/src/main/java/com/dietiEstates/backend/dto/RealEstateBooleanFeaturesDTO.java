@@ -3,13 +3,14 @@ package com.dietiEstates.backend.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.NonNull;
+import lombok.AllArgsConstructor;
+
 
 
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class RealEstateBooleanFeaturesDTO 
 {
     @NonNull

@@ -4,13 +4,13 @@ package com.dietiEstates.backend.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
 
 
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class AddressDTO 
 {
     @NonNull

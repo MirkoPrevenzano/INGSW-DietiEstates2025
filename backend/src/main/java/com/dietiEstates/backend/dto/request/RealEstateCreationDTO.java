@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class RealEstateCreationDTO
 {
     @NonNull

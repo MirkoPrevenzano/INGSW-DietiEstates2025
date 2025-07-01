@@ -4,13 +4,13 @@ package com.dietiEstates.backend.dto.request;
 import lombok.NonNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
 
 
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class UpdatePasswordDTO 
 {
     @NonNull

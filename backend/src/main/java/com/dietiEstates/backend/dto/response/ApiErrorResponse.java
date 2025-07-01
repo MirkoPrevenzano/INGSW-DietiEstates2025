@@ -1,23 +1,19 @@
 
 package com.dietiEstates.backend.dto.response;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 
 @Data
 @NoArgsConstructor
 public class ApiErrorResponse 
 {
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'  T: 'HH:mm:ss");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd', 'HH:mm:ss");
 
     @NonNull
     private Integer status;
