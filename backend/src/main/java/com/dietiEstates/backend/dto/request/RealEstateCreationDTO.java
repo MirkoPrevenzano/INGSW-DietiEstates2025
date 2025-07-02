@@ -6,10 +6,12 @@ import com.dietiEstates.backend.dto.RealEstateBooleanFeaturesDTO;
 import com.dietiEstates.backend.dto.RealEstateLocationFeaturesDTO;
 import com.dietiEstates.backend.dto.RealEstateMainFeaturesDTO;
 
+import jakarta.validation.Valid;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
+
 
 
 
@@ -18,15 +20,15 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 public class RealEstateCreationDTO
 {
-    @NonNull
+    @Valid
     private AddressDTO addressDTO;
 
-    @NonNull
+    @Valid
     private RealEstateMainFeaturesDTO realEstateMainFeaturesDTO;
 
-    @NonNull
+    @Valid
     private RealEstateBooleanFeaturesDTO realEstateBooleanFeaturesDTO;
 
-    @NonNull
+    @Valid
     private RealEstateLocationFeaturesDTO realEstateLocationFeaturesDTO;
 }

@@ -17,21 +17,25 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 public class AdminRegistrationDTO 
 {
-    //@NonNull
-    @NotNull
-    //@NotBlank
+    @NotBlank
     private String name;
 
+    @NotBlank
     private String surname;
 
+    @NotBlank
     private String username;
 
+    @NotBlank
     private String password;
 
+    @NotBlank
     private String agencyName;
 
+    @NotBlank
     private String businessName;
 
-    @Size(min = 2)
+    @NotBlank
+    @Size(min = 2) // TODO custom validator
     private String vatNumber;
 }

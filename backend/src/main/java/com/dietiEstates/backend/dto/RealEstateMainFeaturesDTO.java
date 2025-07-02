@@ -4,6 +4,9 @@ package com.dietiEstates.backend.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 
 
@@ -13,36 +16,42 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RealEstateMainFeaturesDTO 
 {
-    @NonNull
+    @NotBlank
     private String title;
 
-    @NonNull
+    @NotBlank
     private String description;
     
-    @NonNull
+    @NotNull
+    @PositiveOrZero   
     private Double price;
     
-    @NonNull
+    @NotNull
+    @PositiveOrZero    
     private Double condoFee;
     
-    @NonNull
+    @NotNull
+    @PositiveOrZero    
     private Double size;
 
-    @NonNull
+    @NotNull
+    @PositiveOrZero
     private Integer roomsNumber;
 
-    @NonNull
+    @NotNull
+    @PositiveOrZero    
     private Integer floorNumber;
 
-    @NonNull
+    @NotNull
+    @PositiveOrZero    
     private Integer parkingSpacesNumber;
 
-    @NonNull
+    @NotBlank
     private String energyClass;
     
-    @NonNull
+    @NotBlank
     private String propertyCondition;
 
-    @NonNull
+    @NotBlank
     private String furnitureCondition;
 }

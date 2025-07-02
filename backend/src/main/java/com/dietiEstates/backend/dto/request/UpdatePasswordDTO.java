@@ -4,6 +4,7 @@ package com.dietiEstates.backend.dto.request;
 import lombok.NonNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 
 
@@ -13,9 +14,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UpdatePasswordDTO 
 {
-    @NonNull
+    @NotBlank
     private String oldPassword;
 
-    @NonNull
+    @NotBlank
     private String newPassword;
 }

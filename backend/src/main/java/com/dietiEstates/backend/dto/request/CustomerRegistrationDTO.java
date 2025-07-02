@@ -4,6 +4,7 @@ package com.dietiEstates.backend.dto.request;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 
 
@@ -13,15 +14,15 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class CustomerRegistrationDTO 
 {
-    @NonNull
+    @NotBlank
     private String name;
 
-    @NonNull
+    @NotBlank
     private String surname;
 
-    @NonNull
+    @NotBlank
     private String username;
 
-    @NonNull
+    @NotBlank
     private String password;
 }

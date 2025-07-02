@@ -3,7 +3,6 @@ package com.dietiEstates.backend.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.AllArgsConstructor;
 
 
@@ -13,30 +12,21 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RealEstateBooleanFeaturesDTO 
 {
-    @NonNull
     private Boolean airConditioning;
 
-    @NonNull
     private Boolean heating;  
 
-    @NonNull
     private Boolean elevator;
 
-    @NonNull
     private Boolean concierge;
 
-    @NonNull
     private Boolean terrace;
 
-    @NonNull
     private Boolean garage;
 
-    @NonNull
     private Boolean balcony;
 
-    @NonNull
     private Boolean garden;
 
-    @NonNull
     private Boolean swimmingPool;
 }

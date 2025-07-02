@@ -4,6 +4,16 @@ package com.dietiEstates.backend.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+
+import java.math.BigDecimal;
+
+import org.hibernate.validator.constraints.Range;
+
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 
 
@@ -13,27 +23,31 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class AddressDTO 
 {
-    @NonNull
+    @NotBlank
     private String state;
 
-    @NonNull
+    @NotBlank
     private String country;
 
-    @NonNull
+    @NotBlank
     private String city;
 
-    @NonNull
+    @NotBlank
     private String street;
 
-    @NonNull
+    @NotBlank
     private String postalCode;
 
-    @NonNull
+    @NotBlank
     private Integer houseNumber;
 
-    @NonNull
+    @NotNull
+    @DecimalMin(value = "-180.0")
+    @DecimalMax(value = "180.0")
     private Double longitude;
 
-    @NonNull
+    @NotNull
+    @DecimalMin(value = "-90.0")
+    @DecimalMax(value = "90.0")
     private Double latitude;
 }
