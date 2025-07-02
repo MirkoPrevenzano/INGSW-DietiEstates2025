@@ -37,7 +37,17 @@ public class EndpointFilter extends OncePerRequestFilter
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException 
-    {
+    {        
+        if(request.getServletPath().equals("/login") || 
+           request.getServletPath().equals("/auth/customer-registration") ||
+           request.getServletPath().equals("/auth/admin-registration") ||
+           request.getServletPath().equals("/auth/login/oauth2/code/google")) 
+           
+        {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         log.info("Attempting EndpointFilter...");
 
         try 

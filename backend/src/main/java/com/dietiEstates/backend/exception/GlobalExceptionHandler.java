@@ -1,6 +1,7 @@
 
 package com.dietiEstates.backend.exception;
 
+import java.lang.annotation.ElementType;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,7 @@ import com.dietiEstates.backend.dto.response.ApiErrorResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.ElementKind;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -38,6 +40,8 @@ public class GlobalExceptionHandler
     {
         log.error("CONSTRAINT VIOLATION EXCEPTION!");
         log.error(e.getMessage());
+
+        log.info(e.getConstraintViolations().iterator().next().getPropertyPath().iterator().next().getKind().name());
 
         int statusCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
         String errorReason = HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase();

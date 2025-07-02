@@ -3,7 +3,7 @@ package com.dietiEstates.backend.model.embeddable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-
+import jakarta.validation.constraints.Min;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -24,6 +24,7 @@ public class ExternalRealEstateFeatures
     private Integer parkingSpacesNumber;
 
     @NonNull
+    @Min(22)
     @Column(name = "floor_number", 
             nullable = false, 
             updatable = true)

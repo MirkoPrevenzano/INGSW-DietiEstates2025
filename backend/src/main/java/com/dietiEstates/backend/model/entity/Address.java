@@ -54,8 +54,7 @@ public class Address
      @NonNull
      @Column(name = "postal_code",
              nullable = false, 
-             updatable = true, 
-             columnDefinition = "char(6)")
+             updatable = true)
      private String postalCode;
 
      @NonNull

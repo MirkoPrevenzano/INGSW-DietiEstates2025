@@ -88,12 +88,12 @@ public class BackendApplication
             administrator.addAgency(new Agency("a", "null", "sdks"));
             administrator = administratorRepository.saveAndFlush(administrator);
 
- /* 
+  
             Agent agent = (new Agent("a","b","c",passwordEncoder.encode("ssssssssssssssssssss22A@")));
             administrator.addAgent(agent);
             administrator = administratorRepository.save(administrator);
             
-            System.out.println("\n\nFINDING BY USERNAME BY USER REPO:");
+           /* System.out.println("\n\nFINDING BY USERNAME BY USER REPO:");
             User user = userRepository.findByUsername("ydk").get();
 
 
