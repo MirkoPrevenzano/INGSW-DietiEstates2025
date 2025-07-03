@@ -86,7 +86,6 @@ public class RealEstate
     private InternalRealEstateFeatures internalFeatures;
 
     @Embedded
-    @Valid
     private ExternalRealEstateFeatures externalFeatures;    
     
     @Embedded

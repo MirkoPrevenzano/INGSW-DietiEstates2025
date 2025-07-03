@@ -24,7 +24,6 @@ public class ExternalRealEstateFeatures
     private Integer parkingSpacesNumber;
 
     @NonNull
-    @Min(22)
     @Column(name = "floor_number", 
             nullable = false, 
             updatable = true)

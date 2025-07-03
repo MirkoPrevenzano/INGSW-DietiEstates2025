@@ -3,7 +3,9 @@ package com.dietiEstates.backend.exception;
 
 import java.lang.annotation.ElementType;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import org.modelmapper.MappingException;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.ElementKind;
+import jakarta.validation.Path;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -32,26 +35,6 @@ public class GlobalExceptionHandler
     {
         return ResponseEntity.badRequest().header("Error", 
         "Problems while mapping! Probably the source object was different than the one expected!").body(null);
-    }
-
-
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<ApiErrorResponse> handleConstraintViolationExceptions(ConstraintViolationException e, HttpServletRequest request) 
-    {
-        log.error("CONSTRAINT VIOLATION EXCEPTION!");
-        log.error(e.getMessage());
-
-        log.info(e.getConstraintViolations().iterator().next().getPropertyPath().iterator().next().getKind().name());
-
-        int statusCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
-        String errorReason = HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase();
-        String errorType = HttpStatus.INTERNAL_SERVER_ERROR.series().toString();
-        String errorDescription = "Errore durante il salvataggio dei dati!";
-        String errorPath = request.getRequestURI();
-
-        ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
-        
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 
 
@@ -91,5 +74,50 @@ public class GlobalExceptionHandler
         ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
         
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<ApiErrorResponse> handleConstraintViolationExceptions(ConstraintViolationException e, HttpServletRequest request) 
+    {
+        log.error("CONSTRAINT VIOLATION EXCEPTION!");
+        log.error(e.getMessage());
+
+        if (isViolationFromEntity(e))
+        {
+            int statusCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
+            String errorReason = HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase();
+            String errorType = HttpStatus.INTERNAL_SERVER_ERROR.series().toString();
+            String errorDescription = "Errore durante il salvataggio dei dati!";
+            String errorPath = request.getRequestURI();
+    
+            ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+            
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+        }
+        else
+        {
+            int statusCode = HttpStatus.BAD_REQUEST.value();
+            String errorReason = HttpStatus.BAD_REQUEST.getReasonPhrase();
+            String errorType = HttpStatus.BAD_REQUEST.series().toString();
+            String errorDescription = "ERRORE";
+            String errorPath = request.getRequestURI();
+    
+            ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+            
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        }
+    }
+
+
+    private boolean isViolationFromEntity(ConstraintViolationException e) 
+    {
+        //e.getConstraintViolations().iterator().next().getPropertyPath().iterator().next().getKind().equals(ElementKind.PROPERTY)
+        ConstraintViolation<?> firstViolation = e.getConstraintViolations().iterator().next();
+        Path.Node firstNode = firstViolation.getPropertyPath().iterator().next();
+        ElementKind kind = firstNode.getKind();
+           
+        return kind == ElementKind.PROPERTY ? true : false;
     }
 }

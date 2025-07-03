@@ -82,7 +82,6 @@ public class AuthenticationService
         }
         
         admin.setAgency(agency);
-        admin.setName(null);
         administratorRepository.save(admin);
     }   
 
