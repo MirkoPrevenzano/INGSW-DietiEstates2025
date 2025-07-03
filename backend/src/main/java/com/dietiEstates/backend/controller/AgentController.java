@@ -29,6 +29,7 @@ import com.dietiEstates.backend.util.PdfUtil;
 import com.lowagie.text.DocumentException;
 
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,7 +47,7 @@ public class AgentController
 
 
     @PostMapping(path = "{username}/create-real-estate-for-sale")
-    public ResponseEntity<Long> createRealEstateForSale(@PathVariable String username, @RequestBody RealEstateForSaleCreationDTO realEstateForSaleCreationDTO) 
+    public ResponseEntity<Long> createRealEstateForSale(@PathVariable String username, @Valid @RequestBody RealEstateForSaleCreationDTO realEstateForSaleCreationDTO) 
     {
         try 
         {

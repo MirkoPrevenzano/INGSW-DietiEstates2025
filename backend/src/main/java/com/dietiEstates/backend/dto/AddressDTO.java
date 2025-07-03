@@ -38,7 +38,7 @@ public class AddressDTO
     @NotBlank // TODO: custom validator
     private String postalCode;
 
-    @NotBlank // TODO: custom validator
+    @NotNull// TODO: custom validator
     private Integer houseNumber;
 
     @NotNull
