@@ -4,6 +4,10 @@ package com.dietiEstates.backend.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+
+import com.dietiEstates.backend.enums.EnergyClass;
+import com.dietiEstates.backend.validator.EnumValidator;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -51,6 +55,7 @@ public class RealEstateMainFeaturesDTO
     private Integer parkingSpacesNumber;
 
     @NotBlank // TODO: custom validator
+    @EnumValidator(enumClass = EnergyClass.class)
     private String energyClass;
     
     @NotBlank // TODO: custom validator

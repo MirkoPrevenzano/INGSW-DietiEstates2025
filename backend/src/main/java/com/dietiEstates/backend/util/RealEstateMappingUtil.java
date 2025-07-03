@@ -15,6 +15,7 @@ import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.PropertyCondition;
+import com.dietiEstates.backend.extra.ValidatableEnum;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.NotaryDeedState;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
@@ -133,6 +134,11 @@ public class RealEstateMappingUtil
                 Double price = realEstateCreationDTO.getRealEstateMainFeaturesDTO().getPrice();
                 Double condoFee = realEstateCreationDTO.getRealEstateMainFeaturesDTO().getCondoFee();
                 EnergyClass energyClass = ValidationUtil.enumValidator(EnergyClass.class, realEstateCreationDTO.getRealEstateMainFeaturesDTO().getEnergyClass());
+                
+                System.out.println("\n\nSONO IN MAPPING DA DTO A ENTITY:");
+                //System.out.println("EnergyClass.valueOf(): " + EnergyClass.valueOf(realEstateCreationDTO.getRealEstateMainFeaturesDTO().getEnergyClass()));
+                System.out.println("EnergyClass.of(): " + ValidatableEnum.of(EnergyClass.class, realEstateCreationDTO.getRealEstateMainFeaturesDTO().getEnergyClass()));
+
 
                 InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(realEstateCreationDTO.getRealEstateMainFeaturesDTO().getSize(), 
