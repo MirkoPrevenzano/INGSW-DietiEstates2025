@@ -1,11 +1,11 @@
 
 package com.dietiEstates.backend.enums;
 
-import com.dietiEstates.backend.extra.ValidableEnum;
+import com.dietiEstates.backend.extra.ValidatableEnum;
 
 
 
-public enum NotaryDeedState implements ValidableEnum
+public enum NotaryDeedState implements ValidatableEnum
 {
     FREE("Free"),
     OCCUPIED("Occupied"),

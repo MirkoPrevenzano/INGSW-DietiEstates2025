@@ -1,11 +1,11 @@
 
 package com.dietiEstates.backend.enums;
 
-import com.dietiEstates.backend.extra.ValidableEnum;
+import com.dietiEstates.backend.extra.ValidatableEnum;
 
 
 
-public enum EnergyClass implements ValidableEnum
+public enum EnergyClass implements ValidatableEnum
 {
     A_PLUS_PLUS("A++"),
     A_PLUS("A+"),

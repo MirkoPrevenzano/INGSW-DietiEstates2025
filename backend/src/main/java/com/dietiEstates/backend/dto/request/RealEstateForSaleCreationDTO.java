@@ -6,6 +6,7 @@ import com.dietiEstates.backend.dto.RealEstateBooleanFeaturesDTO;
 import com.dietiEstates.backend.dto.RealEstateLocationFeaturesDTO;
 import com.dietiEstates.backend.dto.RealEstateMainFeaturesDTO;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class RealEstateForSaleCreationDTO extends RealEstateCreationDTO
 {
-    @NonNull
+    @NotBlank // TODO: validazione enum
     private String notaryDeedState;   
 
 

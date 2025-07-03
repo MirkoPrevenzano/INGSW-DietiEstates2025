@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 
 
@@ -17,13 +19,15 @@ import lombok.AllArgsConstructor;
 public class RealEstateMainFeaturesDTO 
 {
     @NotBlank
+    @Size(min = 50, max = 100)
     private String title;
 
     @NotBlank
+    @Size(min = 200, max = 500)
     private String description;
     
     @NotNull
-    @PositiveOrZero   
+    @Positive  
     private Double price;
     
     @NotNull
@@ -31,11 +35,11 @@ public class RealEstateMainFeaturesDTO
     private Double condoFee;
     
     @NotNull
-    @PositiveOrZero    
+    @Positive       
     private Double size;
 
     @NotNull
-    @PositiveOrZero
+    @Positive   
     private Integer roomsNumber;
 
     @NotNull
@@ -46,12 +50,12 @@ public class RealEstateMainFeaturesDTO
     @PositiveOrZero    
     private Integer parkingSpacesNumber;
 
-    @NotBlank
+    @NotBlank // TODO: custom validator
     private String energyClass;
     
-    @NotBlank
+    @NotBlank // TODO: custom validator
     private String propertyCondition;
 
-    @NotBlank
+    @NotBlank // TODO: custom validator
     private String furnitureCondition;
 }

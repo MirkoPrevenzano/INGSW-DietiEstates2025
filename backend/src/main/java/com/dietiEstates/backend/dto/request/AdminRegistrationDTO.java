@@ -35,7 +35,6 @@ public class AdminRegistrationDTO
     @NotBlank
     private String businessName;
 
-    @NotBlank
-    @Size(min = 2) // TODO custom validator
+    @NotBlank // TODO custom validator
     private String vatNumber;
 }

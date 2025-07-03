@@ -35,10 +35,10 @@ public class AddressDTO
     @NotBlank
     private String street;
 
-    @NotBlank
+    @NotBlank // TODO: custom validator
     private String postalCode;
 
-    @NotBlank
+    @NotBlank // TODO: custom validator
     private Integer houseNumber;
 
     @NotNull

@@ -6,6 +6,8 @@ import com.dietiEstates.backend.dto.RealEstateBooleanFeaturesDTO;
 import com.dietiEstates.backend.dto.RealEstateLocationFeaturesDTO;
 import com.dietiEstates.backend.dto.RealEstateMainFeaturesDTO;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -20,10 +22,12 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class RealEstateForRentCreationDTO extends RealEstateCreationDTO
 {
-    @NonNull
+    @NotNull
+    @PositiveOrZero
     private Double securityDeposit;
 
     @NonNull
+    @PositiveOrZero
     private Integer contractYears;
 
 
