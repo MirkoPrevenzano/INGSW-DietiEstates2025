@@ -72,7 +72,7 @@ public class GlobalExceptionHandler
         String errorDescription = "ERRORE!";
         String errorPath = request.getRequestURI();
 
-        ApiErrorResponse errorResponse = new ApiErrorResponse(null, errorReason, errorType, errorDescription, errorPath);
+        ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
         
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }

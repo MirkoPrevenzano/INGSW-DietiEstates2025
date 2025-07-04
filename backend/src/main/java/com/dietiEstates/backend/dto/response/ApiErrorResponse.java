@@ -14,13 +14,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ApiErrorResponse 
 {
-    private Integer status;
+    private int status;
     private String reason;    
     private String type;
     private String description;
     private String path;
 
-    @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd', 'HH:mm:ss")
+    @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd, HH:mm:ss")
     private LocalDateTime timestamp = LocalDateTime.now();
 
 

@@ -21,7 +21,7 @@ public class RealEstateStatsDTO
     private Long id;
     private String title;
 
-    @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd', 'HH:mm:ss")
+    @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd, HH:mm:ss")
     private LocalDateTime uploadingDate;
 
     private Long viewsNumber;
