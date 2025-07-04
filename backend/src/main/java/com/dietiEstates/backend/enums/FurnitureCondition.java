@@ -17,13 +17,13 @@ public enum FurnitureCondition implements ValidatableEnum
 
 
 
-    FurnitureCondition(String value) 
+    private FurnitureCondition(String value) 
     {
         this.value = value;
     };
 
 
-    
+    @Override
     public String getValue() 
     {
         return this.value;

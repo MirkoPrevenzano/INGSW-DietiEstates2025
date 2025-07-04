@@ -24,13 +24,13 @@ public enum EnergyClass implements ValidatableEnum
 
 
 
-    EnergyClass(String value) 
+    private EnergyClass(String value) 
     {
         this.value = value;
     };
 
 
-
+    @Override
     public String getValue() 
     {
         return this.value;

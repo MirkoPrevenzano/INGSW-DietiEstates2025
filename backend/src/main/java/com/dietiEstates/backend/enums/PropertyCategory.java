@@ -20,13 +20,14 @@ public enum PropertyCategory implements ValidatableEnum
     private final String value;
 
 
-    PropertyCategory(String value) 
+    private PropertyCategory(String value) 
     {
         this.value = value;
     };
 
 
     
+    @Override
     public String getValue() 
     {
         return this.value;

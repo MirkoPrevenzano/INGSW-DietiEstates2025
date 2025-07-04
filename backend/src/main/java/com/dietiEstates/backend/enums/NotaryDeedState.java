@@ -17,13 +17,13 @@ public enum NotaryDeedState implements ValidatableEnum
 
 
 
-    NotaryDeedState(String value) 
+   private NotaryDeedState(String value) 
     {
         this.value = value;
     };
 
     
-
+    @Override
     public String getValue() 
     {
         return this.value;
