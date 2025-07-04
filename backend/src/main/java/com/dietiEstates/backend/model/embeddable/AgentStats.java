@@ -52,7 +52,7 @@ public class AgentStats
     private int completedDeals;
 
     @Transient
-    private int successRate;
+    private double successRate;
 
 
     

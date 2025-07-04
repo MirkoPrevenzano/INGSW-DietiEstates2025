@@ -2,10 +2,9 @@
 package com.dietiEstates.backend.model.embeddable;
 
 import jakarta.persistence.Embeddable;
-
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,14 +12,11 @@ import java.util.Objects;
 
 
 @Embeddable
-@RequiredArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class CustomerViewsRealEstateId implements Serializable 
 { 
-    @NonNull
     private Long customerId;
-
-    @NonNull
     private Long realEstateId;
 
 

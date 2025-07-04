@@ -62,24 +62,28 @@ public class ExternalRealEstateFeatures
     @NonNull
     @Column(name = "swimming_pool",
             nullable = false, 
-            updatable = true) 
+            updatable = true,
+            columnDefinition = "boolean default false") 
     private Boolean swimmingPool;
 
     @NonNull
     @Column(name = "near_park",
             nullable = false, 
-            updatable = true)     
+            updatable = true,
+            columnDefinition = "boolean default false")
     private Boolean nearPark;
 
     @NonNull
     @Column(name = "near_school",
             nullable = false, 
-            updatable = true)   
+            updatable = true,
+            columnDefinition = "boolean default false")
     private Boolean nearSchool; 
 
     @NonNull
     @Column(name = "near_public_transport",
             nullable = false, 
-            updatable = true)   
+            updatable = true,
+            columnDefinition = "boolean default false")   
     private Boolean nearPublicTransport;
 }

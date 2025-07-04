@@ -137,6 +137,9 @@ public class AgentController
     {
         List<RealEstateStatsDTO> realEstateStatsDTOs = agentService.getRealEstateStats(username, 
                                                                                                  PageRequest.of(page, limit));
+
+        log.info("\n\n class: " + realEstateStatsDTOs.get(0).getUploadingDate().getClass() + "\n\n" );
+        
         return ResponseEntity.ok().body(realEstateStatsDTOs);
     }
 
