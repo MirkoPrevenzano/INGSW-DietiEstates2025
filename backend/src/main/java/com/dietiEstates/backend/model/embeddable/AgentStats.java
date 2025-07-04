@@ -17,32 +17,27 @@ public class AgentStats
 {
     @Column(name = "total_uploaded_real_estates", 
             nullable = false,
-            updatable = true,
-            columnDefinition = "int default 0")
+            updatable = true)
     private int totalUploadedRealEstates;
 
     @Column(name = "total_sold_real_estates", 
             nullable = false,
-            updatable = true,
-            columnDefinition = "int default 0")
+            updatable = true)
     private int totalSoldRealEstates;    
     
     @Column(name = "total_rented_real_estates", 
             nullable = false,
-            updatable = true,
-            columnDefinition = "int default 0")
+            updatable = true)
     private int totalRentedRealEstates;
 
     @Column(name = "sales_income", 
             nullable = false,
-            updatable = true,
-            columnDefinition = "double precision default 0")
+            updatable = true)
     private double salesIncome;
 
     @Column(name = "rentals_income", 
             nullable = false,
-            updatable = true,
-            columnDefinition = "double precision default 0")
+            updatable = true)
     private double rentalsIncome; 
 
     @Transient

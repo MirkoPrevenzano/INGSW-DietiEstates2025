@@ -12,21 +12,21 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RealEstateBooleanFeaturesDTO 
 {
-    private Boolean airConditioning;
+    private boolean airConditioning;
 
-    private Boolean heating;  
+    private boolean heating;  
 
-    private Boolean elevator;
+    private boolean elevator;
 
-    private Boolean concierge;
+    private boolean concierge;
 
-    private Boolean terrace;
+    private boolean terrace;
 
-    private Boolean garage;
+    private boolean garage;
 
-    private Boolean balcony;
+    private boolean balcony;
 
-    private Boolean garden;
+    private boolean garden;
 
-    private Boolean swimmingPool;
+    private boolean swimmingPool;
 }

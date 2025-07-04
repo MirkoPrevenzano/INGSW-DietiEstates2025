@@ -12,9 +12,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RealEstateLocationFeaturesDTO
 {
-    private Boolean nearPark;
+    private boolean nearPark;
 
-    private Boolean nearSchool;
+    private boolean nearSchool;
 
-    private Boolean nearPublicTransport;   
+    private boolean nearPublicTransport;   
 }
