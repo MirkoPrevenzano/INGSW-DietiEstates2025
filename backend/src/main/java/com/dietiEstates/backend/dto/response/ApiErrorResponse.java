@@ -4,17 +4,20 @@ package com.dietiEstates.backend.dto.response;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 
 @Data
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class ApiErrorResponse 
 {
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd', 'HH:mm:ss");
-
     @NonNull
     private Integer status;
 
@@ -30,18 +33,6 @@ public class ApiErrorResponse
     @NonNull
     private String path;
 
-    @NonNull
-    private String timestamp;
-
-
-    
-    public ApiErrorResponse(@NonNull Integer status, @NonNull String reason, @NonNull String type, @NonNull String description, @NonNull String path) 
-    {
-        this.status = status;
-        this.reason = reason;
-        this.type = type;
-        this.description = description;
-        this.path = path;
-        this.timestamp = LocalDateTime.now().format(FORMATTER);
-    }
+    @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd', 'HH:mm:ss")
+    private LocalDateTime timestamp = LocalDateTime.now();
 }
