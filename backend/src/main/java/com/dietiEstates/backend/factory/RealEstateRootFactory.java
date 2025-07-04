@@ -1,7 +1,7 @@
 
 package com.dietiEstates.backend.factory;
  
-import com.dietiEstates.backend.dto.RealEstatePreviewInfoDTO;
+import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.model.entity.RealEstateForRent;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;

@@ -6,13 +6,14 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import com.dietiEstates.backend.dto.AddressDTO;
-import com.dietiEstates.backend.dto.RealEstateBooleanFeaturesDTO;
-import com.dietiEstates.backend.dto.RealEstateLocationFeaturesDTO;
-import com.dietiEstates.backend.dto.RealEstateMainFeaturesDTO;
+
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
+import com.dietiEstates.backend.dto.request.support.AddressDTO;
+import com.dietiEstates.backend.dto.request.support.RealEstateBooleanFeaturesDTO;
+import com.dietiEstates.backend.dto.request.support.RealEstateLocationFeaturesDTO;
+import com.dietiEstates.backend.dto.request.support.RealEstateMainFeaturesDTO;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;

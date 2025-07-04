@@ -6,13 +6,13 @@ import java.time.LocalDateTime;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import com.dietiEstates.backend.dto.AddressDTO;
-import com.dietiEstates.backend.dto.RealEstateBooleanFeaturesDTO;
-import com.dietiEstates.backend.dto.RealEstateLocationFeaturesDTO;
-import com.dietiEstates.backend.dto.RealEstateMainFeaturesDTO;
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
+import com.dietiEstates.backend.dto.request.support.AddressDTO;
+import com.dietiEstates.backend.dto.request.support.RealEstateBooleanFeaturesDTO;
+import com.dietiEstates.backend.dto.request.support.RealEstateLocationFeaturesDTO;
+import com.dietiEstates.backend.dto.request.support.RealEstateMainFeaturesDTO;
 import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.PropertyCondition;
 import com.dietiEstates.backend.extra.ValidatableEnum;

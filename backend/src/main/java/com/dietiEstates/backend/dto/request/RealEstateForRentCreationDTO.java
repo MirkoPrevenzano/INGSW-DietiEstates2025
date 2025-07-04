@@ -1,10 +1,10 @@
 
 package com.dietiEstates.backend.dto.request;
 
-import com.dietiEstates.backend.dto.AddressDTO;
-import com.dietiEstates.backend.dto.RealEstateBooleanFeaturesDTO;
-import com.dietiEstates.backend.dto.RealEstateLocationFeaturesDTO;
-import com.dietiEstates.backend.dto.RealEstateMainFeaturesDTO;
+import com.dietiEstates.backend.dto.request.support.AddressDTO;
+import com.dietiEstates.backend.dto.request.support.RealEstateBooleanFeaturesDTO;
+import com.dietiEstates.backend.dto.request.support.RealEstateLocationFeaturesDTO;
+import com.dietiEstates.backend.dto.request.support.RealEstateMainFeaturesDTO;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
