@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.util;
+package com.dietiEstates.backend.helper;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;

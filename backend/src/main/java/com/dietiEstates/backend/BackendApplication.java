@@ -45,6 +45,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.dietiEstates.backend.helper.JFreeChartUtil;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.model.entity.Agent;
@@ -55,7 +56,6 @@ import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.repository.UserRepository;
 import com.dietiEstates.backend.service.AgentService;
-import com.dietiEstates.backend.util.JFreeChartUtil;
 import com.dietiEstates.backend.util.AmazonS3Util;
 import com.dietiEstates.backend.util.ValidationUtil;
 

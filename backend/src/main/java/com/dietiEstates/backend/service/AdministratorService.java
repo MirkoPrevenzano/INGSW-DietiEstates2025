@@ -16,12 +16,12 @@ import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
 import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
 import com.dietiEstates.backend.dto.response.AgentRegistrationResponseDTO;
 import com.dietiEstates.backend.dto.response.CollaboratorRegistrationResponseDTO;
+import com.dietiEstates.backend.helper.MockingStatsUtil;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.AgentRepository;
-import com.dietiEstates.backend.util.MockingStatsUtil;
 import com.dietiEstates.backend.util.PasswordGenerator;
 import com.dietiEstates.backend.util.ValidationUtil;
 

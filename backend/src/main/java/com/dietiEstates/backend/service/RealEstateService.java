@@ -17,6 +17,7 @@ import com.dietiEstates.backend.dto.response.RealEstateCompleteInfoDTO;
 import com.dietiEstates.backend.dto.response.RealEstateSearchDTO;
 import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
+import com.dietiEstates.backend.helper.FindByRadiusUtil;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.model.entity.Customer;
@@ -25,7 +26,6 @@ import com.dietiEstates.backend.model.entity.RealEstate;
 //import com.dietiEstates.backend.repository.CVRRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.util.FindByRadiusUtil;
 import com.dietiEstates.backend.util.RealEstateMappingUtil;
 
 import jakarta.transaction.Transactional;

@@ -14,6 +14,7 @@ import com.dietiEstates.backend.dto.request.support.AddressDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateBooleanFeaturesDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateLocationFeaturesDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateMainFeaturesDTO;
+import com.dietiEstates.backend.helper.JFreeChartUtil;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
@@ -26,7 +27,6 @@ import com.dietiEstates.backend.model.entity.RealEstateForRent;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.util.JFreeChartUtil;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;

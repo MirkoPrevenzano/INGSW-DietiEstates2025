@@ -69,7 +69,7 @@ public class AmazonS3Util
 		}
 		catch (SdkException e)
 		{
-            log.error("Amazon S3/SDK exception has occurred while getting photo in the bucket!");
+            log.error("Amazon S3/SDK exception has occurred while getting photo from the bucket!");
             throw e;	
 		}
 		catch (IOException e) 

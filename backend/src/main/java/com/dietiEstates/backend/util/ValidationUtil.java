@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 @Slf4j
 public class ValidationUtil
 {
+    // TODO: spostare in classi validator
     private static final Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]" 
                                                               + "[a-zA-Z0-9!#$%&'*+/=?^_`{|}~.-]*" 
                                                               + "[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]{1}" 
