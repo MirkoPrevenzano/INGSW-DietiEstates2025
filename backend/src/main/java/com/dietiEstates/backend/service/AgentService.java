@@ -26,7 +26,7 @@ import com.dietiEstates.backend.enums.PropertyCondition;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.NotaryDeedState;
 import com.dietiEstates.backend.factory.RealEstateFactory;
-import com.dietiEstates.backend.helper.MockingStatsUtil;
+import com.dietiEstates.backend.helper.MockingStatsHelper;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.AgentStats;
@@ -56,7 +56,7 @@ public class AgentService
     private final AgentRepository agentRepository;
     private final RealEstateRepository realEstateRepository;
     private final AmazonS3Util amazonS3Util;
-    private final MockingStatsUtil mockingStatsUtil;
+    private final MockingStatsHelper mockingStatsHelper;
     private final ModelMapper modelMapper;
     //private final ValidationUtil validationUtil;
     private final RealEstateFactory realEstateFactory;
@@ -75,7 +75,7 @@ public class AgentService
         Address address = modelMapper.map(realEstateCreationDTO.getAddressDTO(), Address.class);
         realEstate.addAddress(address);
 
-        mockingStatsUtil.mockEstateStats(realEstate);
+        mockingStatsHelper.mockEstateStats(realEstate);
 
         agent.addRealEstate(realEstate);
 
@@ -103,7 +103,7 @@ public class AgentService
         Address address = modelMapper.map(realEstateForRentCreationDTO.getAddressDTO(), Address.class);
         realEstate.addAddress(address);
 
-        mockingStatsUtil.mockEstateStats(realEstate);
+        mockingStatsHelper.mockEstateStats(realEstate);
 
         int newTotalUploadedRealEstates = agent.getAgentStats().getTotalUploadedRealEstates() + 1;
         agent.getAgentStats().setTotalUploadedRealEstates(newTotalUploadedRealEstates);
@@ -201,7 +201,7 @@ public class AgentService
 
     public AgentStatsDTO getAgentStats(String username) 
     {
-        Integer[] estatesPerMonth = mockingStatsUtil.mockBarChartStats();
+        Integer[] estatesPerMonth = mockingStatsHelper.mockBarChartStats();
         AgentStats agentStats = agentRepository.findByUsername(username).get().getAgentStats();
         AgentStatsDTO agentStatsDTO = new AgentStatsDTO(agentStats, estatesPerMonth);
         return agentStatsDTO;
@@ -216,6 +216,6 @@ public class AgentService
 
     public Integer[] getBarChartStats() 
     {
-        return mockingStatsUtil.mockBarChartStats();
+        return mockingStatsHelper.mockBarChartStats();
     }
 }

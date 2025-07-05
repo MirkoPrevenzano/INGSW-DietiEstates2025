@@ -16,13 +16,13 @@ import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
 import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
 import com.dietiEstates.backend.dto.response.AgentRegistrationResponseDTO;
 import com.dietiEstates.backend.dto.response.CollaboratorRegistrationResponseDTO;
-import com.dietiEstates.backend.helper.MockingStatsUtil;
+import com.dietiEstates.backend.helper.MockingStatsHelper;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.AgentRepository;
-import com.dietiEstates.backend.util.PasswordGenerator;
+import com.dietiEstates.backend.util.PasswordGeneratorUtil;
 import com.dietiEstates.backend.util.ValidationUtil;
 
 import lombok.RequiredArgsConstructor;
@@ -39,7 +39,7 @@ public class AdministratorService
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     //private final ValidationUtil validationUtil;
-    private final MockingStatsUtil mockingStatsUtil;
+    private final MockingStatsHelper mockingStatsHelper;
     
 
 
@@ -72,7 +72,7 @@ public class AdministratorService
             throw e;
         }
 
-        String plainTextPassword = PasswordGenerator.generateRandomPassword();
+        String plainTextPassword = PasswordGeneratorUtil.generateRandomPassword();
         String hashedPassword = passwordEncoder.encode(plainTextPassword);
 
         collaborator.setPassword(hashedPassword);
@@ -116,13 +116,13 @@ public class AdministratorService
             throw e;
         }
 
-        String plainTextPassword = PasswordGenerator.generateRandomPassword();
+        String plainTextPassword = PasswordGeneratorUtil.generateRandomPassword();
         String hashedPassword = passwordEncoder.encode(plainTextPassword);
 
         agent.setPassword(hashedPassword);
         agent.setMustChangePassword(true);
 
-        mockingStatsUtil.mockAgentStats(agent);
+        mockingStatsHelper.mockAgentStats(agent);
 
         administrator.addAgent(agent);
         administrator = administratorRepository.save(administrator);

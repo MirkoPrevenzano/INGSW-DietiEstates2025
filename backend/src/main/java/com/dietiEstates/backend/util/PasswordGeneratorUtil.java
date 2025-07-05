@@ -10,7 +10,7 @@ import lombok.experimental.UtilityClass;
 
 
 @UtilityClass
-public class PasswordGenerator 
+public class PasswordGeneratorUtil
 {
     private static final int DEFAULT_PASSWORD_LENGTH = 12;
 

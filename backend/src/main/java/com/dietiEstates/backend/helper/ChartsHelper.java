@@ -22,9 +22,9 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class JFreeChartUtil
+public class ChartsHelper
 {
-    private final MockingStatsUtil mockingStatsUtil;
+    private final MockingStatsHelper mockingStatsHelper;
 
     public void createPieChart(Agent agent)
     {
@@ -125,7 +125,7 @@ public class JFreeChartUtil
         final String november = "NOV";
         final String december = "DEC";
 
-        Integer[] valuePerMonth = mockingStatsUtil.mockBarChartStats();
+        Integer[] valuePerMonth = mockingStatsHelper.mockBarChartStats();
 
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
         dataset.addValue( valuePerMonth[0], soldRentedEstates , january );

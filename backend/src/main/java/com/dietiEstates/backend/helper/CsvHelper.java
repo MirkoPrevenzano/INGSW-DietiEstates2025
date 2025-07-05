@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class CsvUtil
+public class CsvHelper
 {
     private final AgentRepository agentRepository;
     private final AgentService agentService;

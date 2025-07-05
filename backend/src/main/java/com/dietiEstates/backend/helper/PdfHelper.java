@@ -41,7 +41,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class PdfUtil extends PdfPageEventHelper
+public class PdfHelper extends PdfPageEventHelper
 {
     private final AgentRepository agentRepository;
 
@@ -56,7 +56,7 @@ public class PdfUtil extends PdfPageEventHelper
 
             PdfWriter p = PdfWriter.getInstance(document, response.getOutputStream());
 
-            p.setPageEvent(new PdfUtil(agentRepository));
+            p.setPageEvent(new PdfHelper(agentRepository));
             document.open();
 
             Font paragraphFont = createFont(FontFactory.HELVETICA_BOLD, 22, Color.BLUE);

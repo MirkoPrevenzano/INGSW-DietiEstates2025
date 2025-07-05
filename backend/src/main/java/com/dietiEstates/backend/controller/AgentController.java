@@ -23,8 +23,8 @@ import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.dto.response.AgentStatsDTO;
 import com.dietiEstates.backend.dto.response.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
-import com.dietiEstates.backend.helper.CsvUtil;
-import com.dietiEstates.backend.helper.PdfUtil;
+import com.dietiEstates.backend.helper.CsvHelper;
+import com.dietiEstates.backend.helper.PdfHelper;
 import com.dietiEstates.backend.service.AgentService;
 import com.lowagie.text.DocumentException;
 
@@ -41,8 +41,8 @@ import lombok.extern.slf4j.Slf4j;
 public class AgentController 
 {
     private final AgentService agentService;
-    private final CsvUtil csvUtil;
-    private final PdfUtil pdfUtil;
+    private final CsvHelper csvUtil;
+    private final PdfHelper pdfHelper;
 
 
 
@@ -111,7 +111,7 @@ public class AgentController
 
         try 
         {  
-            pdfUtil.writePdfResponse(username, response);
+            pdfHelper.writePdfResponse(username, response);
         } 
         catch (DocumentException | IOException e) 
         {

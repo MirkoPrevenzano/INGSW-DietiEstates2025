@@ -14,7 +14,7 @@ import com.dietiEstates.backend.dto.request.support.AddressDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateBooleanFeaturesDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateLocationFeaturesDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateMainFeaturesDTO;
-import com.dietiEstates.backend.helper.JFreeChartUtil;
+import com.dietiEstates.backend.helper.ChartsHelper;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
@@ -47,7 +47,7 @@ import java.util.UUID;
 public class CustomerService 
 {
 
-    private final JFreeChartUtil jFreeChartUtil;
+    private final ChartsHelper chartsHelper;
     private final RealEstateRepository realEstateRepository;
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
