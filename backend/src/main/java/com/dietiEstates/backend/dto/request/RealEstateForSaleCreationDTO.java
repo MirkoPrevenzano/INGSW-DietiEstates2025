@@ -23,7 +23,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class RealEstateForSaleCreationDTO extends RealEstateCreationDTO
 {
-    @EnumValidator(enumClass = NotaryDeedState.class)
+    //@EnumValidator(enumClass = NotaryDeedState.class)
     private String notaryDeedState;
 
 

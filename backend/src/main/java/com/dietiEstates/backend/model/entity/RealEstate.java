@@ -25,6 +25,8 @@ import jakarta.persistence.ForeignKey;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
@@ -45,6 +47,7 @@ import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @NoArgsConstructor
+@RequiredArgsConstructor
 @ToString(exclude = {"photos", "customerViewsRealEstates"})
 public class RealEstate 
 {
@@ -53,17 +56,20 @@ public class RealEstate
     @Column(name = "real_estate_id")
     private Long realEstateId;
 
+    @NonNull
     @Column(nullable = false, 
             updatable = true)
     private String title;
 
+    @NonNull
     @Column(nullable = false, 
             updatable = true, 
             columnDefinition = "text")
     private String description;
 
+    @NonNull
     @Column(name = "uploading_date",
-            nullable = true, 
+            nullable = false, 
             updatable = false)    
     private LocalDateTime uploadingDate;
     
@@ -76,15 +82,18 @@ public class RealEstate
             updatable = true)         
     private double condoFee;
 
+    @NonNull
     @Enumerated(value = EnumType.STRING)
     @Column(name = "energy_class",
             nullable = false, 
             updatable = true)         
     private EnergyClass energyClass;
 
+    @NonNull
     @Embedded 
     private InternalRealEstateFeatures internalFeatures;
 
+    @NonNull
     @Embedded
     private ExternalRealEstateFeatures externalFeatures;    
     
@@ -125,8 +134,8 @@ public class RealEstate
 
 
 
-    public RealEstate(String title, String description, LocalDateTime uploadingDate, Double price, Double condoFee, EnergyClass energyClass,
-                      InternalRealEstateFeatures internalFeatures, ExternalRealEstateFeatures externalFeatures)
+    public RealEstate(@NonNull String title, @NonNull String description, @NonNull LocalDateTime uploadingDate, double price, double condoFee,
+                      @NonNull EnergyClass energyClass, @NonNull InternalRealEstateFeatures internalFeatures, @NonNull ExternalRealEstateFeatures externalFeatures)
     {
         this.title = title;
         this.description = description;
@@ -139,7 +148,7 @@ public class RealEstate
     }
 
 
-
+    
     public void setAddress(Address newAddress) 
     {
         if (newAddress == null) 

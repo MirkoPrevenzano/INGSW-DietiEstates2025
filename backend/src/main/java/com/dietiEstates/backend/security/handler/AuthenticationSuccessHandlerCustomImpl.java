@@ -52,9 +52,9 @@ public class AuthenticationSuccessHandlerCustomImpl implements AuthenticationSuc
     private boolean getMustChangePassword(UserDetails user)
     {
         if(user instanceof Administrator) 
-            return ((Administrator) user).getMustChangePassword();
+            return ((Administrator) user).isMustChangePassword();
         else if (user instanceof Agent) 
-            return ((Agent) user).getMustChangePassword();
+            return ((Agent) user).isMustChangePassword();
         
         return false;
     }

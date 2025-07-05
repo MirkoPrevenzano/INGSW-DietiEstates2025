@@ -58,7 +58,7 @@ public class RealEstateMappingUtil
         
         RealEstateForSale realEstateForSale = new RealEstateForSale(realEstate.getTitle(), realEstate.getDescription(), realEstate.getUploadingDate(), realEstate.getPrice(), realEstate.getCondoFee(), 
                                                                     realEstate.getEnergyClass(), realEstate.getInternalFeatures(), realEstate.getExternalFeatures(), 
-                                                                    ValidationUtil.enumValidator(NotaryDeedState.class, realEstateForSaleCreationDTO.getNotaryDeedState()));
+                                                                    NotaryDeedState.BARE_PROPERTY);
         
         Address address = modelMapper.map(realEstateForSaleCreationDTO.getAddressDTO(), Address.class);
         realEstateForSale.addAddress(address);

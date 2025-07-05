@@ -42,44 +42,34 @@ public abstract class User implements UserDetails
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
 
-    @NotNull
-    //@NonNull
+    @NonNull
     @Column(nullable = false, 
-            updatable = true)
+	    updatable = true)
     private String name;
 
     @NonNull
     @Column(nullable = false, 
-            updatable = true)
+	    updatable = true)
     private String surname;
 
     @NonNull
     @Column(nullable = false, 
-            updatable = true)
+	    updatable = true)
     private String username;
 
     @NonNull
     @Column(nullable = false, 
-            updatable = true)
+	    updatable = true)
     private String password; 
 
     @Transient
     Role role;
 
 
-    
-    public User(String name, @NonNull String surname, @NonNull String username, @NonNull String password) {
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
-}
-
-
 
     @Override
     public Collection<SimpleGrantedAuthority> getAuthorities() 
     {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+	    return List.of(new SimpleGrantedAuthority(role.name()));
     }
 }

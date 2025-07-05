@@ -29,8 +29,8 @@ import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 @RequiredArgsConstructor
 public class CustomerViewsRealEstate 
 {
-    @EmbeddedId
     @NonNull
+    @EmbeddedId
     private CustomerViewsRealEstateId customerViewsRealEstateId;
         
     @NonNull    

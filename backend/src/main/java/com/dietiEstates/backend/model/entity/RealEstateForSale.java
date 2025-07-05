@@ -19,6 +19,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.ToString;
 
 
@@ -33,6 +34,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class RealEstateForSale extends RealEstate 
 {
+    @NonNull
     @Enumerated(value = EnumType.STRING)
     @Column(name = "notary_deed_state",
             nullable = false, 
@@ -41,9 +43,9 @@ public class RealEstateForSale extends RealEstate
 
 
     
-    public RealEstateForSale(String title,String description, LocalDateTime uploadingDate, Double price, Double condoFee, EnergyClass energyClass,
+    public RealEstateForSale(String title, String description, LocalDateTime uploadingDate, Double price, Double condoFee, EnergyClass energyClass,
                              InternalRealEstateFeatures internalFeatures, ExternalRealEstateFeatures externalFeatures,
-                             NotaryDeedState notaryDeedState)
+                             @NonNull NotaryDeedState notaryDeedState)
     {
         super(title,description, uploadingDate, price, condoFee, energyClass, internalFeatures, externalFeatures);
         this.notaryDeedState = notaryDeedState;
