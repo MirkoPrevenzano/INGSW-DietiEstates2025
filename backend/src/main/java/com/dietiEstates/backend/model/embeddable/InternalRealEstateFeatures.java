@@ -46,9 +46,9 @@ public class InternalRealEstateFeatures
     @Column(name = "air_conditioning",
             nullable = false, 
             updatable = true)
-    private Boolean airConditioning;
+    private boolean airConditioning;
 
     @Column(nullable = false, 
             updatable = true)
-    private Boolean heating;
+    private boolean heating;
 }

@@ -4,17 +4,16 @@ package com.dietiEstates.backend.model.embeddable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.Min;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-
 
 
 @Embeddable
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ExternalRealEstateFeatures 
 {
     @NonNull
@@ -29,57 +28,47 @@ public class ExternalRealEstateFeatures
             updatable = true)
     private Integer floorNumber;
     
-    @NonNull
     @Column(nullable = false, 
             updatable = true)    
-    private Boolean elevator;
+    private boolean elevator;
 
-    @NonNull
     @Column(nullable = false, 
             updatable = true)     
-    private Boolean concierge;
+    private boolean concierge;
 
-    @NonNull
     @Column(nullable = false, 
             updatable = true) 
-    private Boolean terrace;
+    private boolean terrace;
 
-    @NonNull
     @Column(nullable = false, 
             updatable = true) 
-    private Boolean garage;
+    private boolean garage;
 
-    @NonNull
     @Column(nullable = false, 
             updatable = true) 
-    private Boolean balcony;
+    private boolean balcony;
 
-    @NonNull
     @Column(nullable = false, 
             updatable = true) 
-    private Boolean garden;
+    private boolean garden;
 
-    @NonNull
     @Column(name = "swimming_pool",
             nullable = false, 
             updatable = true) 
-    private Boolean swimmingPool;
+    private boolean swimmingPool;
 
-    @NonNull
     @Column(name = "near_park",
             nullable = false, 
             updatable = true)
-    private Boolean nearPark;
+    private boolean nearPark;
 
-    @NonNull
     @Column(name = "near_school",
             nullable = false, 
             updatable = true)
-    private Boolean nearSchool; 
+    private boolean nearSchool; 
 
-    @NonNull
     @Column(name = "near_public_transport",
             nullable = false, 
             updatable = true)   
-    private Boolean nearPublicTransport;
+    private boolean nearPublicTransport;
 }

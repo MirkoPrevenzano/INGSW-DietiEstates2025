@@ -90,21 +90,21 @@ public class RealEstateMappingUtil
 
 
                 RealEstateBooleanFeaturesDTO realEstateBooleanFeaturesDTO = new RealEstateBooleanFeaturesDTO();
-                realEstateBooleanFeaturesDTO.setAirConditioning(realEstate.getInternalFeatures().getAirConditioning());
-                realEstateBooleanFeaturesDTO.setHeating(realEstate.getInternalFeatures().getHeating());
-                realEstateBooleanFeaturesDTO.setBalcony(realEstate.getExternalFeatures().getBalcony());
-                realEstateBooleanFeaturesDTO.setElevator(realEstate.getExternalFeatures().getElevator());
-                realEstateBooleanFeaturesDTO.setConcierge(realEstate.getExternalFeatures().getConcierge());
-                realEstateBooleanFeaturesDTO.setGarage(realEstate.getExternalFeatures().getGarage());
-                realEstateBooleanFeaturesDTO.setGarden(realEstate.getExternalFeatures().getGarden());
-                realEstateBooleanFeaturesDTO.setSwimmingPool(realEstate.getExternalFeatures().getSwimmingPool());
-                realEstateBooleanFeaturesDTO.setTerrace(realEstate.getExternalFeatures().getTerrace());
+                realEstateBooleanFeaturesDTO.setAirConditioning(realEstate.getInternalFeatures().isAirConditioning());
+                realEstateBooleanFeaturesDTO.setHeating(realEstate.getInternalFeatures().isHeating());
+                realEstateBooleanFeaturesDTO.setBalcony(realEstate.getExternalFeatures().isBalcony());
+                realEstateBooleanFeaturesDTO.setElevator(realEstate.getExternalFeatures().isElevator());
+                realEstateBooleanFeaturesDTO.setConcierge(realEstate.getExternalFeatures().isConcierge());
+                realEstateBooleanFeaturesDTO.setGarage(realEstate.getExternalFeatures().isGarage());
+                realEstateBooleanFeaturesDTO.setGarden(realEstate.getExternalFeatures().isGarden());
+                realEstateBooleanFeaturesDTO.setSwimmingPool(realEstate.getExternalFeatures().isSwimmingPool());
+                realEstateBooleanFeaturesDTO.setTerrace(realEstate.getExternalFeatures().isTerrace());
 
 
                 RealEstateLocationFeaturesDTO realEstateLocationFeaturesDTO = new RealEstateLocationFeaturesDTO();
-                realEstateLocationFeaturesDTO.setNearPark(realEstate.getExternalFeatures().getNearPark());
-                realEstateLocationFeaturesDTO.setNearSchool(realEstate.getExternalFeatures().getNearSchool());
-                realEstateLocationFeaturesDTO.setNearPublicTransport(realEstate.getExternalFeatures().getNearPublicTransport());
+                realEstateLocationFeaturesDTO.setNearPark(realEstate.getExternalFeatures().isNearPark());
+                realEstateLocationFeaturesDTO.setNearSchool(realEstate.getExternalFeatures().isNearSchool());
+                realEstateLocationFeaturesDTO.setNearPublicTransport(realEstate.getExternalFeatures().isNearPublicTransport());
 
 
                 AddressDTO addressDTO = modelMapper.map(realEstate.getAddress(), AddressDTO.class);
