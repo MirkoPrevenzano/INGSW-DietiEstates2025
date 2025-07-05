@@ -69,12 +69,12 @@ public class RealEstate
     
     @Column(nullable = false, 
             updatable = true)
-    private Double price;
+    private double price;
 
     @Column(name = "condo_fee",
             nullable = false, 
             updatable = true)         
-    private Double condoFee;
+    private double condoFee;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "energy_class",

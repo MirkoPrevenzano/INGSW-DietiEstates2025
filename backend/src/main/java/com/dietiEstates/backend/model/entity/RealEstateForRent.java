@@ -33,12 +33,12 @@ public class RealEstateForRent extends RealEstate
     @Column(name = "security_deposit",
             nullable = false, 
             updatable = true)
-    private Double securityDeposit;
+    private double securityDeposit;
 
     @Column(name = "contract_years",
             nullable = false, 
             updatable = true)
-    private Integer contractYears;
+    private double contractYears;
 
 
 

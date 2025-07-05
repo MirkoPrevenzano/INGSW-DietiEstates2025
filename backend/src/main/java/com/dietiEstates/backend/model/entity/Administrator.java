@@ -44,9 +44,8 @@ public class Administrator extends User
 
     @Column(name = "must_change_password", 
             nullable = false, 
-            updatable = true,
-            columnDefinition = "boolean default false")
-    private Boolean mustChangePassword = false;
+            updatable = true)
+    private boolean mustChangePassword;
 
 
 

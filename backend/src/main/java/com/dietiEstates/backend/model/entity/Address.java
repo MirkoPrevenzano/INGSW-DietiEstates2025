@@ -63,15 +63,13 @@ public class Address
              updatable = true)
      private Integer houseNumber;
 
-     @NonNull
      @Column(nullable = false, 
              updatable = true)
-     private Double longitude;
+     private double longitude;
 
-     @NonNull
      @Column(nullable = false, 
              updatable = true)
-     private Double latitude;
+     private double latitude;
 
      
      @MapsId

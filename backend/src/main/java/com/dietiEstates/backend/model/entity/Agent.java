@@ -45,10 +45,9 @@ public class Agent extends User
     private Long userId; */
 
     @Column(name = "must_change_password", 
-    nullable = false, 
-    updatable = true,
-    columnDefinition = "boolean default false")
-    private Boolean mustChangePassword = false;
+            nullable = false, 
+            updatable = true)
+    private boolean mustChangePassword;
 
     @Embedded
     AgentStats agentStats = new AgentStats();

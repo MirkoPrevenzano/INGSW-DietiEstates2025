@@ -39,7 +39,7 @@ public class Customer extends User
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId; */
 
-    @Column(name = "is_auth_with_external_api", nullable = false, columnDefinition = "boolean default false")
+    @Column(name = "is_auth_with_external_api", nullable = false)
     private boolean isAuthWithExternalAPI;//valutare se creare una classe d'appoggio
 
 

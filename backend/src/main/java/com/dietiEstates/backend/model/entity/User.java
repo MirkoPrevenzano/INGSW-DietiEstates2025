@@ -63,7 +63,6 @@ public abstract class User implements UserDetails
             updatable = true)
     private String password; 
 
-    @Enumerated(EnumType.STRING)
     @Transient
     Role role;
 

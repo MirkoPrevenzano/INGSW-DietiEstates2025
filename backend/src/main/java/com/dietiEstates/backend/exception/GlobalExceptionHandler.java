@@ -31,6 +31,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GlobalExceptionHandler 
 {
+    // TODO: creare NPE handler
+
+    
     @ExceptionHandler(MappingException.class)
     public ResponseEntity<?> handleMappingExceptions(MappingException e) 
     {
