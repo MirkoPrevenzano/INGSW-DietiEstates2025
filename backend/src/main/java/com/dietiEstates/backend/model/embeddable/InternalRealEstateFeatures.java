@@ -24,12 +24,12 @@ public class InternalRealEstateFeatures
 {
     @Column(nullable = false, 
             updatable = true)
-    private Double size;
+    private double size;
 
     @Column(name = "rooms_number", 
             nullable = false, 
             updatable = true)
-    private Integer roomsNumber;
+    private int roomsNumber;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "estate_condition", 

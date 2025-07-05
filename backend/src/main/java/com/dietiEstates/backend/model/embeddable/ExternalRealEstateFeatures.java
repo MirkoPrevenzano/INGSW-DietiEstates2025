@@ -16,17 +16,15 @@ import lombok.NonNull;
 @AllArgsConstructor
 public class ExternalRealEstateFeatures 
 {
-    @NonNull
     @Column(name = "parking_spaces_number", 
             nullable = false, 
             updatable = true)
-    private Integer parkingSpacesNumber;
+    private int parkingSpacesNumber;
 
-    @NonNull
     @Column(name = "floor_number", 
             nullable = false, 
             updatable = true)
-    private Integer floorNumber;
+    private int floorNumber;
     
     @Column(nullable = false, 
             updatable = true)    
