@@ -1,11 +1,15 @@
 
 package com.dietiEstates.backend.enums;
 
+import java.util.stream.Stream;
+
 import com.dietiEstates.backend.extra.ValidatableEnum;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 
 
-public enum NotaryDeedState implements ValidatableEnum
+public enum NotaryDeedState
 {
     FREE("Free"),
     OCCUPIED("Occupied"),
@@ -22,10 +26,24 @@ public enum NotaryDeedState implements ValidatableEnum
         this.value = value;
     };
 
+
     
-    @Override
+    @JsonValue
     public String getValue() 
     {
         return this.value;
+    }
+
+
+    @JsonCreator
+    static public NotaryDeedState of(String value) 
+    {
+        if(value == null)
+            return null;
+
+        return Stream.of(NotaryDeedState.values())
+                     .filter(notaryDeedState -> notaryDeedState.getValue().equals(value))
+                     .findFirst()
+                     .orElseThrow(() -> new IllegalArgumentException("Notary Deed State value not valid: '" + value + "'"));
     }
 }

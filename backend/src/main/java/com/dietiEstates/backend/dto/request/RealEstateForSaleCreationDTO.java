@@ -9,6 +9,7 @@ import com.dietiEstates.backend.enums.NotaryDeedState;
 import com.dietiEstates.backend.validator.EnumValidator;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -23,14 +24,14 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class RealEstateForSaleCreationDTO extends RealEstateCreationDTO
 {
-    //@EnumValidator(enumClass = NotaryDeedState.class)
-    private String notaryDeedState;
+    @NotNull
+    private NotaryDeedState notaryDeedState;
 
 
 
     public RealEstateForSaleCreationDTO(AddressDTO addressDTO, RealEstateMainFeaturesDTO realEstateMainFeaturesDTO, 
                                         RealEstateBooleanFeaturesDTO realEstateBooleanFeaturesDTO, RealEstateLocationFeaturesDTO realEstateLocationFeaturesDTO, 
-                                        String notaryDeedState)
+                                        NotaryDeedState notaryDeedState)
     {
         super(addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO);
         this.notaryDeedState = notaryDeedState;

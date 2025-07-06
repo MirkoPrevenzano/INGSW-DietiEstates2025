@@ -75,12 +75,12 @@ public class RealEstateMappingUtil
                 String description = realEstate.getDescription();
                 Double price = realEstate.getPrice();
                 Double condoFee = realEstate.getCondoFee();
-                String energyClass = realEstate.getEnergyClass().getValue();
+                EnergyClass energyClass = realEstate.getEnergyClass();
 
                 Double size = realEstate.getInternalFeatures().getSize();
                 Integer roomsNumber = realEstate.getInternalFeatures().getRoomsNumber();
-                String propertyCondition = realEstate.getInternalFeatures().getPropertyCondition().getValue();
-                String furnitureCondition = realEstate.getInternalFeatures().getFurnitureCondition().getValue();
+                PropertyCondition propertyCondition = realEstate.getInternalFeatures().getPropertyCondition();
+                FurnitureCondition furnitureCondition = realEstate.getInternalFeatures().getFurnitureCondition();
 
                 Integer parkingSpacesNumber = realEstate.getExternalFeatures().getParkingSpacesNumber();
                 Integer floorNumber = realEstate.getExternalFeatures().getFloorNumber();
@@ -114,7 +114,7 @@ public class RealEstateMappingUtil
                 if(realEstate instanceof RealEstateForSale)
                 {
                     RealEstateForSale realEstateForSale = (RealEstateForSale) realEstate;
-                    String notaryDeedState = realEstateForSale.getNotaryDeedState().getValue();
+                    NotaryDeedState notaryDeedState = realEstateForSale.getNotaryDeedState();
                     return new RealEstateForSaleCreationDTO(addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO, notaryDeedState);
                 }
                 else
@@ -134,18 +134,18 @@ public class RealEstateMappingUtil
                 String description = realEstateCreationDTO.getRealEstateMainFeaturesDTO().getDescription();
                 Double price = realEstateCreationDTO.getRealEstateMainFeaturesDTO().getPrice();
                 Double condoFee = realEstateCreationDTO.getRealEstateMainFeaturesDTO().getCondoFee();
-                EnergyClass energyClass = ValidationUtil.enumValidator(EnergyClass.class, realEstateCreationDTO.getRealEstateMainFeaturesDTO().getEnergyClass());
+                EnergyClass energyClass = realEstateCreationDTO.getRealEstateMainFeaturesDTO().getEnergyClass();
                 
                 System.out.println("\n\nSONO IN MAPPING DA DTO A ENTITY:");
                 //System.out.println("EnergyClass.valueOf(): " + EnergyClass.valueOf(realEstateCreationDTO.getRealEstateMainFeaturesDTO().getEnergyClass()));
-                System.out.println("EnergyClass.of(): " + ValidatableEnum.of(EnergyClass.class, realEstateCreationDTO.getRealEstateMainFeaturesDTO().getEnergyClass()));
+                //System.out.println("EnergyClass.of(): " + ValidatableEnum.of(EnergyClass.class, realEstateCreationDTO.getRealEstateMainFeaturesDTO().getEnergyClass()));
 
                 // TODO: controllare i NULL
                 InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(realEstateCreationDTO.getRealEstateMainFeaturesDTO().getSize(), 
                                                                        realEstateCreationDTO.getRealEstateMainFeaturesDTO().getRoomsNumber(), 
-                                                                       ValidationUtil.enumValidator(PropertyCondition.class, realEstateCreationDTO.getRealEstateMainFeaturesDTO().getPropertyCondition()), 
-                                                                       ValidationUtil.enumValidator(FurnitureCondition.class, realEstateCreationDTO.getRealEstateMainFeaturesDTO().getFurnitureCondition()),
+                                                                       realEstateCreationDTO.getRealEstateMainFeaturesDTO().getPropertyCondition(), 
+                                                                       realEstateCreationDTO.getRealEstateMainFeaturesDTO().getFurnitureCondition(),
                                                                        realEstateCreationDTO.getRealEstateBooleanFeaturesDTO().getAirConditioning(),
                                                                        realEstateCreationDTO.getRealEstateBooleanFeaturesDTO().getBalcony());
                 ExternalRealEstateFeatures externalRealEstateFeatures = 

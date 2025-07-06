@@ -22,7 +22,7 @@ public class JwtUtil
 {
     private final String ISSUER = "dieti-estates";
     private final String SECRET_KEY = "w4nw7RJyMobORgdBx4cj80GjLUMBSscPaZ1HOiiQlwo="; // generated with: openssl rand -base64 32
-    private final long EXPIRATION_TIME = 24 * 60 * 60 * 1000;
+    private final long EXPIRATION_TIME = 24 * 60 * 60 * 1000; // TODO: togliere 1000
     private final Algorithm ALGORITHM = Algorithm.HMAC256(SECRET_KEY.getBytes());
     private final JWTVerifier jwtVerifier = JWT.require(ALGORITHM).withIssuer(ISSUER).build();
     
@@ -40,7 +40,6 @@ public class JwtUtil
         
         return accessToken;
     }
-
 
     
     public void verifyToken(String token)
@@ -61,9 +60,9 @@ public class JwtUtil
     }
 
 
-    public String extractIssuingDate(String token) 
+    public Date extractIssuingDate(String token) 
     {
-        return getDecodedJWT(token).getIssuer();
+        return getDecodedJWT(token).getIssuedAt();
     }
 
 

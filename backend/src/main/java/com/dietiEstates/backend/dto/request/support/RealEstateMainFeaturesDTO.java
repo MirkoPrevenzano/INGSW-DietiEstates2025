@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import com.dietiEstates.backend.enums.EnergyClass;
+import com.dietiEstates.backend.enums.FurnitureCondition;
+import com.dietiEstates.backend.enums.PropertyCondition;
 import com.dietiEstates.backend.validator.EnumValidator;
 
 import jakarta.validation.constraints.NotBlank;
@@ -54,13 +56,12 @@ public class RealEstateMainFeaturesDTO
     @PositiveOrZero    
     private Integer parkingSpacesNumber;
 
-    @NotBlank // TODO: custom validator
-    @EnumValidator(enumClass = EnergyClass.class)
-    private String energyClass;
+    @NotNull
+    private EnergyClass energyClass;
     
-    @NotBlank // TODO: custom validator
-    private String propertyCondition;
+    @NotNull 
+    private PropertyCondition propertyCondition;
 
-    @NotBlank // TODO: custom validator
-    private String furnitureCondition;
+    @NotNull
+    private FurnitureCondition furnitureCondition;
 }

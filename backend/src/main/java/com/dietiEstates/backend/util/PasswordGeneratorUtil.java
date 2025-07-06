@@ -12,19 +12,19 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class PasswordGeneratorUtil
 {
-    private static final int DEFAULT_PASSWORD_LENGTH = 12;
+    private final int DEFAULT_PASSWORD_LENGTH = 12;
 
-    private static final String LOWERCASE_CHARS = "abcdefghijklmnopqrstuvwxyz";
-    private static final String UPPERCASE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private static final String DIGITS = "0123456789";
-    private static final String SPECIAL_CHARS = "!@#$%^&*()_+{}[]:;\"'<>,.?/\\|`~";
-    private static final String ALL_POSSIBLE_CHARS = LOWERCASE_CHARS + UPPERCASE_CHARS + DIGITS + SPECIAL_CHARS;
+    private final String LOWERCASE_CHARS = "abcdefghijklmnopqrstuvwxyz";
+    private final String UPPERCASE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private final String DIGITS = "0123456789";
+    private final String SPECIAL_CHARS = "!@#$%^&*()_+{}[]:;\"'<>,.?/\\|`~";
+    private final String ALL_POSSIBLE_CHARS = LOWERCASE_CHARS + UPPERCASE_CHARS + DIGITS + SPECIAL_CHARS;
 
-    private static final SecureRandom RANDOM_GENERATOR = new SecureRandom();
+    private final SecureRandom RANDOM_GENERATOR = new SecureRandom();
 
 
 
-    public static String generateRandomPassword() 
+    public String generateRandomPassword() 
     {
         List<Character> passwordListChars = new ArrayList<>(DEFAULT_PASSWORD_LENGTH);
 

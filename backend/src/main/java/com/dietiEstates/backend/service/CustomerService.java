@@ -14,6 +14,10 @@ import com.dietiEstates.backend.dto.request.support.AddressDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateBooleanFeaturesDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateLocationFeaturesDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateMainFeaturesDTO;
+import com.dietiEstates.backend.enums.EnergyClass;
+import com.dietiEstates.backend.enums.FurnitureCondition;
+import com.dietiEstates.backend.enums.NotaryDeedState;
+import com.dietiEstates.backend.enums.PropertyCondition;
 import com.dietiEstates.backend.helper.ChartsHelper;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
@@ -146,12 +150,12 @@ return realestatecompleteDTO;
                 String description = realEstate.getDescription();
                 Double price = realEstate.getPrice();
                 Double condoFee = realEstate.getCondoFee();
-                String energyClass = realEstate.getEnergyClass().getValue();
+                EnergyClass energyClass = realEstate.getEnergyClass();
 
                 Double size = realEstate.getInternalFeatures().getSize();
                 Integer roomsNumber = realEstate.getInternalFeatures().getRoomsNumber();
-                String propertyCondition = realEstate.getInternalFeatures().getPropertyCondition().getValue();
-                String furnitureCondition = realEstate.getInternalFeatures().getFurnitureCondition().getValue();
+                PropertyCondition propertyCondition = realEstate.getInternalFeatures().getPropertyCondition();
+                FurnitureCondition furnitureCondition = realEstate.getInternalFeatures().getFurnitureCondition();
 
                 Integer parkingSpacesNumber = realEstate.getExternalFeatures().getParkingSpacesNumber();
                 Integer floorNumber = realEstate.getExternalFeatures().getFloorNumber();
@@ -185,7 +189,7 @@ return realestatecompleteDTO;
                 if(realEstate instanceof RealEstateForSale)
                 {
                     RealEstateForSale realEstateForSale = (RealEstateForSale) realEstate;
-                    String notaryDeedState = realEstateForSale.getNotaryDeedState().getValue();
+                    NotaryDeedState notaryDeedState = realEstateForSale.getNotaryDeedState();
                     return new RealEstateForSaleCreationDTO(addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO, notaryDeedState);
                 }
                 else

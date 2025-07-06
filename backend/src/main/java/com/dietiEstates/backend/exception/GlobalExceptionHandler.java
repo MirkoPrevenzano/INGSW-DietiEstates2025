@@ -15,9 +15,13 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.server.handler.ResponseStatusExceptionHandler;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.dietiEstates.backend.dto.response.ApiErrorResponse;
 import com.dietiEstates.backend.enums.EnergyClass;
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import com.fasterxml.jackson.databind.exc.ValueInstantiationException;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolation;
@@ -31,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GlobalExceptionHandler 
 {
-    // TODO: creare NPE handler
+    // TODO: creare INTERNAL ERROR handler
 
     
     @ExceptionHandler(MappingException.class)
@@ -42,12 +46,34 @@ public class GlobalExceptionHandler
     }
 
 
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ApiErrorResponse> handleHttpMessageNotReadable(HttpMessageNotReadableException e, HttpServletRequest request) 
+    {
+        log.error("HttpMessageNotReadableException!");
+        log.error(e.getMessage());
+
+
+        int statusCode = HttpStatus.BAD_REQUEST.value();
+        String errorReason = HttpStatus.BAD_REQUEST.getReasonPhrase();
+        String errorType = HttpStatus.BAD_REQUEST.series().name();
+        String errorDescription = "Errore durante la deserializzazione JSON! ";
+        String errorPath = request.getRequestURI();
+        
+        if (e.getCause() instanceof ValueInstantiationException) {
+            ValueInstantiationException vie = (ValueInstantiationException) e.getCause();
+            errorDescription += "Valore '" + "' non valido per il campo che si aspetta un '" + ie.getTargetType().getSimpleName() + "'";
+        }
+
+        ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiErrorResponse> handleMethodArgumentNotValidExceptions(MethodArgumentNotValidException e, HttpServletRequest request) 
     {
         StringBuilder strBuilder = new StringBuilder();
 
-        
         e.getBindingResult().getAllErrors().forEach((error) -> {
         String fieldName;
         try {
@@ -85,7 +111,7 @@ public class GlobalExceptionHandler
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ApiErrorResponse> handleConstraintViolationExceptions(ConstraintViolationException e, HttpServletRequest request) 
     {
-        log.error("CONSTRAINT VIOLATION EXCEPTION!");
+        log.error("ConstraintViolationException!");
         log.error(e.getMessage());
 
         if (isViolationFromEntity(e))
