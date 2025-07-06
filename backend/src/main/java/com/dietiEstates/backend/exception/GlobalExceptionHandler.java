@@ -8,13 +8,16 @@ import java.util.Map;
 import java.util.Set;
 
 import org.modelmapper.MappingException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.server.handler.ResponseStatusExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -33,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @ControllerAdvice
 @Slf4j
-public class GlobalExceptionHandler 
+public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 {
     // TODO: creare INTERNAL ERROR handler
 
@@ -46,31 +49,36 @@ public class GlobalExceptionHandler
     }
 
 
-    @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<ApiErrorResponse> handleHttpMessageNotReadable(HttpMessageNotReadableException e, HttpServletRequest request) 
+    @Override
+    //@ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException e, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
         log.error("HttpMessageNotReadableException!");
         log.error(e.getMessage());
-
-
-        int statusCode = HttpStatus.BAD_REQUEST.value();
-        String errorReason = HttpStatus.BAD_REQUEST.getReasonPhrase();
-        String errorType = HttpStatus.BAD_REQUEST.series().name();
-        String errorDescription = "Errore durante la deserializzazione JSON! ";
-        String errorPath = request.getRequestURI();
         
-        if (e.getCause() instanceof ValueInstantiationException) {
-            ValueInstantiationException vie = (ValueInstantiationException) e.getCause();
-            errorDescription += "Valore '" + "' non valido per il campo che si aspetta un '" + ie.getTargetType().getSimpleName() + "'";
-        }
+        if (e.getCause() instanceof ValueInstantiationException) 
+        {
+            int statusCode = HttpStatus.BAD_REQUEST.value();
+            String errorReason = HttpStatus.BAD_REQUEST.getReasonPhrase();
+            String errorType = HttpStatus.BAD_REQUEST.series().name();
+            String errorDescription = "Errore durante la deserializzazione JSON! ";
+            String errorPath = request.getDescription(false);
 
-        ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+            ValueInstantiationException vie = (ValueInstantiationException) e.getCause();
+            errorDescription += vie.getCause().getMessage();
+
+            ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        }
+        else
+            return super.handleHttpMessageNotReadable(e, headers, status, request);
+
     }
 
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiErrorResponse> handleMethodArgumentNotValidExceptions(MethodArgumentNotValidException e, HttpServletRequest request) 
+    @Override
+    //@ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
         StringBuilder strBuilder = new StringBuilder();
 
@@ -99,7 +107,7 @@ public class GlobalExceptionHandler
         String errorReason = HttpStatus.BAD_REQUEST.getReasonPhrase();
         String errorType = HttpStatus.BAD_REQUEST.series().name();
         String errorDescription = "ERRORE!";
-        String errorPath = request.getRequestURI();
+        String errorPath = request.getDescription(false);
 
         ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
         
