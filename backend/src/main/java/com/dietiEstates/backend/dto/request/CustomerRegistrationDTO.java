@@ -4,6 +4,9 @@ package com.dietiEstates.backend.dto.request;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+
+import com.dietiEstates.backend.validator.PasswordValidator;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 
@@ -24,5 +27,6 @@ public class CustomerRegistrationDTO
     private String username;
 
     @NotBlank
+    @PasswordValidator
     private String password;
 }
