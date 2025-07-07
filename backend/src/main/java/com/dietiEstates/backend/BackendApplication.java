@@ -57,7 +57,6 @@ import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.repository.UserRepository;
 import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.util.AmazonS3Util;
-import com.dietiEstates.backend.util.ValidationUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

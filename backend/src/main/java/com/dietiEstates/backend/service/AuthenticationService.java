@@ -18,7 +18,7 @@ import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.service.CustomerService;
 import com.dietiEstates.backend.util.JwtUtil;
-import com.dietiEstates.backend.util.ValidationUtil;
+import com.dietiEstates.backend.validator.PasswordValidatorImpl;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -52,16 +52,6 @@ public class AuthenticationService
     public void adminRegistration(AdminRegistrationDTO adminRegistrationDTO) throws UsernameNotFoundException, 
                                                                                     IllegalArgumentException, MappingException
     {
-        try 
-        {
-            ValidationUtil.passwordValidator(adminRegistrationDTO.getPassword());
-        } 
-        catch (IllegalArgumentException e) 
-        {
-            log.error(e.getMessage());
-            throw e;
-        }
-
         if(administratorRepository.findByUsername(adminRegistrationDTO.getUsername()).isPresent())
         {
             log.error("This username is already present!");
@@ -88,17 +78,6 @@ public class AuthenticationService
 
     public AuthenticationResponseDTO customerRegistration(CustomerRegistrationDTO customerRegistrationDTO) throws IllegalArgumentException, MappingException
     {
-        try 
-        {
-            ValidationUtil.emailValidator(customerRegistrationDTO.getUsername());
-            //ValidationUtil.passwordValidator(customerRegistrationDTO.getPassword());
-        } 
-        catch (IllegalArgumentException e) 
-        {
-            log.error(e.getMessage());
-            throw e;
-        }
-
         if(customerRepository.findByUsername(customerRegistrationDTO.getUsername()).isPresent())
         {
             log.error("This e-mail is already present!");

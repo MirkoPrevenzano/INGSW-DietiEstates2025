@@ -39,7 +39,6 @@ import com.dietiEstates.backend.model.entity.RealEstateForSale;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.util.AmazonS3Util;
-import com.dietiEstates.backend.util.ValidationUtil;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -67,7 +66,7 @@ public class AgentService
     public Long createRealEstate(String username, RealEstateCreationDTO realEstateCreationDTO)  throws UsernameNotFoundException
     {
         Optional<Agent> optionalRealEstateAgent = agentRepository.findByUsername(username);
-        Agent agent = ValidationUtil.optionalUserValidator(optionalRealEstateAgent, username);
+        Agent agent = optionalRealEstateAgent.get();
         
         RealEstate realEstate = realEstateFactory.createFromDTO(realEstateCreationDTO);
 
@@ -90,37 +89,12 @@ public class AgentService
         return realEstateRepository.findLastUploadedByAgent(agent.getUserId());
     }
 
-/* 
-    @Transactional
-    public Long createRealEstateForRent(String username, RealEstateForRentCreationDTO realEstateForRentCreationDTO) throws UsernameNotFoundException
-    {
-        Optional<Agent> optionalRealEstateAgent = agentRepository.findByUsername(username);
-        Agent agent = ValidationUtil.optionalUserValidator(optionalRealEstateAgent, username);
-
-        RealEstate realEstate = realEstateFactory.createFromDTO(realEstateForRentCreationDTO);
-
-
-        Address address = modelMapper.map(realEstateForRentCreationDTO.getAddressDTO(), Address.class);
-        realEstate.addAddress(address);
-
-        mockingStatsHelper.mockEstateStats(realEstate);
-
-        int newTotalUploadedRealEstates = agent.getAgentStats().getTotalUploadedRealEstates() + 1;
-        agent.getAgentStats().setTotalUploadedRealEstates(newTotalUploadedRealEstates);
-        agent.addRealEstate(realEstate);
-        
-        agent = agentRepository.save(agent);
-
-        log.info("Real Estate For Sale was created successfully!");
-
-        return realEstateRepository.findLastUploadedByAgent(agent.getUserId());
-    } */
 
 
     public void uploadPhoto(String username, MultipartFile[] files, Long realEstateId) throws IllegalArgumentException, RuntimeException
     {
         Optional<RealEstate> optionalRealEstate = realEstateRepository.findById(realEstateId);
-        RealEstate realEstate = ValidationUtil.optionalRealEstateValidator(optionalRealEstate, realEstateId);
+        RealEstate realEstate = optionalRealEstate.get();
         
 /*         if(files.length < 3 || files.length > 10)
         {

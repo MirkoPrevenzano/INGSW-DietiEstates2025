@@ -18,7 +18,6 @@ import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.UserRepository;
-import com.dietiEstates.backend.util.ValidationUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +49,7 @@ public class UserService implements UserDetailsService
         {
             case "admin":
                 Optional<Administrator> optionalAdminiistrator = administratorRepository.findByUsername(username);
-                Administrator administrator = ValidationUtil.optionalUserValidator(optionalAdminiistrator, username);   
+                Administrator administrator = optionalAdminiistrator.get();
                 
                 if(passwordEncoder.matches("default", administrator.getPassword()))
                 {
@@ -74,7 +73,7 @@ public class UserService implements UserDetailsService
             
             case "agent":
                 Optional<Agent> optionalAgent = agentRepository.findByUsername(username);
-                Agent agent = ValidationUtil.optionalUserValidator(optionalAgent, username);   
+                Agent agent = optionalAgent.get();
                 log.info("{} is an AGENT", username);
                 agent.setRole(Role.ROLE_AGENT);
                 return agent;
@@ -83,7 +82,7 @@ public class UserService implements UserDetailsService
             
             case "customer":            
                 Optional<Customer> optionalCustomer = customerRepository.findByUsername(username);
-                Customer customer = ValidationUtil.optionalUserValidator(optionalCustomer, username);   
+                Customer customer = optionalCustomer.get();
                 log.info("{} is a CUSTOMER", username);
                 customer.setRole(Role.ROLE_CUSTOMER); 
                 return customer;

@@ -23,7 +23,6 @@ import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.util.PasswordGeneratorUtil;
-import com.dietiEstates.backend.util.ValidationUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -156,15 +155,6 @@ public class AdministratorService
             throw new IllegalArgumentException("\"The \"new password\" you have inserted can't be equal to your current password");
         }
         
-        try 
-        {
-            ValidationUtil.passwordValidator(updatePasswordDTO.getNewPassword());
-        } 
-        catch (IllegalArgumentException e) 
-        {
-            log.error(e.getMessage());
-            throw e;
-        }
 
         Administrator administrator = administratorOptional.get();
         administrator.setPassword(passwordEncoder.encode(updatePasswordDTO.getNewPassword()));

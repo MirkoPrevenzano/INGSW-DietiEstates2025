@@ -24,7 +24,6 @@ import com.dietiEstates.backend.model.entity.Address;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.model.entity.RealEstateForRent;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;
-import com.dietiEstates.backend.util.ValidationUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
