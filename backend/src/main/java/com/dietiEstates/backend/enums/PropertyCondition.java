@@ -3,13 +3,12 @@ package com.dietiEstates.backend.enums;
 
 import java.util.stream.Stream;
 
-import com.dietiEstates.backend.extra.ValidatableEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 
 
-public enum PropertyCondition implements ValidatableEnum
+public enum PropertyCondition 
 {
     UNDER_CONSTRUCTION("Under construction"), 
     NEW("New"), 

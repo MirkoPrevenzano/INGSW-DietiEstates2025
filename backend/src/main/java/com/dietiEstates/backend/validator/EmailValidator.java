@@ -7,7 +7,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.dietiEstates.backend.extra.ValidatableEnum;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
