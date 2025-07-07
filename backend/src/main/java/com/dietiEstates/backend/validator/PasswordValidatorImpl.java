@@ -27,7 +27,7 @@ public class PasswordValidatorImpl implements ConstraintValidator<PasswordValida
         if(!(password.length() >= 10 && passwordPattern1.matcher(password).find() 
             && passwordPattern2.matcher(password).find() && passwordPattern3.matcher(password).find()))
         {
-            throw new IllegalArgumentException("You have entered an invalid password!");
+            return false;
         }       
 
         return true;

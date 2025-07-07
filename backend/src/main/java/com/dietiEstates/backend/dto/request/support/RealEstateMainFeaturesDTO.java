@@ -8,7 +8,6 @@ import lombok.NonNull;
 import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.PropertyCondition;
-import com.dietiEstates.backend.validator.EnumValidator;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

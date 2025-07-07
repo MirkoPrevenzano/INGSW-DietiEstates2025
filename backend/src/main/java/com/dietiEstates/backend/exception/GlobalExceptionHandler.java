@@ -106,7 +106,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         int statusCode = HttpStatus.BAD_REQUEST.value();
         String errorReason = HttpStatus.BAD_REQUEST.getReasonPhrase();
         String errorType = HttpStatus.BAD_REQUEST.series().name();
-        String errorDescription = "ERRORE!";
+        String errorDescription = "ERRORE!" + errors;
         String errorPath = request.getDescription(false);
 
         ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);

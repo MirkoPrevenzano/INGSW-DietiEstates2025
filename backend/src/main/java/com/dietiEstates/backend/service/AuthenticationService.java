@@ -91,7 +91,7 @@ public class AuthenticationService
         try 
         {
             ValidationUtil.emailValidator(customerRegistrationDTO.getUsername());
-            ValidationUtil.passwordValidator(customerRegistrationDTO.getPassword());
+            //ValidationUtil.passwordValidator(customerRegistrationDTO.getPassword());
         } 
         catch (IllegalArgumentException e) 
         {

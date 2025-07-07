@@ -6,7 +6,6 @@ import com.dietiEstates.backend.dto.request.support.RealEstateBooleanFeaturesDTO
 import com.dietiEstates.backend.dto.request.support.RealEstateLocationFeaturesDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateMainFeaturesDTO;
 import com.dietiEstates.backend.enums.NotaryDeedState;
-import com.dietiEstates.backend.validator.EnumValidator;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

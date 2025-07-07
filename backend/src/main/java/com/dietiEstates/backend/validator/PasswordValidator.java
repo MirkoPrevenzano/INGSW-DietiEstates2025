@@ -19,7 +19,7 @@ import jakarta.validation.Payload;
 @Constraint(validatedBy = PasswordValidatorImpl.class)
 public @interface PasswordValidator 
 {
-    String message() default "must be any of enum {enumClass}";
+    String message() default "You have inserted an invalid password!";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
