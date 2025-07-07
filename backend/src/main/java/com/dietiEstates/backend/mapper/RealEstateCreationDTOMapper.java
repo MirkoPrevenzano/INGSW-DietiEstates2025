@@ -31,7 +31,7 @@ import lombok.experimental.UtilityClass;
 @Component
 @RequiredArgsConstructor
 //@UtilityClass
-public class RealEstateMappingUtil
+public class RealEstateCreationDTOMapper
 {
     private final ModelMapper modelMapper;
 

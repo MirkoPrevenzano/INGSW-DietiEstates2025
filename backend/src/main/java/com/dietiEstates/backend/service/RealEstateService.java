@@ -18,7 +18,7 @@ import com.dietiEstates.backend.dto.response.RealEstateSearchDTO;
 import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
 import com.dietiEstates.backend.helper.FindByRadiusHelper;
-import com.dietiEstates.backend.mapper.RealEstateMappingUtil;
+import com.dietiEstates.backend.mapper.RealEstateCreationDTOMapper;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.model.entity.Customer;
@@ -42,7 +42,7 @@ public class RealEstateService
     private final FindByRadiusHelper findByRadiusHelper;
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
-    private final RealEstateMappingUtil realEstateMappingUtil;
+    private final RealEstateCreationDTOMapper realEstateCreationDTOMapper;
     //private final CVRRepository cvrRepository;
 
 
@@ -69,7 +69,7 @@ public class RealEstateService
         
         Agent agent = realEstate.getAgent();
         AgentPublicInfoDTO agentPublicInfoDTO = modelMapper.map(agent, AgentPublicInfoDTO.class);        
-        RealEstateCreationDTO realEstateCreationDTO = realEstateMappingUtil.realEstateCreationDTOMapper(realEstate);
+        RealEstateCreationDTO realEstateCreationDTO = realEstateCreationDTOMapper.realEstateCreationDTOMapper(realEstate);
 
         RealEstateCompleteInfoDTO realEstateCompleteInfoDTO = new RealEstateCompleteInfoDTO(realEstateCreationDTO, agentPublicInfoDTO);
 
