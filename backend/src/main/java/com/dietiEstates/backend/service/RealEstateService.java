@@ -19,7 +19,6 @@ import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
 import com.dietiEstates.backend.helper.FindByRadiusHelper;
 import com.dietiEstates.backend.mapper.RealEstateCreationDTOMapper;
-import com.dietiEstates.backend.mapper.resolver.RealEstateCreationDTOMapperResolver;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.model.entity.Customer;
@@ -28,6 +27,7 @@ import com.dietiEstates.backend.model.entity.RealEstate;
 //import com.dietiEstates.backend.repository.CVRRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
+import com.dietiEstates.backend.resolver.RealEstateCreationDTOMapperResolver;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

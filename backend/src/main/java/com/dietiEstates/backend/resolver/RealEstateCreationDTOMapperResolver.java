@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.mapper.resolver;
+package com.dietiEstates.backend.resolver;
 
 import org.springframework.stereotype.Component;
 

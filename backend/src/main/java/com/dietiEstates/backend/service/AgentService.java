@@ -25,9 +25,7 @@ import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.PropertyCondition;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.NotaryDeedState;
-import com.dietiEstates.backend.factory.RealEstateFactory;
 import com.dietiEstates.backend.factory.RealEstateFromDtoFactory;
-import com.dietiEstates.backend.factory.resolver.RealEstateFactoryResolver;
 import com.dietiEstates.backend.helper.MockingStatsHelper;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
@@ -40,6 +38,7 @@ import com.dietiEstates.backend.model.entity.RealEstateForRent;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
+import com.dietiEstates.backend.resolver.RealEstateFactoryResolver;
 import com.dietiEstates.backend.util.AmazonS3Util;
 
 import jakarta.transaction.Transactional;
@@ -60,7 +59,6 @@ public class AgentService
     private final MockingStatsHelper mockingStatsHelper;
     private final ModelMapper modelMapper;
     //private final ValidationUtil validationUtil;
-    private final RealEstateFactory realEstateFactory;
     private final RealEstateFactoryResolver realEstateFactoryResolver;
 
 
