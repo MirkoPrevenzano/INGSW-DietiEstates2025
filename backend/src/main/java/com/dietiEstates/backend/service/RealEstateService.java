@@ -18,7 +18,8 @@ import com.dietiEstates.backend.dto.response.RealEstateSearchDTO;
 import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
 import com.dietiEstates.backend.helper.FindByRadiusHelper;
-import com.dietiEstates.backend.mapper.RealEstateCreationDTOMapperrr;
+import com.dietiEstates.backend.mapper.RealEstateCreationDTOMapper;
+import com.dietiEstates.backend.mapper.resolver.RealEstateCreationDTOMapperResolver;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.model.entity.Customer;
@@ -42,7 +43,7 @@ public class RealEstateService
     private final FindByRadiusHelper findByRadiusHelper;
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
-    private final RealEstateCreationDTOMapperrr realEstateCreationDTOMapperrr;
+    private final RealEstateCreationDTOMapperResolver realEstateCreationDTOMapperResolver;
     //private final CVRRepository cvrRepository;
 
 
@@ -68,8 +69,10 @@ public class RealEstateService
                                                     .orElseThrow(() -> new IllegalArgumentException("Immobile non trovato con ID: " + realEstateId));
         
         Agent agent = realEstate.getAgent();
-        AgentPublicInfoDTO agentPublicInfoDTO = modelMapper.map(agent, AgentPublicInfoDTO.class);        
-        RealEstateCreationDTO realEstateCreationDTO = realEstateCreationDTOMapperrr.realEstateCreationDTOMapper(realEstate);
+        AgentPublicInfoDTO agentPublicInfoDTO = modelMapper.map(agent, AgentPublicInfoDTO.class);    
+
+        RealEstateCreationDTOMapper realEstateCreationDTOMapper = realEstateCreationDTOMapperResolver.getMapper(realEstate);
+        RealEstateCreationDTO realEstateCreationDTO = realEstateCreationDTOMapper.toDto(realEstate);
 
         RealEstateCompleteInfoDTO realEstateCompleteInfoDTO = new RealEstateCompleteInfoDTO(realEstateCreationDTO, agentPublicInfoDTO);
 

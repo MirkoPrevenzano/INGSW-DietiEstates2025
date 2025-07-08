@@ -26,6 +26,8 @@ import com.dietiEstates.backend.enums.PropertyCondition;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.NotaryDeedState;
 import com.dietiEstates.backend.factory.RealEstateFactory;
+import com.dietiEstates.backend.factory.RealEstateFromDtoFactory;
+import com.dietiEstates.backend.factory.resolver.RealEstateFactoryResolver;
 import com.dietiEstates.backend.helper.MockingStatsHelper;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
@@ -59,6 +61,7 @@ public class AgentService
     private final ModelMapper modelMapper;
     //private final ValidationUtil validationUtil;
     private final RealEstateFactory realEstateFactory;
+    private final RealEstateFactoryResolver realEstateFactoryResolver;
 
 
 
@@ -68,8 +71,8 @@ public class AgentService
         Optional<Agent> optionalRealEstateAgent = agentRepository.findByUsername(username);
         Agent agent = optionalRealEstateAgent.get();
         
-        RealEstate realEstate = realEstateFactory.createFromDTO(realEstateCreationDTO);
-
+        RealEstateFromDtoFactory realEstateFromDtoFactory = realEstateFactoryResolver.getFactory(realEstateCreationDTO);
+        RealEstate realEstate = realEstateFromDtoFactory.create(realEstateCreationDTO);
 
         Address address = modelMapper.map(realEstateCreationDTO.getAddressDTO(), Address.class);
         realEstate.addAddress(address);

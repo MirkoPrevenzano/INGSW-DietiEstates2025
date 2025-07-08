@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
-import com.dietiEstates.backend.mapper.RealEstateCreationDTOMapper;
 import com.dietiEstates.backend.model.entity.RealEstate;
 
 import lombok.RequiredArgsConstructor;
@@ -14,18 +13,14 @@ import lombok.RequiredArgsConstructor;
 
 
 @Component
-@RequiredArgsConstructor
 public final class RealEstateFactory 
-{
-    private final RealEstateCreationDTOMapper realEstateCreationDTOMapper;
-    
-    
+{    
     public RealEstate createFromDTO(RealEstateCreationDTO realEstateCreationDTO) 
     {
         if(realEstateCreationDTO instanceof RealEstateForRentCreationDTO)
-            return realEstateCreationDTOMapper.fromDto((RealEstateForRentCreationDTO) realEstateCreationDTO);
+            return null;
         else if(realEstateCreationDTO instanceof RealEstateForSaleCreationDTO)
-            return realEstateCreationDTOMapper.fromDto((RealEstateForSaleCreationDTO) realEstateCreationDTO);
+            return null;
         else
             return null; // TODO: lanciare eccezione.
     };

@@ -22,14 +22,14 @@ import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
-public abstract class RealEstateCreationDTOMapperr<D extends RealEstateCreationDTO, E extends RealEstate> 
+public abstract class RealEstateCreationDTOMapper
 {  
     @Autowired
     private ModelMapper modelMapper;
 
 
 
-    protected void mapCommonFieldsToEntity(D dto, E entity) 
+    protected void mapCommonFieldsToEntity(RealEstateCreationDTO dto, RealEstate entity) 
     {
         entity.setTitle(dto.getRealEstateMainFeaturesDTO().getTitle());
         entity.setDescription(dto.getRealEstateMainFeaturesDTO().getDescription());
@@ -70,7 +70,7 @@ public abstract class RealEstateCreationDTOMapperr<D extends RealEstateCreationD
     }
     
 
-    protected void mapCommonFieldsToDto(E entity, D dto) 
+    protected void mapCommonFieldsToDto(RealEstate entity, RealEstateCreationDTO dto) 
     {
         RealEstateMainFeaturesDTO realEstateMainFeaturesDTO = new RealEstateMainFeaturesDTO();
         realEstateMainFeaturesDTO.setTitle(entity.getTitle());
@@ -107,8 +107,11 @@ public abstract class RealEstateCreationDTOMapperr<D extends RealEstateCreationD
     }
 
 
-    public abstract E toEntity(D dto);
+    public abstract RealEstate toEntity(RealEstateCreationDTO dto);
 
 
-    public abstract D toDto(E entity);
+    public abstract RealEstateCreationDTO toDto(RealEstate entity);
+
+
+    public abstract boolean supports(Class<? extends RealEstate> clazz);
 }
