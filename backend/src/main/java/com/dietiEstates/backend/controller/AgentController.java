@@ -23,8 +23,8 @@ import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.dto.response.AgentStatsDTO;
 import com.dietiEstates.backend.dto.response.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
-import com.dietiEstates.backend.helper.CsvHelper;
-import com.dietiEstates.backend.helper.PdfHelper;
+import com.dietiEstates.backend.helper.ExportCsvHelper;
+import com.dietiEstates.backend.helper.ExportPdfHelper;
 import com.dietiEstates.backend.service.AgentService;
 import com.lowagie.text.DocumentException;
 
@@ -41,8 +41,8 @@ import lombok.extern.slf4j.Slf4j;
 public class AgentController 
 {
     private final AgentService agentService;
-    private final CsvHelper csvUtil;
-    private final PdfHelper pdfHelper;
+    private final ExportCsvHelper exportCsvHelper;
+    private final ExportPdfHelper exportPdfHelper;
 
 
 
@@ -93,7 +93,7 @@ public class AgentController
     @GetMapping(value = "/{username}/exportCSV")
     public void exportToCSV(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {
-        csvUtil.writeCsvResponse(username,response);
+        exportCsvHelper.writeCsvResponse(username,response);
     }
        
     
@@ -111,7 +111,7 @@ public class AgentController
 
         try 
         {  
-            pdfHelper.writePdfResponse(username, response);
+            exportPdfHelper.writePdfResponse(username, response);
         } 
         catch (DocumentException | IOException e) 
         {
