@@ -24,11 +24,11 @@ import lombok.AllArgsConstructor;
 public class RealEstateMainFeaturesDTO 
 {
     @NotBlank
-    @Size(min = 50, max = 100)
+    @Size(max = 35)
     private String title;
 
     @NotBlank
-    @Size(min = 200, max = 500)
+    @Size(min = 250)
     private String description;
     
     @NotNull

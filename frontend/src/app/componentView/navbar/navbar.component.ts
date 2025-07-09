@@ -42,7 +42,7 @@ export class NavbarComponent {
 
   goHome(){
     const role = localStorage.getItem("role")
-    if(role==="ROLE_USER")
+    if(role==="ROLE_CUSTOMER")
       this.router.navigateByUrl("/home/customer")
     else if(role === "ROLE_ADMIN")
       this.router.navigateByUrl("/home/admin")

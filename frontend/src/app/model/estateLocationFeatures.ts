@@ -1,5 +1,5 @@
 export interface EstateLocationFeatures{
-    isNearPark: boolean ,
-    isNearPublicTransport: boolean,
-    isNearSchool: boolean
+    nearPark: boolean ,
+    nearPublicTransport: boolean,
+    nearSchool: boolean
 }

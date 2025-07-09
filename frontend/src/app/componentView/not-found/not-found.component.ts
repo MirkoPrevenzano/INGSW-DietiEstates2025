@@ -16,7 +16,7 @@ export class NotFoundComponent implements OnInit{
 
     ngOnInit(): void {
         const role = localStorage.getItem("role")
-        if(role==="ROLE_USER")
+        if(role==="ROLE_CUSTOMER")
             this.url+="/customer"
         if(role==="ROLE_ADMIN")
             this.url+="/admin"

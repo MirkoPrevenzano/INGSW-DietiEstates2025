@@ -98,7 +98,7 @@ export class DescriptionEstatesFormComponent implements OnInit{
         parkingSpacesNumber: value.parkingSpacesNumber,
         condoFee: value.condoFee,
         furnitureCondition: value.furnitureCondition,
-        estateCondition: value.estateCondition
+        propertyCondition: value.estateCondition
       }
 
 

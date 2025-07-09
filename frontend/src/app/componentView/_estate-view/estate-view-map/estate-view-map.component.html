@@ -6,12 +6,12 @@
     <div class="sm:mt-6 mb-5 h-96 z-0">
       <app-map [coordinates]="{lon: address.longitude!, lat: address.latitude!}" ></app-map> 
     </div>
-    <div *ngIf="estateLocationFeatures && (estateLocationFeatures.isNearPublicTransport || estateLocationFeatures.isNearSchool || estateLocationFeatures.isNearPark)">
+    <div *ngIf="estateLocationFeatures && (estateLocationFeatures.nearPublicTransport || estateLocationFeatures.nearSchool || estateLocationFeatures.nearPark)">
       <h3 class="font-semibold text-lg mb-2">Nearby Services</h3>
       <ul class="list-none space-y-1">
-        <li *ngIf="estateLocationFeatures.isNearPublicTransport"><span class="font-medium">Near Public Transport:</span> Yes</li>
-        <li *ngIf="estateLocationFeatures.isNearSchool"><span class="font-medium">Near School:</span> Yes</li>
-        <li *ngIf="estateLocationFeatures.isNearPark"><span class="font-medium">Near Park:</span> Yes</li>
+        <li *ngIf="estateLocationFeatures.nearPublicTransport"><span class="font-medium">Near Public Transport:</span> Yes</li>
+        <li *ngIf="estateLocationFeatures.nearSchool"><span class="font-medium">Near School:</span> Yes</li>
+        <li *ngIf="estateLocationFeatures.nearPark"><span class="font-medium">Near Park:</span> Yes</li>
       </ul>
     </div>
 </div>

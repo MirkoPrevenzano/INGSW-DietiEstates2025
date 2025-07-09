@@ -46,8 +46,10 @@ export class AuthService {
     const decodedToken: any = jwtDecode(token)
     console.log(decodedToken)
     const user = decodedToken.sub
+    
     console.log(user)
     const role = decodedToken.roles[0]
+    console.log(role)
     this.authState.set({
       user: user,
       token: token,

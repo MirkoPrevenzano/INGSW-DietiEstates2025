@@ -27,7 +27,7 @@ export class CreateStaffService {
   */
   saveAgent( newAgent: RegisterRequest)
   {
-    const url= this.url+`/${localStorage.getItem("user")}/create-real-estate-agent`
+    const url= this.url+`/${localStorage.getItem("user")}/create-agent`
     return this.http.post(url,newAgent,this.httpOptions)
   }
 

@@ -17,14 +17,14 @@ export class LoginService {
     })
   };
 
-  login(loginRequest: LoginRequest): Observable<{jwtToken: string}> {
+  login(loginRequest: LoginRequest): Observable<{jwtToken: string, mustChangePassword: boolean}> {
     const url = this.url + "/login";
     const body = new HttpParams()
       .set('username', loginRequest.username)
       .set('password', loginRequest.password)
       .set('role', loginRequest.role);
 
-    return this.http.post<{jwtToken: string}>(url, body.toString(), this.httpOptions);
+    return this.http.post<{jwtToken: string, mustChangePassword: boolean}>(url, body.toString(), this.httpOptions);
   }
 
   loginWithGoogle(credential: any): Observable<any> {

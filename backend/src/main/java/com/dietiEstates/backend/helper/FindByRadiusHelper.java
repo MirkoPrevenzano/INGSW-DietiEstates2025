@@ -26,7 +26,8 @@ public class FindByRadiusHelper
 		System.out.println("long0: " + long0);
 		
 		double latitudeVariation = (double) radius / distancePerLatitudeGrade;
-		double longitudeVariation = (double) radius / (distancePerLongitudeGrade * Math.cos(Math.toRadians(lat0)));
+		/*double longitudeVariation = (double) radius / (distancePerLongitudeGrade * Math.cos(Math.toRadians(lat0)));*/
+		double longitudeVariation = (double) radius / distancePerLongitudeGrade * Math.cos(lat0);
 
 		System.out.println("");
 		System.out.println("");
@@ -56,4 +57,4 @@ public class FindByRadiusHelper
 
 // TODO: Aggiungere Haversine
 
-/* double longitudeVariation = (double) radius / distancePerLongitudeGrade * Math.cos(lat0); */
+/*  */

@@ -54,9 +54,9 @@ export class CreateEstatesComponent implements OnInit{
   readonly maxPhotos = 10
 
   estateLocation: EstateLocationFeatures = {
-    isNearPublicTransport: false,
-    isNearSchool: false,
-    isNearPark: false
+    nearPublicTransport: false,
+    nearSchool: false,
+    nearPark: false
   };
 
   steps: string[] = [
@@ -129,7 +129,7 @@ export class CreateEstatesComponent implements OnInit{
     this.address = event
     this.estateDataService.setAddress(this.address)
 
-    this.estate.address=this.address
+    this.estate.addressDTO=this.address
   }
 
 
@@ -163,13 +163,13 @@ export class CreateEstatesComponent implements OnInit{
     this.estateDataService.setAdditionalFields(this.additionalFields)
     this.estateDataService.setDescription(this.description)
     
-    this.estate.estateDescribe=this.description
+    this.estate.realEstateMainFeaturesDTO=this.description
   }
 
   onEstateFeatures(event: EstateFeatures){
     this.features = event
     this.estateDataService.setFeatures(this.features)
-    this.estate.estateFeatures=this.features
+    this.estate.realEstateBooleanFeaturesDTO=this.features
   }
 
   submit(){
@@ -204,10 +204,10 @@ export class CreateEstatesComponent implements OnInit{
   }
 
   createEstate(): Estate {
-    this.estate.address = this.estateDataService.getAddress()
-    this.estate.estateFeatures = this.features
-    this.estate.estateDescribe = this.description
-    this.estate.estateLocationFeatures= this.estateLocation
+    this.estate.addressDTO = this.estateDataService.getAddress()
+    this.estate.realEstateBooleanFeaturesDTO = this.features
+    this.estate.realEstateMainFeaturesDTO = this.description
+    this.estate.realEstateLocationFeaturesDTO= this.estateLocation
       
     return this.estateFactory.createEstate(
       this.estate,
@@ -224,13 +224,13 @@ export class CreateEstatesComponent implements OnInit{
             console.log(response)
             response.features.forEach((feature: any) => {
               if (feature.properties.categories.includes('public_transport.bus')) {
-                this.estateLocation.isNearPublicTransport = true;
+                this.estateLocation.nearPublicTransport = true;
               }
               if (feature.properties.categories.includes('building.school')) {
-                this.estateLocation.isNearSchool = true;
+                this.estateLocation.nearSchool = true;
               }
               if (feature.properties.categories.includes('leisure.park')) {
-                this.estateLocation.isNearPark = true;
+                this.estateLocation.nearPark = true;
               }
             });
           } else {

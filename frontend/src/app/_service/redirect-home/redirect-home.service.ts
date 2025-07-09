@@ -11,7 +11,7 @@ export class RedirectHomeService {
   determineDefaultHome(): string {
     const userRole = this.authService.getRole(); 
     switch (userRole) {
-      case 'ROLE_USER':
+      case 'ROLE_CUSTOMER':
         return '/home/customer';
       case 'ROLE_AGENT':
         return '/home/agent';

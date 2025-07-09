@@ -29,15 +29,15 @@ export class EstatesFeaturesFormComponent implements OnInit {
   ngOnInit(): void {
 
     this.featuresForm = new FormGroup({
-      hasElevator: new FormControl(false),
-      hasConcierge: new FormControl(false),
-      hasAirConditioning: new FormControl(false),
-      hasTerrace: new FormControl(false),
-      hasGarage: new FormControl(false),
-      hasBalcony: new FormControl(false),
-      hasGarden: new FormControl(false),
-      hasSwimmingPool: new FormControl(false),
-      hasHeating: new FormControl(false)
+      elevator: new FormControl(false),
+      concierge: new FormControl(false),
+      airConditioning: new FormControl(false),
+      terrace: new FormControl(false),
+      garage: new FormControl(false),
+      balcony: new FormControl(false),
+      garden: new FormControl(false),
+      swimmingPool: new FormControl(false),
+      heating: new FormControl(false)
     })
 
     

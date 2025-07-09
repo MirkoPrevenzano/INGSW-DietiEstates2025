@@ -56,7 +56,7 @@ public class AuthenticationController
     }
 
 
-    @PostMapping(path = "customer-registration")
+    @PostMapping(path = "standard-registration")
     public ResponseEntity<AuthenticationResponseDTO> customerRegistration(@Valid @RequestBody CustomerRegistrationDTO userRegistrationDTO) 
     {
         try 

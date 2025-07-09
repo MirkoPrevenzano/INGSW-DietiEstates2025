@@ -1,11 +1,11 @@
 export interface EstateFeatures{
-    hasHeating: boolean ,
-    hasConcierge: boolean ,
-    hasAirConditioning: boolean ,
-    hasTerrace: boolean ,
-    hasGarage: boolean 
-    hasBalcony: boolean ,
-    hasGarden: boolean ,
-    hasSwimmingPool: boolean ,
-    hasElevator: boolean
+    heating: boolean ,
+    concierge: boolean ,
+    airConditioning: boolean ,
+    terrace: boolean ,
+    garage: boolean 
+    balcony: boolean ,
+    garden: boolean ,
+    swimmingPool: boolean ,
+    elevator: boolean
 }

@@ -9,5 +9,5 @@ export interface EstateDescribe{
     parkingSpacesNumber: number,
     condoFee: number,
     furnitureCondition: string,
-    estateCondition: string,
+    propertyCondition: string,
 }

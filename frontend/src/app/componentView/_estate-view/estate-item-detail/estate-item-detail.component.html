@@ -10,12 +10,12 @@
       </div>
       
       <div class="p-6">   
-        <app-estate-view-description [estateDescribe]="estate.estateDescribe"></app-estate-view-description>
+        <app-estate-view-description [estateDescribe]="estate.realEstateMainFeaturesDTO"></app-estate-view-description>
       </div>
     </div>
   
     <div class="max-w-4xl mx-auto my-4 bg-white shadow-lg border-4 border-secondary rounded-lg overflow-hidden">
-      <app-estate-view-features [estateFeatures]="estate.estateFeatures" [estateDescribe]="estate.estateDescribe"></app-estate-view-features>
+      <app-estate-view-features [estateFeatures]="estate.realEstateBooleanFeaturesDTO" [estateDescribe]="estate.realEstateMainFeaturesDTO"></app-estate-view-features>
     </div> 
           
     <div class="max-w-4xl mx-auto my-4 bg-white shadow-lg  border-4 border-secondary rounded-lg overflow-hidden">
@@ -30,7 +30,7 @@
     </div>
   
     <div class="max-w-4xl mx-auto my-4 bg-white shadow-lg border-4 border-secondary rounded-lg h-full ">
-      <app-estate-view-map [address]="estate.address" [estateLocationFeatures]="estate.estateLocationFeatures"></app-estate-view-map>
+      <app-estate-view-map [address]="estate.addressDTO" [estateLocationFeatures]="estate.realEstateLocationFeaturesDTO"></app-estate-view-map>
     </div>
   </div>
 }

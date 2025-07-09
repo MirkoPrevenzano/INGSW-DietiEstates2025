@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 
 
 @Configuration
-@EnableWebMvc
 @RequiredArgsConstructor
 public class WebMvcConfig implements WebMvcConfigurer
 {
@@ -37,7 +36,7 @@ public class WebMvcConfig implements WebMvcConfigurer
                                               .allowedMethods("GET","POST","PUT","OPTIONS")
                                               .allowedHeaders("*")
                                               .allowCredentials(true)
-                                              .exposedHeaders("error")
-                                              .maxAge(900);
+                                              .exposedHeaders("error");
+                                             
     }    
 }

@@ -81,7 +81,7 @@ export const routes: Routes = [
         path: 'home/customer',
         component: CustomerHomeComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:['ROLE_USER']}
+        data:{expectedRole:['ROLE_CUSTOMER']}
     },
     {
         title: 'HomePage',
@@ -94,13 +94,13 @@ export const routes: Routes = [
         path: 'estate',
         component: EstateItemPreviewComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:['ROLE_USER']}
+        data:{expectedRole:['ROLE_CUSTOMER']}
     },
     {
         title:'EstateDetail',
         path:'estate/:id',
         component: EstateItemDetailComponent,
-        data:{expectedRole:['ROLE_USER','ROLE_AGENT']}
+        data:{expectedRole:['ROLE_CUSTOMER','ROLE_AGENT']}
 
        
     },
@@ -109,13 +109,13 @@ export const routes: Routes = [
         path: 'filter',
         component: EstateFiltersComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:['ROLE_USER']}
+        data:{expectedRole:['ROLE_CUSTOMER']}
     },{
         title:'container',
         path: 'container',
         component:EstateSearchContainerComponent,
         canActivate: [authGuard, roleGuard],
-        data:{expectedRole:['ROLE_USER']}
+        data:{expectedRole:['ROLE_CUSTOMER']}
     },
     {
         title:'dashboard',

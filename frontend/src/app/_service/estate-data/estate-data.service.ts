@@ -28,7 +28,17 @@ export class EstateDataService {
   }
 
   getFeatures(): EstateFeatures{
-    return this.features || {} as EstateFeatures;
+    return this.features || {
+      heating: false,
+      concierge: false,
+      airConditioning: false,
+      terrace: false,
+      garage: false,
+      balcony: false,
+      garden: false,
+      swimmingPool: false,
+      elevator: false
+    } as EstateFeatures;
   }
 
   setFeatures(features: EstateFeatures){

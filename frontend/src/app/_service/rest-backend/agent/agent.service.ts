@@ -48,9 +48,9 @@ export class AgentService {
 
       url: agent/{username}/general-stats
     */
-    agentStats(user:string):Observable<{realEstateAgentStats:AgentGeneralStats, estatesPerMonths: number[]}>{
+    agentStats(user:string):Observable<{agentStats:AgentGeneralStats, estatesPerMonths: number[]}>{
       const url = this.url+`/${user}/general-stats`
-      return this.http.get<{realEstateAgentStats:AgentGeneralStats, estatesPerMonths: number[]}>(url, this.httpOptions)
+      return this.http.get<{agentStats:AgentGeneralStats, estatesPerMonths: number[]}>(url, this.httpOptions)
     }
 
 

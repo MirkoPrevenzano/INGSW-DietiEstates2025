@@ -20,20 +20,26 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Input() icon?: string;
 
   get value(): boolean {
-    return this.form.controls[this.controlName].value;
+    const control = this.form?.controls?.[this.controlName];
+    return control?.value || false;
   }
 
   set value(val: boolean) {
-    this.form.controls[this.controlName].setValue(val);
-    this.onChange(val);
-    this.onTouched();
+    const control = this.form?.controls?.[this.controlName];
+    if (control) {
+      control.setValue(val);
+      this.onChange(val);
+      this.onTouched();
+    }
   }
 
   onChange: any = () => {};
   onTouched: any = () => {};
 
   writeValue(value: boolean): void {
-    this.value = value;
+    if (this.form?.controls?.[this.controlName]) {
+      this.form.controls[this.controlName].setValue(value, { emitEvent: false });
+    }
   }
 
   registerOnChange(fn: any): void {
@@ -45,6 +51,8 @@ export class CheckboxComponent implements ControlValueAccessor {
   }
   
   setValue(val: boolean): void {
-    this.value = val;
+    if (this.form?.controls?.[this.controlName]) {
+      this.value = val;
+    }
   }
 }

@@ -191,8 +191,8 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
         predicates.add(criteriaBuilder.ge(latitude, coordinatesMinMax.getMinLatitude()));
         predicates.add(criteriaBuilder.le(latitude, coordinatesMinMax.getMaxLatitude()));
-        predicates.add(criteriaBuilder.ge(longitude, coordinatesMinMax.getMinLongitude()));
-        predicates.add(criteriaBuilder.le(longitude, coordinatesMinMax.getMaxLongitude()));
+        predicates.add(criteriaBuilder.le(longitude, coordinatesMinMax.getMinLongitude()));
+        predicates.add(criteriaBuilder.ge(longitude, coordinatesMinMax.getMaxLongitude()));
               
         for(Map.Entry<String,String> entry : filters.entrySet())
         {
