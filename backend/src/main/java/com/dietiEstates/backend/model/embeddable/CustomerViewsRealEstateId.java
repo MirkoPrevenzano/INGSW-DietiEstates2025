@@ -2,10 +2,9 @@
 package com.dietiEstates.backend.model.embeddable;
 
 import jakarta.persistence.Embeddable;
-
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,14 +12,11 @@ import java.util.Objects;
 
 
 @Embeddable
-@RequiredArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class CustomerViewsRealEstateId implements Serializable 
 { 
-    @NonNull
     private Long customerId;
-
-    @NonNull
     private Long realEstateId;
 
 
@@ -28,10 +24,10 @@ public class CustomerViewsRealEstateId implements Serializable
     @Override
     public boolean equals(Object o) 
     {
-        if (this == o) 
+        if(this == o) 
             return true;
 
-        if (o == null || this.getClass() != o.getClass()) 
+        if(o == null || this.getClass() != o.getClass()) 
             return false;
 
         CustomerViewsRealEstateId that = (CustomerViewsRealEstateId) o;

@@ -1,9 +1,14 @@
 
 package com.dietiEstates.backend.model.embeddable;
 
+import com.dietiEstates.backend.enums.PropertyCondition;
+import com.dietiEstates.backend.enums.FurnitureCondition;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -14,40 +19,36 @@ import lombok.RequiredArgsConstructor;
 @Embeddable
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class InternalRealEstateFeatures 
 {
-    @NonNull
     @Column(nullable = false, 
             updatable = true)
-    private Double size;
+    private double size;
 
-    @NonNull
     @Column(name = "rooms_number", 
             nullable = false, 
             updatable = true)
-    private Integer roomsNumber;
+    private int roomsNumber;
 
-    @NonNull
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "estate_condition", 
             nullable = false, 
             updatable = true)
-    private String estateCondition;
+    private PropertyCondition propertyCondition;
 
-    @NonNull
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "furniture_condition", 
             nullable = false, 
             updatable = true)
-    private String furnitureCondition;
+    private FurnitureCondition furnitureCondition;
 
     @Column(name = "air_conditioning",
-            nullable = true, 
-            updatable = true,
-            columnDefinition = "boolean default false")     
+            nullable = false, 
+            updatable = true)
     private boolean airConditioning;
 
-    @Column(nullable = true, 
-            updatable = true,
-            columnDefinition = "boolean default false")  
+    @Column(nullable = false, 
+            updatable = true)
     private boolean heating;
 }

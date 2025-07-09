@@ -6,25 +6,34 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import com.dietiEstates.backend.controller.CSVController;
-import com.dietiEstates.backend.dto.AddressDTO;
-import com.dietiEstates.backend.dto.EstateDescribe;
-import com.dietiEstates.backend.dto.EstateFeatures;
-import com.dietiEstates.backend.dto.EstateLocationFeatures;
-import com.dietiEstates.backend.dto.RealEstateCreationDTO;
-import com.dietiEstates.backend.dto.RealEstateForRentCreationDTO;
-import com.dietiEstates.backend.dto.RealEstateForSaleCreationDTO;
-import com.dietiEstates.backend.model.Address;
-import com.dietiEstates.backend.model.Customer;
-import com.dietiEstates.backend.model.CustomerViewsRealEstate;
-import com.dietiEstates.backend.model.RealEstate;
-import com.dietiEstates.backend.model.RealEstateForRent;
-import com.dietiEstates.backend.model.RealEstateForSale;
+
+import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
+import com.dietiEstates.backend.dto.request.support.AddressDTO;
+import com.dietiEstates.backend.dto.request.support.RealEstateBooleanFeaturesDTO;
+import com.dietiEstates.backend.dto.request.support.RealEstateLocationFeaturesDTO;
+import com.dietiEstates.backend.dto.request.support.RealEstateMainFeaturesDTO;
+import com.dietiEstates.backend.enums.EnergyClass;
+import com.dietiEstates.backend.enums.FurnitureCondition;
+import com.dietiEstates.backend.enums.NotaryDeedState;
+import com.dietiEstates.backend.enums.PropertyCondition;
+import com.dietiEstates.backend.helper.ChartsHelper;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
+import com.dietiEstates.backend.model.entity.Address;
+import com.dietiEstates.backend.model.entity.Agent;
+import com.dietiEstates.backend.model.entity.Customer;
+import com.dietiEstates.backend.model.entity.CustomerViewsRealEstate;
+import com.dietiEstates.backend.model.entity.RealEstate;
+import com.dietiEstates.backend.model.entity.RealEstateForRent;
+import com.dietiEstates.backend.model.entity.RealEstateForSale;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
@@ -42,9 +51,7 @@ import java.util.UUID;
 public class CustomerService 
 {
 
-    private final JFreeChartService JFreeChartService;
-
-    private final CSVController CSVController;
+    private final ChartsHelper chartsHelper;
     private final RealEstateRepository realEstateRepository;
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
@@ -52,10 +59,51 @@ public class CustomerService
 
 
 
-    public RealEstateCreationDTO viewRealEstate(String username, Long realEstateId) 
+    public RealEstateCreationDTO viewRealEstate(String username, Long realEstateId, Authentication authentication) 
     {
+        log.info("\n\nENTRO NEL METODO VIEW REAL ESTATE:\n");
+
+        log.info("\n\nFIND BY USERNAME (CustomerRepo):\n");
         Customer customer = customerRepository.findByUsername(username).get();
+
+        log.info("\n\nFIND BY ID (RealEstateRepo):\n");
         RealEstate realEstate = realEstateRepository.findById(realEstateId).get();
+
+        log.info("\n\nGET AGENT FROM REAL ESTATE:\n");
+        Agent agent = realEstate.getAgent();
+
+/*         
+find user;
+find real estate;
+
+realestate.getAgent 
+modelmapper.map(agentinfo,agent)
+map from realestate to realestate creation
+create realestatecompleteDTO
+
+if(context == customer)
+        updating realestate viewsnumber
+        creazione custviewrealest
+        save custview
+
+return realestatecompleteDTO;
+
+ */
+
+         // 2. Verifica se l'utente autenticato ha il ruolo CUSTOMER
+        if(authentication != null && authentication.isAuthenticated()) 
+        {
+            if(authentication.getPrincipal() instanceof Customer)
+                log.info("\n\nil mio principal è un customerrrr\n\n");
+
+                if(authentication.getPrincipal() instanceof Agent)
+                log.info("\n\nil mio principal è un agentttt\n\n");
+
+
+            UserDetails user = (UserDetails) authentication.getPrincipal();
+
+            log.info("\n\n\nSONO NELL'IF DEL CUSTOMERR");
+        }
            
         RealEstateCreationDTO realEstateCreationDTO = realEstateCreationDTOMapper(realEstate);
                 
@@ -70,7 +118,8 @@ public class CustomerService
                                                                         customer,
                                                                         realEstate);
         
-                List<CustomerViewsRealEstate> customerViewsRealEstateList = customer.getCustomerViewsRealEstates();
+                log.info("\n\nGET CUSTOMERVIEWSREALESTATE:\n");
+/*                 List<CustomerViewsRealEstate> customerViewsRealEstateList = customer.getCustomerViewsRealEstates();
         
                 if(customerViewsRealEstateList.size() > 0)
                 {
@@ -78,14 +127,16 @@ public class CustomerService
                     {
                         if(customerViewsRealEstate.getCustomerViewsRealEstateId().equals(customerViewsRealEstate2.getCustomerViewsRealEstateId()))
                         {
+                            log.info("\n\nMERGE (CustomerRepo):\n");
                             customerViewsRealEstate2.setViewDate(LocalDateTime.now());
                             customerRepository.save(customer);
                             return realEstateCreationDTO;
                         }  
                     }
-                }
+                } */
                 
                 customer.addCustomerViewsRealEstate(customerViewsRealEstate);
+                log.info("\n\nSAVE (CustomerRepo):\n");
                 customerRepository.save(customer);
         
                 return realEstateCreationDTO;
@@ -99,53 +150,54 @@ public class CustomerService
                 String description = realEstate.getDescription();
                 Double price = realEstate.getPrice();
                 Double condoFee = realEstate.getCondoFee();
-                String energyClass = realEstate.getEnergyClass();
+                EnergyClass energyClass = realEstate.getEnergyClass();
 
                 Double size = realEstate.getInternalFeatures().getSize();
                 Integer roomsNumber = realEstate.getInternalFeatures().getRoomsNumber();
-                String estateCondition = realEstate.getInternalFeatures().getEstateCondition();
-                String furnitureCondition = realEstate.getInternalFeatures().getFurnitureCondition();
+                PropertyCondition propertyCondition = realEstate.getInternalFeatures().getPropertyCondition();
+                FurnitureCondition furnitureCondition = realEstate.getInternalFeatures().getFurnitureCondition();
 
                 Integer parkingSpacesNumber = realEstate.getExternalFeatures().getParkingSpacesNumber();
                 Integer floorNumber = realEstate.getExternalFeatures().getFloorNumber();
 
-                EstateDescribe estateDescribe = new EstateDescribe(description, title, price, condoFee, energyClass, size, 
-                                                                   roomsNumber, estateCondition, furnitureCondition, parkingSpacesNumber, floorNumber);
+                RealEstateMainFeaturesDTO realEstateMainFeaturesDTO = new RealEstateMainFeaturesDTO(title, description, price, condoFee, size, 
+                                                                   roomsNumber, parkingSpacesNumber, floorNumber, 
+                                                                   energyClass, propertyCondition, furnitureCondition);
 
 
-                EstateFeatures estateFeatures = new EstateFeatures();
-                estateFeatures.setHasAirConditioning(realEstate.getInternalFeatures().isAirConditioning());
-                estateFeatures.setHasHeating(realEstate.getInternalFeatures().isHeating());
-                estateFeatures.setHasBalcony(realEstate.getExternalFeatures().isBalcony());
-                estateFeatures.setHasElevator(realEstate.getExternalFeatures().isElevator());
-                estateFeatures.setHasConcierge(realEstate.getExternalFeatures().isConcierge());
-                estateFeatures.setHasGarage(realEstate.getExternalFeatures().isGarage());
-                estateFeatures.setHasGarden(realEstate.getExternalFeatures().isGarden());
-                estateFeatures.setHasSwimmingPool(realEstate.getExternalFeatures().isSwimmingPool());
-                estateFeatures.setHasTerrace(realEstate.getExternalFeatures().isTerrace());
+                RealEstateBooleanFeaturesDTO realEstateBooleanFeaturesDTO = new RealEstateBooleanFeaturesDTO();
+                realEstateBooleanFeaturesDTO.setAirConditioning(realEstate.getInternalFeatures().isAirConditioning());
+                realEstateBooleanFeaturesDTO.setHeating(realEstate.getInternalFeatures().isHeating());
+                realEstateBooleanFeaturesDTO.setBalcony(realEstate.getExternalFeatures().isBalcony());
+                realEstateBooleanFeaturesDTO.setElevator(realEstate.getExternalFeatures().isElevator());
+                realEstateBooleanFeaturesDTO.setConcierge(realEstate.getExternalFeatures().isConcierge());
+                realEstateBooleanFeaturesDTO.setGarage(realEstate.getExternalFeatures().isGarage());
+                realEstateBooleanFeaturesDTO.setGarden(realEstate.getExternalFeatures().isGarden());
+                realEstateBooleanFeaturesDTO.setSwimmingPool(realEstate.getExternalFeatures().isSwimmingPool());
+                realEstateBooleanFeaturesDTO.setTerrace(realEstate.getExternalFeatures().isTerrace());
 
 
-                EstateLocationFeatures estateLocationFeatures = new EstateLocationFeatures();
-                estateLocationFeatures.setNearPark(realEstate.getExternalFeatures().isNearPark());
-                estateLocationFeatures.setNearSchool(realEstate.getExternalFeatures().isNearSchool());
-                estateLocationFeatures.setNearPublicTransport(realEstate.getExternalFeatures().isNearPublicTransport());
+                RealEstateLocationFeaturesDTO realEstateLocationFeaturesDTO = new RealEstateLocationFeaturesDTO();
+                realEstateLocationFeaturesDTO.setNearPark(realEstate.getExternalFeatures().isNearPark());
+                realEstateLocationFeaturesDTO.setNearSchool(realEstate.getExternalFeatures().isNearSchool());
+                realEstateLocationFeaturesDTO.setNearPublicTransport(realEstate.getExternalFeatures().isNearPublicTransport());
 
 
-                AddressDTO address = modelMapper.map(realEstate.getAddress(), AddressDTO.class);
+                AddressDTO addressDTO = modelMapper.map(realEstate.getAddress(), AddressDTO.class);
 
 
                 if(realEstate instanceof RealEstateForSale)
                 {
                     RealEstateForSale realEstateForSale = (RealEstateForSale) realEstate;
-                    String notaryDeedState = realEstateForSale.getNotaryDeedState();
-                    return new RealEstateForSaleCreationDTO(address, estateDescribe, estateFeatures, estateLocationFeatures, notaryDeedState);
+                    NotaryDeedState notaryDeedState = realEstateForSale.getNotaryDeedState();
+                    return new RealEstateForSaleCreationDTO(addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO, notaryDeedState);
                 }
                 else
                 {
                     RealEstateForRent realEstateForSale = (RealEstateForRent) realEstate;
                     Double securityDeposit = realEstateForSale.getSecurityDeposit();
                     Integer contractYears = realEstateForSale.getContractYears();
-                    return new RealEstateForRentCreationDTO(address, estateDescribe, estateFeatures, estateLocationFeatures, securityDeposit, contractYears);
+                    return new RealEstateForRentCreationDTO(addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO, securityDeposit, contractYears);
                 }
             }
             

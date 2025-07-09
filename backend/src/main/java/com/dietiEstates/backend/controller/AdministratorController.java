@@ -3,23 +3,24 @@ package com.dietiEstates.backend.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.dietiEstates.backend.dto.AdminRegistrationDTO;
-import com.dietiEstates.backend.dto.OldNewPasswordDTO;
-import com.dietiEstates.backend.dto.UserDTO;
+import com.dietiEstates.backend.dto.request.CollaboratorRegistrationDTO;
+import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
+import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
+import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
+import com.dietiEstates.backend.dto.response.AgentRegistrationResponseDTO;
+import com.dietiEstates.backend.dto.response.CollaboratorRegistrationResponseDTO;
 import com.dietiEstates.backend.service.AdministratorService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 
 
@@ -30,68 +31,60 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class AdministratorController
 {
     private final AdministratorService administratorService;
-
-
-    @PostMapping(path = "aa")
-    public ResponseEntity<String> aa() 
-    {
-        return ResponseEntity.badRequest().body("sdfgsdg");
-    }
     
 
-    @PostMapping(path = "{username}/create-collaborator")
-    public ResponseEntity<?> createCollaborator(@RequestBody AdminRegistrationDTO adminRegistrationDTO) 
+
+    @PostMapping(path = "/{username}/create-collaborator")
+    public ResponseEntity<CollaboratorRegistrationResponseDTO> createCollaborator(@PathVariable String username, @RequestBody CollaboratorRegistrationDTO collaboratorRegistrationDTO) 
     {
         try 
         {
-            administratorService.createCollaborator(adminRegistrationDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            return ResponseEntity.status(HttpStatus.CREATED).body(administratorService.createCollaborator(username, collaboratorRegistrationDTO));
         } 
         catch (UsernameNotFoundException e)
         {
-            return ResponseEntity.notFound().header("Error", e.getMessage()).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).header("Error", e.getMessage()).build();
         }
         catch (IllegalArgumentException e) 
         {
-            return ResponseEntity.badRequest().header("Error", e.getMessage()).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).header("Error", e.getMessage()).build();
         }
     }
     
 
-    @PostMapping(path = "{username}/create-real-estate-agent")
-    public ResponseEntity<?> createRealEstateAgent(@PathVariable String username, @RequestBody UserDTO realEstateAgentDTO) 
+    @PostMapping(path = "/{username}/create-agent")
+    public ResponseEntity<AgentRegistrationResponseDTO> createAgent(@PathVariable String username, @RequestBody AgentRegistrationDTO agentRegistrationDTO) 
     {
         try 
         {
-            administratorService.createRealEstateAgent(username, realEstateAgentDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            return ResponseEntity.status(HttpStatus.CREATED).body(administratorService.createAgent(username, agentRegistrationDTO));
         } 
         catch (UsernameNotFoundException e)
         {
-            return ResponseEntity.notFound().header("Error", e.getMessage()).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).header("Error", e.getMessage()).build();
         }
         catch (IllegalArgumentException e) 
         {
-            return ResponseEntity.badRequest().header("Error", e.getMessage()).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).header("Error", e.getMessage()).build();
         }
     }
 
 
-    @PutMapping(path = "{username}/update-password")
-    public ResponseEntity<?> updatePassword(@PathVariable String username, @RequestBody OldNewPasswordDTO oldNewPasswordDTO) 
+    @PutMapping(path = "/{username}/update-password")
+    public ResponseEntity<?> updatePassword(@PathVariable String username, @RequestBody UpdatePasswordDTO updatePasswordDTO) 
     {
         try 
         {
-            administratorService.updatePassword(username, oldNewPasswordDTO);
-            return ResponseEntity.ok().build();
+            administratorService.updatePassword(username, updatePasswordDTO);
+            return ResponseEntity.status(HttpStatus.OK).build();
         } 
         catch (UsernameNotFoundException e) 
         {
-            return ResponseEntity.notFound().header("Error", e.getMessage()).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).header("Error", e.getMessage()).build();
         }
         catch (IllegalArgumentException e) 
         {
-            return ResponseEntity.badRequest().header("Error", e.getMessage()).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).header("Error", e.getMessage()).build();
         }
     }
 }

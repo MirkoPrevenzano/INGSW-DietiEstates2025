@@ -1,0 +1,174 @@
+
+package com.dietiEstates.backend.model.entity;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.persistence.ForeignKey;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.annotations.OnDelete;
+
+import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
+import com.dietiEstates.backend.model.embeddable.RealEstateStats;
+import com.dietiEstates.backend.enums.EnergyClass;
+import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
+
+
+
+@Entity(name = "RealEstate")
+@Table(name = "real_estate")
+@Inheritance(strategy = InheritanceType.JOINED)
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
+@ToString(exclude = {"photos", "customerViewsRealEstates"})
+public class RealEstate 
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "real_estate_id")
+    private Long realEstateId;
+
+    @NonNull
+    @Column(nullable = false, 
+            updatable = true)
+    private String title;
+
+    @NonNull
+    @Column(nullable = false, 
+            updatable = true, 
+            columnDefinition = "text")
+    private String description;
+
+    @NonNull
+    @Column(name = "uploading_date",
+            nullable = false, 
+            updatable = false)    
+    private LocalDateTime uploadingDate;
+    
+    @Column(nullable = false, 
+            updatable = true)
+    private double price;
+
+    @Column(name = "condo_fee",
+            nullable = false, 
+            updatable = true)         
+    private double condoFee;
+
+    @NonNull
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "energy_class",
+            nullable = false, 
+            updatable = true)         
+    private EnergyClass energyClass;
+
+    @NonNull
+    @Embedded 
+    private InternalRealEstateFeatures internalFeatures;
+
+    @NonNull
+    @Embedded
+    private ExternalRealEstateFeatures externalFeatures;    
+    
+    @Embedded
+    private RealEstateStats realEstateStats = new RealEstateStats();
+
+
+
+    @OneToOne(mappedBy = "realEstate",
+              fetch = FetchType.LAZY, 
+              cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
+              orphanRemoval = true,
+              optional = false)
+    private Address address;
+
+    @ManyToOne(fetch = FetchType.LAZY,
+               cascade = {})
+    @JoinColumn(name = "agent_id", 
+                nullable = false, 
+                updatable = true, 
+                foreignKey = @ForeignKey(name = "real_estate_to_agent_fk"))
+    private Agent agent;
+
+    @OneToMany(fetch = FetchType.LAZY, 
+               cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE},
+               orphanRemoval = true)
+    @JoinColumn(name = "real_estate_id", 
+                nullable = false, 
+                updatable = true, 
+                foreignKey = @ForeignKey(name = "photo_to_real_estate_fk"))
+    private List<Photo> photos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "realEstate",
+               fetch = FetchType.LAZY,
+               cascade = {CascadeType.REMOVE}, 
+               orphanRemoval = true)
+    private List<CustomerViewsRealEstate> customerViewsRealEstates = new ArrayList<>();
+
+
+
+    public RealEstate(@NonNull String title, @NonNull String description, @NonNull LocalDateTime uploadingDate, double price, double condoFee,
+                      @NonNull EnergyClass energyClass, @NonNull InternalRealEstateFeatures internalFeatures, @NonNull ExternalRealEstateFeatures externalFeatures)
+    {
+        this.title = title;
+        this.description = description;
+        this.uploadingDate = uploadingDate;
+        this.price = price;
+        this.condoFee = condoFee;
+        this.energyClass = energyClass;
+        this.internalFeatures = internalFeatures;
+        this.externalFeatures = externalFeatures;
+    }
+
+
+    
+    public void setAddress(Address newAddress) 
+    {
+        if (newAddress == null) 
+            this.address.setRealEstate(null);
+        else 
+			newAddress.setRealEstate(this);
+
+        this.address = newAddress;
+    }
+
+	
+    public void addAddress(Address newAddress) 
+    {
+        this.setAddress(newAddress);
+        newAddress.setRealEstate(this);
+    }    
+    
+    public void removeAddress() 
+    {
+        this.getAddress().setRealEstate(null);
+        this.setAddress(null);
+    }
+}

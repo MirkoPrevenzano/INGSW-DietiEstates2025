@@ -1,0 +1,61 @@
+
+package com.dietiEstates.backend.security.handler;
+
+import java.io.IOException;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
+
+import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
+import com.dietiEstates.backend.model.entity.Administrator;
+import com.dietiEstates.backend.model.entity.Agent;
+import com.dietiEstates.backend.util.JwtUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+
+@Component
+@RequiredArgsConstructor
+@Slf4j
+public class AuthenticationSuccessHandlerCustomImpl implements AuthenticationSuccessHandler 
+{
+    private final ObjectMapper objectMapper;
+
+
+
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException 
+    {
+        log.info("JWT Authentication is OK! User '" + authentication.getName() + "' successfully authenticated.");
+    
+        UserDetails user = (UserDetails) authentication.getPrincipal();
+        String accessToken = JwtUtil.generateAccessToken(user);
+        Boolean mustChangePassword = getMustChangePassword(user);
+        
+        AuthenticationResponseDTO authenticationResponseDTO = new AuthenticationResponseDTO(accessToken, mustChangePassword);
+
+        response.setStatus(HttpStatus.OK.value());
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        objectMapper.writeValue(response.getOutputStream(), authenticationResponseDTO); 
+    }
+
+
+    private boolean getMustChangePassword(UserDetails user)
+    {
+        if(user instanceof Administrator) 
+            return ((Administrator) user).isMustChangePassword();
+        else if (user instanceof Agent) 
+            return ((Agent) user).isMustChangePassword();
+        
+        return false;
+    }
+}

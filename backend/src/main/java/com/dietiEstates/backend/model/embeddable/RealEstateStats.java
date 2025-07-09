@@ -16,19 +16,16 @@ public class RealEstateStats
 {
     @Column(name = "views_number", 
             nullable = false,
-            updatable = true,
-            columnDefinition = "bigint default 0")
+            updatable = true)
     private long viewsNumber;
 
     @Column(name = "visits_number", 
             nullable = false,
-            updatable = true,
-            columnDefinition = "bigint default 0")
+            updatable = true)
     private long visitsNumber;
 
     @Column(name = "offers_number", 
             nullable = false,
-            updatable = true,
-            columnDefinition = "bigint default 0")
+            updatable = true)
     private long offersNumber;
 }
