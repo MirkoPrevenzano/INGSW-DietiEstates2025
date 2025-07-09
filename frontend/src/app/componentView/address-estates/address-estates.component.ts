@@ -33,24 +33,48 @@ export class AddressEstatesComponent implements AfterViewInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['coordinatesToStreet'] && this.coordinatesToStreet){
-      this.addressVerificationService.verifyAddressToCoordinate(
-        this.coordinatesToStreet
-      ).then(result=>{
-        if(result)
-          this.setAddress(result)   
-      })
+      // Use setTimeout to ensure ViewChild elements are available
+      setTimeout(() => {
+        this.addressVerificationService.verifyAddressToCoordinate(
+          this.coordinatesToStreet!
+        ).then(result=>{
+          if(result && result.features && result.features.length > 0) {
+            this.setAddress(result);
+            // Emit the address data
+            const address = this.getAddress();
+            address.latitude = this.coordinatesToStreet!.lat;
+            address.longitude = this.coordinatesToStreet!.lon;
+            this.addressOut.emit(address);
+          }
+        }).catch(error => {
+          console.error('Error verifying address from coordinates:', error);
+        });
+      }, 100);
     }
   }
 
   /*da considerare come service i get e set*/
   setAddress(result: any) {
-    let properties:any = result.features[0].properties
-    this.cityInput.setValue(properties?.city ?? '')
-    this.countryInput.setValue(properties?.country ?? '')
-    this.stateInput.setValue(properties?.state ?? '')
-    this.houseNumberInput.nativeElement.value = properties?.housenumber ?? ''
-    this.postCodeInput.setValue(properties?.postcode ?? '')
-    this.streetInput.setValue(properties?.street ?? '')
+    if (!result?.features?.[0]?.properties) {
+      console.warn('Invalid address result:', result);
+      return;
+    }
+
+    const properties: any = result.features[0].properties;
+    
+    // Check if ViewChild elements are available before using them
+    if (!this.cityInput || !this.countryInput || !this.stateInput || 
+        !this.postCodeInput || !this.streetInput || !this.houseNumberInput) {
+      console.warn('Address input components not yet available');
+      return;
+    }
+
+    this.cityInput.setValue(properties?.city ?? '');
+    this.countryInput.setValue(properties?.country ?? '');
+    this.stateInput.setValue(properties?.state ?? '');
+    this.houseNumberInput.nativeElement.value = properties?.housenumber ?? '';
+    this.postCodeInput.setValue(properties?.postcode ?? '');
+    this.streetInput.setValue(properties?.street ?? '');
   }
 
   getAddress():Address{

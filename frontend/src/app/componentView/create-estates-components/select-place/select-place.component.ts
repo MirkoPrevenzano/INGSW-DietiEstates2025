@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output, AfterViewInit, ViewChild } from '@angular/core';
 import { AddressEstatesComponent } from '../../address-estates/address-estates.component';
 import { MapComponent } from '../../map/map.component';
 import { Coordinate } from '../../../model/coordinate';
@@ -11,17 +11,25 @@ import { EstateDataService } from '../../../_service/estate-data/estate-data.ser
   templateUrl: './select-place.component.html',
   styleUrl: './select-place.component.scss'
 })
-export class SelectPlaceComponent implements OnInit{
+export class SelectPlaceComponent implements OnInit, AfterViewInit{
+  @ViewChild(AddressEstatesComponent) addressComponent!: AddressEstatesComponent;
+  @ViewChild(MapComponent) mapComponent!: MapComponent;
+  
   private readonly estateDataService: EstateDataService = inject(EstateDataService)
+  private savedAddress: Address | null = null;
   
   ngOnInit(): void {
-    const addressEstate:Address=this.estateDataService.getAddress()
-    if(addressEstate.latitude && addressEstate.longitude)
-    {
-      this.onCoordinateChanged({ lat: addressEstate.latitude, lon: addressEstate.longitude })
-      this.onClickMarker({ lat: addressEstate.latitude, lon: addressEstate.longitude })
-    }
+    // Store the saved address but don't try to use it yet
+    this.savedAddress = this.estateDataService.getAddress();
+  }
 
+  ngAfterViewInit(): void {
+    // Now that child components are ready, populate with saved data
+    if (this.savedAddress?.latitude && this.savedAddress?.longitude) {
+      const coordinates = { lat: this.savedAddress.latitude, lon: this.savedAddress.longitude };
+      this.onCoordinateChanged(coordinates);
+      this.onClickMarker(coordinates);
+    }
   }
 
   currentCoordinates?:Coordinate

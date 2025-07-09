@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { EstateRent } from '../../model/estateRent';
 import { EstateSell } from '../../model/estateSell';
+import { Estate } from '../../model/estate';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstateFactoryService {
-
-  createEstate(estate: any, additionalFields: any) {
+  //possibile errore su tipo di estate, ma non dovrebbe essere un problema
+  createEstate(estate: Estate, additionalFields: any): Estate {
     switch (estate.type) {
       case 'For Sale': {
         return this.createEstateSell(estate, additionalFields);

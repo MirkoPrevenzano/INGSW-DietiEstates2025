@@ -5,17 +5,17 @@ import { RegisterRequest } from '../../../model/registerRequest';
 @Injectable({
   providedIn: 'root'
 })
-export class SavePersonalService {
+export class CreateStaffService {
 
   constructor(private readonly http: HttpClient) { }
 
-  httpOptions = {
+  private httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
 
-  url="http://localhost:8080/admin"
+  private url="http://localhost:8080/admin"
 
   /*
   *Viene inviato al server un oggetto contenente username e password del nuovo agente

@@ -14,7 +14,6 @@ import { EstatePreview } from '../../model/estatePreview';
 import { CacheService } from '../../_service/cache-service/cache-service.service';
 import { ButtonCustomComponent } from '../button-custom/button-custom.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
-import { UploadPhotoService } from '../../_service/rest-backend/upload-photo/upload-photo.service';
 import { FilterService } from '../../_service/filter/filter.service';
 
 
@@ -39,7 +38,6 @@ export class EstateSearchContainerComponent implements OnInit {
   isMobile: boolean = false;  
   countOfItems: number=0
   pageNumber:number=0
-  readonly maxCacheSize: number = 5;
   mapInstance!: LeafletMap
   isPage = false
   notFound404= false
@@ -58,11 +56,9 @@ export class EstateSearchContainerComponent implements OnInit {
   listRealEstateId: number[] = []
   constructor(
     private readonly markerService: MarkerService,
-    private readonly router: Router,
     private readonly activadeRouter: ActivatedRoute,
     private readonly estateService: EstateService,
     private readonly cacheService: CacheService,
-    private readonly uploadPhotoService: UploadPhotoService,
     private readonly filterService: FilterService
   ) {
     this.checkScreenSize();
@@ -102,7 +98,7 @@ export class EstateSearchContainerComponent implements OnInit {
       this.cacheRetrieveEstates(cacheKey)
       
     } else {
-      this.serverRetrieveEstates(params,cacheKey)
+      this.serverRetrieveEstates(params)
     }
 
   }
@@ -119,17 +115,17 @@ export class EstateSearchContainerComponent implements OnInit {
   }
   
 
-
-  serverRetrieveEstates(params: { [key: string]: any; }, cacheKey: string) {
+  //controllare se Params funzioni
+  serverRetrieveEstates(params: Params) {
     if(this.isPage)
-      this.getEstatesNewPage(params,cacheKey)
+      this.getEstatesNewPage(params)
     else{
-      this.getEstatesNewFilter(params,cacheKey)  
+      this.getEstatesNewFilter(params)  
 
     }
   }
 
-  getEstatesNewPage(params: { [key: string]: any; }, cacheKey: string) {
+  getEstatesNewPage(params: Params) {
     this.estateService.getEstatesNewPage(params).subscribe((result) => {
         if (!result) {
           return;
@@ -152,7 +148,7 @@ export class EstateSearchContainerComponent implements OnInit {
     
   }
   
-  getEstatesNewFilter(params: { [key: string]: any; }, cacheKey: string) {
+  getEstatesNewFilter(params: Params) {
     this.estateService.getEstatesNewFilter(params).subscribe((result:any)=>{
         if(result.totalElements>0){
           this.countOfItems = result.totalElements
@@ -214,7 +210,7 @@ export class EstateSearchContainerComponent implements OnInit {
     this.loadEstates()
   }
 
-  applyFilter(params: { [key: string]: any }){
+  applyFilter(params: Params){
     this.pageCache.clear()
     this.filter = { ...this.filter, ...params };
     this.pageNumber=0
@@ -224,7 +220,7 @@ export class EstateSearchContainerComponent implements OnInit {
 
   }
 
-  updateUrl(params:{ [key: string]: any }, page:number){
+  updateUrl(params:Params, page:number){
     this.filterService.updateUrl(params, page, this.limit);
   }
 

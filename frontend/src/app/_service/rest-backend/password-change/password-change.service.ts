@@ -9,9 +9,9 @@ export class PasswordChangeService {
 
   constructor(private readonly http:HttpClient) { }
   
-    url:string="http://localhost:8080/admin"
+    private url:string="http://localhost:8080/admin"
   
-    httpOptions = {
+    private httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })

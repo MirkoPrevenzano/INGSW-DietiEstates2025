@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CacheEstates } from '../../model/cacheEstates';
+import { Params } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class CacheService {
   addPageCache(
     info:any, 
     pageCache:Map<string, any>, 
-    params:{ [key: string]: any }
+    params:Params
   ) {
     const cacheKey = this.getKey(params)
     pageCache.set(cacheKey, info);

@@ -9,9 +9,9 @@ export class UploadPhotoService {
 
   constructor(private readonly http:HttpClient) { }
    
-    url:string="http://localhost:8080/S3"
+    private url:string="http://localhost:8080/S3"
   
-    httpOptions = {
+    private httpOptions = {
         headers: new HttpHeaders({
           //'Content-Type': 'application/json'
         })

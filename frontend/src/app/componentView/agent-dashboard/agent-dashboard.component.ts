@@ -23,10 +23,10 @@ import { ButtonCustomComponent } from '../button-custom/button-custom.component'
   styleUrls: ['./agent-dashboard.component.scss']
 })
 export class AgentDashboardComponent implements OnInit {
-  estateStatsSellRent: number[] = [0,0,0,0,0,0,0,0,0,0,0,0]
+  estatesSoldRentedPerMonth: number[] = [0,0,0,0,0,0,0,0,0,0,0,0]
   monthlySalesChartOptions: AgChartOptions = {}
-  pieChartOptions: AgChartOptions = {}
-  pieChartOptions2: AgChartOptions= {}
+  successRatePieChartOptions: AgChartOptions = {}
+  listingTypePieChartOptions: AgChartOptions = {}
   dropdownOpen = false 
   tableData = []
   generalStats: AgentGeneralStats = {
@@ -58,8 +58,8 @@ export class AgentDashboardComponent implements OnInit {
         if(response){
           this.generalStats = response.realEstateAgentStats
           console.log(response.estatesPerMonths)
-          this.estateStatsSellRent = response.estatesPerMonths
-          console.log(this.estateStatsSellRent)
+          this.estatesSoldRentedPerMonth = response.estatesPerMonths
+          console.log(this.estatesSoldRentedPerMonth)
           this.createMonthlySalesChart()
           this.createPieCharts()
         }
@@ -71,14 +71,14 @@ export class AgentDashboardComponent implements OnInit {
  
 
   createPieCharts() {
-    this.pieChartOptions = this.chartsConfig.successRateConfig(
+    this.successRatePieChartOptions = this.chartsConfig.successRateConfig(
       [
         { asset: "Pending", amount: 100- this.generalStats.successRate },
         { asset: "Completed", amount:this.generalStats.successRate},
       ]
     )
     
-    this.pieChartOptions2 = this.chartsConfig.closeListingConfig(
+    this.listingTypePieChartOptions = this.chartsConfig.closeListingConfig(
       [
         { asset: "For Sale", amount: this.generalStats.totalSoldRealEstates },
         { asset: "For Rent", amount: this.generalStats.totalRentedRealEstates },
@@ -87,7 +87,7 @@ export class AgentDashboardComponent implements OnInit {
   }
 
   createMonthlySalesChart() {
-    this.monthlySalesChartOptions= this.chartsConfig.generateOptionsMontlySalesChart(this.estateStatsSellRent);  
+    this.monthlySalesChartOptions= this.chartsConfig.generateOptionsMontlySalesChart(this.estatesSoldRentedPerMonth);  
   }
 
 

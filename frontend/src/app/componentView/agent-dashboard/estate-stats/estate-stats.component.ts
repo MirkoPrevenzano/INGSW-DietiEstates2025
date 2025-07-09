@@ -31,7 +31,7 @@ export class EstateStatsComponent implements OnInit, AfterViewInit{
     this.loadStats()
   }
   ngAfterViewInit(): void {
-    this.scrollContainer.nativeElement.addEventListener('scroll', this.onScroll.bind(this));
+    this.scrollContainer.nativeElement.addEventListener('scroll', this.nextPage.bind(this));
   }
 
   loadStats() {
@@ -46,7 +46,7 @@ export class EstateStatsComponent implements OnInit, AfterViewInit{
     }
   }
   
-  onScroll(event: any) {
+  nextPage(event: any) {
     console.log(event)
     const element = event.target;
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {

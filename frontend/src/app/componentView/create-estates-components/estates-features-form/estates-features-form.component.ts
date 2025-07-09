@@ -3,10 +3,13 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
 import { EstateFeatures } from '../../../model/estateFeatures';
 import { EstateDataService } from '../../../_service/estate-data/estate-data.service';
+import { estateFeatures } from '../../../constants/estate-features';
 
 @Component({
   selector: 'app-estates-features-form',
-  imports: [ReactiveFormsModule, CheckboxComponent],
+  imports: [
+    ReactiveFormsModule,
+    CheckboxComponent],
   templateUrl: './estates-features-form.component.html',
   styleUrl: './estates-features-form.component.scss'
 })
@@ -17,6 +20,7 @@ export class EstatesFeaturesFormComponent implements OnInit {
   private  readonly estateDataService: EstateDataService = inject(EstateDataService)
 
   featuresForm!:FormGroup
+  estateFeaturesProperties= estateFeatures
 
   
 

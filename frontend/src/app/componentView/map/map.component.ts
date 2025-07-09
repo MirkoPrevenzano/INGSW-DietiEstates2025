@@ -33,21 +33,26 @@ export class MapComponent implements AfterViewInit, OnChanges {
   ) {}
 
   ngAfterViewInit() {
-    const initCoord: Coordinate ={lat:40.837726396538166, lon:14.306795597076418}
-    const initZoom = 4
-    this.mapInstance=this.mapService.initMap(this.mapElement,initCoord,initZoom)
-    if(this.clickable){
-      this.mapService.onClickMap((coordinate:Coordinate)=>{
-        this.addMarker(coordinate)
-      })
-    }
+    try {
+      const initCoord: Coordinate = {lat:40.837726396538166, lon:14.306795597076418};
+      const initZoom = 4;
+      this.mapInstance = this.mapService.initMap(this.mapElement, initCoord, initZoom);
+      
+      if(this.clickable){
+        this.mapService.onClickMap((coordinate:Coordinate)=>{
+          this.addMarker(coordinate);
+        });
+      }
 
-    if (this.coordinates) {
-      this.addMarker(this.coordinates);
+      // Add initial marker if coordinates are provided
+      if (this.coordinates) {
+        this.addMarker(this.coordinates);
+      }
+      
+      this.mapReady.emit(this.mapInstance);
+    } catch (error) {
+      console.error('Error initializing map:', error);
     }
-    this.mapReady.emit(this.mapInstance)
-   
-
   }
 
   addMarker(coordinates: Coordinate){
@@ -62,12 +67,16 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.mapElement && 
+    if(this.mapInstance && 
         (changes['coordinates'] || changes['radius']) && 
         this.coordinates
-    )
-      this.addMarker(this.coordinates)
-    
+    ) {
+      try {
+        this.addMarker(this.coordinates);
+      } catch (error) {
+        console.error('Error adding marker on coordinate change:', error);
+      }
+    }
   }
 
  

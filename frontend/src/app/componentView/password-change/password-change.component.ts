@@ -45,24 +45,24 @@ export class PasswordChangeComponent implements OnInit{
       confirmNewPassword: new FormControl('', [Validators.required])
     });
 
-    oldPassword = ''
-    newPassword = ''
-    confirmPassword = ''
+    private oldPassword = ''
+    private newPassword = ''
+    private confirmPassword = ''
+ 
 
-
-    onChangePassword(){
+    submitPasswordChange(){
      
       if (this.passwordChangeControlService.isValidNewPassword(
         this.newPassword,
         this.oldPassword,
         this.confirmPassword
       )) {
-        this.passwordChange()
+        this.executePasswordChange()
       }
     }
 
 
-    passwordChange() {
+    executePasswordChange() {
       this.passwordService.passwordChange({
         oldPassword: this.oldPassword,
         newPassword: this.newPassword
@@ -83,6 +83,9 @@ export class PasswordChangeComponent implements OnInit{
         }
       })
   }
+
+  //effettua il logout e il login con la nuova password per l'admin che ha la password di default
+  //in modo da poter accedere con la nuova password
   reloadLogin() {
     const user = this.authService.getUser()
     if(!user){
@@ -94,7 +97,7 @@ export class PasswordChangeComponent implements OnInit{
       role: "admin"
     }).subscribe({
       next: (response) => {
-        const token = response.accessToken;
+        const token = response.jwtToken;
         this.authService.updateToken(token);
         setTimeout(() => {
           this.router.navigateByUrl('home/admin');
@@ -107,7 +110,6 @@ export class PasswordChangeComponent implements OnInit{
   }
 
   isMatch(): boolean {
-
     return this.passwordChangeControlService.isMatch(
       this.oldPassword ,
       this.confirmPassword

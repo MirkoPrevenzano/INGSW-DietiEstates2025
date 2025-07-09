@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RegisterComponent } from '../register/register.component';
 import { RegisterRequest } from '../../../model/registerRequest';
-import { SavePersonalService } from '../../../_service/rest-backend/save-personal/save-personalservice';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { RegisterValidationService } from '../../../_service/register-validation/register-validation.service';
 import { FormFieldComponent } from '../../form-field/form-field.component';
@@ -11,6 +10,7 @@ import {  ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ButtonCustomComponent } from '../../button-custom/button-custom.component';
 import { LoginWithGoogleComponent } from '../../login-with-google/login-with-google.component';
+import { CreateStaffService } from '../../../_service/rest-backend/create-staff/create-staff.service';
 
 @Component({
   selector: 'app-admin-registrate',
@@ -27,7 +27,7 @@ import { LoginWithGoogleComponent } from '../../login-with-google/login-with-goo
   styleUrl: './admin-registrate.component.scss'
 })
 export class AdminRegistrateComponent extends RegisterComponent{
-  private readonly savePersonalService = inject(SavePersonalService)
+  private readonly createStaffService = inject(CreateStaffService)
   override title: string="Create new admin";
 
   constructor(
@@ -39,7 +39,7 @@ export class AdminRegistrateComponent extends RegisterComponent{
   }
 
   protected override onRegisterUser(userRequest: RegisterRequest): void {
-    this.savePersonalService.saveAdmin(userRequest).subscribe({
+    this.createStaffService.saveAdmin(userRequest).subscribe({
       error: (err)=>{
         this.notify.warning(err.headers.get('error'))
       },

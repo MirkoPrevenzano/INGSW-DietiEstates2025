@@ -7,24 +7,24 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  url = "http://localhost:8080";
+  private url = "http://localhost:8080";
   
   constructor(private readonly http: HttpClient) {}
 
-  httpOptions = {
+  private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
     })
   };
 
-  login(loginRequest: LoginRequest): Observable<{accessToken: string}> {
+  login(loginRequest: LoginRequest): Observable<{jwtToken: string}> {
     const url = this.url + "/login";
     const body = new HttpParams()
       .set('username', loginRequest.username)
       .set('password', loginRequest.password)
       .set('role', loginRequest.role);
 
-    return this.http.post<{accessToken: string}>(url, body.toString(), this.httpOptions);
+    return this.http.post<{jwtToken: string}>(url, body.toString(), this.httpOptions);
   }
 
   loginWithGoogle(credential: any): Observable<any> {
@@ -33,8 +33,5 @@ export class LoginService {
     return this.http.post(url, body, { headers: { 'Content-Type': 'application/json' } });
   }
 
-  loginGit():Observable<any>{
-    const url = this.url + "/oauth2/authorization/github";
-    return this.http.post(url,  { headers: { 'Content-Type': 'application/json' } });
-  }
+ 
 }

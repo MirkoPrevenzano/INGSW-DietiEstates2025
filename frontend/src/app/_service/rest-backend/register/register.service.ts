@@ -9,9 +9,9 @@ export class RegisterService {
 
   constructor(private readonly http:HttpClient) { }
 
-  url:string="http://localhost:8080/auth"
+  private url:string="http://localhost:8080/auth"
 
-  httpOptions = {
+  private httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })

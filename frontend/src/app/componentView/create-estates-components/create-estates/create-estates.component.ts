@@ -113,9 +113,7 @@ export class CreateEstatesComponent implements OnInit{
       this.estate = this.createEstate()
   }
 
-  checkPhoto() {
-    throw new Error('Method not implemented.');
-  }
+
 
   previousStep() {
     if (this.currentStep > 0) {

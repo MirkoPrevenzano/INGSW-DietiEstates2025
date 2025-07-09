@@ -1,11 +1,9 @@
-import { inject, Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import {Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PasswordValidatorService {
-  toastrService:ToastrService = inject(ToastrService)
 
   constructor() { }
   validatePassword(password: string): string[] {

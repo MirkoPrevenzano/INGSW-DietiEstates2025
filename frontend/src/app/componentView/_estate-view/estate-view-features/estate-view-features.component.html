@@ -1,29 +1,69 @@
-<div class="grid sm:grid-cols-2  gap-4 p-6">
+<div class="grid sm:grid-cols-2 gap-4 p-6">
     <div class="sm:mb-0 mb-4">
-    <h3 class="font-semibold text-lg text-text ">Features</h3>
-    <ul class="list-none space-y-1  text-text">
-        <li><span class="font-medium">Size:</span> {{ estateDescribe.size }} m²</li>
-        <li><span class="font-medium">Rooms:</span> {{ estateDescribe.roomsNumber }}</li>
-        <li><span class="font-medium">Floor:</span> {{ estateDescribe.floorNumber }}</li>
-        <li><span class="font-medium">Balcony:</span> {{ estateFeatures.hasBalcony ? 'Yes' : 'No' }}</li>
-        <li><span class="font-medium">Terrace:</span> {{ estateFeatures.hasTerrace ? 'Yes' : 'No' }}</li>
-        <li><span class="font-medium">Garage:</span> {{ estateFeatures.hasGarage ? 'Yes' : 'No' }}</li>
-        <li><span class="font-medium">Garden:</span> {{ estateFeatures.hasGarden ? 'Yes' : 'No' }}</li>
-        <li><span class="font-medium">Swimming Pool:</span> {{ estateFeatures.hasSwimmingPool ? 'Yes' : 'No' }}</li>
-        <li><span class="font-medium">Elevator:</span> {{ estateFeatures.hasElevator ? 'Yes' : 'No' }}</li>
-
-    </ul>
+        <h3 class="font-semibold text-xl text-text mb-3">Features</h3>
+        <ul class="list-none space-y-3 text-text">
+            <li class="flex items-center space-x-3">
+                <mat-icon class="text-primary text-lg">square_foot</mat-icon>
+                <span class="text-base"><span class="font-medium">Size:</span> {{ estateDescribe.size }} m²</span>
+            </li>
+            <li class="flex items-center space-x-3">
+                <mat-icon class="text-primary text-lg">meeting_room</mat-icon>
+                <span class="text-base"><span class="font-medium">Rooms:</span> {{ estateDescribe.roomsNumber }}</span>
+            </li>
+            <li class="flex items-center space-x-3">
+                <mat-icon class="text-primary text-lg">layers</mat-icon>
+                <span class="text-base"><span class="font-medium">Floor:</span> {{ estateDescribe.floorNumber }}</span>
+            </li>
+            <li class="flex items-center space-x-3">
+                <mat-icon class="text-primary text-lg">balcony</mat-icon>
+                <span class="text-base"><span class="font-medium">Balcony:</span> {{ estateFeatures.hasBalcony ? 'Yes' : 'No' }}</span>
+            </li>
+            <li class="flex items-center space-x-3">
+                <mat-icon class="text-primary text-lg">deck</mat-icon>
+                <span class="text-base"><span class="font-medium">Terrace:</span> {{ estateFeatures.hasTerrace ? 'Yes' : 'No' }}</span>
+            </li>
+            <li class="flex items-center space-x-3">
+                <mat-icon class="text-primary text-lg">garage</mat-icon>
+                <span class="text-base"><span class="font-medium">Garage:</span> {{ estateFeatures.hasGarage ? 'Yes' : 'No' }}</span>
+            </li>
+            <li class="flex items-center space-x-3">
+                <mat-icon class="text-primary text-lg">local_florist</mat-icon>
+                <span class="text-base"><span class="font-medium">Garden:</span> {{ estateFeatures.hasGarden ? 'Yes' : 'No' }}</span>
+            </li>
+            <li class="flex items-center space-x-3">
+                <mat-icon class="text-primary text-lg">pool</mat-icon>
+                <span class="text-base"><span class="font-medium">Swimming Pool:</span> {{ estateFeatures.hasSwimmingPool ? 'Yes' : 'No' }}</span>
+            </li>
+            <li class="flex items-center space-x-3">
+                <mat-icon class="text-primary text-lg">elevator</mat-icon>
+                <span class="text-base"><span class="font-medium">Elevator:</span> {{ estateFeatures.hasElevator ? 'Yes' : 'No' }}</span>
+            </li>
+        </ul>
     </div>
-    <div class="sm:mb-0 mb-4  text-text">
-    <h3 class="font-semibold text-lg ">Energy Efficiency</h3>
-    <ul class="list-none space-y-1">
-        <li><span class="font-medium">Furniture Condition:</span> {{ estateDescribe.furnitureCondition }}</li>
-        <li><span class="font-medium">Estate Condition:</span> {{ estateDescribe.estateCondition }}</li>
-        <li><span class="font-medium">Heating:</span> {{ estateFeatures.hasHeating ? 'Yes' : 'No' }}</li>
-        <li><span class="font-medium">Air Conditioning:</span> {{ estateFeatures.hasAirConditioning ? 'Yes' : 'No' }}</li>
-        <li><span class="font-medium">Energy Class:</span> {{ estateDescribe.energyClass }}</li>
-    </ul>
+    
+    <div class="sm:mb-0 mb-4 text-text">
+        <h3 class="font-semibold text-xl mb-3">Energy Efficiency</h3>
+        <ul class="list-none space-y-3">
+            <li class="flex items-center space-x-3">
+                <mat-icon class="text-primary text-lg">chair</mat-icon>
+                <span class="text-base"><span class="font-medium">Furniture Condition:</span> {{ estateDescribe.furnitureCondition }}</span>
+            </li>
+            <li class="flex items-center space-x-3">
+                <mat-icon class="text-primary text-lg">home_repair_service</mat-icon>
+                <span class="text-base"><span class="font-medium">Estate Condition:</span> {{ estateDescribe.estateCondition }}</span>
+            </li>
+            <li class="flex items-center space-x-3">
+                <mat-icon class="text-primary text-lg">thermostat</mat-icon>
+                <span class="text-base"><span class="font-medium">Heating:</span> {{ estateFeatures.hasHeating ? 'Yes' : 'No' }}</span>
+            </li>
+            <li class="flex items-center space-x-3">
+                <mat-icon class="text-primary text-lg">ac_unit</mat-icon>
+                <span class="text-base"><span class="font-medium">Air Conditioning:</span> {{ estateFeatures.hasAirConditioning ? 'Yes' : 'No' }}</span>
+            </li>
+            <li class="flex items-center space-x-3">
+                <mat-icon class="text-primary text-lg">energy_savings_leaf</mat-icon>
+                <span class="text-base"><span class="font-medium">Energy Class:</span> {{ estateDescribe.energyClass }}</span>
+            </li>
+        </ul>
     </div>
 </div>
-  
-        

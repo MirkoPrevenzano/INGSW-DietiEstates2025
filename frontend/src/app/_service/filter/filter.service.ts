@@ -10,8 +10,8 @@ export class FilterService {
     private readonly activatedRoute: ActivatedRoute
   ) {}
 
-  updateUrl(params: { [key: string]: any }, page: number, limit: number): void {
-    const queryParams: { [key: string]: any } = {
+  updateUrl(params:Params, page: number, limit: number): void {
+    const queryParams: Params = {
       ...params,
       page,
       limit
@@ -24,7 +24,7 @@ export class FilterService {
     });
   }
 
-  retrieveFilter(params: Params): { filters: { [key: string]: any }, page: number } {
+  retrieveFilter(params: Params): { filters: Params, page: number } {
     const page = Number(params['page']) || 0;
     const filters = { ...params };
     delete filters['page'];

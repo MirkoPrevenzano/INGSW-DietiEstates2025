@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <div class="mb-4" [formGroup]="form">
-  <label [for]="controlName" class="block text-sm text-text font-medium mb-2 ">{{ label }}</label>
+  <label [for]="controlName" class="block text-sm text-text font-medium mb-2 ">
+    <mat-icon *ngIf="icon" class="text-primary text-xl">{{ icon }}</mat-icon>
+    {{ label }}
+  </label>
   <ng-container [ngSwitch]="type">
     <textarea 
       *ngSwitchCase="'textarea'" 
@@ -23,7 +26,7 @@
       (input)="updateValue($event)" 
       [minlength]="minlength" 
       [maxlength]="maxlength" 
-      [ngClass]="{'invalid-border': form.get(controlName)?.invalid && form.get(controlName)?.touched}" 
+      [ngClass]="{'invalid-border': form.get(controlName)?.invalid && form.get(controlName)?.touched}"
       class="w-full p-2 border border-gray-300 rounded-md">
 
     <input 

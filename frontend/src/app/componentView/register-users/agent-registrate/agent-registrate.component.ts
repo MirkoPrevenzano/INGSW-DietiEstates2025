@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { RegisterComponent } from '../register/register.component';
-import { SavePersonalService } from '../../../_service/rest-backend/save-personal/save-personalservice';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterRequest } from '../../../model/registerRequest';
 import { FormFieldComponent } from '../../form-field/form-field.component';
@@ -9,6 +8,7 @@ import { PasswordFieldComponent } from '../../password-field/password-field.comp
 import { Router } from '@angular/router';
 import { ButtonCustomComponent } from '../../button-custom/button-custom.component';
 import { LoginWithGoogleComponent } from '../../login-with-google/login-with-google.component';
+import { CreateStaffService } from '../../../_service/rest-backend/create-staff/create-staff.service';
 
 @Component({
   selector: 'app-agent-registrate',
@@ -24,11 +24,11 @@ import { LoginWithGoogleComponent } from '../../login-with-google/login-with-goo
 })
 
 export class AgentRegistrateComponent extends RegisterComponent{
-  private readonly savePersonalService = inject(SavePersonalService)
+  private readonly createStaffService = inject(CreateStaffService)
   private readonly router = inject(Router)
   override title: string="Create new agent";
   protected override onRegisterUser(userRequest: RegisterRequest): void {
-    this.savePersonalService.saveAgent(userRequest).subscribe({
+    this.createStaffService.saveAgent(userRequest).subscribe({
       error: (err)=>{
         console.log(err)
         this.notify.error(err.headers.get('error'))

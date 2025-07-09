@@ -89,8 +89,8 @@ export class LoginComponent implements OnInit{
 
   isInvalidForm() {
     return this.loginForm.invalid ||
-           this.username ||
-           this.password
+           !this.username ||
+           !this.password
   }
 
   isValidUsername() {
@@ -108,14 +108,22 @@ export class LoginComponent implements OnInit{
       role: this.userType
     }).subscribe({
       next: (response) => {
-        const token = response.accessToken
-        this.authService.updateToken(token)
-        setTimeout(()=>{
-          this.redirectHomePage()
-        },0)
+  
+        const token = response.jwtToken;
+        console.log('Token:', token);
+  
+        if (token) {
+          this.authService.updateToken(token);
+          setTimeout(() => {
+            this.redirectHomePage(); 
+          }, 0);
+        } else {
+          this.notifyToastr.warning('Token non trovato nella risposta del server.');
+        }
       },
       error: (err) => {
-        this.notifyToastr.warning(err.headers.get('error'))
+        console.error('Errore durante il login:', err);
+        this.notifyToastr.warning(err.headers?.get('error') || 'Errore durante il login.');
       }
     });
   }

@@ -1,6 +1,12 @@
 <!DOCTYPE html>
-<div  class="flex flex-col items-center justify-center w-full p-4">
-  <h2 class="text-sm text-text font-medium mb-4">{{ label }}</h2>
+<div class="flex flex-col items-center justify-center w-full p-4">
+  <!-- Header con icona e label allineati orizzontalmente -->
+  <div class="flex items-center justify-center mb-4 space-x-2">
+    <mat-icon *ngIf="icon" class="text-primary text-xl">{{icon}}</mat-icon>
+    <h2 class="text-sm text-text font-medium">{{ label }}</h2>
+  </div>
+
+  <!-- Pulsanti Yes/No -->
   <div [formGroup]="form" class="flex space-x-4">
     <button 
       class="px-4 py-2 border rounded-md transition-colors"

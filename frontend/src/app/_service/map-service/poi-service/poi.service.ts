@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Coordinate } from '../../../model/coordinate';
 import { from, Observable } from 'rxjs';
@@ -11,7 +10,6 @@ export class PoiService {
   private readonly geoapifyKey = environment.geoapifyToken
   private readonly defaultRadius: number = 1000;
 
-  constructor(private readonly http: HttpClient) { }
 
   searchPOI(coordinate: Coordinate, categories: string[], radius: number = this.defaultRadius): Observable<any> {
     const url = `https://api.geoapify.com/v2/places?categories=${categories.join(',')}&filter=circle:${coordinate.lon},${coordinate.lat},${radius}&bias=proximity:${coordinate.lon},${coordinate.lat}&limit=20&apiKey=${this.geoapifyKey}`;

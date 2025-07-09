@@ -17,7 +17,7 @@ export class RecentlyEstatePopupComponent {
   ngOnInit(): void {
     const user = localStorage.getItem('user');
     if(user)
-      this.agentService.recentyRealEstate(user).subscribe( result=>{
+      this.agentService.recentlyRealEstate(user).subscribe( result=>{
         this.recentListings = result
       })
   }

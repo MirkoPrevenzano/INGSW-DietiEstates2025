@@ -12,12 +12,12 @@ export class ValidateStepEstateCreateService {
   readonly errorEmptyFields = "Please, compile all fields"
   errorMorePhotos = "Sorry, number max of photos is"
   errorLessPhotos = "Sorry, number min of photos is"
-  readonly ok = ""
+  readonly successMessage = ""
 
   checkStep1(address: Address):string {
     if(!address)
       return this.errorEmptyFields + " and push 'check address'"
-    return this.ok;
+    return this.successMessage;
   }
 
   checkStep2(
@@ -39,7 +39,7 @@ export class ValidateStepEstateCreateService {
   checkStep3(featuresForm: FormGroup<any>) {
     if(!featuresForm.valid)
       return this.errorEmptyFields
-    return this.ok
+    return this.successMessage
   }
 
   constructor() { }

@@ -12,15 +12,15 @@ export class AgentService {
 
   constructor(private readonly http: HttpClient) { }
   
-    httpOptions = {
+    private httpOptions = {
         headers: new HttpHeaders({
           'Content-Type': 'application/json'
         })
       };
   
-    url="http://localhost:8080/agent"
+    private url="http://localhost:8080/agent"
 
-    recentyRealEstate(user:string):Observable<EstateRecently[]>{
+    recentlyRealEstate(user:string):Observable<EstateRecently[]>{
       const url= this.url+`/${user}/recent-real-estates/4`
       return this.http.get<EstateRecently[]>(url,this.httpOptions)
     }

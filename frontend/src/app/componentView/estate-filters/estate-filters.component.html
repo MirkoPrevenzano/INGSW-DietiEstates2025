@@ -18,7 +18,9 @@
         type="select" 
         controlName="type" 
         [options]="['For Sale', 'For Rent']" 
-        [form]="searchForm">
+        [form]="searchForm"
+        >
+        
       </app-form-field>
 
       <div class="">
@@ -48,7 +50,8 @@
         [maxNumber]="searchForm.get('maxPrice')?.value" 
         type="number" 
         controlName="minPrice" 
-        [form]="searchForm">
+        [form]="searchForm"
+       >
       </app-form-field>
 
       <!-- Prezzo massimo -->
@@ -57,7 +60,8 @@
         type="number"
         [minNumber]="searchForm.get('minPrice')?.value" 
         controlName="maxPrice" 
-        [form]="searchForm">
+        [form]="searchForm"
+        >
       </app-form-field>
 
       <!-- Numero di stanze -->
@@ -65,7 +69,8 @@
         label="Number Rooms" 
         type="number" 
         controlName="rooms" 
-        [form]="searchForm">
+        [form]="searchForm"
+        [icon]="'meeting_room'">
       </app-form-field>
 
       <!-- Classe energetica -->
@@ -74,7 +79,8 @@
         type="select" 
         controlName="energyClass" 
         [options]="['Anything', 'A', 'B', 'C', 'D', 'E', 'F', 'G']" 
-        [form]="searchForm">
+        [form]="searchForm"
+        [icon]="'energy_savings_leaf'">
       </app-form-field>
 
       
@@ -86,6 +92,7 @@
           <app-checkbox 
             *ngFor="let feature of estateFeatures" 
             [label]="feature.label" 
+            [icon]="feature.icon"
             [controlName]="feature.controlName" 
             [form]="searchForm">
           </app-checkbox>
@@ -98,7 +105,8 @@
         <div class="grid xl:grid-cols-2 grid-cols-1 gap-4">
           <app-checkbox 
             *ngFor="let locationFeature of estateLocationFeatures" 
-            [label]="locationFeature.label" 
+            [label]="locationFeature.label"
+            [icon]="locationFeature.icon" 
             [controlName]="locationFeature.controlName" 
             [form]="searchForm">
           </app-checkbox>

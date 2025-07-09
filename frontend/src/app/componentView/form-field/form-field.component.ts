@@ -1,13 +1,18 @@
 import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-form-field',
   templateUrl: './form-field.component.html',
   styleUrls: ['./form-field.component.scss'],
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [
+    ReactiveFormsModule, 
+    CommonModule,
+    MatIcon
+  ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -28,6 +33,7 @@ export class FormFieldComponent implements ControlValueAccessor {
   @Input() maxlength: number | null = null;
   @Input() minNumber: number  = 0;
   @Input() maxNumber: number | null = null;
+  @Input() icon?: string;
   private _value: any = '';
 
   get value(): any {

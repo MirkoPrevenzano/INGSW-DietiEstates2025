@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EstatePreview } from '../../../model/estatePreview';
+import { Params } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstateService {
     
-  url:string="http://localhost:8080/real-estate"
+  private url:string="http://localhost:8080/real-estate"
     
-  httpOptions = {
+  private httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
@@ -21,7 +22,7 @@ export class EstateService {
 
   
 
-  getEstatesNewPage(params: { [key: string]: any; }): Observable<EstatePreview[]>{
+  getEstatesNewPage(params:Params): Observable<EstatePreview[]>{
     const url: string = this.url+"/search4";
     console.log("Sto in new page")
     const httpParams = new HttpParams({ fromObject: params });
@@ -35,7 +36,7 @@ export class EstateService {
     );
   }
 
-  getEstatesNewFilter(params: { [key: string]: any; }):Observable<{ realEstatePreviews: EstatePreview[], totalElements: number, totalPages:number }> {
+  getEstatesNewFilter(params:Params):Observable<{ realEstatePreviews: EstatePreview[], totalElements: number, totalPages:number }> {
     console.log("Sto in new filter")
     const url: string = this.url+"/search3"
     const httpParams = new HttpParams({ fromObject: params });
@@ -60,7 +61,7 @@ export class EstateService {
     return this.http.get<string[][]>(url, { params: httpParams });
   }
 
-  getCountEstates(params: { [key: string]: any }):Observable<number>{
+  getCountEstates(params: Params):Observable<number>{
     const url = this.url+"/count"
     return this.http.get<number>(
       url, 

@@ -16,19 +16,19 @@ export class EstateDataService {
   private  features!: EstateFeatures
 
   getAddress():Address{
-    return this.address
+    return this.address || {} as Address;
   }
 
   getDescription():EstateDescribe{
-    return this.description
+    return this.description || {} as EstateDescribe;
   }
 
   getAdditionalFields():any{
-    return this.additionalFields
+    return this.additionalFields || {};
   }
 
   getFeatures(): EstateFeatures{
-    return this.features
+    return this.features || {} as EstateFeatures;
   }
 
   setFeatures(features: EstateFeatures){

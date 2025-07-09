@@ -11,7 +11,6 @@ import { ActivatedRoute } from '@angular/router';
 import { estateFeatures } from '../../constants/estate-features';
 import { estateLocationFeatures } from '../../constants/estate-location-features';
 import { AddressVerificationService } from '../../_service/geoapify/address-verification/address-verification.service';
-
 @Component({
   selector: 'app-estate-filters',
   imports: [
@@ -26,6 +25,16 @@ import { AddressVerificationService } from '../../_service/geoapify/address-veri
 })
 export class EstateFiltersComponent implements AfterViewInit{
     ngAfterViewInit(): void {
+      this.setupComponent();
+    }
+
+    constructor(
+      private readonly route: ActivatedRoute,
+      private readonly addressVerification: AddressVerificationService
+    ){}
+
+
+    setupComponent(): void {
       this.localityInput.select.subscribe((locality)=>this.handleLocalitySelect(locality))
       this.route.queryParams.subscribe((params) => {
         const lat = parseFloat(params['lat']);
@@ -44,11 +53,6 @@ export class EstateFiltersComponent implements AfterViewInit{
         }
       });
     }
-
-    constructor(
-      private readonly route: ActivatedRoute,
-      private readonly addressVerification: AddressVerificationService
-    ){}
 
     handleLocalitySelect(locality: any): void {
       this.localityInput.setValue(locality.properties.formatted)
