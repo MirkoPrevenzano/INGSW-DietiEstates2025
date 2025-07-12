@@ -13,7 +13,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class RealEstateCreationDTOMapperResolver 
+public class RealEstateMapperResolver 
 {
     private final List<RealEstateCreationDTOMapper> realEstateCreationDTOMappers;
 

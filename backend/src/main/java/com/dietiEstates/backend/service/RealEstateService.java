@@ -27,7 +27,7 @@ import com.dietiEstates.backend.model.entity.RealEstate;
 //import com.dietiEstates.backend.repository.CVRRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.resolver.RealEstateCreationDTOMapperResolver;
+import com.dietiEstates.backend.resolver.RealEstateMapperResolver;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -43,7 +43,7 @@ public class RealEstateService
     private final FindByRadiusHelper findByRadiusHelper;
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
-    private final RealEstateCreationDTOMapperResolver realEstateCreationDTOMapperResolver;
+    private final RealEstateMapperResolver realEstateMapperResolver;
     //private final CVRRepository cvrRepository;
 
 
@@ -71,7 +71,7 @@ public class RealEstateService
         Agent agent = realEstate.getAgent();
         AgentPublicInfoDTO agentPublicInfoDTO = modelMapper.map(agent, AgentPublicInfoDTO.class);    
 
-        RealEstateCreationDTOMapper realEstateCreationDTOMapper = realEstateCreationDTOMapperResolver.getMapper(realEstate);
+        RealEstateCreationDTOMapper realEstateCreationDTOMapper = realEstateMapperResolver.getMapper(realEstate);
         RealEstateCreationDTO realEstateCreationDTO = realEstateCreationDTOMapper.toDto(realEstate);
 
         RealEstateCompleteInfoDTO realEstateCompleteInfoDTO = new RealEstateCompleteInfoDTO(realEstateCreationDTO, agentPublicInfoDTO);
