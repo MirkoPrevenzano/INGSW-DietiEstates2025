@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-public abstract class ExportTemplate 
+public abstract class ExportServiceTemplate 
 {
     protected final AgentRepository agentRepository;
     protected final AgentService agentService;
@@ -53,7 +53,7 @@ public abstract class ExportTemplate
             
             
             // Step 4: Finalize and cleanup
-            finalizeExport(writer, response);
+            finalizeWriter(writer, response);
             
             log.info("Report exported successfully for agent: {}", username);
             
@@ -73,7 +73,7 @@ public abstract class ExportTemplate
     protected abstract void writeRealEstateStats(Agent agent, Object writer) throws Exception;
     protected abstract void writeRealEstatePerMonthStats(Agent agent, Object writer) throws Exception;
     protected abstract void writeSectionSeparator(Object writer) throws Exception;
-    protected abstract void finalizeExport(Object writer, HttpServletResponse response) throws Exception;
+    protected abstract void finalizeWriter(Object writer, HttpServletResponse response) throws Exception;
     protected abstract void handleExportError(Exception e, HttpServletResponse response);
     
     
