@@ -52,7 +52,8 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
         if(request.getServletPath().equals("/login") || 
            request.getServletPath().equals("/auth/standard-registration") ||
            request.getServletPath().equals("/auth/admin-registration") ||
-           request.getServletPath().equals("/auth/login/oauth2/code/google")) 
+           request.getServletPath().equals("/auth/login/oauth2/code/google") ||
+           request.getServletPath().equals("/admin/testmail")) 
            
         {
             filterChain.doFilter(request, response);

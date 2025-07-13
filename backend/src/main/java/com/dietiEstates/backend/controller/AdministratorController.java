@@ -18,6 +18,7 @@ import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
 import com.dietiEstates.backend.dto.response.AgentRegistrationResponseDTO;
 import com.dietiEstates.backend.dto.response.CollaboratorRegistrationResponseDTO;
 import com.dietiEstates.backend.service.AdministratorService;
+import com.dietiEstates.backend.service.mail.EmailService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,8 +31,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AdministratorController
 {
+    private final EmailService emailService;
     private final AdministratorService administratorService;
     
+
+
+    @PostMapping(path = "/testmail")
+    public ResponseEntity<Void> testmail() 
+    {
+        emailService.sendAgentRegistrationEmail("ciropizza2002@gmail.com");
+        return ResponseEntity.ok().build();
+    }
 
 
     @PostMapping(path = "/{username}/create-collaborator")
