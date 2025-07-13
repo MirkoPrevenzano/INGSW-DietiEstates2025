@@ -23,6 +23,7 @@ import com.dietiEstates.backend.model.embeddable.AgentStats;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.repository.AgentRepository;
+import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.AgentService;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -33,9 +34,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CsvExportService extends ExportServiceTemplate
 {
-    public CsvExportService(AgentRepository agentRepository, AgentService agentService) 
+    public CsvExportService(AgentRepository agentRepository, AgentService agentService, RealEstateRepository realEstateRepository) 
     {
-        super(agentRepository, agentService);
+        super(agentRepository, agentService, realEstateRepository);
     }
 
 
@@ -101,7 +102,7 @@ public class CsvExportService extends ExportServiceTemplate
         csvWriter.writeHeader("REAL ESTATES STATS");
         csvWriter.writeHeader("Title", "UploadingDate", "ViewsNumber", "VisitsNumber", "OffersNumber");
         
-        if (hasRealEstates(agent)) 
+        if (getRealEstateStatsByAgent(agent) != null) 
         {
             for (RealEstate realEstate : agent.getRealEstates()) 
             {
@@ -146,7 +147,9 @@ public class CsvExportService extends ExportServiceTemplate
     @Override
     protected void finalizeWriter(Object writer, HttpServletResponse response) throws Exception {
         ICsvListWriter csvWriter = (ICsvListWriter) writer;
-        csvWriter.close();        
+        csvWriter.close();               
+        response.setHeader("Success", "CSV esportato correttamente!");        
+
     }
 
 

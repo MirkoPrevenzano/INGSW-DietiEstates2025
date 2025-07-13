@@ -100,10 +100,19 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
                     .where(criteriaBuilder.equal(agentIdOfRealEstate, agentId))
                     .orderBy(criteriaBuilder.asc(realEstate.get("realEstateId")));
 
-        List<RealEstateStatsDTO> list = entityManager.createQuery(criteriaQuery)
-                                                     .setFirstResult((int)page.getOffset())
-                                                     .setMaxResults(page.getPageSize())
-                                                     .getResultList();
+        List<RealEstateStatsDTO> list;
+        if(page != null)
+        {
+            list = entityManager.createQuery(criteriaQuery)
+            .setFirstResult((int)page.getOffset())
+            .setMaxResults(page.getPageSize())
+            .getResultList();
+        }
+        else
+        {
+           list = entityManager.createQuery(criteriaQuery)
+            .getResultList(); 
+        }
 
         return list;
     }       

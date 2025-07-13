@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.model.entity.Agent;
-import com.dietiEstates.backend.service.support.ChartsService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class ChartsHelper implements ChartsService
+public class ChartsHelper
 {
     private final MockingStatsHelper mockingStatsHelper;
 

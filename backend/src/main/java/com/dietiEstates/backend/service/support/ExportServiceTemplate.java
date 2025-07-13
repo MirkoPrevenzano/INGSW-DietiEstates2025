@@ -4,9 +4,12 @@ package com.dietiEstates.backend.service.support;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AgentRepository;
+import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.AgentService;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,6 +23,7 @@ public abstract class ExportServiceTemplate
 {
     protected final AgentRepository agentRepository;
     protected final AgentService agentService;
+    private final RealEstateRepository realEstateRepository;
 
 
     // TEMPLATE METHOD - definisce il flusso standard
@@ -85,9 +89,8 @@ public abstract class ExportServiceTemplate
         return username + "_" + currentDateTime;
     }
     
-    protected boolean hasRealEstates(Agent agent) 
+    protected List<RealEstateStatsDTO> getRealEstateStatsByAgent(Agent agent) 
     {
-        return agent.getRealEstates() != null && 
-               !agent.getRealEstates().isEmpty();
+        return realEstateRepository.findStatsByAgent(agent.getUserId(), null);
     }
 }

@@ -26,9 +26,11 @@ import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
 import com.dietiEstates.backend.helper.ExportCsvHelper;
 import com.dietiEstates.backend.helper.ExportPdfHelper;
 import com.dietiEstates.backend.repository.AgentRepository;
+import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.service.support.CsvExportService;
 import com.dietiEstates.backend.service.support.ExportServiceTemplate;
+import com.dietiEstates.backend.service.support.PdfExportService;
 import com.lowagie.text.DocumentException;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -47,6 +49,7 @@ public class AgentController
     private final ExportCsvHelper exportCsvHelper;
     private final ExportPdfHelper exportPdfHelper;
     private final AgentRepository agentRepository;
+    private final RealEstateRepository realEstateRepository;
 
 
     @PostMapping(path = "{username}/create-real-estate-for-sale")
@@ -103,12 +106,21 @@ public class AgentController
     @GetMapping(value = "/{username}/exportCSV2")
     public void exportToCSV2(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {
-        ExportServiceTemplate exportServiceTemplate = new CsvExportService(agentRepository, agentService);
+        ExportServiceTemplate exportServiceTemplate = new CsvExportService(agentRepository, agentService, realEstateRepository);
         exportServiceTemplate.exportReport(username, response);
         //exportCsvHelper.writeCsvResponse(username,response);
     }
        
     
+    @GetMapping(value = "/{username}/exportPDF2")
+    public void exportToPDF2(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
+    {
+        ExportServiceTemplate exportServiceTemplate = new PdfExportService(agentRepository, agentService, realEstateRepository);
+        exportServiceTemplate.exportReport(username, response);
+        //exportCsvHelper.writeCsvResponse(username,response);
+    }
+
+
     //Il controller bisogna che chiama solo il metodo del service
     @GetMapping("{username}/exportPDF")
     public void exportToPDF(@PathVariable("username") String username, HttpServletResponse response) throws DocumentException, IOException 

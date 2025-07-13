@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.helper.MockingStatsHelper;
 import com.dietiEstates.backend.model.entity.Agent;
-import com.dietiEstates.backend.service.support.ChartsService;
+import com.dietiEstates.backend.service.support.ChartService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class JFreeChartService implements ChartsService
+public class JFreeChartService implements ChartService
 {
     private final MockingStatsHelper mockingStatsHelper;
 
