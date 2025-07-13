@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.service.support;
+package com.dietiEstates.backend.service.export;
 
 import java.awt.Color;
 import java.io.FileOutputStream;
@@ -15,6 +15,7 @@ import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.AgentService;
+import com.dietiEstates.backend.service.chart.ChartService;
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
@@ -284,7 +285,7 @@ public class PdfExportService extends ExportServiceTemplate
     
     private void addBarChart(Document document) {
         try {
-            Image im4 = Image.getInstance("backend/src/main/resources/BarChart.jpeg");
+            Image im4 = Image.getInstance(chartService.createBarChart());
             im4.setAlignment(Element.ALIGN_CENTER);
             im4.scalePercent(80);
             document.add(im4);

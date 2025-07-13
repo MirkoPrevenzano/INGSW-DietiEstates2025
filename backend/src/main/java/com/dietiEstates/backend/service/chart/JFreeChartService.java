@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.service.support;
+package com.dietiEstates.backend.service.chart;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.helper.MockingStatsHelper;
 import com.dietiEstates.backend.model.entity.Agent;
-import com.dietiEstates.backend.service.support.ChartService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -118,7 +117,7 @@ public class JFreeChartService implements ChartService
     }
 
 
-    public void createBarChart()
+    public byte[] createBarChart()
     {
         final String soldRentedEstates = "Sold/Rented Real Estates";
 
@@ -164,13 +163,17 @@ public class JFreeChartService implements ChartService
         int width = 500;    /* Width of the image */
         int height = 450;   /* Height of the image */ 
         File barChartFile = new File( "backend/src/main/resources/BarChart.jpeg" ); 
+        byte[] b = null;
         try 
         {
-            ChartUtils.saveChartAsJPEG( barChartFile , barChart , width , height );
+            //ChartUtils.saveChartAsJPEG( barChartFile , barChart , width , height );
+           b =  ChartUtils.encodeAsPNG(barChart.createBufferedImage(width, height));
         } 
         catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        return b;
    }
 }

@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.service.support;
+package com.dietiEstates.backend.service.chart;
 
 import java.awt.image.BufferedImage;
 
@@ -10,5 +10,5 @@ public interface ChartService
 {
     public byte[] createPieChart(Agent agent);
     public byte[] createPieChart2(Agent agent);
-    public void createBarChart();
+    public byte[] createBarChart();
 }
