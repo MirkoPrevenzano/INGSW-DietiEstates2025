@@ -28,6 +28,7 @@ import com.dietiEstates.backend.helper.ExportPdfHelper;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.AgentService;
+import com.dietiEstates.backend.service.support.ChartService;
 import com.dietiEstates.backend.service.support.CsvExportService;
 import com.dietiEstates.backend.service.support.ExportServiceTemplate;
 import com.dietiEstates.backend.service.support.PdfExportService;
@@ -50,6 +51,7 @@ public class AgentController
     private final ExportPdfHelper exportPdfHelper;
     private final AgentRepository agentRepository;
     private final RealEstateRepository realEstateRepository;
+    private final ChartService chartService;
 
 
     @PostMapping(path = "{username}/create-real-estate-for-sale")
@@ -105,7 +107,7 @@ public class AgentController
 
     @GetMapping(value = "/{username}/exportCSV2")
     public void exportToCSV2(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
-    {
+    {   
         ExportServiceTemplate exportServiceTemplate = new CsvExportService(agentRepository, agentService, realEstateRepository);
         exportServiceTemplate.exportReport(username, response);
         //exportCsvHelper.writeCsvResponse(username,response);
@@ -115,7 +117,11 @@ public class AgentController
     @GetMapping(value = "/{username}/exportPDF2")
     public void exportToPDF2(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {
-        ExportServiceTemplate exportServiceTemplate = new PdfExportService(agentRepository, agentService, realEstateRepository);
+/*         chartService.createPieChart(agentRepository.findByUsername(username).get());
+        chartService.createPieChart2(agentRepository.findByUsername(username).get());
+        chartService.createBarChart(); */
+        
+        ExportServiceTemplate exportServiceTemplate = new PdfExportService(agentRepository, agentService, realEstateRepository, chartService);
         exportServiceTemplate.exportReport(username, response);
         //exportCsvHelper.writeCsvResponse(username,response);
     }

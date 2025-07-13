@@ -2,6 +2,7 @@
 package com.dietiEstates.backend.service.support;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 import org.jfree.chart.ChartUtils;
@@ -28,7 +29,7 @@ public class JFreeChartService implements ChartService
 {
     private final MockingStatsHelper mockingStatsHelper;
 
-    public void createPieChart(Agent agent)
+    public byte[] createPieChart(Agent agent)
     {
         DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
 
@@ -55,21 +56,25 @@ public class JFreeChartService implements ChartService
 
         int width = 450;   /* Width of the image */
         int height = 300;  /* Height of the image */ 
-        File pieChart = new File( "PieChart.jpeg" ); 
+        File pieChart = new File( "backend/src/main/resources/PieChart.jpeg" ); 
 
+        byte[] b = null;
         try 
         {
-            ChartUtils.saveChartAsJPEG( pieChart , chart , width , height );
-            // ChartUtils.writeChartAsJPEG(System.out, chart, width, height);
+           // ChartUtils.saveChartAsJPEG( pieChart , chart , width , height );
+            b = ChartUtils.encodeAsPNG(chart.createBufferedImage(width, height));
         } 
         catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        System.out.println("\n\nb : " + b.length);
+        return b;
     }
 
 
-    public void createPieChart2(Agent agent)
+    public byte[] createPieChart2(Agent agent)
     {
         DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
 
@@ -96,17 +101,20 @@ public class JFreeChartService implements ChartService
 
         int width = 450;   /* Width of the image */
         int height = 300;  /* Height of the image */ 
-        File pieChart = new File( "PieChart2.jpeg" ); 
+        File pieChart = new File( "backend/src/main/resources/PieChart2.jpeg" ); 
 
-        try 
-        {
-            ChartUtils.saveChartAsJPEG( pieChart , chart , width , height );
-            // ChartUtils.writeChartAsJPEG(System.out, chart, width, height);
-        } 
+        byte[] i = null;
+         try 
+        { 
+            //ChartUtils.saveChartAsJPEG( pieChart , chart , width , height );
+            i = ChartUtils.encodeAsPNG(chart.createBufferedImage(width, height));
+         } 
         catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        } 
+
+        return i;
     }
 
 
@@ -155,7 +163,7 @@ public class JFreeChartService implements ChartService
 
         int width = 500;    /* Width of the image */
         int height = 450;   /* Height of the image */ 
-        File barChartFile = new File( "BarChart.jpeg" ); 
+        File barChartFile = new File( "backend/src/main/resources/BarChart.jpeg" ); 
         try 
         {
             ChartUtils.saveChartAsJPEG( barChartFile , barChart , width , height );

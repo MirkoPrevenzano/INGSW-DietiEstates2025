@@ -39,10 +39,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PdfExportService extends ExportServiceTemplate 
 {
+    private final ChartService chartService;
 
-    public PdfExportService(AgentRepository agentRepository, AgentService agentService, RealEstateRepository realEstateRepository) 
+    public PdfExportService(AgentRepository agentRepository, AgentService agentService, RealEstateRepository realEstateRepository, ChartService chartService) 
     {
         super(agentRepository, agentService, realEstateRepository);
+        this.chartService = chartService;
     }
 
 
@@ -125,7 +127,7 @@ public class PdfExportService extends ExportServiceTemplate
         document.add(agentStatsTable);
         
         // Aggiungere i grafici a torta
-        addPieCharts(document);        
+        addPieCharts(document, agent);        
     }
 
 
@@ -260,10 +262,10 @@ public class PdfExportService extends ExportServiceTemplate
         }
     }
     
-    private void addPieCharts(Document document) {
+    private void addPieCharts(Document document, Agent agent) {
         try {
-            Image im2 = Image.getInstance("PieChart.jpeg");
-            Image im3 = Image.getInstance("PieChart2.jpeg");
+            Image im2 = Image.getInstance(chartService.createPieChart(agent));
+            Image im3 = Image.getInstance(chartService.createPieChart2(agent));
             PdfPTable chartTable = createTable(2, 110, new float[] {1, 1});
             
             PdfPCell cell = createCell(Color.WHITE, 0);
@@ -282,7 +284,7 @@ public class PdfExportService extends ExportServiceTemplate
     
     private void addBarChart(Document document) {
         try {
-            Image im4 = Image.getInstance("BarChart.jpeg");
+            Image im4 = Image.getInstance("backend/src/main/resources/BarChart.jpeg");
             im4.setAlignment(Element.ALIGN_CENTER);
             im4.scalePercent(80);
             document.add(im4);
