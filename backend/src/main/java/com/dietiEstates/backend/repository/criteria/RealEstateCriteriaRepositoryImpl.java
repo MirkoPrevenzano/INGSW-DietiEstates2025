@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.repository;
+package com.dietiEstates.backend.repository.criteria;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,13 +44,14 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
     public Page<RealEstatePreviewInfoDTO> findPreviewsByFilters(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax) 
     {        
         CriteriaQuery<RealEstatePreviewInfoDTO> criteriaQuery = getPreviewsQueryByFilters(filters, coordinatesMinMax);
+        List<RealEstatePreviewInfoDTO> pageList = entityManager.createQuery(criteriaQuery)
+        .setFirstResult((int)page.getOffset())
+        .setMaxResults(page.getPageSize())
+        .getResultList(); 
 
-        TypedQuery<RealEstatePreviewInfoDTO> typedQuery = entityManager.createQuery(criteriaQuery)
-                                                           .setFirstResult((int)page.getOffset())
-                                                           .setMaxResults(page.getPageSize());
-
-        List<RealEstatePreviewInfoDTO> pageList = typedQuery.getResultList(); 
-        long totalElements = countTotalPreviewsByFilters(filters, coordinatesMinMax);
+        CriteriaQuery<Long> countQuery = getPreviewsCountQueryByFilters(filters, coordinatesMinMax);
+        long totalElements = entityManager.createQuery(countQuery)
+                                          .getFirstResult();       
         
         PageImpl<RealEstatePreviewInfoDTO> pageImpl = new PageImpl<>(pageList, page, totalElements);
 
@@ -139,11 +140,9 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         return id;
     }   
 
-
-
+    
 
     
-    @SuppressWarnings("null")
     private CriteriaQuery<RealEstatePreviewInfoDTO> getPreviewsQueryByFilters(Map<String,String> filters, CoordinatesMinMax coordinatesMinMax)
     {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -151,6 +150,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         
         Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
         Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
+
         Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), criteriaQuery);
 
         List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin, realEstateType); 
@@ -167,6 +167,25 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         return criteriaQuery;
     }
 
+
+    private CriteriaQuery<Long> getPreviewsCountQueryByFilters(Map<String,String> filters, CoordinatesMinMax coordinatesMinMax) 
+    {
+            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
+            
+            Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
+            Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
+            Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), criteriaQuery);
+
+            List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin, realEstateType);
+
+            criteriaQuery.select(criteriaBuilder.count(realEstate))
+                         .where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));
+
+/*             return entityManager.createQuery(criteriaQuery)
+                                .getSingleResult(); */
+            return criteriaQuery;
+    }
 
 
     private List<Predicate> getPredicates(CriteriaBuilder criteriaBuilder, Map<String, String> filters, CoordinatesMinMax coordinatesMinMax, 
@@ -287,25 +306,6 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         }
 
         return predicates;
-    }
-
-
-    private long countTotalPreviewsByFilters(Map<String,String> filters, CoordinatesMinMax coordinatesMinMax) 
-    {
-            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
-            
-            Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
-            Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
-            Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), criteriaQuery);
-
-            List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin, realEstateType);
-
-            criteriaQuery.select(criteriaBuilder.count(realEstate))
-                         .where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));
-
-            return entityManager.createQuery(criteriaQuery)
-                                .getSingleResult();
     }
 }
 
