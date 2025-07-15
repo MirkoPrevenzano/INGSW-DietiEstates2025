@@ -69,7 +69,7 @@ public class AgentService
         Optional<Agent> optionalRealEstateAgent = agentRepository.findByUsername(username);
         Agent agent = optionalRealEstateAgent.get();
         
-        RealEstateFromDtoFactory realEstateFromDtoFactory = realEstateFactoryResolver.getFactory(realEstateCreationDTO);
+        RealEstateFromDtoFactory realEstateFromDtoFactory = realEstateFactoryResolver.getFactoryFromDto(realEstateCreationDTO);
         RealEstate realEstate = realEstateFromDtoFactory.create(realEstateCreationDTO);
 
         Address address = modelMapper.map(realEstateCreationDTO.getAddressDTO(), Address.class);
