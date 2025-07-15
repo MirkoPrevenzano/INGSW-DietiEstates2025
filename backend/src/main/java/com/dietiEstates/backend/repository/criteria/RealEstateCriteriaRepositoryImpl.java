@@ -16,6 +16,7 @@ import com.dietiEstates.backend.extra.CoordinatesMinMax;
 import com.dietiEstates.backend.factory.RealEstateRootFactory;
 import com.dietiEstates.backend.model.entity.Address;
 import com.dietiEstates.backend.model.entity.RealEstate;
+import com.dietiEstates.backend.resolver.RealEstateRootFactoryResolver;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -27,16 +28,19 @@ import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 
+@RequiredArgsConstructor
 @Slf4j
 public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepository 
 {
     @PersistenceContext
     private EntityManager entityManager;
+
+    private final RealEstateRootFactoryResolver realEstateRootFactoryResolver;
 
 
 
@@ -151,7 +155,9 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         Root<RealEstate> realEstate = query.from(RealEstate.class);
         Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
 
-        Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), query);
+        RealEstateRootFactory realEstateRootFactory = realEstateRootFactoryResolver.getFactoryFromString(filters.get("type"));
+        Root<?> realEstateType = realEstateRootFactory.create(query);
+        //Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), query);
 
         List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin, realEstateType); 
 
@@ -175,7 +181,11 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
             
             Root<RealEstate> realEstate = countQuery.from(RealEstate.class);
             Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
-            Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), countQuery);
+
+            RealEstateRootFactory realEstateRootFactory = realEstateRootFactoryResolver.getFactoryFromString(filters.get("type"));
+            Root<?> realEstateType = realEstateRootFactory.create(countQuery);
+
+            //Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), countQuery);
 
             List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin, realEstateType);
 
