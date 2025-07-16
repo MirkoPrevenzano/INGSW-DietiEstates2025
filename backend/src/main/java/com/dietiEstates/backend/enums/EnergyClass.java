@@ -50,6 +50,6 @@ public enum EnergyClass
         return Stream.of(EnergyClass.values())
                      .filter(energyClass -> energyClass.getValue().equals(value))
                      .findFirst()
-                     .orElseThrow(() -> new IllegalArgumentException("Energy class value not valid: '" + value + "'"));
+                     .orElseThrow(() -> new IllegalArgumentException("Energy class value is not valid: '" + value + "'"));
     }
 }
