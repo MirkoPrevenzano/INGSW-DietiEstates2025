@@ -1,7 +1,8 @@
 
-package com.dietiEstates.backend.helper;
+package com.dietiEstates.backend.service.chart;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 import org.jfree.chart.ChartUtils;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.model.entity.Agent;
+import com.dietiEstates.backend.service.mock.MockingStatsService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,11 +24,11 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class ChartsHelper
+public class JFreeChartService implements ChartService
 {
-    private final MockingStatsHelper mockingStatsHelper;
+    private final MockingStatsService mockingStatsService;
 
-    public void createPieChart(Agent agent)
+    public byte[] createPieChart(Agent agent)
     {
         DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
 
@@ -53,21 +55,25 @@ public class ChartsHelper
 
         int width = 450;   /* Width of the image */
         int height = 300;  /* Height of the image */ 
-        File pieChart = new File( "PieChart.jpeg" ); 
+        File pieChart = new File( "backend/src/main/resources/PieChart.jpeg" ); 
 
+        byte[] b = null;
         try 
         {
-            ChartUtils.saveChartAsJPEG( pieChart , chart , width , height );
-            // ChartUtils.writeChartAsJPEG(System.out, chart, width, height);
+           // ChartUtils.saveChartAsJPEG( pieChart , chart , width , height );
+            b = ChartUtils.encodeAsPNG(chart.createBufferedImage(width, height));
         } 
         catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        System.out.println("\n\nb : " + b.length);
+        return b;
     }
 
 
-    public void createPieChart2(Agent agent)
+    public byte[] createPieChart2(Agent agent)
     {
         DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
 
@@ -94,21 +100,24 @@ public class ChartsHelper
 
         int width = 450;   /* Width of the image */
         int height = 300;  /* Height of the image */ 
-        File pieChart = new File( "PieChart2.jpeg" ); 
+        File pieChart = new File( "backend/src/main/resources/PieChart2.jpeg" ); 
 
-        try 
-        {
-            ChartUtils.saveChartAsJPEG( pieChart , chart , width , height );
-            // ChartUtils.writeChartAsJPEG(System.out, chart, width, height);
-        } 
+        byte[] i = null;
+         try 
+        { 
+            //ChartUtils.saveChartAsJPEG( pieChart , chart , width , height );
+            i = ChartUtils.encodeAsPNG(chart.createBufferedImage(width, height));
+         } 
         catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        } 
+
+        return i;
     }
 
 
-    public void createBarChart()
+    public byte[] createBarChart()
     {
         final String soldRentedEstates = "Sold/Rented Real Estates";
 
@@ -125,7 +134,7 @@ public class ChartsHelper
         final String november = "NOV";
         final String december = "DEC";
 
-        Integer[] valuePerMonth = mockingStatsHelper.mockBarChartStats();
+        Integer[] valuePerMonth = mockingStatsService.mockBarChartStats();
 
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
         dataset.addValue( valuePerMonth[0], soldRentedEstates , january );
@@ -153,14 +162,18 @@ public class ChartsHelper
 
         int width = 500;    /* Width of the image */
         int height = 450;   /* Height of the image */ 
-        File barChartFile = new File( "BarChart.jpeg" ); 
+        File barChartFile = new File( "backend/src/main/resources/BarChart.jpeg" ); 
+        byte[] b = null;
         try 
         {
-            ChartUtils.saveChartAsJPEG( barChartFile , barChart , width , height );
+            //ChartUtils.saveChartAsJPEG( barChartFile , barChart , width , height );
+           b =  ChartUtils.encodeAsPNG(barChart.createBufferedImage(width, height));
         } 
         catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        return b;
    }
 }

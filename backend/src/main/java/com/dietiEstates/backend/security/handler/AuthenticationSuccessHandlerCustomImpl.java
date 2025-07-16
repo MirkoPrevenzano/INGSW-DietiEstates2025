@@ -39,23 +39,11 @@ public class AuthenticationSuccessHandlerCustomImpl implements AuthenticationSuc
     
         UserDetails user = (UserDetails) authentication.getPrincipal();
         String accessToken = JwtUtil.generateAccessToken(user);
-        Boolean mustChangePassword = getMustChangePassword(user);
         
-        AuthenticationResponseDTO authenticationResponseDTO = new AuthenticationResponseDTO(accessToken, mustChangePassword);
+        AuthenticationResponseDTO authenticationResponseDTO = new AuthenticationResponseDTO(accessToken);
 
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         objectMapper.writeValue(response.getOutputStream(), authenticationResponseDTO); 
-    }
-
-
-    private boolean getMustChangePassword(UserDetails user)
-    {
-        if(user instanceof Administrator) 
-            return ((Administrator) user).isMustChangePassword();
-        else if (user instanceof Agent) 
-            return ((Agent) user).isMustChangePassword();
-        
-        return false;
     }
 }

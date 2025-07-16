@@ -29,9 +29,15 @@ public class RealEstateForSaleFromDtoFactory implements RealEstateFromDtoFactory
     }
 
 
-    @Override
+/*     @Override
     public boolean supports(Class<? extends RealEstateCreationDTO> clazz) 
     {
         return RealEstateForSaleCreationDTO.class.isAssignableFrom(clazz);
+    } */
+
+    @Override
+    public boolean supports(RealEstateCreationDTO realEstateCreationDTO) 
+    {
+        return RealEstateForSaleCreationDTO.class.isAssignableFrom(realEstateCreationDTO.getClass());
     }
 }

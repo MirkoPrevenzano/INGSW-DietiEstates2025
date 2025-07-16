@@ -46,7 +46,7 @@ public class Agency
     private String vatNumber;
 
 
-    
+    // TODO: mettere relazione ONE TO MANY
     @MapsId
     @OneToOne(fetch = FetchType.LAZY,
               cascade = {},

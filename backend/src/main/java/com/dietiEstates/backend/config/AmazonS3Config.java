@@ -18,6 +18,7 @@ public class AmazonS3Config
 		S3Client s3client = S3Client.builder()
 									.region(Region.EU_SOUTH_1)
 									.build();
+
 		return s3client;
 	}
 }

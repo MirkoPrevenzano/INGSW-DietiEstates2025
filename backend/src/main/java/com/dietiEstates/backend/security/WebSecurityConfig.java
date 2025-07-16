@@ -73,7 +73,7 @@ public class WebSecurityConfig
             .sessionManagement(sessionManagementCustomizer -> 
                                     sessionManagementCustomizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
-                                        authorizeHttpRequestsCustomizer.requestMatchers("/login/**", "/auth/**", "/error/**").permitAll())
+                                        authorizeHttpRequestsCustomizer.requestMatchers("/login/**", "/auth/**", "/error/**","/admin/**").permitAll())
 			.authorizeHttpRequests(adminHttpRequestsCustomizer-> 
                                         adminHttpRequestsCustomizer.requestMatchers("/admin/create-collaborator")
                                                                         .hasAuthority(Role.ROLE_ADMIN.name())

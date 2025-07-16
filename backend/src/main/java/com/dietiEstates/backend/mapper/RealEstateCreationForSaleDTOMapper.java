@@ -42,8 +42,8 @@ public class RealEstateCreationForSaleDTOMapper extends RealEstateCreationDTOMap
 
 
     @Override
-    public boolean supports(Class<? extends RealEstate> clazz) 
+    public boolean supports(RealEstate realEstate) 
     {
-        return RealEstateForSale.class.isAssignableFrom(clazz);
+        return RealEstateForSale.class.isAssignableFrom(realEstate.getClass());
     }
 }

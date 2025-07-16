@@ -17,7 +17,6 @@ import com.dietiEstates.backend.dto.response.RealEstateCompleteInfoDTO;
 import com.dietiEstates.backend.dto.response.RealEstateSearchDTO;
 import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
-import com.dietiEstates.backend.helper.FindByRadiusHelper;
 import com.dietiEstates.backend.mapper.RealEstateCreationDTOMapper;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.entity.Agent;
@@ -27,7 +26,8 @@ import com.dietiEstates.backend.model.entity.RealEstate;
 //import com.dietiEstates.backend.repository.CVRRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.resolver.RealEstateCreationDTOMapperResolver;
+import com.dietiEstates.backend.resolver.RealEstateMapperResolver;
+import com.dietiEstates.backend.util.FindByRadiusUtil;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -40,16 +40,16 @@ import lombok.extern.slf4j.Slf4j;
 public class RealEstateService 
 {
     private final RealEstateRepository realEstateRepository;
-    private final FindByRadiusHelper findByRadiusHelper;
+    private final FindByRadiusUtil findByRadiusUtil;
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
-    private final RealEstateCreationDTOMapperResolver realEstateCreationDTOMapperResolver;
+    private final RealEstateMapperResolver realEstateMapperResolver;
     //private final CVRRepository cvrRepository;
 
 
     public RealEstateSearchDTO search3(Map<String,String> filters, Pageable page)
     {
-        CoordinatesMinMax coordinatesMinMax = findByRadiusHelper.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
+        CoordinatesMinMax coordinatesMinMax = findByRadiusUtil.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
                                                                                Double.valueOf(filters.get("lat")), 
                                                                                Double.valueOf(filters.get("lon")));
 
@@ -71,7 +71,7 @@ public class RealEstateService
         Agent agent = realEstate.getAgent();
         AgentPublicInfoDTO agentPublicInfoDTO = modelMapper.map(agent, AgentPublicInfoDTO.class);    
 
-        RealEstateCreationDTOMapper realEstateCreationDTOMapper = realEstateCreationDTOMapperResolver.getMapper(realEstate);
+        RealEstateCreationDTOMapper realEstateCreationDTOMapper = realEstateMapperResolver.getMapper(realEstate);
         RealEstateCreationDTO realEstateCreationDTO = realEstateCreationDTOMapper.toDto(realEstate);
 
         RealEstateCompleteInfoDTO realEstateCompleteInfoDTO = new RealEstateCompleteInfoDTO(realEstateCreationDTO, agentPublicInfoDTO);

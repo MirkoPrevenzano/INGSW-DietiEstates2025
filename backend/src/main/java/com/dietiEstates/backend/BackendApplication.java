@@ -45,7 +45,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.dietiEstates.backend.helper.ChartsHelper;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.model.entity.Agent;
@@ -77,20 +76,19 @@ public class BackendApplication
     CommandLineRunner commandLineRunner(CustomerRepository customerRepository, AdministratorRepository administratorRepository, 
                                         AmazonS3Util s3Util, AgentRepository agentRepository, UserRepository userRepository,
                                         RealEstateRepository realEstateRepository,
-                                        AgentService agentService,
-                                        ChartsHelper chartsHelper)
+                                        AgentService agentService)
     {
         return args -> 
         {  
-             /*Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@");
+             Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@");
             administrator.setPassword(passwordEncoder.encode(administrator.getPassword()));
             administrator.addAgency(new Agency("a", "null", "sdks"));
-            administrator = administratorRepository.saveAndFlush(administrator);*/
+            administrator = administratorRepository.saveAndFlush(administrator);
 
   
-            /*Agent agent = (new Agent("a","b","c",passwordEncoder.encode("ssssssssssssssssssss22A@")));
+            Agent agent = (new Agent("a","b","c",passwordEncoder.encode("ssssssssssssssssssss22A@")));
             administrator.addAgent(agent);
-            administrator = administratorRepository.save(administrator);*/
+            administrator = administratorRepository.save(administrator); 
             
            /* System.out.println("\n\nFINDING BY USERNAME BY USER REPO:");
             User user = userRepository.findByUsername("ydk").get();

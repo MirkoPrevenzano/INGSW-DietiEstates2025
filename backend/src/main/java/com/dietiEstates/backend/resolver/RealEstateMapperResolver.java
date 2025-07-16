@@ -13,7 +13,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class RealEstateCreationDTOMapperResolver 
+public class RealEstateMapperResolver 
 {
     private final List<RealEstateCreationDTOMapper> realEstateCreationDTOMappers;
 
@@ -22,7 +22,7 @@ public class RealEstateCreationDTOMapperResolver
     public RealEstateCreationDTOMapper getMapper(RealEstate entity) 
     {
         return realEstateCreationDTOMappers.stream()
-            .filter(mapper -> mapper.supports(entity.getClass()))
+            .filter(mapper -> mapper.supports(entity))
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException("Nessun mapper trovato per il tipo: " + entity.getClass().getSimpleName()));
     }

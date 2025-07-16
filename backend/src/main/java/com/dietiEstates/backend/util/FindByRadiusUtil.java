@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.helper;
+package com.dietiEstates.backend.util;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class FindByRadiusHelper 
+public class FindByRadiusUtil 
 {
     private int distancePerLatitudeGrade = 111320;
 	private int distancePerLongitudeGrade = 78000;

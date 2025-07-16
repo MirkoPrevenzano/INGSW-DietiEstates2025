@@ -17,12 +17,13 @@ import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
 import com.dietiEstates.backend.model.entity.Address;
 import com.dietiEstates.backend.model.entity.RealEstate;
+import com.dietiEstates.backend.resolver.Supportable;
 
 import lombok.RequiredArgsConstructor;
 
 
 @RequiredArgsConstructor
-public abstract class RealEstateCreationDTOMapper
+public abstract class RealEstateCreationDTOMapper implements Supportable<RealEstate>
 {  
     @Autowired
     private ModelMapper modelMapper;
@@ -111,7 +112,4 @@ public abstract class RealEstateCreationDTOMapper
 
 
     public abstract RealEstateCreationDTO toDto(RealEstate entity);
-
-
-    public abstract boolean supports(Class<? extends RealEstate> clazz);
 }

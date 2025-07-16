@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.repository;
+package com.dietiEstates.backend.repository.criteria;
 
 import java.util.List;
 import java.util.Map;

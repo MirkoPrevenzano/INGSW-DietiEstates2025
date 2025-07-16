@@ -18,10 +18,10 @@ public class RealEstateFactoryResolver
     private final List<RealEstateFromDtoFactory> factories;
 
 
-    public RealEstateFromDtoFactory getFactory(RealEstateCreationDTO dto) 
+    public RealEstateFromDtoFactory getFactoryFromDto(RealEstateCreationDTO dto) 
     {
         return factories.stream()
-            .filter(factory -> factory.supports(dto.getClass()))
+            .filter(factory -> factory.supports(dto))
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException("Nessuna factory trovata per il tipo: " + dto.getClass().getSimpleName()));
     }
