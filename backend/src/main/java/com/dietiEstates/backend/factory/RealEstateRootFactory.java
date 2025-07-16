@@ -8,8 +8,8 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
 
-public interface RealEstateRootFactory 
+public interface RealEstateRootFactory extends Supportable<String>
 {
     Root<? extends RealEstate> create(CriteriaQuery<?> query);
-    public boolean supports(String realEstateType);
+   // public boolean supports(String realEstateType);
 }

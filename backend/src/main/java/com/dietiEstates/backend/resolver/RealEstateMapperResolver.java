@@ -22,7 +22,7 @@ public class RealEstateMapperResolver
     public RealEstateCreationDTOMapper getMapper(RealEstate entity) 
     {
         return realEstateCreationDTOMappers.stream()
-            .filter(mapper -> mapper.supports(entity.getClass()))
+            .filter(mapper -> mapper.supports(entity))
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException("Nessun mapper trovato per il tipo: " + entity.getClass().getSimpleName()));
     }

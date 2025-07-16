@@ -21,7 +21,7 @@ public class RealEstateFactoryResolver
     public RealEstateFromDtoFactory getFactoryFromDto(RealEstateCreationDTO dto) 
     {
         return factories.stream()
-            .filter(factory -> factory.supports(dto.getClass()))
+            .filter(factory -> factory.supports(dto))
             .findFirst()
             .orElseThrow(() -> new IllegalArgumentException("Nessuna factory trovata per il tipo: " + dto.getClass().getSimpleName()));
     }
