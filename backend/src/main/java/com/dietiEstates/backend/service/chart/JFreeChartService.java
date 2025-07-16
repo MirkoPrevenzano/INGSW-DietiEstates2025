@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.model.entity.Agent;
-import com.dietiEstates.backend.service.mock.MockingStatsHelper;
+import com.dietiEstates.backend.service.mock.MockingStatsService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class JFreeChartService implements ChartService
 {
-    private final MockingStatsHelper mockingStatsHelper;
+    private final MockingStatsService mockingStatsService;
 
     public byte[] createPieChart(Agent agent)
     {
@@ -134,7 +134,7 @@ public class JFreeChartService implements ChartService
         final String november = "NOV";
         final String december = "DEC";
 
-        Integer[] valuePerMonth = mockingStatsHelper.mockBarChartStats();
+        Integer[] valuePerMonth = mockingStatsService.mockBarChartStats();
 
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
         dataset.addValue( valuePerMonth[0], soldRentedEstates , january );

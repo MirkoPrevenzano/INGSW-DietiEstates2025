@@ -38,7 +38,7 @@ import com.dietiEstates.backend.model.entity.RealEstateForSale;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.resolver.RealEstateFactoryResolver;
-import com.dietiEstates.backend.service.mock.MockingStatsHelper;
+import com.dietiEstates.backend.service.mock.MockingStatsService;
 import com.dietiEstates.backend.util.AmazonS3Util;
 
 import jakarta.transaction.Transactional;
@@ -56,7 +56,7 @@ public class AgentService
     private final AgentRepository agentRepository;
     private final RealEstateRepository realEstateRepository;
     private final AmazonS3Util amazonS3Util;
-    private final MockingStatsHelper mockingStatsHelper;
+    private final MockingStatsService mockingStatsService;
     private final ModelMapper modelMapper;
     //private final ValidationUtil validationUtil;
     private final RealEstateFactoryResolver realEstateFactoryResolver;
@@ -75,7 +75,7 @@ public class AgentService
         Address address = modelMapper.map(realEstateCreationDTO.getAddressDTO(), Address.class);
         realEstate.addAddress(address);
 
-        mockingStatsHelper.mockEstateStats(realEstate);
+        mockingStatsService.mockEstateStats(realEstate);
 
         agent.addRealEstate(realEstate);
 
@@ -176,7 +176,7 @@ public class AgentService
 
     public AgentStatsDTO getAgentStats(String username) 
     {
-        Integer[] estatesPerMonth = mockingStatsHelper.mockBarChartStats();
+        Integer[] estatesPerMonth = mockingStatsService.mockBarChartStats();
         AgentStats agentStats = agentRepository.findByUsername(username).get().getAgentStats();
         AgentStatsDTO agentStatsDTO = new AgentStatsDTO(agentStats, estatesPerMonth);
         return agentStatsDTO;
@@ -191,6 +191,6 @@ public class AgentService
 
     public Integer[] getBarChartStats() 
     {
-        return mockingStatsHelper.mockBarChartStats();
+        return mockingStatsService.mockBarChartStats();
     }
 }

@@ -19,7 +19,7 @@ import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.AgentRepository;
-import com.dietiEstates.backend.service.mock.MockingStatsHelper;
+import com.dietiEstates.backend.service.mock.MockingStatsService;
 import com.dietiEstates.backend.util.PasswordGeneratorUtil;
 
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class AdministratorService
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     //private final ValidationUtil validationUtil;
-    private final MockingStatsHelper mockingStatsHelper;
+    private final MockingStatsService mockingStatsService;
     
 
 
@@ -115,7 +115,7 @@ public class AdministratorService
 
         agent.setPassword(hashedPassword);
 
-        mockingStatsHelper.mockAgentStats(agent);
+        mockingStatsService.mockAgentStats(agent);
 
         administrator.addAgent(agent);
         administrator = administratorRepository.save(administrator);

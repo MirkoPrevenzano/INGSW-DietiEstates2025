@@ -27,7 +27,7 @@ import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.resolver.RealEstateMapperResolver;
-import com.dietiEstates.backend.util.FindByRadiusHelper;
+import com.dietiEstates.backend.util.FindByRadiusUtil;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RealEstateService 
 {
     private final RealEstateRepository realEstateRepository;
-    private final FindByRadiusHelper findByRadiusHelper;
+    private final FindByRadiusUtil findByRadiusUtil;
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
     private final RealEstateMapperResolver realEstateMapperResolver;
@@ -49,7 +49,7 @@ public class RealEstateService
 
     public RealEstateSearchDTO search3(Map<String,String> filters, Pageable page)
     {
-        CoordinatesMinMax coordinatesMinMax = findByRadiusHelper.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
+        CoordinatesMinMax coordinatesMinMax = findByRadiusUtil.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
                                                                                Double.valueOf(filters.get("lat")), 
                                                                                Double.valueOf(filters.get("lon")));
 
