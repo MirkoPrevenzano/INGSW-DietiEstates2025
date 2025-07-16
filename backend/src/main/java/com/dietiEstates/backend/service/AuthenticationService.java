@@ -100,7 +100,7 @@ public class AuthenticationService
         log.info("Customer was registrated successfully!");
 
         customer.setRole(Role.ROLE_CUSTOMER);
-        return new AuthenticationResponseDTO(JwtUtil.generateAccessToken(customer), false);
+        return new AuthenticationResponseDTO(JwtUtil.generateAccessToken(customer));
     }
 
 
@@ -127,7 +127,7 @@ public class AuthenticationService
             )
         );
         // Crea una risposta di autenticazione 
-        return new AuthenticationResponseDTO(token,false); 
+        return new AuthenticationResponseDTO(token); 
     } 
 
    

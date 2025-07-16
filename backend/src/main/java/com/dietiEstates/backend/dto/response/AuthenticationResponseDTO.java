@@ -13,5 +13,4 @@ import lombok.NonNull;
 public class AuthenticationResponseDTO 
 {
     private String jwtToken;
-    private Boolean mustChangePassword;
 }

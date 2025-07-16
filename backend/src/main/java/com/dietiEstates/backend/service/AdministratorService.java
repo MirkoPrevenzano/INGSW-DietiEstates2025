@@ -75,7 +75,6 @@ public class AdministratorService
         String hashedPassword = passwordEncoder.encode(plainTextPassword);
 
         collaborator.setPassword(hashedPassword);
-        collaborator.setMustChangePassword(true);
         
         admin.addCollaborator(collaborator);
         admin = administratorRepository.save(admin);
@@ -119,7 +118,6 @@ public class AdministratorService
         String hashedPassword = passwordEncoder.encode(plainTextPassword);
 
         agent.setPassword(hashedPassword);
-        agent.setMustChangePassword(true);
 
         mockingStatsHelper.mockAgentStats(agent);
 
