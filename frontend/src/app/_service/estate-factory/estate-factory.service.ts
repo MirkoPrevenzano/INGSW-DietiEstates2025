@@ -7,7 +7,7 @@ import { Estate } from '../../model/estate';
   providedIn: 'root'
 })
 export class EstateFactoryService {
-  //possibile errore su tipo di estate, ma non dovrebbe essere un problema
+
   createEstate(estate: Estate, additionalFields: any): Estate {
     switch (estate.type) {
       case 'For Sale': {

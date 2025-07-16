@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Address } from '../../model/address';
-import { DescriptionEstatesFormComponent } from '../../componentView/create-estates-components/description-estates-form/description-estates-form.component';
+import { DescriptionEstatesFormComponent } from '../../componentPage/create-estates-components/description-estates-form/description-estates-form.component';
 import { FormGroup } from '@angular/forms';
 
 @Injectable({

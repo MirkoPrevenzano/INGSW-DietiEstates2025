@@ -11,12 +11,24 @@ export class AddressVerificationService {
   private readonly geoapifyKey = environment.geoapifyToken;
 
   async verifyAddress(address:Address): Promise<any> {
-    const url = `https://api.geoapify.com/v1/geocode/search?housenumber=${encodeURIComponent(address.houseNumber)}&street=${encodeURIComponent(address.street)}&postcode=${encodeURIComponent(address.postalCode)}&city=${encodeURIComponent(address.city)}&state=${encodeURIComponent(address.state)}&country=${encodeURIComponent(address.country)}&apiKey=${this.geoapifyKey}`;
+    const url = `https://api.geoapify.com/v1/geocode/search?
+                  housenumber=${encodeURIComponent(address.houseNumber)}
+                  &street=${encodeURIComponent(address.street)}
+                  &postcode=${encodeURIComponent(address.postalCode)}
+                  &city=${encodeURIComponent(address.city)}
+                  &state=${encodeURIComponent(address.state)}
+                  &country=${encodeURIComponent(address.country)}
+                  &apiKey=${this.geoapifyKey}
+                `;
     return fetch(url).then(result => result.json());
   }
 
   async verifyAddressToCoordinate(coordinates: Coordinate): Promise<any> {
-    const url = `https://api.geoapify.com/v1/geocode/reverse?lat=${encodeURIComponent(coordinates.lat)}&lon=${encodeURIComponent(coordinates.lon)}&apiKey=${this.geoapifyKey}`;
+    const url = `https://api.geoapify.com/v1/geocode/reverse?
+                  lat=${encodeURIComponent(coordinates.lat)}
+                  &lon=${encodeURIComponent(coordinates.lon)}
+                  &apiKey=${this.geoapifyKey}
+                `;
     return fetch(url).then(result => result.json());
   }
 

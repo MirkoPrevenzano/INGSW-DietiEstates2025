@@ -8,7 +8,12 @@ import { environment } from '../../../../environments/environment.prod';
 export class GeocoderAutocompleteService {
   private readonly geoapifyKey = environment.geoapifyToken;
 
-  createAutocomplete(elementId: string, type: string, allowNonVerifiedHouseNumber: boolean = false, allowNonVerifiedStreet: boolean = false): GeocoderAutocomplete {
+  createAutocomplete(
+    elementId: string, 
+    type: string, 
+    allowNonVerifiedHouseNumber: boolean = false, 
+    allowNonVerifiedStreet: boolean = false
+  ): GeocoderAutocomplete {
     const element= document.getElementById(elementId)
     if(!element)
       throw new Error(`Element with id "${elementId}"`)

@@ -19,7 +19,7 @@ public final class RealEstateRootFactory
     public static Root<?> createFromType(String realEstateType, CriteriaQuery<?> criteriaQuery)
     {
             if(realEstateType.equals("For Sale"))
-                return criteriaQuery.from(RealEstateForRent.class);
+                return criteriaQuery.from(RealEstateForSale.class);
             else if(realEstateType.equals("For Rent"))
                 return criteriaQuery.from(RealEstateForRent.class);
             else

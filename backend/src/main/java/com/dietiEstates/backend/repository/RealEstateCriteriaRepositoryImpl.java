@@ -32,6 +32,8 @@ import lombok.extern.slf4j.Slf4j;
 
 
 
+
+
 @Slf4j
 public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepository 
 {
@@ -188,11 +190,12 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         List<Predicate> predicates = new ArrayList<>();
             
         predicates.add(criteriaBuilder.equal(realEstateId, realEstateTypeId));
+        
 
         predicates.add(criteriaBuilder.ge(latitude, coordinatesMinMax.getMinLatitude()));
         predicates.add(criteriaBuilder.le(latitude, coordinatesMinMax.getMaxLatitude()));
-        predicates.add(criteriaBuilder.le(longitude, coordinatesMinMax.getMinLongitude()));
-        predicates.add(criteriaBuilder.ge(longitude, coordinatesMinMax.getMaxLongitude()));
+        predicates.add(criteriaBuilder.le(longitude, coordinatesMinMax.getMaxLongitude()));
+        predicates.add(criteriaBuilder.ge(longitude, coordinatesMinMax.getMinLongitude()));
               
         for(Map.Entry<String,String> entry : filters.entrySet())
         {
@@ -449,7 +452,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         Root<RealEstate> realEstate = criteriaQuery.from(RealEstate.class);
         Root<Address> address = criteriaQuery.from(Address.class);
         Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), criteriaQuery);
-
+    
         List<Predicate> predicates = getPredicates(filters, coordinatesMinMax, criteriaBuilder, realEstate, address, realEstateType); 
 
         criteriaQuery.select(criteriaBuilder.construct(RealEstatePreviewInfoDTO.class, realEstate.get("realEstateId"),
@@ -594,9 +597,10 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
             CriteriaBuilder cb = entityManager.getCriteriaBuilder();
             CriteriaQuery<Long> countQuery = cb.createQuery(Long.class);
             Root<RealEstate> realEstate = countQuery.from(RealEstate.class);
-            jakarta.persistence.criteria.Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
+            Root<Address> address = countQuery.from(Address.class);
+            Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), countQuery);
+            List<Predicate> predicates = getPredicates(filters, coordinatesMinMax, cb, realEstate,address, realEstateType );
 
-            List<Predicate> predicates = getPredicates(filters, coordinatesMinMax, cb, realEstate, addressJoin);
 
             countQuery.select(cb.count(realEstate))
                     .where(cb.and(predicates.toArray(new Predicate[0])));

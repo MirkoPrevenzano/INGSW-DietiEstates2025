@@ -20,7 +20,7 @@ export class AuthService {
   isAuthenticated = computed(() => this.authState().isAuthenticated);
 
   constructor(){
-    effect( () => { //this effect will run every time authState changes
+    effect( () => { //ogni qualvolta che l'authstate si modifica viene eseguito questo effetto
       const token = this.authState().token;
       const user = this.authState().user;
       const role = this.authState().role;
@@ -96,6 +96,7 @@ export class AuthService {
     }
     return null;
   }
+
   isUserAuthenticated(): boolean { return this.verifyToken(this.getToken()); }
 
 
@@ -112,9 +113,7 @@ export class AuthService {
     localStorage.removeItem("role");
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-
-
-   }
+  }
 
   
 }

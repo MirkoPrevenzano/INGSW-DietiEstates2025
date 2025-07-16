@@ -26,13 +26,18 @@ public class FindByRadiusHelper
 		System.out.println("long0: " + long0);
 		
 		double latitudeVariation = (double) radius / distancePerLatitudeGrade;
-		/*double longitudeVariation = (double) radius / (distancePerLongitudeGrade * Math.cos(Math.toRadians(lat0)));*/
-		double longitudeVariation = (double) radius / distancePerLongitudeGrade * Math.cos(lat0);
+		double longitudeVariation = (double) radius / (distancePerLongitudeGrade * Math.cos(Math.toRadians(lat0)));
+		longitudeVariation = Math.abs(longitudeVariation)/2;
+		latitudeVariation = Math.abs(latitudeVariation)/2;
+		
+		
+		/*double longitudeVariation = (double) radius / distancePerLongitudeGrade * Math.cos(lat0);*/
 
 		System.out.println("");
 		System.out.println("");
 		System.out.println("latitudeVariation: " + latitudeVariation);
 		System.out.println("longitudeVariation: " + longitudeVariation);
+
 
 		double minLatitude;
 		double maxLatitude;

@@ -1,5 +1,3 @@
-import { icon } from "leaflet";
-
 export const estateLocationFeatures = [
     { controlName: 'isNearPark', label: 'Is Near Park', icon:'park' },
     { controlName: 'isNearSchool', label: 'Is Near School', icon: 'school' },

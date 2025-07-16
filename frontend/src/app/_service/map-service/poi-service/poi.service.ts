@@ -12,7 +12,13 @@ export class PoiService {
 
 
   searchPOI(coordinate: Coordinate, categories: string[], radius: number = this.defaultRadius): Observable<any> {
-    const url = `https://api.geoapify.com/v2/places?categories=${categories.join(',')}&filter=circle:${coordinate.lon},${coordinate.lat},${radius}&bias=proximity:${coordinate.lon},${coordinate.lat}&limit=20&apiKey=${this.geoapifyKey}`;
+    const url = `https://api.geoapify.com/v2/places?
+                  categories=${categories.join(',')}
+                  &filter=circle:${coordinate.lon},${coordinate.lat},${radius}
+                  &bias=proximity:${coordinate.lon},${coordinate.lat}
+                  &limit=20
+                  &apiKey=${this.geoapifyKey}
+                `;
     
     return from(fetch(url).then(response => response.json()));
   }
