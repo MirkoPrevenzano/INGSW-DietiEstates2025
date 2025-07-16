@@ -1,26 +1,30 @@
 
 package com.dietiEstates.backend.validator;
 
-import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
+import java.util.Set;
 import com.dietiEstates.backend.enums.EnergyClass;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import lombok.val;
 
 
 
 public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealEstateFiltersValidator, Map<String,String>> 
 {
+    private static final Set<String> BOOLEAN_FILTERS = Set.of(
+    "hasAirConditioning", "hasHeating", "hasElevator", "hasConcierge",
+    "hasTerrace", "hasGarage", "hasBalcony", "hasGarden", "hasSwimmingPool");
+
+    private static final Set<String> NUMERICAL_FILTERS = Set.of("minPrice", "maxPrice", "rooms");
+
+
 
     @Override
     public boolean isValid(Map<String,String> filters, ConstraintValidatorContext context) 
     {
+        context.disableDefaultConstraintViolation();
+
         boolean hasExceptionOccurred = false; 
 
         for(Map.Entry<String,String> entry : filters.entrySet())
@@ -28,112 +32,104 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
             String key = entry.getKey();
             String value = entry.getValue();
 
+            if (value == null || value.trim().isEmpty()) 
+            {
+                addViolation(context, "value for filter '" + key + "' cannot be empty or null");
+                return false;
+            }
+
             try 
             {
-                if(entry.getKey().equals("minPrice"))
+                if(key.equals("lat"))
                 {
-                    double minPrice = Double.valueOf(entry.getValue());
+                    double lat = Double.valueOf(value);
     
-                    if (minPrice < 0)
-                        throw new IllegalArgumentException("Minimum price must be greater or equal than 0");
+                    if (lat < -90.0 || lat > 90.0)
+                    {
+                        addViolation(context, key + " value must be between -90 and 90");
+                        hasExceptionOccurred = true;
+                    }
+                } 
+
+                if(key.equals("lon"))
+                {
+                    double lon = Double.valueOf(value);
+    
+                    if (lon < -180.0 || lon > 180.0)
+                    {
+                        addViolation(context, key + " value must be between -180 and 180");
+                        hasExceptionOccurred = true;
+                    }                
+                } 
+
+                if(key.equals("radius"))
+                {
+                    double radius = Double.valueOf(value);
+    
+                    if (radius < 0.0 || radius > 5000.0)
+                    {
+                        addViolation(context, key + " value must be between 0 and 5000");
+                        hasExceptionOccurred = true;
+                    }
+                } 
+
+
+                if(NUMERICAL_FILTERS.contains(key))
+                {
+                    double number = Double.valueOf(value);
+    
+                    if (number < 0.0)
+                    {
+                        addViolation(context, key + " value must be greater or equal than 0");
+                        hasExceptionOccurred = true;
+                    }
                 } 
     
-                if(entry.getKey().equals("maxPrice"))
+                if(BOOLEAN_FILTERS.contains(key))
                 {
-                    double maxPrice = Double.valueOf(entry.getValue());
-    
-                    if (maxPrice < 0)
-                        throw new IllegalArgumentException("Maximum price must be greater or equal than 0");
+                    if (!value.equalsIgnoreCase("true") && !value.equalsIgnoreCase("false")) 
+                    {
+                        addViolation(context, key + " value must be true or false");
+                        hasExceptionOccurred = true;
+                    }
+                }  
+                    
+                if(key.equals("energyClass"))
+                {
+                    EnergyClass.of(value);
                 } 
     
-                if(entry.getKey().equals("energyClass"))
-                {
-                    EnergyClass.of(entry.getValue());
-                } 
-    
-                if(entry.getKey().equals("rooms"))
-                {
-                    int rooms = Integer.valueOf(entry.getValue());
-    
-                    if (rooms < 0)
-                        throw new IllegalArgumentException("Rooms number must be greater or equal than 0");            
-                }  
-    
-                if(entry.getKey().equals("hasAirConditioning"))
-                {
-                    if (!value.equalsIgnoreCase("true") || !value.equalsIgnoreCase("false"))
-                        throw new IllegalArgumentException("Air Conditioning value must be true or false");
-                }  
-    
-                if(entry.getKey().equals("hasHeating"))
-                {
-                    if (!value.equalsIgnoreCase("true") || !value.equalsIgnoreCase("false"))
-                        throw new IllegalArgumentException("Heating value must be true or false");                
-                }  
-    
-                if(entry.getKey().equals("hasElevator"))
-                {
-                    if (!value.equalsIgnoreCase("true") || !value.equalsIgnoreCase("false"))
-                        throw new IllegalArgumentException("Elevator value must be true or false");                
-                }
-    
-                if(entry.getKey().equals("hasConcierge"))
-                {
-                    if (!value.equalsIgnoreCase("true") || !value.equalsIgnoreCase("false"))
-                        throw new IllegalArgumentException("Concierge value must be true or false");                
-                }  
-    
-                if(entry.getKey().equals("hasTerrace"))
-                {
-                    if (!value.equalsIgnoreCase("true") || !value.equalsIgnoreCase("false"))
-                        throw new IllegalArgumentException("Terrace value must be true or false");                
-                }  
-    
-                if(entry.getKey().equals("hasGarage"))
-                {
-                    if (!value.equalsIgnoreCase("true") || !value.equalsIgnoreCase("false"))
-                        throw new IllegalArgumentException("Garage value must be true or false");                
-                }  
-    
-                if(entry.getKey().equals("hasBalcony"))
-                {
-                    if (!value.equalsIgnoreCase("true") || !value.equalsIgnoreCase("false"))
-                        throw new IllegalArgumentException("Balcony value must be true or false");                
-                }  
-    
-                if(entry.getKey().equals("hasGarden"))
-                {
-                    if (!value.equalsIgnoreCase("true") || !value.equalsIgnoreCase("false"))
-                        throw new IllegalArgumentException("Garden value must be true or false");                
-                }  
-    
-                if(entry.getKey().equals("hasSwimmingPool"))
-                {
-                    if (!value.equalsIgnoreCase("true") || !value.equalsIgnoreCase("false"))
-                        throw new IllegalArgumentException("Swimming Pool value must be true or false");                
-                }  
             } 
-            catch (Exception e) 
+            catch (Exception e)
             {
                 addViolation(context, "Invalid value '" + value + "' for filter: " + key);
                 hasExceptionOccurred = true;
-                //return false;            
             }
         }
 
-        return hasExceptionOccurred ? false : true;
-        //return true;
+        
+        if (!hasExceptionOccurred && filters.containsKey("minPrice") && filters.containsKey("maxPrice")) 
+        {
+            double minPrice = Double.valueOf(filters.get("minPrice"));
+            double maxPrice = Double.valueOf(filters.get("maxPrice"));
+            
+            if (minPrice > maxPrice) 
+            {
+                addViolation(context, "minPrice cannot be greater than maxPrice");
+                hasExceptionOccurred = true;
+            }
+        }
+
+
+        return !hasExceptionOccurred;
     }
 
 
 
     private void addViolation(ConstraintValidatorContext context, String message) 
-    {
-        // Disabilita il messaggio di default dell'annotazione
-        context.disableDefaultConstraintViolation();
-        
-        // Crea un nuovo messaggio personalizzato
-        context.buildConstraintViolationWithTemplate(message).addConstraintViolation();
+    {        
+        context.buildConstraintViolationWithTemplate(message)
+               .addConstraintViolation();
     }
 }
 
