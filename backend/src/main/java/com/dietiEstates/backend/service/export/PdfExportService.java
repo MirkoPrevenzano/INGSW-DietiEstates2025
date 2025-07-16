@@ -65,6 +65,8 @@ public class PdfExportService extends ExportServiceTemplate
     {
         Document document = new Document(PageSize.A4);
         PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("looooool.pdf"));
+        //PdfWriter p = PdfWriter.getInstance(document, response.getOutputStream());
+
         
         // Aggiungi il page event helper per header/footer
         writer.setPageEvent(new PdfPageEventHelperImpl());

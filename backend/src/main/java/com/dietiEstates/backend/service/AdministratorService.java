@@ -14,12 +14,12 @@ import com.dietiEstates.backend.dto.request.CollaboratorRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
 import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
-import com.dietiEstates.backend.helper.MockingStatsHelper;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.AgentRepository;
+import com.dietiEstates.backend.service.mock.MockingStatsHelper;
 import com.dietiEstates.backend.util.PasswordGeneratorUtil;
 
 import lombok.RequiredArgsConstructor;

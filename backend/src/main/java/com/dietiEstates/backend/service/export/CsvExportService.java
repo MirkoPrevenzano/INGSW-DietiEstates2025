@@ -55,6 +55,8 @@ public class CsvExportService extends ExportServiceTemplate
     protected Object initializeWriter(HttpServletResponse response) throws Exception 
     {
         return new CsvListWriter(new FileWriter("looool"), CsvPreference.EXCEL_PREFERENCE);
+        //listWriter = new CsvListWriter(response.getWriter(), CsvPreference.EXCEL_PREFERENCE);  
+
     }
 
 

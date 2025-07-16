@@ -45,7 +45,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.dietiEstates.backend.helper.ChartsHelper;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.model.entity.Agent;
@@ -77,8 +76,7 @@ public class BackendApplication
     CommandLineRunner commandLineRunner(CustomerRepository customerRepository, AdministratorRepository administratorRepository, 
                                         AmazonS3Util s3Util, AgentRepository agentRepository, UserRepository userRepository,
                                         RealEstateRepository realEstateRepository,
-                                        AgentService agentService,
-                                        ChartsHelper chartsHelper)
+                                        AgentService agentService)
     {
         return args -> 
         {  

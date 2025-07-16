@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.helper;
+package com.dietiEstates.backend.service.mock;
 
 import java.util.Random;
 

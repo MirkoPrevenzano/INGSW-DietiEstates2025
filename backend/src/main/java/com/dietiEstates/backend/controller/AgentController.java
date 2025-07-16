@@ -23,8 +23,6 @@ import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.dto.response.AgentStatsDTO;
 import com.dietiEstates.backend.dto.response.RealEstateRecentDTO;
 import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
-import com.dietiEstates.backend.helper.ExportCsvHelper;
-import com.dietiEstates.backend.helper.ExportPdfHelper;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.AgentService;
@@ -47,8 +45,6 @@ import lombok.extern.slf4j.Slf4j;
 public class AgentController 
 {
     private final AgentService agentService;
-    private final ExportCsvHelper exportCsvHelper;
-    private final ExportPdfHelper exportPdfHelper;
     private final AgentRepository agentRepository;
     private final RealEstateRepository realEstateRepository;
     private final ChartService chartService;
@@ -98,11 +94,11 @@ public class AgentController
     }
 
 
-    @GetMapping(value = "/{username}/exportCSV")
+/*     @GetMapping(value = "/{username}/exportCSV")
     public void exportToCSV(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {
         exportCsvHelper.writeCsvResponse(username,response);
-    }
+    } */
 
 
     @GetMapping(value = "/{username}/exportCSV2")
@@ -127,7 +123,7 @@ public class AgentController
     }
 
 
-    //Il controller bisogna che chiama solo il metodo del service
+/*     //Il controller bisogna che chiama solo il metodo del service
     @GetMapping("{username}/exportPDF")
     public void exportToPDF(@PathVariable("username") String username, HttpServletResponse response) throws DocumentException, IOException 
     {
@@ -148,7 +144,7 @@ public class AgentController
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             response.setHeader("Error", "Errore durante l'esportazione del PDF!"); 
         }
-    }
+    } */
 
 
     @GetMapping(path = "{username}/general-stats")
