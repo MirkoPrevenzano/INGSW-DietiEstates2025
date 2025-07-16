@@ -15,8 +15,6 @@ import com.dietiEstates.backend.dto.request.CollaboratorRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
 import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
-import com.dietiEstates.backend.dto.response.AgentRegistrationResponseDTO;
-import com.dietiEstates.backend.dto.response.CollaboratorRegistrationResponseDTO;
 import com.dietiEstates.backend.service.AdministratorService;
 import com.dietiEstates.backend.service.mail.EmailService;
 
@@ -45,11 +43,12 @@ public class AdministratorController
 
 
     @PostMapping(path = "/{username}/create-collaborator")
-    public ResponseEntity<CollaboratorRegistrationResponseDTO> createCollaborator(@PathVariable String username, @RequestBody CollaboratorRegistrationDTO collaboratorRegistrationDTO) 
+    public ResponseEntity<Void> createCollaborator(@PathVariable String username, @RequestBody CollaboratorRegistrationDTO collaboratorRegistrationDTO) 
     {
         try 
         {
-            return ResponseEntity.status(HttpStatus.CREATED).body(administratorService.createCollaborator(username, collaboratorRegistrationDTO));
+            administratorService.createCollaborator(username, collaboratorRegistrationDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } 
         catch (UsernameNotFoundException e)
         {
@@ -63,11 +62,12 @@ public class AdministratorController
     
 
     @PostMapping(path = "/{username}/create-agent")
-    public ResponseEntity<AgentRegistrationResponseDTO> createAgent(@PathVariable String username, @RequestBody AgentRegistrationDTO agentRegistrationDTO) 
+    public ResponseEntity<Void> createAgent(@PathVariable String username, @RequestBody AgentRegistrationDTO agentRegistrationDTO) 
     {
         try 
         {
-            return ResponseEntity.status(HttpStatus.CREATED).body(administratorService.createAgent(username, agentRegistrationDTO));
+            administratorService.createAgent(username, agentRegistrationDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } 
         catch (UsernameNotFoundException e)
         {

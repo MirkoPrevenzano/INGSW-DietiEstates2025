@@ -14,8 +14,6 @@ import com.dietiEstates.backend.dto.request.CollaboratorRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
 import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
-import com.dietiEstates.backend.dto.response.AgentRegistrationResponseDTO;
-import com.dietiEstates.backend.dto.response.CollaboratorRegistrationResponseDTO;
 import com.dietiEstates.backend.helper.MockingStatsHelper;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agency;
@@ -43,7 +41,7 @@ public class AdministratorService
 
 
     @Transactional
-    public CollaboratorRegistrationResponseDTO createCollaborator(String username, CollaboratorRegistrationDTO collaboratorRegistrationDTO) throws UsernameNotFoundException, 
+    public void createCollaborator(String username, CollaboratorRegistrationDTO collaboratorRegistrationDTO) throws UsernameNotFoundException, 
                                                                                     IllegalArgumentException, MappingException
     {
         Optional<Administrator> adminOptional = administratorRepository.findByUsername(username);
@@ -80,13 +78,11 @@ public class AdministratorService
         admin = administratorRepository.save(admin);
 
         log.info("Collaborator was created successfully!");
-
-        return new CollaboratorRegistrationResponseDTO(collaborator.getUsername(), plainTextPassword);
     }
 
 
     @Transactional
-    public AgentRegistrationResponseDTO createAgent(String username, AgentRegistrationDTO agentRegistrationDTO) throws UsernameNotFoundException, 
+    public void createAgent(String username, AgentRegistrationDTO agentRegistrationDTO) throws UsernameNotFoundException, 
                                                                                           IllegalArgumentException, MappingException
     {
         Optional<Administrator> administratorOptional = administratorRepository.findByUsername(username);
@@ -125,9 +121,6 @@ public class AdministratorService
         administrator = administratorRepository.save(administrator);
 
         log.info("Real Estate Agent was created successfully!");
-
-        return new AgentRegistrationResponseDTO(agent.getUsername(), plainTextPassword);
-
     }
 
 
