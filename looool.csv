@@ -1,0 +1,17 @@
+AGENT INFO
+Name,Surname,Username
+a,b,c
+
+
+AGENT STATS
+TotalUploadedRealEstates,TotalSoldRealEstates,TotalRentedRealEstates,SalesIncome,RentalsIncome,Total Incomes,Success Rate
+0,0,0,0.00,0.00,0.00,0.00
+
+
+REAL ESTATES STATS
+Title,UploadingDate,ViewsNumber,VisitsNumber,OffersNumber
+
+
+REAL ESTATES STATS PER MONTH
+JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC
+37,27,82,27,72,59,67,13,68,40,27,85

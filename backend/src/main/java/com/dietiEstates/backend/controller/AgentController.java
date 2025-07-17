@@ -27,8 +27,10 @@ import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.service.chart.ChartService;
+import com.dietiEstates.backend.service.export.SuperCsvExportService;
 import com.dietiEstates.backend.service.export.CsvExportService;
 import com.dietiEstates.backend.service.export.ExportServiceTemplate;
+import com.dietiEstates.backend.service.export.OpenPdfExportService;
 import com.dietiEstates.backend.service.export.PdfExportService;
 import com.lowagie.text.DocumentException;
 
@@ -48,6 +50,8 @@ public class AgentController
     private final AgentRepository agentRepository;
     private final RealEstateRepository realEstateRepository;
     private final ChartService chartService;
+    private final PdfExportService pdfExportService;
+    private final CsvExportService csvExportService;
 
 
     @PostMapping(path = "{username}/create-real-estate-for-sale")
@@ -104,8 +108,9 @@ public class AgentController
     @GetMapping(value = "/{username}/exportCSV2")
     public void exportToCSV2(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {   
-        ExportServiceTemplate exportServiceTemplate = new CsvExportService(agentRepository, agentService, realEstateRepository);
-        exportServiceTemplate.exportReport(username, response);
+/*         ExportServiceTemplate exportServiceTemplate = new SuperCsvExportService(agentRepository, agentService, realEstateRepository);
+        exportServiceTemplate.exportReport(username, response); */
+        csvExportService.exportCsvReport(username, response);
         //exportCsvHelper.writeCsvResponse(username,response);
     }
        
@@ -117,8 +122,10 @@ public class AgentController
         chartService.createPieChart2(agentRepository.findByUsername(username).get());
         chartService.createBarChart(); */
         
-        ExportServiceTemplate exportServiceTemplate = new PdfExportService(agentRepository, agentService, realEstateRepository, chartService);
-        exportServiceTemplate.exportReport(username, response);
+/*         ExportServiceTemplate exportServiceTemplate = new OpenPdfExportService(agentRepository, agentService, realEstateRepository, chartService);
+        exportServiceTemplate.exportReport(username, response); */
+
+        pdfExportService.exportPdfReport(username, response);
         //exportCsvHelper.writeCsvResponse(username,response);
     }
 
