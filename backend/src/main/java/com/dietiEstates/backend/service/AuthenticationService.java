@@ -17,6 +17,7 @@ import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.service.CustomerService;
+import com.dietiEstates.backend.service.mail.CustomerWelcomeEmailService;
 import com.dietiEstates.backend.util.JwtUtil;
 import com.dietiEstates.backend.validator.PasswordValidatorImpl;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
@@ -46,6 +47,7 @@ public class AuthenticationService
     //private final ValidationUtil validationUtil;
     private final CustomerService customerService;
     private final AdministratorRepository administratorRepository;
+    private final CustomerWelcomeEmailService customerWelcomeEmailService;
 
 
     @Transactional
@@ -100,6 +102,8 @@ public class AuthenticationService
         log.info("Customer was registrated successfully!");
 
         customer.setRole(Role.ROLE_CUSTOMER);
+
+        customerWelcomeEmailService.sendWelcomeEmail(customer);
         return new AuthenticationResponseDTO(JwtUtil.generateAccessToken(customer));
     }
 

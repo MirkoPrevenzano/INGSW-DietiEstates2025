@@ -4,5 +4,5 @@ package com.dietiEstates.backend.service.mail;
 
 public interface EmailService 
 {
-    public void sendAgentRegistrationEmail(String to);
+    public void sendMail(String to, String subject, String body);
 }

@@ -16,17 +16,21 @@ public class DefaultSpringEmailService implements EmailService
 {
     private final JavaMailSender javaMailSender;
 
+
+
     @Override
-    public void sendAgentRegistrationEmail(String to) 
+    public void sendMail(String to, String subject, String body) 
     {
         SimpleMailMessage message = new SimpleMailMessage();
-
-        message.setFrom("ciropizz2002@gmail.com");
+        
         message.setTo(to);
-        message.setSubject("BENVENUTO!");
-        message.setText("CIAO...");
+        message.setSubject(subject);
+        message.setText(body);
 
-        javaMailSender.send(message);        
-    }
-    
+        message.setFrom("ciropizza2002@gmail.com");
+
+        javaMailSender.send(message);
+
+        System.out.println("Mail inviata correttamente a: " + to + " Oggetto: " + subject);
+    }   
 }

@@ -34,12 +34,12 @@ public class AdministratorController
     
 
 
-    @PostMapping(path = "/testmail")
+/*     @PostMapping(path = "/testmail")
     public ResponseEntity<Void> testmail() 
     {
         emailService.sendAgentRegistrationEmail("ciropizza2002@gmail.com");
         return ResponseEntity.ok().build();
-    }
+    } */
 
 
     @PostMapping(path = "/{username}/create-collaborator")
