@@ -5,13 +5,15 @@ a,b,c
 
 AGENT STATS
 TotalUploadedRealEstates,TotalSoldRealEstates,TotalRentedRealEstates,SalesIncome,RentalsIncome,Total Incomes,Success Rate
-0,0,0,0.00,0.00,0.00,0.00
+2,0,0,0.00,0.00,0.00,0.00
 
 
 REAL ESTATES STATS
 Title,UploadingDate,ViewsNumber,VisitsNumber,OffersNumber
+aaaaaaaaaaaaaaaaaaaaaa,18-07-2025  20:09:47,138,38,88
+aaaaaaaaaaaaaaaaaaaaaa,18-07-2025  20:09:54,118,18,68
 
 
 REAL ESTATES STATS PER MONTH
 JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC
-37,27,82,27,72,59,67,13,68,40,27,85
+65,99,73,12,53,85,1,91,37,86,57,41

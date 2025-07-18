@@ -10,10 +10,12 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
+import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.model.entity.Agent;
 
 
+@Service
 public class SuccessRatePieChartServiceJFreeChartImpl implements SuccessRatePieChartService
 {
 

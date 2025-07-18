@@ -173,7 +173,7 @@ public class OpenPdfExportService extends ExportServiceTemplate implements PdfEx
                 RealEstateStats realEstateStats = realEstate.getRealEstateStats();
                 String[] estateStats = {
                     realEstate.getTitle(),
-                    realEstate.getUploadingDate().format(DateTimeFormatter.ISO_LOCAL_DATE),
+                    realEstate.getUploadingDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm:ss")),
                     String.valueOf(realEstateStats.getViewsNumber()),
                     String.valueOf(realEstateStats.getOffersNumber()),
                     String.valueOf(realEstateStats.getVisitsNumber())

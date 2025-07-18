@@ -2,7 +2,9 @@
 package com.dietiEstates.backend.service.export.csv;
 
 import java.io.FileWriter;
+import java.time.ZoneOffset;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -121,7 +123,8 @@ public class SuperCsvExportService extends ExportServiceTemplate implements CsvE
             {
                 List<Object> estateData = Arrays.asList(
                     realEstate.getTitle(),
-                    realEstate.getUploadingDate(),
+                    Date.from(realEstate.getUploadingDate().toInstant(ZoneOffset.UTC)),
+                    //realEstate.getUploadingDate(),
                     realEstate.getRealEstateStats().getViewsNumber(),
                     realEstate.getRealEstateStats().getVisitsNumber(),
                     realEstate.getRealEstateStats().getOffersNumber()
