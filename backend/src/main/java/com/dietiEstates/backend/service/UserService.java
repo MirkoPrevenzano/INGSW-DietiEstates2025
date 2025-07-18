@@ -1,4 +1,4 @@
-
+/* 
 package com.dietiEstates.backend.service;
 
 import java.util.Optional;
@@ -91,6 +91,57 @@ public class UserService implements UserDetailsService
             default:
                 throw new IllegalArgumentException("Wrong role inserted!");
         }    
+    }
+
+} */
+
+
+
+package com.dietiEstates.backend.service;
+
+import java.util.Optional;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.dietiEstates.backend.enums.Role;
+import com.dietiEstates.backend.model.entity.Administrator;
+import com.dietiEstates.backend.model.entity.Agent;
+import com.dietiEstates.backend.model.entity.Customer;
+import com.dietiEstates.backend.model.entity.User;
+import com.dietiEstates.backend.repository.AdministratorRepository;
+import com.dietiEstates.backend.repository.AgentRepository;
+import com.dietiEstates.backend.repository.CustomerRepository;
+import com.dietiEstates.backend.repository.UserRepository;
+import com.dietiEstates.backend.resolver.UserLoadingStrategyResolver;
+import com.dietiEstates.backend.strategy.UserLoadingStrategy;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class UserService implements UserDetailsService
+{
+    private final UserLoadingStrategyResolver userLoadingStrategyResolver;
+
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
+    {
+        log.info("\n\nSONO IN USERDETAILSSERVICEEEE\n\n");
+
+        int index = username.indexOf("/");
+        String role = username.substring(index + 1);
+        username = username.substring(0, index);
+        
+        UserLoadingStrategy userLoadingStrategy = userLoadingStrategyResolver.getUserLoadingStrategy(role);
+        return userLoadingStrategy.loadUser(username);
     }
 
 }
