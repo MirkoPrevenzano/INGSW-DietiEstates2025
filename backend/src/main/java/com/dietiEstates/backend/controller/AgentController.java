@@ -26,7 +26,6 @@ import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.AgentService;
-import com.dietiEstates.backend.service.chart.ChartService;
 import com.dietiEstates.backend.service.export.csv.CsvExportService;
 import com.dietiEstates.backend.service.export.csv.SuperCsvExportService;
 import com.dietiEstates.backend.service.export.pdf.OpenPdfExportService;
@@ -49,7 +48,6 @@ public class AgentController
     private final AgentService agentService;
     private final AgentRepository agentRepository;
     private final RealEstateRepository realEstateRepository;
-    private final ChartService chartService;
     private final PdfExportService pdfExportService;
     private final CsvExportService csvExportService;
 

@@ -15,7 +15,6 @@ import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.AgentService;
-import com.dietiEstates.backend.service.chart.ChartService;
 import com.dietiEstates.backend.service.chart.MonthlyDealsBarChartService;
 import com.dietiEstates.backend.service.chart.SuccessRatePieChartService;
 import com.dietiEstates.backend.service.chart.TotalDealsPieChartService;
@@ -44,18 +43,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class OpenPdfExportService extends ExportServiceTemplate implements PdfExportService
 {
-    private final ChartService chartService;
     private final SuccessRatePieChartService successRatePieChartService;
     private final TotalDealsPieChartService totalDealsPieChartService;
     private final MonthlyDealsBarChartService monthlyDealsBarChartService;
 
 
     public OpenPdfExportService(AgentRepository agentRepository, AgentService agentService, RealEstateRepository realEstateRepository, 
-                                ChartService chartService, SuccessRatePieChartService successRatePieChartService,
+                                SuccessRatePieChartService successRatePieChartService,
                                 TotalDealsPieChartService totalDealsPieChartService, MonthlyDealsBarChartService monthlyDealsBarChartService) 
     {
         super(agentRepository, agentService, realEstateRepository);
-        this.chartService = chartService;
         this.successRatePieChartService = successRatePieChartService;
         this.totalDealsPieChartService = totalDealsPieChartService;
         this.monthlyDealsBarChartService = monthlyDealsBarChartService;
