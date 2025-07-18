@@ -20,7 +20,7 @@ public class CustomerWelcomeEmailServiceImpl implements CustomerWelcomeEmailServ
     {
         String subject = "Benvenuto su DietiEstates2025!";
         String body = String.format("Ciao %s,\n\nGrazie per esserti registrato nella nostra applicazione!\n" +
-                                    "Inizia subito col cercare l'immobile perfetto per te, e non esitare a contattarci per qualsiasi dubbio o problema.\n\n" +
+                                    "Inizia subito a cercare l'immobile perfetto per te, e non esitare a contattarci per qualsiasi dubbio o problema.\n\n" +
                                     "Saluti,", customer.getName());
 
         emailService.sendMail(customer.getUsername(), subject, body);

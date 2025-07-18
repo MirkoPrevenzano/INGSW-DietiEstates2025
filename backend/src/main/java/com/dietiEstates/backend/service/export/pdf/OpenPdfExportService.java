@@ -16,6 +16,9 @@ import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.service.chart.ChartService;
+import com.dietiEstates.backend.service.chart.MonthlyDealsBarChartService;
+import com.dietiEstates.backend.service.chart.SuccessRatePieChartService;
+import com.dietiEstates.backend.service.chart.TotalDealsPieChartService;
 import com.dietiEstates.backend.service.export.ExportServiceTemplate;
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
@@ -42,11 +45,20 @@ import lombok.extern.slf4j.Slf4j;
 public class OpenPdfExportService extends ExportServiceTemplate implements PdfExportService
 {
     private final ChartService chartService;
+    private final SuccessRatePieChartService successRatePieChartService;
+    private final TotalDealsPieChartService totalDealsPieChartService;
+    private final MonthlyDealsBarChartService monthlyDealsBarChartService;
 
-    public OpenPdfExportService(AgentRepository agentRepository, AgentService agentService, RealEstateRepository realEstateRepository, ChartService chartService) 
+
+    public OpenPdfExportService(AgentRepository agentRepository, AgentService agentService, RealEstateRepository realEstateRepository, 
+                                ChartService chartService, SuccessRatePieChartService successRatePieChartService,
+                                TotalDealsPieChartService totalDealsPieChartService, MonthlyDealsBarChartService monthlyDealsBarChartService) 
     {
         super(agentRepository, agentService, realEstateRepository);
         this.chartService = chartService;
+        this.successRatePieChartService = successRatePieChartService;
+        this.totalDealsPieChartService = totalDealsPieChartService;
+        this.monthlyDealsBarChartService = monthlyDealsBarChartService;
     }
 
     
@@ -276,8 +288,8 @@ public class OpenPdfExportService extends ExportServiceTemplate implements PdfEx
     
     private void addPieCharts(Document document, Agent agent) {
         try {
-            Image im2 = Image.getInstance(chartService.createPieChart(agent));
-            Image im3 = Image.getInstance(chartService.createPieChart2(agent));
+            Image im2 = Image.getInstance(successRatePieChartService.createChart(agent));
+            Image im3 = Image.getInstance(totalDealsPieChartService.createChart(agent));
             PdfPTable chartTable = createTable(2, 110, new float[] {1, 1});
             
             PdfPCell cell = createCell(Color.WHITE, 0);
@@ -296,7 +308,7 @@ public class OpenPdfExportService extends ExportServiceTemplate implements PdfEx
     
     private void addBarChart(Document document) {
         try {
-            Image im4 = Image.getInstance(chartService.createBarChart());
+            Image im4 = Image.getInstance(monthlyDealsBarChartService.createChart(null));
             im4.setAlignment(Element.ALIGN_CENTER);
             im4.scalePercent(80);
             document.add(im4);
