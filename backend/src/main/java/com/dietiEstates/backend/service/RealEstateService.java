@@ -55,6 +55,12 @@ public class RealEstateService
 
         Page<RealEstatePreviewInfoDTO> realEstatePreviewsPage = realEstateRepository.findPreviewsByFilters(filters, page, coordinatesMinMax);
 
+        log.info("realEstatePreviewsPage.getNumber(): {}", realEstatePreviewsPage.getNumber());
+        log.info("realEstatePreviewsPage.getNumberOfElements(): {}", realEstatePreviewsPage.getNumberOfElements());
+        log.info("realEstatePreviewsPage.getSize(): {}", + realEstatePreviewsPage.getSize());
+        log.info("realEstatePreviewsPage.getTotalElements(): {}", realEstatePreviewsPage.getTotalElements());
+        log.info("realEstatePreviewsPage.getTotalPages(): {}", realEstatePreviewsPage.getTotalPages());
+
         RealEstateSearchDTO RealEstatePreviewsFirstPageDTO = new RealEstateSearchDTO(realEstatePreviewsPage.getContent(),
                                                                                                         realEstatePreviewsPage.getTotalElements(), 
                                                                                                         realEstatePreviewsPage.getTotalPages());

@@ -55,8 +55,9 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
         CriteriaQuery<Long> countQuery = getPreviewsCountQueryByFilters(filters, coordinatesMinMax);
         long totalElements = entityManager.createQuery(countQuery)
-                                          .getFirstResult();       
+                                          .getSingleResult();       
         
+                                          log.info("\n\ntotalElem in Criteria: {}", totalElements);
         PageImpl<RealEstatePreviewInfoDTO> pageImpl = new PageImpl<>(pageList, page, totalElements);
 
         return pageImpl;
@@ -222,15 +223,14 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         Path<Double> latitude = addressJoin.get("latitude");
         Path<Double> longitude = addressJoin.get("longitude");   
 
-
         List<Predicate> predicates = new ArrayList<>();
             
         predicates.add(criteriaBuilder.equal(realEstateId, realEstateTypeId));
 
-        predicates.add(criteriaBuilder.ge(latitude, coordinatesMinMax.getMinLatitude()));
+         predicates.add(criteriaBuilder.ge(latitude, coordinatesMinMax.getMinLatitude()));
         predicates.add(criteriaBuilder.le(latitude, coordinatesMinMax.getMaxLatitude()));
-        predicates.add(criteriaBuilder.le(longitude, coordinatesMinMax.getMinLongitude()));
-        predicates.add(criteriaBuilder.ge(longitude, coordinatesMinMax.getMaxLongitude()));
+        predicates.add(criteriaBuilder.ge(longitude, coordinatesMinMax.getMinLongitude()));
+        predicates.add(criteriaBuilder.le(longitude, coordinatesMinMax.getMaxLongitude())); 
               
         for(Map.Entry<String,String> entry : filters.entrySet())
         {
@@ -254,47 +254,47 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
                 predicates.add(criteriaBuilder.gt(roomsNumber, Integer.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("hasAirConditioning"))
+            if(entry.getKey().equals("airConditioning"))
             {
                 predicates.add(criteriaBuilder.equal(airConditioning, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("hasHeating"))
+            if(entry.getKey().equals("heating"))
             {
                 predicates.add(criteriaBuilder.equal(heating, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("hasElevator"))
+            if(entry.getKey().equals("elevator"))
             {
                 predicates.add(criteriaBuilder.equal(elevator, Boolean.valueOf(entry.getValue())));
             }
 
-            if(entry.getKey().equals("hasConcierge"))
+            if(entry.getKey().equals("concierge"))
             {
                 predicates.add(criteriaBuilder.equal(concierge, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("hasTerrace"))
+            if(entry.getKey().equals("terrace"))
             {
                 predicates.add(criteriaBuilder.equal(terrace, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("hasGarage"))
+            if(entry.getKey().equals("garage"))
             {
                 predicates.add(criteriaBuilder.equal(garage, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("hasBalcony"))
+            if(entry.getKey().equals("balcony"))
             {
                 predicates.add(criteriaBuilder.equal(balcony, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("hasGarden"))
+            if(entry.getKey().equals("garden"))
             {
                 predicates.add(criteriaBuilder.equal(garden, Boolean.valueOf(entry.getValue())));
             }  
 
-            if(entry.getKey().equals("hasSwimmingPool"))
+            if(entry.getKey().equals("swimmingPool"))
             {
                 predicates.add(criteriaBuilder.equal(swimmingPool, Boolean.valueOf(entry.getValue())));
             }  
