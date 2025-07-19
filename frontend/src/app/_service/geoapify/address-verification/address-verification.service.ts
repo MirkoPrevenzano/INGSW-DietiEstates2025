@@ -25,7 +25,7 @@ export class AddressVerificationService {
 
   async verifyAddressToCoordinate(coordinates: Coordinate): Promise<any> {
     const url = `https://api.geoapify.com/v1/geocode/reverse?
-                  lat=${encodeURIComponent(coordinates.lat)}
+                  &lat=${encodeURIComponent(coordinates.lat)}
                   &lon=${encodeURIComponent(coordinates.lon)}
                   &apiKey=${this.geoapifyKey}
                 `;
