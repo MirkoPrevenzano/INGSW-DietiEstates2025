@@ -59,7 +59,3 @@ public class FindByRadiusUtil
         return new CoordinatesMinMax(minLatitude, maxLatitude, minLongitude, maxLongitude);
 	}
 }
-
-// TODO: Aggiungere Haversine
-
-/*  */

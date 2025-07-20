@@ -14,6 +14,7 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 
 
@@ -35,10 +36,11 @@ public class AddressDTO
     @NotBlank
     private String street;
 
-    @NotBlank // TODO: custom validator
+    @NotBlank
+    @Pattern(regexp = "^[0-9]{5}$", message = "postal code must be of 5 digits")
     private String postalCode;
 
-    @NotNull// TODO: custom validator
+    @NotNull// TODO: cambiare in String
     private Integer houseNumber;
 
     @NotNull
@@ -47,7 +49,7 @@ public class AddressDTO
     private Double longitude;
 
     @NotNull
-    @DecimalMin(value = "-90.0")
+    @DecimalMin(value = ".90.0")
     @DecimalMax(value = "90.0")
     private Double latitude;
 }

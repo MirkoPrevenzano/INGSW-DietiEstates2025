@@ -57,7 +57,6 @@ public class TotalDealsPieChartServiceJFreeChartImpl implements TotalDealsPieCha
             b = ChartUtils.encodeAsPNG(chart.createBufferedImage(width, height));
         } 
         catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

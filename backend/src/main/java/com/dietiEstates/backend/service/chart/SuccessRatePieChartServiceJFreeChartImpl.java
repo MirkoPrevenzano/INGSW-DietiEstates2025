@@ -56,7 +56,6 @@ public class SuccessRatePieChartServiceJFreeChartImpl implements SuccessRatePieC
             i = ChartUtils.encodeAsPNG(chart.createBufferedImage(width, height));
          } 
         catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } 
 

@@ -80,7 +80,6 @@ public class MonthlyDealsBarChartServiceJFreeChartImpl implements MonthlyDealsBa
            b =  ChartUtils.encodeAsPNG(barChart.createBufferedImage(width, height));
         } 
         catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

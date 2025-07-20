@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import com.dietiEstates.backend.validator.EmailValidator;
 import com.dietiEstates.backend.validator.PasswordValidator;
 
 import jakarta.validation.constraints.NotBlank;
@@ -24,6 +25,7 @@ public class CustomerRegistrationDTO
     private String surname;
 
     @NotBlank
+    @EmailValidator
     private String username;
 
     @NotBlank

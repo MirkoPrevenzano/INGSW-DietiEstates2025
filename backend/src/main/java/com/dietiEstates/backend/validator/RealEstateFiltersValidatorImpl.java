@@ -24,7 +24,6 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
     public boolean isValid(Map<String,String> filters, ConstraintValidatorContext context) 
     {
         context.disableDefaultConstraintViolation();
-
         boolean hasExceptionOccurred = false; 
 
         for(Map.Entry<String,String> entry : filters.entrySet())

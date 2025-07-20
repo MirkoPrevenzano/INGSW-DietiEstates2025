@@ -108,11 +108,6 @@ public class AuthenticationService
     }
 
 
-
-    //TODO methods:
-
-    //googleregistration
-    //googlelogin
     public AuthenticationResponseDTO authenticateWithGoogle(Map <String, String> request) { 
         String googleToken = request.get("token");
         GoogleIdToken.Payload payload = verifyGoogleToken(googleToken); 
