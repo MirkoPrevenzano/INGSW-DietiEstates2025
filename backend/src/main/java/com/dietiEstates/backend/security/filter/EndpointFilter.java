@@ -1,4 +1,4 @@
-
+/* 
 package com.dietiEstates.backend.security.filter;
 
 import jakarta.servlet.FilterChain;
@@ -79,4 +79,4 @@ public class EndpointFilter extends OncePerRequestFilter
         log.info("EndpointFilter is OK!");
         filterChain.doFilter(request, response);
     }
-}
+} */

@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.server.handler.ResponseStatusExceptionHandler;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import com.dietiEstates.backend.dto.response.ApiErrorResponse;
 import com.dietiEstates.backend.enums.EnergyClass;
@@ -46,6 +48,29 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     {
         return ResponseEntity.badRequest().header("Error", 
         "Problems while mapping! Probably the source object was different than the one expected!").body(null);
+    }
+
+
+    @Override
+    protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers,
+            HttpStatusCode status, WebRequest request) {
+
+                log.error("HANDLER NON TROVATO...");
+        // TODO Auto-generated method stub
+        return super.handleNoHandlerFoundException(ex, headers, status, request);
+    }
+
+    
+
+
+
+    @Override
+    protected ResponseEntity<Object> handleNoResourceFoundException(NoResourceFoundException ex, HttpHeaders headers,
+            HttpStatusCode status, WebRequest request) {
+                log.error("RESOURCE NON TROVATA...");
+
+        // TODO Auto-generated method stub
+        return super.handleNoResourceFoundException(ex, headers, status, request);
     }
 
 
