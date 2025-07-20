@@ -80,7 +80,7 @@ public class BackendApplication
     {
         return args -> 
         {  
-            /*  Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@");
+            Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@");
             administrator.setPassword(passwordEncoder.encode(administrator.getPassword()));
             administrator.addAgency(new Agency("a", "null", "sdks"));
             administrator = administratorRepository.saveAndFlush(administrator);
@@ -88,7 +88,7 @@ public class BackendApplication
   
             Agent agent = (new Agent("a","b","c",passwordEncoder.encode("ssssssssssssssssssss22A@")));
             administrator.addAgent(agent);
-            administrator = administratorRepository.save(administrator);*/ 
+            administrator = administratorRepository.save(administrator);
             
            /* System.out.println("\n\nFINDING BY USERNAME BY USER REPO:");
             User user = userRepository.findByUsername("ydk").get();

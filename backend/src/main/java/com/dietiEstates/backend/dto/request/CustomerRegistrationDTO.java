@@ -7,6 +7,7 @@ import lombok.NonNull;
 
 import com.dietiEstates.backend.validator.EmailValidator;
 import com.dietiEstates.backend.validator.PasswordValidator;
+import com.dietiEstates.backend.validator.VatNumberValidator;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

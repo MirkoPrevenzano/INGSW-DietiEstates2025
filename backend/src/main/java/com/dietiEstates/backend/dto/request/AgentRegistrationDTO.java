@@ -1,6 +1,8 @@
 
 package com.dietiEstates.backend.dto.request;
 
+import com.dietiEstates.backend.validator.EmailValidator;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,5 +24,6 @@ public class AgentRegistrationDTO
     private String surname;
 
     @NotBlank
+    @EmailValidator
     private String username;
 }

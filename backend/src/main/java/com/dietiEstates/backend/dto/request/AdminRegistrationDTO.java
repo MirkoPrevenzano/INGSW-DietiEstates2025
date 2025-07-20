@@ -1,6 +1,9 @@
 
 package com.dietiEstates.backend.dto.request;
 
+import com.dietiEstates.backend.validator.EmailValidator;
+import com.dietiEstates.backend.validator.VatNumberValidator;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -24,6 +27,7 @@ public class AdminRegistrationDTO
     private String surname;
 
     @NotBlank
+    @EmailValidator
     private String username;
 
     @NotBlank
@@ -35,6 +39,7 @@ public class AdminRegistrationDTO
     @NotBlank
     private String businessName;
 
-    @NotBlank // TODO custom validator
+    @NotBlank
+    @VatNumberValidator
     private String vatNumber;
 }
