@@ -22,8 +22,8 @@ public class AgentLoadingStrategy implements UserLoadingStrategy {
     private final AgentRepository agentRepository;
 
     @Override
-    public boolean supports(String role) {
-        return role.equals("agent");
+    public boolean supports(Role role) {
+        return Role.ROLE_AGENT.equals(role);
     }
 
     @Override

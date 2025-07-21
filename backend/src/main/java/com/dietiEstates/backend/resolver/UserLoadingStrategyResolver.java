@@ -4,6 +4,7 @@ package com.dietiEstates.backend.resolver;
 import org.springframework.stereotype.Component;
 
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
+import com.dietiEstates.backend.enums.Role;
 import com.dietiEstates.backend.factory.RealEstateFromDtoFactory;
 import com.dietiEstates.backend.strategy.UserLoadingStrategy;
 
@@ -21,7 +22,7 @@ public class UserLoadingStrategyResolver
     private final List<UserLoadingStrategy> userLoadingStrategies;
 
 
-    public UserLoadingStrategy getUserLoadingStrategy(String role)
+    public UserLoadingStrategy getUserLoadingStrategy(Role role)
     {
         return userLoadingStrategies.stream()
                              .filter(strategy -> strategy.supports(role))

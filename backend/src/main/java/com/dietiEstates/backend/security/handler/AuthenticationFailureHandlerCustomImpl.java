@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,6 +14,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.stereotype.Component;
 
 import com.dietiEstates.backend.dto.response.ApiErrorResponse;
+import com.dietiEstates.backend.exception.RoleMismatchException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletException;
@@ -46,7 +48,12 @@ public class AuthenticationFailureHandlerCustomImpl implements AuthenticationFai
         if(authException instanceof DisabledException || authException instanceof LockedException)
             errorDescription += "Your account is temporarily blocked or disabled.";
         else if(authException instanceof UsernameNotFoundException)
-            errorDescription += "You have entered a wrong username.";
+        {
+            if (authException.getCause() instanceof RoleMismatchException)
+                errorDescription += "You have entered a wrong role.";
+            else
+                errorDescription += "You have entered a wrong username.";
+        }
         else if(authException instanceof BadCredentialsException)
             errorDescription += "You have entered a wrong password.";
         else

@@ -25,8 +25,8 @@ public class CustomerLoadingStrategy implements UserLoadingStrategy {
     private final CustomerRepository customerRepository;
 
     @Override
-    public boolean supports(String role) {
-        return role.equals("customer");
+    public boolean supports(Role role) {
+        return Role.ROLE_CUSTOMER.equals(role);
     }
 
 

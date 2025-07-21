@@ -23,9 +23,9 @@ public class AdministratorLoadingStrategy implements UserLoadingStrategy
 
 
     @Override
-    public boolean supports(String role) 
+    public boolean supports(Role role) 
     {
-        return role.equals("admin");
+        return Role.ROLE_ADMIN.equals(role);
     }
 
 
