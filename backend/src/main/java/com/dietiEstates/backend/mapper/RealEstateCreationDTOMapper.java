@@ -40,7 +40,6 @@ public abstract class RealEstateCreationDTOMapper implements Supportable<RealEst
         entity.setEnergyClass(dto.getRealEstateMainFeaturesDTO().getEnergyClass());
         entity.setUploadingDate(LocalDateTime.now());
 
-        // TODO: controllare i NULL
         InternalRealEstateFeatures internalRealEstateFeatures = 
                                         new InternalRealEstateFeatures(dto.getRealEstateMainFeaturesDTO().getSize(), 
                                                                        dto.getRealEstateMainFeaturesDTO().getRoomsNumber(), 

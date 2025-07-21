@@ -92,7 +92,7 @@ public class OpenPdfExportService extends ExportServiceTemplate implements PdfEx
         document.open();
         
         // Aggiungi il logo header
-        addLogoHeader(document);
+/*         addLogoHeader(document); */
         
         // Crea gli stili una sola volta e li passa tramite il wrapper
         PdfStyleConfig styleConfig = createStyleConfig();
@@ -198,9 +198,7 @@ public class OpenPdfExportService extends ExportServiceTemplate implements PdfEx
 
 
     @Override
-    protected void writeSectionSeparator(Object writer) throws Exception {
-        // TODO Auto-generated method stub
-        
+    protected void writeSectionSeparator(Object writer) throws Exception {        
     }
 
     
@@ -347,14 +345,13 @@ public class OpenPdfExportService extends ExportServiceTemplate implements PdfEx
         
         @Override
         public void onOpenDocument(PdfWriter arg0, Document arg1) {
-            // TODO Auto-generated method stub
-            super.onOpenDocument(arg0, arg1);
+            addLogoHeader(arg1);
+
         }
 
 
         @Override
         public void onStartPage(PdfWriter arg0, Document arg1) {
-            // TODO Auto-generated method stub
             super.onStartPage(arg0, arg1);
         }
 

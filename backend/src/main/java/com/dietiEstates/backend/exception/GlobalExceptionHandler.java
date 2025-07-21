@@ -56,7 +56,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
             HttpStatusCode status, WebRequest request) {
 
                 log.error("HANDLER NON TROVATO...");
-        // TODO Auto-generated method stub
         return super.handleNoHandlerFoundException(ex, headers, status, request);
     }
 
@@ -68,8 +67,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     protected ResponseEntity<Object> handleNoResourceFoundException(NoResourceFoundException ex, HttpHeaders headers,
             HttpStatusCode status, WebRequest request) {
                 log.error("RESOURCE NON TROVATA...");
-
-        // TODO Auto-generated method stub
         return super.handleNoResourceFoundException(ex, headers, status, request);
     }
 
