@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +31,7 @@ import com.dietiEstates.backend.service.export.csv.CsvExportService;
 import com.dietiEstates.backend.service.export.csv.SuperCsvExportService;
 import com.dietiEstates.backend.service.export.pdf.OpenPdfExportService;
 import com.dietiEstates.backend.service.export.pdf.PdfExportService;
+import com.dietiEstates.backend.validator.groups.OnCreate;
 import com.dietiEstates.backend.service.export.ExportServiceTemplate;
 import com.lowagie.text.DocumentException;
 
@@ -53,7 +55,7 @@ public class AgentController
 
 
     @PostMapping(path = "{username}/create-real-estate-for-sale")
-    public ResponseEntity<Long> createRealEstateForSale(@PathVariable String username, @Valid @RequestBody RealEstateForSaleCreationDTO realEstateForSaleCreationDTO) 
+    public ResponseEntity<Long> createRealEstateForSale(@PathVariable String username, @Validated(OnCreate.class) @RequestBody RealEstateForSaleCreationDTO realEstateForSaleCreationDTO) 
     {
         try 
         {
@@ -69,7 +71,7 @@ public class AgentController
 
 
     @PostMapping(path = "{username}/create-real-estate-for-rent")
-    public ResponseEntity<Long> createRealEstateForRent(@PathVariable String username, @RequestBody RealEstateForRentCreationDTO realEstateForRentCreationDTO) 
+    public ResponseEntity<Long> createRealEstateForRent(@PathVariable String username, @Validated(OnCreate.class) @RequestBody RealEstateForRentCreationDTO realEstateForRentCreationDTO) 
     {
         try 
         {

@@ -3,6 +3,11 @@ package com.dietiEstates.backend.dto.request.support;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import com.dietiEstates.backend.validator.groups.OnCreate;
+
+import jakarta.validation.constraints.AssertFalse;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 
 
@@ -12,21 +17,30 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RealEstateBooleanFeaturesDTO 
 {
-    private Boolean airConditioning = false;
+    @NotNull(groups = OnCreate.class)
+    private Boolean airConditioning;
 
-    private Boolean heating = false;  
+    @NotNull(groups = OnCreate.class)
+    private Boolean heating;  
 
-    private Boolean elevator = false;
+    @NotNull(groups = OnCreate.class)
+    private Boolean elevator;
 
-    private Boolean concierge = false;
+    @NotNull(groups = OnCreate.class)
+    private Boolean concierge;
 
-    private Boolean terrace = false;
+    @NotNull(groups = OnCreate.class)
+    private Boolean terrace;
 
-    private Boolean garage = false;
+    @NotNull(groups = OnCreate.class)
+    private Boolean garage;
 
-    private Boolean balcony = false;
+    @NotNull(groups = OnCreate.class)
+    private Boolean balcony;
 
-    private Boolean garden = false;
+    @NotNull(groups = OnCreate.class)
+    private Boolean garden;
 
-    private Boolean swimmingPool = false;
+    @NotNull(groups = OnCreate.class)
+    private Boolean swimmingPool;
 }

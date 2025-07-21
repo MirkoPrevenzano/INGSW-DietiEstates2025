@@ -3,6 +3,10 @@ package com.dietiEstates.backend.dto.request.support;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import com.dietiEstates.backend.validator.groups.OnCreate;
+
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 
 
@@ -12,9 +16,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RealEstateLocationFeaturesDTO
 {
-    private Boolean nearPark = false;
+    @NotNull
+    private Boolean nearPark;
 
-    private Boolean nearSchool = false;
-
-    private Boolean nearPublicTransport = false;   
+    @NotNull
+    private Boolean nearSchool;
+    
+    @NotNull
+    private Boolean nearPublicTransport;   
 }

@@ -8,6 +8,7 @@ import lombok.NonNull;
 import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.PropertyCondition;
+import com.dietiEstates.backend.validator.groups.OnCreate;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -23,44 +24,44 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RealEstateMainFeaturesDTO 
 {
-    @NotBlank
+    @NotBlank(groups = OnCreate.class)
     @Size(max = 35)
     private String title;
 
-    @NotBlank
+    @NotBlank(groups = OnCreate.class)
     @Size(min = 250)
     private String description;
     
-    @NotNull
+    @NotNull(groups = OnCreate.class)
     @Positive  
     private Double price;
     
-    @NotNull
+    @NotNull(groups = OnCreate.class)
     @PositiveOrZero    
     private Double condoFee;
     
-    @NotNull
+    @NotNull(groups = OnCreate.class)
     @Positive       
     private Double size;
 
-    @NotNull
+    @NotNull(groups = OnCreate.class)
     @Positive   
     private Integer roomsNumber;
 
-    @NotNull
+    @NotNull(groups = OnCreate.class)
     @PositiveOrZero    
     private Integer floorNumber;
 
-    @NotNull
+    @NotNull(groups = OnCreate.class)
     @PositiveOrZero    
     private Integer parkingSpacesNumber;
 
-    @NotNull
+    @NotNull(groups = OnCreate.class)
     private EnergyClass energyClass;
     
-    @NotNull 
+    @NotNull(groups = OnCreate.class)
     private PropertyCondition propertyCondition;
 
-    @NotNull
+    @NotNull(groups = OnCreate.class)
     private FurnitureCondition furnitureCondition;
 }
