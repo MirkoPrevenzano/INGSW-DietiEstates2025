@@ -1,5 +1,18 @@
 package com.dietiEstates.backend.service.photo.storage;
 
-public class FileStorageService {
+import java.io.IOException;
+import java.util.Map;
+
+
+public interface FileStorageService 
+{
+    void uploadFile(byte[] file, String photoKey, Map<String, Object> photoMetadata) throws IOException;
+
+    byte[] downloadFile(String photoKey) throws IOException;
     
+    String getFilePublicUrl(String photoKey) throws IOException;
+
+    Map<String, String> getFileMetadata(String photoKey) throws IOException;
+
+    void deleteFile(String photoKey) throws IOException;
 }
