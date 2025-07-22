@@ -12,11 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 import software.amazon.awssdk.core.ResponseBytes;
 import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.core.exception.SdkException;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
 import software.amazon.awssdk.services.s3.model.GetObjectResponse;
 import software.amazon.awssdk.services.s3.model.GetUrlRequest;
@@ -116,7 +118,7 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
             throw new IOException("File not found in storage while retrieving its metadata: " + photoKey, e);
         } catch (SdkException e) {
             log.error("Amazon S3/SDK exception occurred during metadata retrieval for file with key '{}' from bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new IOException("Failed to retrieve metadata from S3: " + e.getMessage(), e);
+            throw new IOException("Failed to retrieve metadata from storage: " + photoKey, e);
         } catch (Exception e) {
             log.error("Generic exception occurred during metadata retrieval for file with key '{}' from bucket '{}': {}", photoKey, bucketName, e.getMessage());
             throw new IOException("An unexpected error occurred during metadata retrieval: " + photoKey, e);
@@ -139,20 +141,43 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
         } 
         catch (SdkException e) 
         {
-            log.error("Amazon S3/SDK exception during public URL generation for key '{}': {}", photoKey, e.getMessage(), e);
-            throw new IOException("Failed to generate public URL for file from S3: " + e.getMessage(), e);
+            log.error("Amazon S3/SDK exception occurred during public URL generation for file with key '{} from bucket '{}': {}", photoKey, bucketName, e.getMessage());
+            throw new IOException("Failed to generate public URL for file: " + photoKey, e);
         } 
         catch (Exception e) 
         {
-            log.error("Generic exception during public URL generation for key '{}': {}", photoKey, e.getMessage(), e);
-            throw new IOException("An unexpected error occurred during public URL generation: " + e.getMessage(), e);
+            log.error("Generic exception occurred during public URL generation for file with key '{}' from bucket '{}': {}", photoKey,bucketName, e.getMessage());
+            throw new IOException("An unexpected error occurred during public URL generation: " + photoKey, e);
         }
     }
     
 
     @Override
-    public void deleteFile(String photoKey) throws IOException {
-        // TODO Auto-generated method stub
-        
+    public void deleteFile(String photoKey) throws IOException 
+    {
+        DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
+        .bucket(bucketName)
+        .key(photoKey)
+        .build();
+
+        try 
+        {
+            s3Client.deleteObject(deleteObjectRequest);
+            log.info("File with key '{}' was deleted successfully from Amazon S3 bucket '{}'.", photoKey, bucketName);
+        } 
+        catch (NoSuchKeyException e) 
+        {
+            log.warn("Attempted to delete non-existent file with key '{}' from Amazon S3 bucket: '{}'.", photoKey, bucketName);
+        } 
+        catch (SdkException e) 
+        {
+            log.error("Amazon S3/SDK exception occurred during deletion of file with key '{}' in Amazon S3 bucket '{}': {}", photoKey, bucketName, e.getMessage());
+            throw new IOException("Failed to delete file from storage: " + photoKey);
+        } 
+        catch (Exception e) 
+        {
+            log.error("Generic exception occurred during deletion of file with key '{}' from bucket '{}': {}", photoKey,bucketName, e.getMessage());
+            throw new IOException("An unexpected error occurred during file deletion: " + photoKey, e);
+        }        
     }
 }
