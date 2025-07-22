@@ -12,7 +12,7 @@ public interface FileStorageService
     
     String getFilePublicUrl(String photoKey) throws IOException;
 
-    Map<String, String> getFileMetadata(String photoKey) throws IOException;
+    Map<String, Object> getFileMetadata(String photoKey) throws IOException;
 
     void deleteFile(String photoKey) throws IOException;
 }
