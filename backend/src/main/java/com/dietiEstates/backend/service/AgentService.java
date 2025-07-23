@@ -39,6 +39,7 @@ import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.resolver.RealEstateFactoryResolver;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
+import com.dietiEstates.backend.service.photo.PhotoService;
 import com.dietiEstates.backend.util.AmazonS3Util;
 
 import jakarta.transaction.Transactional;
@@ -60,6 +61,7 @@ public class AgentService
     private final ModelMapper modelMapper;
     //private final ValidationUtil validationUtil;
     private final RealEstateFactoryResolver realEstateFactoryResolver;
+    private final PhotoService photoService;
 
 
 
@@ -91,6 +93,28 @@ public class AgentService
     }
 
 
+
+    public void uploadPhoto2(String username, MultipartFile[] files, Long realEstateId) throws IllegalArgumentException, RuntimeException, IOException
+    {
+        Optional<RealEstate> optionalRealEstate = realEstateRepository.findById(realEstateId);
+        RealEstate realEstate = optionalRealEstate.get();
+        
+/*         if(files.length < 3 || files.length > 10)
+        {
+            log.error("You have inserted a wrong number of photos! You must add from 3 to 10 photos.");
+            throw new IllegalArgumentException("You have inserted a wrong number of photos! You must add from 3 to 10 photos.");
+        } */
+
+        for(MultipartFile file : files)
+        {
+            String photoKey = photoService.uploadPhoto(file, "real-estates/" + realEstateId);
+    
+            Photo photo = new Photo(photoKey);
+            realEstate.getPhotos().add(photo);            
+        }
+
+        realEstateRepository.save(realEstate);
+    }
 
     public void uploadPhoto(String username, MultipartFile[] files, Long realEstateId) throws IllegalArgumentException, RuntimeException
     {

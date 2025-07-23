@@ -2,6 +2,7 @@
 package com.dietiEstates.backend.service.photo;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -28,7 +29,7 @@ public class PhotoServiceImpl implements PhotoService
 
 
     @Override
-    public String uploadPhoto(MultipartFile file, String folderName) 
+    public String uploadPhoto(MultipartFile file, String folderName) throws IOException
     {
         if (file == null || file.isEmpty()) 
             throw new IllegalArgumentException("Il file da caricare non può essere null o vuoto.");
@@ -66,30 +67,45 @@ public class PhotoServiceImpl implements PhotoService
         
         String uniqueFileName = UUID.randomUUID().toString() + fileExtension;
         String photoKey = folderName + "/" + uniqueFileName;
-        try 
-        {
-            fileStorageService.uploadFile(file.getBytes(),"%s".formatted(photoKey),photoMetadata);
-        } 
-        catch (SdkException | IOException e) 
-        {
-            log.error("Amazon S3/SDK/IO exception has occurred while putting photo in the bucket!" + e.getMessage());
-            throw new RuntimeException("Failed to upload photo!", e);
-        }
+
+        fileStorageService.uploadFile(file.getBytes(), "%s".formatted(photoKey), photoMetadata);
 
         return photoKey;        
     }
 
 
     @Override
-    public byte[] getPhoto(String photKey) {
-        // TODO Auto-generated method stub
-        return null;
+    public String getPhotoAsBase64(String photoKey) throws IOException {
+        if (photoKey == null || photoKey.trim().isEmpty()) {
+            throw new IllegalArgumentException("La chiave della foto non può essere nulla o vuota.");
+        }
+        
+        // 1. Scarica i byte della foto dal servizio di storage
+        byte[] photoBytes = fileStorageService.downloadFile(photoKey);
+
+        // 2. Recupera i metadati (per ottenere il Content-Type)
+        Map<String, Object> metadata = fileStorageService.getFileMetadata(photoKey);
+        String contentType = (String) metadata.getOrDefault("ContentType", "application/octet-stream"); 
+
+        // 3. Converti i byte in stringa Base64 (logica specifica di PhotoService)
+        String base64String = Base64.getEncoder().encodeToString(photoBytes);
+
+        //return new PhotoData(base64String, contentType);
+
+        return base64String;
     }
 
 
     @Override
-    public void deletePhoto(String photKey) {
-        // TODO Auto-generated method stub
-        
+    public String getPhotoUrl(String photoKey) throws IOException 
+    {
+        return fileStorageService.getFilePublicUrl(photoKey);
+    }
+
+
+    @Override
+    public void deletePhoto(String photoKey) throws IOException 
+    {
+        fileStorageService.deleteFile(photoKey);
     }
 }

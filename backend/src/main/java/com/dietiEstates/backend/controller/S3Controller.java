@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dietiEstates.backend.service.AgentService;
+import com.dietiEstates.backend.service.photo.PhotoService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,8 @@ import java.util.List;
 
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,9 +40,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Slf4j
 public class S3Controller 
 {
-    private final AgentService agentService;
-    
+    private final AgentService agentService;    
 
+
+    @PostMapping(value = "{username}/upload-photo2/{realEstateId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Void> uploadPhoto2(@PathVariable("username") String username, 
+                                              @RequestParam("photos") MultipartFile[] file, 
+                                              @PathVariable("realEstateId") Long realEstateId)
+    {
+        try 
+        {
+            agentService.uploadPhoto2(username, file, realEstateId);
+            return ResponseEntity.ok().build();            
+        } 
+        catch (IllegalArgumentException e)
+        {
+            return ResponseEntity.badRequest().header("Error", e.getMessage()).build();
+        }
+        catch (RuntimeException e) 
+        {
+            return ResponseEntity.internalServerError().header("Error", e.getMessage() + " -> " + e.getCause().getMessage()).build();
+        }
+        catch (IOException e)
+        {
+            return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS.value()).build();
+        }
+    }
 
     @PostMapping(value = "{username}/upload-photo/{realEstateId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> uploadPhoto(@PathVariable("username") String username, 

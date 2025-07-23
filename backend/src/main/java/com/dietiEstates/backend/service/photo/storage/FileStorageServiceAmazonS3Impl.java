@@ -48,6 +48,7 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
                                                             .contentType((String) photoMetadata.get("contentType"))
                                                             .contentLength((Long) photoMetadata.get("contentLength"))
                                                             .contentDisposition((String) photoMetadata.get("contentDisposition"))
+                                                            //.metadata(null)
                                                             //.metadata(photoMetadata)
 															.build();		
 
