@@ -35,11 +35,10 @@ public class AdministratorLoadingStrategy implements UserLoadingStrategy
         Administrator administrator = administratorRepository.findByUsername(username)
             .orElseThrow(() -> new UsernameNotFoundException("Amministratore non trovato con username: " + username));
 
-        // Logica specifica dell'amministratore per assegnare il ruolo dinamico
         if (passwordEncoder.matches("default", administrator.getPassword())) {
             log.info("{} is an UNAUTHORIZED administrator (default password)", username);
             administrator.setRole(Role.ROLE_UNAUTHORIZED);
-        } else if (administrator.getUserId() == 1) { // Nota: userId=1 è un hardcode, meglio un flag nel DB.
+        } else if (administrator.getUserId() == 1) { 
             log.info("{} is an ADMIN administrator", username);
             administrator.setRole(Role.ROLE_ADMIN);
         } else {
