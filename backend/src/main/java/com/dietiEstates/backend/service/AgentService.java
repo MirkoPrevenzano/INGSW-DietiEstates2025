@@ -40,7 +40,6 @@ import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.resolver.RealEstateFactoryResolver;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
 import com.dietiEstates.backend.service.photo.PhotoService;
-import com.dietiEstates.backend.util.AmazonS3Util;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -56,7 +55,6 @@ public class AgentService
 {
     private final AgentRepository agentRepository;
     private final RealEstateRepository realEstateRepository;
-    private final AmazonS3Util amazonS3Util;
     private final MockingStatsService mockingStatsService;
     private final ModelMapper modelMapper;
     //private final ValidationUtil validationUtil;
@@ -147,16 +145,16 @@ public class AgentService
 
 
 
-    public void uploadPhoto(String username, MultipartFile[] files, Long realEstateId) throws IllegalArgumentException, RuntimeException
+/*     public void uploadPhoto(String username, MultipartFile[] files, Long realEstateId) throws IllegalArgumentException, RuntimeException
     {
         Optional<RealEstate> optionalRealEstate = realEstateRepository.findById(realEstateId);
         RealEstate realEstate = optionalRealEstate.get();
         
-/*         if(files.length < 3 || files.length > 10)
+        if(files.length < 3 || files.length > 10)
         {
             log.error("You have inserted a wrong number of photos! You must add from 3 to 10 photos.");
             throw new IllegalArgumentException("You have inserted a wrong number of photos! You must add from 3 to 10 photos.");
-        } */
+        } 
 
         for(MultipartFile multipartFile : files)
         {
@@ -195,9 +193,9 @@ public class AgentService
 
         realEstateRepository.save(realEstate);
     }
-
+ */
     
-    public String[] getPhoto(Long realEstateId) throws IOException
+/*     public String[] getPhoto(Long realEstateId) throws IOException
     {
         RealEstate realEstate = realEstateRepository.findById(realEstateId).get();
 
@@ -219,7 +217,7 @@ public class AgentService
         }
 
         return phoStrings;
-    }
+    } */
    
 
 

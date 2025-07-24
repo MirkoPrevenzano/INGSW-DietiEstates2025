@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.dietiEstates.backend.model.entity.Photo;
 import com.dietiEstates.backend.service.photo.storage.FileStorageService;
-import com.dietiEstates.backend.util.AmazonS3Util;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -94,7 +94,7 @@ public class S3Controller
 
 
 
-    @PostMapping(value = "{username}/upload-photo/{realEstateId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+  /*   @PostMapping(value = "{username}/upload-photo/{realEstateId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> uploadPhoto(@PathVariable("username") String username, 
                                               @RequestParam("photos") MultipartFile[] file, 
                                               @PathVariable("realEstateId") Long realEstateId)
@@ -114,7 +114,7 @@ public class S3Controller
         }
     }
 
-    /*Se un estate non ha foto non deve dare errore, ma semplicemente una lsita vuota */
+
     @GetMapping(value = "get-photos/{realEstateId}")
     public ResponseEntity<String[]> getPhoto(@PathVariable("realEstateId") Long realEstateId) 
     {        
@@ -135,5 +135,5 @@ public class S3Controller
         {
             return ResponseEntity.internalServerError().header("Error", e.getMessage()).body(null);
         } 
-    }
+    } */
 }
