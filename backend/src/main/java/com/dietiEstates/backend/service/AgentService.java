@@ -116,6 +116,37 @@ public class AgentService
         realEstateRepository.save(realEstate);
     }
 
+
+    public List<String> getPhoto2(Long realEstateId) throws IOException
+    {
+        RealEstate realEstate = realEstateRepository.findById(realEstateId).get();
+
+        List<Photo> photos = realEstate.getPhotos();
+/*         if (photos == null || photos.isEmpty()) {
+            return new String[]{};
+        }
+         */
+        List<String> photosBase64 = new ArrayList<>();
+
+        for(Photo photo : photos)
+        {
+            photosBase64.add(photoService.getPhotoAsBase64(photo.getKey()));
+        }
+
+        return photosBase64;
+
+/*         String[] phoStrings = new String[photosBytes.size()];
+        for (int i=0;i<photosBytes.size();i++) {
+            phoStrings[i]=Base64.getEncoder().encodeToString(photosBytes.get(i));
+        }
+
+        return phoStrings; */
+    }
+
+
+
+
+
     public void uploadPhoto(String username, MultipartFile[] files, Long realEstateId) throws IllegalArgumentException, RuntimeException
     {
         Optional<RealEstate> optionalRealEstate = realEstateRepository.findById(realEstateId);
@@ -179,7 +210,7 @@ public class AgentService
 
         for(Photo photo : photos)
         {
-            photosBytes.add(amazonS3Util.getObject(photo.getAmazonS3Key()));
+            photosBytes.add(amazonS3Util.getObject(photo.getKey()));
         }
 
         String[] phoStrings = new String[photosBytes.size()];

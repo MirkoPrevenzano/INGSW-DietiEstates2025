@@ -37,57 +37,54 @@ public class PhotoServiceImpl implements PhotoService
         if (folderName == null || folderName.trim().isEmpty()) 
             throw new IllegalArgumentException("Il nome della cartella S3 non può essere null o vuoto.");
         
-
+        
         String contentType = file.getContentType();
-        Long contentLength = file.getSize();
+        Long size = file.getSize();
         
         log.info("file content type: {}", contentType);
-        log.info("file size: {}", contentLength);
     
         if(contentType != null && !contentType.equals("image/jpeg") && !contentType.equals("image/png"))
         {
             log.error("Photo format is not supported!");
             throw new IllegalArgumentException("Photo format is not supported!");
         }
-        if(contentLength >= 10000000)
+        if(size >= 10000000)
         {
             log.error("Photo have exceeded the maximum size!");
             throw new IllegalArgumentException("Photo have exceeded the maximum size!");
         }
-
-        Map<String,Object> photoMetadata = new HashMap<>();
-        photoMetadata.put("contentType", contentType);
-        photoMetadata.put("contentLength", contentLength);
-        photoMetadata.put("contentDisposition", "inline");
 
         String originalFilename = file.getOriginalFilename();
         String fileExtension = "";
         if (originalFilename != null && originalFilename.contains(".")) 
             fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
         
-        String uniqueFileName = UUID.randomUUID().toString() + fileExtension;
-        String photoKey = folderName + "/" + uniqueFileName;
+        String uniqueFilename = UUID.randomUUID().toString() + fileExtension;
+        String photoKey = folderName + "/" + uniqueFilename;
 
-        fileStorageService.uploadFile(file.getBytes(), "%s".formatted(photoKey), photoMetadata);
+        Map<String,String> photoMetadata = new HashMap<>();
+        photoMetadata.put("originalFilename", originalFilename);
+        photoMetadata.put("originalFilename", originalFilename);
+
+        // fileStorageService.uploadFile(file.getBytes(), "%s".formatted(photoKey), photoMetadata);
+        fileStorageService.uploadFile(file.getBytes(), photoKey, contentType, "inline", photoMetadata);
 
         return photoKey;        
     }
 
 
     @Override
-    public String getPhotoAsBase64(String photoKey) throws IOException {
+    public String getPhotoAsBase64(String photoKey) throws IOException 
+    {
         if (photoKey == null || photoKey.trim().isEmpty()) {
             throw new IllegalArgumentException("La chiave della foto non può essere nulla o vuota.");
         }
         
-        // 1. Scarica i byte della foto dal servizio di storage
-        byte[] photoBytes = fileStorageService.downloadFile(photoKey);
+        byte[] photoBytes = fileStorageService.getFile(photoKey);
 
-        // 2. Recupera i metadati (per ottenere il Content-Type)
-        Map<String, Object> metadata = fileStorageService.getFileMetadata(photoKey);
+        Map<String, String> metadata = fileStorageService.getFileMetadata(photoKey);
         String contentType = (String) metadata.getOrDefault("ContentType", "application/octet-stream"); 
 
-        // 3. Converti i byte in stringa Base64 (logica specifica di PhotoService)
         String base64String = Base64.getEncoder().encodeToString(photoBytes);
 
         //return new PhotoData(base64String, contentType);
@@ -97,7 +94,7 @@ public class PhotoServiceImpl implements PhotoService
 
 
     @Override
-    public String getPhotoUrl(String photoKey) throws IOException 
+    public String getPhotoPublicUrl(String photoKey) throws IOException 
     {
         return fileStorageService.getFilePublicUrl(photoKey);
     }

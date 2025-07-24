@@ -40,16 +40,14 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
 
 
     @Override
-    public void uploadFile(byte[] file, String photoKey, Map<String, Object> photoMetadata) throws IOException 
+    public void uploadFile(byte[] file, String photoKey, String contentType, String contentDisposition, Map<String, String> photoMetadata) throws IOException 
     {
 		PutObjectRequest putObjectRequest = PutObjectRequest.builder()
 															.bucket(bucketName)
-															.key(photoKey)
-                                                            .contentType((String) photoMetadata.get("contentType"))
-                                                            .contentLength((Long) photoMetadata.get("contentLength"))
-                                                            .contentDisposition((String) photoMetadata.get("contentDisposition"))
-                                                            //.metadata(null)
-                                                            //.metadata(photoMetadata)
+ 															.key(photoKey)
+                                                            .contentType(contentType)
+                                                            .contentDisposition(contentDisposition)
+                                                            .metadata(photoMetadata)
 															.build();		
 
 		try 
@@ -66,7 +64,7 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
 
 
     @Override
-    public byte[] downloadFile(String photoKey) throws IOException 
+    public byte[] getFile(String photoKey) throws IOException 
     {
         GetObjectRequest getObjectRequest = GetObjectRequest.builder()
                                                             .bucket(bucketName)
@@ -94,7 +92,7 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
 
 
     @Override
-    public Map<String, Object> getFileMetadata(String photoKey) throws IOException 
+    public Map<String, String> getFileMetadata(String photoKey) throws IOException 
     {
         HeadObjectRequest headObjectRequest = HeadObjectRequest.builder()
         .bucket(bucketName)
@@ -104,10 +102,9 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
         try 
         {
             HeadObjectResponse response = s3Client.headObject(headObjectRequest);
-            Map<String, Object> photoMetadata = new HashMap<>(response.metadata()); // Metadati utente
+            Map<String, String> photoMetadata = new HashMap<>(response.metadata()); // Metadati utente
 
             if (response.contentType() != null) photoMetadata.put("ContentType", (String) response.contentType());
-            if (response.contentLength() != null) photoMetadata.put("ContentLength", (Long) response.contentLength());
             if (response.contentDisposition() != null) photoMetadata.put("ContentDisposition", (String) response.contentDisposition());
 
             log.info("Metadata for file with key '{}' retrieved successfully from Amazon S3 bucket '{}'.", photoKey, bucketName);

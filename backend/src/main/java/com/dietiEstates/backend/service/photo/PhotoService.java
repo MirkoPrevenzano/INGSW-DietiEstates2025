@@ -10,6 +10,6 @@ public interface PhotoService
 {
     public String uploadPhoto(MultipartFile file, String folderName) throws IOException;
     public String getPhotoAsBase64(String photoKey) throws IOException;
-    public String getPhotoUrl(String photoKey) throws IOException;
+    public String getPhotoPublicUrl(String photoKey) throws IOException;
     public void deletePhoto(String photKey) throws IOException;
 }

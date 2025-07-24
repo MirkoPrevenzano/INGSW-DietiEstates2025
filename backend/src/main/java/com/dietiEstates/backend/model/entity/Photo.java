@@ -28,8 +28,8 @@ public class Photo
     private Long photoId;
 
     @NonNull
-    @Column(name = "amazon_s3_key",
+    @Column(name = "key",
             nullable = false, 
             updatable = true) 
-    private String amazonS3Key;
+    private String key;
 }

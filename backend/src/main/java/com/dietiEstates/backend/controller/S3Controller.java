@@ -67,6 +67,33 @@ public class S3Controller
         }
     }
 
+
+    @GetMapping(value = "get-photos2/{realEstateId}")
+    public ResponseEntity<List<String>> getPhoto2(@PathVariable("realEstateId") Long realEstateId) 
+    {        
+        try 
+        {
+            return ResponseEntity.ok(agentService.getPhoto2(realEstateId));
+        } 
+        catch (NoSuchKeyException e) 
+        {
+            return ResponseEntity.notFound().header("Error", e.getMessage()).build();
+        }              
+        catch (SdkException e) 
+        {
+            return ResponseEntity.internalServerError().header("Error", e.getMessage()).body(null);
+        }
+        catch (IOException e) 
+        {
+            return ResponseEntity.internalServerError().header("Error", e.getMessage()).body(null);
+        } 
+    }
+
+
+
+
+
+
     @PostMapping(value = "{username}/upload-photo/{realEstateId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> uploadPhoto(@PathVariable("username") String username, 
                                               @RequestParam("photos") MultipartFile[] file, 
