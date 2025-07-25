@@ -89,7 +89,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
             ValueInstantiationException vie = (ValueInstantiationException) e.getCause();
             errorDescription += vie.getCause().getMessage();
 
-            ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+            //ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+            ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDescription, errorPath);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
         else
@@ -131,7 +132,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         String errorDescription = "ERRORE!" + strBuilder;
         String errorPath = request.getDescription(false);
 
-        ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDescription, errorPath);
         
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
@@ -152,7 +153,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
             String errorDescription = "Errore durante il salvataggio dei dati!";
             String errorPath = request.getRequestURI();
     
-            ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+            ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, errorDescription, errorPath);
             
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
@@ -164,7 +165,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
             String errorDescription = "ERRORE";
             String errorPath = request.getRequestURI();
     
-            ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+            ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDescription, errorPath);
             
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }

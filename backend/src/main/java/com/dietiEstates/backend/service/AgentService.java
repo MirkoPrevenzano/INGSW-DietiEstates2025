@@ -18,10 +18,10 @@ import com.dietiEstates.backend.config.ModelMapperConfig;
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
-import com.dietiEstates.backend.dto.response.AgentDashboardStatsDTO;
-import com.dietiEstates.backend.dto.response.RealEstateRecentDTO;
+import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
+import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDTO;
+import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDTO;
 import com.dietiEstates.backend.dto.response.support.AgentStatsDTO;
-import com.dietiEstates.backend.dto.response.support.RealEstateStatsDTO;
 import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.PropertyCondition;
 import com.dietiEstates.backend.enums.FurnitureCondition;
@@ -222,7 +222,7 @@ public class AgentService
    
 
 
-    public List<RealEstateRecentDTO> findRecentRealEstates(String username, Integer limit) 
+    public List<AgentRecentRealEstateDTO> findRecentRealEstates(String username, Integer limit) 
     {
         return realEstateRepository.findRecentsByAgent(agentRepository.findByUsername(username).get().getUserId(), limit);
     }
@@ -231,7 +231,7 @@ public class AgentService
 
 
 
-    public AgentDashboardStatsDTO getAgentDashboardStats(String username) 
+    public AgentDashboardPersonalStatsDTO getAgentDashboardStats(String username) 
     {
         Integer[] estatesPerMonth = mockingStatsService.mockBarChartStats();
         AgentStats agentStats = agentRepository.findByUsername(username).get().getAgentStats();
@@ -240,8 +240,8 @@ public class AgentService
         modelMapper.map(agentStats, agentStatsDTO2);
 
 
-        AgentDashboardStatsDTO agentDashboardStatsDTO = new AgentDashboardStatsDTO(agentStatsDTO2, estatesPerMonth);
-        return agentDashboardStatsDTO;
+        AgentDashboardPersonalStatsDTO agentDashboardPersonalStatsDTO = new AgentDashboardPersonalStatsDTO(agentStatsDTO2, estatesPerMonth);
+        return agentDashboardPersonalStatsDTO;
     }
 
 
@@ -255,7 +255,7 @@ public class AgentService
     }
  */
     
-    public List<RealEstateStatsDTO> getRealEstateStats(String username, Pageable page) 
+    public List<AgentDashboardRealEstateStatsDTO> getRealEstateStats(String username, Pageable page) 
     {
         return realEstateRepository.findStatsByAgent(agentRepository.findByUsername(username).get().getUserId(), 
                                                         page);

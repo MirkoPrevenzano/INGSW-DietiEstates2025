@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import com.dietiEstates.backend.dto.response.support.RealEstateStatsDTO;
+import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
@@ -89,7 +89,7 @@ public abstract class ExportServiceTemplate
         return username + "_" + currentDateTime;
     }
     
-    protected List<RealEstateStatsDTO> getRealEstateStatsByAgent(Agent agent) 
+    protected List<AgentDashboardRealEstateStatsDTO> getRealEstateStatsByAgent(Agent agent) 
     {
         return realEstateRepository.findStatsByAgent(agent.getUserId(), null);
     }

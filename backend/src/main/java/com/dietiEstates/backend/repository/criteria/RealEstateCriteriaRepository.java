@@ -7,9 +7,9 @@ import java.util.Map;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.dietiEstates.backend.dto.response.RealEstateRecentDTO;
+import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
+import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDTO;
 import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
-import com.dietiEstates.backend.dto.response.support.RealEstateStatsDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
 
 
@@ -17,7 +17,7 @@ import com.dietiEstates.backend.extra.CoordinatesMinMax;
 public interface RealEstateCriteriaRepository 
 {
     public Page<RealEstatePreviewInfoDTO> findPreviewsByFilters(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax);
-    public List<RealEstateRecentDTO> findRecentsByAgent(Long agentId, Integer limit);
-    public List<RealEstateStatsDTO> findStatsByAgent(Long agentId, Pageable page);
+    public List<AgentRecentRealEstateDTO> findRecentsByAgent(Long agentId, Integer limit);
+    public List<AgentDashboardRealEstateStatsDTO> findStatsByAgent(Long agentId, Pageable page);
     public Long findLastUploadedByAgent(Long agentId);
 }

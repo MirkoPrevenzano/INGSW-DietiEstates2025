@@ -52,7 +52,8 @@ public class AuthenticationEntryPointCustomImpl implements AuthenticationEntryPo
         else 
             errorDescription += "You must be authenticated to access this resource.";
 
-        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+        //ApiErrorResponse apiErrorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.UNAUTHORIZED, errorDescription, errorPath);
 
         response.setStatus(statusCode);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);

@@ -59,7 +59,8 @@ public class AuthenticationFailureHandlerCustomImpl implements AuthenticationFai
             errorDescription += "An error occurred during authentication. Try later.";
 
 
-        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+        //ApiErrorResponse apiErrorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.UNAUTHORIZED, errorDescription, errorPath);
 
         response.setStatus(statusCode);
         response.setContentType("application/json");

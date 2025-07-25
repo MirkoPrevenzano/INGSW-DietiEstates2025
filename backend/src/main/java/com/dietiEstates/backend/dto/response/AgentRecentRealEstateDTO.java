@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.dto.response.support;
+package com.dietiEstates.backend.dto.response;
 
 import java.time.LocalDateTime;
 
@@ -14,15 +14,12 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RealEstateStatsDTO 
+public class AgentRecentRealEstateDTO 
 {
     private long id;
     private String title;
-
-    @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd, HH:mm:ss")
+    private String description;
+    
+    @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd', 'HH:mm:ss")
     private LocalDateTime uploadingDate;
-
-    private long viewsNumber;
-    private long visitsNumber;
-    private long offersNumber;
 }

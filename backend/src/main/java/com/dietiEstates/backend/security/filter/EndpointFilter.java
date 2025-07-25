@@ -63,11 +63,12 @@ public class EndpointFilter extends OncePerRequestFilter
                 String errorDescription = "URL doesn't exist!";
                 String errorPath = request.getRequestURI();
 
-                ApiErrorResponse apiErrorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+                //ApiErrorResponse apiErrorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
+                ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.NOT_FOUND, errorDescription, errorPath);
 
                 response.setStatus(statusCode);
                 response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-                objectMapper.writeValue(response.getWriter(), apiErrorResponse);
+                objectMapper.writeValue(response.getWriter(), errorResponse);
    
                 return;
             }

@@ -3,6 +3,8 @@ package com.dietiEstates.backend.dto.response;
 
 import java.time.LocalDateTime;
 
+import org.springframework.http.HttpStatus;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
@@ -25,11 +27,11 @@ public class ApiErrorResponse
 
 
 
-    public ApiErrorResponse(Integer status, String reason, String type, String description, String path) 
+    public ApiErrorResponse(HttpStatus httpStatus, String description, String path) 
     {
-        this.status = status;
-        this.reason = reason;
-        this.type = type;
+        this.status = httpStatus.value();
+        this.reason = httpStatus.getReasonPhrase();
+        this.type = httpStatus.series().name();
         this.description = description;
         this.path = path;
     }
