@@ -1,13 +1,9 @@
 
 package com.dietiEstates.backend.dto.response;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-
+import lombok.AllArgsConstructor;
 
 
 @Data
@@ -18,4 +14,5 @@ public class AgentPublicInfoDTO
     private String name;
     private String surname;
     private String username;
+    private String agencyName;
 }

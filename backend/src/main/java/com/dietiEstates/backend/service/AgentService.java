@@ -18,9 +18,10 @@ import com.dietiEstates.backend.config.ModelMapperConfig;
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
-import com.dietiEstates.backend.dto.response.AgentStatsDTO;
+import com.dietiEstates.backend.dto.response.AgentDashboardStatsDTO;
 import com.dietiEstates.backend.dto.response.RealEstateRecentDTO;
-import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
+import com.dietiEstates.backend.dto.response.support.AgentStatsDTO;
+import com.dietiEstates.backend.dto.response.support.RealEstateStatsDTO;
 import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.PropertyCondition;
 import com.dietiEstates.backend.enums.FurnitureCondition;
@@ -227,14 +228,32 @@ public class AgentService
     }
 
 
-    public AgentStatsDTO getAgentStats(String username) 
+
+
+
+    public AgentDashboardStatsDTO getAgentDashboardStats(String username) 
+    {
+        Integer[] estatesPerMonth = mockingStatsService.mockBarChartStats();
+        AgentStats agentStats = agentRepository.findByUsername(username).get().getAgentStats();
+
+        AgentStatsDTO agentStatsDTO2 = new AgentStatsDTO();
+        modelMapper.map(agentStats, agentStatsDTO2);
+
+
+        AgentDashboardStatsDTO agentDashboardStatsDTO = new AgentDashboardStatsDTO(agentStatsDTO2, estatesPerMonth);
+        return agentDashboardStatsDTO;
+    }
+
+
+
+/*     public AgentStatsDTO getAgentStats(String username) 
     {
         Integer[] estatesPerMonth = mockingStatsService.mockBarChartStats();
         AgentStats agentStats = agentRepository.findByUsername(username).get().getAgentStats();
         AgentStatsDTO agentStatsDTO = new AgentStatsDTO(agentStats, estatesPerMonth);
         return agentStatsDTO;
     }
-
+ */
     
     public List<RealEstateStatsDTO> getRealEstateStats(String username, Pageable page) 
     {

@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
+import com.dietiEstates.backend.dto.response.support.RealEstateStatsDTO;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;

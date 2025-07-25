@@ -19,9 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
-import com.dietiEstates.backend.dto.response.AgentStatsDTO;
+import com.dietiEstates.backend.dto.response.AgentDashboardStatsDTO;
 import com.dietiEstates.backend.dto.response.RealEstateRecentDTO;
-import com.dietiEstates.backend.dto.response.RealEstateStatsDTO;
+import com.dietiEstates.backend.dto.response.support.AgentStatsDTO;
+import com.dietiEstates.backend.dto.response.support.RealEstateStatsDTO;
 import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.service.export.csv.CsvExportService;
 import com.dietiEstates.backend.service.export.pdf.PdfExportService;
@@ -88,10 +89,10 @@ public class AgentController
 
 
     @GetMapping(path = "{username}/general-stats")
-    public ResponseEntity<AgentStatsDTO> aaaaaaa(@PathVariable("username") String username) 
+    public ResponseEntity<AgentDashboardStatsDTO> aaaaaaa(@PathVariable("username") String username) 
     {
-        AgentStatsDTO agentStatsDTO = agentService.getAgentStats(username);
-        return ResponseEntity.ok().body(agentStatsDTO);
+        AgentDashboardStatsDTO agentDashboardStatsDTO = agentService.getAgentDashboardStats(username);
+        return ResponseEntity.ok().body(agentDashboardStatsDTO);
     }
 
 
