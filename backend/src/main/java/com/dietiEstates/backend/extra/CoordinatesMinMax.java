@@ -3,25 +3,16 @@ package com.dietiEstates.backend.extra;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-
+import lombok.AllArgsConstructor;
 
 
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CoordinatesMinMax 
 {
-    @NonNull
-    private Double minLatitude;
-
-    @NonNull
-    private Double maxLatitude;
-
-    @NonNull
-    private Double minLongitude;
-
-    @NonNull
-    private Double maxLongitude;
+    private double minLatitude;
+    private double maxLatitude;
+    private double minLongitude;
+    private double maxLongitude;
 }
