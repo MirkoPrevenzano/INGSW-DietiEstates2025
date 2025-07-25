@@ -18,13 +18,13 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 public class RealEstateStatsDTO 
 {
-    private Long id;
+    private long id;
     private String title;
 
     @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd, HH:mm:ss")
     private LocalDateTime uploadingDate;
 
-    private Long viewsNumber;
-    private Long visitsNumber;
-    private Long offersNumber;
+    private long viewsNumber;
+    private long visitsNumber;
+    private long offersNumber;
 }

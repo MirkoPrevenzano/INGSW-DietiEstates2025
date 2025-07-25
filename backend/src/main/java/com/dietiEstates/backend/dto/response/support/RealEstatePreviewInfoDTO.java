@@ -6,17 +6,16 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class RealEstatePreviewInfoDTO
 {  
-    private Long id;
+    private long id;
     private String title;
     private String description;
-    private Double price;
+    private double price;
     private String street;
-    private Double longitude;
-    private Double latitude; 
+    private double longitude;
+    private double latitude; 
 }

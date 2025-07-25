@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 public class RealEstateRecentDTO 
 {
-    private Long id;
+    private long id;
     private String title;
     private String description;
     
