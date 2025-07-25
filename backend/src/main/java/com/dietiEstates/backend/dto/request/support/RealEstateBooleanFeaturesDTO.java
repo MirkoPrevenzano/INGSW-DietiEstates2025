@@ -1,7 +1,6 @@
 
 package com.dietiEstates.backend.dto.request.support;
 
-
 import jakarta.validation.constraints.NotNull;
 
 import com.dietiEstates.backend.validator.groups.OnCreate;

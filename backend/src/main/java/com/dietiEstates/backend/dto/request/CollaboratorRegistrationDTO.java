@@ -1,15 +1,13 @@
 
 package com.dietiEstates.backend.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
+
 import com.dietiEstates.backend.validator.EmailValidator;
 
-import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-
+import lombok.AllArgsConstructor;
 
 
 @Data

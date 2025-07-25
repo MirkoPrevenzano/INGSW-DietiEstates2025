@@ -1,22 +1,20 @@
 
 package com.dietiEstates.backend.dto.request.support;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.PropertyCondition;
 import com.dietiEstates.backend.validator.groups.OnCreate;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-
 
 
 @Data

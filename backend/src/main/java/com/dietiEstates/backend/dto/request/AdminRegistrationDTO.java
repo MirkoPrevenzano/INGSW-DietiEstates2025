@@ -1,18 +1,15 @@
 
 package com.dietiEstates.backend.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
+
 import com.dietiEstates.backend.validator.EmailValidator;
+import com.dietiEstates.backend.validator.PasswordValidator;
 import com.dietiEstates.backend.validator.VatNumberValidator;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-
+import lombok.AllArgsConstructor;
 
 
 @Data
@@ -31,6 +28,7 @@ public class AdminRegistrationDTO
     private String username;
 
     @NotBlank
+    @PasswordValidator
     private String password;
 
     @NotBlank

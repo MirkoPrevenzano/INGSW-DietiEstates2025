@@ -1,19 +1,19 @@
 
 package com.dietiEstates.backend.dto.request;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
+
 import com.dietiEstates.backend.dto.request.support.AddressDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateBooleanFeaturesDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateLocationFeaturesDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateMainFeaturesDTO;
+import com.dietiEstates.backend.validator.groups.OnCreate;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.ToString;
-
 
 
 @Data
@@ -22,14 +22,13 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class RealEstateForRentCreationDTO extends RealEstateCreationDTO
 {
-    @NotNull
+    @NotNull(groups = OnCreate.class)
     @PositiveOrZero
     private Double securityDeposit;
 
-    @NonNull
+    @NotNull(groups = OnCreate.class)
     @PositiveOrZero
     private Integer contractYears;
-
 
 
     public RealEstateForRentCreationDTO(AddressDTO addressDTO, RealEstateMainFeaturesDTO realEstateMainFeaturesDTO, 

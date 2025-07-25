@@ -1,17 +1,14 @@
 
 package com.dietiEstates.backend.dto.request;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import jakarta.validation.constraints.NotBlank;
 
 import com.dietiEstates.backend.validator.EmailValidator;
 import com.dietiEstates.backend.validator.PasswordValidator;
-import com.dietiEstates.backend.validator.VatNumberValidator;
 
-import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-
 
 
 @Data
