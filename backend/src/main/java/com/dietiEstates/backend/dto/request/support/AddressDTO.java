@@ -1,24 +1,18 @@
 
 package com.dietiEstates.backend.dto.request.support;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-
-import java.math.BigDecimal;
-
-import org.hibernate.validator.constraints.Range;
-
-import com.dietiEstates.backend.validator.groups.OnCreate;
 
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
 
+import com.dietiEstates.backend.validator.groups.OnCreate;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 
 @Data

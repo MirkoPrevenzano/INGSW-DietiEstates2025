@@ -14,7 +14,6 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.stereotype.Component;
 
 import com.dietiEstates.backend.dto.response.ApiErrorResponse;
-import com.dietiEstates.backend.exception.RoleMismatchException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletException;
@@ -49,7 +48,7 @@ public class AuthenticationFailureHandlerCustomImpl implements AuthenticationFai
             errorDescription += "Your account is temporarily blocked or disabled.";
         else if(authException instanceof UsernameNotFoundException)
         {
-            if (authException.getCause() instanceof RoleMismatchException)
+            if (authException.getCause() instanceof IllegalArgumentException)
                 errorDescription += "You have entered a wrong role.";
             else
                 errorDescription += "You have entered a wrong username.";

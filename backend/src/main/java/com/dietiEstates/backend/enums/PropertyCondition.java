@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 
-
 public enum PropertyCondition 
 {
     UNDER_CONSTRUCTION("Under construction"), 
@@ -16,10 +15,10 @@ public enum PropertyCondition
     RENOVATED("Renovated"), 
     HABITABLE("Habitable"),
     GOOD("Good"), 
-    EXCELLENT("Excellent");
+    EXCELLENT("Excellent"),
+    NOT_SPECIFIED("Not specified");
     
     
-
     private final String value;
 
 
@@ -29,14 +28,11 @@ public enum PropertyCondition
     };
 
 
-
     @JsonValue
     public String getValue() 
     {
         return this.value;
     }
-
-
 
     
     @JsonCreator

@@ -1,15 +1,14 @@
 
 package com.dietiEstates.backend.dto.request.support;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import jakarta.validation.constraints.NotNull;
 
 import com.dietiEstates.backend.validator.groups.OnCreate;
 
-import jakarta.validation.constraints.AssertFalse;
-import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-
 
 
 @Data

@@ -7,17 +7,15 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 
-
 public enum FurnitureCondition
 {
     NOT_FOURNISHED("Not fournished"), 
     PARTIALLY_FOURNISHED("Partially fournished"), 
-    WELL_FOURNISHED("Well fournished");
-
+    WELL_FOURNISHED("Well fournished"),
+    NOT_SPECIFIED("Not specified");
     
 
     private final String value;
-
 
 
     private FurnitureCondition(String value) 
@@ -26,7 +24,6 @@ public enum FurnitureCondition
     };
 
 
-    
     @JsonValue
     public String getValue() 
     {

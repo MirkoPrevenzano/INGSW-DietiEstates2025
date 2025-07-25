@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 
-
 public enum EnergyClass
 {
     A_PLUS_PLUS("A++"),
@@ -19,19 +18,16 @@ public enum EnergyClass
     E("E"),
     F("F"),
     G("G"),
-    NON_SPECIFICATA("Non specificata");
-
+    NOT_SPECIFIED("Not specified");
 
 
     private final String value;
-
 
 
     private EnergyClass(String value) 
     {
         this.value = value;
     };
-
 
 
     @JsonValue

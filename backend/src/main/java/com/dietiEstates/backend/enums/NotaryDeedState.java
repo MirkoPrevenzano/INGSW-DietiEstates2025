@@ -7,24 +7,21 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 
-
 public enum NotaryDeedState
 {
     FREE("Free"),
     OCCUPIED("Occupied"),
-    BARE_PROPERTY("Bare property");
-
+    BARE_PROPERTY("Bare property"),
+    NOT_SPECIFIED("Not specified");
 
 
     private final String value;
+    
 
-
-
-   private NotaryDeedState(String value) 
+    private NotaryDeedState(String value) 
     {
         this.value = value;
     };
-
 
     
     @JsonValue

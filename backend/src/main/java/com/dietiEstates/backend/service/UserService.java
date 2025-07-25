@@ -108,7 +108,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.enums.Role;
-import com.dietiEstates.backend.exception.RoleMismatchException;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.model.entity.Customer;
@@ -144,7 +143,7 @@ public class UserService implements UserDetailsService
         {
             role = Role.of(username.substring(index + 1)); 
         } 
-        catch (RoleMismatchException e) 
+        catch (IllegalArgumentException e) 
         {
             throw new UsernameNotFoundException(e.getMessage(), e);
         }
