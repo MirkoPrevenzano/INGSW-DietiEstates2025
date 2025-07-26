@@ -1,19 +1,17 @@
 
 package com.dietiEstates.backend.model.embeddable;
 
-import com.dietiEstates.backend.enums.PropertyCondition;
-import com.dietiEstates.backend.enums.FurnitureCondition;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import lombok.AllArgsConstructor;
+
+import com.dietiEstates.backend.enums.PropertyCondition;
+import com.dietiEstates.backend.enums.FurnitureCondition;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-
+import lombok.AllArgsConstructor;
 
 
 @Embeddable

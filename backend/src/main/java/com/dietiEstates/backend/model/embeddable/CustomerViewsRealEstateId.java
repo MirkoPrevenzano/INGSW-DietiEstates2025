@@ -1,14 +1,13 @@
 
 package com.dietiEstates.backend.model.embeddable;
 
-import jakarta.persistence.Embeddable;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Embeddable;
+
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 
 @Embeddable
@@ -18,7 +17,6 @@ public class CustomerViewsRealEstateId implements Serializable
 { 
     private Long customerId;
     private Long realEstateId;
-
 
 
     @Override

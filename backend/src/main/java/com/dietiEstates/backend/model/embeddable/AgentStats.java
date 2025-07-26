@@ -3,16 +3,16 @@ package com.dietiEstates.backend.model.embeddable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Transient;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.AllArgsConstructor;
 
 
 @Embeddable
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class AgentStats 
 {
     @Column(name = "total_uploaded_real_estates", 
@@ -40,26 +40,18 @@ public class AgentStats
             updatable = true)
     private double rentalsIncome; 
 
-    @Transient
-    private double totalIncomes;  
 
-    @Transient
-    private int completedDeals;
-
-    @Transient
-    private double successRate;
-
-
-    
     public double getTotalIncomes()
     {
         return rentalsIncome + salesIncome;
     }
 
+
     public int getCompletedDeals()
     {
         return totalSoldRealEstates + totalRentedRealEstates;
     }
+
 
     public double getSuccessRate()
     {
