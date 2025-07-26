@@ -1,17 +1,15 @@
 
 package com.dietiEstates.backend.resolver;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
-import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.enums.Role;
-import com.dietiEstates.backend.factory.RealEstateFromDtoFactory;
 import com.dietiEstates.backend.strategy.UserLoadingStrategy;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.List;
 
 
 @Component
@@ -25,8 +23,8 @@ public class UserLoadingStrategyResolver
     public UserLoadingStrategy getUserLoadingStrategy(Role role)
     {
         return userLoadingStrategies.stream()
-                             .filter(strategy -> strategy.supports(role))
-                             .findFirst()
-                             .orElseThrow(() -> new IllegalArgumentException("Nessuna strategy trovata per il ruolo: " + role));
+                                    .filter(strategy -> strategy.supports(role))
+                                    .findFirst()
+                                    .orElseThrow(() -> new IllegalArgumentException("Nessuna UserLoadingStrategy supporta il ruolo: " + role));
     }
 }

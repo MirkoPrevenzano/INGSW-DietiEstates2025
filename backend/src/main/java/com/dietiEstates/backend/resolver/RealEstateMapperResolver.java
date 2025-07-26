@@ -23,6 +23,6 @@ public class RealEstateMapperResolver
         return mappers.stream()
                       .filter(mapper -> mapper.supports(entity))
                       .findFirst()
-                      .orElseThrow(() -> new IllegalArgumentException("Nessun RealEstateCreationDTOMapper trovato per il tipo: " + entity.getClass().getSimpleName()));
+                      .orElseThrow(() -> new IllegalArgumentException("Nessun RealEstateCreationDTOMapper supporta il tipo: " + entity.getClass().getSimpleName()));
     }
 }
