@@ -22,7 +22,7 @@ import com.dietiEstates.backend.resolver.Supportable;
 import lombok.RequiredArgsConstructor;
 
 
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public abstract class RealEstateCreationDTOMapper implements Supportable<RealEstate>
 {  
     @Autowired

@@ -9,6 +9,4 @@ import com.dietiEstates.backend.resolver.Supportable;
 public interface RealEstateFromDtoFactory extends Supportable<RealEstateCreationDTO>
 {
     RealEstate create(RealEstateCreationDTO dto);
-
-    //boolean supports(Class<? extends RealEstateCreationDTO> clazz);
 }

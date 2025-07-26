@@ -1,17 +1,13 @@
 
 package com.dietiEstates.backend.factory;
 
-import org.springframework.stereotype.Component;
-
-import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
-import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
-import com.dietiEstates.backend.mapper.RealEstateCreationForSaleDTOMapper;
-import com.dietiEstates.backend.model.entity.RealEstate;
-import com.dietiEstates.backend.model.entity.RealEstateForRent;
-import com.dietiEstates.backend.model.entity.RealEstateForSale;
-
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+
+import org.springframework.stereotype.Component;
+
+import com.dietiEstates.backend.model.entity.RealEstateForRent;
+
 import lombok.RequiredArgsConstructor;
 
 
@@ -24,6 +20,7 @@ public class RealEstateRootForRentFactory implements RealEstateRootFactory
     {
         return query.from(RealEstateForRent.class);
     }
+    
 
     @Override
     public boolean supports(String realEstateType) 

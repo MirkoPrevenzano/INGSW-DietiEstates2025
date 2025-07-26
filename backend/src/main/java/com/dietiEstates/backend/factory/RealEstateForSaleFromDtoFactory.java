@@ -19,7 +19,6 @@ public class RealEstateForSaleFromDtoFactory implements RealEstateFromDtoFactory
     private final RealEstateCreationForSaleDTOMapper realEstateCreationForSaleDTOMapper;
 
 
-
     @Override
     public RealEstate create(RealEstateCreationDTO realEstateCreationDTO) 
     {
@@ -27,13 +26,7 @@ public class RealEstateForSaleFromDtoFactory implements RealEstateFromDtoFactory
 
         return realEstateForSale;
     }
-
-
-/*     @Override
-    public boolean supports(Class<? extends RealEstateCreationDTO> clazz) 
-    {
-        return RealEstateForSaleCreationDTO.class.isAssignableFrom(clazz);
-    } */
+    
 
     @Override
     public boolean supports(RealEstateCreationDTO realEstateCreationDTO) 

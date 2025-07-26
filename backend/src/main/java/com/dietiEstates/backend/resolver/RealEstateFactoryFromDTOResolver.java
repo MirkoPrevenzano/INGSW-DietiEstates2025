@@ -1,6 +1,8 @@
 
 package com.dietiEstates.backend.resolver;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
@@ -8,21 +10,19 @@ import com.dietiEstates.backend.factory.RealEstateFromDtoFactory;
 
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 
 @Component
 @RequiredArgsConstructor
-public class RealEstateFactoryResolver 
+public class RealEstateFactoryFromDTOResolver 
 {
     private final List<RealEstateFromDtoFactory> factories;
 
 
-    public RealEstateFromDtoFactory getFactoryFromDto(RealEstateCreationDTO dto) 
+    public RealEstateFromDtoFactory getFactory(RealEstateCreationDTO dto) 
     {
         return factories.stream()
-            .filter(factory -> factory.supports(dto))
-            .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("Nessuna factory trovata per il tipo: " + dto.getClass().getSimpleName()));
+                        .filter(factory -> factory.supports(dto))
+                        .findFirst()
+                        .orElseThrow(() -> new IllegalArgumentException("Nessuna RealEstateFromDtoFactory supporta il tipo: " + dto.getClass().getSimpleName()));
     }
 }
