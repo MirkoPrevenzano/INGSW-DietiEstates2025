@@ -1,6 +1,8 @@
 
 package com.dietiEstates.backend.resolver;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.dietiEstates.backend.mapper.RealEstateCreationDTOMapper;
@@ -8,22 +10,19 @@ import com.dietiEstates.backend.model.entity.RealEstate;
 
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
 
 @Component
 @RequiredArgsConstructor
 public class RealEstateMapperResolver 
 {
-    private final List<RealEstateCreationDTOMapper> realEstateCreationDTOMappers;
-
+    private final List<RealEstateCreationDTOMapper> mappers;
 
 
     public RealEstateCreationDTOMapper getMapper(RealEstate entity) 
     {
-        return realEstateCreationDTOMappers.stream()
-            .filter(mapper -> mapper.supports(entity))
-            .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("Nessun mapper trovato per il tipo: " + entity.getClass().getSimpleName()));
+        return mappers.stream()
+                      .filter(mapper -> mapper.supports(entity))
+                      .findFirst()
+                      .orElseThrow(() -> new IllegalArgumentException("Nessun RealEstateCreationDTOMapper trovato per il tipo: " + entity.getClass().getSimpleName()));
     }
 }

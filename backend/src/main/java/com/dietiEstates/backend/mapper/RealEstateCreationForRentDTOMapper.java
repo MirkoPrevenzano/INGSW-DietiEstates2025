@@ -1,49 +1,45 @@
 
 package com.dietiEstates.backend.mapper;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.model.entity.RealEstateForRent;
-import com.dietiEstates.backend.model.entity.RealEstateForSale;
-
-import lombok.RequiredArgsConstructor;
 
 
 @Component
 public class RealEstateCreationForRentDTOMapper extends RealEstateCreationDTOMapper
 {
     @Override
-    public RealEstateForRentCreationDTO toDto(RealEstate entity) 
+    protected RealEstateForRentCreationDTO initializeDto() 
     {
-        RealEstateForRent realEstateForRent = (RealEstateForRent) entity;
-        RealEstateForRentCreationDTO realEstateForRentCreationDTO = new RealEstateForRentCreationDTO();
-
-        super.mapCommonFieldsToDto(realEstateForRent, realEstateForRentCreationDTO);
-
-        realEstateForRentCreationDTO.setSecurityDeposit(realEstateForRent.getSecurityDeposit());
-        realEstateForRentCreationDTO.setContractYears(realEstateForRent.getContractYears());
-
-        return realEstateForRentCreationDTO;
+        return new RealEstateForRentCreationDTO();
     }
 
 
     @Override
-    public RealEstateForRent toEntity(RealEstateCreationDTO dto) 
+    protected RealEstateForRent initializeEntity() 
     {
-        RealEstateForRentCreationDTO realEstateForRentCreationDTO = (RealEstateForRentCreationDTO) dto;
-        RealEstateForRent realEstateForRent = new RealEstateForRent();
+        return new RealEstateForRent();
+    }
 
-        super.mapCommonFieldsToEntity(realEstateForRentCreationDTO, realEstateForRent);
 
-        realEstateForRent.setSecurityDeposit(realEstateForRentCreationDTO.getSecurityDeposit());
-        realEstateForRent.setContractYears(realEstateForRentCreationDTO.getContractYears());
+    @Override
+    protected void mapSpecificFieldsToEntity(RealEstateCreationDTO dto, RealEstate entity) 
+    {
+        ((RealEstateForRent) entity).setSecurityDeposit(((RealEstateForRentCreationDTO) dto).getSecurityDeposit());
+        ((RealEstateForRent) entity).setContractYears(((RealEstateForRentCreationDTO) dto).getContractYears());
+    }
 
-        return realEstateForRent;
-    }   
+
+    @Override
+    protected void mapSpecificFieldstoDto(RealEstate entity, RealEstateCreationDTO dto) 
+    {
+        ((RealEstateForRentCreationDTO) dto).setSecurityDeposit(((RealEstateForRent) entity).getSecurityDeposit());
+        ((RealEstateForRentCreationDTO) dto).setContractYears(((RealEstateForRent) entity).getContractYears());
+    }
 
 
     @Override

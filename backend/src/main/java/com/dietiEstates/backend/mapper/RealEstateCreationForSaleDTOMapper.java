@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.model.entity.RealEstate;
-import com.dietiEstates.backend.model.entity.RealEstateForRent;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;
 
 
@@ -14,30 +13,30 @@ import com.dietiEstates.backend.model.entity.RealEstateForSale;
 public class RealEstateCreationForSaleDTOMapper extends RealEstateCreationDTOMapper
 {
     @Override
-    public RealEstateForSaleCreationDTO toDto(RealEstate entity) 
+    protected RealEstateForSaleCreationDTO initializeDto() 
     {
-        RealEstateForSale realEstateForSale = (RealEstateForSale) entity;
-        RealEstateForSaleCreationDTO realEstateForSaleCreationDTO = new RealEstateForSaleCreationDTO();
-
-        super.mapCommonFieldsToDto(realEstateForSale, realEstateForSaleCreationDTO);
-
-        realEstateForSaleCreationDTO.setNotaryDeedState(realEstateForSale.getNotaryDeedState());
-
-        return realEstateForSaleCreationDTO;
+        return new RealEstateForSaleCreationDTO();
     }
 
 
     @Override
-    public RealEstateForSale toEntity(RealEstateCreationDTO dto) 
+    protected RealEstateForSale initializeEntity() 
     {
-        RealEstateForSaleCreationDTO realEstateForSaleCreationDTO = (RealEstateForSaleCreationDTO) dto;
-        RealEstateForSale realEstateForSale = new RealEstateForSale();
+        return new RealEstateForSale();
+    }
 
-        super.mapCommonFieldsToEntity(realEstateForSaleCreationDTO, realEstateForSale);
 
-        realEstateForSale.setNotaryDeedState(realEstateForSaleCreationDTO.getNotaryDeedState());
+    @Override
+    protected void mapSpecificFieldsToEntity(RealEstateCreationDTO dto, RealEstate entity) 
+    {
+        ((RealEstateForSale) entity).setNotaryDeedState(((RealEstateForSaleCreationDTO) dto).getNotaryDeedState());
+    }
 
-        return realEstateForSale;
+
+    @Override
+    protected void mapSpecificFieldstoDto(RealEstate entity, RealEstateCreationDTO dto) 
+    {
+        ((RealEstateForSaleCreationDTO) dto).setNotaryDeedState(((RealEstateForSale) entity).getNotaryDeedState());
     }
 
 

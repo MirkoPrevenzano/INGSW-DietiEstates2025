@@ -22,7 +22,7 @@ public class RealEstateForRentFromDtoFactory implements RealEstateFromDtoFactory
     @Override
     public RealEstate create(RealEstateCreationDTO realEstateCreationDTO) 
     {
-        RealEstateForRent realEstateForRent = realEstateCreationForRentDTOMapper.toEntity((RealEstateForRentCreationDTO) realEstateCreationDTO);
+        RealEstateForRent realEstateForRent = (RealEstateForRent) realEstateCreationForRentDTOMapper.toEntity((RealEstateForRentCreationDTO) realEstateCreationDTO);
 
         return realEstateForRent;
     }
