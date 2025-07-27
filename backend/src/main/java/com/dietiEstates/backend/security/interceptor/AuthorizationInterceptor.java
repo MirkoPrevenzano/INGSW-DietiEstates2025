@@ -27,7 +27,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor
 {
     private final AccessDeniedHandlerCustomImpl accessDeniedHandlerCustomImpl;
 
-
+    
     @SuppressWarnings("rawtypes")
     @Override
     public boolean preHandle(@NonNull HttpServletRequest request, 

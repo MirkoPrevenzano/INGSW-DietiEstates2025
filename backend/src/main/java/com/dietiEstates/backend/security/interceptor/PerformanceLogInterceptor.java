@@ -1,12 +1,12 @@
 
 package com.dietiEstates.backend.security.interceptor;
 
-import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
+
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -26,17 +26,6 @@ public class PerformanceLogInterceptor implements HandlerInterceptor
     }
 
 
-/*      @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) 
-    {
-        long preHandleStartTime = (Long) request.getAttribute("preHandleStartTime");
-        long postHandleDuration = System.currentTimeMillis() - preHandleStartTime;
-
-        log.info("Request to handler \"{}\" completed successfully. URI: {}. Response status: {}. Duration: {} ms", 
-                handler, request.getRequestURI(), response.getStatus(), postHandleDuration);
-    }  */
-    
-
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception 
     {
@@ -51,7 +40,7 @@ public class PerformanceLogInterceptor implements HandlerInterceptor
         } 
         else if (response.getStatus() >= 400) 
         {
-            // Richiesta completata con errore (status 4xx/5xx), gestito o non lanciante eccezione
+            // Richiesta completata con errore (status 4xx/5xx)
             log.error("Request to handler \"{}\" completed with error. URI: {}. Response Status: {}. Duration: {} ms",
                       handler, request.getRequestURI(), response.getStatus(), afterCompletionDuration);
         } 

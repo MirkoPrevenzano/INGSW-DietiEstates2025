@@ -1,7 +1,6 @@
 
 package com.dietiEstates.backend.security;
 
-import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,7 +24,6 @@ import com.dietiEstates.backend.security.handler.AuthenticationSuccessHandlerCus
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 
 
 @Configuration
@@ -92,7 +90,6 @@ public class WebSecurityConfig
             .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
             .addFilterBefore(endpointFilter, JwtAuthorizationFilter.class);
            
-
         return http.build();
     }
 }

@@ -14,8 +14,8 @@ import com.dietiEstates.backend.security.interceptor.PerformanceLogInterceptor;
 import lombok.RequiredArgsConstructor;
 
 
-
 @Configuration
+@EnableWebMvc
 @RequiredArgsConstructor
 public class WebMvcConfig implements WebMvcConfigurer
 {
@@ -37,8 +37,6 @@ public class WebMvcConfig implements WebMvcConfigurer
         registry.addMapping("/**").allowedOrigins("http://localhost:4200")
                                               .allowedMethods("GET","POST","PUT","OPTIONS")
                                               .allowedHeaders("*")
-                                              .allowCredentials(true)
-                                              .exposedHeaders("error");
-                                             
+                                              .allowCredentials(true);                                             
     }    
 }
