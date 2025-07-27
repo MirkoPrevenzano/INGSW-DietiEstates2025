@@ -48,11 +48,11 @@ public class RealEstateService
 
     public RealEstateSearchDTO search3(Map<String,String> filters, Pageable page)
     {
-        CoordinatesBoundingBox coordinatesbBoundingBox = FindByRadiusUtil.getBoundingBox(Integer.valueOf(filters.get("radius")), 
+        CoordinatesBoundingBox coordinatesBoundingBox = FindByRadiusUtil.getBoundingBox(Integer.valueOf(filters.get("radius")), 
                                                                                Double.valueOf(filters.get("lat")), 
                                                                                Double.valueOf(filters.get("lon")));
 
-        Page<RealEstatePreviewInfoDTO> realEstatePreviewsPage = realEstateRepository.findRealEstatePreviewInfosByFilters(filters, page, coordinatesbBoundingBox);
+        Page<RealEstatePreviewInfoDTO> realEstatePreviewsPage = realEstateRepository.findRealEstatePreviewInfosByFilters(filters, page, coordinatesBoundingBox);
 
         log.info("realEstatePreviewsPage.getNumber(): {}", realEstatePreviewsPage.getNumber());
         log.info("realEstatePreviewsPage.getNumberOfElements(): {}", realEstatePreviewsPage.getNumberOfElements());

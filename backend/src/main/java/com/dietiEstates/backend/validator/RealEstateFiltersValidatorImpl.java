@@ -3,21 +3,19 @@ package com.dietiEstates.backend.validator;
 
 import java.util.Map;
 import java.util.Set;
-import com.dietiEstates.backend.enums.EnergyClass;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
+import com.dietiEstates.backend.enums.EnergyClass;
 
 
 public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealEstateFiltersValidator, Map<String,String>> 
 {
-    private static final Set<String> BOOLEAN_FILTERS = Set.of(
-    "airConditioning", "heating", "elevator", "concierge",
-    "terrace", "garage", "balcony", "garden", "swimmingPool", "isNearSchool", "isNearSchool", "isNearPublicTransport");
+    private static final Set<String> BOOLEAN_FILTERS = Set.of("airConditioning", "heating", "elevator", "concierge", "terrace", "garage", 
+                                                              "balcony", "garden", "swimmingPool", "isNearSchool", "isNearPark", "isNearPublicTransport");
 
-    private static final Set<String> NUMERICAL_FILTERS = Set.of("minPrice", "maxPrice", "rooms");
-
+    private static final Set<String> NUMERICAL_FILTERS = Set.of("radius", "minPrice", "maxPrice", "rooms");
 
 
     @Override
@@ -31,6 +29,7 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
             String key = entry.getKey();
             String value = entry.getValue();
 
+            
             if (value == null || value.trim().isEmpty()) 
             {
                 addViolation(context, "value for filter '" + key + "' cannot be empty or null");
@@ -60,18 +59,6 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
                         hasExceptionOccurred = true;
                     }                
                 } 
-
-                if(key.equals("radius"))
-                {
-                    double radius = Double.valueOf(value);
-    
-                    if (radius < 0.0)
-                    {
-                        addViolation(context, key + " value must be between 0 ");
-                        hasExceptionOccurred = true;
-                    }
-                } 
-
 
                 if(NUMERICAL_FILTERS.contains(key))
                 {
@@ -119,10 +106,8 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
             }
         }
 
-
         return !hasExceptionOccurred;
     }
-
 
 
     private void addViolation(ConstraintValidatorContext context, String message) 

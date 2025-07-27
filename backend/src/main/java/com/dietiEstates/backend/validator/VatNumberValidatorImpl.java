@@ -7,17 +7,18 @@ import jakarta.validation.ConstraintValidatorContext;
 
 public class VatNumberValidatorImpl implements ConstraintValidator<VatNumberValidator, CharSequence>
 {
-
     @Override
     public boolean isValid(CharSequence vatNumber, ConstraintValidatorContext context) 
     {
         String vatNumberStr = vatNumber.toString();
 
-        if (vatNumberStr.length() != 11) {
+        if (vatNumberStr.length() != 11) 
+        {
             return false;
         }
         
-        if (!vatNumberStr.matches("\\d{11}")) {
+        if (!vatNumberStr.matches("\\d{11}")) 
+        {
             return false;
         }
         
@@ -29,18 +30,21 @@ public class VatNumberValidatorImpl implements ConstraintValidator<VatNumberVali
     {
         int[] vatNumberDigits = new int[11];
         
-        for (int i = 0; i < vatNumber.length(); i++) 
-{            vatNumberDigits[i] = Character.getNumericValue(vatNumber.charAt(i));
-             System.out.println("\ndigits " + i + ": " + vatNumberDigits[i]);
-}        
+        for (int i = 0; i < vatNumber.length(); i++)    
+            vatNumberDigits[i] = Character.getNumericValue(vatNumber.charAt(i));
+
+            
         int oddDigitsSum = 0;  
         int evenDigitsSum = 0; 
         
         for (int i = 0; i < 11; i++) 
         {
-            if (i % 2 == 0) {
+            if (i % 2 == 0) 
+            {
                 oddDigitsSum += vatNumberDigits[i];
-            } else {
+            } 
+            else 
+            {
                 int doubled = vatNumberDigits[i] * 2;
                 evenDigitsSum += (doubled > 9) ? doubled - 9 : doubled;
             }
