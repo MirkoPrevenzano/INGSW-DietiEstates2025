@@ -6,9 +6,7 @@ import java.util.List;
 
 import com.dietiEstates.backend.model.embeddable.AgentStats;
 
-import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,13 +16,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.ForeignKey;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 
@@ -41,9 +35,6 @@ import lombok.ToString;
                    column = @Column(name = "agent_id")) */
 public class Agent extends User
 {
-/*         @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId; */
 
     @Embedded
     AgentStats agentStats = new AgentStats();

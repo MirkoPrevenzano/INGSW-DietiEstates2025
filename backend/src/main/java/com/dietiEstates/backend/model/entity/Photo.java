@@ -7,7 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -19,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 @Table(name = "photo")
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Photo 
 {
     @Id
@@ -27,9 +26,16 @@ public class Photo
     @Column(name = "photo_id")
     private Long photoId;
 
-    @NonNull
+    @NotNull
     @Column(name = "key",
             nullable = false, 
             updatable = true) 
     private String key;
+
+
+    public Photo(String key) {
+        this.key = key;
+    }
+
+    
 }

@@ -21,11 +21,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.ForeignKey;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
@@ -47,7 +47,6 @@ import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 @ToString(exclude = {"photos", "customerViewsRealEstates"})
 public class RealEstate 
 {
@@ -56,44 +55,46 @@ public class RealEstate
     @Column(name = "real_estate_id")
     private Long realEstateId;
 
-    @NonNull
+    @NotNull
     @Column(nullable = false, 
             updatable = true)
     private String title;
 
-    @NonNull
+    @NotNull
     @Column(nullable = false, 
             updatable = true, 
             columnDefinition = "text")
     private String description;
 
-    @NonNull
+    @NotNull
     @Column(name = "uploading_date",
             nullable = false, 
             updatable = false)    
     private LocalDateTime uploadingDate;
     
+    @NotNull
     @Column(nullable = false, 
             updatable = true)
-    private double price;
+    private Double price;
 
+    @NotNull
     @Column(name = "condo_fee",
             nullable = false, 
             updatable = true)         
-    private double condoFee;
+    private Double condoFee;
 
-    @NonNull
+    @NotNull
     @Enumerated(value = EnumType.STRING)
     @Column(name = "energy_class",
             nullable = false, 
             updatable = true)         
     private EnergyClass energyClass;
 
-    @NonNull
+    @NotNull
     @Embedded 
     private InternalRealEstateFeatures internalFeatures;
 
-    @NonNull
+    @NotNull
     @Embedded
     private ExternalRealEstateFeatures externalFeatures;    
     
@@ -134,8 +135,8 @@ public class RealEstate
 
 
 
-    public RealEstate(@NonNull String title, @NonNull String description, @NonNull LocalDateTime uploadingDate, double price, double condoFee,
-                      @NonNull EnergyClass energyClass, @NonNull InternalRealEstateFeatures internalFeatures, @NonNull ExternalRealEstateFeatures externalFeatures)
+    public RealEstate(String title, String description, LocalDateTime uploadingDate, double price, double condoFee,
+                     EnergyClass energyClass, InternalRealEstateFeatures internalFeatures, ExternalRealEstateFeatures externalFeatures)
     {
         this.title = title;
         this.description = description;

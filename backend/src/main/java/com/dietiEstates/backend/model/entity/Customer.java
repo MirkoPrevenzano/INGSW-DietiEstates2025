@@ -4,14 +4,10 @@ package com.dietiEstates.backend.model.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
@@ -31,14 +27,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true, 
           exclude = "customerViewsRealEstates")
-/* @AttributeOverride(name = "userId", 
-                   column = @Column(name = "customer_id")) */
 public class Customer extends User
 {
-/*         @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId; */
-
     @Column(name = "is_auth_with_external_api", nullable = false)
     private boolean isAuthWithExternalAPI;//valutare se creare una classe d'appoggio
 
@@ -50,12 +40,10 @@ public class Customer extends User
     private List<CustomerViewsRealEstate> customerViewsRealEstates = new ArrayList<>();
 
 
-
     public Customer(String name, String surname, String username, String password) 
     {
         super(name, surname, username, password);
     }
-
 
 
     public void addCustomerViewsRealEstate(CustomerViewsRealEstate newCustomerViewsRealEstate) 

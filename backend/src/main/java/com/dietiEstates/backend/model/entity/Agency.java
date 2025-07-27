@@ -12,6 +12,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -23,27 +24,37 @@ import lombok.ToString;
 @Table(name = "agency")
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 @ToString(exclude = "administrator")
 public class Agency 
 {
     @Id
     private Long agencyId;
     
-    @NonNull
+    @NotNull
     @Column(nullable = false, 
             updatable = true)
     private String agencyName;
 
-    @NonNull
+    @NotNull
     @Column(nullable = false, 
             updatable = true)
     private String businessName;
     
-    @NonNull
+    @NotNull
     @Column(nullable = false, 
             updatable = true)
     private String vatNumber;
+
+
+    
+
+    public Agency(String agencyName, String businessName, String vatNumber) {
+        this.agencyName = agencyName;
+        this.businessName = businessName;
+        this.vatNumber = vatNumber;
+}
+
+
 
 
     // TODO: mettere relazione ONE TO MANY

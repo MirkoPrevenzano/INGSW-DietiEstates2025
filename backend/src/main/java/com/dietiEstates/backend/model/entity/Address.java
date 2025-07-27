@@ -11,11 +11,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 
@@ -24,40 +23,39 @@ import lombok.ToString;
 @Table(name = "address")
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
 @ToString(exclude = "realEstate")
 public class Address 
 {
 	 @Id
 	 private Long addressId;
 	 
-	 @NonNull
+    @NotNull
 	 @Column(nullable = false, 
 		 updatable = true)
 	 private String state;
 
-	 @NonNull
+	 @NotNull
 	 @Column(nullable = false, 
 		 updatable = true)
 	 private String country;
 
-	 @NonNull
+	 @NotNull
 	 @Column(nullable = false,
 		 updatable = true)
 	 private String city;
 
-	 @NonNull
+	 @NotNull
 	 @Column(nullable = false, 
 		 updatable = true)
 	 private String street;
 
-	 @NonNull
+	 @NotNull
 	 @Column(name = "postal_code",
 		 nullable = false, 
 		 updatable = true)
 	 private String postalCode;
 
-	 @NonNull
+	 @NotNull
 	 @Column(name = "house_number",
 		 nullable = false, 
 		 updatable = true)
@@ -83,8 +81,8 @@ public class Address
 	 private RealEstate realEstate;
 
 
-	public Address(@NonNull String state, @NonNull String country, @NonNull String city, @NonNull String street,
-				   @NonNull String postalCode, @NonNull Integer houseNumber, double longitude, double latitude) 
+	public Address(String state, String country, String city, String street,
+				   String postalCode, Integer houseNumber, double longitude, double latitude) 
 	{
 		this.state = state;
 		this.country = country;
