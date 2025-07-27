@@ -74,12 +74,12 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         //Path<Long> agentIdOfRealEstate = realEstate.get("agent").get("userId");
 
         query.select(criteriaBuilder.construct(AgentRecentRealEstateDTO.class, realEstate.get("realEstateId"), 
-                                                                                              realEstate.get("title"), 
-                                                                                              realEstate.get("description"), 
-                                                                                              realEstate.get("uploadingDate")))
-                     //.where(criteriaBuilder.equal(agentIdOfRealEstate, agentId))
-                     .where(criteriaBuilder.equal(agentJoin.get("userId"), agentId))
-                     .orderBy(criteriaBuilder.desc(realEstate.get("uploadingDate")));
+                                                                                           realEstate.get("title"), 
+                                                                                           realEstate.get("description"), 
+                                                                                           realEstate.get("uploadingDate")))
+                                    //.where(criteriaBuilder.equal(agentIdOfRealEstate, agentId))
+                                    .where(criteriaBuilder.equal(agentJoin.get("userId"), agentId))
+                                    .orderBy(criteriaBuilder.desc(realEstate.get("uploadingDate")));
 
         return entityManager.createQuery(query)
                             .setMaxResults(limit)
@@ -99,27 +99,28 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         //Path<Long> agentIdOfRealEstate = realEstate.get("agent").get("userId");
 
         query.select(criteriaBuilder.construct(AgentDashboardRealEstateStatsDTO.class, realEstate.get("realEstateId"), 
-                                                                                             realEstate.get("title"), 
-                                                                                             realEstate.get("uploadingDate"), 
-                                                                                             realEstate.get("realEstateStats").get("viewsNumber"),
-                                                                                             realEstate.get("realEstateStats").get("visitsNumber"),
-                                                                                             realEstate.get("realEstateStats").get("offersNumber")))
-                     //.where(criteriaBuilder.equal(agentJoin.get("userId"), agentId))
-                     .where(criteriaBuilder.equal(agentJoin.get("userId"), agentId))
-                    .orderBy(criteriaBuilder.asc(realEstate.get("realEstateId")));
+                                                                                                   realEstate.get("title"), 
+                                                                                                   realEstate.get("uploadingDate"), 
+                                                                                                   realEstate.get("realEstateStats").get("viewsNumber"),
+                                                                                                   realEstate.get("realEstateStats").get("visitsNumber"),
+                                                                                                   realEstate.get("realEstateStats").get("offersNumber")))
+                                    //.where(criteriaBuilder.equal(agentJoin.get("userId"), agentId))
+                                    .where(criteriaBuilder.equal(agentJoin.get("userId"), agentId))
+                                    .orderBy(criteriaBuilder.asc(realEstate.get("realEstateId")));
 
         List<AgentDashboardRealEstateStatsDTO> list;
+
         if(page != null)
         {
             list = entityManager.createQuery(query)
-            .setFirstResult((int)page.getOffset())
-            .setMaxResults(page.getPageSize())
-            .getResultList();
+                                .setFirstResult((int)page.getOffset())
+                                .setMaxResults(page.getPageSize())
+                                .getResultList();
         }
         else
         {
            list = entityManager.createQuery(query)
-            .getResultList(); 
+                               .getResultList(); 
         }
 
         return list;
@@ -138,8 +139,8 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         //Path<Long> agentIdOfRealEstate = realEstate.get("agent").get("userId");
 
         query.select(realEstate.get("realEstateId"))
-                     .where(criteriaBuilder.equal(agentJoin.get("userId"), agentId))
-                     .orderBy(criteriaBuilder.desc(realEstate.get("realEstateId")));
+             .where(criteriaBuilder.equal(agentJoin.get("userId"), agentId))
+             .orderBy(criteriaBuilder.desc(realEstate.get("realEstateId")));
 
         Long id = entityManager.createQuery(query)
                                .setMaxResults(1)
@@ -148,7 +149,6 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         return id;
     }   
 
-    
 
     
     private CriteriaQuery<RealEstatePreviewInfoDTO> getPreviewsQueryByFilters(Map<String,String> filters, CoordinatesMinMax coordinatesMinMax)
@@ -160,19 +160,18 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
 
         RealEstateRootFactory realEstateRootFactory = realEstateRootFactoryResolver.getFactory(filters.get("type"));
-        Root<?> realEstateType = realEstateRootFactory.create(query);
-        //Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), query);
+        Root<? extends RealEstate> realEstateType = realEstateRootFactory.create(query);
 
         List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin, realEstateType); 
 
         query.select(criteriaBuilder.construct(RealEstatePreviewInfoDTO.class, realEstate.get("realEstateId"),
-                                                                                               realEstate.get("title"),
-                                                                                               realEstate.get("description"),
-                                                                                               realEstate.get("price"),
-                                                                                               addressJoin.get("street"),
-                                                                                               addressJoin.get("longitude"),
-                                                                                               addressJoin.get("latitude")))
-                     .where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));    
+                                                                                           realEstate.get("title"),
+                                                                                           realEstate.get("description"),
+                                                                                           realEstate.get("price"),
+                                                                                           addressJoin.get("street"),
+                                                                                           addressJoin.get("longitude"),
+                                                                                           addressJoin.get("latitude")))
+                                    .where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));    
         
         return query;
     }
@@ -180,30 +179,26 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
     private CriteriaQuery<Long> getPreviewsCountQueryByFilters(Map<String,String> filters, CoordinatesMinMax coordinatesMinMax) 
     {
-            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
             
-            Root<RealEstate> realEstate = countQuery.from(RealEstate.class);
-            Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
+        Root<RealEstate> realEstate = countQuery.from(RealEstate.class);
+        Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
 
-            RealEstateRootFactory realEstateRootFactory = realEstateRootFactoryResolver.getFactory(filters.get("type"));
-            Root<?> realEstateType = realEstateRootFactory.create(countQuery);
+        RealEstateRootFactory realEstateRootFactory = realEstateRootFactoryResolver.getFactory(filters.get("type"));
+        Root<? extends RealEstate> realEstateType = realEstateRootFactory.create(countQuery);
 
-            //Root<?> realEstateType = RealEstateRootFactory.createFromType(filters.get("type"), countQuery);
+        List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin, realEstateType);
 
-            List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin, realEstateType);
+        countQuery.select(criteriaBuilder.count(realEstate))
+                  .where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));
 
-            countQuery.select(criteriaBuilder.count(realEstate))
-                         .where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));
-
-/*             return entityManager.createQuery(countQuery)
-                                .getSingleResult(); */
-            return countQuery;
+        return countQuery;
     }
 
 
     private List<Predicate> getPredicates(CriteriaBuilder criteriaBuilder, Map<String, String> filters, CoordinatesMinMax coordinatesMinMax, 
-                                          Root<RealEstate> realEstate, Join<RealEstate,Address> addressJoin, Root<?> realEstateType) 
+                                          Root<RealEstate> realEstate, Join<RealEstate,Address> addressJoin, Root<? extends RealEstate> realEstateType) 
     {
         Path<Long> realEstateId = realEstate.get("realEstateId");
         Path<Long> realEstateTypeId = realEstateType.get("realEstateId");
@@ -223,99 +218,70 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         Path<Boolean> nearPark = realEstate.get("externalFeatures").get("nearPark");
         Path<Boolean> nearSchool = realEstate.get("externalFeatures").get("nearSchool");
         Path<Boolean> nearPublicTransport = realEstate.get("externalFeatures").get("nearPublicTransport");
+
         Path<Double> latitude = addressJoin.get("latitude");
         Path<Double> longitude = addressJoin.get("longitude");   
+
 
         List<Predicate> predicates = new ArrayList<>();
             
         predicates.add(criteriaBuilder.equal(realEstateId, realEstateTypeId));
 
-         predicates.add(criteriaBuilder.ge(latitude, coordinatesMinMax.getMinLatitude()));
+        predicates.add(criteriaBuilder.ge(latitude, coordinatesMinMax.getMinLatitude()));
         predicates.add(criteriaBuilder.le(latitude, coordinatesMinMax.getMaxLatitude()));
         predicates.add(criteriaBuilder.ge(longitude, coordinatesMinMax.getMinLongitude()));
         predicates.add(criteriaBuilder.le(longitude, coordinatesMinMax.getMaxLongitude())); 
               
+
         for(Map.Entry<String,String> entry : filters.entrySet())
         {
             if(entry.getKey().equals("minPrice"))
-            {
                 predicates.add(criteriaBuilder.ge(price, Double.valueOf(entry.getValue())));
-            } 
 
             if(entry.getKey().equals("maxPrice"))
-            {
                 predicates.add(criteriaBuilder.le(price, Double.valueOf(entry.getValue())));
-            } 
 
             if(entry.getKey().equals("energyClass"))
-            {
                 predicates.add(criteriaBuilder.equal(energyClass, entry.getValue()));
-            } 
 
             if(entry.getKey().equals("rooms"))
-            {
                 predicates.add(criteriaBuilder.gt(roomsNumber, Integer.valueOf(entry.getValue())));
-            }  
 
             if(entry.getKey().equals("airConditioning"))
-            {
                 predicates.add(criteriaBuilder.equal(airConditioning, Boolean.valueOf(entry.getValue())));
-            }  
-
+            
             if(entry.getKey().equals("heating"))
-            {
                 predicates.add(criteriaBuilder.equal(heating, Boolean.valueOf(entry.getValue())));
-            }  
 
             if(entry.getKey().equals("elevator"))
-            {
                 predicates.add(criteriaBuilder.equal(elevator, Boolean.valueOf(entry.getValue())));
-            }
 
             if(entry.getKey().equals("concierge"))
-            {
-                predicates.add(criteriaBuilder.equal(concierge, Boolean.valueOf(entry.getValue())));
-            }  
+                predicates.add(criteriaBuilder.equal(concierge, Boolean.valueOf(entry.getValue())));  
 
             if(entry.getKey().equals("terrace"))
-            {
                 predicates.add(criteriaBuilder.equal(terrace, Boolean.valueOf(entry.getValue())));
-            }  
-
+            
             if(entry.getKey().equals("garage"))
-            {
                 predicates.add(criteriaBuilder.equal(garage, Boolean.valueOf(entry.getValue())));
-            }  
-
+            
             if(entry.getKey().equals("balcony"))
-            {
                 predicates.add(criteriaBuilder.equal(balcony, Boolean.valueOf(entry.getValue())));
-            }  
-
+            
             if(entry.getKey().equals("garden"))
-            {
                 predicates.add(criteriaBuilder.equal(garden, Boolean.valueOf(entry.getValue())));
-            }  
-
+            
             if(entry.getKey().equals("swimmingPool"))
-            {
                 predicates.add(criteriaBuilder.equal(swimmingPool, Boolean.valueOf(entry.getValue())));
-            }  
 
             if(entry.getKey().equals("isNearPark"))
-            {
                 predicates.add(criteriaBuilder.equal(nearPark, Boolean.valueOf(entry.getValue())));
-            } 
-
+            
             if(entry.getKey().equals("isNearSchool"))
-            {
                 predicates.add(criteriaBuilder.equal(nearSchool, Boolean.valueOf(entry.getValue())));
-            }  
 
             if(entry.getKey().equals("isNearPublicTransport"))
-            {
                 predicates.add(criteriaBuilder.equal(nearPublicTransport, Boolean.valueOf(entry.getValue())));
-            }  
         }
 
         return predicates;
