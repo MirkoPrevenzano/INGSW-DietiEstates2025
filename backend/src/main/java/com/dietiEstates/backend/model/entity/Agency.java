@@ -5,18 +5,15 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 
@@ -31,20 +28,23 @@ public class Agency
     private Long agencyId;
     
     @NotNull
-    @Column(nullable = false, 
+    @Column(name = "agency_name",
+            nullable = false, 
             updatable = true)
     private String agencyName;
 
     @NotNull
-    @Column(nullable = false, 
+    @Column(name = "business_name",
+            nullable = false, 
             updatable = true)
     private String businessName;
     
     @NotNull
-    @Column(nullable = false, 
-            updatable = true)
+    @Column(name = "vat_number",
+            nullable = false, 
+            updatable = true,
+            length = 12)
     private String vatNumber;
-
 
     
 

@@ -3,8 +3,6 @@ package com.dietiEstates.backend.model.entity;
 
 import java.time.LocalDateTime;
 
-import org.modelmapper.internal.bytebuddy.implementation.bind.annotation.Super;
-
 import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
@@ -14,13 +12,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import lombok.experimental.SuperBuilder;
 
 
 

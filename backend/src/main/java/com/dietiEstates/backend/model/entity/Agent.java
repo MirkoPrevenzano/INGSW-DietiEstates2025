@@ -31,14 +31,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true, 
           exclude = "realEstates")
-/* @AttributeOverride(name = "userId", 
-                   column = @Column(name = "agent_id")) */
 public class Agent extends User
 {
-
     @Embedded
     AgentStats agentStats = new AgentStats();
-
 
 
     @ManyToOne(fetch = FetchType.LAZY,
@@ -56,14 +52,12 @@ public class Agent extends User
     private List<RealEstate> realEstates = new ArrayList<>();
 
 
-
     public Agent(String name, String surname, String username, String password) 
     {
         super(name, surname, username, password);
     }
     
 
-    
     public void addRealEstate(RealEstate newRealEstate) 
     {
        this.realEstates.add(newRealEstate);

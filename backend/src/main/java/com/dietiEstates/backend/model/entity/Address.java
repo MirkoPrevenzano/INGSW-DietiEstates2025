@@ -1,7 +1,6 @@
 
 package com.dietiEstates.backend.model.entity;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -12,11 +11,10 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.ToString;
-
 
 
 @Entity(name = "Address")
@@ -26,63 +24,63 @@ import lombok.ToString;
 @ToString(exclude = "realEstate")
 public class Address 
 {
-	 @Id
-	 private Long addressId;
+	@Id
+	private Long addressId;
 	 
     @NotNull
-	 @Column(nullable = false, 
-		 updatable = true)
-	 private String state;
+	@Column(nullable = false, 
+			updatable = true)
+	private String state;
 
-	 @NotNull
-	 @Column(nullable = false, 
-		 updatable = true)
-	 private String country;
+	@NotNull
+	@Column(nullable = false, 
+		 	updatable = true)
+	private String country;
 
-	 @NotNull
-	 @Column(nullable = false,
-		 updatable = true)
-	 private String city;
+	@NotNull
+	@Column(nullable = false,
+		    updatable = true)
+	private String city;
 
-	 @NotNull
-	 @Column(nullable = false, 
-		 updatable = true)
-	 private String street;
+	@NotNull
+	@Column(nullable = false, 
+		    updatable = true)
+	private String street;
 
-	 @NotNull
-	 @Column(name = "postal_code",
-		 nullable = false, 
-		 updatable = true)
-	 private String postalCode;
+	@NotNull
+	@Column(name = "postal_code",
+		 	nullable = false, 
+		 	updatable = true,
+		 	length = 6)
+	private String postalCode;
 
-	 @NotNull
-	 @Column(name = "house_number",
-		 nullable = false, 
-		 updatable = true)
-	 private Integer houseNumber;
+	@NotNull
+	@Column(name = "house_number",
+		 	nullable = false, 
+		 	updatable = true)
+	private Integer houseNumber;
 
-	 @Column(nullable = false, 
-		 updatable = true)
-	 private double longitude;
+	@Column(nullable = false, 
+		 	updatable = true)
+	private double longitude;
 
-	 @Column(nullable = false, 
-		 updatable = true)
-	 private double latitude;
+	@Column(nullable = false, 
+		 	updatable = true)
+	private double latitude;
 
 	 
-	 @MapsId
-	 @OneToOne(fetch = FetchType.LAZY, 
+	@MapsId
+	@OneToOne(fetch = FetchType.LAZY, 
 		   cascade = {},
 		   orphanRemoval = false)
-	 @JoinColumn(name = "real_estate_id",
-		 nullable = false,
-		 updatable = true,
-		 foreignKey = @ForeignKey(name = "real_estate_to_address_fk"))
-	 private RealEstate realEstate;
+	@JoinColumn(name = "real_estate_id",
+				nullable = false,
+				updatable = true,
+				foreignKey = @ForeignKey(name = "real_estate_to_address_fk"))
+	private RealEstate realEstate;
 
 
-	public Address(String state, String country, String city, String street,
-				   String postalCode, Integer houseNumber, double longitude, double latitude) 
+	public Address(String state, String country, String city, String street, String postalCode, Integer houseNumber, double longitude, double latitude) 
 	{
 		this.state = state;
 		this.country = country;
@@ -92,5 +90,5 @@ public class Address
 		this.houseNumber = houseNumber;
 		this.longitude = longitude;
 		this.latitude = latitude;
-	 }
+	}
 }

@@ -1,6 +1,8 @@
 
 package com.dietiEstates.backend.model.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -12,15 +14,10 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.ForeignKey;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-
-import java.time.LocalDateTime;
-
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity(name = "CustomerViewsRealEstate")
@@ -69,6 +66,4 @@ public class CustomerViewsRealEstate
         this.customer = customer;
         this.realEstate = realEstate;
     }
-
-    
 }

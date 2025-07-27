@@ -29,16 +29,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString(callSuper = true, 
           exclude = {"collaborators", "agents"})
-/* @AttributeOverride(name = "userId", 
-                   column = @Column(name = "admin_id")) */
 public class Administrator extends User
 {
-/*         @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId; */
-
-
-
     @OneToOne(mappedBy = "administrator",
               fetch = FetchType.LAZY, 
               cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
@@ -67,12 +59,10 @@ public class Administrator extends User
     private List<Agent> agents = new ArrayList<>();
 
 
-
     public Administrator(String name, String surname, String username, String password) 
     {
         super(name, surname, username, password);
     }
-
 
 
     public void addAgency(Agency newAgency) 
@@ -87,8 +77,6 @@ public class Administrator extends User
     {
         this.getAgency().setAdministrator(null);
         this.setAgency(null);
-
-        
     }
 
 

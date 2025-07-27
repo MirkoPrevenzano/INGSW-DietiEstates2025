@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
-
 @Entity(name = "Customer")
 @Table(name = "customer", 
        uniqueConstraints = @UniqueConstraint(name = "customer_uk", columnNames = "username"))
@@ -53,7 +52,7 @@ public class Customer extends User
                                   .getCustomerViewsRealEstates()
                                   .add(newCustomerViewsRealEstate);
     }
-
+    
     public void removeCustomerViewsRealEstate(CustomerViewsRealEstate customerViewsRealEstateToRemove) 
     {
         this.customerViewsRealEstates.remove(customerViewsRealEstateToRemove);

@@ -8,11 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-
 
 
 @Entity(name = "Photo")
@@ -36,6 +34,4 @@ public class Photo
     public Photo(String key) {
         this.key = key;
     }
-
-    
 }

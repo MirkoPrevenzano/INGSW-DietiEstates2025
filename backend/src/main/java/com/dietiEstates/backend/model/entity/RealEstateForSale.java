@@ -15,13 +15,12 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.ToString;
-
 
 
 @Entity(name = "RealEstateForSale")
@@ -34,7 +33,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class RealEstateForSale extends RealEstate 
 {
-    @NonNull
+    @NotNull
     @Enumerated(value = EnumType.STRING)
     @Column(name = "notary_deed_state",
             nullable = false, 
@@ -45,7 +44,7 @@ public class RealEstateForSale extends RealEstate
     
     public RealEstateForSale(String title, String description, LocalDateTime uploadingDate, Double price, Double condoFee, EnergyClass energyClass,
                              InternalRealEstateFeatures internalFeatures, ExternalRealEstateFeatures externalFeatures,
-                             @NonNull NotaryDeedState notaryDeedState)
+                            NotaryDeedState notaryDeedState)
     {
         super(title,description, uploadingDate, price, condoFee, energyClass, internalFeatures, externalFeatures);
         this.notaryDeedState = notaryDeedState;
