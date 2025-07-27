@@ -7,6 +7,7 @@ import java.util.Set;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
+import com.dietiEstates.backend.enums.ContractType;
 import com.dietiEstates.backend.enums.EnergyClass;
 
 
@@ -29,7 +30,6 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
             String key = entry.getKey();
             String value = entry.getValue();
 
-            
             if (value == null || value.trim().isEmpty()) 
             {
                 addViolation(context, "value for filter '" + key + "' cannot be empty or null");
@@ -84,7 +84,11 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
                 {
                     EnergyClass.of(value);
                 } 
-    
+
+                if(key.equals("type"))
+                {
+                    ContractType.of(value);
+                } 
             } 
             catch (Exception e)
             {

@@ -6,6 +6,7 @@ import jakarta.persistence.criteria.Root;
 
 import org.springframework.stereotype.Component;
 
+import com.dietiEstates.backend.enums.ContractType;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;
 
 import lombok.RequiredArgsConstructor;
@@ -23,8 +24,8 @@ public class RealEstateRootForSaleFactory implements RealEstateRootFactory
 
     
     @Override
-    public boolean supports(String realEstateType) 
+    public boolean supports(ContractType contractType) 
     {
-        return realEstateType.equals("For Sale");
+        return ContractType.FOR_SALE == contractType;
     }
 }

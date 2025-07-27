@@ -22,6 +22,7 @@ import org.springframework.data.domain.Pageable;
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
 import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDTO;
 import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
+import com.dietiEstates.backend.enums.ContractType;
 import com.dietiEstates.backend.extra.CoordinatesBoundingBox;
 import com.dietiEstates.backend.factory.RealEstateRootFactory;
 import com.dietiEstates.backend.model.entity.Address;
@@ -159,7 +160,8 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         Root<RealEstate> realEstate = query.from(RealEstate.class);
         Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
 
-        RealEstateRootFactory realEstateRootFactory = realEstateRootFactoryResolver.getFactory(filters.get("type"));
+        ContractType contractType = ContractType.of(filters.get("type"));
+        RealEstateRootFactory realEstateRootFactory = realEstateRootFactoryResolver.getFactory(contractType);
         Root<? extends RealEstate> realEstateType = realEstateRootFactory.create(query);
 
         List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesBoundingBox, realEstate, addressJoin, realEstateType); 
@@ -185,7 +187,8 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         Root<RealEstate> realEstate = countQuery.from(RealEstate.class);
         Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
 
-        RealEstateRootFactory realEstateRootFactory = realEstateRootFactoryResolver.getFactory(filters.get("type"));
+        ContractType contractType = ContractType.of(filters.get("type"));
+        RealEstateRootFactory realEstateRootFactory = realEstateRootFactoryResolver.getFactory(contractType);
         Root<? extends RealEstate> realEstateType = realEstateRootFactory.create(countQuery);
 
         List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesBoundingBox, realEstate, addressJoin, realEstateType);
