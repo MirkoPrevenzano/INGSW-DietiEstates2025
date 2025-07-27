@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.dietiEstates.backend.model.entity.Agent;
 
 
-
 @Repository
 public interface AgentRepository extends JpaRepository<Agent,Long> 
 {

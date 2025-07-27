@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.dietiEstates.backend.model.entity.User;
 
 
-
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> 
 {

@@ -53,7 +53,7 @@ public class RealEstateService
                                                                                Double.valueOf(filters.get("lat")), 
                                                                                Double.valueOf(filters.get("lon")));
 
-        Page<RealEstatePreviewInfoDTO> realEstatePreviewsPage = realEstateRepository.findPreviewsByFilters(filters, page, coordinatesMinMax);
+        Page<RealEstatePreviewInfoDTO> realEstatePreviewsPage = realEstateRepository.findRealEstatePreviewInfosByFilters(filters, page, coordinatesMinMax);
 
         log.info("realEstatePreviewsPage.getNumber(): {}", realEstatePreviewsPage.getNumber());
         log.info("realEstatePreviewsPage.getNumberOfElements(): {}", realEstatePreviewsPage.getNumberOfElements());

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.dietiEstates.backend.model.entity.Administrator;
 
 
-
 @Repository
 public interface AdministratorRepository extends JpaRepository<Administrator,Long> 
 {

@@ -9,9 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.dietiEstates.backend.model.entity.Customer;
 
 
-
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer,Long>
 {
-    public Optional<Customer> findByUsername(String email);
+    public Optional<Customer> findByUsername(String username);
 }

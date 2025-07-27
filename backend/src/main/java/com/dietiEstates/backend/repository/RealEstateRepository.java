@@ -8,7 +8,6 @@ import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.repository.criteria.RealEstateCriteriaRepository;
 
 
-
 @Repository
 public interface RealEstateRepository extends JpaRepository<RealEstate,Long>, RealEstateCriteriaRepository
 {

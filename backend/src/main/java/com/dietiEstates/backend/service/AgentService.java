@@ -224,7 +224,7 @@ public class AgentService
 
     public List<AgentRecentRealEstateDTO> findRecentRealEstates(String username, Integer limit) 
     {
-        return realEstateRepository.findRecentsByAgent(agentRepository.findByUsername(username).get().getUserId(), limit);
+        return realEstateRepository.findAgentRecentRealEstatesByAgent(agentRepository.findByUsername(username).get().getUserId(), limit);
     }
 
 
@@ -257,7 +257,7 @@ public class AgentService
     
     public List<AgentDashboardRealEstateStatsDTO> getRealEstateStats(String username, Pageable page) 
     {
-        return realEstateRepository.findStatsByAgent(agentRepository.findByUsername(username).get().getUserId(), 
+        return realEstateRepository.findAgentDashboardRealEstateStatsByAgent(agentRepository.findByUsername(username).get().getUserId(), 
                                                         page);
     }
 

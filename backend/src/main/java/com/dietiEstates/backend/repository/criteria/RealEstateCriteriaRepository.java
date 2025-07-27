@@ -13,11 +13,10 @@ import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
 import com.dietiEstates.backend.extra.CoordinatesMinMax;
 
 
-
 public interface RealEstateCriteriaRepository 
 {
-    public Page<RealEstatePreviewInfoDTO> findPreviewsByFilters(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax);
-    public List<AgentRecentRealEstateDTO> findRecentsByAgent(Long agentId, Integer limit);
-    public List<AgentDashboardRealEstateStatsDTO> findStatsByAgent(Long agentId, Pageable page);
+    public Page<RealEstatePreviewInfoDTO> findRealEstatePreviewInfosByFilters(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax);
+    public List<AgentRecentRealEstateDTO> findAgentRecentRealEstatesByAgent(Long agentId, Integer limit);
+    public List<AgentDashboardRealEstateStatsDTO> findAgentDashboardRealEstateStatsByAgent(Long agentId, Pageable page);
     public Long findLastUploadedByAgent(Long agentId);
 }
