@@ -16,7 +16,7 @@ import com.dietiEstates.backend.dto.response.RealEstateCompleteInfoDTO;
 import com.dietiEstates.backend.dto.response.RealEstateSearchDTO;
 import com.dietiEstates.backend.dto.response.support.AgentPublicInfoDTO;
 import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
-import com.dietiEstates.backend.extra.CoordinatesMinMax;
+import com.dietiEstates.backend.extra.CoordinatesBoundingBox;
 import com.dietiEstates.backend.mapper.RealEstateCreationDTOMapper;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.entity.Agent;
@@ -40,7 +40,6 @@ import lombok.extern.slf4j.Slf4j;
 public class RealEstateService 
 {
     private final RealEstateRepository realEstateRepository;
-    private final FindByRadiusUtil findByRadiusUtil;
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
     private final RealEstateMapperResolver realEstateMapperResolver;
@@ -49,11 +48,11 @@ public class RealEstateService
 
     public RealEstateSearchDTO search3(Map<String,String> filters, Pageable page)
     {
-        CoordinatesMinMax coordinatesMinMax = findByRadiusUtil.calcoloLatLongMinMax(Integer.valueOf(filters.get("radius")), 
+        CoordinatesBoundingBox coordinatesbBoundingBox = FindByRadiusUtil.getBoundingBox(Integer.valueOf(filters.get("radius")), 
                                                                                Double.valueOf(filters.get("lat")), 
                                                                                Double.valueOf(filters.get("lon")));
 
-        Page<RealEstatePreviewInfoDTO> realEstatePreviewsPage = realEstateRepository.findRealEstatePreviewInfosByFilters(filters, page, coordinatesMinMax);
+        Page<RealEstatePreviewInfoDTO> realEstatePreviewsPage = realEstateRepository.findRealEstatePreviewInfosByFilters(filters, page, coordinatesbBoundingBox);
 
         log.info("realEstatePreviewsPage.getNumber(): {}", realEstatePreviewsPage.getNumber());
         log.info("realEstatePreviewsPage.getNumberOfElements(): {}", realEstatePreviewsPage.getNumberOfElements());

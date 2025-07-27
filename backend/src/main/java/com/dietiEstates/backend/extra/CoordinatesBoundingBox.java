@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CoordinatesMinMax 
+public class CoordinatesBoundingBox 
 {
     private double minLatitude;
     private double maxLatitude;

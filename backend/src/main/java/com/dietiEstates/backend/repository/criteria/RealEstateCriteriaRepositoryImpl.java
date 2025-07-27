@@ -22,7 +22,7 @@ import org.springframework.data.domain.Pageable;
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
 import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDTO;
 import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
-import com.dietiEstates.backend.extra.CoordinatesMinMax;
+import com.dietiEstates.backend.extra.CoordinatesBoundingBox;
 import com.dietiEstates.backend.factory.RealEstateRootFactory;
 import com.dietiEstates.backend.model.entity.Address;
 import com.dietiEstates.backend.model.entity.RealEstate;
@@ -44,15 +44,15 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
 
     @Override
-    public Page<RealEstatePreviewInfoDTO> findRealEstatePreviewInfosByFilters(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax) 
+    public Page<RealEstatePreviewInfoDTO> findRealEstatePreviewInfosByFilters(Map<String,String> filters, Pageable page, CoordinatesBoundingBox coordinatesBoundingBox) 
     {        
-        CriteriaQuery<RealEstatePreviewInfoDTO> query = getPreviewsQueryByFilters(filters, coordinatesMinMax);
+        CriteriaQuery<RealEstatePreviewInfoDTO> query = getPreviewsQueryByFilters(filters, coordinatesBoundingBox);
         List<RealEstatePreviewInfoDTO> pageList = entityManager.createQuery(query)
                                                                .setFirstResult((int)page.getOffset())
                                                                .setMaxResults(page.getPageSize())
                                                                .getResultList(); 
 
-        CriteriaQuery<Long> countQuery = getPreviewsCountQueryByFilters(filters, coordinatesMinMax);
+        CriteriaQuery<Long> countQuery = getPreviewsCountQueryByFilters(filters, coordinatesBoundingBox);
         long totalElements = entityManager.createQuery(countQuery)
                                           .getSingleResult();       
         
@@ -151,7 +151,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
 
     
-    private CriteriaQuery<RealEstatePreviewInfoDTO> getPreviewsQueryByFilters(Map<String,String> filters, CoordinatesMinMax coordinatesMinMax)
+    private CriteriaQuery<RealEstatePreviewInfoDTO> getPreviewsQueryByFilters(Map<String,String> filters, CoordinatesBoundingBox coordinatesBoundingBox)
     {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<RealEstatePreviewInfoDTO> query = criteriaBuilder.createQuery(RealEstatePreviewInfoDTO.class);
@@ -162,7 +162,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         RealEstateRootFactory realEstateRootFactory = realEstateRootFactoryResolver.getFactory(filters.get("type"));
         Root<? extends RealEstate> realEstateType = realEstateRootFactory.create(query);
 
-        List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin, realEstateType); 
+        List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesBoundingBox, realEstate, addressJoin, realEstateType); 
 
         query.select(criteriaBuilder.construct(RealEstatePreviewInfoDTO.class, realEstate.get("realEstateId"),
                                                                                            realEstate.get("title"),
@@ -177,7 +177,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
     }
 
 
-    private CriteriaQuery<Long> getPreviewsCountQueryByFilters(Map<String,String> filters, CoordinatesMinMax coordinatesMinMax) 
+    private CriteriaQuery<Long> getPreviewsCountQueryByFilters(Map<String,String> filters, CoordinatesBoundingBox coordinatesBoundingBox) 
     {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
@@ -188,7 +188,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         RealEstateRootFactory realEstateRootFactory = realEstateRootFactoryResolver.getFactory(filters.get("type"));
         Root<? extends RealEstate> realEstateType = realEstateRootFactory.create(countQuery);
 
-        List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesMinMax, realEstate, addressJoin, realEstateType);
+        List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesBoundingBox, realEstate, addressJoin, realEstateType);
 
         countQuery.select(criteriaBuilder.count(realEstate))
                   .where(criteriaBuilder.and(predicates.toArray(new Predicate[0])));
@@ -197,7 +197,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
     }
 
 
-    private List<Predicate> getPredicates(CriteriaBuilder criteriaBuilder, Map<String, String> filters, CoordinatesMinMax coordinatesMinMax, 
+    private List<Predicate> getPredicates(CriteriaBuilder criteriaBuilder, Map<String, String> filters, CoordinatesBoundingBox coordinatesBoundingBox, 
                                           Root<RealEstate> realEstate, Join<RealEstate,Address> addressJoin, Root<? extends RealEstate> realEstateType) 
     {
         Path<Long> realEstateId = realEstate.get("realEstateId");
@@ -227,10 +227,10 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
             
         predicates.add(criteriaBuilder.equal(realEstateId, realEstateTypeId));
 
-        predicates.add(criteriaBuilder.ge(latitude, coordinatesMinMax.getMinLatitude()));
-        predicates.add(criteriaBuilder.le(latitude, coordinatesMinMax.getMaxLatitude()));
-        predicates.add(criteriaBuilder.ge(longitude, coordinatesMinMax.getMinLongitude()));
-        predicates.add(criteriaBuilder.le(longitude, coordinatesMinMax.getMaxLongitude())); 
+        predicates.add(criteriaBuilder.ge(latitude, coordinatesBoundingBox.getMinLatitude()));
+        predicates.add(criteriaBuilder.le(latitude, coordinatesBoundingBox.getMaxLatitude()));
+        predicates.add(criteriaBuilder.ge(longitude, coordinatesBoundingBox.getMinLongitude()));
+        predicates.add(criteriaBuilder.le(longitude, coordinatesBoundingBox.getMaxLongitude())); 
               
 
         for(Map.Entry<String,String> entry : filters.entrySet())

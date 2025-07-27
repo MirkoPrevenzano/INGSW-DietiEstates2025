@@ -10,12 +10,12 @@ import org.springframework.data.domain.Pageable;
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
 import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDTO;
 import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
-import com.dietiEstates.backend.extra.CoordinatesMinMax;
+import com.dietiEstates.backend.extra.CoordinatesBoundingBox;
 
 
 public interface RealEstateCriteriaRepository 
 {
-    public Page<RealEstatePreviewInfoDTO> findRealEstatePreviewInfosByFilters(Map<String,String> filters, Pageable page, CoordinatesMinMax coordinatesMinMax);
+    public Page<RealEstatePreviewInfoDTO> findRealEstatePreviewInfosByFilters(Map<String,String> filters, Pageable page, CoordinatesBoundingBox coordinatesBoundingBox);
     public List<AgentRecentRealEstateDTO> findAgentRecentRealEstatesByAgent(Long agentId, Integer limit);
     public List<AgentDashboardRealEstateStatsDTO> findAgentDashboardRealEstateStatsByAgent(Long agentId, Pageable page);
     public Long findLastUploadedByAgent(Long agentId);

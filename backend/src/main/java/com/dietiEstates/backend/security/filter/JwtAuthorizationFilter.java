@@ -71,10 +71,10 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
             try 
             {
                 String token = authorizationHeader.substring("Bearer ".length());
-                JwtUtil.verifyToken(token);
+                JwtUtil.VerifiedJwt verifiedJwt = JwtUtil.verifyToken(token);
 
-                    String username = JwtUtil.extractSubject(token);
-                    String[] roles = JwtUtil.extractRoles(token);
+                    String username = verifiedJwt.getSubject();
+                    String[] roles = verifiedJwt.getRoles();
                     Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
                     stream(roles).forEach(role -> {authorities.add(new SimpleGrantedAuthority(role));});
 
