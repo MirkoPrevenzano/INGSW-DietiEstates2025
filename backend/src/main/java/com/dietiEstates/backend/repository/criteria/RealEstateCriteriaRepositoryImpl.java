@@ -69,7 +69,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         CriteriaQuery<AgentRecentRealEstateDTO> query = criteriaBuilder.createQuery(AgentRecentRealEstateDTO.class);
 
         Root<RealEstate> realEstate = query.from(RealEstate.class);
-        Join<RealEstate, Address> agentJoin = realEstate.join("agnte", JoinType.INNER);
+        Join<RealEstate, Address> agentJoin = realEstate.join("agent", JoinType.INNER);
 
         //Path<Long> agentIdOfRealEstate = realEstate.get("agent").get("userId");
 
@@ -94,7 +94,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         CriteriaQuery<AgentDashboardRealEstateStatsDTO> query = criteriaBuilder.createQuery(AgentDashboardRealEstateStatsDTO.class);
         
         Root<RealEstate> realEstate = query.from(RealEstate.class);
-        Join<RealEstate, Address> agentJoin = realEstate.join("agnte", JoinType.INNER);
+        Join<RealEstate, Address> agentJoin = realEstate.join("agent", JoinType.INNER);
 
         //Path<Long> agentIdOfRealEstate = realEstate.get("agent").get("userId");
 
@@ -134,7 +134,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         CriteriaQuery<Long> query = criteriaBuilder.createQuery(Long.class);
         
         Root<RealEstate> realEstate = query.from(RealEstate.class);
-        Join<RealEstate, Address> agentJoin = realEstate.join("agnte", JoinType.INNER);
+        Join<RealEstate, Address> agentJoin = realEstate.join("agent", JoinType.INNER);
 
         //Path<Long> agentIdOfRealEstate = realEstate.get("agent").get("userId");
 

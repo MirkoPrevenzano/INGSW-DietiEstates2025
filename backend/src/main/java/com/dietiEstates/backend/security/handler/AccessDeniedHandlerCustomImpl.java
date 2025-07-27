@@ -31,6 +31,7 @@ public class AccessDeniedHandlerCustomImpl implements AccessDeniedHandler
     {
         log.error("Denied access occurred for user: " + request.getUserPrincipal().getName());
         log.error("Attempted access to: " + request.getRequestURI());
+        log.error("Exception: " + accessDeniedException.getMessage());
 
         int statusCode = HttpStatus.FORBIDDEN.value();
         String errorDescription = "Denied access! You don't have the permissions to access this resource.";

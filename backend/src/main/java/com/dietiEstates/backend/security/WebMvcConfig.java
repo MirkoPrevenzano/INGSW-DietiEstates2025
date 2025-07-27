@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.dietiEstates.backend.security.interceptor.AuthorizationInterceptor;
+import com.dietiEstates.backend.security.interceptor.PerformanceLogInterceptor;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,12 +20,13 @@ import lombok.RequiredArgsConstructor;
 public class WebMvcConfig implements WebMvcConfigurer
 {
     private final AuthorizationInterceptor authorizationInterceptor;
-
+    private final PerformanceLogInterceptor performanceLogInterceptor;
     
 
     @Override
     public void addInterceptors(@NonNull InterceptorRegistry registry) 
     {
+        registry.addInterceptor(performanceLogInterceptor);
         registry.addInterceptor(authorizationInterceptor);
     }
 
