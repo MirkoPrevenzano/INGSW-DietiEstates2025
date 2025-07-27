@@ -1,27 +1,26 @@
 
 package com.dietiEstates.backend.security.handler;
 
+import java.io.IOException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.authentication.InsufficientAuthenticationException;
-import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 import com.dietiEstates.backend.dto.response.ApiErrorResponse;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 
 @Component
@@ -32,7 +31,6 @@ public class AuthenticationEntryPointCustomImpl implements AuthenticationEntryPo
     private final ObjectMapper objectMapper;
 
 
-
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException 
     {      
@@ -40,8 +38,6 @@ public class AuthenticationEntryPointCustomImpl implements AuthenticationEntryPo
         log.error("Attempted access to: " + request.getRequestURI());
 
         int statusCode = HttpStatus.UNAUTHORIZED.value();
-        String errorReason = HttpStatus.UNAUTHORIZED.getReasonPhrase();
-        String errorType = HttpStatus.UNAUTHORIZED.series().name();
         String errorDescription = "Authentication failed! ";
         String errorPath = request.getRequestURI();
         

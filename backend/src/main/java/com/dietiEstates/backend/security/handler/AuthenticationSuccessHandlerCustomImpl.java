@@ -3,6 +3,10 @@ package com.dietiEstates.backend.security.handler;
 
 import java.io.IOException;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
@@ -11,14 +15,10 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
-import com.dietiEstates.backend.model.entity.Administrator;
-import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.util.JwtUtil;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,11 +31,10 @@ public class AuthenticationSuccessHandlerCustomImpl implements AuthenticationSuc
     private final ObjectMapper objectMapper;
 
 
-
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException 
     {
-        log.info("JWT Authentication is OK! User '" + authentication.getName() + "' successfully authenticated.");
+        log.info("Authentication is OK! User '" + authentication.getName() + "' successfully authenticated.");
     
         UserDetails user = (UserDetails) authentication.getPrincipal();
         String accessToken = JwtUtil.generateAccessToken(user);

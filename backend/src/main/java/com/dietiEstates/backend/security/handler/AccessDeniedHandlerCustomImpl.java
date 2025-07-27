@@ -2,11 +2,6 @@
 package com.dietiEstates.backend.security.handler;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
@@ -31,7 +26,6 @@ public class AccessDeniedHandlerCustomImpl implements AccessDeniedHandler
     private final ObjectMapper objectMapper;
 
 
-
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException 
     {
@@ -39,8 +33,6 @@ public class AccessDeniedHandlerCustomImpl implements AccessDeniedHandler
         log.error("Attempted access to: " + request.getRequestURI());
 
         int statusCode = HttpStatus.FORBIDDEN.value();
-        String errorReason = HttpStatus.FORBIDDEN.getReasonPhrase();
-        String errorType = HttpStatus.FORBIDDEN.series().name();
         String errorDescription = "Denied access! You don't have the permissions to access this resource.";
         String errorPath = request.getRequestURI();
 

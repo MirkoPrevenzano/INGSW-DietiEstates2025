@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.dietiEstates.backend.enums.Role;
 import com.dietiEstates.backend.security.filter.EndpointFilter;
-import com.dietiEstates.backend.security.filter.JwtAuthenticationFilter;
+import com.dietiEstates.backend.security.filter.UsernamePasswordRoleAuthenticationFilter;
 import com.dietiEstates.backend.security.filter.JwtAuthorizationFilter;
 import com.dietiEstates.backend.security.handler.AccessDeniedHandlerCustomImpl;
 import com.dietiEstates.backend.security.handler.AuthenticationEntryPointCustomImpl;
@@ -52,20 +52,20 @@ public class WebSecurityConfig
 
 
     @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter(AuthenticationManager authenticationManager)
+    public UsernamePasswordRoleAuthenticationFilter usernamePasswordRoleAuthenticationFilter(AuthenticationManager authenticationManager)
     {
-        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter();
+        UsernamePasswordRoleAuthenticationFilter usernamePasswordRoleAuthenticationFilter = new UsernamePasswordRoleAuthenticationFilter();
         
-        jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
-        jwtAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandlerCustomImpl);
-        jwtAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandlerCustomImpl);
+        usernamePasswordRoleAuthenticationFilter.setAuthenticationManager(authenticationManager);
+        usernamePasswordRoleAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandlerCustomImpl);
+        usernamePasswordRoleAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandlerCustomImpl);
 
-        return jwtAuthenticationFilter;
+        return usernamePasswordRoleAuthenticationFilter;
     }
 
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, UsernamePasswordRoleAuthenticationFilter usernamePasswordRoleAuthenticationFilter) throws Exception
     {
         http.csrf(csrfCustomizer -> csrfCustomizer.disable())
             .cors(Customizer.withDefaults())
@@ -88,7 +88,7 @@ public class WebSecurityConfig
                 authorizeHttpRequestsCustomizer.anyRequest().authenticated())
             
             .exceptionHandling(a -> a.authenticationEntryPoint(authenticationEntryPointCustomImpl).accessDeniedHandler(accessDeniedHandlerCustomImpl))   
-            .addFilter(jwtAuthenticationFilter)
+            .addFilter(usernamePasswordRoleAuthenticationFilter)
             .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
             .addFilterBefore(endpointFilter, JwtAuthorizationFilter.class);
            
