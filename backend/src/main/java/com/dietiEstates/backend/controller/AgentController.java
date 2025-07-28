@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.List;
 
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
+import jakarta.validation.groups.Default;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -44,7 +46,7 @@ public class AgentController
 
 
     @PostMapping(path = "{username}/create-real-estate-for-sale")
-    public ResponseEntity<Long> createRealEstateForSale(@PathVariable String username, @Validated(OnCreate.class) @RequestBody RealEstateForSaleCreationDTO realEstateForSaleCreationDTO) 
+    public ResponseEntity<Long> createRealEstateForSale(@PathVariable String username, @Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateForSaleCreationDTO realEstateForSaleCreationDTO) 
     {
         return ResponseEntity.status(HttpStatus.CREATED)
                              .body(agentService.createRealEstate(username, realEstateForSaleCreationDTO));

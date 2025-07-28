@@ -1,13 +1,12 @@
 
 package com.dietiEstates.backend.exception;
 
-import java.lang.annotation.ElementType;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 import org.modelmapper.MappingException;
+import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -18,14 +17,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.server.handler.ResponseStatusExceptionHandler;
-import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import com.dietiEstates.backend.dto.response.ApiErrorResponse;
-import com.dietiEstates.backend.enums.EnergyClass;
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.fasterxml.jackson.databind.exc.ValueInstantiationException;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,32 +37,50 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 {
     // TODO: creare INTERNAL ERROR handler
 
-    
+
+    @Override
+    public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
+    {
+        List<String> errors = new ArrayList<>();
+
+        log.error("MethodArgumentNotValidException" + ex.getClass().getSimpleName());
+
+        log.error("ex.getMessage:  " + ex.getMessage());
+        log.error("ex.getTypeMessageCode:  " + ex.getTypeMessageCode());
+        log.error("ex.getTitleMessageCode:  " + ex.getTitleMessageCode());
+        log.error("ex.getDetailMessageCode:  " + ex.getDetailMessageCode());
+
+        ex.getBindingResult()
+          .getAllErrors()
+          .forEach((error) -> { String fieldName;
+                                try 
+                                {
+                                    fieldName = ((FieldError) error).getField();
+                                } 
+                                catch (ClassCastException exx) 
+                                {
+                                    fieldName = error.getObjectName();
+                                }
+
+                                String message = error.getDefaultMessage();
+                                
+                                errors.add(fieldName + ": " + message);});
+
+
+        String errorDescription = "ERRORE!";
+        String errorPath = request.getContextPath();
+
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDescription, errorPath, errors);
+        
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+
     @ExceptionHandler(MappingException.class)
     public ResponseEntity<?> handleMappingExceptions(MappingException e) 
     {
         return ResponseEntity.badRequest().header("Error", 
         "Problems while mapping! Probably the source object was different than the one expected!").body(null);
-    }
-
-
-    @Override
-    protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers,
-            HttpStatusCode status, WebRequest request) {
-
-                log.error("HANDLER NON TROVATO...");
-        return super.handleNoHandlerFoundException(ex, headers, status, request);
-    }
-
-    
-
-
-
-    @Override
-    protected ResponseEntity<Object> handleNoResourceFoundException(NoResourceFoundException ex, HttpHeaders headers,
-            HttpStatusCode status, WebRequest request) {
-                log.error("RESOURCE NON TROVATA...");
-        return super.handleNoResourceFoundException(ex, headers, status, request);
     }
 
 
@@ -80,9 +93,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         
         if (e.getCause() instanceof ValueInstantiationException) 
         {
-            int statusCode = HttpStatus.BAD_REQUEST.value();
-            String errorReason = HttpStatus.BAD_REQUEST.getReasonPhrase();
-            String errorType = HttpStatus.BAD_REQUEST.series().name();
             String errorDescription = "Errore durante la deserializzazione JSON! ";
             String errorPath = request.getDescription(false);
 
@@ -99,45 +109,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     }
 
 
-    @Override
-    //@ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
-    {
-        StringBuilder strBuilder = new StringBuilder();
-
-        e.getBindingResult().getAllErrors().forEach((error) -> {
-        String fieldName;
-        try {
-            fieldName = ((FieldError) error).getField();
-
-        } catch (ClassCastException ex) {
-            fieldName = error.getObjectName();
-        }
-        String message = error.getDefaultMessage();
-        strBuilder.append(String.format("%s: %s,  ", fieldName, message));
-        });
-
-        log.info("STR BUILDER : {}", strBuilder);
-        log.info("\n\ne.message : {}", e.getMessage());
-
-        Map<String, String> errors = new HashMap<>();
-        e.getBindingResult().getFieldErrors().forEach(error -> 
-            errors.put(error.getField(), error.getDefaultMessage()));
-        
-        log.info("MAP : {}", errors);
-
-        int statusCode = HttpStatus.BAD_REQUEST.value();
-        String errorReason = HttpStatus.BAD_REQUEST.getReasonPhrase();
-        String errorType = HttpStatus.BAD_REQUEST.series().name();
-        String errorDescription = "ERRORE!" + strBuilder;
-        String errorPath = request.getDescription(false);
-
-        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDescription, errorPath);
-        
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-    }
-
-
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ApiErrorResponse> handleConstraintViolationExceptions(ConstraintViolationException e, HttpServletRequest request) 
@@ -147,9 +118,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 
         if (isViolationFromEntity(e))
         {
-            int statusCode = HttpStatus.INTERNAL_SERVER_ERROR.value();
-            String errorReason = HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase();
-            String errorType = HttpStatus.INTERNAL_SERVER_ERROR.series().toString();
             String errorDescription = "Errore durante il salvataggio dei dati!";
             String errorPath = request.getRequestURI();
     
@@ -159,9 +127,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         }
         else
         {
-            int statusCode = HttpStatus.BAD_REQUEST.value();
-            String errorReason = HttpStatus.BAD_REQUEST.getReasonPhrase();
-            String errorType = HttpStatus.BAD_REQUEST.series().toString();
             String errorDescription = "ERRORE";
             String errorPath = request.getRequestURI();
     
