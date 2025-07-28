@@ -14,10 +14,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingPathVariableException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.dietiEstates.backend.dto.response.ApiErrorResponse;
@@ -35,42 +38,38 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 {
-    // TODO: creare INTERNAL ERROR handler
-
-
     @Override
     public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
+        log.error("Exception occurred: " + ex.getClass().getSimpleName());
+        log.error("Message: " + ex.getMessage());
+
+
         List<String> errors = new ArrayList<>();
-
-        log.error("MethodArgumentNotValidException" + ex.getClass().getSimpleName());
-
-        log.error("ex.getMessage:  " + ex.getMessage());
-        log.error("ex.getTypeMessageCode:  " + ex.getTypeMessageCode());
-        log.error("ex.getTitleMessageCode:  " + ex.getTitleMessageCode());
-        log.error("ex.getDetailMessageCode:  " + ex.getDetailMessageCode());
 
         ex.getBindingResult()
           .getAllErrors()
           .forEach((error) -> { String fieldName;
-                                try 
+                                if (error instanceof FieldError)
                                 {
                                     fieldName = ((FieldError) error).getField();
-                                } 
-                                catch (ClassCastException exx) 
-                                {
-                                    fieldName = error.getObjectName();
+
+                                    int lastDot = fieldName.lastIndexOf('.');
+                                    if (lastDot != -1) 
+                                        fieldName = fieldName.substring(lastDot + 1);
                                 }
+                                else 
+                                    fieldName = error.getObjectName();
 
                                 String message = error.getDefaultMessage();
                                 
                                 errors.add(fieldName + ": " + message);});
 
 
-        String errorDescription = "ERRORE!";
-        String errorPath = request.getContextPath();
+        String errorMessage = "Errore durante la validazione dei dati!";
+        String errorPath = request.getDescription(false);
 
-        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDescription, errorPath, errors);
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorMessage, errorPath, errors);
         
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
@@ -84,7 +83,57 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     }
 
 
+
+
     @Override
+    public ResponseEntity<Object> handleMissingPathVariable(MissingPathVariableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
+    {
+        return super.handleMissingPathVariable(ex, headers, status, request);
+    }
+
+/*     @Override
+protected ResponseEntity<Object> handleMissingServletRequestParameter(
+  MissingServletRequestParameterException ex, HttpHeaders headers, 
+  HttpStatus status, WebRequest request) {
+    String error = ex.getParameterName() + " parameter is missing";
+    
+    ApiError apiError = 
+      new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
+    return new ResponseEntity<Object>(
+      apiError, new HttpHeaders(), apiError.getStatus());
+} */
+
+
+    @Override
+    protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
+    {
+        log.error("Exception occurred: " + ex.getClass().getSimpleName());
+        log.error("Message: " + ex.getMessage());
+
+
+        String errorMessage = "Errore nella richiesta! Il parametro " + ex.getParameterName() + " di tipo '" + ex.getParameterType() + "' non è presente";
+        String errorPath = request.getDescription(false);
+
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorMessage, errorPath);
+        
+        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
+    
+        //return super.handleMissingServletRequestParameter(ex, headers, status, request);
+    }
+
+
+    @Override
+    protected ResponseEntity<Object> handleMissingServletRequestPart(MissingServletRequestPartException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
+    {
+        return super.handleMissingServletRequestPart(ex, headers, status, request);
+    }
+
+
+
+
+
+
+@Override
     //@ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException e, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {

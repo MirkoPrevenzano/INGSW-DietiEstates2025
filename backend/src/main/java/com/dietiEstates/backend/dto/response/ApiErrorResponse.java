@@ -21,7 +21,7 @@ public class ApiErrorResponse
     private int status;
     private String reason;    
     private String type;
-    private String description;
+    private String message;
     private List<String> errors;
     private String path;
 
@@ -29,24 +29,24 @@ public class ApiErrorResponse
     private LocalDateTime timestamp = LocalDateTime.now();
 
 
-    public ApiErrorResponse(HttpStatus httpStatus, String description, String path) 
+    public ApiErrorResponse(HttpStatus httpStatus, String message, String path) 
     {
         this.status = httpStatus.value();
         this.reason = httpStatus.getReasonPhrase();
         this.type = httpStatus.series().name();
-        this.description = description;
+        this.message = message;
         this.path = path;
     }
 
-    public ApiErrorResponse(HttpStatus httpStatus, String description, String path, List<String> errors) 
+    public ApiErrorResponse(HttpStatus httpStatus, String message, String path, List<String> errors) 
     {
-        this(httpStatus, description, path);
+        this(httpStatus, message, path);
         this.errors = errors;
     }
 
-    public ApiErrorResponse(HttpStatus httpStatus, String description, String path, String error) 
+    public ApiErrorResponse(HttpStatus httpStatus, String message, String path, String error) 
     {
-        this(httpStatus, description, path);
+        this(httpStatus, message, path);
         this.errors = Arrays.asList(error);
     }
 }
