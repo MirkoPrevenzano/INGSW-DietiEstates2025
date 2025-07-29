@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
@@ -44,9 +45,16 @@ public class AgentController
     private final PdfExportService pdfExportService;
     private final CsvExportService csvExportService;
 
+    @GetMapping("prova/{param}")
+    public String getMethodName(@PathVariable String paòram) 
+    {
+        return new String();
+    }
+    
 
-    @PostMapping(path = "{username}/create-real-estate-for-sale")
-    public ResponseEntity<Long> createRealEstateForSale(@PathVariable String username, @Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateForSaleCreationDTO realEstateForSaleCreationDTO) 
+    @PostMapping(path = "{username}/create-real-estate-for-sale/{lol}")
+    public ResponseEntity<Long> createRealEstateForSale(@PathVariable() String username, @Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateForSaleCreationDTO realEstateForSaleCreationDTO, 
+    @PathVariable(required = true) String lol, @RequestParam(required = true) String prova) 
     {
         return ResponseEntity.status(HttpStatus.CREATED)
                              .body(agentService.createRealEstate(username, realEstateForSaleCreationDTO));

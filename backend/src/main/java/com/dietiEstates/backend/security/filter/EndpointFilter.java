@@ -1,4 +1,4 @@
-
+/* 
 package com.dietiEstates.backend.security.filter;
 
 import java.io.IOException;
@@ -84,4 +84,4 @@ public class EndpointFilter extends OncePerRequestFilter
         log.info("EndpointFilter is OK!");
         filterChain.doFilter(request, response);
     }
-}
+} */

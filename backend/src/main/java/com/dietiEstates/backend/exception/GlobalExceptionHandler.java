@@ -88,20 +88,19 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     @Override
     public ResponseEntity<Object> handleMissingPathVariable(MissingPathVariableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
-        return super.handleMissingPathVariable(ex, headers, status, request);
-    }
+        log.error("Exception occurred: " + ex.getClass().getSimpleName());
+        log.error("Message: " + ex.getMessage());
 
-/*     @Override
-protected ResponseEntity<Object> handleMissingServletRequestParameter(
-  MissingServletRequestParameterException ex, HttpHeaders headers, 
-  HttpStatus status, WebRequest request) {
-    String error = ex.getParameterName() + " parameter is missing";
-    
-    ApiError apiError = 
-      new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), error);
-    return new ResponseEntity<Object>(
-      apiError, new HttpHeaders(), apiError.getStatus());
-} */
+        
+        String errorMessage = "Errore nella richiesta! La variabile URI obbligatoria '" + ex.getVariableName()  + "' di tipo '" + ex.getParameter().getNestedParameterType().getSimpleName() + "' non è presente.";
+        String errorPath = request.getDescription(false);
+
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorMessage, errorPath);
+        
+        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
+
+        //return super.handleMissingPathVariable(ex, headers, status, request);
+    }
 
 
     @Override
@@ -110,11 +109,11 @@ protected ResponseEntity<Object> handleMissingServletRequestParameter(
         log.error("Exception occurred: " + ex.getClass().getSimpleName());
         log.error("Message: " + ex.getMessage());
 
-
-        String errorMessage = "Errore nella richiesta! Il parametro " + ex.getParameterName() + " di tipo '" + ex.getParameterType() + "' non è presente";
+        
+        String errorMessage = "Errore nella richiesta! Il parametro obbligatorio '" + ex.getParameterName() + "' di tipo '" + ex.getParameterType() + "' non è presente.";
         String errorPath = request.getDescription(false);
 
-        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorMessage, errorPath);
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorMessage, errorPath);
         
         return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
     
@@ -184,6 +183,21 @@ protected ResponseEntity<Object> handleMissingServletRequestParameter(
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
     }
+
+/*     @ExceptionHandler({ ConstraintViolationException.class })
+public ResponseEntity<Object> handleConstraintViolation(
+  ConstraintViolationException ex, WebRequest request) {
+    List<String> errors = new ArrayList<String>();
+    for (ConstraintViolation<?> violation : ex.getConstraintViolations()) {
+        errors.add(violation.getRootBeanClass().getName() + " " + 
+          violation.getPropertyPath() + ": " + violation.getMessage());
+    }
+
+    ApiError apiError = 
+      new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), errors);
+    return new ResponseEntity<Object>(
+      apiError, new HttpHeaders(), apiError.getStatus());
+} */
 
 
     private boolean isViolationFromEntity(ConstraintViolationException e) 
