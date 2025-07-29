@@ -13,6 +13,9 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpMediaTypeNotAcceptableException;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -38,6 +41,34 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 {
+
+    @Override
+    protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex,
+            HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        // TODO Auto-generated method stub
+        return super.handleHttpRequestMethodNotSupported(ex, headers, status, request);
+    }
+
+    
+    @Override
+    protected ResponseEntity<Object> handleHttpMediaTypeNotAcceptable(HttpMediaTypeNotAcceptableException ex,
+            HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        // TODO Auto-generated method stub
+        return super.handleHttpMediaTypeNotAcceptable(ex, headers, status, request);
+    }
+
+
+    @Override
+    protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex,
+            HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        // TODO Auto-generated method stub
+        return super.handleHttpMediaTypeNotSupported(ex, headers, status, request);
+    }
+
+
+
+
+
     @Override
     public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
@@ -124,7 +155,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     @Override
     protected ResponseEntity<Object> handleMissingServletRequestPart(MissingServletRequestPartException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
-        return super.handleMissingServletRequestPart(ex, headers, status, request);
+        log.error("Exception occurred: " + ex.getClass().getSimpleName());
+        log.error("Message: " + ex.getMessage());
+
+        
+        String errorMessage = "Errore nella richiesta! La parte obbligatoria '" + ex.getRequestPartName() + "' non è presente.";
+        String errorPath = request.getDescription(false);
+
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorMessage, errorPath);
+        
+        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
+
+        //return super.handleMissingServletRequestPart(ex, headers, status, request);
     }
 
 
@@ -141,7 +183,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         
         if (e.getCause() instanceof ValueInstantiationException) 
         {
-            String errorDescription = "Errore durante la deserializzazione JSON! ";
+            String errorDescription = "Errore durante la deserializzazione dei dati JSON! ";
             String errorPath = request.getDescription(false);
 
             ValueInstantiationException vie = (ValueInstantiationException) e.getCause();
