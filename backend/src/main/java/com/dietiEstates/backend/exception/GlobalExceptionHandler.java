@@ -2,12 +2,14 @@
 package com.dietiEstates.backend.exception;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import org.modelmapper.MappingException;
+
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.ElementKind;
+import jakarta.validation.Path;
+
 import org.springframework.beans.TypeMismatchException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -24,19 +26,14 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.dietiEstates.backend.dto.response.ApiErrorResponse;
+
 import com.fasterxml.jackson.databind.exc.ValueInstantiationException;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
-import jakarta.validation.ElementKind;
-import jakarta.validation.Path;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -47,48 +44,44 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
-        log.error("Exception occurred: " + ex.getClass().getSimpleName());
-        log.error("Message: " + ex.getMessage());
+        logExceptionInfo(ex);
 
-        
-        String errorDetail = "Errore nella richiesta! Il metodo HTTP '" +  ex.getMethod() + "' non è supportato. I metodi supportati sono: {" + ex.getSupportedHttpMethods() + "}";
         String errorPath = request.getDescription(false);
+        String errorDetail = "Errore nella richiesta! " +
+                             "Il metodo HTTP '" +  ex.getMethod() + "' non è supportato. " +  
+                             "I metodi supportati sono: {" + ex.getSupportedHttpMethods() + "}";
 
         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
         
-        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);        
-        
-        //return super.handleHttpRequestMethodNotSupported(ex, headers, status, request);
+        return ResponseEntity.status(errorResponse.getStatus())
+                             .body(errorResponse);                
     }
-
 
     @Override
     protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
-        log.error("Exception occurred: " + ex.getClass().getSimpleName());
-        log.error("Message: " + ex.getMessage());
+        logExceptionInfo(ex);
 
-        
-        String errorDetail = "Errore nella richiesta! Il content media type '" +  ex.getContentType() + "' non è supportato. I content supportati sono: {" + ex.getSupportedMediaTypes() + "}";
         String errorPath = request.getDescription(false);
+        String errorDetail = "Errore nella richiesta! " + 
+                             "Il content media type '" +  ex.getContentType() + "' non è supportato. " + 
+                             "I content supportati sono: {" + ex.getSupportedMediaTypes() + "}";
 
         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
         
-        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);        
-
-        // return super.handleHttpMediaTypeNotSupported(ex, headers, status, request);
+        return ResponseEntity.status(errorResponse.getStatus())
+                             .body(errorResponse);        
     }
-
 
     @Override
     protected ResponseEntity<Object> handleHttpMediaTypeNotAcceptable(HttpMediaTypeNotAcceptableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
-        log.error("Exception occurred: " + ex.getClass().getSimpleName());
-        log.error("Message: " + ex.getMessage());
+        logExceptionInfo(ex);
 
-        
-        String errorDetail = "Errore nella richiesta! Il content media type non è in una rappresentazione accettabile. I content supportati sono: {" + ex.getSupportedMediaTypes() + "}";
         String errorPath = request.getDescription(false);
+        String errorDetail = "Errore nella richiesta! " + 
+                             "Il content media type non è in una rappresentazione accettabile. " + 
+                             "I content supportati sono: {" + ex.getSupportedMediaTypes() + "}";
 
         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
         
@@ -98,224 +91,179 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         return ResponseEntity.status(errorResponse.getStatus())
                              .headers(responseHeaders)
                              .body(errorResponse);
-
-        // return super.handleHttpMediaTypeNotAcceptable(ex, headers, status, request);
     }
-
-
-
-
-
 
     @Override
     public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
-        log.error("Exception occurred: " + ex.getClass().getSimpleName());
-        log.error("Message: " + ex.getMessage());
+        logExceptionInfo(ex);
 
-
-        List<String> errors = new ArrayList<>();
+        List<String> subErrors = new ArrayList<>();
 
         ex.getBindingResult()
           .getAllErrors()
-          .forEach((error) -> { String fieldName;
-                                if (error instanceof FieldError)
-                                {
-                                    fieldName = ((FieldError) error).getField();
+          .forEach(error -> { String fieldName;
+                              if (error instanceof FieldError)
+                              {
+                                fieldName = ((FieldError) error).getField();
 
-                                    int lastDot = fieldName.lastIndexOf('.');
-                                    if (lastDot != -1) 
-                                        fieldName = fieldName.substring(lastDot + 1);
-                                }
-                                else 
-                                    fieldName = error.getObjectName();
+                                int lastDot = fieldName.lastIndexOf('.');
+                                if (lastDot != -1) 
+                                    fieldName = fieldName.substring(lastDot + 1);
+                              }
+                              else 
+                                fieldName = error.getObjectName();
 
                                 String message = error.getDefaultMessage();
                                 
-                                errors.add(fieldName + ": " + message);});
+                                subErrors.add(fieldName + ": " + message);
+                            });
 
-
-        String errorDetail = "Errore durante la validazione dei dati!";
         String errorPath = request.getDescription(false);
+        String errorDetail = "Errore durante la validazione dei dati!";
 
-        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDetail, errorPath, errors);
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath, subErrors);
         
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        return ResponseEntity.status(errorResponse.getStatus())
+                             .body(errorResponse);
     }
-
-
-    @ExceptionHandler(MappingException.class)
-    public ResponseEntity<?> handleMappingExceptions(MappingException e) 
-    {
-        return ResponseEntity.badRequest().header("Error", 
-        "Problems while mapping! Probably the source object was different than the one expected!").body(null);
-    }
-
-
-
 
     @Override
     public ResponseEntity<Object> handleMissingPathVariable(MissingPathVariableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
-        log.error("Exception occurred: " + ex.getClass().getSimpleName());
-        log.error("Message: " + ex.getMessage());
+        logExceptionInfo(ex);
 
-        
-        String errorDetail = "Errore nella richiesta! La variabile URI obbligatoria '" + ex.getVariableName()  + "' di tipo '" + ex.getParameter().getNestedParameterType().getSimpleName() + "' non è presente.";
         String errorPath = request.getDescription(false);
+        String errorDetail = "Errore nella richiesta! " + 
+                             "La variabile URI obbligatoria '" + ex.getVariableName()  + "' " + 
+                             "di tipo '" + ex.getParameter().getNestedParameterType().getSimpleName() + "' non è presente.";
 
         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
         
-        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
-
-        //return super.handleMissingPathVariable(ex, headers, status, request);
+        return ResponseEntity.status(errorResponse.getStatus())
+                             .body(errorResponse);
     }
-
 
     @Override
     protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
-        log.error("Exception occurred: " + ex.getClass().getSimpleName());
-        log.error("Message: " + ex.getMessage());
-
+        logExceptionInfo(ex);
         
-        String errorDetail = "Errore nella richiesta! Il parametro obbligatorio '" + ex.getParameterName() + "' di tipo '" + ex.getParameterType() + "' non è presente.";
         String errorPath = request.getDescription(false);
+        String errorDetail = "Errore nella richiesta! " +
+                             "Il parametro URI obbligatorio '" + ex.getParameterName() + "' " + 
+                             "di tipo '" + ex.getParameterType() + "' non è presente.";
 
         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
         
-        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
-    
-        //return super.handleMissingServletRequestParameter(ex, headers, status, request);
+        return ResponseEntity.status(errorResponse.getStatus())
+                             .body(errorResponse);    
     }
-
 
     @Override
     protected ResponseEntity<Object> handleMissingServletRequestPart(MissingServletRequestPartException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
-        log.error("Exception occurred: " + ex.getClass().getSimpleName());
-        log.error("Message: " + ex.getMessage());
+        logExceptionInfo(ex);
 
-        
-        String errorDetail = "Errore nella richiesta! La parte obbligatoria '" + ex.getRequestPartName() + "' non è presente.";
-        String errorPath = request.getDescription(false);
+        String errorPath = request.getDescription(false);        
+        String errorDetail = "Errore nella richiesta! " +  
+                             "La parte obbligatoria '" + ex.getRequestPartName() + "' non è presente.";
 
         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
         
-        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
-
-        //return super.handleMissingServletRequestPart(ex, headers, status, request);
+        return ResponseEntity.status(errorResponse.getStatus())
+                             .body(errorResponse);
     }
-
-
-
-
-
 
     @Override
     protected ResponseEntity<Object> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
-        log.error("Exception occurred: " + ex.getClass().getSimpleName());
-        log.error("Message: " + ex.getMessage());
+        logExceptionInfo(ex);
 
-        
-        String errorDetail = "Errore nella richiesta! Superata la soglia massima di dimensione di upload.";
         String errorPath = request.getDescription(false);
+        String errorDetail = "Errore nella richiesta! Superata la soglia massima di dimensione di upload.";
 
         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
         
-        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);        
-        
-        // return super.handleMaxUploadSizeExceededException(ex, headers, status, request);
+        return ResponseEntity.status(errorResponse.getStatus())
+                             .body(errorResponse);                
     }
-
-
 
     @Override
     protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
-        log.error("Exception occurred: " + ex.getClass().getSimpleName());
-        log.error("Message: " + ex.getMessage());
+        logExceptionInfo(ex);
 
-
-        String errorDescription = "Errore nella richiesta! Fallimento nel convertire il valore '" + ex.getValue() + "' " + 
+        String errorPath = request.getDescription(false);
+        String errorDescription = "Errore nella richiesta! " + 
+                                  "Fallimento nel convertire il valore '" + ex.getValue() + "' " + 
                                   "del parametro '" + ex.getPropertyName() + "' " + 
                                   "nel tipo richiesto '" + ex.getRequiredType().getSimpleName() +  "'";
-        String errorPath = request.getDescription(false);
 
         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDescription, errorPath);
 
-        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
-
-        // return super.handleTypeMismatch(ex, headers, status, request);
+        return ResponseEntity.status(errorResponse.getStatus())
+                             .body(errorResponse);
     }
 
-
-
-    
-
-@Override
-    //@ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException e, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
+    @Override
+    public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
-        log.error("HttpMessageNotReadableException!");
-        log.error(e.getMessage());
+        logExceptionInfo(ex);
         
-        if (e.getCause() instanceof ValueInstantiationException) 
+        if (ex.getCause() instanceof ValueInstantiationException) 
         {
-            String errorDescription = "Errore durante la deserializzazione dei dati JSON! ";
             String errorPath = request.getDescription(false);
+            String errorDescription = "Errore durante la deserializzazione dei dati JSON! ";
 
-            ValueInstantiationException vie = (ValueInstantiationException) e.getCause();
+            ValueInstantiationException vie = (ValueInstantiationException) ex.getCause();
             errorDescription += vie.getCause().getMessage();
 
-            //ApiErrorResponse errorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
             ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDescription, errorPath);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                                 .body(errorResponse);
         }
         else
-            return super.handleHttpMessageNotReadable(e, headers, status, request);
+            return super.handleHttpMessageNotReadable(ex, headers, status, request);
 
     }
-
 
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) 
+    public ResponseEntity<Object> handleGenericException(Exception ex, WebRequest request) 
     {
-        log.error("Exception occurred: " + ex.getClass().getSimpleName());
-        log.error("Message: " + ex.getMessage());
+        logExceptionInfo(ex);
 
-
-        String errorDescription = "Errore interno non gestito.";
         String errorPath = request.getDescription(false);
+        String errorDescription = "Errore interno non gestito.";
 
         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, errorDescription, errorPath);
 
-        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
+        return ResponseEntity.status(errorResponse.getStatus())
+                             .body(errorResponse);
     }
 
-
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<ApiErrorResponse> handleConstraintViolationExceptions(ConstraintViolationException e, WebRequest request) 
+    public ResponseEntity<ApiErrorResponse> handleConstraintViolationException(ConstraintViolationException ex, WebRequest request) 
     {
-        log.error("ConstraintViolationException!");
-        log.error(e.getMessage());
+        logExceptionInfo(ex);
 
-        if (isViolationFromEntity(e))
+        if (isViolationFromEntity(ex))
         {
-            String errorDescription = "Errore durante il salvataggio dei dati!";
             String errorPath = request.getDescription(false);
-    
+            String errorDescription = "Errore durante il salvataggio dei dati!";
+
             ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, errorDescription, errorPath);
             
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+            return ResponseEntity.status(errorResponse.getStatus())
+                                 .body(errorResponse);
         }
         else
         {
-            List<String> errors = new ArrayList<>();
+            List<String> subErrors = new ArrayList<>();
 
-            e.getConstraintViolations()
+            ex.getConstraintViolations()
              .forEach(cv -> { String parameterName;
                               String parameterPath = cv.getPropertyPath().toString(); 
 
@@ -327,27 +275,33 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 
                               String message = cv.getMessage();
                 
-                              errors.add(parameterName + ": " + message);});
+                              subErrors.add(parameterName + ": " + message);
+                            });
 
 
-            String errorDetail = "Errore durante la validazione dei dati!";
             String errorPath = request.getDescription(false);           
+            String errorDetail = "Errore durante la validazione dei dati!";
 
-            ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDetail, errorPath, errors);
+            ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDetail, errorPath, subErrors);
             
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+            return ResponseEntity.status(errorResponse.getStatus())
+                                 .body(errorResponse);
         }
     }
 
-    
 
     private boolean isViolationFromEntity(ConstraintViolationException e) 
     {
-        //e.getConstraintViolations().iterator().next().getPropertyPath().iterator().next().getKind().equals(ElementKind.PROPERTY)
         ConstraintViolation<?> firstViolation = e.getConstraintViolations().iterator().next();
         Path.Node firstNode = firstViolation.getPropertyPath().iterator().next();
         ElementKind kind = firstNode.getKind();
            
         return kind == ElementKind.PROPERTY ? true : false;
+    }
+
+    private void logExceptionInfo(Exception ex)
+    {
+        log.error("Exception occurred: " + ex.getClass().getSimpleName());
+        log.error(ex.getMessage());
     }
 }

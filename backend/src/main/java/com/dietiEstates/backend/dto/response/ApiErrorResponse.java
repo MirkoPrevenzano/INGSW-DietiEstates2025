@@ -22,7 +22,7 @@ public class ApiErrorResponse
     private String title;    
     private String type;
     private String detail;
-    private List<String> errors;
+    private List<String> subErrors;
     private String path;
 
     @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd, HH:mm:ss")
@@ -38,15 +38,15 @@ public class ApiErrorResponse
         this.path = path;
     }
 
-    public ApiErrorResponse(HttpStatus httpStatus, String detail, String path, List<String> errors) 
+    public ApiErrorResponse(HttpStatus httpStatus, String detail, String path, List<String> subErrors) 
     {
         this(httpStatus, detail, path);
-        this.errors = errors;
+        this.subErrors = subErrors;
     }
 
-    public ApiErrorResponse(HttpStatus httpStatus, String detail, String path, String error) 
+    public ApiErrorResponse(HttpStatus httpStatus, String detail, String path, String subError) 
     {
         this(httpStatus, detail, path);
-        this.errors = Arrays.asList(error);
+        this.subErrors = Arrays.asList(subError);
     }
 }
