@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -210,6 +211,38 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 
 
 
+
+@Override
+    protected ResponseEntity<Object> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException ex,
+            HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        // TODO Auto-generated method stub
+        return super.handleMaxUploadSizeExceededException(ex, headers, status, request);
+    }
+
+
+
+    @Override
+    protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
+    {
+        log.error("Exception occurred: " + ex.getClass().getSimpleName());
+        log.error("Message: " + ex.getMessage());
+
+
+        String errorDescription = "Errore nella richiesta! Fallimento nel convertire il valore '" + ex.getValue() + "' " + 
+                                  "del parametro '" + ((MethodArgumentTypeMismatchException) ex).getName() + "' " + 
+                                  "nel tipo richiesto '" + ex.getRequiredType().getSimpleName() +  "'";
+        String errorPath = request.getDescription(false);
+
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDescription, errorPath);
+
+        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
+
+        // return super.handleTypeMismatch(ex, headers, status, request);
+    }
+
+
+
+    
 
 @Override
     //@ExceptionHandler(HttpMessageNotReadableException.class)

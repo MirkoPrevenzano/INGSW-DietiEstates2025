@@ -32,7 +32,7 @@ public class ApiErrorResponse
     public ApiErrorResponse(HttpStatus httpStatus, String detail, String path) 
     {
         this.status = httpStatus.value();
-        this.detail = httpStatus.getReasonPhrase();
+        this.title = httpStatus.getReasonPhrase();
         this.type = httpStatus.series().name();
         this.detail = detail;
         this.path = path;

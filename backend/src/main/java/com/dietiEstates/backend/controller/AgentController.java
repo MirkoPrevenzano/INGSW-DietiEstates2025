@@ -56,7 +56,7 @@ public class AgentController
 
     @PostMapping(path = "{username}/create-real-estate-for-sale/{lol}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Long> createRealEstateForSale(@PathVariable() String username, @Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateForSaleCreationDTO realEstateForSaleCreationDTO, 
-    @PathVariable(required = true) String lol, @RequestParam(required = true) String prova) 
+    @PathVariable(required = true) Integer lol, @RequestParam(required = true) Integer prova) 
     {
         return ResponseEntity.status(HttpStatus.CREATED)
                              .body(agentService.createRealEstate(username, realEstateForSaleCreationDTO));
