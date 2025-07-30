@@ -10,6 +10,7 @@ import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
@@ -43,27 +44,63 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 {
 
     @Override
-    protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex,
-            HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        // TODO Auto-generated method stub
-        return super.handleHttpRequestMethodNotSupported(ex, headers, status, request);
+    protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
+    {
+        log.error("Exception occurred: " + ex.getClass().getSimpleName());
+        log.error("Message: " + ex.getMessage());
+
+        
+        String errorDetail = "Errore nella richiesta! Il metodo HTTP '" +  ex.getMethod() + "' non è supportato. I metodi supportati sono: {" + ex.getSupportedHttpMethods() + "}";
+        String errorPath = request.getDescription(false);
+
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
+        
+        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);        
+        
+        //return super.handleHttpRequestMethodNotSupported(ex, headers, status, request);
     }
 
-    
+
     @Override
-    protected ResponseEntity<Object> handleHttpMediaTypeNotAcceptable(HttpMediaTypeNotAcceptableException ex,
-            HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        // TODO Auto-generated method stub
-        return super.handleHttpMediaTypeNotAcceptable(ex, headers, status, request);
+    protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
+    {
+        log.error("Exception occurred: " + ex.getClass().getSimpleName());
+        log.error("Message: " + ex.getMessage());
+
+        
+        String errorDetail = "Errore nella richiesta! Il content media type '" +  ex.getContentType() + "' non è supportato. I content supportati sono: {" + ex.getSupportedMediaTypes() + "}";
+        String errorPath = request.getDescription(false);
+
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
+        
+        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);        
+
+        // return super.handleHttpMediaTypeNotSupported(ex, headers, status, request);
     }
 
 
     @Override
-    protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex,
-            HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        // TODO Auto-generated method stub
-        return super.handleHttpMediaTypeNotSupported(ex, headers, status, request);
+    protected ResponseEntity<Object> handleHttpMediaTypeNotAcceptable(HttpMediaTypeNotAcceptableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
+    {
+        log.error("Exception occurred: " + ex.getClass().getSimpleName());
+        log.error("Message: " + ex.getMessage());
+
+        
+        String errorDetail = "Errore nella richiesta! Il content media type non è in una rappresentazione accettabile. I content supportati sono: {" + ex.getSupportedMediaTypes() + "}";
+        String errorPath = request.getDescription(false);
+
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
+        
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+        
+        return ResponseEntity.status(errorResponse.getStatus())
+                             .headers(responseHeaders)
+                             .body(errorResponse);
+
+        // return super.handleHttpMediaTypeNotAcceptable(ex, headers, status, request);
     }
+
 
 
 
@@ -97,10 +134,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
                                 errors.add(fieldName + ": " + message);});
 
 
-        String errorMessage = "Errore durante la validazione dei dati!";
+        String errorDetail = "Errore durante la validazione dei dati!";
         String errorPath = request.getDescription(false);
 
-        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorMessage, errorPath, errors);
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDetail, errorPath, errors);
         
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
@@ -123,10 +160,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         log.error("Message: " + ex.getMessage());
 
         
-        String errorMessage = "Errore nella richiesta! La variabile URI obbligatoria '" + ex.getVariableName()  + "' di tipo '" + ex.getParameter().getNestedParameterType().getSimpleName() + "' non è presente.";
+        String errorDetail = "Errore nella richiesta! La variabile URI obbligatoria '" + ex.getVariableName()  + "' di tipo '" + ex.getParameter().getNestedParameterType().getSimpleName() + "' non è presente.";
         String errorPath = request.getDescription(false);
 
-        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorMessage, errorPath);
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
         
         return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
 
@@ -141,10 +178,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         log.error("Message: " + ex.getMessage());
 
         
-        String errorMessage = "Errore nella richiesta! Il parametro obbligatorio '" + ex.getParameterName() + "' di tipo '" + ex.getParameterType() + "' non è presente.";
+        String errorDetail = "Errore nella richiesta! Il parametro obbligatorio '" + ex.getParameterName() + "' di tipo '" + ex.getParameterType() + "' non è presente.";
         String errorPath = request.getDescription(false);
 
-        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorMessage, errorPath);
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
         
         return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
     
@@ -159,10 +196,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         log.error("Message: " + ex.getMessage());
 
         
-        String errorMessage = "Errore nella richiesta! La parte obbligatoria '" + ex.getRequestPartName() + "' non è presente.";
+        String errorDetail = "Errore nella richiesta! La parte obbligatoria '" + ex.getRequestPartName() + "' non è presente.";
         String errorPath = request.getDescription(false);
 
-        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorMessage, errorPath);
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
         
         return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
 

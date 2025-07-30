@@ -19,9 +19,9 @@ import lombok.NoArgsConstructor;
 public class ApiErrorResponse 
 {
     private int status;
-    private String reason;    
+    private String title;    
     private String type;
-    private String message;
+    private String detail;
     private List<String> errors;
     private String path;
 
@@ -29,24 +29,24 @@ public class ApiErrorResponse
     private LocalDateTime timestamp = LocalDateTime.now();
 
 
-    public ApiErrorResponse(HttpStatus httpStatus, String message, String path) 
+    public ApiErrorResponse(HttpStatus httpStatus, String detail, String path) 
     {
         this.status = httpStatus.value();
-        this.reason = httpStatus.getReasonPhrase();
+        this.detail = httpStatus.getReasonPhrase();
         this.type = httpStatus.series().name();
-        this.message = message;
+        this.detail = detail;
         this.path = path;
     }
 
-    public ApiErrorResponse(HttpStatus httpStatus, String message, String path, List<String> errors) 
+    public ApiErrorResponse(HttpStatus httpStatus, String detail, String path, List<String> errors) 
     {
-        this(httpStatus, message, path);
+        this(httpStatus, detail, path);
         this.errors = errors;
     }
 
-    public ApiErrorResponse(HttpStatus httpStatus, String message, String path, String error) 
+    public ApiErrorResponse(HttpStatus httpStatus, String detail, String path, String error) 
     {
-        this(httpStatus, message, path);
+        this(httpStatus, detail, path);
         this.errors = Arrays.asList(error);
     }
 }
