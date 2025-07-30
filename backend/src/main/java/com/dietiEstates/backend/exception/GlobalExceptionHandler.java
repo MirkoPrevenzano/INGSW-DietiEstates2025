@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import org.modelmapper.MappingException;
 import org.springframework.beans.TypeMismatchException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -43,7 +44,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 {
-
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
@@ -212,11 +212,21 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 
 
 
-@Override
-    protected ResponseEntity<Object> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException ex,
-            HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        // TODO Auto-generated method stub
-        return super.handleMaxUploadSizeExceededException(ex, headers, status, request);
+    @Override
+    protected ResponseEntity<Object> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
+    {
+        log.error("Exception occurred: " + ex.getClass().getSimpleName());
+        log.error("Message: " + ex.getMessage());
+
+        
+        String errorDetail = "Errore nella richiesta! Superata la soglia massima di dimensione di upload.";
+        String errorPath = request.getDescription(false);
+
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
+        
+        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);        
+        
+        // return super.handleMaxUploadSizeExceededException(ex, headers, status, request);
     }
 
 
@@ -229,7 +239,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 
 
         String errorDescription = "Errore nella richiesta! Fallimento nel convertire il valore '" + ex.getValue() + "' " + 
-                                  "del parametro '" + ((MethodArgumentTypeMismatchException) ex).getName() + "' " + 
+                                  "del parametro '" + ex.getPropertyName() + "' " + 
                                   "nel tipo richiesto '" + ex.getRequiredType().getSimpleName() +  "'";
         String errorPath = request.getDescription(false);
 
@@ -270,8 +280,24 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 
 
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) 
+    {
+        log.error("Exception occurred: " + ex.getClass().getSimpleName());
+        log.error("Message: " + ex.getMessage());
+
+
+        String errorDescription = "Errore interno non gestito.";
+        String errorPath = request.getDescription(false);
+
+        ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, errorDescription, errorPath);
+
+        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
+    }
+
+
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<ApiErrorResponse> handleConstraintViolationExceptions(ConstraintViolationException e, HttpServletRequest request) 
+    public ResponseEntity<ApiErrorResponse> handleConstraintViolationExceptions(ConstraintViolationException e, WebRequest request) 
     {
         log.error("ConstraintViolationException!");
         log.error(e.getMessage());
@@ -279,7 +305,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         if (isViolationFromEntity(e))
         {
             String errorDescription = "Errore durante il salvataggio dei dati!";
-            String errorPath = request.getRequestURI();
+            String errorPath = request.getDescription(false);
     
             ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, errorDescription, errorPath);
             
@@ -287,30 +313,33 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         }
         else
         {
-            String errorDescription = "ERRORE";
-            String errorPath = request.getRequestURI();
-    
-            ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDescription, errorPath);
+            List<String> errors = new ArrayList<>();
+
+            e.getConstraintViolations()
+             .forEach(cv -> { String parameterName;
+                              String parameterPath = cv.getPropertyPath().toString(); 
+
+                              int lastDot = parameterPath.lastIndexOf('.');
+                              if (lastDot != -1) 
+                                parameterName = parameterPath.substring(lastDot + 1); 
+                              else
+                                parameterName = parameterPath;
+
+                              String message = cv.getMessage();
+                
+                              errors.add(parameterName + ": " + message);});
+
+
+            String errorDetail = "Errore durante la validazione dei dati!";
+            String errorPath = request.getDescription(false);           
+
+            ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDetail, errorPath, errors);
             
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
     }
 
-/*     @ExceptionHandler({ ConstraintViolationException.class })
-public ResponseEntity<Object> handleConstraintViolation(
-  ConstraintViolationException ex, WebRequest request) {
-    List<String> errors = new ArrayList<String>();
-    for (ConstraintViolation<?> violation : ex.getConstraintViolations()) {
-        errors.add(violation.getRootBeanClass().getName() + " " + 
-          violation.getPropertyPath() + ": " + violation.getMessage());
-    }
-
-    ApiError apiError = 
-      new ApiError(HttpStatus.BAD_REQUEST, ex.getLocalizedMessage(), errors);
-    return new ResponseEntity<Object>(
-      apiError, new HttpHeaders(), apiError.getStatus());
-} */
-
+    
 
     private boolean isViolationFromEntity(ConstraintViolationException e) 
     {

@@ -6,6 +6,8 @@ import java.util.List;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import jakarta.validation.groups.Default;
 
 import org.springframework.data.domain.PageRequest;
@@ -56,7 +58,7 @@ public class AgentController
 
     @PostMapping(path = "{username}/create-real-estate-for-sale/{lol}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Long> createRealEstateForSale(@PathVariable() String username, @Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateForSaleCreationDTO realEstateForSaleCreationDTO, 
-    @PathVariable(required = true) Integer lol, @RequestParam(required = true) Integer prova) 
+    @Min(5) @PathVariable(required = true) Integer lol, @Min(2) @RequestParam(required = true) Integer prova) 
     {
         return ResponseEntity.status(HttpStatus.CREATED)
                              .body(agentService.createRealEstate(username, realEstateForSaleCreationDTO));
