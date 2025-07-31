@@ -9,6 +9,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.groups.Default;
 
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,7 @@ import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
 import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDTO;
 import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDTO;
 import com.dietiEstates.backend.service.AgentService;
+import com.dietiEstates.backend.service.export.ExportReportWrapper;
 import com.dietiEstates.backend.service.export.csv.CsvExportService;
 import com.dietiEstates.backend.service.export.pdf.PdfExportService;
 import com.dietiEstates.backend.validator.groups.OnCreate;
@@ -44,7 +47,7 @@ public class AgentController
 {
     private final AgentService agentService;
     private final PdfExportService pdfExportService;
-    private final CsvExportService csvExportService;
+    //private final CsvExportService csvExportService;
 
     @GetMapping("prova/{param}")
     public String getMethodName(@PathVariable String paòram) 
@@ -83,21 +86,34 @@ public class AgentController
     }
 
 
-    @GetMapping(value = "/{username}/exportCSV2")
+/*     @GetMapping(value = "/{username}/exportCSV2")
     public ResponseEntity<Void> exportToCSV2(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {   
         csvExportService.exportCsvReport(username, response);
         return ResponseEntity.status(HttpStatus.OK).build();
-    }
+    } */
        
 
-    @GetMapping(value = "/{username}/exportPDF2")
+/*     @GetMapping(value = "/{username}/exportPDF2")
     public ResponseEntity<Void> exportToPDF2(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {
         pdfExportService.exportPdfReport(username, response);
         return ResponseEntity.status(HttpStatus.OK).build();
-    }
+    } */
 
+    @GetMapping(value = "/{username}/exportPDF2")
+    public ResponseEntity<byte[]> exportToPDF2(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
+    {
+        ExportReportWrapper exportReportWrapper = pdfExportService.exportPdfReport(username);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.valueOf(exportReportWrapper.getContentType()));
+        headers.setContentDisposition(ContentDisposition.attachment().filename(exportReportWrapper.getFilename()).build());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                             .headers(headers)
+                             .body(exportReportWrapper.getData());
+    }
 
     @GetMapping(path = "{username}/general-stats")
     public ResponseEntity<AgentDashboardPersonalStatsDTO> aaaaaaa(@PathVariable("username") String username) 

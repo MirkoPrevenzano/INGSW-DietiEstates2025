@@ -2,10 +2,13 @@
 package com.dietiEstates.backend.service.export.pdf;
 
 import java.awt.Color;
+import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.model.embeddable.AgentStats;
@@ -18,6 +21,7 @@ import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.service.chart.MonthlyDealsBarChartService;
 import com.dietiEstates.backend.service.chart.SuccessRatePieChartService;
 import com.dietiEstates.backend.service.chart.TotalDealsPieChartService;
+import com.dietiEstates.backend.service.export.ExportReportWrapper;
 import com.dietiEstates.backend.service.export.ExportServiceTemplate;
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
@@ -41,18 +45,18 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class OpenPdfExportService extends ExportServiceTemplate implements PdfExportService
+public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implements PdfExportService
 {
     private final SuccessRatePieChartService successRatePieChartService;
     private final TotalDealsPieChartService totalDealsPieChartService;
     private final MonthlyDealsBarChartService monthlyDealsBarChartService;
 
 
-    public OpenPdfExportService(AgentRepository agentRepository, AgentService agentService, RealEstateRepository realEstateRepository, 
+    public PdfExportServiceOpenPdfImpl2(AgentRepository agentRepository, RealEstateRepository realEstateRepository, 
                                 SuccessRatePieChartService successRatePieChartService,
                                 TotalDealsPieChartService totalDealsPieChartService, MonthlyDealsBarChartService monthlyDealsBarChartService) 
     {
-        super(agentRepository, agentService, realEstateRepository);
+        super(agentRepository, realEstateRepository);
         this.successRatePieChartService = successRatePieChartService;
         this.totalDealsPieChartService = totalDealsPieChartService;
         this.monthlyDealsBarChartService = monthlyDealsBarChartService;
@@ -61,30 +65,33 @@ public class OpenPdfExportService extends ExportServiceTemplate implements PdfEx
     
 
     @Override
-    public void exportPdfReport(String username, HttpServletResponse response) 
+    public ExportReportWrapper exportPdfReport(String username) 
     {
-        super.exportReport(username, response);
+        return super.exportReport(username);
     }
 
 
 
-    @Override
+/*     @Override
     protected void setupResponseHeaders(String username, HttpServletResponse response) 
     {
         response.setContentType("application/pdf");
         String fileName = generateFileName(username) + ".pdf";
         String headerValue = "attachment; filename=" + fileName;
         response.setHeader("Content-Disposition", headerValue);        
-    }
+    } */
 
 
     @Override
-    protected Object initializeWriter(HttpServletResponse response) throws Exception 
+    protected Object initializeWriter() throws Exception 
     {
         Document document = new Document(PageSize.A4);
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("looooool.pdf"));
-        //PdfWriter p = PdfWriter.getInstance(document, response.getOutputStream());
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        FileOutputStream fileOutputStream = new FileOutputStream("lool2");
 
+        //PdfWriter writer = PdfWriter.getInstance(document, byteArrayOutputStream);
+        PdfWriter writer = PdfWriter.getInstance(document, fileOutputStream);
+        
         
         // Aggiungi il page event helper per header/footer
         writer.setPageEvent(new PdfPageEventHelperImpl());
@@ -97,7 +104,7 @@ public class OpenPdfExportService extends ExportServiceTemplate implements PdfEx
         // Crea gli stili una sola volta e li passa tramite il wrapper
         PdfStyleConfig styleConfig = createStyleConfig();
         
-        return new PdfWriterWrapper(document, writer, styleConfig); 
+        return new PdfWriterWrapper(document, writer, styleConfig, fileOutputStream); 
     }
 
 
@@ -201,23 +208,26 @@ public class OpenPdfExportService extends ExportServiceTemplate implements PdfEx
     protected void writeSectionSeparator(Object writer) throws Exception {        
     }
 
-    
     @Override
-    protected void finalizeWriter(Object writer, HttpServletResponse response) throws Exception 
-    {
+    protected byte[] finalizeWriter(Object writer) throws Exception {
         PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
         pdfWrapper.getDocument().close();
-        response.setHeader("Success", "PDF esportato correttamente!");        
+        //return ((ByteArrayOutputStream) pdfWrapper.getOutputStream()).toByteArray();
+        return null;
     }
+
 
     @Override
-    protected void handleExportError(Exception e, HttpServletResponse response) 
+    protected String getContentType() 
     {
-        log.error("Errore durante l'esportazione del PDF: {}", e.getMessage());
-        response.setStatus(500);
-        response.setHeader("Error", "Errore durante l'esportazione del PDF!");        
+        return "application/pdf";
     }
-
+    
+    @Override
+    protected String getFileExtension() 
+    {
+        return ".pdf";
+    }
 
 
         // Metodi helper per PDF
@@ -372,6 +382,7 @@ public class OpenPdfExportService extends ExportServiceTemplate implements PdfEx
         private final Document document;
         private final PdfWriter writer;
         private final PdfStyleConfig styleConfig;
+        private final OutputStream outputStream;
     }
     
 

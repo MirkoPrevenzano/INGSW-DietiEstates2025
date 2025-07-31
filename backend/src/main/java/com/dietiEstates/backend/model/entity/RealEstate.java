@@ -55,8 +55,9 @@ public class RealEstate
     private String title;
 
     @NotNull
-    @Lob
-    @Column(nullable = false, 
+    //@Lob
+    @Column(columnDefinition = "TEXT",
+    nullable = false, 
             updatable = true)
     private String description;
 

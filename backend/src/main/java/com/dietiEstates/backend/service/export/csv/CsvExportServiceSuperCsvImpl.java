@@ -35,9 +35,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class ExportServiceSuperCsvImpl extends ExportServiceTemplate implements CsvExportService
+public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implements CsvExportService
 {
-    public ExportServiceSuperCsvImpl(AgentRepository agentRepository, AgentService agentService, RealEstateRepository realEstateRepository) 
+    public CsvExportServiceSuperCsvImpl(AgentRepository agentRepository, AgentService agentService, RealEstateRepository realEstateRepository) 
     {
         super(agentRepository, agentService, realEstateRepository);
     }
