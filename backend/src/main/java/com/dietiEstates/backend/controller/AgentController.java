@@ -47,7 +47,7 @@ public class AgentController
 {
     private final AgentService agentService;
     private final PdfExportService pdfExportService;
-    //private final CsvExportService csvExportService;
+    private final CsvExportService csvExportService;
 
     @GetMapping("prova/{param}")
     public String getMethodName(@PathVariable String paòram) 
@@ -101,6 +101,21 @@ public class AgentController
         return ResponseEntity.status(HttpStatus.OK).build();
     } */
 
+    @GetMapping(value = "/{username}/exportCSV2")
+    public ResponseEntity<byte[]> exportToCSV2(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
+    {
+        ExportReportWrapper exportReportWrapper = csvExportService.exportCsvReport(username);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.valueOf(exportReportWrapper.getContentType()));
+        headers.setContentDisposition(ContentDisposition.attachment().filename(exportReportWrapper.getFilename()).build());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                             .headers(headers)
+                             .body(exportReportWrapper.getData());
+    }
+
+
     @GetMapping(value = "/{username}/exportPDF2")
     public ResponseEntity<byte[]> exportToPDF2(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {
@@ -114,6 +129,7 @@ public class AgentController
                              .headers(headers)
                              .body(exportReportWrapper.getData());
     }
+
 
     @GetMapping(path = "{username}/general-stats")
     public ResponseEntity<AgentDashboardPersonalStatsDTO> aaaaaaa(@PathVariable("username") String username) 

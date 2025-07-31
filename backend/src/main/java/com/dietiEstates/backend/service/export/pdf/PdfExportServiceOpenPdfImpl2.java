@@ -7,10 +7,12 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
+import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
 import com.dietiEstates.backend.model.embeddable.AgentStats;
 import com.dietiEstates.backend.model.embeddable.RealEstateStats;
 import com.dietiEstates.backend.model.entity.Agent;
@@ -87,10 +89,10 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
     {
         Document document = new Document(PageSize.A4);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        FileOutputStream fileOutputStream = new FileOutputStream("lool2");
+        //FileOutputStream fileOutputStream = new FileOutputStream("lool2.pdf");
 
-        //PdfWriter writer = PdfWriter.getInstance(document, byteArrayOutputStream);
-        PdfWriter writer = PdfWriter.getInstance(document, fileOutputStream);
+        PdfWriter writer = PdfWriter.getInstance(document, byteArrayOutputStream);
+        //PdfWriter writer = PdfWriter.getInstance(document, fileOutputStream);
         
         
         // Aggiungi il page event helper per header/footer
@@ -104,7 +106,8 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
         // Crea gli stili una sola volta e li passa tramite il wrapper
         PdfStyleConfig styleConfig = createStyleConfig();
         
-        return new PdfWriterWrapper(document, writer, styleConfig, fileOutputStream); 
+        //return new PdfWriterWrapper(document, writer, styleConfig, fileOutputStream); 
+        return new PdfWriterWrapper(document, writer, styleConfig, byteArrayOutputStream); 
     }
 
 
@@ -172,15 +175,19 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
         String[] realEstateStatsHeader = {"Title", "Uploading Date", "Views Number", "Offers Number", "Visits Number"};
         writeInTable(realEstateStatsTable, styles.cellHeader, styles.cellHeaderFont, realEstateStatsHeader);
         
-        if (getRealEstateStatsByAgent(agent) != null) {
-            for (RealEstate realEstate : agent.getRealEstates()) {
-                RealEstateStats realEstateStats = realEstate.getRealEstateStats();
+        List<AgentDashboardRealEstateStatsDTO> agentDashboardRealEstateStatsDTOs = this.getRealEstateStatsByAgent(agent);
+
+        if (agentDashboardRealEstateStatsDTOs != null) 
+        {
+            for (AgentDashboardRealEstateStatsDTO agentDashboardRealEstateStatsDTO : agentDashboardRealEstateStatsDTOs) 
+            {
+                //RealEstateStats realEstateStats = realEstate.getRealEstateStats();
                 String[] estateStats = {
-                    realEstate.getTitle(),
-                    realEstate.getUploadingDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm:ss")),
-                    String.valueOf(realEstateStats.getViewsNumber()),
-                    String.valueOf(realEstateStats.getOffersNumber()),
-                    String.valueOf(realEstateStats.getVisitsNumber())
+                    agentDashboardRealEstateStatsDTO.getTitle(),
+                    agentDashboardRealEstateStatsDTO.getUploadingDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm:ss")),
+                    String.valueOf(agentDashboardRealEstateStatsDTO.getViewsNumber()),
+                    String.valueOf(agentDashboardRealEstateStatsDTO.getOffersNumber()),
+                    String.valueOf(agentDashboardRealEstateStatsDTO.getVisitsNumber())
                 };
                 writeInTable(realEstateStatsTable, styles.cell, styles.cellFont, estateStats);
             }
@@ -212,8 +219,8 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
     protected byte[] finalizeWriter(Object writer) throws Exception {
         PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
         pdfWrapper.getDocument().close();
-        //return ((ByteArrayOutputStream) pdfWrapper.getOutputStream()).toByteArray();
-        return null;
+        return ((ByteArrayOutputStream) pdfWrapper.getOutputStream()).toByteArray();
+        //return null;
     }
 
 

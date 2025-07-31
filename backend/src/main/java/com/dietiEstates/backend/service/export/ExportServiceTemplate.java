@@ -112,6 +112,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
 import com.dietiEstates.backend.exception.ExportReportException;
 import com.dietiEstates.backend.model.entity.Agent;
@@ -120,14 +122,13 @@ import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.AgentService;
 
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
 @RequiredArgsConstructor
-//@Transactional
+@Transactional(readOnly = true)
 public abstract class ExportServiceTemplate 
 {
     private final AgentRepository agentRepository;
