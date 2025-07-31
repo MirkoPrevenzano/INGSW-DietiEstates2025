@@ -135,7 +135,7 @@ public abstract class ExportServiceTemplate
     private final RealEstateRepository realEstateRepository;
 
 
-    public final ExportReportWrapper exportReport(String username) 
+    public final ExportingResult exportReport(String username) 
     {
         try 
         {
@@ -163,7 +163,7 @@ public abstract class ExportServiceTemplate
             String contentType = getContentType();
             
             log.info("Report exported successfully for agent: {}", username);
-            return new ExportReportWrapper(data, filename, contentType);            
+            return new ExportingResult(data, filename, contentType);            
         } 
         catch (Exception e) 
         {

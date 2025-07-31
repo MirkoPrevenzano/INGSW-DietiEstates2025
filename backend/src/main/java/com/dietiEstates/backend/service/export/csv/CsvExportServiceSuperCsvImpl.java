@@ -33,7 +33,7 @@ import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.AgentService;
-import com.dietiEstates.backend.service.export.ExportReportWrapper;
+import com.dietiEstates.backend.service.export.ExportingResult;
 import com.dietiEstates.backend.service.export.ExportServiceTemplate;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
 import com.lowagie.text.Document;
@@ -60,7 +60,7 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
 
 
     @Override
-    public ExportReportWrapper exportCsvReport(String username) 
+    public ExportingResult exportCsvReport(String username) 
     {
         return super.exportReport(username);
     }

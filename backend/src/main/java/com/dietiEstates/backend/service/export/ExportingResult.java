@@ -10,10 +10,9 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ExportReportWrapper
+public class ExportingResult
 {
     private final byte[] data;
     private final String filename;
     private final String contentType;
-    private final Map<String, String> headers = new HashMap<>();
 }

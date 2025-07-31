@@ -23,7 +23,7 @@ import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.service.chart.MonthlyDealsBarChartService;
 import com.dietiEstates.backend.service.chart.SuccessRatePieChartService;
 import com.dietiEstates.backend.service.chart.TotalDealsPieChartService;
-import com.dietiEstates.backend.service.export.ExportReportWrapper;
+import com.dietiEstates.backend.service.export.ExportingResult;
 import com.dietiEstates.backend.service.export.ExportServiceTemplate;
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
@@ -67,7 +67,7 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
     
 
     @Override
-    public ExportReportWrapper exportPdfReport(String username) 
+    public ExportingResult exportPdfReport(String username) 
     {
         return super.exportReport(username);
     }
@@ -177,7 +177,7 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
         
         List<AgentDashboardRealEstateStatsDTO> agentDashboardRealEstateStatsDTOs = this.getRealEstateStatsByAgent(agent);
 
-        if (agentDashboardRealEstateStatsDTOs != null) 
+        if (!agentDashboardRealEstateStatsDTOs.isEmpty()) 
         {
             for (AgentDashboardRealEstateStatsDTO agentDashboardRealEstateStatsDTO : agentDashboardRealEstateStatsDTOs) 
             {
