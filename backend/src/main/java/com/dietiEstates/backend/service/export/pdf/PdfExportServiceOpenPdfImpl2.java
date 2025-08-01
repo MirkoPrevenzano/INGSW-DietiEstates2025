@@ -3,23 +3,18 @@ package com.dietiEstates.backend.service.export.pdf;
 
 import java.awt.Color;
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
 import com.dietiEstates.backend.model.embeddable.AgentStats;
-import com.dietiEstates.backend.model.embeddable.RealEstateStats;
 import com.dietiEstates.backend.model.entity.Agent;
-import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.service.chart.MonthlyDealsBarChartService;
 import com.dietiEstates.backend.service.chart.SuccessRatePieChartService;
 import com.dietiEstates.backend.service.chart.TotalDealsPieChartService;
@@ -39,7 +34,6 @@ import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfPageEventHelper;
 import com.lowagie.text.pdf.PdfWriter;
 
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

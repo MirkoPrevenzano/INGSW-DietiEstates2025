@@ -1,22 +1,17 @@
 
 package com.dietiEstates.backend.service.export.csv;
 
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.OutputStream;
 import java.io.StringWriter;
 import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import org.checkerframework.checker.units.qual.m;
 import org.springframework.stereotype.Service;
 import org.supercsv.cellprocessor.FmtDate;
 import org.supercsv.cellprocessor.FmtNumber;
 import org.supercsv.cellprocessor.constraint.DMinMax;
 import org.supercsv.cellprocessor.constraint.LMinMax;
-import org.supercsv.cellprocessor.constraint.NotNull;
 import org.supercsv.cellprocessor.constraint.StrMinMax;
 import org.supercsv.cellprocessor.constraint.StrNotNullOrEmpty;
 import org.supercsv.cellprocessor.constraint.UniqueHashCode;
@@ -25,21 +20,14 @@ import org.supercsv.io.CsvListWriter;
 import org.supercsv.io.ICsvListWriter;
 import org.supercsv.prefs.CsvPreference;
 
-import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDTO;
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
 import com.dietiEstates.backend.model.embeddable.AgentStats;
 import com.dietiEstates.backend.model.entity.Agent;
-import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.service.export.ExportingResult;
 import com.dietiEstates.backend.service.export.ExportServiceTemplate;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
-import com.lowagie.text.Document;
-import com.lowagie.text.pdf.PdfWriter;
-
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

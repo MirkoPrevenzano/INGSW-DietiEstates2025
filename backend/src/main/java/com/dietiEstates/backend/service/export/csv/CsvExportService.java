@@ -3,8 +3,6 @@ package com.dietiEstates.backend.service.export.csv;
 
 import com.dietiEstates.backend.service.export.ExportingResult;
 
-import jakarta.servlet.http.HttpServletResponse;
-
 
 public interface CsvExportService 
 {
