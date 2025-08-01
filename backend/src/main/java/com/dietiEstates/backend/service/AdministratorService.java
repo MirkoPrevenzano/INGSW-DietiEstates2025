@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.modelmapper.MappingException;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.AgentRepository;
+import com.dietiEstates.backend.service.mail.UserWelcomeEmailService;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
 import com.dietiEstates.backend.util.PasswordGeneratorUtil;
 
@@ -37,6 +40,10 @@ public class AdministratorService
     private final PasswordEncoder passwordEncoder;
     //private final ValidationUtil validationUtil;
     private final MockingStatsService mockingStatsService;
+
+    @Autowired
+    @Qualifier("AgentWelcomeEmailService")
+    private UserWelcomeEmailService userWelcomeEmailService;
     
 
 
@@ -119,6 +126,8 @@ public class AdministratorService
 
         administrator.addAgent(agent);
         administrator = administratorRepository.save(administrator);
+
+        userWelcomeEmailService.sendWelcomeEmail(agent);
 
         log.info("Real Estate Agent was created successfully!");
     }

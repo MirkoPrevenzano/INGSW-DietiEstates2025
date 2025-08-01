@@ -3,8 +3,23 @@ package com.dietiEstates.backend.service.mail;
 
 import com.dietiEstates.backend.model.entity.User;
 
+import lombok.RequiredArgsConstructor;
 
-public interface UserWelcomeEmailService 
+
+@RequiredArgsConstructor
+public abstract class UserWelcomeEmailService 
 {
-    void sendWelcomeEmail(User user);
+    private final EmailService emailService;
+
+
+    public final void sendWelcomeEmail(User user)
+    {
+        String subject = "Benvenuto su DietiEstates2025!";
+        String body = getWelcomeBody(user);
+
+        emailService.sendEmail(user.getUsername(), subject, body);
+    }
+
+
+    protected abstract String getWelcomeBody(User user);
 }
