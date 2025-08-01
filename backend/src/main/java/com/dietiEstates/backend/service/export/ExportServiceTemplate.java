@@ -115,7 +115,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
-import com.dietiEstates.backend.exception.ExportReportException;
+import com.dietiEstates.backend.exception.ExportServiceException;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
@@ -168,7 +168,7 @@ public abstract class ExportServiceTemplate
         catch (Exception e) 
         {
             log.error("Error exporting report for agent {}: {}", username, e.getMessage());
-            throw new ExportReportException("Failed to export report", e);
+            throw new ExportServiceException("Failed to export report", e);
         }
     }
     
