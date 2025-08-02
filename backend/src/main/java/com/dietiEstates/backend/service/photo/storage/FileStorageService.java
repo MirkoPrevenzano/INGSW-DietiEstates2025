@@ -6,13 +6,13 @@ import java.util.Map;
 
 public interface FileStorageService 
 {
-    void uploadFile(byte[] file, String photoKey, String contentType, String contentDisposition, Map<String, String> photoMetadata);
+    void uploadFile(byte[] file, String fileStorageKey, String contentType, String contentDisposition, Map<String, String> photoMetadata);
 
-    byte[] getFile(String photoKey);
+    byte[] getFile(String fileStorageKey);
     
-    String getFilePublicUrl(String photoKey);
+    String getFilePublicUrl(String fileStorageKey);
 
-    Map<String, String> getFileMetadata(String photoKey);
+    Map<String, String> getFileMetadata(String fileStorageKey);
 
-    void deleteFile(String photoKey);
+    void deleteFile(String fileStorageKey);
 }

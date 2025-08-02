@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dietiEstates.backend.service.AgentService;
+import com.dietiEstates.backend.service.photo.PhotoData;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +41,7 @@ public class S3Controller
 
 
     @GetMapping(value = "get-photos2/{realEstateId}")
-    public ResponseEntity<List<String>> getPhoto2(@PathVariable("realEstateId") Long realEstateId) throws IOException
+    public ResponseEntity<List<PhotoData>> getPhoto2(@PathVariable("realEstateId") Long realEstateId) throws IOException
     {        
         return ResponseEntity.ok(agentService.getPhoto2(realEstateId));
     }

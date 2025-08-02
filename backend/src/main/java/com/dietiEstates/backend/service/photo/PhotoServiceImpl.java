@@ -53,13 +53,26 @@ public class PhotoServiceImpl implements PhotoService
         return photoKey;        
     }
 
+    
     @Override
-    public String getPhotoAsBase64(String photoKey) throws IOException 
+    public PhotoData getPhotoAsByteArray(String photokey) 
     {
-        if (photoKey == null || photoKey.trim().isEmpty()) {
-            throw new IllegalArgumentException("La chiave della foto non può essere nulla o vuota.");
-        }
-        
+        byte[] photoBytes = fileStorageService.getFile(photokey);
+
+        Map<String, String> metadata = fileStorageService.getFileMetadata(photokey);
+        String contentType = (String) metadata.getOrDefault("ContentType", "application/octet-stream"); 
+
+        //String base64String = Base64.getEncoder().encodeToString(photoBytes);
+
+        return new PhotoData(photoBytes, contentType);
+
+        //return base64String;
+    }
+
+
+    @Override
+    public PhotoData getPhotoAsBase64(String photoKey) 
+    {   
         byte[] photoBytes = fileStorageService.getFile(photoKey);
 
         Map<String, String> metadata = fileStorageService.getFileMetadata(photoKey);
@@ -67,21 +80,21 @@ public class PhotoServiceImpl implements PhotoService
 
         String base64String = Base64.getEncoder().encodeToString(photoBytes);
 
-        //return new PhotoData(base64String, contentType);
+        return new PhotoData(base64String, contentType);
 
-        return base64String;
+        //return base64String;
     }
 
 
     @Override
-    public String getPhotoPublicUrl(String photoKey) throws IOException 
+    public String getPhotoPublicUrl(String photoKey) 
     {
         return fileStorageService.getFilePublicUrl(photoKey);
     }
 
 
     @Override
-    public void deletePhoto(String photoKey) throws IOException 
+    public void deletePhoto(String photoKey) 
     {
         fileStorageService.deleteFile(photoKey);
     }

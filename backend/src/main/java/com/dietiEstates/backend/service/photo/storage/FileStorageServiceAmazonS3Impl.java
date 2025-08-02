@@ -10,9 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.exception.FileStorageServiceException;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
 import software.amazon.awssdk.core.ResponseBytes;
 import software.amazon.awssdk.core.exception.SdkException;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -25,6 +22,9 @@ import software.amazon.awssdk.services.s3.model.HeadObjectRequest;
 import software.amazon.awssdk.services.s3.model.HeadObjectResponse;
 import software.amazon.awssdk.services.s3.model.NoSuchKeyException;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 
 @Service
@@ -39,11 +39,11 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
 
 
     @Override
-    public void uploadFile(byte[] file, String photoKey, String contentType, String contentDisposition, Map<String, String> photoMetadata) 
+    public void uploadFile(byte[] file, String fileStorageKey, String contentType, String contentDisposition, Map<String, String> photoMetadata) 
     {
 		PutObjectRequest putObjectRequest = PutObjectRequest.builder()
 															.bucket(bucketName)
- 															.key(photoKey)
+ 															.key(fileStorageKey)
                                                             .contentType(contentType)
                                                             .contentDisposition(contentDisposition)
                                                             .metadata(photoMetadata)
@@ -52,50 +52,50 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
 		try 
 		{
 			s3Client.putObject(putObjectRequest, RequestBody.fromBytes(file));
-            log.info("File with key '{}' was uploaded successfully in Amazon S3 bucket '{}'.", photoKey, bucketName);
+            log.info("File with key '{}' was uploaded successfully in Amazon S3 bucket '{}'.", fileStorageKey, bucketName);
 		} 
 		catch (SdkException e)
 		{
-            log.error("Amazon S3/SDK exception occurred while uploading file with key '{}' in bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new FileStorageServiceException("Failed to upload file in storage: " + photoKey, e);
+            log.error("Amazon S3/SDK exception occurred while uploading file with key '{}' in bucket '{}': {}", fileStorageKey, bucketName, e.getMessage());
+            throw new FileStorageServiceException("Failed to upload file in storage: " + fileStorageKey, e);
 		}        
     }
 
 
     @Override
-    public byte[] getFile(String photoKey) 
+    public byte[] getFile(String fileStorageKey) 
     {
         GetObjectRequest getObjectRequest = GetObjectRequest.builder()
                                                             .bucket(bucketName)
-                                                            .key(photoKey)
+                                                            .key(fileStorageKey)
                                                             .build();		
 
         try {
 /*             ResponseInputStream<GetObjectResponse> responseInputStream = s3Client.getObject(getObjectRequest);
             return responseInputStream.readAllBytes(); */
             ResponseBytes<GetObjectResponse> objectBytesAndResponse = s3Client.getObjectAsBytes(getObjectRequest);
-            log.info("File with key '{}' was retrieved successfully from the Amazon S3 bucket '{}'", photoKey, bucketName);
+            log.info("File with key '{}' was retrieved successfully from the Amazon S3 bucket '{}'", fileStorageKey, bucketName);
             return objectBytesAndResponse.asByteArray();
         } catch (NoSuchKeyException e) {
-            log.error("File with key '{}' not found in Amazon S3 bucket '{}'.", photoKey, bucketName);
-            throw new FileStorageServiceException("File not found in storage: " + photoKey, e);
+            log.error("File with key '{}' not found in Amazon S3 bucket '{}'.", fileStorageKey, bucketName);
+            throw new FileStorageServiceException("File not found in storage: " + fileStorageKey, e);
         } catch (SdkException e) {
-            log.error("Amazon S3/SDK exception occurred while retrieving file with key '{}' from bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new FileStorageServiceException("Failed to retrieve file from storage: " + photoKey, e);
+            log.error("Amazon S3/SDK exception occurred while retrieving file with key '{}' from bucket '{}': {}", fileStorageKey, bucketName, e.getMessage());
+            throw new FileStorageServiceException("Failed to retrieve file from storage: " + fileStorageKey, e);
         } catch (Exception e) {
-            log.error("Generic exception occurred while retrieving file with key '{}' from bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new FileStorageServiceException("An unexpected error occurred during file download: " + photoKey, e);
+            log.error("Generic exception occurred while retrieving file with key '{}' from bucket '{}': {}", fileStorageKey, bucketName, e.getMessage());
+            throw new FileStorageServiceException("An unexpected error occurred during file download: " + fileStorageKey, e);
         }
     }
 
 
 
     @Override
-    public Map<String, String> getFileMetadata(String photoKey) 
+    public Map<String, String> getFileMetadata(String fileStorageKey) 
     {
         HeadObjectRequest headObjectRequest = HeadObjectRequest.builder()
         .bucket(bucketName)
-        .key(photoKey)
+        .key(fileStorageKey)
         .build();
 
         try 
@@ -106,75 +106,75 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
             if (response.contentType() != null) photoMetadata.put("ContentType", (String) response.contentType());
             if (response.contentDisposition() != null) photoMetadata.put("ContentDisposition", (String) response.contentDisposition());
 
-            log.info("Metadata for file with key '{}' retrieved successfully from Amazon S3 bucket '{}'.", photoKey, bucketName);
+            log.info("Metadata for file with key '{}' retrieved successfully from Amazon S3 bucket '{}'.", fileStorageKey, bucketName);
             return photoMetadata;
         } 
         catch (NoSuchKeyException e) 
         {
-            log.error("File with key '{}' not found in Amazon S3 bucket '{}', while retrieving its metadata.", photoKey, bucketName);
-            throw new FileStorageServiceException("File not found in storage while retrieving its metadata: " + photoKey, e);
+            log.error("File with key '{}' not found in Amazon S3 bucket '{}', while retrieving its metadata.", fileStorageKey, bucketName);
+            throw new FileStorageServiceException("File not found in storage while retrieving its metadata: " + fileStorageKey, e);
         } catch (SdkException e) {
-            log.error("Amazon S3/SDK exception occurred during metadata retrieval for file with key '{}' from bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new FileStorageServiceException("Failed to retrieve metadata from storage: " + photoKey, e);
+            log.error("Amazon S3/SDK exception occurred during metadata retrieval for file with key '{}' from bucket '{}': {}", fileStorageKey, bucketName, e.getMessage());
+            throw new FileStorageServiceException("Failed to retrieve metadata from storage: " + fileStorageKey, e);
         } catch (Exception e) {
-            log.error("Generic exception occurred during metadata retrieval for file with key '{}' from bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new FileStorageServiceException("An unexpected error occurred during metadata retrieval: " + photoKey, e);
+            log.error("Generic exception occurred during metadata retrieval for file with key '{}' from bucket '{}': {}", fileStorageKey, bucketName, e.getMessage());
+            throw new FileStorageServiceException("An unexpected error occurred during metadata retrieval: " + fileStorageKey, e);
         }
     }
 
 
     @Override
-    public String getFilePublicUrl(String photoKey) 
+    public String getFilePublicUrl(String fileStorageKey) 
     {
         GetUrlRequest getUrlRequest = GetUrlRequest.builder()
                                                    .bucket(bucketName)
-                                                   .key(photoKey)
+                                                   .key(fileStorageKey)
                                                    .build();
         try 
         {
             URL url = s3Client.utilities().getUrl(getUrlRequest);
-            log.info("Generated public URL for file with key '{}' in bucket Amazon S3 bucket '{}': {}", photoKey, bucketName, url.toString());
+            log.info("Generated public URL for file with key '{}' in bucket Amazon S3 bucket '{}': {}", fileStorageKey, bucketName, url.toString());
             return url.toString();
         } 
         catch (SdkException e) 
         {
-            log.error("Amazon S3/SDK exception occurred during public URL generation for file with key '{} from bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new FileStorageServiceException("Failed to generate public URL for file: " + photoKey, e);
+            log.error("Amazon S3/SDK exception occurred during public URL generation for file with key '{} from bucket '{}': {}", fileStorageKey, bucketName, e.getMessage());
+            throw new FileStorageServiceException("Failed to generate public URL for file: " + fileStorageKey, e);
         } 
         catch (Exception e) 
         {
-            log.error("Generic exception occurred during public URL generation for file with key '{}' from bucket '{}': {}", photoKey,bucketName, e.getMessage());
-            throw new FileStorageServiceException("An unexpected error occurred during public URL generation: " + photoKey, e);
+            log.error("Generic exception occurred during public URL generation for file with key '{}' from bucket '{}': {}", fileStorageKey,bucketName, e.getMessage());
+            throw new FileStorageServiceException("An unexpected error occurred during public URL generation: " + fileStorageKey, e);
         }
     }
     
 
     @Override
-    public void deleteFile(String photoKey) 
+    public void deleteFile(String fileStorageKey) 
     {
         DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
         .bucket(bucketName)
-        .key(photoKey)
+        .key(fileStorageKey)
         .build();
 
         try 
         {
             s3Client.deleteObject(deleteObjectRequest);
-            log.info("File with key '{}' was deleted successfully from Amazon S3 bucket '{}'.", photoKey, bucketName);
+            log.info("File with key '{}' was deleted successfully from Amazon S3 bucket '{}'.", fileStorageKey, bucketName);
         } 
         catch (NoSuchKeyException e) 
         {
-            log.warn("Attempted to delete non-existent file with key '{}' from Amazon S3 bucket: '{}'.", photoKey, bucketName);
+            log.warn("Attempted to delete non-existent file with key '{}' from Amazon S3 bucket: '{}'.", fileStorageKey, bucketName);
         } 
         catch (SdkException e) 
         {
-            log.error("Amazon S3/SDK exception occurred during deletion of file with key '{}' in Amazon S3 bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new FileStorageServiceException("Failed to delete file from storage: " + photoKey);
+            log.error("Amazon S3/SDK exception occurred during deletion of file with key '{}' in Amazon S3 bucket '{}': {}", fileStorageKey, bucketName, e.getMessage());
+            throw new FileStorageServiceException("Failed to delete file from storage: " + fileStorageKey);
         } 
         catch (Exception e) 
         {
-            log.error("Generic exception occurred during deletion of file with key '{}' from bucket '{}': {}", photoKey,bucketName, e.getMessage());
-            throw new FileStorageServiceException("An unexpected error occurred during file deletion: " + photoKey, e);
+            log.error("Generic exception occurred during deletion of file with key '{}' from bucket '{}': {}", fileStorageKey,bucketName, e.getMessage());
+            throw new FileStorageServiceException("An unexpected error occurred during file deletion: " + fileStorageKey, e);
         }        
     }
 }

@@ -40,6 +40,7 @@ import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.resolver.RealEstateFactoryFromDTOResolver;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
+import com.dietiEstates.backend.service.photo.PhotoData;
 import com.dietiEstates.backend.service.photo.PhotoService;
 
 import jakarta.transaction.Transactional;
@@ -116,7 +117,7 @@ public class AgentService
     }
 
 
-    public List<String> getPhoto2(Long realEstateId) throws IOException
+    public List<PhotoData> getPhoto2(Long realEstateId) throws IOException
     {
         RealEstate realEstate = realEstateRepository.findById(realEstateId).get();
 
@@ -125,14 +126,24 @@ public class AgentService
             return new String[]{};
         }
          */
-        List<String> photosBase64 = new ArrayList<>();
+        
+/*          List<String> photosBase64 = new ArrayList<>();
 
         for(Photo photo : photos)
         {
             photosBase64.add(photoService.getPhotoAsBase64(photo.getKey()));
         }
 
-        return photosBase64;
+        return photosBase64; */
+
+        List<PhotoData> photoDatas = new ArrayList<>();
+
+        for(Photo photo : photos)
+        {
+            photoDatas.add(photoService.getPhotoAsBase64(photo.getKey()));
+        }
+
+        return photoDatas;
 
 /*         String[] phoStrings = new String[photosBytes.size()];
         for (int i=0;i<photosBytes.size();i++) {
