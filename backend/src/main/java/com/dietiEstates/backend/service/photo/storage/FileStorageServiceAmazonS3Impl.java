@@ -1,20 +1,19 @@
 
 package com.dietiEstates.backend.service.photo.storage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+
+import com.dietiEstates.backend.exception.FileStorageServiceException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import software.amazon.awssdk.core.ResponseBytes;
-import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.core.exception.SdkException;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
@@ -40,7 +39,7 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
 
 
     @Override
-    public void uploadFile(byte[] file, String photoKey, String contentType, String contentDisposition, Map<String, String> photoMetadata) throws IOException 
+    public void uploadFile(byte[] file, String photoKey, String contentType, String contentDisposition, Map<String, String> photoMetadata) 
     {
 		PutObjectRequest putObjectRequest = PutObjectRequest.builder()
 															.bucket(bucketName)
@@ -58,13 +57,13 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
 		catch (SdkException e)
 		{
             log.error("Amazon S3/SDK exception occurred while uploading file with key '{}' in bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new IOException("Failed to upload file in storage: " + photoKey, e);
+            throw new FileStorageServiceException("Failed to upload file in storage: " + photoKey, e);
 		}        
     }
 
 
     @Override
-    public byte[] getFile(String photoKey) throws IOException 
+    public byte[] getFile(String photoKey) 
     {
         GetObjectRequest getObjectRequest = GetObjectRequest.builder()
                                                             .bucket(bucketName)
@@ -79,20 +78,20 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
             return objectBytesAndResponse.asByteArray();
         } catch (NoSuchKeyException e) {
             log.error("File with key '{}' not found in Amazon S3 bucket '{}'.", photoKey, bucketName);
-            throw new IOException("File not found in storage: " + photoKey, e);
+            throw new FileStorageServiceException("File not found in storage: " + photoKey, e);
         } catch (SdkException e) {
             log.error("Amazon S3/SDK exception occurred while retrieving file with key '{}' from bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new IOException("Failed to retrieve file from storage: " + photoKey, e);
+            throw new FileStorageServiceException("Failed to retrieve file from storage: " + photoKey, e);
         } catch (Exception e) {
             log.error("Generic exception occurred while retrieving file with key '{}' from bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new IOException("An unexpected error occurred during file download: " + photoKey, e);
+            throw new FileStorageServiceException("An unexpected error occurred during file download: " + photoKey, e);
         }
     }
 
 
 
     @Override
-    public Map<String, String> getFileMetadata(String photoKey) throws IOException 
+    public Map<String, String> getFileMetadata(String photoKey) 
     {
         HeadObjectRequest headObjectRequest = HeadObjectRequest.builder()
         .bucket(bucketName)
@@ -113,19 +112,19 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
         catch (NoSuchKeyException e) 
         {
             log.error("File with key '{}' not found in Amazon S3 bucket '{}', while retrieving its metadata.", photoKey, bucketName);
-            throw new IOException("File not found in storage while retrieving its metadata: " + photoKey, e);
+            throw new FileStorageServiceException("File not found in storage while retrieving its metadata: " + photoKey, e);
         } catch (SdkException e) {
             log.error("Amazon S3/SDK exception occurred during metadata retrieval for file with key '{}' from bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new IOException("Failed to retrieve metadata from storage: " + photoKey, e);
+            throw new FileStorageServiceException("Failed to retrieve metadata from storage: " + photoKey, e);
         } catch (Exception e) {
             log.error("Generic exception occurred during metadata retrieval for file with key '{}' from bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new IOException("An unexpected error occurred during metadata retrieval: " + photoKey, e);
+            throw new FileStorageServiceException("An unexpected error occurred during metadata retrieval: " + photoKey, e);
         }
     }
 
 
     @Override
-    public String getFilePublicUrl(String photoKey) throws IOException 
+    public String getFilePublicUrl(String photoKey) 
     {
         GetUrlRequest getUrlRequest = GetUrlRequest.builder()
                                                    .bucket(bucketName)
@@ -140,18 +139,18 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
         catch (SdkException e) 
         {
             log.error("Amazon S3/SDK exception occurred during public URL generation for file with key '{} from bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new IOException("Failed to generate public URL for file: " + photoKey, e);
+            throw new FileStorageServiceException("Failed to generate public URL for file: " + photoKey, e);
         } 
         catch (Exception e) 
         {
             log.error("Generic exception occurred during public URL generation for file with key '{}' from bucket '{}': {}", photoKey,bucketName, e.getMessage());
-            throw new IOException("An unexpected error occurred during public URL generation: " + photoKey, e);
+            throw new FileStorageServiceException("An unexpected error occurred during public URL generation: " + photoKey, e);
         }
     }
     
 
     @Override
-    public void deleteFile(String photoKey) throws IOException 
+    public void deleteFile(String photoKey) 
     {
         DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
         .bucket(bucketName)
@@ -170,12 +169,12 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
         catch (SdkException e) 
         {
             log.error("Amazon S3/SDK exception occurred during deletion of file with key '{}' in Amazon S3 bucket '{}': {}", photoKey, bucketName, e.getMessage());
-            throw new IOException("Failed to delete file from storage: " + photoKey);
+            throw new FileStorageServiceException("Failed to delete file from storage: " + photoKey);
         } 
         catch (Exception e) 
         {
             log.error("Generic exception occurred during deletion of file with key '{}' from bucket '{}': {}", photoKey,bucketName, e.getMessage());
-            throw new IOException("An unexpected error occurred during file deletion: " + photoKey, e);
+            throw new FileStorageServiceException("An unexpected error occurred during file deletion: " + photoKey, e);
         }        
     }
 }

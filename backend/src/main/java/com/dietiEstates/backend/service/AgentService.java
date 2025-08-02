@@ -98,11 +98,11 @@ public class AgentService
         Optional<RealEstate> optionalRealEstate = realEstateRepository.findById(realEstateId);
         RealEstate realEstate = optionalRealEstate.get();
         
-/*         if(files.length < 3 || files.length > 10)
+        if(files.length < 3 || files.length > 10)
         {
             log.error("You have inserted a wrong number of photos! You must add from 3 to 10 photos.");
             throw new IllegalArgumentException("You have inserted a wrong number of photos! You must add from 3 to 10 photos.");
-        } */
+        }
 
         for(MultipartFile file : files)
         {

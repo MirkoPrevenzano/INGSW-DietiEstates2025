@@ -89,7 +89,7 @@ public abstract class ExportServiceTemplate
         return username + "_" + currentDateTime;
     }
     
-    protected List<AgentDashboardRealEstateStatsDTO> getRealEstateStatsByAgent(Agent agent) 
+    protected List<AgentDashboardRealEstateStatsDTO> getAgentDashboardRealEstateStatsByAgent(Agent agent) 
     {
         return realEstateRepository.findAgentDashboardRealEstateStatsByAgent(agent.getUserId(), null);
     }
@@ -188,7 +188,7 @@ public abstract class ExportServiceTemplate
         return username + "_" + currentDateTime;
     }
     
-    protected List<AgentDashboardRealEstateStatsDTO> getRealEstateStatsByAgent(Agent agent) 
+    protected List<AgentDashboardRealEstateStatsDTO> getAgentDashboardRealEstateStatsByAgent(Agent agent) 
     {
         return realEstateRepository.findAgentDashboardRealEstateStatsByAgent(agent.getUserId(), null);
     }

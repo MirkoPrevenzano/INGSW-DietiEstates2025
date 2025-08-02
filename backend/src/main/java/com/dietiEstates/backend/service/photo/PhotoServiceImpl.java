@@ -10,12 +10,10 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.dietiEstates.backend.model.entity.Photo;
 import com.dietiEstates.backend.service.photo.storage.FileStorageService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import software.amazon.awssdk.core.exception.SdkException;
 
 
 @Service
@@ -26,31 +24,17 @@ public class PhotoServiceImpl implements PhotoService
     private final FileStorageService fileStorageService;
 
 
-
     @Override
     public String uploadPhoto(MultipartFile file, String folderName) throws IOException
     {
         if (file == null || file.isEmpty()) 
-            throw new IllegalArgumentException("Il file da caricare non può essere null o vuoto.");
-        
-        if (folderName == null || folderName.trim().isEmpty()) 
-            throw new IllegalArgumentException("Il nome della cartella S3 non può essere null o vuoto.");
-        
+            throw new IllegalArgumentException("Il file da caricare non può essere null o vuoto.");        
         
         String contentType = file.getContentType();
-        Long size = file.getSize();
-        
-        log.info("file content type: {}", contentType);
-    
         if(contentType != null && !contentType.equals("image/jpeg") && !contentType.equals("image/png"))
         {
             log.error("Photo format is not supported!");
-            throw new IllegalArgumentException("Photo format is not supported!");
-        }
-        if(size >= 10000000)
-        {
-            log.error("Photo have exceeded the maximum size!");
-            throw new IllegalArgumentException("Photo have exceeded the maximum size!");
+            throw new IllegalArgumentException("Photo format is not supported: " + contentType);
         }
 
         String originalFilename = file.getOriginalFilename();
@@ -63,14 +47,11 @@ public class PhotoServiceImpl implements PhotoService
 
         Map<String,String> photoMetadata = new HashMap<>();
         photoMetadata.put("originalFilename", originalFilename);
-        photoMetadata.put("originalFilename", originalFilename);
 
-        // fileStorageService.uploadFile(file.getBytes(), "%s".formatted(photoKey), photoMetadata);
         fileStorageService.uploadFile(file.getBytes(), photoKey, contentType, "inline", photoMetadata);
 
         return photoKey;        
     }
-
 
     @Override
     public String getPhotoAsBase64(String photoKey) throws IOException 

@@ -169,7 +169,7 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
         String[] realEstateStatsHeader = {"Title", "Uploading Date", "Views Number", "Offers Number", "Visits Number"};
         writeInTable(realEstateStatsTable, styles.cellHeader, styles.cellHeaderFont, realEstateStatsHeader);
         
-        List<AgentDashboardRealEstateStatsDTO> agentDashboardRealEstateStatsDTOs = this.getRealEstateStatsByAgent(agent);
+        List<AgentDashboardRealEstateStatsDTO> agentDashboardRealEstateStatsDTOs = this.getAgentDashboardRealEstateStatsByAgent(agent);
 
         if (!agentDashboardRealEstateStatsDTOs.isEmpty()) 
         {

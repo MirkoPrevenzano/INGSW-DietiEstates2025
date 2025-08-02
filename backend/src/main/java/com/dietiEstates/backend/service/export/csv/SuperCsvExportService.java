@@ -117,7 +117,7 @@ public class ExportServiceSuperCsvImpl extends ExportServiceTemplate implements 
         csvWriter.writeHeader("REAL ESTATES STATS");
         csvWriter.writeHeader("Title", "UploadingDate", "ViewsNumber", "VisitsNumber", "OffersNumber");
         
-        if (getRealEstateStatsByAgent(agent) != null) 
+        if (getAgentDashboardRealEstateStatsByAgent(agent) != null) 
         {
             for (RealEstate realEstate : agent.getRealEstates()) 
             {

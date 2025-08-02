@@ -125,7 +125,7 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
         csvWriterWrapper.getCsvListWriter().writeHeader("REAL ESTATES STATS");
         csvWriterWrapper.getCsvListWriter().writeHeader("Title", "UploadingDate", "ViewsNumber", "VisitsNumber", "OffersNumber");
         
-        List<AgentDashboardRealEstateStatsDTO> agentDashboardRealEstateStatsDTOs = this.getRealEstateStatsByAgent(agent);
+        List<AgentDashboardRealEstateStatsDTO> agentDashboardRealEstateStatsDTOs = this.getAgentDashboardRealEstateStatsByAgent(agent);
 
         if (!agentDashboardRealEstateStatsDTOs.isEmpty()) 
         {

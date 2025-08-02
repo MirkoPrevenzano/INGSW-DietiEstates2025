@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.exception;
+package com.dietiEstates.backend.exception.handler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.dietiEstates.backend.exception.ApiErrorResponse;
 import com.fasterxml.jackson.databind.exc.ValueInstantiationException;
 
 import lombok.extern.slf4j.Slf4j;
