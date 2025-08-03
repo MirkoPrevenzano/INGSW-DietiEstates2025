@@ -16,11 +16,14 @@ import com.dietiEstates.backend.dto.request.CollaboratorRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
 import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
+import com.dietiEstates.backend.exception.EmailServiceException;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.AgentRepository;
+import com.dietiEstates.backend.service.mail.AgentWelcomeEmailService;
+import com.dietiEstates.backend.service.mail.CollaboratorWelcomeEmailService;
 import com.dietiEstates.backend.service.mail.UserWelcomeEmailService;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
 import com.dietiEstates.backend.util.PasswordGeneratorUtil;
@@ -40,10 +43,8 @@ public class AdministratorService
     private final PasswordEncoder passwordEncoder;
     //private final ValidationUtil validationUtil;
     private final MockingStatsService mockingStatsService;
-
-    @Autowired
-    @Qualifier("AgentWelcomeEmailService")
-    private UserWelcomeEmailService userWelcomeEmailService;
+    private final AgentWelcomeEmailService agentWelcomeEmailService;
+    private final CollaboratorWelcomeEmailService collaboratorWelcomeEmailService;
     
 
 
@@ -85,6 +86,15 @@ public class AdministratorService
         admin = administratorRepository.save(admin);
 
         log.info("Collaborator was created successfully!");
+
+        try 
+        {
+            collaboratorWelcomeEmailService.sendWelcomeEmail(collaborator);
+        } 
+        catch (EmailServiceException e) 
+        {
+            log.warn(e.getMessage());
+        }
     }
 
 
@@ -127,9 +137,17 @@ public class AdministratorService
         administrator.addAgent(agent);
         administrator = administratorRepository.save(administrator);
 
-        userWelcomeEmailService.sendWelcomeEmail(agent);
-
         log.info("Real Estate Agent was created successfully!");
+
+        try 
+        {
+            agentWelcomeEmailService.sendWelcomeEmail(agent);
+        } 
+        catch (EmailServiceException e) 
+        {
+            log.warn(e.getMessage());
+        }
+
     }
 
 

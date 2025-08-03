@@ -1,16 +1,65 @@
 
 package com.dietiEstates.backend.exception;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class EmailServiceException extends RuntimeException
 {
+    private final String recipient;
+    private final String subject;
+
+
     public EmailServiceException(String msg)
     {
-        super(msg);
+        this(msg, new String(""), new String(""), null);
     }
     
     public EmailServiceException(String msg, Throwable throwable)
     {
+        this(msg, new String(""), new String(""), throwable);
+    }
+
+    public EmailServiceException(String recipient, String subject)
+    {
+        this(null, recipient, subject, null);
+    }
+
+    public EmailServiceException(String recipient, String subject, Throwable throwable)
+    {
+        this(null, recipient, subject, throwable);
+    }
+
+    public EmailServiceException(String msg, String recipient, String subject, Throwable throwable)
+    {
         super(msg, throwable);
+        this.recipient = recipient;
+        this.subject = subject;
+    }
+
+
+    @Override
+    public String getMessage() 
+    {
+        String baseMessage = super.getMessage();
+        StringBuilder fullMessage = new StringBuilder();
+        
+        if (baseMessage != null && !baseMessage.isEmpty()) 
+            fullMessage.append(baseMessage);
+        else 
+            fullMessage.append("Errore durante l'invio dell'email!");
+
+        
+        if (recipient != null && !recipient.isEmpty()) 
+            fullMessage.append("\nDestinatario: ").append(recipient);
+        
+        if (subject != null && !subject.isEmpty()) 
+            fullMessage.append("\nOggetto: ").append(subject);
+        
+        
+        return fullMessage.toString();
     }
 }

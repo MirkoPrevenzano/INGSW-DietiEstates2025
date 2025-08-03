@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.enums.Role;
+import com.dietiEstates.backend.exception.EmailServiceException;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.model.entity.Customer;
@@ -103,7 +104,15 @@ public class AuthenticationService
 
         customer.setRole(Role.ROLE_CUSTOMER);
 
-        customerWelcomeEmailService.sendWelcomeEmail(customer);
+        try 
+        {
+            customerWelcomeEmailService.sendWelcomeEmail(customer);
+        } 
+        catch (EmailServiceException e) 
+        {
+            log.warn(e.getMessage());
+        }
+
         return new AuthenticationResponseDTO(JwtUtil.generateAccessToken(customer));
     }
 
