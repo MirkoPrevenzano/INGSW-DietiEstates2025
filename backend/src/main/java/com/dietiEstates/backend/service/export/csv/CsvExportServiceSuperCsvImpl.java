@@ -158,7 +158,7 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
         csvWriterWrapper.getCsvListWriter().writeHeader("JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
                              "JUL", "AUG", "SEP", "OCT", "NOV", "DEC");
         
-        Integer[] monthlyStats = mockingStatsService.mockBarChartStats();
+        Integer[] monthlyStats = mockingStatsService.mockBarChartStats(agent);
         List<Integer> monthlyData = Arrays.asList(monthlyStats);
         csvWriterWrapper.getCsvListWriter().write(monthlyData);        
     }

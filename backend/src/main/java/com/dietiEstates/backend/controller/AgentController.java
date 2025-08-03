@@ -150,9 +150,9 @@ public class AgentController
     }
 
     
-    @GetMapping(path = "{username}/bar-chart-stats")
+/*     @GetMapping(path = "{username}/bar-chart-stats")
     public ResponseEntity<Integer[]> aaaa(@PathVariable("username") String username) 
     {
         return ResponseEntity.ok().body(agentService.getBarChartStats());
-    }
+    } */
 }

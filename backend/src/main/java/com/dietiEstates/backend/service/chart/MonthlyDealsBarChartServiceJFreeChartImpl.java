@@ -13,6 +13,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.springframework.stereotype.Service;
 
+import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,7 @@ public class MonthlyDealsBarChartServiceJFreeChartImpl implements MonthlyDealsBa
 
 
     @Override
-    public byte[] createChart(Void data) 
+    public byte[] createChart(Agent agent) 
     {
         final String soldRentedEstates = "Sold/Rented Real Estates";
 
@@ -44,7 +45,7 @@ public class MonthlyDealsBarChartServiceJFreeChartImpl implements MonthlyDealsBa
         final String november = "NOV";
         final String december = "DEC";
 
-        Integer[] valuePerMonth = mockingStatsService.mockBarChartStats();
+        Integer[] valuePerMonth = mockingStatsService.mockBarChartStats(agent);
 
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
         dataset.addValue( valuePerMonth[0], soldRentedEstates , january );

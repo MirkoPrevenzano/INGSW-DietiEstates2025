@@ -16,6 +16,7 @@ import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.repository.UserRepository;
 import com.dietiEstates.backend.service.AgentService;
+import com.dietiEstates.backend.service.mock.MockingStatsService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +36,7 @@ public class BackendApplication
     @Bean
     CommandLineRunner commandLineRunner(CustomerRepository customerRepository, AdministratorRepository administratorRepository, 
                                         AgentRepository agentRepository, UserRepository userRepository,
-                                        RealEstateRepository realEstateRepository,
+                                        RealEstateRepository realEstateRepository, MockingStatsService mockingStatsService,
                                         AgentService agentService)
     {
         return args -> 
@@ -47,6 +48,7 @@ public class BackendApplication
 
   
             Agent agent = (new Agent("a","b","c",passwordEncoder.encode("ssssssssssssssssssss22A@")));
+            mockingStatsService.mockAgentStats(agent);
             administrator.addAgent(agent);
             administrator = administratorRepository.save(administrator);
         };

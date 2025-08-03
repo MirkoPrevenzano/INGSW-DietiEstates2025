@@ -234,7 +234,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     public ResponseEntity<Object> handleGenericException(Exception ex, WebRequest request) 
     {
         logExceptionInfo(ex);
-
+        
         String errorPath = request.getDescription(false);
         String errorDescription = "Errore interno non gestito.";
 

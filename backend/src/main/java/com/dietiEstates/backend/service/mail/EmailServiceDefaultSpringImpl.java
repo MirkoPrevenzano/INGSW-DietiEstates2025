@@ -34,12 +34,13 @@ public class EmailServiceDefaultSpringImpl implements EmailService
         try 
         {
             javaMailSender.send(message);
+
+            log.info("Email inviata correttamente a: " + to + "\nOggetto: " + subject);
         } 
         catch (MailException e) 
         {
-            throw new EmailServiceException("Failed to send email!", e);
+            log.warn("ooo");
+            //throw new EmailServiceException("Failed to send email!", e);
         }
-
-        log.info("Email inviata correttamente a: " + to + "\nOggetto: " + subject);
     }   
 }

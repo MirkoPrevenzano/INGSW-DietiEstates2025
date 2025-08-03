@@ -77,7 +77,7 @@ public class AgentService
         Address address = modelMapper.map(realEstateCreationDTO.getAddressDTO(), Address.class);
         realEstate.addAddress(address);
 
-        mockingStatsService.mockEstateStats(realEstate);
+        mockingStatsService.mockRealEstateStats(realEstate);
 
         agent.addRealEstate(realEstate);
 
@@ -244,8 +244,12 @@ public class AgentService
 
     public AgentDashboardPersonalStatsDTO getAgentDashboardStats(String username) 
     {
-        Integer[] estatesPerMonth = mockingStatsService.mockBarChartStats();
-        AgentStats agentStats = agentRepository.findByUsername(username).get().getAgentStats();
+        //Integer[] estatesPerMonth = mockingStatsService.mockBarChartStats();
+        Agent agent = agentRepository.findByUsername(username).get();
+
+        AgentStats agentStats = agent.getAgentStats();
+
+        Integer[] estatesPerMonth = mockingStatsService.mockBarChartStats(agent);
 
         AgentStatsDTO agentStatsDTO2 = new AgentStatsDTO();
         modelMapper.map(agentStats, agentStatsDTO2);
@@ -272,8 +276,8 @@ public class AgentService
                                                         page);
     }
 
-    public Integer[] getBarChartStats() 
+    public Integer[] getBarChartStats(Agent agent) 
     {
-        return mockingStatsService.mockBarChartStats();
+        return mockingStatsService.mockBarChartStats(agent);
     }
 }

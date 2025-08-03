@@ -201,7 +201,7 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
         Document document = pdfWrapper.getDocument();
         
         // Aggiungere il grafico a barre
-        addBarChart(document);        
+        addBarChart(document, agent);        
     }
 
 
@@ -312,9 +312,9 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
         }
     }
     
-    private void addBarChart(Document document) {
+    private void addBarChart(Document document, Agent agent) {
         try {
-            Image im4 = Image.getInstance(monthlyDealsBarChartService.createChart(null));
+            Image im4 = Image.getInstance(monthlyDealsBarChartService.createChart(agent));
             im4.setAlignment(Element.ALIGN_CENTER);
             im4.scalePercent(80);
             document.add(im4);
