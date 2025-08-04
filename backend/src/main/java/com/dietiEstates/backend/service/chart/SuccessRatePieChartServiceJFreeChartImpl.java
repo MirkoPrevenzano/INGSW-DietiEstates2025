@@ -45,14 +45,14 @@ public class SuccessRatePieChartServiceJFreeChartImpl implements SuccessRatePieC
         chart.getPlot().setBackgroundPaint(Color.WHITE);
         chart.getPlot().setOutlinePaint(Color.BLACK);
 
-        int width = 450;   /* Width of the image */
+        int width = 450; /* Width of the image */
         int height = 300;  /* Height of the image */ 
         File pieChart = new File( "backend/src/main/resources/PieChart2.jpeg" ); 
 
         byte[] i = null;
          try 
         { 
-            //ChartUtils.saveChartAsJPEG( pieChart , chart , width , height );
+            ChartUtils.saveChartAsJPEG( pieChart , chart , width , height );
             i = ChartUtils.encodeAsPNG(chart.createBufferedImage(width, height));
          } 
         catch (IOException e) {

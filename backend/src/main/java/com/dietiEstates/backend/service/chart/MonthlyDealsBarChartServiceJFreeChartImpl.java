@@ -69,7 +69,7 @@ public class MonthlyDealsBarChartServiceJFreeChartImpl implements MonthlyDealsBa
             true, true, false);
             
         barChart.getPlot().setBackgroundPaint(Color.WHITE);
-        barChart.getPlot().setOutlinePaint(Color.BLACK);
+       // barChart.getPlot().setOutlinePaint(Color.BLACK);
 
         int width = 500;    /* Width of the image */
         int height = 450;   /* Height of the image */ 

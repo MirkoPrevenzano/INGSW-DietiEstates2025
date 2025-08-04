@@ -3,6 +3,7 @@ package com.dietiEstates.backend.service.export.pdf;
 
 import java.awt.Color;
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -82,11 +83,11 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
     protected Object initializeWriter() throws Exception 
     {
         Document document = new Document(PageSize.A4);
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        //FileOutputStream fileOutputStream = new FileOutputStream("lool2.pdf");
+        //ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        FileOutputStream fileOutputStream = new FileOutputStream("ooooooooo.pdf");
 
-        PdfWriter writer = PdfWriter.getInstance(document, byteArrayOutputStream);
-        //PdfWriter writer = PdfWriter.getInstance(document, fileOutputStream);
+        //PdfWriter writer = PdfWriter.getInstance(document, byteArrayOutputStream);
+        PdfWriter writer = PdfWriter.getInstance(document, fileOutputStream);
         
         
         // Aggiungi il page event helper per header/footer
@@ -100,8 +101,8 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
         // Crea gli stili una sola volta e li passa tramite il wrapper
         PdfStyleConfig styleConfig = createStyleConfig();
         
-        //return new PdfWriterWrapper(document, writer, styleConfig, fileOutputStream); 
-        return new PdfWriterWrapper(document, writer, styleConfig, byteArrayOutputStream); 
+        return new PdfWriterWrapper(document, writer, styleConfig, fileOutputStream); 
+        //return new PdfWriterWrapper(document, writer, styleConfig, byteArrayOutputStream); 
     }
 
 
@@ -213,8 +214,8 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
     protected byte[] finalizeWriter(Object writer) throws Exception {
         PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
         pdfWrapper.getDocument().close();
-        return ((ByteArrayOutputStream) pdfWrapper.getOutputStream()).toByteArray();
-        //return null;
+        // return ((ByteArrayOutputStream) pdfWrapper.getOutputStream()).toByteArray();
+        return null;
     }
 
 
@@ -297,9 +298,8 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
             Image im2 = Image.getInstance(successRatePieChartService.createChart(agent));
             Image im3 = Image.getInstance(totalDealsPieChartService.createChart(agent));
             PdfPTable chartTable = createTable(2, 110, new float[] {1, 1});
-            
             PdfPCell cell = createCell(Color.WHITE, 0);
-            cell.setBorderColor(Color.WHITE);
+            cell.setBorderColor(Color.BLACK);
             cell.setImage(im2);
             chartTable.addCell(cell);
             
