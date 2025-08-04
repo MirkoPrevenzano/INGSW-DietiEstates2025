@@ -31,6 +31,9 @@ public class MonthlyDealsBarChartServiceJFreeChartImpl implements MonthlyDealsBa
     public byte[] createChart(Agent agent) 
     {
         final String soldRentedEstates = "Sold/Rented Real Estates";
+        final String boh = "boh Real Estates";
+        final String boh2 = "boh2 Real Estates";
+        final String boh3 = "boh3 Real Estates";
 
         final String january = "JAN";
         final String february = "FEB";
@@ -49,12 +52,18 @@ public class MonthlyDealsBarChartServiceJFreeChartImpl implements MonthlyDealsBa
 
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
         dataset.addValue( valuePerMonth[0], soldRentedEstates , january );
-        dataset.addValue( valuePerMonth[1], soldRentedEstates , february );
+        dataset.addValue( valuePerMonth[0], boh , january );
+        dataset.addValue( valuePerMonth[0], boh2 , january );
+        dataset.addValue( valuePerMonth[0], boh3 , january );
+        dataset.addValue( valuePerMonth[1], soldRentedEstates , january );
+        dataset.addValue( valuePerMonth[1], boh , february );
+        dataset.addValue( valuePerMonth[1], boh2 , february );
+        dataset.addValue( valuePerMonth[1], boh3 , february );
         dataset.addValue( valuePerMonth[2], soldRentedEstates , march );
         dataset.addValue( valuePerMonth[3] , soldRentedEstates , april );
         dataset.addValue( valuePerMonth[4] , soldRentedEstates , may );
         dataset.addValue( valuePerMonth[5] , soldRentedEstates , june );
-        dataset.addValue( valuePerMonth[6] , soldRentedEstates , july );
+        dataset.addValue( valuePerMonth[6] , boh , july );
         dataset.addValue( valuePerMonth[7] , soldRentedEstates , august );
         dataset.addValue( valuePerMonth[8] , soldRentedEstates , september );
         dataset.addValue( valuePerMonth[9] , soldRentedEstates , october );

@@ -299,7 +299,7 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
             Image im3 = Image.getInstance(totalDealsPieChartService.createChart(agent));
             PdfPTable chartTable = createTable(2, 110, new float[] {1, 1});
             PdfPCell cell = createCell(Color.WHITE, 0);
-            cell.setBorderColor(Color.BLACK);
+            cell.setBorderColor(Color.WHITE);
             cell.setImage(im2);
             chartTable.addCell(cell);
             

@@ -7,9 +7,10 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum ChartDimensions {
-    STANDARD_BAR(500, 450),
-    STANDARD_PIE(450, 300),
+public enum ChartDimensions 
+{
+    STANDARD_BAR_CHART(500, 450),
+    STANDARD_PIE_CHART(450, 300),
     LARGE(800, 600),
     SMALL(300, 200);
     

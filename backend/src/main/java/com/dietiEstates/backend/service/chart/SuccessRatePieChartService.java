@@ -5,4 +5,7 @@ import com.dietiEstates.backend.model.entity.Agent;
 
 
 public interface SuccessRatePieChartService extends ChartService<Agent>
-{}
+{
+    @Override
+    byte[] createChart(Agent data);
+}
