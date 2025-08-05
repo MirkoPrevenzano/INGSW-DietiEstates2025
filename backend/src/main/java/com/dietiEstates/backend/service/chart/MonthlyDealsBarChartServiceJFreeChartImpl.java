@@ -1,4 +1,81 @@
 
+
+package com.dietiEstates.backend.service.chart;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.springframework.stereotype.Service;
+
+import com.dietiEstates.backend.model.entity.Agent;
+import com.dietiEstates.backend.service.chart.enums.BarChartMonthLabel;
+import com.dietiEstates.backend.service.chart.enums.ChartDimensions;
+import com.dietiEstates.backend.service.mock.MockingStatsService;
+
+import lombok.RequiredArgsConstructor;
+
+
+@Service
+@RequiredArgsConstructor
+public class MonthlyDealsBarChartServiceJFreeChartImpl extends ChartServiceJFreeChartTemplate<Agent, DefaultCategoryDataset> implements MonthlyDealsBarChartService
+{
+    private final MockingStatsService mockingStatsService;
+
+    private static final String CHART_TITLE = "Monthly Deals";
+    private static final String X_AXIS_LABEL = "Month";
+    private static final String Y_AXIS_LABEL = "Total Deals";
+    private static final String DATASET_SERIES = "Sales/Rentals";
+
+
+
+    @Override
+    protected DefaultCategoryDataset buildDataset(Agent agent) 
+    {
+        Integer[] monthlyDeals = mockingStatsService.mockBarChartStats(agent);
+
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        
+        for (BarChartMonthLabel month : BarChartMonthLabel.getAllMonths()) 
+        {
+            dataset.addValue(monthlyDeals[month.getIndex()],
+                             DATASET_SERIES, 
+                             month.getLabel());
+        }
+        
+        return dataset;
+    }
+
+    @Override
+    protected JFreeChart buildChart(DefaultCategoryDataset dataset) 
+    {
+        return ChartFactory.createBarChart(CHART_TITLE,
+                                           X_AXIS_LABEL,
+                                           Y_AXIS_LABEL,
+                                           dataset,
+                                           PlotOrientation.VERTICAL,
+                                           true,
+                                           false,
+                                           false);
+    }
+
+    @Override
+    protected ChartDimensions getChartDimensions() 
+    {
+        return ChartDimensions.STANDARD_BAR_CHART;
+    }
+
+    @Override
+    protected void customizeChart(JFreeChart chart) 
+    {
+        super.customizeChart(chart);
+    }  
+}
+
+
+
+
+/* 
 package com.dietiEstates.backend.service.chart;
 
 import java.awt.Color;
@@ -80,8 +157,8 @@ public class MonthlyDealsBarChartServiceJFreeChartImpl implements MonthlyDealsBa
         barChart.getPlot().setBackgroundPaint(Color.WHITE);
        // barChart.getPlot().setOutlinePaint(Color.BLACK);
 
-        int width = 500;    /* Width of the image */
-        int height = 450;   /* Height of the image */ 
+        int width = 500;    
+        int height = 450;   
         File barChartFile = new File( "backend/src/main/resources/BarChart.jpeg" ); 
         byte[] b = null;
         try 
@@ -95,4 +172,4 @@ public class MonthlyDealsBarChartServiceJFreeChartImpl implements MonthlyDealsBa
 
         return b;
     }   
-}
+} */

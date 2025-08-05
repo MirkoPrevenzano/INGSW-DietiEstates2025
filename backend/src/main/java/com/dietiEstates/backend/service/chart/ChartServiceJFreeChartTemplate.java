@@ -7,9 +7,6 @@ import java.io.IOException;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.Dataset;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.dietiEstates.backend.service.chart.enums.ChartDimensions;
 import com.dietiEstates.backend.exception.ChartServiceException;
 
