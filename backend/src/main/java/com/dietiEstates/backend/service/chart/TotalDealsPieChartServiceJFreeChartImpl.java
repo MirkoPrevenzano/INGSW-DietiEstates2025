@@ -1,66 +1,60 @@
 
 package com.dietiEstates.backend.service.chart;
 
-import java.awt.Color;
-
-import java.io.File;
-import java.io.IOException;
-
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.stereotype.Service;
 
 import com.dietiEstates.backend.model.entity.Agent;
+import com.dietiEstates.backend.service.chart.enums.ChartDimensions;
 
 
 @Service
-public class TotalDealsPieChartServiceJFreeChartImpl implements TotalDealsPieChartService
-{
+public class TotalDealsPieChartServiceJFreeChartImpl extends ChartServiceJFreeChartTemplate<Agent, DefaultPieDataset<String>> implements TotalDealsPieChartService 
+{   
+    private static final String CHART_TITLE = "Sales / Rentals Ratio";
+    private static final String TOTAL_SALES_LABEL = "Sales";
+    private static final String TOTAL_RENTALS_LABEL = "Rentals";
+    
 
     @Override
-    public byte[] createChart(Agent agent) 
+    protected DefaultPieDataset<String> buildDataset(Agent agent) 
     {
-
         DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
-
-        if(agent.getAgentStats().getTotalUploadedRealEstates() != 0)
+        
+        int totalSales = agent.getAgentStats().getTotalSoldRealEstates();
+        int totalRentals = agent.getAgentStats().getTotalRentedRealEstates();
+        
+        if (totalSales > 0 || totalRentals > 0) 
         {
-            dataset.setValue("SALES", Double.valueOf(agent.getAgentStats().getTotalSoldRealEstates()));
-            dataset.setValue("RENTALS", Double.valueOf(agent.getAgentStats().getTotalRentedRealEstates()));
+            dataset.setValue(TOTAL_SALES_LABEL, (double) totalSales);
+            dataset.setValue(TOTAL_RENTALS_LABEL, (double) totalRentals);
         }
-        else
-        {
-            dataset.setValue("SALES", Double.valueOf(0));
-            dataset.setValue("RENTALS", Double.valueOf(0));
-        }
+        
+        return dataset;
+    }
+    
+    @Override
+    protected JFreeChart buildChart(DefaultPieDataset<String> dataset) 
+    {
+        return ChartFactory.createPieChart(CHART_TITLE,
+                                           dataset,
+                                           false,
+                                           false,
+                                           false
+        );
+    }
+    
+    @Override
+    protected ChartDimensions getChartDimensions() 
+    {
+        return ChartDimensions.STANDARD_PIE_CHART;
+    }
 
-        JFreeChart chart = ChartFactory.createPieChart(
-           "Sales/Rentals Ratio",   // chart title
-           dataset,          // data
-           false,             // include legend
-           false,
-           false);
-
-        chart.getPlot().setBackgroundPaint(Color.WHITE);
-        chart.getPlot().setOutlinePaint(Color.BLACK);
-
-        int width = 450;   /* Width of the image */
-        int height = 300;  /* Height of the image */ 
-        File pieChart = new File( "backend/src/main/resources/PieChart.jpeg" ); 
-
-        byte[] b = null;
-        try 
-        {
-           // ChartUtils.saveChartAsJPEG( pieChart , chart , width , height );
-            b = ChartUtils.encodeAsPNG(chart.createBufferedImage(width, height));
-        } 
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("\n\nb : " + b.length);
-        return b;
+    @Override
+    protected void customizeChart(JFreeChart chart) 
+    {
+        super.customizeChart(chart);
     }
 }

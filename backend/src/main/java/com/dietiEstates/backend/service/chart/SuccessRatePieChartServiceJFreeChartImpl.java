@@ -112,10 +112,9 @@ public class SuccessRatePieChartServiceJFreeChartImpl extends ChartServiceJFreeC
     {
         return ChartFactory.createPieChart(CHART_TITLE,
                                            dataset,
-                                    true,  // legend
-                                    true, // tooltips
-                                    true  // URLs
-        );
+                                           false,
+                                           false,
+                                           false);
     }
     
     @Override
