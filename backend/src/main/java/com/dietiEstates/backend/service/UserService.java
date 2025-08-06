@@ -1,120 +1,15 @@
-/* 
+
 package com.dietiEstates.backend.service;
 
-import java.util.Optional;
-
+import org.modelmapper.MappingException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
 import com.dietiEstates.backend.enums.Role;
-import com.dietiEstates.backend.model.entity.Administrator;
-import com.dietiEstates.backend.model.entity.Agent;
-import com.dietiEstates.backend.model.entity.Customer;
 import com.dietiEstates.backend.model.entity.User;
-import com.dietiEstates.backend.repository.AdministratorRepository;
-import com.dietiEstates.backend.repository.AgentRepository;
-import com.dietiEstates.backend.repository.CustomerRepository;
-import com.dietiEstates.backend.repository.UserRepository;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
-
-@Service
-@RequiredArgsConstructor
-@Slf4j
-public class UserService implements UserDetailsService
-{
-    private final AdministratorRepository administratorRepository;
-    private final AgentRepository agentRepository;
-    private final CustomerRepository customerRepository;
-    private final PasswordEncoder passwordEncoder;
-
-
-
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
-    {
-        log.info("\n\nSONO IN USERDETAILSSERVICEEEE\n\n");
-
-        int index = username.indexOf("/");
-        String role = username.substring(index + 1);
-        username = username.substring(0, index);
-
-        switch(role) 
-        {
-            case "admin":
-                Optional<Administrator> optionalAdminiistrator = administratorRepository.findByUsername(username);
-                Administrator administrator = optionalAdminiistrator.get();
-                
-                if(passwordEncoder.matches("default", administrator.getPassword()))
-                {
-                    log.info("{} is a NOT AUTHORIZED administrator", username);
-                    administrator.setRole(Role.ROLE_UNAUTHORIZED);
-                }
-                else if(administrator.getUserId() == 1)
-                {
-                    log.info("{} is an ADMIN administrator", username);
-                    administrator.setRole(Role.ROLE_ADMIN);
-                }
-                else
-                {
-                    log.info("{} is a COLLABORATOR administrator", username);
-                    administrator.setRole(Role.ROLE_COLLABORATOR);
-                }
-
-                return administrator;
-
-
-            
-            case "agent":
-                Optional<Agent> optionalAgent = agentRepository.findByUsername(username);
-                Agent agent = optionalAgent.get();
-                log.info("{} is an AGENT", username);
-                agent.setRole(Role.ROLE_AGENT);
-                return agent;
-
-
-            
-            case "customer":            
-                Optional<Customer> optionalCustomer = customerRepository.findByUsername(username);
-                Customer customer = optionalCustomer.get();
-                log.info("{} is a CUSTOMER", username);
-                customer.setRole(Role.ROLE_CUSTOMER); 
-                return customer;
-        
-
-            default:
-                throw new IllegalArgumentException("Wrong role inserted!");
-        }    
-    }
-
-} */
-
-
-
-package com.dietiEstates.backend.service;
-
-import java.util.Optional;
-
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import com.dietiEstates.backend.enums.Role;
-import com.dietiEstates.backend.model.entity.Administrator;
-import com.dietiEstates.backend.model.entity.Agent;
-import com.dietiEstates.backend.model.entity.Customer;
-import com.dietiEstates.backend.model.entity.User;
-import com.dietiEstates.backend.repository.AdministratorRepository;
-import com.dietiEstates.backend.repository.AgentRepository;
-import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.UserRepository;
 import com.dietiEstates.backend.resolver.UserLoadingStrategyResolver;
 import com.dietiEstates.backend.strategy.UserLoadingStrategy;
@@ -129,13 +24,13 @@ import lombok.extern.slf4j.Slf4j;
 public class UserService implements UserDetailsService
 {
     private final UserLoadingStrategyResolver userLoadingStrategyResolver;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
     {
-        log.info("\n\nSONO IN USERDETAILSSERVICEEEE\n\n");
-
         int index = username.indexOf("/");
 
         Role role;
@@ -151,7 +46,32 @@ public class UserService implements UserDetailsService
         username = username.substring(0, index);
 
         UserLoadingStrategy userLoadingStrategy = userLoadingStrategyResolver.getUserLoadingStrategy(role);
-        return userLoadingStrategy.loadUser(username);
+        UserDetails user = userLoadingStrategy.loadUser(username);
+
+        return user;
     }
 
+    public void updatePassword(String username, UpdatePasswordDTO updatePasswordDTO) throws UsernameNotFoundException, 
+                                                                                            IllegalArgumentException, MappingException
+    {
+        User user = userRepository.findByUsername(username)
+                                  .orElseThrow(() -> new UsernameNotFoundException(""));
+
+        if(!(passwordEncoder.matches(updatePasswordDTO.getOldPassword(), user.getPassword())))
+        {
+            log.error("The \"old password\" you have inserted do not correspond to your current password");
+            throw new IllegalArgumentException("The \"old password\" you have inserted do not correspond to your current password");
+        }
+
+        if((passwordEncoder.matches(updatePasswordDTO.getNewPassword(), user.getPassword())))
+        {
+            log.error("The \"new password\" you have inserted can't be equal to your current password");
+            throw new IllegalArgumentException("\"The \"new password\" you have inserted can't be equal to your current password");
+        }
+        
+        user.setPassword(passwordEncoder.encode(updatePasswordDTO.getNewPassword()));
+        userRepository.save(user);
+
+        log.info("Password was updated successfully!");
+    }
 }

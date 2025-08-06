@@ -51,7 +51,9 @@ public class AuthenticationFailureHandlerCustomImpl implements AuthenticationFai
                 errorDescription += "You have entered a wrong username.";
         }
         else if(authException instanceof BadCredentialsException)
+        {
             errorDescription += "You have entered a wrong password.";
+        }
         else
             errorDescription += "An error occurred during authentication. Try later.";
 
