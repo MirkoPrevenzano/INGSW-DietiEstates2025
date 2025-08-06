@@ -8,13 +8,16 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.List;
 
+import org.modelmapper.MappingException;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dietiEstates.backend.config.ModelMapperConfig;
+import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
@@ -24,6 +27,7 @@ import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDTO;
 import com.dietiEstates.backend.dto.response.support.AgentStatsDTO;
 import com.dietiEstates.backend.enums.EnergyClass;
 import com.dietiEstates.backend.enums.PropertyCondition;
+import com.dietiEstates.backend.exception.EmailServiceException;
 import com.dietiEstates.backend.enums.FurnitureCondition;
 import com.dietiEstates.backend.enums.NotaryDeedState;
 import com.dietiEstates.backend.factory.RealEstateFromDtoFactory;
@@ -31,17 +35,21 @@ import com.dietiEstates.backend.model.embeddable.ExternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.InternalRealEstateFeatures;
 import com.dietiEstates.backend.model.embeddable.AgentStats;
 import com.dietiEstates.backend.model.entity.Address;
+import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Photo;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.model.entity.RealEstateForRent;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;
+import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.resolver.RealEstateFactoryFromDTOResolver;
+import com.dietiEstates.backend.service.mail.AgentWelcomeEmailService;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
 import com.dietiEstates.backend.service.photo.PhotoData;
 import com.dietiEstates.backend.service.photo.PhotoService;
+import com.dietiEstates.backend.util.PasswordGeneratorUtil;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -55,6 +63,7 @@ import java.util.Map;
 @Slf4j
 public class AgentService 
 {
+    private final AdministratorRepository administratorRepository;
     private final AgentRepository agentRepository;
     private final RealEstateRepository realEstateRepository;
     private final MockingStatsService mockingStatsService;
@@ -62,7 +71,62 @@ public class AgentService
     //private final ValidationUtil validationUtil;
     private final RealEstateFactoryFromDTOResolver realEstateFactoryFromDTOResolver;
     private final PhotoService photoService;
+    private final AgentWelcomeEmailService agentWelcomeEmailService;
+    private final PasswordEncoder passwordEncoder;
 
+
+
+
+    public void createAgent(String username, AgentRegistrationDTO agentRegistrationDTO) throws UsernameNotFoundException, 
+                                                                                          IllegalArgumentException, MappingException
+    {
+        Optional<Administrator> administratorOptional = administratorRepository.findByUsername(username);
+        if(administratorOptional.isEmpty())
+        {
+            log.error("Admin not found in database");
+            throw new UsernameNotFoundException("Admin not found in database");
+        }
+        Administrator administrator = administratorOptional.get();
+
+        if(agentRepository.findByUsername(agentRegistrationDTO.getUsername()).isPresent())
+        {
+            log.error("This username is already present!");
+            throw new IllegalArgumentException("This username is already present!");
+        }
+
+        Agent agent;
+        try 
+        {
+            agent = modelMapper.map(agentRegistrationDTO, Agent.class);
+        } 
+        catch (MappingException e) 
+        {
+            log.error("Problems while mapping! Probably the source object was different than the one expected!");
+            throw e;
+        }
+
+        String plainTextPassword = PasswordGeneratorUtil.generateRandomPassword();
+        String hashedPassword = passwordEncoder.encode(plainTextPassword);
+
+        agent.setPassword(hashedPassword);
+
+        mockingStatsService.mockAgentStats(agent);
+
+        administrator.addAgent(agent);
+        administrator = administratorRepository.save(administrator);
+
+        log.info("Real Estate Agent was created successfully!");
+
+        try 
+        {
+            agentWelcomeEmailService.sendWelcomeEmail(agent);
+        } 
+        catch (EmailServiceException e) 
+        {
+            log.warn(e.getMessage());
+        }
+
+    }
 
 
     @Transactional

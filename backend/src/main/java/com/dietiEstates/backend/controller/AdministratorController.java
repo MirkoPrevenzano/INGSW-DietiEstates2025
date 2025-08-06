@@ -14,6 +14,7 @@ import com.dietiEstates.backend.dto.request.CollaboratorRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
 import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
 import com.dietiEstates.backend.service.AdministratorService;
+import com.dietiEstates.backend.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AdministratorController
 {
     private final AdministratorService administratorService;
+    private final UserService userService;
     
 
     @PostMapping(path = "/{username}/create-collaborator")
@@ -47,7 +49,7 @@ public class AdministratorController
     @PutMapping(path = "/{username}/update-password")
     public ResponseEntity<Void> updatePassword(@PathVariable String username, @RequestBody UpdatePasswordDTO updatePasswordDTO) 
     {
-        administratorService.updatePassword(username, updatePasswordDTO);
+        userService.updatePassword(username, updatePasswordDTO);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

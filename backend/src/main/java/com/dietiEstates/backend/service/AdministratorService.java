@@ -1,30 +1,22 @@
 
 package com.dietiEstates.backend.service;
 
-import java.util.Optional;
-
 import org.modelmapper.MappingException;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.dto.request.CollaboratorRegistrationDTO;
-import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
-import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
 import com.dietiEstates.backend.exception.EmailServiceException;
 import com.dietiEstates.backend.model.entity.Administrator;
-import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.service.mail.AgentWelcomeEmailService;
 import com.dietiEstates.backend.service.mail.CollaboratorWelcomeEmailService;
-import com.dietiEstates.backend.service.mail.UserWelcomeEmailService;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
 import com.dietiEstates.backend.util.PasswordGeneratorUtil;
 
@@ -41,7 +33,6 @@ public class AdministratorService
     private final AgentRepository agentRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
-    //private final ValidationUtil validationUtil;
     private final MockingStatsService mockingStatsService;
     private final AgentWelcomeEmailService agentWelcomeEmailService;
     private final CollaboratorWelcomeEmailService collaboratorWelcomeEmailService;
@@ -52,13 +43,8 @@ public class AdministratorService
     public void createCollaborator(String username, CollaboratorRegistrationDTO collaboratorRegistrationDTO) throws UsernameNotFoundException, 
                                                                                     IllegalArgumentException, MappingException
     {
-        Optional<Administrator> adminOptional = administratorRepository.findByUsername(username);
-        if(adminOptional.isEmpty())
-        {
-            log.error("Admin not found in database");
-            throw new UsernameNotFoundException("Admin not found in database");
-        }
-        Administrator admin = adminOptional.get();
+        Administrator administrator = administratorRepository.findByUsername(username)
+                                                             .orElseThrow(() -> new UsernameNotFoundException(""));
 
         if(administratorRepository.findByUsername(collaboratorRegistrationDTO.getUsername()).isPresent())
         {
@@ -66,24 +52,15 @@ public class AdministratorService
             throw new IllegalArgumentException("This username is already present!");
         }
 
-        Administrator collaborator;
-        try 
-        {
-            collaborator = modelMapper.map(collaboratorRegistrationDTO, Administrator.class);
-        } 
-        catch (MappingException e) 
-        {
-            log.error("Problems while mapping! Probably the source object was different than the one expected!");
-            throw e;
-        }
-
+        Administrator collaborator = modelMapper.map(collaboratorRegistrationDTO, Administrator.class);
+        
         String plainTextPassword = PasswordGeneratorUtil.generateRandomPassword();
         String hashedPassword = passwordEncoder.encode(plainTextPassword);
 
         collaborator.setPassword(hashedPassword);
         
-        admin.addCollaborator(collaborator);
-        admin = administratorRepository.save(admin);
+        administrator.addCollaborator(collaborator);
+        // admin = administratorRepository.save(admin);
 
         log.info("Collaborator was created successfully!");
 
@@ -98,17 +75,16 @@ public class AdministratorService
     }
 
 
+
+
+    // TODO: DA RIMUOVERE PER REST API
+
     @Transactional
     public void createAgent(String username, AgentRegistrationDTO agentRegistrationDTO) throws UsernameNotFoundException, 
                                                                                           IllegalArgumentException, MappingException
     {
-        Optional<Administrator> administratorOptional = administratorRepository.findByUsername(username);
-        if(administratorOptional.isEmpty())
-        {
-            log.error("Admin not found in database");
-            throw new UsernameNotFoundException("Admin not found in database");
-        }
-        Administrator administrator = administratorOptional.get();
+        Administrator administrator = administratorRepository.findByUsername(username)
+                                                             .orElseThrow(() -> new UsernameNotFoundException(""));
 
         if(agentRepository.findByUsername(agentRegistrationDTO.getUsername()).isPresent())
         {
@@ -116,16 +92,7 @@ public class AdministratorService
             throw new IllegalArgumentException("This username is already present!");
         }
 
-        Agent agent;
-        try 
-        {
-            agent = modelMapper.map(agentRegistrationDTO, Agent.class);
-        } 
-        catch (MappingException e) 
-        {
-            log.error("Problems while mapping! Probably the source object was different than the one expected!");
-            throw e;
-        }
+        Agent agent = modelMapper.map(agentRegistrationDTO, Agent.class);
 
         String plainTextPassword = PasswordGeneratorUtil.generateRandomPassword();
         String hashedPassword = passwordEncoder.encode(plainTextPassword);
@@ -135,7 +102,7 @@ public class AdministratorService
         mockingStatsService.mockAgentStats(agent);
 
         administrator.addAgent(agent);
-        administrator = administratorRepository.save(administrator);
+       // administrator = administratorRepository.save(administrator);
 
         log.info("Real Estate Agent was created successfully!");
 
@@ -147,37 +114,5 @@ public class AdministratorService
         {
             log.warn(e.getMessage());
         }
-
-    }
-
-
-    public void updatePassword(String username, UpdatePasswordDTO updatePasswordDTO) throws UsernameNotFoundException, 
-                                                                                            IllegalArgumentException, MappingException
-    {
-        Optional<Administrator> administratorOptional = administratorRepository.findByUsername(username);
-        if(administratorOptional.isEmpty())
-        {
-            log.error("Admin not found in database");
-            throw new UsernameNotFoundException("Admin not found in database");
-        }
-
-        if(!(passwordEncoder.matches(updatePasswordDTO.getOldPassword(), administratorOptional.get().getPassword())))
-        {
-            log.error("The \"old password\" you have inserted do not correspond to your current password");
-            throw new IllegalArgumentException("The \"old password\" you have inserted do not correspond to your current password");
-        }
-
-        if((passwordEncoder.matches(updatePasswordDTO.getNewPassword(), administratorOptional.get().getPassword())))
-        {
-            log.error("The \"new password\" you have inserted can't be equal to your current password");
-            throw new IllegalArgumentException("\"The \"new password\" you have inserted can't be equal to your current password");
-        }
-        
-
-        Administrator administrator = administratorOptional.get();
-        administrator.setPassword(passwordEncoder.encode(updatePasswordDTO.getNewPassword()));
-        administrator = administratorRepository.save(administrator);
-
-        log.info("Password was updated successfully!");
     }
 }
