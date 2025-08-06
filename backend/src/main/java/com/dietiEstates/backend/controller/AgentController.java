@@ -134,7 +134,7 @@ public class AgentController
     @GetMapping(path = "{username}/general-stats")
     public ResponseEntity<AgentDashboardPersonalStatsDTO> aaaaaaa(@PathVariable("username") String username) 
     {
-        AgentDashboardPersonalStatsDTO agentDashboardPersonalStatsDTO = agentService.getAgentDashboardStats(username);
+        AgentDashboardPersonalStatsDTO agentDashboardPersonalStatsDTO = agentService.getAgentDashboardPersonalStats(username);
         return ResponseEntity.ok().body(agentDashboardPersonalStatsDTO);
     }
 
@@ -144,7 +144,7 @@ public class AgentController
                                                    @PathVariable("page") Integer page,
                                                    @PathVariable("limit") Integer limit) 
     {
-        List<AgentDashboardRealEstateStatsDTO> realEstateStatsDTOs = agentService.getRealEstateStats(username,PageRequest.of(page, limit));
+        List<AgentDashboardRealEstateStatsDTO> realEstateStatsDTOs = agentService.getAgentDashboardRealEstateStats(username,PageRequest.of(page, limit));
         
         return ResponseEntity.ok().body(realEstateStatsDTOs);
     }
