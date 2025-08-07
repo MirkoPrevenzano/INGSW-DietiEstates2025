@@ -16,6 +16,7 @@ import lombok.AllArgsConstructor;
 public class RealEstateSearchDTO
 {
     private List<RealEstatePreviewInfoDTO> realEstatePreviews;
+    private int totalElementsOfPage;
     private long totalElements;
     private int totalPages;
 }

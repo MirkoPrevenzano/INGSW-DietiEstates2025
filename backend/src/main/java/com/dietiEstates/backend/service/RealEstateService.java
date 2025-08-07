@@ -62,6 +62,7 @@ public class RealEstateService
         log.info("realEstatePreviewsPage.getTotalPages(): {}", realEstatePreviewsPage.getTotalPages());
 
         RealEstateSearchDTO RealEstatePreviewsFirstPageDTO = new RealEstateSearchDTO(realEstatePreviewsPage.getContent(),
+        realEstatePreviewsPage.getNumberOfElements(),
                                                                                                         realEstatePreviewsPage.getTotalElements(), 
                                                                                                         realEstatePreviewsPage.getTotalPages());
         return RealEstatePreviewsFirstPageDTO;
