@@ -23,7 +23,6 @@ import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.model.entity.Customer;
 import com.dietiEstates.backend.model.entity.CustomerViewsRealEstate;
 import com.dietiEstates.backend.model.entity.RealEstate;
-//import com.dietiEstates.backend.repository.CVRRepository;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.resolver.RealEstateMapperResolver;
@@ -43,20 +42,22 @@ public class RealEstateService
     private final CustomerRepository customerRepository;
     private final ModelMapper modelMapper;
     private final RealEstateMapperResolver realEstateMapperResolver;
-    //private final CVRRepository cvrRepository;
 
-
-    public RealEstateSearchDTO search3(Map<String,String> filters, Pageable page)
+    @Transactional
+    public RealEstateSearchDTO search(Map<String,String> filters, Pageable page)
     {
         CoordinatesBoundingBox coordinatesBoundingBox = FindByRadiusUtil.getBoundingBox(Integer.valueOf(filters.get("radius")), 
                                                                                Double.valueOf(filters.get("lat")), 
                                                                                Double.valueOf(filters.get("lon")));
 
+        log.warn("coordbb, minLat: " + coordinatesBoundingBox.getMinLatitude());
+        log.warn("coordbb, maxLat: " + coordinatesBoundingBox.getMaxLatitude());
+        log.warn("coordbb, minLon: " + coordinatesBoundingBox.getMinLongitude());
+        log.warn("coordbb, maxLon: " + coordinatesBoundingBox.getMaxLatitude());
+
         Page<RealEstatePreviewInfoDTO> realEstatePreviewsPage = realEstateRepository.findRealEstatePreviewInfosByFilters(filters, page, coordinatesBoundingBox);
 
-        log.info("realEstatePreviewsPage.getNumber(): {}", realEstatePreviewsPage.getNumber());
         log.info("realEstatePreviewsPage.getNumberOfElements(): {}", realEstatePreviewsPage.getNumberOfElements());
-        log.info("realEstatePreviewsPage.getSize(): {}", + realEstatePreviewsPage.getSize());
         log.info("realEstatePreviewsPage.getTotalElements(): {}", realEstatePreviewsPage.getTotalElements());
         log.info("realEstatePreviewsPage.getTotalPages(): {}", realEstatePreviewsPage.getTotalPages());
 
@@ -96,9 +97,6 @@ public class RealEstateService
                                                                                           realEstate);
 
             customer.addCustomerViewsRealEstate(customerViewsRealEstate);
-            //cvrRepository.save(customerViewsRealEstate);
-            //customerRepository.save(customer);
-            //realEstateRepository.save(realEstate);
         }
 
         return realEstateCompleteInfoDTO;

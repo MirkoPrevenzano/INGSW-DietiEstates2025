@@ -57,6 +57,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         long totalElements = entityManager.createQuery(countQuery)
                                           .getSingleResult();       
         
+                                          log.warn("\n\ntotalElem: " + totalElements);
         PageImpl<RealEstatePreviewInfoDTO> pageImpl = new PageImpl<>(pageList, page, totalElements);
 
         return pageImpl;
@@ -233,7 +234,19 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         predicates.add(criteriaBuilder.ge(latitude, coordinatesBoundingBox.getMinLatitude()));
         predicates.add(criteriaBuilder.le(latitude, coordinatesBoundingBox.getMaxLatitude()));
         predicates.add(criteriaBuilder.ge(longitude, coordinatesBoundingBox.getMinLongitude()));
-        predicates.add(criteriaBuilder.le(longitude, coordinatesBoundingBox.getMaxLongitude())); 
+        predicates.add(criteriaBuilder.le(longitude, coordinatesBoundingBox.getMaxLongitude()));  
+
+        // Dopo questi predicates
+
+// Aggiungi questo debug:
+log.warn("=== PREDICATES DEBUG ===");
+log.warn("Cercando: lat BETWEEN {} AND {}", coordinatesBoundingBox.getMinLatitude(), coordinatesBoundingBox.getMaxLatitude());
+log.warn("Cercando: lon BETWEEN {} AND {}", coordinatesBoundingBox.getMinLongitude(), coordinatesBoundingBox.getMaxLongitude());
+log.warn("Valore nel DB: lat=3.2, lon=2.0");
+log.warn("3.2 >= {}? {}", coordinatesBoundingBox.getMinLatitude(), 3.2 >= coordinatesBoundingBox.getMinLatitude());
+log.warn("3.2 <= {}? {}", coordinatesBoundingBox.getMaxLatitude(), 3.2 <= coordinatesBoundingBox.getMaxLatitude());
+log.warn("2.0 >= {}? {}", coordinatesBoundingBox.getMinLongitude(), 2.0 >= coordinatesBoundingBox.getMinLongitude());
+log.warn("2.0 <= {}? {}", coordinatesBoundingBox.getMaxLongitude(), 2.0 <= coordinatesBoundingBox.getMaxLongitude());
               
 
         for(Map.Entry<String,String> entry : filters.entrySet())

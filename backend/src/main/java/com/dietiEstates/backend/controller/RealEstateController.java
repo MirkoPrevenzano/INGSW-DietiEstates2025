@@ -38,7 +38,7 @@ public class RealEstateController
                                                    @RequestParam("limit") Integer limit, 
                                                    @Valid @RealEstateFiltersValidator @RequestParam Map<String,String> filters) 
     {
-        RealEstateSearchDTO realEstateSearchDTO = realEstateService.search3(filters, PageRequest.of(page, limit));                
+        RealEstateSearchDTO realEstateSearchDTO = realEstateService.search(filters, PageRequest.of(page, limit));                
         return ResponseEntity.ok(realEstateSearchDTO);
     }
 

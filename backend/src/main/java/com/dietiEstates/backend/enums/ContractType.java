@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 public enum ContractType 
 {
-    FOR_SALE("For sale"),
-    FOR_RENT("For rent");
+    FOR_SALE("For Sale"),
+    FOR_RENT("For Rent");
 
 
     private final String value;
