@@ -9,11 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.dto.request.CollaboratorRegistrationDTO;
+import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
 import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
 import com.dietiEstates.backend.exception.EmailServiceException;
 import com.dietiEstates.backend.model.entity.Administrator;
+import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
+import com.dietiEstates.backend.repository.AgencyRepository;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.service.mail.AgentWelcomeEmailService;
 import com.dietiEstates.backend.service.mail.CollaboratorWelcomeEmailService;
@@ -36,41 +39,26 @@ public class AgencyService
     private final MockingStatsService mockingStatsService;
     private final AgentWelcomeEmailService agentWelcomeEmailService;
     private final CollaboratorWelcomeEmailService collaboratorWelcomeEmailService;
+    private final AgencyRepository agencyRepository;
     
 
-
     @Transactional
-    public void createCollaborator(String username, CollaboratorRegistrationDTO collaboratorRegistrationDTO) throws UsernameNotFoundException, 
-                                                                                    IllegalArgumentException, MappingException
+    public void createAgency(String username, AdminRegistrationDTO adminRegistrationDTO) 
     {
-        Administrator administrator = administratorRepository.findByUsername(username)
-                                                             .orElseThrow(() -> new UsernameNotFoundException(""));
-
-        if(administratorRepository.findByUsername(collaboratorRegistrationDTO.getUsername()).isPresent())
+        if(agencyRepository.findByBusinessNameOrVatNumber(adminRegistrationDTO.getBusinessName(), adminRegistrationDTO.getVatNumber()).isPresent())
         {
-            log.error("This username is already present!");
-            throw new IllegalArgumentException("This username is already present!");
+            log.error("This agency is already present!");
+            throw new IllegalArgumentException("This agency is already present!");
         }
 
-        Administrator collaborator = modelMapper.map(collaboratorRegistrationDTO, Administrator.class);
+        Agency agency = modelMapper.map(adminRegistrationDTO, Agency.class);
+        Administrator admin = modelMapper.map(adminRegistrationDTO, Administrator.class);
         
-        String plainTextPassword = PasswordGeneratorUtil.generateRandomPassword();
-        String hashedPassword = passwordEncoder.encode(plainTextPassword);
-
-        collaborator.setPassword(hashedPassword);
+        String hashedPassword = passwordEncoder.encode(admin.getPassword());
+        admin.setPassword(hashedPassword);
         
-        administrator.addCollaborator(collaborator);
-        // admin = administratorRepository.save(admin);
+        agency.addAdministrator(admin);
 
-        log.info("Collaborator was created successfully!");
-
-        try 
-        {
-            collaboratorWelcomeEmailService.sendWelcomeEmail(collaborator);
-        } 
-        catch (EmailServiceException e) 
-        {
-            log.warn(e.getMessage());
-        }
+        log.info("Agency was created successfully!");
     }
 }
