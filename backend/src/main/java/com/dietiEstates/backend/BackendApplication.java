@@ -43,7 +43,6 @@ public class BackendApplication
         {  
             Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@");
             administrator.setPassword(passwordEncoder.encode(administrator.getPassword()));
-            administrator.addAgency(new Agency("a", "null", "sdks"));
             administrator = administratorRepository.saveAndFlush(administrator);
 
   

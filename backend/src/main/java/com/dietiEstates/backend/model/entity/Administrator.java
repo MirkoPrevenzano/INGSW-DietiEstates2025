@@ -31,11 +31,12 @@ import lombok.ToString;
           exclude = {"collaborators", "agents"})
 public class Administrator extends User
 {
-    @OneToOne(mappedBy = "administrator",
-              fetch = FetchType.LAZY, 
-              cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, 
-              orphanRemoval = true,
-              optional = false)
+    @ManyToOne(fetch = FetchType.LAZY,
+               cascade = {})
+    @JoinColumn(name = "agency_id", 
+                nullable = true,
+                updatable = true,
+                foreignKey = @ForeignKey(name = "admin_to_agency_fk"))
     private Agency agency;
 
     @ManyToOne(fetch = FetchType.LAZY,
@@ -43,7 +44,7 @@ public class Administrator extends User
     @JoinColumn(name = "manager_id", 
                 nullable = true,
                 updatable = true,
-                foreignKey = @ForeignKey(name = "admin_to_admin_fk"))
+                foreignKey = @ForeignKey(name = "collaborator_to_admin_fk"))
     private Administrator manager;
 
     @OneToMany(mappedBy = "manager", 
@@ -65,22 +66,8 @@ public class Administrator extends User
     }
 
 
-    public void addAgency(Agency newAgency) 
-    {
-        this.setAgency(newAgency);
-        newAgency.setAdministrator(this);
 
-        
-    }    
-    
-    public void removeAgency() 
-    {
-        this.getAgency().setAdministrator(null);
-        this.setAgency(null);
-    }
-
-
-    public void setAgency(Agency newAgency) 
+/*     public void setAgency(Agency newAgency) 
     {
         if (newAgency == null) 
             this.agency.setAdministrator(null);
@@ -88,7 +75,7 @@ public class Administrator extends User
             newAgency.setAdministrator(this);
 
         this.agency = newAgency;
-    }
+    } */
 
 
     public void addCollaborator(Administrator newCollaborator) 
