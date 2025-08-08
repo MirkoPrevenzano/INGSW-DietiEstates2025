@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class RealEstateFactoryFromDTOResolver 
+public class RealEstateFromDTOFactoryResolver 
 {
     private final List<RealEstateFromDtoFactory> factories;
 

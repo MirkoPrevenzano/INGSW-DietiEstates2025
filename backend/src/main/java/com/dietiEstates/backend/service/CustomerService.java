@@ -3,8 +3,17 @@ package com.dietiEstates.backend.service;
 
 import org.springframework.stereotype.Service;
 
+import com.dietiEstates.backend.dto.request.CustomerRegistrationDTO;
+import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
+import com.dietiEstates.backend.enums.Role;
+import com.dietiEstates.backend.exception.EmailServiceException;
 import com.dietiEstates.backend.model.entity.Customer;
 import com.dietiEstates.backend.repository.CustomerRepository;
+import com.dietiEstates.backend.service.mail.CustomerWelcomeEmailService;
+import com.dietiEstates.backend.util.JwtUtil;
+
+import org.modelmapper.MappingException;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
@@ -20,8 +29,39 @@ public class CustomerService
 {
     private final CustomerRepository customerRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ModelMapper modelMapper;
+    private final CustomerWelcomeEmailService customerWelcomeEmailService;
+
+
+    public void customerRegistration(CustomerRegistrationDTO customerRegistrationDTO) throws IllegalArgumentException, MappingException
+    {
+        if(customerRepository.findByUsername(customerRegistrationDTO.getUsername()).isPresent())
+        {
+            log.error("This e-mail is already present!");
+            throw new IllegalArgumentException("This e-mail is already present!");
+        }
+
+        Customer customer = modelMapper.map(customerRegistrationDTO, Customer.class);
+
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+        customer = customerRepository.save(customer);
+
+        log.info("Customer was registrated successfully!");
+
+        try 
+        {
+            customerWelcomeEmailService.sendWelcomeEmail(customer);
+        } 
+        catch (EmailServiceException e) 
+        {
+            log.warn(e.getMessage());
+        }
+    }
 
             
+
+
+
     /* 
     *Vedo se esiste l'utente, altrimenti lo genero e restituisco al authService l'oggetto User 
     */ 

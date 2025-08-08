@@ -1,6 +1,7 @@
 
 package com.dietiEstates.backend.model.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.annotation.Generated;
@@ -70,7 +71,7 @@ public class Agency
                fetch = FetchType.LAZY,
                cascade = {CascadeType.ALL},
                orphanRemoval = true)
-    private List<Administrator> administrators;
+    private List<Administrator> administrators = new ArrayList<>();
 
 
     public void addAdministrator(Administrator newAdministrator)

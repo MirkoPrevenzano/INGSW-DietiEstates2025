@@ -17,14 +17,13 @@ import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDTO;
 import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDTO;
 import com.dietiEstates.backend.dto.response.support.AgentStatsDTO;
 import com.dietiEstates.backend.factory.RealEstateFromDtoFactory;
-import com.dietiEstates.backend.model.embeddable.AgentStats;
 import com.dietiEstates.backend.model.entity.Address;
 import com.dietiEstates.backend.model.entity.Photo;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.resolver.RealEstateFactoryFromDTOResolver;
+import com.dietiEstates.backend.resolver.RealEstateFromDTOFactoryResolver;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
 import com.dietiEstates.backend.service.photo.PhotoData;
 import com.dietiEstates.backend.service.photo.PhotoService;
@@ -42,7 +41,7 @@ public class AgentService
     private final RealEstateRepository realEstateRepository;
     private final MockingStatsService mockingStatsService;
     private final ModelMapper modelMapper;
-    private final RealEstateFactoryFromDTOResolver realEstateFactoryFromDTOResolver;
+    private final RealEstateFromDTOFactoryResolver realEstateFromDTOFactoryResolver;
     private final PhotoService photoService;
 
 
@@ -54,7 +53,7 @@ public class AgentService
         Agent agent = agentRepository.findByUsername(username)
                                      .orElseThrow(() -> new UsernameNotFoundException(""));
         
-        RealEstateFromDtoFactory realEstateFromDtoFactory = realEstateFactoryFromDTOResolver.getFactory(realEstateCreationDTO);
+        RealEstateFromDtoFactory realEstateFromDtoFactory = realEstateFromDTOFactoryResolver.getFactory(realEstateCreationDTO);
         RealEstate realEstate = realEstateFromDtoFactory.create(realEstateCreationDTO);
 
         Address address = modelMapper.map(realEstateCreationDTO.getAddressDTO(), Address.class);
@@ -132,6 +131,14 @@ public class AgentService
     }
 
 
+    public List<AgentDashboardRealEstateStatsDTO> getAgentDashboardRealEstateStats(String username, Pageable page) 
+    {
+        Agent agent = agentRepository.findByUsername(username)
+                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+
+        return realEstateRepository.findAgentDashboardRealEstateStatsByAgent(agent.getUserId(), page);
+    }
+
 
     public AgentDashboardPersonalStatsDTO getAgentDashboardPersonalStats(String username) 
     {
@@ -139,20 +146,10 @@ public class AgentService
                                      .orElseThrow(() -> new UsernameNotFoundException(""));
 
         Integer[] estatesPerMonth = mockingStatsService.mockBarChartStats(agent);
-        AgentStats agentStats = agent.getAgentStats();
-        AgentStatsDTO agentStatsDTO = modelMapper.map(agentStats, AgentStatsDTO.class);
+        AgentStatsDTO agentStatsDTO = modelMapper.map(agent.getAgentStats(), AgentStatsDTO.class);
 
         AgentDashboardPersonalStatsDTO agentDashboardPersonalStatsDTO = new AgentDashboardPersonalStatsDTO(agentStatsDTO, estatesPerMonth);
         
         return agentDashboardPersonalStatsDTO;
-    }
-
-    
-    public List<AgentDashboardRealEstateStatsDTO> getAgentDashboardRealEstateStats(String username, Pageable page) 
-    {
-        Agent agent = agentRepository.findByUsername(username)
-                                     .orElseThrow(() -> new UsernameNotFoundException(""));
-
-        return realEstateRepository.findAgentDashboardRealEstateStatsByAgent(agent.getUserId(), page);
     }
 }

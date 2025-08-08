@@ -51,7 +51,7 @@ public class AuthenticationService
     private final CustomerWelcomeEmailService customerWelcomeEmailService;
 
 
-    @Transactional
+/*     @Transactional
     public void adminRegistration(AdminRegistrationDTO adminRegistrationDTO) throws UsernameNotFoundException, 
                                                                                     IllegalArgumentException, MappingException
     {
@@ -76,10 +76,10 @@ public class AuthenticationService
         
         admin.setAgency(agency);
         administratorRepository.save(admin);
-    }   
+    }  */  
 
 
-    public AuthenticationResponseDTO customerRegistration(CustomerRegistrationDTO customerRegistrationDTO) throws IllegalArgumentException, MappingException
+/*     public AuthenticationResponseDTO customerRegistration(CustomerRegistrationDTO customerRegistrationDTO) throws IllegalArgumentException, MappingException
     {
         if(customerRepository.findByUsername(customerRegistrationDTO.getUsername()).isPresent())
         {
@@ -115,7 +115,7 @@ public class AuthenticationService
 
         return new AuthenticationResponseDTO(JwtUtil.generateAccessToken(customer));
     }
-
+ */
 
     public AuthenticationResponseDTO authenticateWithGoogle(Map <String, String> request) { 
         String googleToken = request.get("token");

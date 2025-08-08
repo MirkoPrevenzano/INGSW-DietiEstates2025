@@ -31,7 +31,7 @@ public class AuthenticationController
     private final AuthenticationService authenticationService;
     
 
-    @PostMapping(path = "/admin-registration")
+/*     @PostMapping(path = "/admin-registration")
     public ResponseEntity<?> adminRegistration(@Valid @RequestBody AdminRegistrationDTO adminRegistrationDTO) 
     {
         authenticationService.adminRegistration(adminRegistrationDTO);
@@ -43,7 +43,7 @@ public class AuthenticationController
     public ResponseEntity<AuthenticationResponseDTO> customerRegistration(@Valid @RequestBody CustomerRegistrationDTO userRegistrationDTO) 
     {
         return ResponseEntity.ok().body(authenticationService.customerRegistration(userRegistrationDTO));
-    }
+    } */
 
    
     @PostMapping("/login/oauth2/code/google") 
