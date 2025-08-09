@@ -3,6 +3,9 @@ package com.dietiEstates.backend.enums;
 
 import java.util.stream.Stream;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 
 public enum ContractType 
 {
@@ -19,12 +22,14 @@ public enum ContractType
     };
 
 
+    @JsonValue
     public String getValue() 
     {
         return this.value;
     }
 
 
+    @JsonCreator
     static public ContractType of(String value) 
     {
         if(value == null)

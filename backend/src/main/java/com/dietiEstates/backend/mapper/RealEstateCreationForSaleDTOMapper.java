@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
+import com.dietiEstates.backend.enums.ContractType;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;
 
@@ -37,6 +38,7 @@ public class RealEstateCreationForSaleDTOMapper extends RealEstateCreationDTOMap
     protected void mapSpecificFieldstoDto(RealEstate entity, RealEstateCreationDTO dto) 
     {
         ((RealEstateForSaleCreationDTO) dto).setNotaryDeedState(((RealEstateForSale) entity).getNotaryDeedState());
+        ((RealEstateForSaleCreationDTO) dto).setContractType(ContractType.FOR_SALE);
     }
 
 

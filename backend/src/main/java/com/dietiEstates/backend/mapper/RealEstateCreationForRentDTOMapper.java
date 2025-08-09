@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
+import com.dietiEstates.backend.enums.ContractType;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.model.entity.RealEstateForRent;
 
@@ -39,6 +40,7 @@ public class RealEstateCreationForRentDTOMapper extends RealEstateCreationDTOMap
     {
         ((RealEstateForRentCreationDTO) dto).setSecurityDeposit(((RealEstateForRent) entity).getSecurityDeposit());
         ((RealEstateForRentCreationDTO) dto).setContractYears(((RealEstateForRent) entity).getContractYears());
+        ((RealEstateForRentCreationDTO) dto).setContractType(ContractType.FOR_RENT);
     }
 
 

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
@@ -49,17 +50,18 @@ public class AgentController
     private final PdfExportService pdfExportService;
     private final CsvExportService csvExportService;
 
-    @GetMapping("prova/{param}")
-    public String getMethodName(@PathVariable String paòram) 
-    {
-        return new String();
-    }
     
 
-    @PostMapping(path = "{username}/create-real-estate-for-sale/{lol}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Long> createRealEstateForSale(@PathVariable() String username, @Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateForSaleCreationDTO realEstateForSaleCreationDTO, 
-    @Min(5) @PathVariable(required = true) Integer lol, @Min(2) @RequestParam(required = true) Integer prova) 
+    @PostMapping(path = "{username}/create-real-estate-for-sale")
+    public ResponseEntity<Long> createRealEstateForSale(@PathVariable() String username, @Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateCreationDTO realEstateForSaleCreationDTO) 
     {
+        if (realEstateForSaleCreationDTO instanceof RealEstateForSaleCreationDTO) 
+        {
+            log.info("\n\ninstanza di for sale");
+        }
+        else if (realEstateForSaleCreationDTO instanceof RealEstateCreationDTO)
+            log.info("\n\ninstanza di for creation\n\n");
+
         return ResponseEntity.status(HttpStatus.CREATED)
                              .body(agentService.createRealEstate(username, realEstateForSaleCreationDTO));
                                  
@@ -85,24 +87,8 @@ public class AgentController
         return ResponseEntity.ok(realEstates);
     }
 
-
-/*     @GetMapping(value = "/{username}/exportCSV2")
-    public ResponseEntity<Void> exportToCSV2(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
-    {   
-        csvExportService.exportCsvReport(username, response);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    } */
-       
-
-/*     @GetMapping(value = "/{username}/exportPDF2")
-    public ResponseEntity<Void> exportToPDF2(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
-    {
-        pdfExportService.exportPdfReport(username, response);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    } */
-
     @GetMapping(value = "/{username}/exportCSV2")
-    public ResponseEntity<byte[]> exportToCSV2(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
+    public ResponseEntity<byte[]> exportToCSV(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {
         ExportingResult exportingResult = csvExportService.exportCsvReport(username);
 
@@ -117,7 +103,7 @@ public class AgentController
 
 
     @GetMapping(value = "/{username}/exportPDF2")
-    public ResponseEntity<byte[]> exportToPDF2(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
+    public ResponseEntity<byte[]> exportToPDF(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {
         ExportingResult exportingResult = pdfExportService.exportPdfReport(username);
 
@@ -148,11 +134,4 @@ public class AgentController
         
         return ResponseEntity.ok().body(realEstateStatsDTOs);
     }
-
-    
-/*     @GetMapping(path = "{username}/bar-chart-stats")
-    public ResponseEntity<Integer[]> aaaa(@PathVariable("username") String username) 
-    {
-        return ResponseEntity.ok().body(agentService.getBarChartStats());
-    } */
 }

@@ -8,6 +8,7 @@ import com.dietiEstates.backend.dto.request.support.AddressDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateBooleanFeaturesDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateLocationFeaturesDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateMainFeaturesDTO;
+import com.dietiEstates.backend.enums.ContractType;
 import com.dietiEstates.backend.validator.groups.OnCreate;
 
 import lombok.Data;
@@ -31,11 +32,11 @@ public class RealEstateForRentCreationDTO extends RealEstateCreationDTO
     private Integer contractYears;
 
 
-    public RealEstateForRentCreationDTO(AddressDTO addressDTO, RealEstateMainFeaturesDTO realEstateMainFeaturesDTO, 
+    public RealEstateForRentCreationDTO(ContractType contractType, AddressDTO addressDTO, RealEstateMainFeaturesDTO realEstateMainFeaturesDTO, 
                                         RealEstateBooleanFeaturesDTO realEstateBooleanFeaturesDTO, RealEstateLocationFeaturesDTO realEstateLocationFeaturesDTO, 
                                         Double securityDeposit, Integer contractYears)
     {
-        super(addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO);
+        super(contractType, addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO);
         this.securityDeposit = securityDeposit;
         this.contractYears = contractYears;
     }

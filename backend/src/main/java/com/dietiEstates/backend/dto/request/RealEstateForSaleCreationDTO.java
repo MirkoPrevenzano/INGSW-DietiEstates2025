@@ -7,6 +7,7 @@ import com.dietiEstates.backend.dto.request.support.AddressDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateBooleanFeaturesDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateLocationFeaturesDTO;
 import com.dietiEstates.backend.dto.request.support.RealEstateMainFeaturesDTO;
+import com.dietiEstates.backend.enums.ContractType;
 import com.dietiEstates.backend.enums.NotaryDeedState;
 import com.dietiEstates.backend.validator.groups.OnCreate;
 
@@ -26,11 +27,11 @@ public class RealEstateForSaleCreationDTO extends RealEstateCreationDTO
     private NotaryDeedState notaryDeedState;
 
 
-    public RealEstateForSaleCreationDTO(AddressDTO addressDTO, RealEstateMainFeaturesDTO realEstateMainFeaturesDTO, 
+    public RealEstateForSaleCreationDTO(ContractType contractType, AddressDTO addressDTO, RealEstateMainFeaturesDTO realEstateMainFeaturesDTO, 
                                         RealEstateBooleanFeaturesDTO realEstateBooleanFeaturesDTO, RealEstateLocationFeaturesDTO realEstateLocationFeaturesDTO, 
                                         NotaryDeedState notaryDeedState)
     {
-        super(addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO);
+        super(contractType, addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO);
         this.notaryDeedState = notaryDeedState;
     }
 }

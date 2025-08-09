@@ -34,7 +34,7 @@ public class RealEstateController
 
     
     @GetMapping(path = "search3")
-    public ResponseEntity<RealEstateSearchDTO> aaa(@RequestParam("page") Integer page,
+    public ResponseEntity<RealEstateSearchDTO> search(@RequestParam("page") Integer page,
                                                    @RequestParam("limit") Integer limit, 
                                                    @Valid @RealEstateFiltersValidator @RequestParam Map<String,String> filters) 
     {
@@ -44,7 +44,7 @@ public class RealEstateController
 
 
     @GetMapping("/view/{realEstateId}")
-    public ResponseEntity<RealEstateCompleteInfoDTO> viewRealEstate(@PathVariable("realEstateId") Long realEstateId, Authentication authentication) 
+    public ResponseEntity<RealEstateCompleteInfoDTO> getRealEstateCompleteInfo(@PathVariable("realEstateId") Long realEstateId, Authentication authentication) 
     {
         return ResponseEntity.ok(realEstateService.getRealEstateCompleteInfo(realEstateId, authentication));
     }
