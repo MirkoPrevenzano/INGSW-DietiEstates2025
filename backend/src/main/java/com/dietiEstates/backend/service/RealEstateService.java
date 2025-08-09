@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
 import com.dietiEstates.backend.dto.response.RealEstateCompleteInfoDTO;
@@ -28,12 +29,12 @@ import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.resolver.RealEstateMapperResolver;
 import com.dietiEstates.backend.util.FindByRadiusUtil;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Slf4j
 public class RealEstateService 
@@ -44,7 +45,6 @@ public class RealEstateService
     private final RealEstateMapperResolver realEstateMapperResolver;
 
     
-    @Transactional
     public RealEstateSearchDTO search(Map<String,String> filters, Pageable page)
     {
         CoordinatesBoundingBox coordinatesBoundingBox = FindByRadiusUtil.getBoundingBox(Integer.valueOf(filters.get("radius")), 

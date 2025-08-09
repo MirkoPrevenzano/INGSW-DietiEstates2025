@@ -2,16 +2,13 @@
 package com.dietiEstates.backend.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.dto.request.CustomerRegistrationDTO;
-import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
-import com.dietiEstates.backend.enums.Role;
 import com.dietiEstates.backend.exception.EmailServiceException;
 import com.dietiEstates.backend.model.entity.Customer;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.service.mail.CustomerWelcomeEmailService;
-import com.dietiEstates.backend.util.JwtUtil;
-
 import org.modelmapper.MappingException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,7 +19,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import java.util.UUID;
 
+
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Slf4j
 public class CustomerService 
@@ -32,7 +31,8 @@ public class CustomerService
     private final ModelMapper modelMapper;
     private final CustomerWelcomeEmailService customerWelcomeEmailService;
 
-
+    
+    @Transactional
     public void customerRegistration(CustomerRegistrationDTO customerRegistrationDTO) throws IllegalArgumentException, MappingException
     {
         if(customerRepository.findByUsername(customerRegistrationDTO.getUsername()).isPresent())

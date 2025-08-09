@@ -1,39 +1,20 @@
 
 package com.dietiEstates.backend.service;
 
-import org.modelmapper.MappingException;
-import org.modelmapper.ModelMapper;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.dietiEstates.backend.enums.Role;
-import com.dietiEstates.backend.exception.EmailServiceException;
-import com.dietiEstates.backend.model.entity.Administrator;
-import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.model.entity.Customer;
-import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
-import com.dietiEstates.backend.dto.request.CustomerRegistrationDTO;
 import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
-import com.dietiEstates.backend.repository.AdministratorRepository;
-import com.dietiEstates.backend.repository.CustomerRepository;
-import com.dietiEstates.backend.service.CustomerService;
-import com.dietiEstates.backend.service.mail.CustomerWelcomeEmailService;
 import com.dietiEstates.backend.util.JwtUtil;
-import com.dietiEstates.backend.validator.PasswordValidatorImpl;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import java.util.Collections;
-import java.util.Optional;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import java.util.UUID;
 import java.util.Collection;
 import java.util.Map;
 
@@ -42,13 +23,8 @@ import java.util.Map;
 @Slf4j
 public class AuthenticationService 
 {
-    private final CustomerRepository customerRepository;
-    private final ModelMapper modelMapper;
-    private final PasswordEncoder passwordEncoder;
     //private final ValidationUtil validationUtil;
     private final CustomerService customerService;
-    private final AdministratorRepository administratorRepository;
-    private final CustomerWelcomeEmailService customerWelcomeEmailService;
 
 
 /*     @Transactional

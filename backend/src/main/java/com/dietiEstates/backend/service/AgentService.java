@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
@@ -27,12 +28,12 @@ import com.dietiEstates.backend.resolver.RealEstateFromDTOFactoryResolver;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
 import com.dietiEstates.backend.service.photo.PhotoData;
 import com.dietiEstates.backend.service.photo.PhotoService;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Slf4j
 public class AgentService 
@@ -76,7 +77,7 @@ public class AgentService
 
 
 
-    // TODO: DA RIMUOVERE PER REST API, mettere in realEstateService
+    @Transactional
     public void uploadPhoto2(String username, MultipartFile[] files, Long realEstateId) throws IllegalArgumentException, RuntimeException, IOException
     {
         RealEstate realEstate = realEstateRepository.findById(realEstateId)
@@ -100,7 +101,6 @@ public class AgentService
     }
 
 
-    // TODO: DA RIMUOVERE PER REST API, mettere in realEstateService
     public List<PhotoData> getPhoto2(Long realEstateId) throws IOException
     {
         RealEstate realEstate = realEstateRepository.findById(realEstateId)
@@ -115,11 +115,6 @@ public class AgentService
 
         return photosData;
     }
-
-
-
-    
-   
 
 
     public List<AgentRecentRealEstateDTO> getAgentRecentRealEstates(String username, Integer limit) 

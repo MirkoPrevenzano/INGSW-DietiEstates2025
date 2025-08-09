@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
 import com.dietiEstates.backend.enums.Role;
 import com.dietiEstates.backend.model.entity.User;
@@ -19,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Slf4j
 public class UserService implements UserDetailsService
@@ -51,6 +54,7 @@ public class UserService implements UserDetailsService
         return user;
     }
 
+    @Transactional
     public void updatePassword(String username, UpdatePasswordDTO updatePasswordDTO) throws UsernameNotFoundException, 
                                                                                             IllegalArgumentException, MappingException
     {
