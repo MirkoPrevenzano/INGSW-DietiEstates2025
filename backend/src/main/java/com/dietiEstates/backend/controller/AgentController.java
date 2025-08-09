@@ -77,7 +77,7 @@ public class AgentController
     @GetMapping(path = "{username}/recent-real-estates/{limit}")
     public ResponseEntity<List<AgentRecentRealEstateDTO>> aa(@PathVariable("username") String username, @PathVariable("limit") Integer limit) 
     {
-        List<AgentRecentRealEstateDTO> realEstates = agentService.findRecentRealEstates(username, limit);
+        List<AgentRecentRealEstateDTO> realEstates = agentService.getAgentRecentRealEstates(username, limit);
 
         for(AgentRecentRealEstateDTO recentRealEstateDTO : realEstates)
             log.info(recentRealEstateDTO.toString());

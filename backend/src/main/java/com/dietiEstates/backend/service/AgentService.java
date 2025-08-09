@@ -122,7 +122,7 @@ public class AgentService
    
 
 
-    public List<AgentRecentRealEstateDTO> findRecentRealEstates(String username, Integer limit) 
+    public List<AgentRecentRealEstateDTO> getAgentRecentRealEstates(String username, Integer limit) 
     {
         Agent agent = agentRepository.findByUsername(username)
                                      .orElseThrow(() -> new UsernameNotFoundException(""));

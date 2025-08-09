@@ -43,29 +43,21 @@ public class RealEstateService
     private final ModelMapper modelMapper;
     private final RealEstateMapperResolver realEstateMapperResolver;
 
+    
     @Transactional
     public RealEstateSearchDTO search(Map<String,String> filters, Pageable page)
     {
         CoordinatesBoundingBox coordinatesBoundingBox = FindByRadiusUtil.getBoundingBox(Integer.valueOf(filters.get("radius")), 
-                                                                               Double.valueOf(filters.get("lat")), 
-                                                                               Double.valueOf(filters.get("lon")));
-
-        log.warn("coordbb, minLat: " + coordinatesBoundingBox.getMinLatitude());
-        log.warn("coordbb, maxLat: " + coordinatesBoundingBox.getMaxLatitude());
-        log.warn("coordbb, minLon: " + coordinatesBoundingBox.getMinLongitude());
-        log.warn("coordbb, maxLon: " + coordinatesBoundingBox.getMaxLatitude());
+                                                                                        Double.valueOf(filters.get("lat")), 
+                                                                                        Double.valueOf(filters.get("lon")));
 
         Page<RealEstatePreviewInfoDTO> realEstatePreviewsPage = realEstateRepository.findRealEstatePreviewInfosByFilters(filters, page, coordinatesBoundingBox);
 
-        log.info("realEstatePreviewsPage.getNumberOfElements(): {}", realEstatePreviewsPage.getNumberOfElements());
-        log.info("realEstatePreviewsPage.getTotalElements(): {}", realEstatePreviewsPage.getTotalElements());
-        log.info("realEstatePreviewsPage.getTotalPages(): {}", realEstatePreviewsPage.getTotalPages());
-
-        RealEstateSearchDTO RealEstatePreviewsFirstPageDTO = new RealEstateSearchDTO(realEstatePreviewsPage.getContent(),
-        realEstatePreviewsPage.getNumberOfElements(),
-                                                                                                        realEstatePreviewsPage.getTotalElements(), 
-                                                                                                        realEstatePreviewsPage.getTotalPages());
-        return RealEstatePreviewsFirstPageDTO;
+        RealEstateSearchDTO realEstateSearchDTO = new RealEstateSearchDTO(realEstatePreviewsPage.getContent(),
+                                                                          realEstatePreviewsPage.getNumberOfElements(),
+                                                                          realEstatePreviewsPage.getTotalElements(), 
+                                                                          realEstatePreviewsPage.getTotalPages());
+        return realEstateSearchDTO;
     }
 
 
@@ -83,7 +75,9 @@ public class RealEstateService
 
         RealEstateCompleteInfoDTO realEstateCompleteInfoDTO = new RealEstateCompleteInfoDTO(realEstateCreationDTO, agentPublicInfoDTO);
 
-        if(authentication != null && authentication.isAuthenticated() && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_CUSTOMER"))) 
+        if(authentication != null && authentication.isAuthenticated() && authentication.getAuthorities()
+                                                                                       .stream()
+                                                                                       .anyMatch(authority -> authority.getAuthority().equals("ROLE_CUSTOMER"))) 
         {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             Customer customer = customerRepository.findByUsername(userDetails.getUsername())

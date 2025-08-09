@@ -9,6 +9,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Path;
@@ -235,7 +236,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         predicates.add(criteriaBuilder.le(latitude, coordinatesBoundingBox.getMaxLatitude()));
         predicates.add(criteriaBuilder.ge(longitude, coordinatesBoundingBox.getMinLongitude()));
         predicates.add(criteriaBuilder.le(longitude, coordinatesBoundingBox.getMaxLongitude()));  
-                
+            
 
         for(Map.Entry<String,String> entry : filters.entrySet())
         {
