@@ -4,10 +4,10 @@ package com.dietiEstates.backend.dto.request;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
-import com.dietiEstates.backend.dto.request.support.AddressDTO;
-import com.dietiEstates.backend.dto.request.support.RealEstateBooleanFeaturesDTO;
-import com.dietiEstates.backend.dto.request.support.RealEstateLocationFeaturesDTO;
-import com.dietiEstates.backend.dto.request.support.RealEstateMainFeaturesDTO;
+import com.dietiEstates.backend.dto.request.support.AddressDto;
+import com.dietiEstates.backend.dto.request.support.RealEstateBooleanFeaturesDto;
+import com.dietiEstates.backend.dto.request.support.RealEstateLocationFeaturesDto;
+import com.dietiEstates.backend.dto.request.support.RealEstateMainFeaturesDto;
 import com.dietiEstates.backend.enums.ContractType;
 import com.dietiEstates.backend.validator.groups.OnCreate;
 
@@ -21,7 +21,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
-public class RealEstateForRentCreationDTO extends RealEstateCreationDTO
+public class RealEstateForRentCreationDto extends RealEstateCreationDto
 {
     @NotNull(groups = OnCreate.class)
     @PositiveOrZero
@@ -32,11 +32,11 @@ public class RealEstateForRentCreationDTO extends RealEstateCreationDTO
     private Integer contractYears; // TODO : cambiare in Double
 
 
-    public RealEstateForRentCreationDTO(ContractType contractType, AddressDTO addressDTO, RealEstateMainFeaturesDTO realEstateMainFeaturesDTO, 
-                                        RealEstateBooleanFeaturesDTO realEstateBooleanFeaturesDTO, RealEstateLocationFeaturesDTO realEstateLocationFeaturesDTO, 
+    public RealEstateForRentCreationDto(ContractType contractType, AddressDto addressDto, RealEstateMainFeaturesDto realEstateMainFeaturesDto, 
+                                        RealEstateBooleanFeaturesDto realEstateBooleanFeaturesDto, RealEstateLocationFeaturesDto realEstateLocationFeaturesDto, 
                                         Double securityDeposit, Integer contractYears)
     {
-        super(contractType, addressDTO, realEstateMainFeaturesDTO, realEstateBooleanFeaturesDTO, realEstateLocationFeaturesDTO);
+        super(contractType, addressDto, realEstateMainFeaturesDto, realEstateBooleanFeaturesDto, realEstateLocationFeaturesDto);
         this.securityDeposit = securityDeposit;
         this.contractYears = contractYears;
     }

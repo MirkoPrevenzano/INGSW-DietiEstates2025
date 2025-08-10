@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RealEstateLocationFeaturesDTO
+public class RealEstateLocationFeaturesDto
 {
     @NotNull
     private Boolean nearPark;

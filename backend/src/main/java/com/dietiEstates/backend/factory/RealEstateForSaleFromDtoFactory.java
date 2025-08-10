@@ -3,8 +3,8 @@ package com.dietiEstates.backend.factory;
 
 import org.springframework.stereotype.Component;
 
-import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
-import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
+import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDto;
 import com.dietiEstates.backend.mapper.RealEstateCreationForSaleDTOMapper;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;
@@ -20,17 +20,17 @@ public class RealEstateForSaleFromDtoFactory implements RealEstateFromDtoFactory
 
 
     @Override
-    public RealEstate create(RealEstateCreationDTO realEstateCreationDTO) 
+    public RealEstate create(RealEstateCreationDto realEstateCreationDto) 
     {
-        RealEstateForSale realEstateForSale = (RealEstateForSale) realEstateCreationForSaleDTOMapper.toEntity((RealEstateForSaleCreationDTO) realEstateCreationDTO);
+        RealEstateForSale realEstateForSale = (RealEstateForSale) realEstateCreationForSaleDTOMapper.toEntity((RealEstateForSaleCreationDto) realEstateCreationDto);
 
         return realEstateForSale;
     }
     
 
     @Override
-    public boolean supports(RealEstateCreationDTO realEstateCreationDTO) 
+    public boolean supports(RealEstateCreationDto realEstateCreationDto) 
     {
-        return RealEstateForSaleCreationDTO.class.isAssignableFrom(realEstateCreationDTO.getClass());
+        return RealEstateForSaleCreationDto.class.isAssignableFrom(realEstateCreationDto.getClass());
     }
 }

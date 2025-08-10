@@ -3,8 +3,8 @@ package com.dietiEstates.backend.factory;
 
 import org.springframework.stereotype.Component;
 
-import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
-import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
+import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDto;
 import com.dietiEstates.backend.mapper.RealEstateCreationForRentDTOMapper;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.model.entity.RealEstateForRent;
@@ -20,17 +20,17 @@ public class RealEstateForRentFromDtoFactory implements RealEstateFromDtoFactory
 
 
     @Override
-    public RealEstate create(RealEstateCreationDTO realEstateCreationDTO) 
+    public RealEstate create(RealEstateCreationDto realEstateCreationDto) 
     {
-        RealEstateForRent realEstateForRent = (RealEstateForRent) realEstateCreationForRentDTOMapper.toEntity((RealEstateForRentCreationDTO) realEstateCreationDTO);
+        RealEstateForRent realEstateForRent = (RealEstateForRent) realEstateCreationForRentDTOMapper.toEntity((RealEstateForRentCreationDto) realEstateCreationDto);
 
         return realEstateForRent;
     }
 
 
     @Override
-    public boolean supports(RealEstateCreationDTO realEstateCreationDTO) 
+    public boolean supports(RealEstateCreationDto realEstateCreationDto) 
     {
-        return RealEstateForRentCreationDTO.class.isAssignableFrom(realEstateCreationDTO.getClass());
+        return RealEstateForRentCreationDto.class.isAssignableFrom(realEstateCreationDto.getClass());
     }
 }

@@ -8,8 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dietiEstates.backend.dto.request.CollaboratorCreationDTO;
-import com.dietiEstates.backend.dto.request.AgentCreationDTO;
+import com.dietiEstates.backend.dto.request.CollaboratorCreationDto;
+import com.dietiEstates.backend.dto.request.AgentCreationDto;
 import com.dietiEstates.backend.exception.EmailServiceException;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agent;
@@ -41,19 +41,19 @@ public class AdministratorService
 
 
     @Transactional
-    public void createCollaborator(String username, CollaboratorCreationDTO collaboratorRegistrationDTO) throws UsernameNotFoundException, 
+    public void createCollaborator(String username, CollaboratorCreationDto collaboratorCreationDto) throws UsernameNotFoundException, 
                                                                                     IllegalArgumentException, MappingException
     {
         Administrator administrator = administratorRepository.findByUsername(username)
                                                              .orElseThrow(() -> new UsernameNotFoundException(""));
 
-        if(administratorRepository.findByUsername(collaboratorRegistrationDTO.getUsername()).isPresent())
+        if(administratorRepository.findByUsername(collaboratorCreationDto.getUsername()).isPresent())
         {
             log.error("This username is already present!");
             throw new IllegalArgumentException("This username is already present!");
         }
 
-        Administrator collaborator = modelMapper.map(collaboratorRegistrationDTO, Administrator.class);
+        Administrator collaborator = modelMapper.map(collaboratorCreationDto, Administrator.class);
         
         String plainTextPassword = PasswordGeneratorUtil.generateRandomPassword();
         String hashedPassword = passwordEncoder.encode(plainTextPassword);
@@ -81,19 +81,19 @@ public class AdministratorService
     // TODO: DA RIMUOVERE PER REST API, mettere in agentservice
 
     @Transactional
-    public void createAgent(String username, AgentCreationDTO agentRegistrationDTO) throws UsernameNotFoundException, 
+    public void createAgent(String username, AgentCreationDto agentCreationDto) throws UsernameNotFoundException, 
                                                                                           IllegalArgumentException, MappingException
     {
         Administrator administrator = administratorRepository.findByUsername(username)
                                                              .orElseThrow(() -> new UsernameNotFoundException(""));
 
-        if(agentRepository.findByUsername(agentRegistrationDTO.getUsername()).isPresent())
+        if(agentRepository.findByUsername(agentCreationDto.getUsername()).isPresent())
         {
             log.error("This username is already present!");
             throw new IllegalArgumentException("This username is already present!");
         }
 
-        Agent agent = modelMapper.map(agentRegistrationDTO, Agent.class);
+        Agent agent = modelMapper.map(agentCreationDto, Agent.class);
 
         String plainTextPassword = PasswordGeneratorUtil.generateRandomPassword();
         String hashedPassword = passwordEncoder.encode(plainTextPassword);

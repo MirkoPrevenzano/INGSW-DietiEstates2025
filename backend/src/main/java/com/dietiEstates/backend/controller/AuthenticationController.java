@@ -28,15 +28,15 @@ public class AuthenticationController
     
 
 /*     @PostMapping(path = "/admin-registration")
-    public ResponseEntity<?> adminRegistration(@Valid @RequestBody AgencyRegistrationDTO agencyRegistrationDTO) 
+    public ResponseEntity<?> adminRegistration(@Valid @RequestBody AgencyRegistrationDto aagencyRegistrationDto) 
     {
-        authenticationService.adminRegistration(agencyRegistrationDTO);
+        authenticationService.adminRegistration(aagencyRegistrationDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 
     @PostMapping(path = "customer-registration")
-    public ResponseEntity<AuthenticationResponseDTO> customerRegistration(@Valid @RequestBody CustomerRegistrationDTO userRegistrationDTO) 
+    public ResponseEntity<AuthenticationResponseDTO> customerRegistration(@Valid @RequestBody CustomerRegistrationDto userRegistrationDTO) 
     {
         return ResponseEntity.ok().body(authenticationService.customerRegistration(userRegistrationDTO));
     } */

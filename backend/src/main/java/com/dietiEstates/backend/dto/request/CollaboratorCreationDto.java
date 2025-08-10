@@ -3,6 +3,8 @@ package com.dietiEstates.backend.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 
+import com.dietiEstates.backend.validator.EmailValidator;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -11,11 +13,15 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdatePasswordDTO 
+public class CollaboratorCreationDto 
 {
     @NotBlank
-    private String oldPassword;
+    private String name;
 
     @NotBlank
-    private String newPassword;
+    private String surname;
+
+    @NotBlank
+    @EmailValidator
+    private String username;
 }

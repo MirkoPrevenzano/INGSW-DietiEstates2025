@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
 import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDTO;
 import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDTO;
@@ -49,15 +49,15 @@ public class AgentService
 
     // TODO: DA RIMUOVERE PER REST API, mettere in realEstateService
     @Transactional
-    public Long createRealEstate(String username, RealEstateCreationDTO realEstateCreationDTO)  throws UsernameNotFoundException
+    public Long createRealEstate(String username, RealEstateCreationDto realEstateCreationDto)  throws UsernameNotFoundException
     {
         Agent agent = agentRepository.findByUsername(username)
                                      .orElseThrow(() -> new UsernameNotFoundException(""));
         
-        RealEstateFromDtoFactory realEstateFromDtoFactory = realEstateFromDTOFactoryResolver.getFactory(realEstateCreationDTO);
-        RealEstate realEstate = realEstateFromDtoFactory.create(realEstateCreationDTO);
+        RealEstateFromDtoFactory realEstateFromDtoFactory = realEstateFromDTOFactoryResolver.getFactory(realEstateCreationDto);
+        RealEstate realEstate = realEstateFromDtoFactory.create(realEstateCreationDto);
 
-        Address address = modelMapper.map(realEstateCreationDTO.getAddressDTO(), Address.class);
+        Address address = modelMapper.map(realEstateCreationDto.getAddressDto(), Address.class);
         realEstate.addAddress(address);
 
         mockingStatsService.mockRealEstateStats(realEstate);

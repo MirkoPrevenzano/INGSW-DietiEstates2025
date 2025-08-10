@@ -1,12 +1,12 @@
 
 package com.dietiEstates.backend.factory;
 
-import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.resolver.Supportable;
 
 
-public interface RealEstateFromDtoFactory extends Supportable<RealEstateCreationDTO>
+public interface RealEstateFromDtoFactory extends Supportable<RealEstateCreationDto>
 {
-    RealEstate create(RealEstateCreationDTO dto);
+    RealEstate create(RealEstateCreationDto dto);
 }

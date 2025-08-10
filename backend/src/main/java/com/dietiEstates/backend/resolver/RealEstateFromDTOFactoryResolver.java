@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
 import com.dietiEstates.backend.factory.RealEstateFromDtoFactory;
 
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class RealEstateFromDTOFactoryResolver
     private final List<RealEstateFromDtoFactory> factories;
 
 
-    public RealEstateFromDtoFactory getFactory(RealEstateCreationDTO dto) 
+    public RealEstateFromDtoFactory getFactory(RealEstateCreationDto dto) 
     {
         return factories.stream()
                         .filter(factory -> factory.supports(dto))

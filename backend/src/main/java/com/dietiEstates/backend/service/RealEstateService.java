@@ -12,13 +12,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
 import com.dietiEstates.backend.dto.response.RealEstateCompleteInfoDTO;
 import com.dietiEstates.backend.dto.response.RealEstateSearchDTO;
 import com.dietiEstates.backend.dto.response.support.AgentPublicInfoDTO;
 import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
 import com.dietiEstates.backend.extra.CoordinatesBoundingBox;
-import com.dietiEstates.backend.mapper.RealEstateCreationDTOMapper;
+import com.dietiEstates.backend.mapper.RealEstateCreationDtoMapper;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.model.entity.Customer;
@@ -70,10 +70,10 @@ public class RealEstateService
         Agent agent = realEstate.getAgent();
         AgentPublicInfoDTO agentPublicInfoDTO = modelMapper.map(agent, AgentPublicInfoDTO.class);    
 
-        RealEstateCreationDTOMapper realEstateCreationDTOMapper = realEstateMapperResolver.getMapper(realEstate);
-        RealEstateCreationDTO realEstateCreationDTO = realEstateCreationDTOMapper.toDto(realEstate);
+        RealEstateCreationDtoMapper realEstateCreationDtoMapper = realEstateMapperResolver.getMapper(realEstate);
+        RealEstateCreationDto realEstateCreationDto = realEstateCreationDtoMapper.toDto(realEstate);
 
-        RealEstateCompleteInfoDTO realEstateCompleteInfoDTO = new RealEstateCompleteInfoDTO(realEstateCreationDTO, agentPublicInfoDTO);
+        RealEstateCompleteInfoDTO realEstateCompleteInfoDTO = new RealEstateCompleteInfoDTO(realEstateCreationDto, agentPublicInfoDTO);
 
         if(authentication != null && authentication.isAuthenticated() && authentication.getAuthorities()
                                                                                        .stream()

@@ -205,7 +205,7 @@ export class CreateEstatesComponent implements OnInit{
     this.estate.addressDTO = this.estateDataService.getAddress()
     this.estate.realEstateBooleanFeaturesDTO = this.features
     this.estate.realEstateMainFeaturesDTO = this.description
-    this.estate.realEstateLocationFeaturesDTO= this.estateLocation
+    this.estate.realEstateLocationFeaturesDto= this.estateLocation
       
     return this.estateFactory.createEstate(
       this.estate,

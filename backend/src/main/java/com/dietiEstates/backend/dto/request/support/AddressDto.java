@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddressDTO 
+public class AddressDto 
 {
     @NotBlank(groups = OnCreate.class)
     private String state;

@@ -3,20 +3,20 @@ package com.dietiEstates.backend.mapper;
 
 import org.springframework.stereotype.Component;
 
-import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
-import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
+import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDto;
 import com.dietiEstates.backend.enums.ContractType;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.model.entity.RealEstateForRent;
 
 
 @Component
-public class RealEstateCreationForRentDTOMapper extends RealEstateCreationDTOMapper
+public class RealEstateCreationForRentDTOMapper extends RealEstateCreationDtoMapper
 {
     @Override
-    protected RealEstateForRentCreationDTO initializeDto() 
+    protected RealEstateForRentCreationDto initializeDto() 
     {
-        return new RealEstateForRentCreationDTO();
+        return new RealEstateForRentCreationDto();
     }
 
 
@@ -28,19 +28,19 @@ public class RealEstateCreationForRentDTOMapper extends RealEstateCreationDTOMap
 
 
     @Override
-    protected void mapSpecificFieldsToEntity(RealEstateCreationDTO dto, RealEstate entity) 
+    protected void mapSpecificFieldsToEntity(RealEstateCreationDto dto, RealEstate entity) 
     {
-        ((RealEstateForRent) entity).setSecurityDeposit(((RealEstateForRentCreationDTO) dto).getSecurityDeposit());
-        ((RealEstateForRent) entity).setContractYears(((RealEstateForRentCreationDTO) dto).getContractYears());
+        ((RealEstateForRent) entity).setSecurityDeposit(((RealEstateForRentCreationDto) dto).getSecurityDeposit());
+        ((RealEstateForRent) entity).setContractYears(((RealEstateForRentCreationDto) dto).getContractYears());
     }
 
 
     @Override
-    protected void mapSpecificFieldstoDto(RealEstate entity, RealEstateCreationDTO dto) 
+    protected void mapSpecificFieldstoDto(RealEstate entity, RealEstateCreationDto dto) 
     {
-        ((RealEstateForRentCreationDTO) dto).setSecurityDeposit(((RealEstateForRent) entity).getSecurityDeposit());
-        ((RealEstateForRentCreationDTO) dto).setContractYears(((RealEstateForRent) entity).getContractYears());
-        ((RealEstateForRentCreationDTO) dto).setContractType(ContractType.FOR_RENT);
+        ((RealEstateForRentCreationDto) dto).setSecurityDeposit(((RealEstateForRent) entity).getSecurityDeposit());
+        ((RealEstateForRentCreationDto) dto).setContractYears(((RealEstateForRent) entity).getContractYears());
+        ((RealEstateCreationDto) dto).setContractType(ContractType.FOR_RENT);
     }
 
 

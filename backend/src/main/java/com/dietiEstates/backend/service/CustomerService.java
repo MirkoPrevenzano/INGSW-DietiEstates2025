@@ -4,7 +4,7 @@ package com.dietiEstates.backend.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dietiEstates.backend.dto.request.CustomerRegistrationDTO;
+import com.dietiEstates.backend.dto.request.CustomerRegistrationDto;
 import com.dietiEstates.backend.exception.EmailServiceException;
 import com.dietiEstates.backend.model.entity.Customer;
 import com.dietiEstates.backend.repository.CustomerRepository;
@@ -33,15 +33,15 @@ public class CustomerService
 
     
     @Transactional
-    public void customerRegistration(CustomerRegistrationDTO customerRegistrationDTO) throws IllegalArgumentException, MappingException
+    public void customerRegistration(CustomerRegistrationDto customerRegistrationDto) throws IllegalArgumentException, MappingException
     {
-        if(customerRepository.findByUsername(customerRegistrationDTO.getUsername()).isPresent())
+        if(customerRepository.findByUsername(customerRegistrationDto.getUsername()).isPresent())
         {
             log.error("This e-mail is already present!");
             throw new IllegalArgumentException("This e-mail is already present!");
         }
 
-        Customer customer = modelMapper.map(customerRegistrationDTO, Customer.class);
+        Customer customer = modelMapper.map(customerRegistrationDto, Customer.class);
 
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         customer = customerRepository.save(customer);

@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dietiEstates.backend.dto.request.AgencyRegistrationDTO;
+import com.dietiEstates.backend.dto.request.AgencyRegistrationDto;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agency;
 import com.dietiEstates.backend.repository.AdministratorRepository;
@@ -28,22 +28,22 @@ public class AgencyService
     
 
     @Transactional
-    public void createAgency(AgencyRegistrationDTO agencyRegistrationDTO) 
+    public void createAgency(AgencyRegistrationDto aagencyRegistrationDto) 
     {
-        if(agencyRepository.findByBusinessNameOrVatNumber(agencyRegistrationDTO.getBusinessName(), agencyRegistrationDTO.getVatNumber()).isPresent())
+        if(agencyRepository.findByBusinessNameOrVatNumber(aagencyRegistrationDto.getBusinessName(), aagencyRegistrationDto.getVatNumber()).isPresent())
         {
             log.error("This agency is already present!");
             throw new IllegalArgumentException("This agency is already present!");
         }
 
-        if(administratorRepository.findByUsername(agencyRegistrationDTO.getUsername()).isPresent())
+        if(administratorRepository.findByUsername(aagencyRegistrationDto.getUsername()).isPresent())
         {
             log.error("This username is already present!");
             throw new IllegalArgumentException("This username is already present!");
         }
 
-        Agency agency = modelMapper.map(agencyRegistrationDTO, Agency.class);
-        Administrator admin = modelMapper.map(agencyRegistrationDTO, Administrator.class);
+        Agency agency = modelMapper.map(aagencyRegistrationDto, Agency.class);
+        Administrator admin = modelMapper.map(aagencyRegistrationDto, Administrator.class);
         
         String hashedPassword = passwordEncoder.encode(admin.getPassword());
         admin.setPassword(hashedPassword);

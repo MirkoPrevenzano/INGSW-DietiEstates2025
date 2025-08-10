@@ -28,10 +28,10 @@ public class AuthenticationService
 
 
 /*     @Transactional
-    public void adminRegistration(AgencyRegistrationDTO agencyRegistrationDTO) throws UsernameNotFoundException, 
+    public void adminRegistration(AgencyRegistrationDto aagencyRegistrationDto) throws UsernameNotFoundException, 
                                                                                     IllegalArgumentException, MappingException
     {
-        if(administratorRepository.findByUsername(agencyRegistrationDTO.getUsername()).isPresent())
+        if(administratorRepository.findByUsername(aagencyRegistrationDto.getUsername()).isPresent())
         {
             log.error("This username is already present!");
             throw new IllegalArgumentException("This username is already present!");
@@ -41,8 +41,8 @@ public class AuthenticationService
         Agency agency;
         try 
         {
-            admin = modelMapper.map(agencyRegistrationDTO, Administrator.class);
-            agency = modelMapper.map(agencyRegistrationDTO, Agency.class);
+            admin = modelMapper.map(aagencyRegistrationDto, Administrator.class);
+            agency = modelMapper.map(aagencyRegistrationDto, Agency.class);
         } 
         catch (MappingException e) 
         {
@@ -55,9 +55,9 @@ public class AuthenticationService
     }  */  
 
 
-/*     public AuthenticationResponseDTO customerRegistration(CustomerRegistrationDTO customerRegistrationDTO) throws IllegalArgumentException, MappingException
+/*     public AuthenticationResponseDTO customerRegistration(CustomerRegistrationDto customerRegistrationDto) throws IllegalArgumentException, MappingException
     {
-        if(customerRepository.findByUsername(customerRegistrationDTO.getUsername()).isPresent())
+        if(customerRepository.findByUsername(customerRegistrationDto.getUsername()).isPresent())
         {
             log.error("This e-mail is already present!");
             throw new IllegalArgumentException("This e-mail is already present!");
@@ -66,7 +66,7 @@ public class AuthenticationService
         Customer customer;
         try 
         {
-            customer = modelMapper.map(customerRegistrationDTO, Customer.class);
+            customer = modelMapper.map(customerRegistrationDto, Customer.class);
         } 
         catch (MappingException e) 
         {

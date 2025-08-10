@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AgentCreationDTO 
+public class AgentCreationDto 
 {
     @NotBlank
     private String name;

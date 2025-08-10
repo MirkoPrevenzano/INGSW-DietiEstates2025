@@ -1,7 +1,7 @@
 
 package com.dietiEstates.backend.dto.response;
 
-import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
 import com.dietiEstates.backend.dto.response.support.AgentPublicInfoDTO;
 
 import lombok.Data;
@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RealEstateCompleteInfoDTO
 {
-    private RealEstateCreationDTO realEstateCreation;
+    private RealEstateCreationDto realEstateCreation;
 
     private AgentPublicInfoDTO agentPublicInfo;    
 }

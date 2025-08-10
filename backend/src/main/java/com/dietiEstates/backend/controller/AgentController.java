@@ -24,9 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
-import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDTO;
-import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
+import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDto;
+import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDto;
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
 import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDTO;
 import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDTO;
@@ -55,35 +55,35 @@ public class AgentController
     
 
     @PostMapping(path = "{username}/create-real-estate")
-    public ResponseEntity<Long> createRealEstate(@PathVariable() String username, @Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateCreationDTO realEstateCreationDTO) 
+    public ResponseEntity<Long> createRealEstate(@PathVariable() String username, @Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateCreationDto realEstateCreationDto) 
     {
-        if (realEstateCreationDTO instanceof RealEstateForSaleCreationDTO) 
+        if (realEstateCreationDto instanceof RealEstateForSaleCreationDto) 
         {
             log.info("\n\ninstanza di for sale");
         }
-        else if (realEstateCreationDTO instanceof RealEstateCreationDTO)
+        else if (realEstateCreationDto instanceof RealEstateCreationDto)
             log.info("\n\ninstanza di for creation\n\n");
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                             .body(agentService.createRealEstate(username, realEstateCreationDTO));
+                             .body(agentService.createRealEstate(username, realEstateCreationDto));
                                  
     }
 
 
     @PostMapping(path = "{username}/create-real-estate-for-sale")
-    public ResponseEntity<Long> createRealEstateForSale(@PathVariable() String username, @Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateForSaleCreationDTO realEstateForSaleCreationDTO) 
+    public ResponseEntity<Long> createRealEstateForSale(@PathVariable() String username, @Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateForSaleCreationDto realEstateForSaleCreationDto) 
     {
         return ResponseEntity.status(HttpStatus.CREATED)
-                             .body(agentService.createRealEstate(username, realEstateForSaleCreationDTO));
+                             .body(agentService.createRealEstate(username, realEstateForSaleCreationDto));
                                  
     }
 
 
     @PostMapping(path = "{username}/create-real-estate-for-rent")
-    public ResponseEntity<Long> createRealEstateForRent(@PathVariable String username, @Validated(OnCreate.class) @RequestBody RealEstateForRentCreationDTO realEstateForRentCreationDTO) 
+    public ResponseEntity<Long> createRealEstateForRent(@PathVariable String username, @Validated(OnCreate.class) @RequestBody RealEstateForRentCreationDto realEstateForRentCreationDto) 
     {
         return ResponseEntity.status(HttpStatus.CREATED)
-                             .body(agentService.createRealEstate(username, realEstateForRentCreationDTO));
+                             .body(agentService.createRealEstate(username, realEstateForRentCreationDto));
     }
 
 

@@ -10,7 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
+import com.dietiEstates.backend.dto.request.UpdatePasswordDto;
 import com.dietiEstates.backend.enums.Role;
 import com.dietiEstates.backend.model.entity.User;
 import com.dietiEstates.backend.repository.UserRepository;
@@ -56,25 +56,25 @@ public class UserService implements UserDetailsService
     }
 
     @Transactional
-    public void updatePassword(String username, UpdatePasswordDTO updatePasswordDTO) throws UsernameNotFoundException, 
+    public void updatePassword(String username, UpdatePasswordDto updatePasswordDto) throws UsernameNotFoundException, 
                                                                                             IllegalArgumentException, MappingException
     {
         User user = userRepository.findByUsername(username)
                                   .orElseThrow(() -> new UsernameNotFoundException(""));
 
-        if(!(passwordEncoder.matches(updatePasswordDTO.getOldPassword(), user.getPassword())))
+        if(!(passwordEncoder.matches(updatePasswordDto.getOldPassword(), user.getPassword())))
         {
             log.error("The \"old password\" you have inserted do not correspond to your current password");
             throw new IllegalArgumentException("The \"old password\" you have inserted do not correspond to your current password");
         }
 
-        if((passwordEncoder.matches(updatePasswordDTO.getNewPassword(), user.getPassword())))
+        if((passwordEncoder.matches(updatePasswordDto.getNewPassword(), user.getPassword())))
         {
             log.error("The \"new password\" you have inserted can't be equal to your current password");
             throw new IllegalArgumentException("\"The \"new password\" you have inserted can't be equal to your current password");
         }
         
-        user.setPassword(passwordEncoder.encode(updatePasswordDTO.getNewPassword()));
+        user.setPassword(passwordEncoder.encode(updatePasswordDto.getNewPassword()));
         userRepository.save(user);
 
         log.info("Password was updated successfully!");

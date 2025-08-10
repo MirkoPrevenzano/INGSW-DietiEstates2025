@@ -6,7 +6,7 @@ import { EstateType } from "./estateType";
 
 export interface Estate{
     addressDTO: Address,
-    realEstateLocationFeaturesDTO: EstateLocationFeatures,
+    realEstateLocationFeaturesDto: EstateLocationFeatures,
     realEstateMainFeaturesDTO: EstateDescribe,
     realEstateBooleanFeaturesDTO: EstateFeatures,
     type: EstateType

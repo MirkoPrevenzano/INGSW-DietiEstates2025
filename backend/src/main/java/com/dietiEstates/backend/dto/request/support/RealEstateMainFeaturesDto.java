@@ -20,7 +20,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RealEstateMainFeaturesDTO 
+public class RealEstateMainFeaturesDto 
 {
     @NotBlank(groups = OnCreate.class)
     @Size(max = 35)

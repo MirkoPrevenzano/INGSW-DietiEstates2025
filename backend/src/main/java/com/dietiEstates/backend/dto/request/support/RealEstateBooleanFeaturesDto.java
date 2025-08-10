@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RealEstateBooleanFeaturesDTO 
+public class RealEstateBooleanFeaturesDto 
 {
     @NotNull(groups = OnCreate.class)
     private Boolean airConditioning;

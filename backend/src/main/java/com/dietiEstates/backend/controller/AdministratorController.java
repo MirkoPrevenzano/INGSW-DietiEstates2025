@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.dietiEstates.backend.dto.request.CollaboratorCreationDTO;
-import com.dietiEstates.backend.dto.request.AgentCreationDTO;
-import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
+import com.dietiEstates.backend.dto.request.CollaboratorCreationDto;
+import com.dietiEstates.backend.dto.request.AgentCreationDto;
+import com.dietiEstates.backend.dto.request.UpdatePasswordDto;
 import com.dietiEstates.backend.service.AdministratorService;
 import com.dietiEstates.backend.service.UserService;
 
@@ -31,25 +31,25 @@ public class AdministratorController
     
 
     @PostMapping(path = "/{username}/create-collaborator")
-    public ResponseEntity<Void> createCollaborator(@PathVariable String username, @RequestBody CollaboratorCreationDTO collaboratorRegistrationDTO) 
+    public ResponseEntity<Void> createCollaborator(@PathVariable String username, @RequestBody CollaboratorCreationDto collaboratorCreationDto) 
     {
-        administratorService.createCollaborator(username, collaboratorRegistrationDTO);
+        administratorService.createCollaborator(username, collaboratorCreationDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 
     @PostMapping(path = "/{username}/create-agent")
-    public ResponseEntity<Void> createAgent(@PathVariable String username, @RequestBody AgentCreationDTO agentRegistrationDTO) 
+    public ResponseEntity<Void> createAgent(@PathVariable String username, @RequestBody AgentCreationDto agentCreationDto) 
     {
-        administratorService.createAgent(username, agentRegistrationDTO);
+        administratorService.createAgent(username, agentCreationDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
     
     
     @PutMapping(path = "/{username}/update-password")
-    public ResponseEntity<Void> updatePassword(@PathVariable String username, @RequestBody UpdatePasswordDTO updatePasswordDTO) 
+    public ResponseEntity<Void> updatePassword(@PathVariable String username, @RequestBody UpdatePasswordDto updatePasswordDto) 
     {
-        userService.updatePassword(username, updatePasswordDTO);
+        userService.updatePassword(username, updatePasswordDto);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

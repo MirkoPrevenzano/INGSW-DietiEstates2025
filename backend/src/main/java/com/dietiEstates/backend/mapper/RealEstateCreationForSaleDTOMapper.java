@@ -3,20 +3,20 @@ package com.dietiEstates.backend.mapper;
 
 import org.springframework.stereotype.Component;
 
-import com.dietiEstates.backend.dto.request.RealEstateCreationDTO;
-import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDTO;
+import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
+import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDto;
 import com.dietiEstates.backend.enums.ContractType;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;
 
 
 @Component
-public class RealEstateCreationForSaleDTOMapper extends RealEstateCreationDTOMapper
+public class RealEstateCreationForSaleDTOMapper extends RealEstateCreationDtoMapper
 {
     @Override
-    protected RealEstateForSaleCreationDTO initializeDto() 
+    protected RealEstateForSaleCreationDto initializeDto() 
     {
-        return new RealEstateForSaleCreationDTO();
+        return new RealEstateForSaleCreationDto();
     }
 
 
@@ -28,17 +28,17 @@ public class RealEstateCreationForSaleDTOMapper extends RealEstateCreationDTOMap
 
 
     @Override
-    protected void mapSpecificFieldsToEntity(RealEstateCreationDTO dto, RealEstate entity) 
+    protected void mapSpecificFieldsToEntity(RealEstateCreationDto dto, RealEstate entity) 
     {
-        ((RealEstateForSale) entity).setNotaryDeedState(((RealEstateForSaleCreationDTO) dto).getNotaryDeedState());
+        ((RealEstateForSale) entity).setNotaryDeedState(((RealEstateForSaleCreationDto) dto).getNotaryDeedState());
     }
 
 
     @Override
-    protected void mapSpecificFieldstoDto(RealEstate entity, RealEstateCreationDTO dto) 
+    protected void mapSpecificFieldstoDto(RealEstate entity, RealEstateCreationDto dto) 
     {
-        ((RealEstateForSaleCreationDTO) dto).setNotaryDeedState(((RealEstateForSale) entity).getNotaryDeedState());
-        ((RealEstateForSaleCreationDTO) dto).setContractType(ContractType.FOR_SALE);
+        ((RealEstateForSaleCreationDto) dto).setNotaryDeedState(((RealEstateForSale) entity).getNotaryDeedState());
+        ((RealEstateForSaleCreationDto) dto).setContractType(ContractType.FOR_SALE);
     }
 
 

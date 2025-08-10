@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 
 import com.dietiEstates.backend.validator.EmailValidator;
 import com.dietiEstates.backend.validator.PasswordValidator;
-import com.dietiEstates.backend.validator.VatNumberValidator;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,18 +14,8 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AgencyRegistrationDTO
+public class CustomerRegistrationDto 
 {
-    @NotBlank
-    private String agencyName;
-
-    @NotBlank
-    private String businessName;
-
-    @NotBlank
-    @VatNumberValidator
-    private String vatNumber;
-    
     @NotBlank
     private String name;
 
