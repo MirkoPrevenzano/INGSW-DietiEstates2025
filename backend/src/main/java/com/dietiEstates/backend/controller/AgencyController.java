@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
 import com.dietiEstates.backend.service.AgencyService;
@@ -23,6 +24,7 @@ public class AgencyController
     private final AgencyService agencyService;
     
 
+    @PreAuthorize("sd")
     @PostMapping
     public ResponseEntity<Void> createAgency(@RequestBody AdminRegistrationDTO adminRegistrationDTO) 
     {
