@@ -12,7 +12,10 @@ import lombok.AllArgsConstructor;
 public class AgentPublicInfoDTO 
 {
     private String name;
+
     private String surname;
+
     private String username;
+    
     private String agencyName;
 }

@@ -12,8 +12,12 @@ import lombok.AllArgsConstructor;
 public class AgentStatsDTO 
 {
     private int totalUploadedRealEstates;
+
     private int totalSoldRealEstates;    
+
     private int totalRentedRealEstates;
+
     private double salesIncome;
+    
     private double rentalsIncome; 
 }

@@ -12,10 +12,16 @@ import lombok.AllArgsConstructor;
 public class RealEstatePreviewInfoDTO
 {  
     private long id;
+
     private String title;
+
     private String description;
+
     private double price;
+
     private String street;
+
     private double longitude;
+    
     private double latitude; 
 }

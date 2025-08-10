@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RealEstateCompleteInfoDTO
 {
-    private RealEstateCreationDTO realEstateCreationDTO;
-    private AgentPublicInfoDTO agentPublicInfoDTO;    
+    private RealEstateCreationDTO realEstateCreation;
+
+    private AgentPublicInfoDTO agentPublicInfo;    
 }

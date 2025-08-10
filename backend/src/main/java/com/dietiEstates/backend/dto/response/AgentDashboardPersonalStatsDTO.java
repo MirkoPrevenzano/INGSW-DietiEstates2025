@@ -14,6 +14,6 @@ import lombok.AllArgsConstructor;
 public class AgentDashboardPersonalStatsDTO
 {
     private AgentStatsDTO agentStatsDTO;
-    //private List<RealEstateStatsDTO> realEstateStatsDTOs;
-    private Integer[] estatesPerMonths;
+
+    private Integer[] monthlyDeals;
 }

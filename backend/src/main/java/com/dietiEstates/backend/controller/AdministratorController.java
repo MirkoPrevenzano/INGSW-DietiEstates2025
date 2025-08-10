@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.dietiEstates.backend.dto.request.CollaboratorRegistrationDTO;
-import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
+import com.dietiEstates.backend.dto.request.CollaboratorCreationDTO;
+import com.dietiEstates.backend.dto.request.AgentCreationDTO;
 import com.dietiEstates.backend.dto.request.UpdatePasswordDTO;
 import com.dietiEstates.backend.service.AdministratorService;
 import com.dietiEstates.backend.service.UserService;
@@ -31,7 +31,7 @@ public class AdministratorController
     
 
     @PostMapping(path = "/{username}/create-collaborator")
-    public ResponseEntity<Void> createCollaborator(@PathVariable String username, @RequestBody CollaboratorRegistrationDTO collaboratorRegistrationDTO) 
+    public ResponseEntity<Void> createCollaborator(@PathVariable String username, @RequestBody CollaboratorCreationDTO collaboratorRegistrationDTO) 
     {
         administratorService.createCollaborator(username, collaboratorRegistrationDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -39,7 +39,7 @@ public class AdministratorController
 
 
     @PostMapping(path = "/{username}/create-agent")
-    public ResponseEntity<Void> createAgent(@PathVariable String username, @RequestBody AgentRegistrationDTO agentRegistrationDTO) 
+    public ResponseEntity<Void> createAgent(@PathVariable String username, @RequestBody AgentCreationDTO agentRegistrationDTO) 
     {
         administratorService.createAgent(username, agentRegistrationDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();

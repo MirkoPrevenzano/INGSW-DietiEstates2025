@@ -17,7 +17,9 @@ import lombok.AllArgsConstructor;
 public class AgentRecentRealEstateDTO 
 {
     private long id;
+
     private String title;
+    
     private String description;
     
     @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd', 'HH:mm:ss")

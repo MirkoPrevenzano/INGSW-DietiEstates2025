@@ -17,12 +17,15 @@ import lombok.AllArgsConstructor;
 public class AgentDashboardRealEstateStatsDTO 
 {
     private long id;
+
     private String title;
 
     @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd, HH:mm:ss")
     private LocalDateTime uploadingDate;
 
     private long viewsNumber;
+
     private long visitsNumber;
+    
     private long offersNumber;
 }

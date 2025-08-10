@@ -18,8 +18,8 @@ import lombok.ToString;
 
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class RealEstateForRentCreationDTO extends RealEstateCreationDTO
 {
@@ -29,7 +29,7 @@ public class RealEstateForRentCreationDTO extends RealEstateCreationDTO
 
     @NotNull(groups = OnCreate.class)
     @PositiveOrZero
-    private Integer contractYears;
+    private Integer contractYears; // TODO : cambiare in Double
 
 
     public RealEstateForRentCreationDTO(ContractType contractType, AddressDTO addressDTO, RealEstateMainFeaturesDTO realEstateMainFeaturesDTO, 

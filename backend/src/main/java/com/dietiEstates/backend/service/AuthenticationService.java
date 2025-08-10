@@ -28,10 +28,10 @@ public class AuthenticationService
 
 
 /*     @Transactional
-    public void adminRegistration(AdminRegistrationDTO adminRegistrationDTO) throws UsernameNotFoundException, 
+    public void adminRegistration(AgencyRegistrationDTO agencyRegistrationDTO) throws UsernameNotFoundException, 
                                                                                     IllegalArgumentException, MappingException
     {
-        if(administratorRepository.findByUsername(adminRegistrationDTO.getUsername()).isPresent())
+        if(administratorRepository.findByUsername(agencyRegistrationDTO.getUsername()).isPresent())
         {
             log.error("This username is already present!");
             throw new IllegalArgumentException("This username is already present!");
@@ -41,8 +41,8 @@ public class AuthenticationService
         Agency agency;
         try 
         {
-            admin = modelMapper.map(adminRegistrationDTO, Administrator.class);
-            agency = modelMapper.map(adminRegistrationDTO, Agency.class);
+            admin = modelMapper.map(agencyRegistrationDTO, Administrator.class);
+            agency = modelMapper.map(agencyRegistrationDTO, Agency.class);
         } 
         catch (MappingException e) 
         {

@@ -8,8 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dietiEstates.backend.dto.request.CollaboratorRegistrationDTO;
-import com.dietiEstates.backend.dto.request.AgentRegistrationDTO;
+import com.dietiEstates.backend.dto.request.CollaboratorCreationDTO;
+import com.dietiEstates.backend.dto.request.AgentCreationDTO;
 import com.dietiEstates.backend.exception.EmailServiceException;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agent;
@@ -41,7 +41,7 @@ public class AdministratorService
 
 
     @Transactional
-    public void createCollaborator(String username, CollaboratorRegistrationDTO collaboratorRegistrationDTO) throws UsernameNotFoundException, 
+    public void createCollaborator(String username, CollaboratorCreationDTO collaboratorRegistrationDTO) throws UsernameNotFoundException, 
                                                                                     IllegalArgumentException, MappingException
     {
         Administrator administrator = administratorRepository.findByUsername(username)
@@ -81,7 +81,7 @@ public class AdministratorService
     // TODO: DA RIMUOVERE PER REST API, mettere in agentservice
 
     @Transactional
-    public void createAgent(String username, AgentRegistrationDTO agentRegistrationDTO) throws UsernameNotFoundException, 
+    public void createAgent(String username, AgentCreationDTO agentRegistrationDTO) throws UsernameNotFoundException, 
                                                                                           IllegalArgumentException, MappingException
     {
         Administrator administrator = administratorRepository.findByUsername(username)

@@ -18,8 +18,8 @@ import lombok.ToString;
 
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class RealEstateForSaleCreationDTO extends RealEstateCreationDTO
 {

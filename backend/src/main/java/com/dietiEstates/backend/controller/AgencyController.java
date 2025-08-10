@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.dietiEstates.backend.dto.request.AdminRegistrationDTO;
+import com.dietiEstates.backend.dto.request.AgencyRegistrationDTO;
 import com.dietiEstates.backend.service.AgencyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,9 +26,9 @@ public class AgencyController
 
     @PreAuthorize("sd")
     @PostMapping
-    public ResponseEntity<Void> createAgency(@RequestBody AdminRegistrationDTO adminRegistrationDTO) 
+    public ResponseEntity<Void> createAgency(@RequestBody AgencyRegistrationDTO agencyRegistrationDTO) 
     {
-        agencyService.createAgency(adminRegistrationDTO);
+        agencyService.createAgency(agencyRegistrationDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

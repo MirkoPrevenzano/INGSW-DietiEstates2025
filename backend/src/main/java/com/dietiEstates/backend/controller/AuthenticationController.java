@@ -28,9 +28,9 @@ public class AuthenticationController
     
 
 /*     @PostMapping(path = "/admin-registration")
-    public ResponseEntity<?> adminRegistration(@Valid @RequestBody AdminRegistrationDTO adminRegistrationDTO) 
+    public ResponseEntity<?> adminRegistration(@Valid @RequestBody AgencyRegistrationDTO agencyRegistrationDTO) 
     {
-        authenticationService.adminRegistration(adminRegistrationDTO);
+        authenticationService.adminRegistration(agencyRegistrationDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
