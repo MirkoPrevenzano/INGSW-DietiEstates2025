@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AgentRecentRealEstateDTO 
+public class AgentRecentRealEstateDto 
 {
     private long id;
 

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dietiEstates.backend.dto.response.RealEstateCompleteInfoDTO;
-import com.dietiEstates.backend.dto.response.RealEstateSearchDTO;
+import com.dietiEstates.backend.dto.response.RealEstateCompleteInfoDto;
+import com.dietiEstates.backend.dto.response.RealEstateSearchDto;
 import com.dietiEstates.backend.service.RealEstateService;
 import com.dietiEstates.backend.validator.RealEstateFiltersValidator;
 
@@ -34,17 +34,17 @@ public class RealEstateController
 
     
     @GetMapping(path = "search3")
-    public ResponseEntity<RealEstateSearchDTO> search(@RequestParam("page") Integer page,
+    public ResponseEntity<RealEstateSearchDto> search(@RequestParam("page") Integer page,
                                                    @RequestParam("limit") Integer limit, 
                                                    @Valid @RealEstateFiltersValidator @RequestParam Map<String,String> filters) 
     {
-        RealEstateSearchDTO realEstateSearchDTO = realEstateService.search(filters, PageRequest.of(page, limit));                
-        return ResponseEntity.ok(realEstateSearchDTO);
+        RealEstateSearchDto realEstateSearchDto = realEstateService.search(filters, PageRequest.of(page, limit));                
+        return ResponseEntity.ok(realEstateSearchDto);
     }
 
 
     @GetMapping("/view/{realEstateId}")
-    public ResponseEntity<RealEstateCompleteInfoDTO> getRealEstateCompleteInfo(@PathVariable("realEstateId") Long realEstateId, Authentication authentication) 
+    public ResponseEntity<RealEstateCompleteInfoDto> getRealEstateCompleteInfo(@PathVariable("realEstateId") Long realEstateId, Authentication authentication) 
     {
         return ResponseEntity.ok(realEstateService.getRealEstateCompleteInfo(realEstateId, authentication));
     }

@@ -20,7 +20,7 @@ import org.supercsv.io.CsvListWriter;
 import org.supercsv.io.ICsvListWriter;
 import org.supercsv.prefs.CsvPreference;
 
-import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
+import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
 import com.dietiEstates.backend.model.embeddable.AgentStats;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AgentRepository;
@@ -125,19 +125,19 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
         csvWriterWrapper.getCsvListWriter().writeHeader("REAL ESTATES STATS");
         csvWriterWrapper.getCsvListWriter().writeHeader("Title", "UploadingDate", "ViewsNumber", "VisitsNumber", "OffersNumber");
         
-        List<AgentDashboardRealEstateStatsDTO> agentDashboardRealEstateStatsDTOs = this.getAgentDashboardRealEstateStatsByAgent(agent);
+        List<AgentDashboardRealEstateStatsDto> agentDashboardRealEstateStatsDtos = this.getAgentDashboardRealEstateStatsByAgent(agent);
 
-        if (!agentDashboardRealEstateStatsDTOs.isEmpty()) 
+        if (!agentDashboardRealEstateStatsDtos.isEmpty()) 
         {
-            for (AgentDashboardRealEstateStatsDTO agentDashboardRealEstateStatsDTO : agentDashboardRealEstateStatsDTOs) 
+            for (AgentDashboardRealEstateStatsDto agentDashboardRealEstateStatsDto : agentDashboardRealEstateStatsDtos) 
             {
                 List<Object> estateData = Arrays.asList(
-                    agentDashboardRealEstateStatsDTO.getTitle(),
-                    Date.from(agentDashboardRealEstateStatsDTO.getUploadingDate().toInstant(ZoneOffset.UTC)),
+                    agentDashboardRealEstateStatsDto.getTitle(),
+                    Date.from(agentDashboardRealEstateStatsDto.getUploadingDate().toInstant(ZoneOffset.UTC)),
                     //realEstate.getUploadingDate(),
-                    agentDashboardRealEstateStatsDTO.getViewsNumber(),
-                    agentDashboardRealEstateStatsDTO.getVisitsNumber(),
-                    agentDashboardRealEstateStatsDTO.getOffersNumber()
+                    agentDashboardRealEstateStatsDto.getViewsNumber(),
+                    agentDashboardRealEstateStatsDto.getVisitsNumber(),
+                    agentDashboardRealEstateStatsDto.getOffersNumber()
                 );
                 csvWriterWrapper.getCsvListWriter().write(estateData, getRealEstateStatsProcessors());
             }

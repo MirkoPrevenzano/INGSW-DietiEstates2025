@@ -4,7 +4,7 @@ package com.dietiEstates.backend.service;
 import org.springframework.stereotype.Service;
 import com.dietiEstates.backend.enums.Role;
 import com.dietiEstates.backend.model.entity.Customer;
-import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
+import com.dietiEstates.backend.dto.response.AuthenticationResponseDto;
 import com.dietiEstates.backend.util.JwtUtil;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
@@ -55,7 +55,7 @@ public class AuthenticationService
     }  */  
 
 
-/*     public AuthenticationResponseDTO customerRegistration(CustomerRegistrationDto customerRegistrationDto) throws IllegalArgumentException, MappingException
+/*     public AuthenticationResponseDto customerRegistration(CustomerRegistrationDto customerRegistrationDto) throws IllegalArgumentException, MappingException
     {
         if(customerRepository.findByUsername(customerRegistrationDto.getUsername()).isPresent())
         {
@@ -89,11 +89,11 @@ public class AuthenticationService
             log.warn(e.getMessage());
         }
 
-        return new AuthenticationResponseDTO(JwtUtil.generateAccessToken(customer));
+        return new AuthenticationResponseDto(JwtUtil.generateAccessToken(customer));
     }
  */
 
-    public AuthenticationResponseDTO authenticateWithGoogle(Map <String, String> request) { 
+    public AuthenticationResponseDto authenticateWithGoogle(Map <String, String> request) { 
         String googleToken = request.get("token");
         GoogleIdToken.Payload payload = verifyGoogleToken(googleToken); 
         Customer user = customerService.authenticateWithExternalAPI(payload);
@@ -111,7 +111,7 @@ public class AuthenticationService
             )
         );
         // Crea una risposta di autenticazione 
-        return new AuthenticationResponseDTO(token); 
+        return new AuthenticationResponseDto(token); 
     } 
 
    

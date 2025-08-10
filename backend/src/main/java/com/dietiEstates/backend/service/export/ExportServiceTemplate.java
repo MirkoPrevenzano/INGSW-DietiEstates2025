@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
+import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
@@ -89,7 +89,7 @@ public abstract class ExportServiceTemplate
         return username + "_" + currentDateTime;
     }
     
-    protected List<AgentDashboardRealEstateStatsDTO> getAgentDashboardRealEstateStatsByAgent(Agent agent) 
+    protected List<AgentDashboardRealEstateStatsDto> getAgentDashboardRealEstateStatsByAgent(Agent agent) 
     {
         return realEstateRepository.findAgentDashboardRealEstateStatsByAgent(agent.getUserId(), null);
     }
@@ -113,7 +113,7 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
+import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
 import com.dietiEstates.backend.exception.ExportServiceException;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AgentRepository;
@@ -188,7 +188,7 @@ public abstract class ExportServiceTemplate
         return username + "_" + currentDateTime;
     }
     
-    protected List<AgentDashboardRealEstateStatsDTO> getAgentDashboardRealEstateStatsByAgent(Agent agent) 
+    protected List<AgentDashboardRealEstateStatsDto> getAgentDashboardRealEstateStatsByAgent(Agent agent) 
     {
         return realEstateRepository.findAgentDashboardRealEstateStatsByAgent(agent.getUserId(), null);
     }

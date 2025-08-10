@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
-import com.dietiEstates.backend.dto.response.RealEstateCompleteInfoDTO;
-import com.dietiEstates.backend.dto.response.RealEstateSearchDTO;
-import com.dietiEstates.backend.dto.response.support.AgentPublicInfoDTO;
-import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
+import com.dietiEstates.backend.dto.response.RealEstateCompleteInfoDto;
+import com.dietiEstates.backend.dto.response.RealEstateSearchDto;
+import com.dietiEstates.backend.dto.response.support.AgentPublicInfoDto;
+import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDto;
 import com.dietiEstates.backend.extra.CoordinatesBoundingBox;
 import com.dietiEstates.backend.mapper.RealEstateCreationDtoMapper;
 import com.dietiEstates.backend.model.embeddable.CustomerViewsRealEstateId;
@@ -45,35 +45,35 @@ public class RealEstateService
     private final RealEstateMapperResolver realEstateMapperResolver;
 
     
-    public RealEstateSearchDTO search(Map<String,String> filters, Pageable page)
+    public RealEstateSearchDto search(Map<String,String> filters, Pageable page)
     {
         CoordinatesBoundingBox coordinatesBoundingBox = FindByRadiusUtil.getBoundingBox(Integer.valueOf(filters.get("radius")), 
                                                                                         Double.valueOf(filters.get("lat")), 
                                                                                         Double.valueOf(filters.get("lon")));
 
-        Page<RealEstatePreviewInfoDTO> realEstatePreviewsPage = realEstateRepository.findRealEstatePreviewInfosByFilters(filters, page, coordinatesBoundingBox);
+        Page<RealEstatePreviewInfoDto> realEstatePreviewsPage = realEstateRepository.findRealEstatePreviewInfosByFilters(filters, page, coordinatesBoundingBox);
 
-        RealEstateSearchDTO realEstateSearchDTO = new RealEstateSearchDTO(realEstatePreviewsPage.getContent(),
+        RealEstateSearchDto realEstateSearchDto = new RealEstateSearchDto(realEstatePreviewsPage.getContent(),
                                                                           realEstatePreviewsPage.getNumberOfElements(),
                                                                           realEstatePreviewsPage.getTotalElements(), 
                                                                           realEstatePreviewsPage.getTotalPages());
-        return realEstateSearchDTO;
+        return realEstateSearchDto;
     }
 
 
     @Transactional
-    public RealEstateCompleteInfoDTO getRealEstateCompleteInfo(Long realEstateId, Authentication authentication)
+    public RealEstateCompleteInfoDto getRealEstateCompleteInfo(Long realEstateId, Authentication authentication)
     {
         RealEstate realEstate = realEstateRepository.findById(realEstateId)
                                                     .orElseThrow(() -> new IllegalArgumentException("Immobile non trovato con ID: " + realEstateId));
         
         Agent agent = realEstate.getAgent();
-        AgentPublicInfoDTO agentPublicInfoDTO = modelMapper.map(agent, AgentPublicInfoDTO.class);    
+        AgentPublicInfoDto agentPublicInfoDto = modelMapper.map(agent, AgentPublicInfoDto.class);    
 
         RealEstateCreationDtoMapper realEstateCreationDtoMapper = realEstateMapperResolver.getMapper(realEstate);
         RealEstateCreationDto realEstateCreationDto = realEstateCreationDtoMapper.toDto(realEstate);
 
-        RealEstateCompleteInfoDTO realEstateCompleteInfoDTO = new RealEstateCompleteInfoDTO(realEstateCreationDto, agentPublicInfoDTO);
+        RealEstateCompleteInfoDto realEstateCompleteInfoDto = new RealEstateCompleteInfoDto(realEstateCreationDto, agentPublicInfoDto);
 
         if(authentication != null && authentication.isAuthenticated() && authentication.getAuthorities()
                                                                                        .stream()
@@ -94,6 +94,6 @@ public class RealEstateService
             customer.addCustomerViewsRealEstate(customerViewsRealEstate);
         }
 
-        return realEstateCompleteInfoDTO;
+        return realEstateCompleteInfoDto;
     }
 }

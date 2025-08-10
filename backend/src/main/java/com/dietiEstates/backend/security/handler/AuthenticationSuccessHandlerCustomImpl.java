@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
+import com.dietiEstates.backend.dto.response.AuthenticationResponseDto;
 import com.dietiEstates.backend.util.JwtUtil;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,10 +39,10 @@ public class AuthenticationSuccessHandlerCustomImpl implements AuthenticationSuc
         UserDetails user = (UserDetails) authentication.getPrincipal();
         String accessToken = JwtUtil.generateAccessToken(user);
         
-        AuthenticationResponseDTO authenticationResponseDTO = new AuthenticationResponseDTO(accessToken);
+        AuthenticationResponseDto authenticationResponseDto = new AuthenticationResponseDto(accessToken);
 
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        objectMapper.writeValue(response.getOutputStream(), authenticationResponseDTO); 
+        objectMapper.writeValue(response.getOutputStream(), authenticationResponseDto); 
     }
 }

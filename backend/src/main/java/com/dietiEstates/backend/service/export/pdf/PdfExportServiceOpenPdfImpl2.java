@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
+import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
 import com.dietiEstates.backend.model.embeddable.AgentStats;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AgentRepository;
@@ -170,19 +170,19 @@ public class PdfExportServiceOpenPdfImpl2 extends ExportServiceTemplate implemen
         String[] realEstateStatsHeader = {"Title", "Uploading Date", "Views Number", "Offers Number", "Visits Number"};
         writeInTable(realEstateStatsTable, styles.cellHeader, styles.cellHeaderFont, realEstateStatsHeader);
         
-        List<AgentDashboardRealEstateStatsDTO> agentDashboardRealEstateStatsDTOs = this.getAgentDashboardRealEstateStatsByAgent(agent);
+        List<AgentDashboardRealEstateStatsDto> agentDashboardRealEstateStatsDtos = this.getAgentDashboardRealEstateStatsByAgent(agent);
 
-        if (!agentDashboardRealEstateStatsDTOs.isEmpty()) 
+        if (!agentDashboardRealEstateStatsDtos.isEmpty()) 
         {
-            for (AgentDashboardRealEstateStatsDTO agentDashboardRealEstateStatsDTO : agentDashboardRealEstateStatsDTOs) 
+            for (AgentDashboardRealEstateStatsDto agentDashboardRealEstateStatsDto : agentDashboardRealEstateStatsDtos) 
             {
                 //RealEstateStats realEstateStats = realEstate.getRealEstateStats();
                 String[] estateStats = {
-                    agentDashboardRealEstateStatsDTO.getTitle(),
-                    agentDashboardRealEstateStatsDTO.getUploadingDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm:ss")),
-                    String.valueOf(agentDashboardRealEstateStatsDTO.getViewsNumber()),
-                    String.valueOf(agentDashboardRealEstateStatsDTO.getOffersNumber()),
-                    String.valueOf(agentDashboardRealEstateStatsDTO.getVisitsNumber())
+                    agentDashboardRealEstateStatsDto.getTitle(),
+                    agentDashboardRealEstateStatsDto.getUploadingDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm:ss")),
+                    String.valueOf(agentDashboardRealEstateStatsDto.getViewsNumber()),
+                    String.valueOf(agentDashboardRealEstateStatsDto.getOffersNumber()),
+                    String.valueOf(agentDashboardRealEstateStatsDto.getVisitsNumber())
                 };
                 writeInTable(realEstateStatsTable, styles.cell, styles.cellFont, estateStats);
             }

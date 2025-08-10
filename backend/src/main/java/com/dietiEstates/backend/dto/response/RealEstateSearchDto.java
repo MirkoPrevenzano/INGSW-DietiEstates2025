@@ -3,7 +3,7 @@ package com.dietiEstates.backend.dto.response;
 
 import java.util.List;
 
-import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
+import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,9 +13,9 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RealEstateSearchDTO
+public class RealEstateSearchDto
 {
-    private List<RealEstatePreviewInfoDTO> realEstatePreviewInfoList;
+    private List<RealEstatePreviewInfoDto> realEstatePreviewInfoDtoList;
     private int totalElementsOfPage;
     private long totalElements;
     private int totalPages;

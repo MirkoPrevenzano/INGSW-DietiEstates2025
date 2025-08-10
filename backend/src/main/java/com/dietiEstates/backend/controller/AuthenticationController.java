@@ -10,7 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.dietiEstates.backend.dto.response.AuthenticationResponseDTO;
+import com.dietiEstates.backend.dto.response.AuthenticationResponseDto;
 import com.dietiEstates.backend.service.AuthenticationService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,16 +36,16 @@ public class AuthenticationController
 
 
     @PostMapping(path = "customer-registration")
-    public ResponseEntity<AuthenticationResponseDTO> customerRegistration(@Valid @RequestBody CustomerRegistrationDto userRegistrationDTO) 
+    public ResponseEntity<AuthenticationResponseDto> customerRegistration(@Valid @RequestBody CustomerRegistrationDto userRegistrationDTO) 
     {
         return ResponseEntity.ok().body(authenticationService.customerRegistration(userRegistrationDTO));
     } */
 
    
     @PostMapping("/login/oauth2/code/google") 
-    public ResponseEntity<AuthenticationResponseDTO> googleLogin( @RequestBody Map<String, String> request) 
+    public ResponseEntity<AuthenticationResponseDto> googleLogin( @RequestBody Map<String, String> request) 
     {
-        AuthenticationResponseDTO authenticationResponse= authenticationService.authenticateWithGoogle(request); 
+        AuthenticationResponseDto authenticationResponse= authenticationService.authenticateWithGoogle(request); 
         return ResponseEntity.ok(authenticationResponse);
     } 
 }

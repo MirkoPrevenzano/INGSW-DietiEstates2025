@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AgentPublicInfoDTO 
+public class AgentPublicInfoDto 
 {
     private String name;
 

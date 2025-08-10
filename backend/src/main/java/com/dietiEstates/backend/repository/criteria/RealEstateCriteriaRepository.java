@@ -7,16 +7,16 @@ import java.util.Map;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
-import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDTO;
-import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
+import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
+import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDto;
+import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDto;
 import com.dietiEstates.backend.extra.CoordinatesBoundingBox;
 
 
 public interface RealEstateCriteriaRepository 
 {
-    public Page<RealEstatePreviewInfoDTO> findRealEstatePreviewInfosByFilters(Map<String,String> filters, Pageable page, CoordinatesBoundingBox coordinatesBoundingBox);
-    public List<AgentRecentRealEstateDTO> findAgentRecentRealEstatesByAgent(Long agentId, Integer limit);
-    public List<AgentDashboardRealEstateStatsDTO> findAgentDashboardRealEstateStatsByAgent(Long agentId, Pageable page);
+    public Page<RealEstatePreviewInfoDto> findRealEstatePreviewInfosByFilters(Map<String,String> filters, Pageable page, CoordinatesBoundingBox coordinatesBoundingBox);
+    public List<AgentRecentRealEstateDto> findAgentRecentRealEstatesByAgent(Long agentId, Integer limit);
+    public List<AgentDashboardRealEstateStatsDto> findAgentDashboardRealEstateStatsByAgent(Long agentId, Pageable page);
     public Long findLastUploadedByAgent(Long agentId);
 }

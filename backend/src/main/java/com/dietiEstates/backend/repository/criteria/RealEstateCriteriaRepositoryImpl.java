@@ -19,9 +19,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
-import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDTO;
-import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDTO;
+import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
+import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDto;
+import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDto;
 import com.dietiEstates.backend.enums.ContractType;
 import com.dietiEstates.backend.extra.CoordinatesBoundingBox;
 import com.dietiEstates.backend.factory.RealEstateRootFactory;
@@ -45,10 +45,10 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
 
     @Override
-    public Page<RealEstatePreviewInfoDTO> findRealEstatePreviewInfosByFilters(Map<String,String> filters, Pageable page, CoordinatesBoundingBox coordinatesBoundingBox) 
+    public Page<RealEstatePreviewInfoDto> findRealEstatePreviewInfosByFilters(Map<String,String> filters, Pageable page, CoordinatesBoundingBox coordinatesBoundingBox) 
     {        
-        CriteriaQuery<RealEstatePreviewInfoDTO> query = getPreviewsQueryByFilters(filters, coordinatesBoundingBox);
-        List<RealEstatePreviewInfoDTO> pageList = entityManager.createQuery(query)
+        CriteriaQuery<RealEstatePreviewInfoDto> query = getPreviewsQueryByFilters(filters, coordinatesBoundingBox);
+        List<RealEstatePreviewInfoDto> pageList = entityManager.createQuery(query)
                                                                .setFirstResult((int)page.getOffset())
                                                                .setMaxResults(page.getPageSize())
                                                                .getResultList(); 
@@ -58,24 +58,24 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
                                           .getSingleResult();       
         
                                           log.warn("\n\ntotalElem: " + totalElements);
-        PageImpl<RealEstatePreviewInfoDTO> pageImpl = new PageImpl<>(pageList, page, totalElements);
+        PageImpl<RealEstatePreviewInfoDto> pageImpl = new PageImpl<>(pageList, page, totalElements);
 
         return pageImpl;
     }
 
 
     @Override
-    public List<AgentRecentRealEstateDTO> findAgentRecentRealEstatesByAgent(Long agentId, Integer limit) 
+    public List<AgentRecentRealEstateDto> findAgentRecentRealEstatesByAgent(Long agentId, Integer limit) 
     {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<AgentRecentRealEstateDTO> query = criteriaBuilder.createQuery(AgentRecentRealEstateDTO.class);
+        CriteriaQuery<AgentRecentRealEstateDto> query = criteriaBuilder.createQuery(AgentRecentRealEstateDto.class);
 
         Root<RealEstate> realEstate = query.from(RealEstate.class);
         Join<RealEstate, Address> agentJoin = realEstate.join("agent", JoinType.INNER);
 
         //Path<Long> agentIdOfRealEstate = realEstate.get("agent").get("userId");
 
-        query.select(criteriaBuilder.construct(AgentRecentRealEstateDTO.class, realEstate.get("realEstateId"), 
+        query.select(criteriaBuilder.construct(AgentRecentRealEstateDto.class, realEstate.get("realEstateId"), 
                                                                                            realEstate.get("title"), 
                                                                                            realEstate.get("description"), 
                                                                                            realEstate.get("uploadingDate")))
@@ -90,17 +90,17 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
 
     @Override
-    public List<AgentDashboardRealEstateStatsDTO> findAgentDashboardRealEstateStatsByAgent(Long agentId, Pageable page) 
+    public List<AgentDashboardRealEstateStatsDto> findAgentDashboardRealEstateStatsByAgent(Long agentId, Pageable page) 
     {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<AgentDashboardRealEstateStatsDTO> query = criteriaBuilder.createQuery(AgentDashboardRealEstateStatsDTO.class);
+        CriteriaQuery<AgentDashboardRealEstateStatsDto> query = criteriaBuilder.createQuery(AgentDashboardRealEstateStatsDto.class);
         
         Root<RealEstate> realEstate = query.from(RealEstate.class);
         Join<RealEstate, Address> agentJoin = realEstate.join("agent", JoinType.INNER);
 
         //Path<Long> agentIdOfRealEstate = realEstate.get("agent").get("userId");
 
-        query.select(criteriaBuilder.construct(AgentDashboardRealEstateStatsDTO.class, realEstate.get("realEstateId"), 
+        query.select(criteriaBuilder.construct(AgentDashboardRealEstateStatsDto.class, realEstate.get("realEstateId"), 
                                                                                                    realEstate.get("title"), 
                                                                                                    realEstate.get("uploadingDate"), 
                                                                                                    realEstate.get("realEstateStats").get("viewsNumber"),
@@ -110,7 +110,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
                                     .where(criteriaBuilder.equal(agentJoin.get("userId"), agentId))
                                     .orderBy(criteriaBuilder.asc(realEstate.get("realEstateId")));
 
-        List<AgentDashboardRealEstateStatsDTO> list;
+        List<AgentDashboardRealEstateStatsDto> list;
 
         if(page != null)
         {
@@ -153,10 +153,10 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
 
     
-    private CriteriaQuery<RealEstatePreviewInfoDTO> getPreviewsQueryByFilters(Map<String,String> filters, CoordinatesBoundingBox coordinatesBoundingBox)
+    private CriteriaQuery<RealEstatePreviewInfoDto> getPreviewsQueryByFilters(Map<String,String> filters, CoordinatesBoundingBox coordinatesBoundingBox)
     {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<RealEstatePreviewInfoDTO> query = criteriaBuilder.createQuery(RealEstatePreviewInfoDTO.class);
+        CriteriaQuery<RealEstatePreviewInfoDto> query = criteriaBuilder.createQuery(RealEstatePreviewInfoDto.class);
         
         Root<RealEstate> realEstate = query.from(RealEstate.class);
         Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
@@ -167,7 +167,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
         List<Predicate> predicates = getPredicates(criteriaBuilder, filters, coordinatesBoundingBox, realEstate, addressJoin, realEstateType); 
 
-        query.select(criteriaBuilder.construct(RealEstatePreviewInfoDTO.class, realEstate.get("realEstateId"),
+        query.select(criteriaBuilder.construct(RealEstatePreviewInfoDto.class, realEstate.get("realEstateId"),
                                                                                            realEstate.get("title"),
                                                                                            realEstate.get("description"),
                                                                                            realEstate.get("price"),

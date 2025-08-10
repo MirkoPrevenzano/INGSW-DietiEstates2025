@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AgentStatsDTO 
+public class AgentStatsDto 
 {
     private int totalUploadedRealEstates;
 

@@ -13,10 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
-import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
-import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDTO;
-import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDTO;
-import com.dietiEstates.backend.dto.response.support.AgentStatsDTO;
+import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
+import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDto;
+import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDto;
+import com.dietiEstates.backend.dto.response.support.AgentStatsDto;
 import com.dietiEstates.backend.factory.RealEstateFromDtoFactory;
 import com.dietiEstates.backend.model.entity.Address;
 import com.dietiEstates.backend.model.entity.Photo;
@@ -117,7 +117,7 @@ public class AgentService
     }
 
 
-    public List<AgentRecentRealEstateDTO> getAgentRecentRealEstates(String username, Integer limit) 
+    public List<AgentRecentRealEstateDto> getAgentRecentRealEstates(String username, Integer limit) 
     {
         Agent agent = agentRepository.findByUsername(username)
                                      .orElseThrow(() -> new UsernameNotFoundException(""));
@@ -126,7 +126,7 @@ public class AgentService
     }
 
 
-    public List<AgentDashboardRealEstateStatsDTO> getAgentDashboardRealEstateStats(String username, Pageable page) 
+    public List<AgentDashboardRealEstateStatsDto> getAgentDashboardRealEstateStats(String username, Pageable page) 
     {
         Agent agent = agentRepository.findByUsername(username)
                                      .orElseThrow(() -> new UsernameNotFoundException(""));
@@ -135,16 +135,16 @@ public class AgentService
     }
 
 
-    public AgentDashboardPersonalStatsDTO getAgentDashboardPersonalStats(String username) 
+    public AgentDashboardPersonalStatsDto getAgentDashboardPersonalStats(String username) 
     {
         Agent agent = agentRepository.findByUsername(username)
                                      .orElseThrow(() -> new UsernameNotFoundException(""));
 
         Integer[] estatesPerMonth = mockingStatsService.mockBarChartStats(agent);
-        AgentStatsDTO agentStatsDTO = modelMapper.map(agent.getAgentStats(), AgentStatsDTO.class);
+        AgentStatsDto agentStatsDto = modelMapper.map(agent.getAgentStats(), AgentStatsDto.class);
 
-        AgentDashboardPersonalStatsDTO agentDashboardPersonalStatsDTO = new AgentDashboardPersonalStatsDTO(agentStatsDTO, estatesPerMonth);
+        AgentDashboardPersonalStatsDto agentDashboardPersonalStatsDto = new AgentDashboardPersonalStatsDto(agentStatsDto, estatesPerMonth);
         
-        return agentDashboardPersonalStatsDTO;
+        return agentDashboardPersonalStatsDto;
     }
 }

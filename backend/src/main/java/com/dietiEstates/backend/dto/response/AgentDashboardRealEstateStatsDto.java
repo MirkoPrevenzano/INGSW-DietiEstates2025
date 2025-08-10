@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AgentDashboardRealEstateStatsDTO 
+public class AgentDashboardRealEstateStatsDto 
 {
     private long id;
 

@@ -27,9 +27,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDto;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDto;
-import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDTO;
-import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDTO;
-import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDTO;
+import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
+import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDto;
+import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDto;
 import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.service.export.ExportingResult;
 import com.dietiEstates.backend.service.export.csv.CsvExportService;
@@ -106,11 +106,11 @@ public class AgentController
    
    
     @GetMapping(path = "{username}/recent-real-estates/{limit}")
-    public ResponseEntity<List<AgentRecentRealEstateDTO>> aa(@PathVariable("username") String username, @PathVariable("limit") Integer limit) 
+    public ResponseEntity<List<AgentRecentRealEstateDto>> aa(@PathVariable("username") String username, @PathVariable("limit") Integer limit) 
     {
-        List<AgentRecentRealEstateDTO> realEstates = agentService.getAgentRecentRealEstates(username, limit);
+        List<AgentRecentRealEstateDto> realEstates = agentService.getAgentRecentRealEstates(username, limit);
 
-        for(AgentRecentRealEstateDTO recentRealEstateDTO : realEstates)
+        for(AgentRecentRealEstateDto recentRealEstateDTO : realEstates)
             log.info(recentRealEstateDTO.toString());
 
         return ResponseEntity.ok(realEstates);
@@ -147,19 +147,19 @@ public class AgentController
 
 
     @GetMapping(path = "{username}/general-stats")
-    public ResponseEntity<AgentDashboardPersonalStatsDTO> aaaaaaa(@PathVariable("username") String username) 
+    public ResponseEntity<AgentDashboardPersonalStatsDto> aaaaaaa(@PathVariable("username") String username) 
     {
-        AgentDashboardPersonalStatsDTO agentDashboardPersonalStatsDTO = agentService.getAgentDashboardPersonalStats(username);
-        return ResponseEntity.ok().body(agentDashboardPersonalStatsDTO);
+        AgentDashboardPersonalStatsDto agentDashboardPersonalStatsDto = agentService.getAgentDashboardPersonalStats(username);
+        return ResponseEntity.ok().body(agentDashboardPersonalStatsDto);
     }
 
 
     @GetMapping(path = "{username}/estates-stats/{page}/{limit}")
-    public ResponseEntity<List<AgentDashboardRealEstateStatsDTO>> aaaa(@PathVariable("username") String username, 
+    public ResponseEntity<List<AgentDashboardRealEstateStatsDto>> aaaa(@PathVariable("username") String username, 
                                                    @PathVariable("page") Integer page,
                                                    @PathVariable("limit") Integer limit) 
     {
-        List<AgentDashboardRealEstateStatsDTO> realEstateStatsDTOs = agentService.getAgentDashboardRealEstateStats(username,PageRequest.of(page, limit));
+        List<AgentDashboardRealEstateStatsDto> realEstateStatsDTOs = agentService.getAgentDashboardRealEstateStats(username,PageRequest.of(page, limit));
         
         return ResponseEntity.ok().body(realEstateStatsDTOs);
     }

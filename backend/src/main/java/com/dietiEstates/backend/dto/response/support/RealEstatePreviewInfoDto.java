@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RealEstatePreviewInfoDTO
+public class RealEstatePreviewInfoDto
 {  
     private long id;
 
