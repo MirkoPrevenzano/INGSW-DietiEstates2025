@@ -1,5 +1,5 @@
 
-package com.dietiEstates.backend.exception;
+package com.dietiEstates.backend.exception.handler;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
