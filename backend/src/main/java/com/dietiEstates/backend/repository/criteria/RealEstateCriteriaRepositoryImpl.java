@@ -161,7 +161,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         Root<RealEstate> realEstate = query.from(RealEstate.class);
         Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
 
-        ContractType contractType = ContractType.of(filters.get("type"));
+        ContractType contractType = ContractType.fromValue(filters.get("type"));
         RealEstateRootFactory realEstateRootFactory = realEstateRootFactoryResolver.getFactory(contractType);
         Root<? extends RealEstate> realEstateType = realEstateRootFactory.create(query);
 
@@ -188,7 +188,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         Root<RealEstate> realEstate = countQuery.from(RealEstate.class);
         Join<RealEstate, Address> addressJoin = realEstate.join("address", JoinType.INNER);
 
-        ContractType contractType = ContractType.of(filters.get("type"));
+        ContractType contractType = ContractType.fromValue(filters.get("type"));
         RealEstateRootFactory realEstateRootFactory = realEstateRootFactoryResolver.getFactory(contractType);
         Root<? extends RealEstate> realEstateType = realEstateRootFactory.create(countQuery);
 

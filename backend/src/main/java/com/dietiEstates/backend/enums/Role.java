@@ -1,4 +1,4 @@
-
+/* 
 package com.dietiEstates.backend.enums;
 
 import java.util.stream.Stream;
@@ -38,4 +38,40 @@ public enum Role
                      .findFirst()
                      .orElseThrow(() -> new IllegalArgumentException("Role value not valid: '" + value + "'"));
     }
+} */
+
+
+package com.dietiEstates.backend.enums;
+
+import com.dietiEstates.backend.enums.common.StringValueEnum;
+
+
+public enum Role implements StringValueEnum
+{
+    ROLE_CUSTOMER("Customer"),
+    ROLE_AGENT("Agent"),
+    ROLE_ADMIN("Admin"),
+    ROLE_COLLABORATOR("Collaborator"),
+    ROLE_UNAUTHORIZED("");
+
+
+    private final String value;
+
+
+    private Role(String value) 
+    {
+        this.value = value;
+    };
+
+
+    @Override
+    public String getValue() 
+    {
+        return this.value;
+    }
+
+    static public Role fromValue(String value) 
+    {
+        return StringValueEnum.fromValue(Role.class, value);
+    }   
 }

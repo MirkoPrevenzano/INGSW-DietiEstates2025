@@ -40,7 +40,7 @@ public class UserService implements UserDetailsService
         Role role;
         try 
         {
-            role = Role.of(username.substring(index + 1)); 
+            role = Role.fromValue(username.substring(index + 1)); 
         } 
         catch (IllegalArgumentException e) 
         {
