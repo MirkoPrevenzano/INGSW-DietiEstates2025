@@ -1,5 +1,10 @@
+
 package com.dietiEstates.backend.enums;
 
-public enum FileStorageOperation {
-    
+
+public enum FileStorageOperation 
+{
+    UPLOAD, 
+    DELETE, 
+    READ;
 }

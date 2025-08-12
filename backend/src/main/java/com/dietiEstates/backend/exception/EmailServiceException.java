@@ -33,6 +33,11 @@ public class EmailServiceException extends RuntimeException
         this(null, recipient, subject, throwable);
     }
 
+    public EmailServiceException(String msg, String recipient, String subject)
+    {
+        this(msg, recipient, subject, null);
+    }
+
     public EmailServiceException(String msg, String recipient, String subject, Throwable throwable)
     {
         super(msg, throwable);
@@ -53,10 +58,10 @@ public class EmailServiceException extends RuntimeException
             fullMessage.append("Errore durante l'invio dell'email!");
 
         
-        if (recipient != null && !recipient.isEmpty()) 
+        if (recipient != null) 
             fullMessage.append("\nDestinatario: ").append(recipient);
         
-        if (subject != null && !subject.isEmpty()) 
+        if (subject != null) 
             fullMessage.append("\nOggetto: ").append(subject);
         
         
