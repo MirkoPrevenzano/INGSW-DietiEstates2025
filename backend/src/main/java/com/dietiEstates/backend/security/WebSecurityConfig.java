@@ -20,7 +20,7 @@ import com.dietiEstates.backend.security.filter.JwtAuthorizationFilter;
 import com.dietiEstates.backend.security.handler.AccessDeniedHandlerCustomImpl;
 import com.dietiEstates.backend.security.handler.AuthenticationEntryPointCustomImpl;
 import com.dietiEstates.backend.security.handler.AuthenticationFailureHandlerCustomImpl;
-import com.dietiEstates.backend.security.handler.AuthenticationSuccessHandlerCustomImpl;
+import com.dietiEstates.backend.security.handler.AuthenticationSuccessHandlerJwtImpl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +38,7 @@ public class WebSecurityConfig
     private final AuthenticationEntryPointCustomImpl authenticationEntryPointCustomImpl;
     private final AccessDeniedHandlerCustomImpl accessDeniedHandlerCustomImpl;
     private final AuthenticationFailureHandlerCustomImpl authenticationFailureHandlerCustomImpl;
-    private final AuthenticationSuccessHandlerCustomImpl authenticationSuccessHandlerCustomImpl;
+    private final AuthenticationSuccessHandlerJwtImpl authenticationSuccessHandlerJwtImpl;
 
 
 
@@ -56,7 +56,7 @@ public class WebSecurityConfig
         
         usernamePasswordRoleAuthenticationFilter.setAuthenticationManager(authenticationManager);
         usernamePasswordRoleAuthenticationFilter.setAuthenticationFailureHandler(authenticationFailureHandlerCustomImpl);
-        usernamePasswordRoleAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandlerCustomImpl);
+        usernamePasswordRoleAuthenticationFilter.setAuthenticationSuccessHandler(authenticationSuccessHandlerJwtImpl);
 
         return usernamePasswordRoleAuthenticationFilter;
     }

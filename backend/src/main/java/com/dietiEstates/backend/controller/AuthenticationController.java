@@ -10,9 +10,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.dietiEstates.backend.dto.request.CustomerRegistrationDto;
 import com.dietiEstates.backend.dto.response.AuthenticationResponseDto;
 import com.dietiEstates.backend.service.AuthenticationService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,13 +35,13 @@ public class AuthenticationController
         authenticationService.adminRegistration(aagencyRegistrationDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-
+*/
 
     @PostMapping(path = "customer-registration")
     public ResponseEntity<AuthenticationResponseDto> customerRegistration(@Valid @RequestBody CustomerRegistrationDto userRegistrationDTO) 
     {
         return ResponseEntity.ok().body(authenticationService.customerRegistration(userRegistrationDTO));
-    } */
+    } 
 
    
     @PostMapping("/login/oauth2/code/google") 

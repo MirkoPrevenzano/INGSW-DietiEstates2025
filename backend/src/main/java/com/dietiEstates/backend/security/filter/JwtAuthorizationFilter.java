@@ -1,7 +1,7 @@
 
 package com.dietiEstates.backend.security.filter;
 
-import static java.util.Arrays.stream;
+import java.util.Arrays;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,16 +48,17 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
                                     @NonNull HttpServletResponse response, 
                                     @NonNull FilterChain filterChain) throws ServletException, IOException 
     {
-        if(request.getServletPath().equals("/login") || 
-           request.getServletPath().equals("/auth/customer-registration") ||
-           request.getServletPath().equals("/auth/admin-registration") ||
-           request.getServletPath().equals("/auth/login/oauth2/code/google")) 
+        if (request.getServletPath().equals("/login") || 
+            (request.getServletPath().equals("/agency") && request.getMethod().equals("POST")) ||
+            request.getServletPath().equals("/auth/customer-registration") ||
+            request.getServletPath().equals("/auth/login/oauth2/code/google")) 
            
         {
             filterChain.doFilter(request, response);
             return;
-        }
-        
+        } 
+
+
         log.info("Attempting JwtAuthorizationFilter...");
 
         String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
@@ -73,7 +74,10 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
                 String[] roles = verifiedJwt.getRoles();
 
                 Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-                stream(roles).forEach(role -> {authorities.add(new SimpleGrantedAuthority(role));});
+
+                Arrays.stream(roles)
+                      .forEach(role -> {authorities.add(new SimpleGrantedAuthority(role));});
+
                 UserDetails userDetails = userRepository.findByUsername(username)
                                                          .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
@@ -83,22 +87,22 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);   
                     
                 log.info("JwtAuthorizationFilter is OK!");
+
                 filterChain.doFilter(request, response); 
             } 
             catch (UsernameNotFoundException e)
             {
-                log.error(e.getMessage());
+                log.error("Exception occured during JwtAuthorizationFilter!");
                 authenticationEntryPointCustomImpl.commence(request, response, e);
             }
-            catch (JWTVerificationException e) 
+            catch (JWTVerificationException e) // TODO: Sostituire con exc custom jwt
             {
-                log.error(e.getMessage());
+                log.error("Exception occured during JwtAuthorizationFilter!");
                 authenticationEntryPointCustomImpl.commence(request, response, new BadCredentialsException(e.getMessage()));
             }
         }
         else
         {
-            log.error("User is not a JWT Bearer!");
             authenticationEntryPointCustomImpl.commence(request, response, new BadCredentialsException("User is not a JWT Bearer!"));
         }
     }

@@ -33,14 +33,12 @@ public class AccessDeniedHandlerCustomImpl implements AccessDeniedHandler
         log.error("Attempted access to: " + request.getRequestURI());
         log.error("Exception: " + accessDeniedException.getMessage());
 
-        int statusCode = HttpStatus.FORBIDDEN.value();
-        String errorDescription = "Denied access! You don't have the permissions to access this resource.";
+        String errorDetail = "Denied access! You don't have the permissions to access this resource.";
         String errorPath = request.getRequestURI();
 
-        //ApiErrorResponse apiErrorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
-        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.FORBIDDEN, errorDescription, errorPath);
+        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.FORBIDDEN, errorDetail, errorPath);
 
-        response.setStatus(statusCode);
+        response.setStatus(apiErrorResponse.getStatus());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         objectMapper.writeValue(response.getWriter(), apiErrorResponse);
     }

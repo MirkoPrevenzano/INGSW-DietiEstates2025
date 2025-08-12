@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class AuthorizationInterceptor implements HandlerInterceptor
+public class UsernameAuthorizationInterceptor implements HandlerInterceptor
 {
     private final AccessDeniedHandlerCustomImpl accessDeniedHandlerCustomImpl;
 
@@ -34,7 +34,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor
                              @NonNull HttpServletResponse response, 
                              @NonNull Object handler) throws Exception 
     {
-        log.info("Attempting Authorization Interceptor...");
+        log.info("Attempting UsernameAuthorizationInterceptor...");
 
         Map pathvariables = (Map) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
 
@@ -47,20 +47,17 @@ public class AuthorizationInterceptor implements HandlerInterceptor
 
             if(pathUsername != null && authenticatedUsername != null)
             {
-                if(pathUsername.equals(authenticatedUsername))
+                if(!pathUsername.equals(authenticatedUsername))
                 {
-                    log.info("Authorization Interceptor is OK!");
-                    log.info("Request to handler \"{}\" allowed. URI: {}.", handler, request.getRequestURI());
-                    return true;
+                    accessDeniedHandlerCustomImpl.handle(request, response, new AccessDeniedException("User is trying to access other users'resources"));
+                    return false;
                 }
-                
-                accessDeniedHandlerCustomImpl.handle(request, response, new AccessDeniedException("User is trying to access other users'resources"));
-                return false;
             }
         }
 
-        log.info("Authorization Interceptor is OK! (No specific username path check)");
-        log.info("Request to handler \"{}\" allowed. URI: {}.", handler, request.getRequestURI());
+        log.info("Authorization Interceptor is OK!");
+        log.info("Request to handler \"{}\" allowed.\nURI: {}.", handler, request.getRequestURI());
+        
         return true;
     }
 }

@@ -14,7 +14,7 @@ import com.auth0.jwt.JWTVerifier;
 
 import lombok.experimental.UtilityClass;
 
-
+// TODO: creare JWT exc
 @UtilityClass
 public class JwtUtil 
 {

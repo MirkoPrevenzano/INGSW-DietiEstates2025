@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class AuthenticationSuccessHandlerCustomImpl implements AuthenticationSuccessHandler 
+public class AuthenticationSuccessHandlerJwtImpl implements AuthenticationSuccessHandler 
 {
     private final ObjectMapper objectMapper;
 
@@ -34,7 +34,7 @@ public class AuthenticationSuccessHandlerCustomImpl implements AuthenticationSuc
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException 
     {
-        log.info("Authentication is OK! User '" + authentication.getName() + "' successfully authenticated.");
+        log.info("Authentication is OK!\nUser '" + authentication.getName() + "' has been successfully authenticated.");
     
         UserDetails user = (UserDetails) authentication.getPrincipal();
         String accessToken = JwtUtil.generateAccessToken(user);

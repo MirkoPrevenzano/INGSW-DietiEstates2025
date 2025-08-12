@@ -36,21 +36,19 @@ public class AuthenticationEntryPointCustomImpl implements AuthenticationEntryPo
         log.error("Authentication failed: " + authException.getMessage());
         log.error("Attempted access to: " + request.getRequestURI());
 
-        int statusCode = HttpStatus.UNAUTHORIZED.value();
-        String errorDescription = "Authentication failed! ";
+        String errorDetail = "Authentication failed! ";
         String errorPath = request.getRequestURI();
         
         if(authException instanceof UsernameNotFoundException)
-            errorDescription += "User not found in database.";
+            errorDetail += "User not found in database.";
         else if(authException instanceof BadCredentialsException)
-            errorDescription += "Problem with access token.";
+            errorDetail += "Problem with access token.";
         else 
-            errorDescription += "You must be authenticated to access this resource.";
+            errorDetail += "You must be authenticated to access this resource.";
 
-        //ApiErrorResponse apiErrorResponse = new ApiErrorResponse(statusCode, errorReason, errorType, errorDescription, errorPath);
-        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.UNAUTHORIZED, errorDescription, errorPath);
+        ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.UNAUTHORIZED, errorDetail, errorPath);
 
-        response.setStatus(statusCode);
+        response.setStatus(apiErrorResponse.getStatus());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         objectMapper.writeValue(response.getWriter(), apiErrorResponse);
     }

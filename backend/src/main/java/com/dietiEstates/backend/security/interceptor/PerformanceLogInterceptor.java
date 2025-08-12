@@ -17,7 +17,7 @@ public class PerformanceLogInterceptor implements HandlerInterceptor
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception 
     {
-        log.info("Attempting request to handler \"{}\". URI: {}.", handler, request.getRequestURI());
+        log.info("Attempting request to handler \"{}\".\nURI: {}.", handler, request.getRequestURI());
 
         long preHandleStartTime = System.currentTimeMillis();
         request.setAttribute("preHandleStartTime", preHandleStartTime); 
@@ -35,19 +35,19 @@ public class PerformanceLogInterceptor implements HandlerInterceptor
         if (ex != null) 
         {
             // Richiesta completata con eccezione NON gestita da @ControllerAdvice
-            log.error("Request to handler \"{}\" failed with unhandled exception. URI: {}. Response Status: {}. Duration: {} ms. Exception: {}",
+            log.error("Request to handler \"{}\" failed with unhandled exception.\nURI: {}.\nResponse Status: {}.\nDuration: {} ms.\nException: {}",
                       handler, request.getRequestURI(), response.getStatus(), afterCompletionDuration, ex.getMessage());
         } 
         else if (response.getStatus() >= 400) 
         {
             // Richiesta completata con errore (status 4xx/5xx)
-            log.error("Request to handler \"{}\" completed with error. URI: {}. Response Status: {}. Duration: {} ms",
+            log.error("Request to handler \"{}\" completed with error.\nURI: {}.\nResponse Status: {}.\nDuration: {} ms",
                       handler, request.getRequestURI(), response.getStatus(), afterCompletionDuration);
         } 
         else 
         {
             // Richiesta completata con SUCCESS (status 2xx)
-            log.info("Request to handler \"{}\" completed succesfully. URI: {}. Response Status: {}. Duration: {} ms",
+            log.info("Request to handler \"{}\" completed succesfully.\nURI: {}.\nResponse Status: {}.\nDuration: {} ms",
                      handler, request.getRequestURI(), response.getStatus(), afterCompletionDuration);
         }  
     }
