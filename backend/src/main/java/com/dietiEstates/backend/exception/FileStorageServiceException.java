@@ -23,9 +23,9 @@ public class FileStorageServiceException extends RuntimeException
         this(msg, new String(""), null, null, null, null);
     }
     
-    public FileStorageServiceException(String msg, Throwable throwable)
+    public FileStorageServiceException(String msg, Throwable cause)
     {
-        this(msg, new String(""), null, null, null, throwable);
+        this(msg, new String(""), null, null, null, cause);
     }
 
     public FileStorageServiceException(String fileKey, Long fileSize, FileStorageProvider fileStorageProvider, FileStorageOperation fileStorageOperation)
@@ -33,9 +33,9 @@ public class FileStorageServiceException extends RuntimeException
         this(null, fileKey, fileSize, fileStorageProvider, fileStorageOperation, null);
     }
 
-    public FileStorageServiceException(String fileKey, Long fileSize, FileStorageProvider fileStorageProvider, FileStorageOperation fileStorageOperation, Throwable throwable)
+    public FileStorageServiceException(String fileKey, Long fileSize, FileStorageProvider fileStorageProvider, FileStorageOperation fileStorageOperation, Throwable cause)
     {
-        this(null, fileKey, fileSize, fileStorageProvider, fileStorageOperation, throwable);
+        this(null, fileKey, fileSize, fileStorageProvider, fileStorageOperation, cause);
     }
 
     public FileStorageServiceException(String msg, String fileKey, Long fileSize, FileStorageProvider fileStorageProvider, FileStorageOperation fileStorageOperation)
@@ -43,9 +43,9 @@ public class FileStorageServiceException extends RuntimeException
         this(msg, fileKey, fileSize, fileStorageProvider, fileStorageOperation, null);
     }
 
-    public FileStorageServiceException(String msg, String fileKey, Long fileSize, FileStorageProvider fileStorageProvider, FileStorageOperation fileStorageOperation, Throwable throwable)
+    public FileStorageServiceException(String msg, String fileKey, Long fileSize, FileStorageProvider fileStorageProvider, FileStorageOperation fileStorageOperation, Throwable cause)
     {
-        super(msg, throwable);
+        super(msg, cause);
         this.fileKey = fileKey;
         this.fileSize = fileSize;
         this.fileStorageProvider = fileStorageProvider;

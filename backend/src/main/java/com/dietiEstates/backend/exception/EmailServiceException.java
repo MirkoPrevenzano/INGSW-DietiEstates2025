@@ -18,9 +18,9 @@ public class EmailServiceException extends RuntimeException
         this(msg, new String(""), new String(""), null);
     }
     
-    public EmailServiceException(String msg, Throwable throwable)
+    public EmailServiceException(String msg, Throwable cause)
     {
-        this(msg, new String(""), new String(""), throwable);
+        this(msg, new String(""), new String(""), cause);
     }
 
     public EmailServiceException(String recipient, String subject)
@@ -28,9 +28,9 @@ public class EmailServiceException extends RuntimeException
         this(null, recipient, subject, null);
     }
 
-    public EmailServiceException(String recipient, String subject, Throwable throwable)
+    public EmailServiceException(String recipient, String subject, Throwable cause)
     {
-        this(null, recipient, subject, throwable);
+        this(null, recipient, subject, cause);
     }
 
     public EmailServiceException(String msg, String recipient, String subject)
@@ -38,9 +38,9 @@ public class EmailServiceException extends RuntimeException
         this(msg, recipient, subject, null);
     }
 
-    public EmailServiceException(String msg, String recipient, String subject, Throwable throwable)
+    public EmailServiceException(String msg, String recipient, String subject, Throwable cause)
     {
-        super(msg, throwable);
+        super(msg, cause);
         this.recipient = recipient;
         this.subject = subject;
     }
