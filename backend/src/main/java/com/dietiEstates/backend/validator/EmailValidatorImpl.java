@@ -28,12 +28,11 @@ public class EmailValidatorImpl implements ConstraintValidator<EmailValidator,Ch
         if (email.length() > 320) 
             return false;
 
-        String emailStr = email.toString();
-        int atIndex = emailStr.indexOf('@');
-        
+        String emailString = email.toString();
+        int atIndex = emailString.indexOf('@');
         if (atIndex != -1 && atIndex > 64) 
             return false; 
             
-        return emailPattern.matcher(email).matches() && email.length() <= 320;
+        return emailPattern.matcher(email).matches();
     }
 }

@@ -10,7 +10,7 @@ import lombok.experimental.UtilityClass;
 
 
 @UtilityClass
-public class PasswordGeneratorUtil
+public class PasswordGenerationUtil
 {
     private final int DEFAULT_PASSWORD_LENGTH = 12;
 
@@ -20,7 +20,7 @@ public class PasswordGeneratorUtil
     private final String SPECIAL_CHARS = "!@#$%^&*()_+{}[]:;\"'<>,.?/\\|`~";
     private final String ALL_POSSIBLE_CHARS = LOWERCASE_CHARS + UPPERCASE_CHARS + DIGITS + SPECIAL_CHARS;
 
-    private final SecureRandom RANDOM_GENERATOR = new SecureRandom();
+    private final SecureRandom SECURE_RANDOM = new SecureRandom();
 
 
 
@@ -28,18 +28,18 @@ public class PasswordGeneratorUtil
     {
         List<Character> passwordListChars = new ArrayList<>(DEFAULT_PASSWORD_LENGTH);
 
-        passwordListChars.add(LOWERCASE_CHARS.charAt(RANDOM_GENERATOR.nextInt(LOWERCASE_CHARS.length())));
-        passwordListChars.add(UPPERCASE_CHARS.charAt(RANDOM_GENERATOR.nextInt(UPPERCASE_CHARS.length())));
-        passwordListChars.add(DIGITS.charAt(RANDOM_GENERATOR.nextInt(DIGITS.length())));
-        passwordListChars.add(SPECIAL_CHARS.charAt(RANDOM_GENERATOR.nextInt(SPECIAL_CHARS.length())));
+        passwordListChars.add(LOWERCASE_CHARS.charAt(SECURE_RANDOM.nextInt(LOWERCASE_CHARS.length())));
+        passwordListChars.add(UPPERCASE_CHARS.charAt(SECURE_RANDOM.nextInt(UPPERCASE_CHARS.length())));
+        passwordListChars.add(DIGITS.charAt(SECURE_RANDOM.nextInt(DIGITS.length())));
+        passwordListChars.add(SPECIAL_CHARS.charAt(SECURE_RANDOM.nextInt(SPECIAL_CHARS.length())));
 
         for (int i = passwordListChars.size(); i < DEFAULT_PASSWORD_LENGTH; i++) 
         {
-            int randomIndex = RANDOM_GENERATOR.nextInt(ALL_POSSIBLE_CHARS.length());
+            int randomIndex = SECURE_RANDOM.nextInt(ALL_POSSIBLE_CHARS.length());
             passwordListChars.add(ALL_POSSIBLE_CHARS.charAt(randomIndex));
         }
 
-        Collections.shuffle(passwordListChars, RANDOM_GENERATOR);
+        Collections.shuffle(passwordListChars, SECURE_RANDOM);
 
         char[] passwordArrayChars = new char[passwordListChars.size()];
         for (int i = 0; i < passwordListChars.size(); i++) 

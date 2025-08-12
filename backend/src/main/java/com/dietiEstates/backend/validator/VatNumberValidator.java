@@ -17,7 +17,7 @@ import jakarta.validation.Payload;
 @Constraint(validatedBy = VatNumberValidatorImpl.class)
 public @interface VatNumberValidator 
 {
-    String message() default "You have inserted an invalid Vat Number!";
+    String message() default "an invalid vat number was inserted!";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

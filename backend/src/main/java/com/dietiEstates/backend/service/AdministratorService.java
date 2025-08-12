@@ -18,7 +18,7 @@ import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.service.mail.AgentWelcomeEmailService;
 import com.dietiEstates.backend.service.mail.CollaboratorWelcomeEmailService;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
-import com.dietiEstates.backend.util.PasswordGeneratorUtil;
+import com.dietiEstates.backend.util.PasswordGenerationUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -55,7 +55,7 @@ public class AdministratorService
 
         Administrator collaborator = modelMapper.map(collaboratorCreationDto, Administrator.class);
         
-        String plainTextPassword = PasswordGeneratorUtil.generateRandomPassword();
+        String plainTextPassword = PasswordGenerationUtil.generateRandomPassword();
         String hashedPassword = passwordEncoder.encode(plainTextPassword);
 
         collaborator.setPassword(hashedPassword);
@@ -95,7 +95,7 @@ public class AdministratorService
 
         Agent agent = modelMapper.map(agentCreationDto, Agent.class);
 
-        String plainTextPassword = PasswordGeneratorUtil.generateRandomPassword();
+        String plainTextPassword = PasswordGenerationUtil.generateRandomPassword();
         String hashedPassword = passwordEncoder.encode(plainTextPassword);
 
         agent.setPassword(hashedPassword);

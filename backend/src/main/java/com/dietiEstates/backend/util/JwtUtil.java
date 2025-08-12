@@ -48,7 +48,7 @@ public class JwtUtil
 
 
 
-    public static class VerifiedJwt 
+    public class VerifiedJwt 
     {
         private final DecodedJWT decodedJWT;
 

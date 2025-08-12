@@ -17,7 +17,7 @@ import jakarta.validation.Payload;
 @Constraint(validatedBy = PasswordValidatorImpl.class)
 public @interface PasswordValidator 
 {
-    String message() default "You have inserted an invalid password!";
+    String message() default "an invalid password was inserted!";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

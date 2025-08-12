@@ -17,7 +17,7 @@ import jakarta.validation.Payload;
 @Constraint(validatedBy = RealEstateFiltersValidatorImpl.class)
 public @interface RealEstateFiltersValidator 
 {
-    String message() default "You have inserted some invalid filters!";
+    String message() default "some invalid filters were inserted!";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

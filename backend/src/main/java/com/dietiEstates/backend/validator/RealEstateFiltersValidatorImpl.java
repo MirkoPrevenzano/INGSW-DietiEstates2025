@@ -81,14 +81,10 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
                 }  
                     
                 if(key.equals("energyClass"))
-                {
                     EnergyClass.fromValue(value);
-                } 
 
                 if(key.equals("type"))
-                {
                     ContractType.fromValue(value);
-                } 
             } 
             catch (Exception e)
             {
