@@ -27,7 +27,7 @@ public class AgentLoadingStrategy implements UserLoadingStrategy
         Agent agent = agentRepository.findByUsername(username)
                                      .orElseThrow(() -> new UsernameNotFoundException("Agente non trovato con username: " + username));
 
-        log.info("{} is an AGENT", username);
+        log.info("Agente con username '{}' trovato nel DB!", username);
         agent.setRole(Role.ROLE_AGENT); 
 
         return agent;
@@ -37,6 +37,6 @@ public class AgentLoadingStrategy implements UserLoadingStrategy
     @Override
     public boolean supports(Role role)
     {
-        return Role.ROLE_AGENT.equals(role);
+        return Role.ROLE_AGENT == role;
     }
 }

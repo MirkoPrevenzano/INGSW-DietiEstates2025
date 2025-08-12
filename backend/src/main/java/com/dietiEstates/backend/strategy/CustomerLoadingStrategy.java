@@ -27,7 +27,7 @@ public class CustomerLoadingStrategy implements UserLoadingStrategy {
         Customer customer = customerRepository.findByUsername(username)
                                               .orElseThrow(() -> new UsernameNotFoundException("Customer non trovato con username: " + username));
 
-        log.info("{} is a CUSTOMER", username);
+        log.info("Customer con username '{}' trovato nel DB!", username);
         customer.setRole(Role.ROLE_CUSTOMER);
 
         return customer;
@@ -37,6 +37,6 @@ public class CustomerLoadingStrategy implements UserLoadingStrategy {
     @Override
     public boolean supports(Role role) 
     {
-        return Role.ROLE_CUSTOMER.equals(role);
+        return Role.ROLE_CUSTOMER == role;
     }
 }

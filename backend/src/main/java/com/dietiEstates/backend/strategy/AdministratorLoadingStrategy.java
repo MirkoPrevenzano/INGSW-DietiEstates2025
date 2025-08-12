@@ -29,12 +29,12 @@ public class AdministratorLoadingStrategy implements UserLoadingStrategy
 
         if (administrator.getManager() == null) 
         { 
-            log.info("{} is an ADMIN administrator", username);
+            log.info("Amministratore (ruolo ADMIN) con username '{}' trovato nel DB!", username);
             administrator.setRole(Role.ROLE_ADMIN);
         } 
         else 
         {
-            log.info("{} is a COLLABORATOR administrator", username);
+            log.info("Amministratore (ruolo COLLABORATOR) con username '{}' trovato nel DB!", username);
             administrator.setRole(Role.ROLE_COLLABORATOR);
         }
 
@@ -45,6 +45,6 @@ public class AdministratorLoadingStrategy implements UserLoadingStrategy
     @Override
     public boolean supports(Role role) 
     {
-        return Role.ROLE_ADMIN.equals(role);
+        return Role.ROLE_ADMIN == role;
     }
 }

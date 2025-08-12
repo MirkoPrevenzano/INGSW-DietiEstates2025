@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDto;
-import com.dietiEstates.backend.mapper.RealEstateCreationForSaleDTOMapper;
+import com.dietiEstates.backend.mapper.RealEstateCreationForSaleDtoMapper;
 import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.model.entity.RealEstateForSale;
 
@@ -16,13 +16,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RealEstateForSaleFromDtoFactory implements RealEstateFromDtoFactory 
 {
-    private final RealEstateCreationForSaleDTOMapper realEstateCreationForSaleDTOMapper;
+    private final RealEstateCreationForSaleDtoMapper realEstateCreationForSaleDtoMapper;
 
 
     @Override
     public RealEstate create(RealEstateCreationDto realEstateCreationDto) 
     {
-        RealEstateForSale realEstateForSale = (RealEstateForSale) realEstateCreationForSaleDTOMapper.toEntity((RealEstateForSaleCreationDto) realEstateCreationDto);
+        RealEstateForSale realEstateForSale = (RealEstateForSale) realEstateCreationForSaleDtoMapper.toEntity((RealEstateForSaleCreationDto) realEstateCreationDto);
 
         return realEstateForSale;
     }

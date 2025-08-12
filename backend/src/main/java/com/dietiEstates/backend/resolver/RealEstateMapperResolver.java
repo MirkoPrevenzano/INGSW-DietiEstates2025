@@ -15,14 +15,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RealEstateMapperResolver 
 {
-    private final List<RealEstateCreationDtoMapper> mappers;
+    private final List<RealEstateCreationDtoMapper> realEstateCreationDtoMappers;
 
 
     public RealEstateCreationDtoMapper getMapper(RealEstate entity) 
     {
-        return mappers.stream()
-                      .filter(mapper -> mapper.supports(entity))
-                      .findFirst()
-                      .orElseThrow(() -> new IllegalArgumentException("Nessun RealEstateCreationDtoMapper supporta il tipo: " + entity.getClass().getSimpleName()));
+        return realEstateCreationDtoMappers.stream()
+                                           .filter(mapper -> mapper.supports(entity))
+                                           .findFirst()
+                                           .orElseThrow(() -> new IllegalArgumentException("Nessun RealEstateCreationDtoMapper supporta il tipo: " + entity.getClass().getSimpleName()));
     }
 }

@@ -11,7 +11,7 @@ import com.dietiEstates.backend.model.entity.RealEstateForRent;
 
 
 @Component
-public class RealEstateCreationForRentDTOMapper extends RealEstateCreationDtoMapper
+public class RealEstateCreationForRentDtoMapper extends RealEstateCreationDtoMapper
 {
     @Override
     protected RealEstateForRentCreationDto initializeDto() 

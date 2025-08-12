@@ -15,14 +15,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RealEstateRootFactoryResolver 
 {
-    private final List<RealEstateRootFactory> factories;
+    private final List<RealEstateRootFactory> realEstateRootFactories;
 
 
     public RealEstateRootFactory getFactory(ContractType contractType) 
     {
-        return factories.stream()
-                        .filter(factory -> factory.supports(contractType))
-                        .findFirst()
-                        .orElseThrow(() -> new IllegalArgumentException("Nessuna RealEstateRootFactory supporta il tipo: " + contractType));
+        return realEstateRootFactories.stream()
+                                      .filter(factory -> factory.supports(contractType))
+                                      .findFirst()
+                                      .orElseThrow(() -> new IllegalArgumentException("Nessuna RealEstateRootFactory supporta il tipo: " + contractType));
     }
 }

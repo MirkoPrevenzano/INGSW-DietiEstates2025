@@ -24,7 +24,7 @@ import com.dietiEstates.backend.model.entity.RealEstate;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
-import com.dietiEstates.backend.resolver.RealEstateFromDTOFactoryResolver;
+import com.dietiEstates.backend.resolver.RealEstateFromDtoFactoryResolver;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
 import com.dietiEstates.backend.service.photo.PhotoData;
 import com.dietiEstates.backend.service.photo.PhotoService;
@@ -42,7 +42,7 @@ public class AgentService
     private final RealEstateRepository realEstateRepository;
     private final MockingStatsService mockingStatsService;
     private final ModelMapper modelMapper;
-    private final RealEstateFromDTOFactoryResolver realEstateFromDTOFactoryResolver;
+    private final RealEstateFromDtoFactoryResolver realEstateFromDtoFactoryResolver;
     private final PhotoService photoService;
 
 
@@ -54,7 +54,7 @@ public class AgentService
         Agent agent = agentRepository.findByUsername(username)
                                      .orElseThrow(() -> new UsernameNotFoundException(""));
         
-        RealEstateFromDtoFactory realEstateFromDtoFactory = realEstateFromDTOFactoryResolver.getFactory(realEstateCreationDto);
+        RealEstateFromDtoFactory realEstateFromDtoFactory = realEstateFromDtoFactoryResolver.getFactory(realEstateCreationDto);
         RealEstate realEstate = realEstateFromDtoFactory.create(realEstateCreationDto);
 
         Address address = modelMapper.map(realEstateCreationDto.getAddressDto(), Address.class);
