@@ -3,11 +3,7 @@ export interface AgentGeneralStats {
     totalSoldRealEstates: number,
     totalRentedRealEstates: number,
     salesIncome: number,
-    rentalsIncome: number,
-    totalIncome: number,
-    salesToRentalsRatio: number,
-    rentalToSalesRatio: number,
-    successRate: number,
-    
+    rentalsIncome: number
 }
 
+//successRate= (totalSoldRealEstate+totaleRentedRealEstate)/totalUplodadedRealEstate (se !=0) *100

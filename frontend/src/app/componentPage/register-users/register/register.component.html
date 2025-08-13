@@ -19,27 +19,18 @@
       [form]="registerForm"
       >
     </app-form-field>
-    <div *ngIf="isCustomer">
-      <app-form-field 
+    
+    <app-form-field 
       label="E-mail" 
       type="email" 
       controlName="username"
       [form]="registerForm"
       >
-      </app-form-field>
-    </div>
-    <div *ngIf="!isCustomer">
-      <app-form-field 
-      label="Username" 
-      type="text" 
-      controlName="username"
-      [form]="registerForm"
-      >
-      </app-form-field>
-    </div>
+    </app-form-field>
     
     
-    <div *ngIf="!isCreateCollaborator">
+    
+    <div *ngIf="isCustomer">
       <app-password-field 
       label="Password" 
       controlName="password"

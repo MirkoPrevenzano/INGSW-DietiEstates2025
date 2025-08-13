@@ -40,26 +40,19 @@ export class CustomerRegistrateComponent extends RegisterComponent{
   
   protected override onRegisterUser(userRequest: RegisterRequest): void {
     const username = this.registerForm.value.username ?? ''
-    if(this.registerValidation.isEmailInvalid(username))
-    {
-      this.notify.warning('E-mail not valid')
-    }
-    else{
-      this.register.registrate(userRequest).subscribe({
-        error: (err) => {
-          if(err?.error.status >= 400 && err?.error.status < 500)
-            this.notify.warning(err?.error.description)
-          if(err?.error.status >= 500 && err?.error.status < 600)
-            this.notify.error(err?.error.description)
-        },
-        complete: ()=>{
-          this.router.navigateByUrl('login')
-        }
-      })
-    }
+   
+    this.register.registrate(userRequest).subscribe({
+      error: (err) => {
+        if(err?.error.status >= 400 && err?.error.status < 500)
+          this.notify.warning(err?.error.description)
+        if(err?.error.status >= 500 && err?.error.status < 600)
+          this.notify.error(err?.error.description)
+      },
+      complete: ()=>{
+        this.router.navigateByUrl('login')
+      }
+    })
   }
-
-  
   
 }
 

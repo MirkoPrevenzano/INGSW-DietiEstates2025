@@ -369,9 +369,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 
         ApiErrorResponse apiErrorResponse;
 
-        if (subErrors.size() > 1)
+        if (subErrors != null && subErrors.size() > 1)
             apiErrorResponse = new ApiErrorResponse(httpStatus, errorDetail, errorPath, subErrors);
-        else if (subErrors.size() == 1)
+        else if (subErrors != null && subErrors.size() == 1)
             apiErrorResponse = new ApiErrorResponse(httpStatus, errorDetail, errorPath, subErrors.get(0));
         else 
             apiErrorResponse = new ApiErrorResponse(httpStatus, errorDetail, errorPath);

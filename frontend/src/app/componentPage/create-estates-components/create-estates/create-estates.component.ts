@@ -89,7 +89,7 @@ export class CreateEstatesComponent implements OnInit{
   }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.estate.type = params['type'] ?? 'For Sale';
+      this.estate.contractType = params['type'] ?? 'For Sale';
     });
     
     this.address = this.estateDataService.getAddress()
@@ -129,7 +129,7 @@ export class CreateEstatesComponent implements OnInit{
     this.address = event
     this.estateDataService.setAddress(this.address)
 
-    this.estate.addressDTO=this.address
+    this.estate.addressDto=this.address
   }
 
 
@@ -163,13 +163,13 @@ export class CreateEstatesComponent implements OnInit{
     this.estateDataService.setAdditionalFields(this.additionalFields)
     this.estateDataService.setDescription(this.description)
     
-    this.estate.realEstateMainFeaturesDTO=this.description
+    this.estate.realEstateMainFeaturesDto=this.description
   }
 
   onEstateFeatures(event: EstateFeatures){
     this.features = event
     this.estateDataService.setFeatures(this.features)
-    this.estate.realEstateBooleanFeaturesDTO=this.features
+    this.estate.realEstateBooleanFeaturesDto=this.features
   }
 
   submit(){
@@ -202,9 +202,9 @@ export class CreateEstatesComponent implements OnInit{
   }
 
   createEstate(): Estate {
-    this.estate.addressDTO = this.estateDataService.getAddress()
-    this.estate.realEstateBooleanFeaturesDTO = this.features
-    this.estate.realEstateMainFeaturesDTO = this.description
+    this.estate.addressDto = this.estateDataService.getAddress()
+    this.estate.realEstateBooleanFeaturesDto = this.features
+    this.estate.realEstateMainFeaturesDto = this.description
     this.estate.realEstateLocationFeaturesDto= this.estateLocation
       
     return this.estateFactory.createEstate(

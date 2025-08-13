@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit{
     
   ) {}
   loginForm =new FormGroup({
-    userType: new FormControl('customer'),
+    userType: new FormControl('Customer'),
     username: new FormControl(''),
     password: new FormControl('')
   });
@@ -94,7 +94,7 @@ export class LoginComponent implements OnInit{
   }
 
   isValidUsername() {
-    if (this.loginForm.value.userType === 'customer') {
+    if (this.loginForm.value.userType === 'Customer') {
       const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
       return emailPattern.test(this.username)
     }
@@ -122,10 +122,11 @@ export class LoginComponent implements OnInit{
         }
       },
       error: (err) => {
+        console.log(err)
         if(err?.error.status >= 400 && err?.error.status < 500)
-          this.notifyToastr.warning(err?.error.description)
+          this.notifyToastr.warning(err?.error.detail)
         if(err?.error.status >= 500 && err?.error.status < 600)
-          this.notifyToastr.error(err?.error.description)
+          this.notifyToastr.error(err?.error.detail)
       }
     });
   }

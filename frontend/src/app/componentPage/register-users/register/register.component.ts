@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
   title: string =""
   isCustomer: boolean = false
   isCreateCollaborator:boolean = false
+  isCreateAgent: boolean = false
   
   constructor(
     protected readonly registerValidation:RegisterValidationService,
@@ -50,11 +51,13 @@ export class RegisterComponent implements OnInit {
     this.route.url.subscribe(url => {
       this.isCustomer = url.some(segment => segment.path === 'register');
       this.isCreateCollaborator = url.some(segment => segment.path === 'create-collaborator')
+      this.isCreateAgent = url.some(segment => segment.path == 'create-admin')
     });
   }
 
   onRegister()
   {
+    
     const errorMessage=this.passwordValidator.validatePassword(this.registerForm.value.password)
     if(this.registerValidation.isInvalidForm(this.registerForm)){
       this.notify.warning('Compile all field')
@@ -64,6 +67,9 @@ export class RegisterComponent implements OnInit {
         this.notify.warning('<center><b>Password not secure</b></center><br> ' + formattedErrorMessage+'', '', {
           enableHtml: true // Abilita l'HTML nel messaggio di avviso
         });
+    }
+    else if(this.registerValidation.isEmailInvalid(this.registerForm.value.username)){
+      this.notify.warning('Email is not valid')
     }
     else{
       const userRequest: RegisterRequest ={

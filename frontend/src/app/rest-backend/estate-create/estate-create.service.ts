@@ -21,7 +21,7 @@ export class EstateCreateService {
     const userId = localStorage.getItem('user');
     let endpoint = '';
 
-    switch (estate.type) {
+    switch (estate.contractType) {
       case 'For Sale':
         endpoint = 'create-real-estate-for-sale';
         break;

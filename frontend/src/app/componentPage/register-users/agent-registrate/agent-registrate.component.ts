@@ -27,6 +27,7 @@ export class AgentRegistrateComponent extends RegisterComponent{
   private readonly createStaffService = inject(CreateStaffService)
   private readonly router = inject(Router)
   override title: string="Create new agent";
+
   protected override onRegisterUser(userRequest: RegisterRequest): void {
     this.createStaffService.saveAgent(userRequest).subscribe({
       error: (err) => {
@@ -42,6 +43,20 @@ export class AgentRegistrateComponent extends RegisterComponent{
         },1000)
       }     
     })
+  }
+
+  override onRegister()
+  {
+    if(this.registerValidation.isEmailInvalid(this.registerForm.value.username))
+      this.notify.warning("Email is not valid")
+    else{
+      const userRequest: RegisterRequest ={
+        name:this.registerForm.value.name,
+        surname: this.registerForm.value.lastname,
+        username: this.registerForm.value.username,
+      }
+      this.onRegisterUser(userRequest)
+    }    
   }
 }
 

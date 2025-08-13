@@ -63,9 +63,9 @@ export class EstateItemDetailComponent implements OnInit{
   loadEstate() {
     this.estateService.getEstateInfo(this.realEstateId).subscribe({
       next: (result) => {
-        
-        this.estate = result; // Assegna il risultato alla proprietà `estate`
         console.log(result)
+        this.estate = result.realEstateCreationDto; // Assegna il risultato alla proprietà `estate`
+        //visualizzare info agente
       },
       error: (err) => {
         if (err?.error.status == 404)

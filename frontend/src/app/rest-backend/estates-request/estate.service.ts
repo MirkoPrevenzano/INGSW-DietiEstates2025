@@ -24,11 +24,11 @@ export class EstateService {
 
   
 
-  getEstatesNewFilter(params:Params):Observable<{ realEstatePreviews: EstatePreview[], totalElements: number, totalPages:number }> {
+  getEstatesNewFilter(params:Params):Observable<{ realEstatePreviewInfoDtoList: EstatePreview[], totalElements: number, totalPages:number }> {
     const url: string = this.url+"/search3"
     const httpParams = new HttpParams({ fromObject: params });
     return this.http.get<{ 
-      realEstatePreviews: EstatePreview[], 
+      realEstatePreviewInfoDtoList: EstatePreview[], 
       totalElements: number,
       totalPages: number 
     }>(

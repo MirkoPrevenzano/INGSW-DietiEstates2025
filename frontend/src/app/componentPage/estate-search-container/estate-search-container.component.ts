@@ -113,6 +113,7 @@ export class EstateSearchContainerComponent implements OnInit {
     if (this.listCoordinate.length > 0 && this.mapInstance) {
       this.markerService.addMarkers(this.listCoordinate, this.mapInstance, this.listRealEstateId);
     }
+    
     this.notFound404 = this.listEstatePreview.length === 0;
     
     // Forza il rilevamento delle modifiche
@@ -133,15 +134,19 @@ export class EstateSearchContainerComponent implements OnInit {
   getEstatesNewFilter(params: Params) {
     this.estateService.getEstatesNewFilter(params).subscribe({
       next: (result) =>{
-        if(result.realEstatePreviews.length>0){
+        console.log(result)
+        if(
+            result.realEstatePreviewInfoDtoList!=null 
+            && result.realEstatePreviewInfoDtoList.length>0
+          ){
           this.countOfItems = result.totalElements
-          this.listEstatePreview = result.realEstatePreviews;
-          this.listCoordinate = result.realEstatePreviews.map((estate:any) => ({
+          this.listEstatePreview = result.realEstatePreviewInfoDtoList;
+          this.listCoordinate = result.realEstatePreviewInfoDtoList.map((estate:any) => ({
             lat: estate.latitude,
             lon: estate.longitude
           }));
           
-          this.listRealEstateId = result.realEstatePreviews.map(
+          this.listRealEstateId = result.realEstatePreviewInfoDtoList.map(
             (estate: EstatePreview) => estate.id
           );
           

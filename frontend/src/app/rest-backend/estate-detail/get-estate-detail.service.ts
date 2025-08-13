@@ -2,6 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Estate } from '../../model/estate';
+import { AgentPublicInfo } from '../../model/agentPublicInfo';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +14,7 @@ import { Estate } from '../../model/estate';
 export class GetEstateDetailService {
 
   constructor(private readonly http: HttpClient) { }
-  url:string="http://localhost:8080/customer"
+  url:string="http://localhost:8080"
       
     httpOptions = {
         headers: new HttpHeaders({
@@ -19,8 +22,8 @@ export class GetEstateDetailService {
         })
     };
 
-    getEstateInfo(realEstateId:number):Observable<Estate>{
-      const url = `${this.url}/${localStorage.getItem('user')}/view/${realEstateId}`;
-      return this.http.get<Estate>(url, this.httpOptions);
+    getEstateInfo(realEstateId:number):Observable<{realEstateCreationDto:Estate, agentPublicInfo:AgentPublicInfo}>{
+      const url = `${this.url}/real-estate/view/${realEstateId}`;
+      return this.http.get<{realEstateCreationDto:Estate, agentPublicInfo:AgentPublicInfo}>(url, this.httpOptions);
     }
 }

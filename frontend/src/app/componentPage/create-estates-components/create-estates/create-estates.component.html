@@ -13,7 +13,7 @@
 <div *ngIf="currentStep === 1" class="w-full flex-grow">
   <app-description-estates-form 
     (formSubmit)="onDescribeOut($event)" 
-    [estateType]="estate.type" 
+    [estateType]="estate.contractType" 
     (imagesOut)="onPhotosChanged($event)"
     (fileOut)="onFileChanged($event)"
   >

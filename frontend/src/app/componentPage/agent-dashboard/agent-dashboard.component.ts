@@ -34,13 +34,9 @@ export class AgentDashboardComponent implements OnInit {
     totalUploadedRealEstates: 0,
     totalRentedRealEstates: 0,
     totalSoldRealEstates: 0,
-    totalIncome: 0.0,
     rentalsIncome: 0.0,
-    salesIncome: 0.0,
-    successRate: 0.0,
-    salesToRentalsRatio:0.0,
-    rentalToSalesRatio: 0.0,
- }
+    salesIncome: 0.0
+  }
 
 
 
@@ -78,10 +74,12 @@ export class AgentDashboardComponent implements OnInit {
  
 
   createPieCharts() {
+    let pending= this.generalStats.totalUploadedRealEstates-(this.generalStats.totalRentedRealEstates+this.generalStats.totalSoldRealEstates)
+    let completed = this.generalStats.totalRentedRealEstates+this.generalStats.totalSoldRealEstates
     this.successRatePieChartOptions = this.chartsConfig.successRateConfig(
       [
-        { asset: "Pending", amount: 100- this.generalStats.successRate },
-        { asset: "Completed", amount:this.generalStats.successRate},
+        { asset: "Pending", amount: pending },
+        { asset: "Completed", amount:completed},
       ]
     )
     

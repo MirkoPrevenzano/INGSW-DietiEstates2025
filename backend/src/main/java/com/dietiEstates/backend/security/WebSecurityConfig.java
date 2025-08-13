@@ -12,7 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
+import org.springframework.http.HttpMethod;
 import com.dietiEstates.backend.enums.Role;
 //import com.dietiEstates.backend.security.filter.EndpointFilter;
 import com.dietiEstates.backend.security.filter.UsernamePasswordRoleAuthenticationFilter;
@@ -21,8 +21,8 @@ import com.dietiEstates.backend.security.handler.AccessDeniedHandlerCustomImpl;
 import com.dietiEstates.backend.security.handler.AuthenticationEntryPointCustomImpl;
 import com.dietiEstates.backend.security.handler.AuthenticationFailureHandlerCustomImpl;
 import com.dietiEstates.backend.security.handler.AuthenticationSuccessHandlerJwtImpl;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.cors.CorsConfigurationSource;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -33,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WebSecurityConfig
 {
+    private final CorsConfigurationSource corsConfigurationSource;
     //private final EndpointFilter endpointFilter;
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
     private final AuthenticationEntryPointCustomImpl authenticationEntryPointCustomImpl;
@@ -66,12 +67,14 @@ public class WebSecurityConfig
     public SecurityFilterChain securityFilterChain(HttpSecurity http, UsernamePasswordRoleAuthenticationFilter usernamePasswordRoleAuthenticationFilter) throws Exception
     {
         http.csrf(csrfCustomizer -> csrfCustomizer.disable())
-            .cors(Customizer.withDefaults())
+            .cors(cors -> cors.configurationSource(corsConfigurationSource))
             .httpBasic(Customizer.withDefaults())
             .sessionManagement(sessionManagementCustomizer -> 
                                     sessionManagementCustomizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-			.authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
-                                        authorizeHttpRequestsCustomizer.requestMatchers("/login/**", "/auth/**", "/error/**","/admin/**").permitAll())
+            .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
+                                        authorizeHttpRequestsCustomizer.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                                        .requestMatchers("/login/**", "/auth/**", "/error/**","/admin/**").permitAll())
+
 			.authorizeHttpRequests(adminHttpRequestsCustomizer-> 
                                         adminHttpRequestsCustomizer.requestMatchers("/admin/create-collaborator")
                                                                         .hasAuthority(Role.ROLE_ADMIN.name())

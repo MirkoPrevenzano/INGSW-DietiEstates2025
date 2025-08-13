@@ -32,7 +32,7 @@ export class EstateItemPreviewComponent implements AfterViewInit{
   ngAfterViewInit(): void {
     this.uploadPhotoService.getPhotos(this.realEstateId).subscribe({
       next: (photos:string[]) =>{
-        this.photos.push(...photos.map(photo => `data:image/jpeg;base64,${photo}`));
+        this.photos.push(...photos.map(photo => `data:image/*;base64,${photo}`));
       },
       error: (err) => {
         if(err?.error.status >= 400 && err?.error.status < 500)

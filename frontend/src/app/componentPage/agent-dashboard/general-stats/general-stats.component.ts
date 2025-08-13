@@ -13,12 +13,8 @@ export class GeneralStatsComponent{
       totalUploadedRealEstates: 0,
       totalRentedRealEstates: 0,
       totalSoldRealEstates: 0,
-      totalIncome: 0.0,
       rentalsIncome: 0.0,
       salesIncome: 0.0,
-      successRate: 0.0,
-      salesToRentalsRatio:0.0,
-      rentalToSalesRatio: 0.0,
     }
 
 

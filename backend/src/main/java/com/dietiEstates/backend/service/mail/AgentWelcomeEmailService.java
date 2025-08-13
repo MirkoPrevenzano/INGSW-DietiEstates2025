@@ -20,6 +20,7 @@ public class AgentWelcomeEmailService extends UserWelcomeEmailService
     }
 
     
+    
     @Override
     protected String getWelcomeBody(User user) 
     {

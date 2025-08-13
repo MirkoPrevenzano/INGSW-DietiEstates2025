@@ -18,7 +18,7 @@ export class RegisterService {
   };
     
   registrate(registerRequest:RegisterRequest){
-    const url=this.url+"/standard-registration"
+    const url=this.url+"/customer-registration"
     return this.http.post(url, registerRequest, this.httpOptions)
   }
 }

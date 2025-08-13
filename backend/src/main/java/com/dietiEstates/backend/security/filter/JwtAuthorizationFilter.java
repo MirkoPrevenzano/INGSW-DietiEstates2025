@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -27,7 +28,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.dietiEstates.backend.repository.UserRepository;
 import com.dietiEstates.backend.security.handler.AuthenticationEntryPointCustomImpl;
 import com.dietiEstates.backend.util.JwtUtil;
-
+import com.dietiEstates.backend.enums.Role;
+import com.dietiEstates.backend.resolver.UserLoadingStrategyResolver;
+import com.dietiEstates.backend.strategy.UserLoadingStrategy;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 
 import lombok.RequiredArgsConstructor;
@@ -40,8 +43,7 @@ import lombok.extern.slf4j.Slf4j;
 public class JwtAuthorizationFilter extends OncePerRequestFilter
 {
     private final AuthenticationEntryPointCustomImpl authenticationEntryPointCustomImpl;
-    private final UserRepository userRepository;
-
+    private final UserLoadingStrategyResolver userLoadingStrategyResolver;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, 
@@ -78,8 +80,8 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
                 Arrays.stream(roles)
                       .forEach(role -> {authorities.add(new SimpleGrantedAuthority(role));});
 
-                UserDetails userDetails = userRepository.findByUsername(username)
-                                                         .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+                UserLoadingStrategy userLoadingStrategy = userLoadingStrategyResolver.getUserLoadingStrategy(Role.valueOf(roles[0]));
+                UserDetails userDetails = userLoadingStrategy.loadUser(username);
 
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,null, authorities);
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

@@ -9,7 +9,7 @@ import { Estate } from '../../model/estate';
 export class EstateFactoryService {
 
   createEstate(estate: Estate, additionalFields: any): Estate {
-    switch (estate.type) {
+    switch (estate.contractType) {
       case 'For Sale': {
         return this.createEstateSell(estate, additionalFields);
       }

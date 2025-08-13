@@ -68,6 +68,7 @@ export class PasswordChangeComponent implements OnInit{
         newPassword: this.newPassword
       }).subscribe({
         error: (err) => {
+          console.log(err)
           if(err?.error.status >= 400 && err?.error.status < 500)
             this.notify.warning(err?.error.description)
           if(err?.error.status >= 500 && err?.error.status < 600)

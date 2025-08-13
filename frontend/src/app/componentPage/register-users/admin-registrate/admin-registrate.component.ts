@@ -57,12 +57,17 @@ export class AdminRegistrateComponent extends RegisterComponent{
 
   override onRegister()
   {
-    const userRequest: RegisterRequest ={
+    if(this.registerValidation.isEmailInvalid(this.registerForm.value.username))
+      this.notify.warning("Email is not valid")
+    else{
+      const userRequest: RegisterRequest ={
         name:this.registerForm.value.name,
         surname: this.registerForm.value.lastname,
         username: this.registerForm.value.username,
+      }
+      this.onRegisterUser(userRequest)
     }
-    this.onRegisterUser(userRequest)
+    
       
   }
 

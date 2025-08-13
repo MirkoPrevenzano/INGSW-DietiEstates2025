@@ -9,7 +9,7 @@ export class UploadPhotoService {
 
   constructor(private readonly http:HttpClient) { }
    
-    private url:string="http://localhost:8080/S3"
+    private url:string="http://localhost:8080/agent"
   
     private httpOptions = {
         headers: new HttpHeaders({
@@ -23,7 +23,7 @@ export class UploadPhotoService {
         formData.append('photos', photo)
       })
       
-      const url = this.url+`/${localStorage.getItem('user')}/upload-photo/${id}`
+      const url = this.url+`/${localStorage.getItem('user')}/upload-photo2/${id}`
       return this.http.post(url, formData, this.httpOptions)
     }
 
@@ -35,7 +35,7 @@ export class UploadPhotoService {
 
     //versione con lista
     getPhotos(realEstateId: number): Observable<string[]> {
-      const url = `${this.url}/get-photos/${realEstateId}`;
+      const url = `${this.url}/get-photos2/${realEstateId}`;
       return this.http.get<string[]>(url, { responseType: 'json' });
     }
    

@@ -9,11 +9,11 @@
         [form]="loginForm"
         controlName="userType"
         type="select"
-        [options]="['customer', 'admin', 'agent']">
+        [options]="['Customer', 'Admin', 'Agent']">
       </app-form-field>
       <hr class="my-4 border-gray-300 w-full">
-      <label *ngIf="loginForm.value.userType === 'customer'"  for="email" class="block text-sm font-medium text-text ">Insert E-mail</label>
-      <label *ngIf="loginForm.value.userType !== 'customer'" for="username" class="block text-sm font-medium text-text">Insert Username</label>
+      <label *ngIf="loginForm.value.userType === 'Customer'"  for="email" class="block text-sm font-medium text-text ">Insert E-mail</label>
+      <label *ngIf="loginForm.value.userType !== 'Customer'" for="username" class="block text-sm font-medium text-text">Insert Username</label>
       <app-form-field
         type="email"
         label=""
@@ -30,11 +30,11 @@
         (clickEvent)="signIn()"
         
       ></app-button-custom>
-    <fieldset *ngIf="loginForm.value.userType === 'customer'" >
+    <fieldset *ngIf="loginForm.value.userType === 'Customer'" >
       <app-login-with-google class="w-full py-2 mt-4 px-4 focus:outline-none focus:ring-2 focus:ring-offset-2 flex justify-center"></app-login-with-google>
     </fieldset>
-    <fieldset *ngIf="loginForm.value.userType === 'customer'" >
-    </fieldset>    <div *ngIf="loginForm.value.userType === 'customer'" class="text-center mt-4 hover:cursor-pointer">
+    <fieldset *ngIf="loginForm.value.userType === 'Customer'" >
+    </fieldset>    <div *ngIf="loginForm.value.userType === 'Customer'" class="text-center mt-4 hover:cursor-pointer">
       <a routerLink="/register" class="text-primary hover:text-indigo-900">Want to register? Click here!</a>
     </div>
   </form>
