@@ -1,6 +1,8 @@
 
 package com.dietiEstates.backend.security;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.http.HttpMethod;
 import com.dietiEstates.backend.enums.Role;
-//import com.dietiEstates.backend.security.filter.EndpointFilter;
+import com.dietiEstates.backend.security.filter.EndpointFilter;
 import com.dietiEstates.backend.security.filter.UsernamePasswordRoleAuthenticationFilter;
 import com.dietiEstates.backend.security.filter.JwtAuthorizationFilter;
 import com.dietiEstates.backend.security.handler.AccessDeniedHandlerCustomImpl;
@@ -22,7 +24,11 @@ import com.dietiEstates.backend.security.handler.AuthenticationEntryPointCustomI
 import com.dietiEstates.backend.security.handler.AuthenticationFailureHandlerCustomImpl;
 import com.dietiEstates.backend.security.handler.AuthenticationSuccessHandlerJwtImpl;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -33,8 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class WebSecurityConfig
 {
-    private final CorsConfigurationSource corsConfigurationSource;
-    //private final EndpointFilter endpointFilter;
+    private final EndpointFilter endpointFilter;
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
     private final AuthenticationEntryPointCustomImpl authenticationEntryPointCustomImpl;
     private final AccessDeniedHandlerCustomImpl accessDeniedHandlerCustomImpl;
@@ -49,7 +54,6 @@ public class WebSecurityConfig
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-
     @Bean
     public UsernamePasswordRoleAuthenticationFilter usernamePasswordRoleAuthenticationFilter(AuthenticationManager authenticationManager)
     {
@@ -62,9 +66,25 @@ public class WebSecurityConfig
         return usernamePasswordRoleAuthenticationFilter;
     }
 
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() 
+    {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+
+        corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200"));
+        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        corsConfiguration.setAllowedHeaders(List.of("*"));
+        corsConfiguration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+
+        return urlBasedCorsConfigurationSource;
+    }
+
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, UsernamePasswordRoleAuthenticationFilter usernamePasswordRoleAuthenticationFilter) throws Exception
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, UsernamePasswordRoleAuthenticationFilter usernamePasswordRoleAuthenticationFilter, CorsConfigurationSource corsConfigurationSource) throws Exception
     {
         http.csrf(csrfCustomizer -> csrfCustomizer.disable())
             .cors(cors -> cors.configurationSource(corsConfigurationSource))
@@ -90,8 +110,8 @@ public class WebSecurityConfig
             
             .exceptionHandling(a -> a.authenticationEntryPoint(authenticationEntryPointCustomImpl).accessDeniedHandler(accessDeniedHandlerCustomImpl))   
             .addFilter(usernamePasswordRoleAuthenticationFilter)
-            .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
-            //.addFilterBefore(endpointFilter, JwtAuthorizationFilter.class);
+            .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(endpointFilter, JwtAuthorizationFilter.class);
            
         return http.build();
     }

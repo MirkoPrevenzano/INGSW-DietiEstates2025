@@ -92,6 +92,7 @@ public class RealEstateService
                                                                                           realEstate);
 
             customer.addCustomerViewsRealEstate(customerViewsRealEstate);
+            customerRepository.saveAndFlush(customer);
         }
 
         return realEstateCompleteInfoDto;
