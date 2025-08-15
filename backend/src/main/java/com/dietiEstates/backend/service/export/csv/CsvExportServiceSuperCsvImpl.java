@@ -23,6 +23,7 @@ import org.supercsv.prefs.CsvPreference;
 
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
 import com.dietiEstates.backend.enums.ExportingFormat;
+import com.dietiEstates.backend.enums.MonthLabel;
 import com.dietiEstates.backend.model.embeddable.AgentStats;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.RealEstateRepository;
@@ -141,8 +142,9 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
     {
         CsvWriterWrapper csvWriterWrapper = (CsvWriterWrapper) writer;
         csvWriterWrapper.getCsvListWriter().writeHeader("REAL ESTATES STATS PER MONTH");
-        csvWriterWrapper.getCsvListWriter().writeHeader("JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
-                             "JUL", "AUG", "SEP", "OCT", "NOV", "DEC");
+/*         csvWriterWrapper.getCsvListWriter().writeHeader("JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
+                             "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"); */
+        csvWriterWrapper.getCsvListWriter().writeHeader(MonthLabel.getMonthAbbreviations());
         
         Integer[] monthlyStats = mockingStatsService.mockBarChartStats(agent);
         List<Integer> monthlyData = Arrays.asList(monthlyStats);

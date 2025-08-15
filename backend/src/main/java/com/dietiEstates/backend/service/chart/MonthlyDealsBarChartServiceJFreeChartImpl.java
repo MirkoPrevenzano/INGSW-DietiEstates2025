@@ -7,7 +7,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.springframework.stereotype.Service;
 
-import com.dietiEstates.backend.enums.BarChartMonthLabel;
+import com.dietiEstates.backend.enums.MonthLabel;
 import com.dietiEstates.backend.enums.ChartType;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
@@ -35,11 +35,11 @@ public class MonthlyDealsBarChartServiceJFreeChartImpl extends ChartServiceJFree
 
         DefaultCategoryDataset defaultCategoryDataset = new DefaultCategoryDataset();
         
-        for (BarChartMonthLabel barChartMonthLabel : BarChartMonthLabel.getMonthsLabels()) 
+        for (MonthLabel monthLabel : MonthLabel.getMonthLabels()) 
         {
-            defaultCategoryDataset.addValue(monthlyDeals[barChartMonthLabel.getIndex()],
+            defaultCategoryDataset.addValue(monthlyDeals[monthLabel.getIndex()],
                                             DATASET_SERIES, 
-                                            barChartMonthLabel.getLabel());
+                                            monthLabel.getMonthAbbreviation());
         }
         
         return defaultCategoryDataset;
