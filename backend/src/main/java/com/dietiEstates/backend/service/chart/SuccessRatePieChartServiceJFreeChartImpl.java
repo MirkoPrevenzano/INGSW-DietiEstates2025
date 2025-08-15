@@ -6,8 +6,8 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.stereotype.Service;
 
+import com.dietiEstates.backend.enums.ChartType;
 import com.dietiEstates.backend.model.entity.Agent;
-import com.dietiEstates.backend.service.chart.enums.ChartDimensions;
 
 
 @Service
@@ -21,31 +21,31 @@ public class SuccessRatePieChartServiceJFreeChartImpl extends ChartServiceJFreeC
     @Override
     protected DefaultPieDataset<String> buildDataset(Agent agent) 
     {
-        DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
+        DefaultPieDataset<String> defaultPieDataset = new DefaultPieDataset<>();
         
         int totalUploadedRealEstates = agent.getAgentStats().getTotalUploadedRealEstates();
         int completedDeals = agent.getAgentStats().getCompletedDeals();
         
-        dataset.setValue(COMPLETED_DEALS_LABEL, (double) completedDeals);
-        dataset.setValue(TOTAL_UPLOADED_REAL_ESTATES_LABEL, (double) totalUploadedRealEstates);
+        defaultPieDataset.setValue(COMPLETED_DEALS_LABEL, (double) completedDeals);
+        defaultPieDataset.setValue(TOTAL_UPLOADED_REAL_ESTATES_LABEL, (double) totalUploadedRealEstates);
 
-        return dataset;
+        return defaultPieDataset;
     }
     
     @Override
-    protected JFreeChart buildChart(DefaultPieDataset<String> dataset) 
+    protected JFreeChart buildChart(DefaultPieDataset<String> defaultPieDataset) 
     {
         return ChartFactory.createPieChart(CHART_TITLE,
-                                           dataset,
+                                           defaultPieDataset,
                                            false,
                                            false,
                                            false);
     }
     
     @Override
-    protected ChartDimensions getChartDimensions() 
+    protected ChartType getChartType() 
     {
-        return ChartDimensions.STANDARD_PIE_CHART;
+        return ChartType.SUCCESS_RATE_PIE_CHART;
     }
     
     @Override

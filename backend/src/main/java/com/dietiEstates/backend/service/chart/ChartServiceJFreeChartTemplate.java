@@ -2,13 +2,16 @@
 package com.dietiEstates.backend.service.chart;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.Dataset;
-import com.dietiEstates.backend.service.chart.enums.ChartDimensions;
+
+import com.dietiEstates.backend.enums.ChartType;
 import com.dietiEstates.backend.exception.ChartServiceException;
+import com.dietiEstates.backend.model.entity.Agent;
 
 
 public abstract class ChartServiceJFreeChartTemplate<T, D extends Dataset> implements ChartService<T>
@@ -21,13 +24,18 @@ public abstract class ChartServiceJFreeChartTemplate<T, D extends Dataset> imple
         JFreeChart chart = buildChart(dataset);
         
         customizeChart(chart);
+
+        ChartType chartType = getChartType();
         
-        return convertChartToBytes(chart, getChartDimensions());
+        byte[] chartBytes = convertChartToBytes(chart, chartType, data);
+
+        return chartBytes;
     }
+
 
     protected abstract D buildDataset(T data);
     protected abstract JFreeChart buildChart(D dataset);
-    protected abstract ChartDimensions getChartDimensions();
+    protected abstract ChartType getChartType();
 
 
     protected void customizeChart(JFreeChart chart) 
@@ -36,15 +44,21 @@ public abstract class ChartServiceJFreeChartTemplate<T, D extends Dataset> imple
         chart.getPlot().setOutlinePaint(Color.BLACK);
     }
 
-    private byte[] convertChartToBytes(JFreeChart chart, ChartDimensions dimensions) 
+    private byte[] convertChartToBytes(JFreeChart chart, ChartType chartType, T data) 
     {
         try 
         {
-            return ChartUtils.encodeAsPNG(chart.createBufferedImage(dimensions.getWidth(), dimensions.getHeight()));
+            BufferedImage bufferedImage = chart.createBufferedImage(chartType.getChartDimensions().getWidth(), chartType.getChartDimensions().getHeight());
+            return ChartUtils.encodeAsPNG(bufferedImage);
         } 
         catch (IOException e) 
         {
-            throw new ChartServiceException("Failed to create chart '" + chart.getTitle().getText() + "'! " + e.getMessage(), e);
+            Long agentId = null; 
+
+            if (data instanceof Agent)
+                agentId = ((Agent)data).getUserId();
+            
+            throw new ChartServiceException(chartType, agentId, e);
         }
     }   
 }

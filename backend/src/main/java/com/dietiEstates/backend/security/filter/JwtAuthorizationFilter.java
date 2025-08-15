@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -25,7 +24,6 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.dietiEstates.backend.repository.UserRepository;
 import com.dietiEstates.backend.security.handler.AuthenticationEntryPointCustomImpl;
 import com.dietiEstates.backend.util.JwtUtil;
 import com.dietiEstates.backend.enums.Role;

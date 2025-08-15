@@ -6,8 +6,8 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.stereotype.Service;
 
+import com.dietiEstates.backend.enums.ChartType;
 import com.dietiEstates.backend.model.entity.Agent;
-import com.dietiEstates.backend.service.chart.enums.ChartDimensions;
 
 
 @Service
@@ -21,35 +21,31 @@ public class TotalDealsPieChartServiceJFreeChartImpl extends ChartServiceJFreeCh
     @Override
     protected DefaultPieDataset<String> buildDataset(Agent agent) 
     {
-        DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
+        DefaultPieDataset<String> defaultPieDataset = new DefaultPieDataset<>();
         
         int totalSales = agent.getAgentStats().getTotalSoldRealEstates();
         int totalRentals = agent.getAgentStats().getTotalRentedRealEstates();
+
+        defaultPieDataset.setValue(TOTAL_SALES_LABEL, (double) totalSales);
+        defaultPieDataset.setValue(TOTAL_RENTALS_LABEL, (double) totalRentals);
         
-        if (totalSales > 0 || totalRentals > 0) 
-        {
-            dataset.setValue(TOTAL_SALES_LABEL, (double) totalSales);
-            dataset.setValue(TOTAL_RENTALS_LABEL, (double) totalRentals);
-        }
-        
-        return dataset;
+        return defaultPieDataset;
     }
     
     @Override
-    protected JFreeChart buildChart(DefaultPieDataset<String> dataset) 
+    protected JFreeChart buildChart(DefaultPieDataset<String> defaultPieDataset) 
     {
         return ChartFactory.createPieChart(CHART_TITLE,
-                                           dataset,
+                                           defaultPieDataset,
                                            false,
                                            false,
-                                           false
-        );
+                                           false);
     }
     
     @Override
-    protected ChartDimensions getChartDimensions() 
+    protected ChartType getChartType() 
     {
-        return ChartDimensions.STANDARD_PIE_CHART;
+        return ChartType.TOTAL_DEALS_PIE_CHART;
     }
 
     @Override

@@ -1,12 +1,14 @@
 
-package com.dietiEstates.backend.service.chart.enums;
+package com.dietiEstates.backend.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+
 @Getter
 @RequiredArgsConstructor
-public enum BarChartMonthLabel {
+public enum BarChartMonthLabel 
+{
     JANUARY("JAN", 0),
     FEBRUARY("FEB", 1),
     MARCH("MAR", 2),
@@ -20,10 +22,12 @@ public enum BarChartMonthLabel {
     NOVEMBER("NOV", 10),
     DECEMBER("DEC", 11);
     
+
     private final String label;
     private final int index;
     
-    public static BarChartMonthLabel[] getAllMonths() 
+
+    public static BarChartMonthLabel[] getMonthsLabels() 
     {
         return values();
     }

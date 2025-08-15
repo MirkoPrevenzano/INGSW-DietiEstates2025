@@ -1,6 +1,5 @@
-package com.dietiEstates.backend.enums;
 
-import com.dietiEstates.backend.service.chart.enums.ChartDimensions;
+package com.dietiEstates.backend.enums;
 
 
 public enum ChartType 
