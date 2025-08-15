@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.supercsv.cellprocessor.FmtDate;
 import org.supercsv.cellprocessor.FmtNumber;
@@ -21,9 +22,9 @@ import org.supercsv.io.ICsvListWriter;
 import org.supercsv.prefs.CsvPreference;
 
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
+import com.dietiEstates.backend.enums.ExportingFormat;
 import com.dietiEstates.backend.model.embeddable.AgentStats;
 import com.dietiEstates.backend.model.entity.Agent;
-import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.service.export.ExportingResult;
 import com.dietiEstates.backend.service.export.ExportServiceTemplate;
@@ -40,29 +41,18 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
     private final MockingStatsService mockingStatsService;
 
     
-    public CsvExportServiceSuperCsvImpl(AgentRepository agentRepository, RealEstateRepository realEstateRepository, MockingStatsService mockingStatsService) 
+    public CsvExportServiceSuperCsvImpl(RealEstateRepository realEstateRepository, MockingStatsService mockingStatsService) 
     {
-        super(agentRepository, realEstateRepository);
+        super(realEstateRepository);
         this.mockingStatsService = mockingStatsService;
     }
 
 
     @Override
-    public ExportingResult exportCsvReport(String username) 
+    public ExportingResult exportCsvReport(Agent agent) 
     {
-        return super.exportReport(username);
+        return super.exportReport(agent);
     }
-
-
-
-/*     @Override
-    protected void setupResponseHeaders(String username, HttpServletResponse response) 
-    {
-        response.setContentType("text/csv");
-        String fileName = generateFileName(username) + ".csv";
-        String headerValue = "attachment; filename=" + fileName;
-        response.setHeader("Content-Disposition", headerValue);        
-    } */
 
 
     @Override
@@ -78,7 +68,6 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
 
         //listWriter = new CsvListWriter(response.getWriter(), CsvPreference.EXCEL_PREFERENCE);  
     }
-
 
     @Override
     protected void writeAgentInfo(Agent agent, Object writer) throws Exception 
@@ -134,7 +123,6 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
                 List<Object> estateData = Arrays.asList(
                     agentDashboardRealEstateStatsDto.getTitle(),
                     Date.from(agentDashboardRealEstateStatsDto.getUploadingDate().toInstant(ZoneOffset.UTC)),
-                    //realEstate.getUploadingDate(),
                     agentDashboardRealEstateStatsDto.getViewsNumber(),
                     agentDashboardRealEstateStatsDto.getVisitsNumber(),
                     agentDashboardRealEstateStatsDto.getOffersNumber()
@@ -144,11 +132,9 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
         } 
         else 
         {
-            log.warn("SONO IN ELSEEE");
             csvWriterWrapper.getCsvListWriter().write("//", "//", "//", "//", "//");
         }        
     }
-
 
     @Override
     protected void writeRealEstatePerMonthStats(Agent agent, Object writer) throws Exception 
@@ -163,7 +149,6 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
         csvWriterWrapper.getCsvListWriter().write(monthlyData);        
     }
 
-
     @Override
     protected void writeSectionSeparator(Object writer) throws Exception 
     {
@@ -171,7 +156,6 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
         csvWriterWrapper.getCsvListWriter().writeHeader("");
         csvWriterWrapper.getCsvListWriter().writeHeader("");        
     }   
-
 
     @Override
     protected byte[] finalizeWriter(Object writer) throws Exception 
@@ -188,20 +172,22 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
         //return null;
     }
 
-
-
-
     @Override
-    protected String getContentType() 
+    protected ExportingFormat getExportingFormat() 
     {
-        return "text/csv";
+        return ExportingFormat.CSV;
     }
 
+    @Override
+    protected MediaType getContentType() 
+    {
+        return ExportingFormat.CSV.getMediaType();
+    }
 
     @Override
     protected String getFileExtension() 
     {
-        return ".csv";
+        return ExportingFormat.CSV.getFileExtension();
     }
 
 
@@ -234,7 +220,7 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
     }
 
 
-
+    
     @RequiredArgsConstructor
     @Getter
     private static class CsvWriterWrapper

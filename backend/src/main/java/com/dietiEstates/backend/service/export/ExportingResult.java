@@ -1,6 +1,8 @@
 
 package com.dietiEstates.backend.service.export;
 
+import org.springframework.http.MediaType;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -9,7 +11,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class ExportingResult
 {
-    private final byte[] data;
+    private final byte[] exportingBytes;
     private final String filename;
-    private final String contentType;
+    private final MediaType contentType;
 }

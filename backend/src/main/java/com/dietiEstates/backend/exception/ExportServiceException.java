@@ -61,7 +61,7 @@ public class ExportServiceException extends RuntimeException
 
         
         if (exportingFormat != null) 
-            fullMessage.append("\nExporting format: ").append(exportingFormat.getMimeType());
+            fullMessage.append("\nExporting format: ").append(exportingFormat.getMediaType());
         
         if (agentId != null)
             fullMessage.append("\nAgent id: ").append(agentId);

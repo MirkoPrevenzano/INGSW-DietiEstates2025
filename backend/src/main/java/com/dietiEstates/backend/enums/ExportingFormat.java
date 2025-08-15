@@ -1,24 +1,20 @@
 
 package com.dietiEstates.backend.enums;
 
+import org.springframework.http.MediaType;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+
+@Getter
+@RequiredArgsConstructor
 public enum ExportingFormat 
 {
-    PDF("application/pdf"),
-    CSV("text/csv");
+    PDF(MediaType.APPLICATION_PDF, ".pdf"),
+    CSV(MediaType.valueOf("text/csv"), ".csv");
 
 
-    private final String mimeType;
-
-
-    private ExportingFormat(String mimeType)
-    {
-        this.mimeType = mimeType;
-    }
-
-
-    public String getMimeType()
-    {
-        return this.mimeType;
-    }
+    private final MediaType mediaType;
+    private final String fileExtension;
 }

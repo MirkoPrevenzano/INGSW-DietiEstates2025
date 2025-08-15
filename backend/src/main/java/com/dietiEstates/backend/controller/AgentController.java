@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.List;
 
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.groups.Default;
 
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MimeType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -119,30 +119,30 @@ public class AgentController
     @GetMapping(value = "/{username}/exportCSV2")
     public ResponseEntity<byte[]> exportToCSV(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {
-        ExportingResult exportingResult = csvExportService.exportCsvReport(username);
+        ExportingResult exportingResult = agentService.exportToCsv(username);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.valueOf(exportingResult.getContentType()));
+        headers.setContentType(exportingResult.getContentType());
         headers.setContentDisposition(ContentDisposition.attachment().filename(exportingResult.getFilename()).build());
 
         return ResponseEntity.status(HttpStatus.OK)
                              .headers(headers)
-                             .body(exportingResult.getData());
+                             .body(exportingResult.getExportingBytes());
     }
 
 
     @GetMapping(value = "/{username}/exportPDF2")
     public ResponseEntity<byte[]> exportToPDF(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {
-        ExportingResult exportingResult = pdfExportService.exportPdfReport(username);
+        ExportingResult exportingResult = agentService.exportToPdf(username);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.valueOf(exportingResult.getContentType()));
+        headers.setContentType(exportingResult.getContentType());
         headers.setContentDisposition(ContentDisposition.attachment().filename(exportingResult.getFilename()).build());
 
         return ResponseEntity.status(HttpStatus.OK)
                              .headers(headers)
-                             .body(exportingResult.getData());
+                             .body(exportingResult.getExportingBytes());
     }
 
 

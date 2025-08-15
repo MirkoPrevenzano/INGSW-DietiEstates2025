@@ -25,6 +25,9 @@ import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AgentRepository;
 import com.dietiEstates.backend.repository.RealEstateRepository;
 import com.dietiEstates.backend.resolver.RealEstateFromDtoFactoryResolver;
+import com.dietiEstates.backend.service.export.ExportingResult;
+import com.dietiEstates.backend.service.export.csv.CsvExportService;
+import com.dietiEstates.backend.service.export.pdf.PdfExportService;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
 import com.dietiEstates.backend.service.photo.PhotoData;
 import com.dietiEstates.backend.service.photo.PhotoService;
@@ -44,6 +47,8 @@ public class AgentService
     private final ModelMapper modelMapper;
     private final RealEstateFromDtoFactoryResolver realEstateFromDtoFactoryResolver;
     private final PhotoService photoService;
+     private final PdfExportService pdfExportService;
+    private final CsvExportService csvExportService;
 
 
 
@@ -114,6 +119,23 @@ public class AgentService
 
 
         return photosData;
+    }
+
+
+    public ExportingResult exportToPdf(String username) 
+    {
+        Agent agent = agentRepository.findByUsername(username)
+                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+                                     
+        return pdfExportService.exportPdfReport(agent);
+    }
+
+    public ExportingResult exportToCsv(String username) 
+    {
+        Agent agent = agentRepository.findByUsername(username)
+                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+                                     
+        return csvExportService.exportCsvReport(agent);
     }
 
 
