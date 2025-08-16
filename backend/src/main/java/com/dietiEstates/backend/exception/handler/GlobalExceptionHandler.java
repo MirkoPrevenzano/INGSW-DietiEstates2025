@@ -251,7 +251,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 
 
     @ExceptionHandler(ExportServiceException.class)
-    public ResponseEntity<Object> ExportServiceException(ExportServiceException ex, WebRequest request) 
+    public ResponseEntity<Object> handleExportServiceException(ExportServiceException ex, WebRequest request) 
     {
         logExceptionInfo(ex);
         
@@ -282,6 +282,22 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
                              .body(errorResponse); */
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request) 
+    {
+        logExceptionInfo(ex);
+        
+        //String errorPath = request.getDescription(false);
+        String errorDetail = ex.getMessage();
+
+        return buildResponseEntity(HttpStatus.BAD_REQUEST, errorDetail, null, null, request);
+
+/*         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, errorDescription, errorPath);
+
+        return ResponseEntity.status(errorResponse.getStatus())
+                             .body(errorResponse); */
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleGenericException(Exception ex, WebRequest request) 
     {
@@ -290,7 +306,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         //String errorPath = request.getDescription(false);
         String errorDetail = "Errore interno non gestito.";
 
-        return buildResponseEntity(HttpStatus.BAD_REQUEST, errorDetail, null, null, request);
+        return buildResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, errorDetail, null, null, request);
 
 /*         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, errorDescription, errorPath);
 
@@ -360,7 +376,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     private void logExceptionInfo(Exception ex)
     {
         log.error("Exception occurred: " + ex.getClass().getSimpleName());
-        log.error(ex.getMessage());
+        log.error("Exception message: " + ex.getMessage());
+
+        if (ex.getCause() != null)
+            log.error("Exception cause: " + ex.getCause().getMessage());
     }
 
     private ResponseEntity<Object> buildResponseEntity(HttpStatus httpStatus, String errorDetail, List<String> subErrors, HttpHeaders headers, WebRequest request) 
