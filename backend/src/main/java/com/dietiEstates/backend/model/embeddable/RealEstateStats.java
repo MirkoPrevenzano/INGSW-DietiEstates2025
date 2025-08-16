@@ -29,4 +29,20 @@ public class RealEstateStats
             nullable = false,
             updatable = true)
     private long offersNumber;
+
+
+    public void incrementViewsNumber()
+    {
+        this.viewsNumber += 1;
+    }
+
+    public void incrementVisitsNumber()
+    {
+        this.visitsNumber += 1;
+    }
+
+    public void incrementOffersNumber()
+    {
+        this.offersNumber += 1;
+    }
 }

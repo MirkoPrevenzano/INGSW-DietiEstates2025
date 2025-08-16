@@ -65,18 +65,6 @@ public class Administrator extends User
     }
 
 
-
-/*     public void setAgency(Agency newAgency) 
-    {
-        if (newAgency == null) 
-            this.agency.setAdministrator(null);
-        else 
-            newAgency.setAdministrator(this);
-
-        this.agency = newAgency;
-    } */
-
-
     public void addCollaborator(Administrator newCollaborator) 
     {
        this.collaborators.add(newCollaborator);

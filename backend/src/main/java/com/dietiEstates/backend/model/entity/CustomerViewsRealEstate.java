@@ -45,7 +45,7 @@ public class CustomerViewsRealEstate
     @JoinColumn(name = "customer_id", 
                 nullable = false, 
                 updatable = true,
-                foreignKey = @ForeignKey(name = "customer_views_real_estate_fk"))
+                foreignKey = @ForeignKey(name = "customer_views_real_estate_to_customer_fk"))
     private Customer customer;
 
     @NotNull
@@ -55,12 +55,13 @@ public class CustomerViewsRealEstate
     @JoinColumn(name = "real_estate_id", 
                 nullable = false, 
                 updatable = true,
-                foreignKey = @ForeignKey(name = "real_estate_is_viewed_by_customer_fk"))
+                foreignKey = @ForeignKey(name = "customer_views_real_estate_to_real_estate_fk"))
     private RealEstate realEstate;
 
 
     public CustomerViewsRealEstate(CustomerViewsRealEstateId customerViewsRealEstateId,
-            LocalDateTime viewDate, Customer customer, RealEstate realEstate) {
+            LocalDateTime viewDate, Customer customer, RealEstate realEstate) 
+    {
         this.customerViewsRealEstateId = customerViewsRealEstateId;
         this.viewDate = viewDate;
         this.customer = customer;

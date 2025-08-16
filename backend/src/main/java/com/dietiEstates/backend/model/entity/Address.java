@@ -58,7 +58,7 @@ public class Address
 	@Column(name = "house_number",
 		 	nullable = false, 
 		 	updatable = true)
-	private Integer houseNumber;
+	private int houseNumber;
 
 	@Column(nullable = false, 
 		 	updatable = true)
@@ -76,11 +76,11 @@ public class Address
 	@JoinColumn(name = "real_estate_id",
 				nullable = false,
 				updatable = true,
-				foreignKey = @ForeignKey(name = "real_estate_to_address_fk"))
+				foreignKey = @ForeignKey(name = "adress_to_real_estate_fk"))
 	private RealEstate realEstate;
 
 
-	public Address(String state, String country, String city, String street, String postalCode, Integer houseNumber, double longitude, double latitude) 
+	public Address(String state, String country, String city, String street, String postalCode, int houseNumber, double longitude, double latitude) 
 	{
 		this.state = state;
 		this.country = country;

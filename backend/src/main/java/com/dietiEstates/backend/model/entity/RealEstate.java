@@ -45,7 +45,7 @@ import lombok.ToString;
 public class RealEstate 
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "real_estate_id")
     private Long realEstateId;
 
@@ -75,7 +75,7 @@ public class RealEstate
     @Column(name = "condo_fee",
             nullable = false, 
             updatable = true)         
-    private Double condoFee;
+    private double condoFee;
 
     @NotNull
     @Enumerated(value = EnumType.STRING)
@@ -149,21 +149,8 @@ public class RealEstate
         if (newAddress == null) 
             this.address.setRealEstate(null);
         else 
-			newAddress.setRealEstate(this);
+            newAddress.setRealEstate(this);
 
         this.address = newAddress;
-    }
-
-	
-    public void addAddress(Address newAddress) 
-    {
-        this.setAddress(newAddress);
-        newAddress.setRealEstate(this);
-    }    
-    
-    public void removeAddress() 
-    {
-        this.getAddress().setRealEstate(null);
-        this.setAddress(null);
     }
 }

@@ -25,7 +25,7 @@ import lombok.ToString;
 
 @Entity(name = "RealEstateForSale")
 @Table(name = "real_estate_for_sale")
-@PrimaryKeyJoinColumn(name = "real_estate_for_sale_id", 
+@PrimaryKeyJoinColumn(name = "real_estate_for_sale_id",
                       foreignKey = @ForeignKey(name = "real_estate_for_sale_to_real_estate_fk"))
 @Data
 @NoArgsConstructor

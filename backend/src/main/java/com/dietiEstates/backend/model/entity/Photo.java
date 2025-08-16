@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Photo 
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "photo_id")
     private Long photoId;
 
@@ -31,7 +31,8 @@ public class Photo
     private String key;
 
 
-    public Photo(String key) {
+    public Photo(String key) 
+    {
         this.key = key;
     }
 }

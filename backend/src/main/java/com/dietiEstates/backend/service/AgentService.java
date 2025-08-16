@@ -63,7 +63,7 @@ public class AgentService
         RealEstate realEstate = realEstateFromDtoFactory.create(realEstateCreationDto);
 
         Address address = modelMapper.map(realEstateCreationDto.getAddressDto(), Address.class);
-        realEstate.addAddress(address);
+        //realEstate.addAddress(address);
 
         mockingStatsService.mockRealEstateStats(realEstate);
 

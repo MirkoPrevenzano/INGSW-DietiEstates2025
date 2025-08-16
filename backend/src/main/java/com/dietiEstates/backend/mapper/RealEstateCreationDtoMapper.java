@@ -82,7 +82,7 @@ public abstract class RealEstateCreationDtoMapper implements Supportable<RealEst
 
         entity.setInternalFeatures(internalRealEstateFeatures);
         entity.setExternalFeatures(externalRealEstateFeatures);
-        entity.addAddress(address);
+        entity.setAddress(address);
     }
     
 
