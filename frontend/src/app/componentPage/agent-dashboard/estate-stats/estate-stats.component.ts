@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { AgentService } from '../../../rest-backend/agent/agent.service';
-import { EstateStats } from '../../../model/estateStats';
+import { AgentDashboardRealEstateStats } from '../../../model/response/agentDashboardRealEstateStats';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { HandleNotifyService } from '../../../_service/handle-notify.service';
 
 @Component({
   selector: 'app-estate-stats',
@@ -14,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './estate-stats.component.html',
   styleUrl: './estate-stats.component.scss'
 })
-export class EstateStatsComponent implements OnInit, AfterViewInit{
+export class EstateStatsComponent implements OnInit, AfterViewInit, OnDestroy{
   page:number = 0
   limit: number = 10
   loading: boolean = false; //evito richieste multiple
@@ -22,18 +23,20 @@ export class EstateStatsComponent implements OnInit, AfterViewInit{
 
 
 
-  estatesStats: EstateStats[] = []
+  estatesStats: AgentDashboardRealEstateStats[] = []
 
   constructor(
     private readonly agentService: AgentService,
-    private readonly notifyService: ToastrService
+    private readonly handleError:HandleNotifyService
   ){}
 
   ngOnInit(): void {
     this.loadStats()
   }
   ngAfterViewInit(): void {
-    this.scrollContainer.nativeElement.addEventListener('scroll', this.nextPage.bind(this));
+    if (this.scrollContainer?.nativeElement) {
+      this.scrollContainer.nativeElement.addEventListener('scroll', this.nextPage.bind(this));
+    }
   }
 
   loadStats() {
@@ -42,15 +45,12 @@ export class EstateStatsComponent implements OnInit, AfterViewInit{
       this.loading= true
       this.agentService.estatesStats(user, this.page,this.limit).
         subscribe({
-          next: (response:EstateStats[]) =>{
+          next: (response:AgentDashboardRealEstateStats[]) =>{
             this.estatesStats = this.estatesStats.concat(response)
             this.loading = false
           },
           error: (err) => {
-            if(err?.error.status >= 400 && err?.error.status < 500)
-              this.notifyService.warning(err?.error.description)
-            if(err?.error.status >= 500 && err?.error.status < 600)
-              this.notifyService.error(err?.error.description)
+            this.handleError.showMessageError(err.error)
           }
         })
     }
@@ -62,6 +62,12 @@ export class EstateStatsComponent implements OnInit, AfterViewInit{
     if (element.scrollHeight - element.scrollTop === element.clientHeight) {
       this.page++;
       this.loadStats();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.scrollContainer?.nativeElement) {
+      this.scrollContainer.nativeElement.removeEventListener('scroll', this.nextPage.bind(this));
     }
   }
 }

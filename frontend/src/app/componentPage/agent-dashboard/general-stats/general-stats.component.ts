@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AgentGeneralStats } from '../../../model/agentGeneralStats';
+import { AgentStats } from '../../../model/response/support/agentStats';
 
 @Component({
   selector: 'app-general-stats',
@@ -9,7 +9,7 @@ import { AgentGeneralStats } from '../../../model/agentGeneralStats';
 })
 export class GeneralStatsComponent{
    
-   @Input() generalStats: AgentGeneralStats = {
+   @Input() generalStats: AgentStats = {
       totalUploadedRealEstates: 0,
       totalRentedRealEstates: 0,
       totalSoldRealEstates: 0,

@@ -64,6 +64,7 @@ public class AdministratorService
 
         String hashedPassword = passwordEncoder.encode(plainTextPassword);
         collaborator.setPassword(hashedPassword);
+        collaborator.setAgency(administrator.getAgency());
         
         administrator.addCollaborator(collaborator);
 

@@ -1,4 +1,4 @@
-export interface EstateDescribe{
+export interface RealEstateMainFeatures{
     title: string
     description: string,
     price: number,

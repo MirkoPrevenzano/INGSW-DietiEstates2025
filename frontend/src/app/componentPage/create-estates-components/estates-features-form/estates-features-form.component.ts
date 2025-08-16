@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CheckboxComponent } from '../checkbox/checkbox.component';
-import { EstateFeatures } from '../../../model/estateFeatures';
+import { RealEstateBooleanFeatures } from '../../../model/request/support/realEstateBooleanFeatures';
 import { EstateDataService } from '../../../_service/estate-data/estate-data.service';
 import { estateFeatures } from '../../../constants/estate-features';
 
@@ -15,7 +15,7 @@ import { estateFeatures } from '../../../constants/estate-features';
 })
 export class EstatesFeaturesFormComponent implements OnInit {
  
-  @Output() estateFeatures = new EventEmitter<EstateFeatures>()
+  @Output() estateFeatures = new EventEmitter<RealEstateBooleanFeatures>()
 
   private  readonly estateDataService: EstateDataService = inject(EstateDataService)
 
@@ -36,7 +36,7 @@ export class EstatesFeaturesFormComponent implements OnInit {
     })
 
     
-    this.estateFeatures.emit(this.featuresForm.value as EstateFeatures)
+    this.estateFeatures.emit(this.featuresForm.value as RealEstateBooleanFeatures)
     const estatesFeatures = this.estateDataService.getFeatures()
 
     if (estatesFeatures) {
@@ -44,7 +44,7 @@ export class EstatesFeaturesFormComponent implements OnInit {
     }
     
     this.featuresForm.valueChanges.subscribe((value)=>{
-      this.estateFeatures.emit(value as EstateFeatures)
+      this.estateFeatures.emit(value as RealEstateBooleanFeatures)
     })
 
    

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import {  FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { EstateDescribe } from '../../../model/estateDescribe';
+import { RealEstateMainFeatures } from '../../../model/request/support/realEstateMainFeatures';
 import { FormFieldComponent } from '../../../componentCustom/form-field/form-field.component';
 import { CommonModule } from '@angular/common';
 import { UploadPhotosComponent } from '../../../componentCustom/upload-photos/upload-photos.component';
@@ -21,7 +21,7 @@ import { EstateDataService } from '../../../_service/estate-data/estate-data.ser
 })
 export class DescriptionEstatesFormComponent implements OnInit{
   @Input() estateType!: EstateType;
-  @Output() formSubmit =new EventEmitter<{estate:EstateDescribe, additionalFields:any}>()
+  @Output() formSubmit =new EventEmitter<{estate:RealEstateMainFeatures, additionalFields:any}>()
   dynamicFields: any[]= []
   featuresForm!: FormGroup
   additionalFields: any = {};
@@ -87,7 +87,7 @@ export class DescriptionEstatesFormComponent implements OnInit{
 
   private sendDateForm() {
     this.featuresForm.valueChanges.subscribe(value => {
-      const estate: EstateDescribe={
+      const estate: RealEstateMainFeatures={
         title: value.title,
         description: value.description,
         price: value.price,

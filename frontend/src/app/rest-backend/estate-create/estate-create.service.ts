@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Estate } from '../../model/estate';
+import { RealEstateCreation } from '../../model/request/realEstateCreation';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class EstateCreateService {
     })
   };
 
-  createEstate(estate: Estate): Observable<any> {
+  createEstate(estate: RealEstateCreation): Observable<any> {
     const userId = localStorage.getItem('user');
     let endpoint = '';
 

@@ -11,6 +11,7 @@ import { Router, RouterModule } from '@angular/router';
 import { ButtonCustomComponent } from '../../componentCustom/button-custom/button-custom.component';
 import { RedirectHomeService } from '../../_service/redirect-home/redirect-home.service';
 import { PasswordValidatorService } from '../../_service/password-validator/password-validator.service';
+import { HandleNotifyService } from '../../_service/handle-notify.service';
 
 @Component({
     selector: 'app-login-customer',
@@ -37,7 +38,8 @@ export class LoginComponent implements OnInit{
     private readonly notifyToastr: ToastrService,
     private readonly router: Router,
     private readonly redirectHomeService: RedirectHomeService,
-    private readonly passwordValidator: PasswordValidatorService
+    private readonly passwordValidator: PasswordValidatorService,
+    private readonly handleNotify:HandleNotifyService
     
   ) {}
   loginForm =new FormGroup({
@@ -122,11 +124,7 @@ export class LoginComponent implements OnInit{
         }
       },
       error: (err) => {
-        console.log(err)
-        if(err?.error.status >= 400 && err?.error.status < 500)
-          this.notifyToastr.warning(err?.error.detail)
-        if(err?.error.status >= 500 && err?.error.status < 600)
-          this.notifyToastr.error(err?.error.detail)
+        this.handleNotify.showMessageError(err.error)
       }
     });
   }

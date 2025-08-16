@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Address } from '../../../model/address';
-import { EstateLocationFeatures } from '../../../model/estateLocationFeatures';
+import { Address } from '../../../model/request/support/address';
+import { RealEstateLocationFeatures } from '../../../model/request/support/realEstateLocationFeatures';
 import { MapComponent } from '../../../componentCustom/map/map.component';
 import { CommonModule } from '@angular/common';
 
@@ -15,5 +15,5 @@ import { CommonModule } from '@angular/common';
 })
 export class EstateViewMapComponent{
   @Input() address!: Address;
-  @Input() estateLocationFeatures?: EstateLocationFeatures;
+  @Input() estateLocationFeatures?: RealEstateLocationFeatures;
 }

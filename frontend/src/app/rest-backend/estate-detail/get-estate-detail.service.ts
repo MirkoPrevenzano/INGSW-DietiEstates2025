@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Estate } from '../../model/estate';
-import { AgentPublicInfo } from '../../model/agentPublicInfo';
+import { RealEstateCreation } from '../../model/request/realEstateCreation';
+import { AgentPublicInfo } from '../../model/response/support/agentPublicInfo';
+import { RealEstateCompleteInfo } from '../../model/response/realEstateCompleteInfo';
 
 
 
@@ -22,8 +23,8 @@ export class GetEstateDetailService {
         })
     };
 
-    getEstateInfo(realEstateId:number):Observable<{realEstateCreationDto:Estate, agentPublicInfo:AgentPublicInfo}>{
+    getEstateInfo(realEstateId:number):Observable<RealEstateCompleteInfo>{
       const url = `${this.url}/real-estate/view/${realEstateId}`;
-      return this.http.get<{realEstateCreationDto:Estate, agentPublicInfo:AgentPublicInfo}>(url, this.httpOptions);
+      return this.http.get<RealEstateCompleteInfo>(url, this.httpOptions);
     }
 }

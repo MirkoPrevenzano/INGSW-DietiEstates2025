@@ -1,6 +1,6 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PasswordRequest } from '../../model/passwordRequest';
+import { UpdatePassword } from '../../model/request/updatePassword';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class PasswordChangeService {
     *Se una di tali condizioni non è valida bisogna inviare nella response il messaggio preciso di errore associato al codice corretto
     * 
     */
-    passwordChange(request: PasswordRequest){
+    passwordChange(request: UpdatePassword){
       const url= this.url+`/${localStorage.getItem('user')}/update-password`
       return this.http.put(url, request, this.httpOptions);
     }

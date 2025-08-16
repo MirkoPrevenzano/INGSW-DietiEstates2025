@@ -1,9 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { EstateRecently } from '../../model/estateRecently';
-import { AgentGeneralStats } from '../../model/agentGeneralStats';
-import { EstateStats } from '../../model/estateStats';
+import { AgentRecentRealEstate } from '../../model/response/agentRecentRealEstate';
+import { AgentStats } from '../../model/response/support/agentStats';
+import { AgentDashboardRealEstateStats } from '../../model/response/agentDashboardRealEstateStats';
+import { AgentDashboardComponent } from '../../componentPage/agent-dashboard/agent-dashboard.component';
+import { AgentDashboardPersonalStats } from '../../model/response/agentDashboardPersonalStats';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +22,9 @@ export class AgentService {
   
     private url="http://localhost:8080/agent"
 
-    recentlyRealEstate(user:string):Observable<EstateRecently[]>{
+    recentlyRealEstate(user:string):Observable<AgentRecentRealEstate[]>{
       const url= this.url+`/${user}/recent-real-estates/4`
-      return this.http.get<EstateRecently[]>(url,this.httpOptions)
+      return this.http.get<AgentRecentRealEstate[]>(url,this.httpOptions)
     }
 
 
@@ -48,9 +50,9 @@ export class AgentService {
 
       url: agent/{username}/general-stats
     */
-    agentStats(user:string):Observable<{agentStats:AgentGeneralStats, estatesPerMonths: number[]}>{
+    agentStats(user:string):Observable<AgentDashboardPersonalStats>{
       const url = this.url+`/${user}/general-stats`
-      return this.http.get<{agentStats:AgentGeneralStats, estatesPerMonths: number[]}>(url, this.httpOptions)
+      return this.http.get<AgentDashboardPersonalStats>(url, this.httpOptions)
     }
 
 
@@ -66,9 +68,9 @@ export class AgentService {
 
       url: agent/{username}/estates-stats?page=${page}&limit=${limit}`
     */
-    estatesStats(user:string, page:number, limit:number):Observable<EstateStats[]>{
+    estatesStats(user:string, page:number, limit:number):Observable<AgentDashboardRealEstateStats[]>{
       const url = `${this.url}/${user}/estates-stats/${page}/${limit}`
-      return this.http.get<EstateStats[]>(url, this.httpOptions)
+      return this.http.get<AgentDashboardRealEstateStats[]>(url, this.httpOptions)
     }
 
 

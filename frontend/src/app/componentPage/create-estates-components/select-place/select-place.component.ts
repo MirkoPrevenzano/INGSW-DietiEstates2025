@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, OnInit, Output, AfterViewInit, ViewChi
 import { AddressEstatesComponent } from '../../address-estates/address-estates.component';
 import { MapComponent } from '../../../componentCustom/map/map.component';
 import { Coordinate } from '../../../model/coordinate';
-import { Address } from '../../../model/address';
+import { Address } from '../../../model/request/support/address';
 import { EstateDataService } from '../../../_service/estate-data/estate-data.service';
 
 @Component({

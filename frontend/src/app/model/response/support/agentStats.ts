@@ -1,4 +1,4 @@
-export interface AgentGeneralStats {
+export interface AgentStats {
     totalUploadedRealEstates: number,
     totalSoldRealEstates: number,
     totalRentedRealEstates: number,
@@ -6,4 +6,3 @@ export interface AgentGeneralStats {
     rentalsIncome: number
 }
 
-//successRate= (totalSoldRealEstate+totaleRentedRealEstate)/totalUplodadedRealEstate (se !=0) *100

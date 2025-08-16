@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { EstateRent } from '../../model/estateRent';
-import { EstateSell } from '../../model/estateSell';
-import { Estate } from '../../model/estate';
+import { RealEstateForRentCreation } from '../../model/request/realEstateForRentCreation';
+import { RealEstateForSellCreation } from '../../model/request/realEstateForSellCreation';
+import { RealEstateCreation } from '../../model/request/realEstateCreation';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstateFactoryService {
 
-  createEstate(estate: Estate, additionalFields: any): Estate {
+  createEstate(estate: RealEstateCreation, additionalFields: any): RealEstateCreation {
     switch (estate.contractType) {
       case 'For Sale': {
         return this.createEstateSell(estate, additionalFields);
@@ -20,7 +20,7 @@ export class EstateFactoryService {
     }
   }
 
-  private createEstateSell(estate: any, additionalFields: any): EstateSell {
+  private createEstateSell(estate: any, additionalFields: any): RealEstateForSellCreation {
     return {
       ...estate,
       notaryDeedState: additionalFields.notaryDeedState,
@@ -28,7 +28,7 @@ export class EstateFactoryService {
     };
   }
 
-  private createEstateRent(estate: any, additionalFields: any): EstateRent {
+  private createEstateRent(estate: any, additionalFields: any): RealEstateForRentCreation {
     return {
       ...estate,
       contractYears: additionalFields.contractYears,

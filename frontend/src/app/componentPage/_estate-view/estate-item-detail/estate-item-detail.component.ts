@@ -1,11 +1,11 @@
 import {  Component, inject, Input, OnInit } from '@angular/core';
-import { Estate } from '../../../model/estate';
+import { RealEstateCreation } from '../../../model/request/realEstateCreation';
 import { EstateViewDescriptionComponent } from '../estate-view-description/estate-view-description.component';
 import { EstateViewFeaturesComponent } from '../estate-view-features/estate-view-features.component';
 import { EstateViewMapComponent } from '../estate-view-map/estate-view-map.component';
 import { ImageSliderComponent } from '../../../componentCustom/image-slider/image-slider.component';
-import { EstateRent } from '../../../model/estateRent';
-import { EstateSell } from '../../../model/estateSell';
+import { RealEstateForRentCreation } from '../../../model/request/realEstateForRentCreation';
+import { RealEstateForSellCreation } from '../../../model/request/realEstateForSellCreation';
 import { RentEstateViewComponent } from '../rent-estate-view/rent-estate-view.component';
 import { SellEstateViewComponent } from '../sell-estate-view/sell-estate-view.component';
 import { CommonModule } from '@angular/common';
@@ -14,6 +14,11 @@ import { UploadPhotoService } from '../../../rest-backend/upload-photo/upload-ph
 import { GetEstateDetailService } from '../../../rest-backend/estate-detail/get-estate-detail.service';
 import { NotFoundComponent } from '../../../componentCustom/not-found/not-found.component';
 import { ToastrService } from 'ngx-toastr';
+import { EstateViewAgentInfoComponent } from '../estate-view-agent-info/estate-view-agent-info.component';
+import { AgentPublicInfo } from '../../../model/response/support/agentPublicInfo';
+import { PhotoResult } from '../../../model/response/photoResult';
+import { RealEstateCompleteInfo } from '../../../model/response/realEstateCompleteInfo';
+import { HandleNotifyService } from '../../../_service/handle-notify.service';
 
 @Component({
   selector: 'app-estate-item',
@@ -25,7 +30,8 @@ import { ToastrService } from 'ngx-toastr';
     RentEstateViewComponent,
     SellEstateViewComponent,
     CommonModule,
-    NotFoundComponent
+    NotFoundComponent,
+    EstateViewAgentInfoComponent
   ],
   templateUrl: './estate-item-detail.component.html',
   styleUrl: './estate-item-detail.component.scss'
@@ -37,8 +43,10 @@ export class EstateItemDetailComponent implements OnInit{
   uploadPhotosService = inject(UploadPhotoService)
   estateService = inject(GetEstateDetailService)
   notifyService = inject(ToastrService)
+  handleError = inject(HandleNotifyService)
   notFound404=false
-  @Input() estate!: Estate;
+  @Input() estate!: RealEstateCreation;
+  @Input() agentInfo!:AgentPublicInfo
   @Input() photos: string[] = [];
   @Input() realEstateId!:number
 
@@ -62,18 +70,16 @@ export class EstateItemDetailComponent implements OnInit{
   
   loadEstate() {
     this.estateService.getEstateInfo(this.realEstateId).subscribe({
-      next: (result) => {
+      next: (result:RealEstateCompleteInfo) => {
         console.log(result)
         this.estate = result.realEstateCreationDto; // Assegna il risultato alla proprietà `estate`
-        //visualizzare info agente
+        this.agentInfo = result.agentPublicInfoDto
       },
       error: (err) => {
         if (err?.error.status == 404)
           this.notFound404 = true
-        else if(err?.error.status >= 400 && err?.error.status < 500)
-          this.notifyService.warning(err?.error.description)
-        else if(err?.error.status >= 500 && err?.error.status < 600)
-          this.notifyService.error(err?.error.description)
+        else
+          this.handleError.showMessageError(err.error)
       }
     });
     
@@ -83,26 +89,23 @@ export class EstateItemDetailComponent implements OnInit{
 
   retrievePhotos() {
     this.uploadPhotosService.getPhotos(this.realEstateId).subscribe({
-      next: (base64Photo:string[]) => {
-        this.photos = base64Photo.map(photo => `data:image/jpeg;base64,${photo}`);
+      next: (photos:PhotoResult[]) => {
+        this.photos = photos.map(photo => `data:image/${photo.contentType};base64,${photo.photoValue}`);
       },
       error: (err) => {
-        if(err?.error.status >= 400 && err?.error.status < 500)
-          this.notifyService.warning(err?.error.description)
-        if(err?.error.status >= 500 && err?.error.status < 600)
-          this.notifyService.error(err?.error.description)
+        this.handleError.showMessageError(err.error)
       }
     });
   }
 
 
 
-  isEstateRent(estate: Estate):estate is EstateRent  {
+  isEstateRent(estate: RealEstateCreation):estate is RealEstateForRentCreation  {
     return Object.hasOwn(estate,"contractYears")
     
   }
 
-  isEstateSell(estate: Estate): estate is EstateSell {
+  isEstateSell(estate: RealEstateCreation): estate is RealEstateForSellCreation {
     return Object.hasOwn(estate, "notaryDeedState")
 
   }

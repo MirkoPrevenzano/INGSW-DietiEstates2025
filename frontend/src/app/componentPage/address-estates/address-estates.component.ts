@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { AutocompleteInputComponent } from '../../componentCustom/autocomplete-input/autocomplete-input.component';
-import { Address } from '../../model/address';
+import { Address } from '../../model/request/support/address';
 import { Coordinate } from '../../model/coordinate';
 import { AddressVerificationService } from '../../_service/geoapify/address-verification/address-verification.service';
 import { ToastrService } from 'ngx-toastr';

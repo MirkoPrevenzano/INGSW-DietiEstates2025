@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { PhotoResult } from '../../model/response/photoResult';
 
 @Injectable({
   providedIn: 'root'
@@ -34,9 +35,9 @@ export class UploadPhotoService {
     }
 
     //versione con lista
-    getPhotos(realEstateId: number): Observable<string[]> {
+    getPhotos(realEstateId: number): Observable<PhotoResult[]> {
       const url = `${this.url}/get-photos2/${realEstateId}`;
-      return this.http.get<string[]>(url, { responseType: 'json' });
+      return this.http.get<PhotoResult[]>(url, { responseType: 'json' });
     }
    
     

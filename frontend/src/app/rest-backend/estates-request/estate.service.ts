@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { EstatePreview } from '../../model/estatePreview';
+import { RealEstatePreviewInfo } from '../../model/response/support/realEstatePreviewInfo';
 import { Params } from '@angular/router';
+import { RealEstateSearch } from '../../model/response/realEstateSearch';
 
 @Injectable({
   providedIn: 'root'
@@ -24,14 +25,10 @@ export class EstateService {
 
   
 
-  getEstatesNewFilter(params:Params):Observable<{ realEstatePreviewInfoDtoList: EstatePreview[], totalElements: number, totalPages:number }> {
+  getEstatesNewFilter(params:Params):Observable<RealEstateSearch> {
     const url: string = this.url+"/search3"
     const httpParams = new HttpParams({ fromObject: params });
-    return this.http.get<{ 
-      realEstatePreviewInfoDtoList: EstatePreview[], 
-      totalElements: number,
-      totalPages: number 
-    }>(
+    return this.http.get<RealEstateSearch>(
       url, 
       { params: httpParams, 
         headers: this.httpOptions.headers 

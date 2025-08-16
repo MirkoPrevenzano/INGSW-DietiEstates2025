@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { EstateDescribe } from '../../../model/estateDescribe';
-import { EstateFeatures } from '../../../model/estateFeatures';
+import { RealEstateMainFeatures } from '../../../model/request/support/realEstateMainFeatures';
+import { RealEstateBooleanFeatures } from '../../../model/request/support/realEstateBooleanFeatures';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
@@ -10,6 +10,6 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './estate-view-features.component.scss'
 })
 export class EstateViewFeaturesComponent {
-  @Input() estateFeatures!: EstateFeatures;
-  @Input() estateDescribe!: EstateDescribe;
+  @Input() estateFeatures!: RealEstateBooleanFeatures;
+  @Input() estateDescribe!: RealEstateMainFeatures;
 }

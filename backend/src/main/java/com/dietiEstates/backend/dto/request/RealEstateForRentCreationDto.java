@@ -29,8 +29,7 @@ public class RealEstateForRentCreationDto extends RealEstateCreationDto
 
     @NotNull(groups = OnCreate.class)
     @PositiveOrZero
-    private Integer contractYears; // TODO : cambiare in Double
-
+    private Integer contractYears;
 
     public RealEstateForRentCreationDto(ContractType contractType, AddressDto addressDto, RealEstateMainFeaturesDto realEstateMainFeaturesDto, 
                                         RealEstateBooleanFeaturesDto realEstateBooleanFeaturesDto, RealEstateLocationFeaturesDto realEstateLocationFeaturesDto, 

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { EstateDescribe } from '../../../model/estateDescribe';
+import { RealEstateMainFeatures } from '../../../model/request/support/realEstateMainFeatures';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './estate-view-description.component.scss'
 })
 export class EstateViewDescriptionComponent implements AfterViewInit{
-  @Input() estateDescribe!: EstateDescribe;
+  @Input() estateDescribe!: RealEstateMainFeatures;
   @ViewChild('description') description!: ElementRef;
   @Input() realEstateId!: number
 

@@ -1,4 +1,4 @@
-export interface EstatePreview{
+export interface RealEstatePreviewInfo{
     id: number,
     title: string, 
     description: string

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EstatePreview } from '../../../model/estatePreview';
+import { RealEstatePreviewInfo } from '../../../model/response/support/realEstatePreviewInfo';
 import { EstateItemPreviewComponent } from '../../_estate-view/estate-item-preview/estate-item-preview.component';
 
 @Component({
@@ -14,7 +14,7 @@ import { EstateItemPreviewComponent } from '../../_estate-view/estate-item-previ
 })
 export class EstateListComponent{
 
-  @Input() listEstatePreview!: EstatePreview[]
+  @Input() listEstatePreview!: RealEstatePreviewInfo[]
   @Input() listRealEstateId!: number[]
   
   

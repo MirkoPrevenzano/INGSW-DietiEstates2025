@@ -9,13 +9,15 @@ import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CacheEstates } from '../../model/cacheEstates';
 import { EstateService } from '../../rest-backend/estates-request/estate.service';
-import { EstatePreview } from '../../model/estatePreview';
+import { RealEstatePreviewInfo } from '../../model/response/support/realEstatePreviewInfo';
 import { CacheService } from '../../_service/cache-service/cache-service.service';
 import { ButtonCustomComponent } from '../../componentCustom/button-custom/button-custom.component';
 import { NotFoundComponent } from '../../componentCustom/not-found/not-found.component';
 import { FilterService } from '../../_service/filter/filter.service';
 import { EstateListComponent } from './estate-list/estate-list.component';
 import { ToastrService } from 'ngx-toastr';
+import { RealEstateSearch } from '../../model/response/realEstateSearch';
+import { HandleNotifyService } from '../../_service/handle-notify.service';
 
 
 @Component({
@@ -53,7 +55,7 @@ export class EstateSearchContainerComponent implements OnInit {
   listCoordinate: Coordinate[] = []
    
 
-  listEstatePreview: EstatePreview[] = []
+  listEstatePreview: RealEstatePreviewInfo[] = []
   listRealEstateId: number[] = []
   constructor(
     private readonly markerService: MarkerService,
@@ -61,7 +63,7 @@ export class EstateSearchContainerComponent implements OnInit {
     private readonly estateService: EstateService,
     private readonly cacheService: CacheService,
     private readonly filterService: FilterService,
-    private readonly notifyService: ToastrService,
+    private readonly handleError: HandleNotifyService,
     private readonly cdr: ChangeDetectorRef
   ) {
     this.checkScreenSize();
@@ -133,8 +135,7 @@ export class EstateSearchContainerComponent implements OnInit {
 
   getEstatesNewFilter(params: Params) {
     this.estateService.getEstatesNewFilter(params).subscribe({
-      next: (result) =>{
-        console.log(result)
+      next: (result: RealEstateSearch) =>{
         if(
             result.realEstatePreviewInfoDtoList!=null 
             && result.realEstatePreviewInfoDtoList.length>0
@@ -147,7 +148,7 @@ export class EstateSearchContainerComponent implements OnInit {
           }));
           
           this.listRealEstateId = result.realEstatePreviewInfoDtoList.map(
-            (estate: EstatePreview) => estate.id
+            (estate: RealEstatePreviewInfo) => estate.id
           );
           
           this.updateViewAndMap();
@@ -161,10 +162,7 @@ export class EstateSearchContainerComponent implements OnInit {
         }
       },
       error: (err) => {
-        if(err?.error.status >= 400 && err?.error.status < 500)
-          this.notifyService.warning(err?.error.description)
-        if(err?.error.status >= 500 && err?.error.status < 600)
-          this.notifyService.error(err?.error.description)
+        this.handleError.showMessageError(err.error)
       }
     })
   }

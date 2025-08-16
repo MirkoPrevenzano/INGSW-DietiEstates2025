@@ -1,8 +1,8 @@
 import { Coordinate } from "./coordinate";
-import { EstatePreview } from "./estatePreview";
+import { RealEstatePreviewInfo } from "./response/support/realEstatePreviewInfo";
 
 export interface CacheEstates {
-    listEstatePreview: EstatePreview[]
+    listEstatePreview: RealEstatePreviewInfo[]
     listCoordinate: Coordinate[]
     listRealEstateId: number[]
 }

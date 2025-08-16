@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RegisterRequest } from '../../model/registerRequest';
+import { AgentCreation } from '../../model/request/agentCreation';
+import { CollaboratorCreation } from '../../model/request/collaboratorCreation';
 
 @Injectable({
   providedIn: 'root'
@@ -25,13 +26,13 @@ export class CreateStaffService {
   * Se la password è sicura e l'username non è già esistente, si genera il nuovo agente
   * altrimenti si invia una response con l'errore evidenziato.
   */
-  saveAgent( newAgent: RegisterRequest)
+  saveAgent( newAgent: AgentCreation)
   {
     const url= this.url+`/${localStorage.getItem("user")}/create-agent`
     return this.http.post(url,newAgent,this.httpOptions)
   }
 
-  saveAdmin( newAdmin: RegisterRequest)
+  saveAdmin( newAdmin: CollaboratorCreation)
   {
     const url= this.url+`/${localStorage.getItem("user")}/create-collaborator`
     return this.http.post(url,newAdmin,this.httpOptions)

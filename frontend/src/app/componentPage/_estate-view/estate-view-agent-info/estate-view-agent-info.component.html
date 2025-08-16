@@ -1,0 +1,43 @@
+<div class="p-6">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+        Estate Agent Contact
+    </h2>
+    
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+        <div class="flex-shrink-0">
+            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-secondary to-white shadow-lg flex items-center justify-center">
+                <i class="fas fa-user-tie text-primary text-6xl md:text-8xl"></i>
+            </div>
+        </div>
+        
+        <div class="flex-grow text-center md:text-left">
+            <div class="mb-4">
+                <h3 class="text-xl  text-primary mb-1">{{agentInfo.surname}} {{agentInfo.name}}</h3>
+            </div>
+            
+            <div class="space-y-3">
+                <div class="flex items-center justify-center md:justify-start">
+                    <i class="fas fa-building mr-3 text-secondary w-5"></i>
+                    <span class="text-primary">
+                        <strong>Agency:</strong>{{agentInfo.agencyName}}
+                    </span>
+                </div>
+                
+                <div class="flex items-center justify-center md:justify-start">
+                    <i class="fas fa-envelope mr-3 text-secondary w-5"></i>
+                    <a href="mailto:{{agentInfo.username}}" 
+                        class="text-blue-600 hover:text-blue-800 transition-colors">
+                        {{agentInfo.username}}
+                    </a>
+                </div>
+                
+                
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+                
+
+

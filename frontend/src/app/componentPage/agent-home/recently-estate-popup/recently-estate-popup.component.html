@@ -4,14 +4,9 @@
   <div *ngIf="recentListings.length > 0; else noListings" class="h-32 overflow-y-auto">
     <div *ngFor="let listing of recentListings"  class="mb-4">
       <div class="flex justify-between items-center  " >
-        <h3 
-          class="text-xl font-bold cursor-pointer text-text hover:underline" 
-          (click)="goToEstateDetail(listing.id)"
-          (keydown)="goToEstateDetail(listing.id)"
-          (keyup)="goToEstateDetail(listing.id)" 
-        >
-          {{ listing.title }}
-        </h3>
+        <a [routerLink]="['/estate', listing.id]" class="text-xl font-bold cursor-pointer text-text hover:underline no-underline">
+          <h3>{{ listing.title }}</h3>
+        </a>
         <span class="bg-white text-text rounded px-2 py-1 text-sm">{{ listing.uploadingDate | date: 'dd MMMM yyyy' }}</span>
       </div>
       <p>{{ truncate(listing.description, 20) }}</p>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Address } from '../../model/address';
-import { EstateDescribe } from '../../model/estateDescribe';
-import { EstateFeatures } from '../../model/estateFeatures';
+import { Address } from '../../model/request/support/address';
+import { RealEstateMainFeatures } from '../../model/request/support/realEstateMainFeatures';
+import { RealEstateBooleanFeatures } from '../../model/request/support/realEstateBooleanFeatures';
 
 
 @Injectable({
@@ -11,23 +11,23 @@ export class EstateDataService {
 
   constructor() { }
   private  address!:Address
-  private  description!:EstateDescribe
+  private  description!:RealEstateMainFeatures
   private  additionalFields: any
-  private  features!: EstateFeatures
+  private  features!: RealEstateBooleanFeatures
 
   getAddress():Address{
     return this.address || {} as Address;
   }
 
-  getDescription():EstateDescribe{
-    return this.description || {} as EstateDescribe;
+  getDescription():RealEstateMainFeatures{
+    return this.description || {} as RealEstateMainFeatures;
   }
 
   getAdditionalFields():any{
     return this.additionalFields || {};
   }
 
-  getFeatures(): EstateFeatures{
+  getFeatures(): RealEstateBooleanFeatures{
     return this.features || {
       heating: false,
       concierge: false,
@@ -38,10 +38,10 @@ export class EstateDataService {
       garden: false,
       swimmingPool: false,
       elevator: false
-    } as EstateFeatures;
+    } as RealEstateBooleanFeatures;
   }
 
-  setFeatures(features: EstateFeatures){
+  setFeatures(features: RealEstateBooleanFeatures){
     this.features = features
   }
 
@@ -49,7 +49,7 @@ export class EstateDataService {
     this.additionalFields = fields
   }
 
-  setDescription(description:EstateDescribe){
+  setDescription(description:RealEstateMainFeatures){
     this.description = description
   }
 

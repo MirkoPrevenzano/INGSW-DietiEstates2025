@@ -9,6 +9,8 @@ import { PasswordChangeControlService } from '../../_service/password-change/pas
 import { ButtonCustomComponent } from '../../componentCustom/button-custom/button-custom.component';
 import { AuthService } from '../../_service/auth/auth.service';
 import { LoginService } from '../../rest-backend/login/login.service';
+import { Authentication } from '../../model/response/authentication';
+import { HandleNotifyService } from '../../_service/handle-notify.service';
 
 @Component({
     selector: 'app-password-change',
@@ -28,7 +30,8 @@ export class PasswordChangeComponent implements OnInit{
       private readonly passwordChangeControlService: PasswordChangeControlService,
       private readonly notify: ToastrService,
       private readonly router: Router,
-      private readonly authService:AuthService
+      private readonly authService:AuthService,
+      private readonly handleError:HandleNotifyService
     ){}
 
     ngOnInit(): void {
@@ -68,11 +71,7 @@ export class PasswordChangeComponent implements OnInit{
         newPassword: this.newPassword
       }).subscribe({
         error: (err) => {
-          console.log(err)
-          if(err?.error.status >= 400 && err?.error.status < 500)
-            this.notify.warning(err?.error.description)
-          if(err?.error.status >= 500 && err?.error.status < 600)
-            this.notify.error(err?.error.description)
+          this.handleError.showMessageError(err.error)
         },
         complete: () => {
           this.notify.success('Success change password');
@@ -100,7 +99,7 @@ export class PasswordChangeComponent implements OnInit{
       password: this.newPassword,
       role: "admin"
     }).subscribe({
-      next: (response) => {
+      next: (response:Authentication) => {
         const token = response.jwtToken;
         this.authService.updateToken(token);
         setTimeout(() => {
@@ -108,10 +107,7 @@ export class PasswordChangeComponent implements OnInit{
         }, 0);
       },
       error: (err) => {
-        if(err?.error.status >= 400 && err?.error.status < 500)
-          this.notify.warning(err?.error.description)
-        if(err?.error.status >= 500 && err?.error.status < 600)
-          this.notify.error(err?.error.description)
+        this.handleError.showMessageError(err.error)
       }
     });
   }

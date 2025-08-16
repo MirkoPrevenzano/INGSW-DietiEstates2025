@@ -3,16 +3,16 @@ import { DescriptionEstatesFormComponent } from '../description-estates-form/des
 import { EstatesFeaturesFormComponent } from '../estates-features-form/estates-features-form.component';
 import { SelectPlaceComponent } from '../select-place/select-place.component';
 import { CommonModule } from '@angular/common';
-import { Address } from '../../../model/address';
-import { EstateDescribe } from '../../../model/estateDescribe';
-import { EstateFeatures } from '../../../model/estateFeatures';
-import { Estate } from '../../../model/estate';
+import { Address } from '../../../model/request/support/address';
+import { RealEstateMainFeatures } from '../../../model/request/support/realEstateMainFeatures';
+import { RealEstateBooleanFeatures } from '../../../model/request/support/realEstateBooleanFeatures';
+import { RealEstateCreation } from '../../../model/request/realEstateCreation';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EstateFactoryService } from '../../../_service/estate-factory/estate-factory.service';
 import { ProgressBarComponent } from '../../../componentCustom/progress-bar/progress-bar.component';
 import { Coordinate } from '../../../model/coordinate';
 import { PoiService } from '../../../_service/map-service/poi-service/poi.service';
-import { EstateLocationFeatures } from '../../../model/estateLocationFeatures';
+import { RealEstateLocationFeatures } from '../../../model/request/support/realEstateLocationFeatures';
 import { Observable, switchMap } from 'rxjs';
 import { UploadPhotoService } from '../../../rest-backend/upload-photo/upload-photo.service';
 import { ToastrService } from 'ngx-toastr';
@@ -20,6 +20,7 @@ import { EstateItemDetailComponent } from '../../_estate-view/estate-item-detail
 import { EstateCreateService } from '../../../rest-backend/estate-create/estate-create.service';
 import { ValidateStepEstateCreateService } from '../../../_service/validate-step-create-estate/validate-step-estate-create.service';
 import { EstateDataService } from '../../../_service/estate-data/estate-data.service';
+import { HandleNotifyService } from '../../../_service/handle-notify.service';
 
 @Component({
   selector: 'app-create-estates',
@@ -41,9 +42,9 @@ export class CreateEstatesComponent implements OnInit{
 
 
   address!: Address
-  description!: EstateDescribe
-  features!: EstateFeatures
-  estate: Estate = {} as Estate
+  description!: RealEstateMainFeatures
+  features!: RealEstateBooleanFeatures
+  estate: RealEstateCreation = {} as RealEstateCreation
   additionalFields: any
   currentStep = 0;
 
@@ -53,7 +54,7 @@ export class CreateEstatesComponent implements OnInit{
   readonly minPhotos = 3
   readonly maxPhotos = 10
 
-  estateLocation: EstateLocationFeatures = {
+  estateLocation: RealEstateLocationFeatures = {
     nearPublicTransport: false,
     nearSchool: false,
     nearPark: false
@@ -75,7 +76,8 @@ export class CreateEstatesComponent implements OnInit{
     private readonly toastrService: ToastrService,
     private readonly createEstateService:EstateCreateService,
     private readonly validateStepService: ValidateStepEstateCreateService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly handleError:HandleNotifyService
 
   ){}
   
@@ -166,7 +168,7 @@ export class CreateEstatesComponent implements OnInit{
     this.estate.realEstateMainFeaturesDto=this.description
   }
 
-  onEstateFeatures(event: EstateFeatures){
+  onEstateFeatures(event: RealEstateBooleanFeatures){
     this.features = event
     this.estateDataService.setFeatures(this.features)
     this.estate.realEstateBooleanFeaturesDto=this.features
@@ -188,10 +190,7 @@ export class CreateEstatesComponent implements OnInit{
         
       },
       error: (err) => {
-        if(err.error.status >= 400 && err.error.status < 500)
-          this.toastrService.warning(err?.error.description)
-        if(err.error.status >= 500 && err.error.status < 600)
-          this.toastrService.error(err?.error.description)
+        this.handleError.showMessageError(err.error)
       }
     });
   }
@@ -201,7 +200,7 @@ export class CreateEstatesComponent implements OnInit{
     this.uploadPhotosService.uploadPhotos(id, this.filePhoto).subscribe({})
   }
 
-  createEstate(): Estate {
+  createEstate(): RealEstateCreation {
     this.estate.addressDto = this.estateDataService.getAddress()
     this.estate.realEstateBooleanFeaturesDto = this.features
     this.estate.realEstateMainFeaturesDto = this.description

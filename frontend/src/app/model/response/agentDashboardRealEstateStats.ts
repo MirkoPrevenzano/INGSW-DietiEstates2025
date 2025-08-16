@@ -1,4 +1,4 @@
-export interface EstateStats{
+export interface AgentDashboardRealEstateStats{
     title: string,
     uploadingDate: Date,
     offersNumber: number,

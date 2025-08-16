@@ -7,9 +7,11 @@ import { GeneralStatsComponent } from './general-stats/general-stats.component';
 import { AgChartsComponent } from '../../componentCustom/ag-charts/ag-charts.component';
 import { DownloadFileService } from '../../_service/download-file/download-file.service';
 import { ChartsConfigService } from '../../_service/charts-config/charts-config.service';
-import { AgentGeneralStats } from '../../model/agentGeneralStats';
+import { AgentStats } from '../../model/response/support/agentStats';
 import { ButtonCustomComponent } from '../../componentCustom/button-custom/button-custom.component';
 import { ToastrService } from 'ngx-toastr';
+import { AgentDashboardPersonalStats } from '../../model/response/agentDashboardPersonalStats';
+import { HandleNotifyService } from '../../_service/handle-notify.service';
 
 @Component({
   selector: 'app-agent-dashboard',
@@ -30,7 +32,7 @@ export class AgentDashboardComponent implements OnInit {
   listingTypePieChartOptions: AgChartOptions = {}
   dropdownOpen = false 
   tableData = []
-  generalStats: AgentGeneralStats = {
+  generalStats: AgentStats = {
     totalUploadedRealEstates: 0,
     totalRentedRealEstates: 0,
     totalSoldRealEstates: 0,
@@ -46,26 +48,23 @@ export class AgentDashboardComponent implements OnInit {
     private readonly agentService: AgentService,
     private readonly downloadFileService: DownloadFileService,
     private readonly chartsConfig: ChartsConfigService,
-    private readonly notifyService: ToastrService
+    private readonly handleError: HandleNotifyService
   ){}
 
   ngOnInit() {
     const user= localStorage.getItem('user')
      if(user)
       this.agentService.agentStats(user).subscribe({
-        next: (response:{agentStats:AgentGeneralStats, estatesPerMonths:number[]})=>{
+        next: (response:AgentDashboardPersonalStats)=>{
           if(response){
-            this.generalStats = response.agentStats
-            this.estatesSoldRentedPerMonth = response.estatesPerMonths
+            this.generalStats = response.agentStatsDto
+            this.estatesSoldRentedPerMonth = response.monthlyDeals
             this.createMonthlySalesChart()
             this.createPieCharts()
           }
         },
         error: (err) => {
-          if(err?.error.status >= 400 && err?.error.status < 500)
-            this.notifyService.warning(err?.error.description)
-          if(err?.error.status >= 500 && err?.error.status < 600)
-            this.notifyService.error(err?.error.description)
+          this.handleError.showMessageError(err.error)
         }
       })    
   }
@@ -113,10 +112,7 @@ export class AgentDashboardComponent implements OnInit {
         this.downloadFileService.downloadFile(blob, `dashboard_${localStorage.getItem('user')}_${this.getActualDate()}.pdf`)
       },
       error: (err) => {
-        if(err?.error.status >= 400 && err?.error.status < 500)
-          this.notifyService.warning(err?.error.description)
-        if(err?.error.status >= 500 && err?.error.status < 600)
-          this.notifyService.error(err?.error.description)
+        this.handleError.showMessageError(err.error)
       }
     })
   }
@@ -128,10 +124,7 @@ export class AgentDashboardComponent implements OnInit {
         this.downloadFileService.downloadFile(blob, `dashboard_${localStorage.getItem('user')}_${this.getActualDate()}.csv`)
       },
       error: (err) => {
-        if(err?.error.status >= 400 && err?.error.status < 500)
-          this.notifyService.warning(err?.error.description)
-        if(err?.error.status >= 500 && err?.error.status < 600)
-          this.notifyService.error(err?.error.description)
+        this.handleError.showMessageError(err.error)
       }
     });
      

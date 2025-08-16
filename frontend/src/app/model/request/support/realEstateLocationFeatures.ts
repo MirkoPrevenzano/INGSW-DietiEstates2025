@@ -1,4 +1,4 @@
-export interface EstateLocationFeatures{
+export interface RealEstateLocationFeatures{
     nearPark: boolean ,
     nearPublicTransport: boolean,
     nearSchool: boolean

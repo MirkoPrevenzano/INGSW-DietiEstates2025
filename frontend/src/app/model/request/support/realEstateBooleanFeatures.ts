@@ -1,4 +1,4 @@
-export interface EstateFeatures{
+export interface RealEstateBooleanFeatures{
     heating: boolean ,
     concierge: boolean ,
     airConditioning: boolean ,

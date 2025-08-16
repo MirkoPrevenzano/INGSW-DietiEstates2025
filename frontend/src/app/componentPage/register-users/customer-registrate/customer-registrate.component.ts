@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RegisterComponent } from '../register/register.component';
 import { RegisterValidationService } from '../../../_service/register-validation/register-validation.service';
 import { RegisterService } from '../../../rest-backend/register/register.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegisterRequest } from '../../../model/registerRequest';
 import { CommonModule } from '@angular/common';
 import { FormFieldComponent } from '../../../componentCustom/form-field/form-field.component';
 import { PasswordFieldComponent } from '../../../componentCustom/password-field/password-field.component';
 import { Router, RouterModule } from '@angular/router';
 import {  ToastrService } from 'ngx-toastr';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ButtonCustomComponent } from '../../../componentCustom/button-custom/button-custom.component';
 import { LoginWithGoogleComponent } from '../../../componentCustom/login-with-google/login-with-google.component';
+import { CustomerRegistration } from '../../../model/request/customerRegistration';
+import { HandleNotifyService } from '../../../_service/handle-notify.service';
 
 @Component({
   selector: 'app-customer-registrate',
@@ -28,6 +28,7 @@ import { LoginWithGoogleComponent } from '../../../componentCustom/login-with-go
   styleUrl: './customer-registrate.component.scss'
 })
 export class CustomerRegistrateComponent extends RegisterComponent{
+  private readonly handleError= inject(HandleNotifyService)
   override title: string="Register";
   constructor(
     private readonly register: RegisterService,
@@ -38,15 +39,10 @@ export class CustomerRegistrateComponent extends RegisterComponent{
     super(registerValidation, notify);
   }
   
-  protected override onRegisterUser(userRequest: RegisterRequest): void {
-    const username = this.registerForm.value.username ?? ''
-   
+  protected override onRegisterUser(userRequest: CustomerRegistration): void {   
     this.register.registrate(userRequest).subscribe({
       error: (err) => {
-        if(err?.error.status >= 400 && err?.error.status < 500)
-          this.notify.warning(err?.error.description)
-        if(err?.error.status >= 500 && err?.error.status < 600)
-          this.notify.error(err?.error.description)
+        this.handleError.showMessageError(err.error)
       },
       complete: ()=>{
         this.router.navigateByUrl('login')

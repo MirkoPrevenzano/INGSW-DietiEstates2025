@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Map,} from 'leaflet';
 import { Coordinate } from '../../model/coordinate';
-import { EstateLocationFeatures } from '../../model/estateLocationFeatures';
+import { RealEstateLocationFeatures } from '../../model/request/support/realEstateLocationFeatures';
 import { MapService } from '../../_service/map-service/map.service';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment.prod';
@@ -21,7 +21,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
   @Input() radius?: number
   @Input() clickable:boolean = false
   @Output() coordinateWithMarker = new EventEmitter<Coordinate>()
-  @Output() nearbyPOI = new EventEmitter<EstateLocationFeatures>()
+  @Output() nearbyPOI = new EventEmitter<RealEstateLocationFeatures>()
   @Output() mapReady = new EventEmitter<Map>();
 
   private readonly geoapifyKey = environment.geoapifyToken;

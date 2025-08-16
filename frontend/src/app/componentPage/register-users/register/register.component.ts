@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RegisterValidationService } from '../../../_service/register-validation/register-validation.service';
-import { RegisterRequest } from '../../../model/registerRequest';
 import { CommonModule } from '@angular/common';
 import { FormFieldComponent } from '../../../componentCustom/form-field/form-field.component';
 import { PasswordValidatorService } from '../../../_service/password-validator/password-validator.service';
@@ -10,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ButtonCustomComponent } from '../../../componentCustom/button-custom/button-custom.component';
 import { LoginWithGoogleComponent } from '../../../componentCustom/login-with-google/login-with-google.component';
+import { CustomerRegistration } from '../../../model/request/customerRegistration';
 
 @Component({
     selector: 'app-register',
@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
       this.notify.warning('Email is not valid')
     }
     else{
-      const userRequest: RegisterRequest ={
+      const userRequest: CustomerRegistration ={
         name:this.registerForm.value.name,
         surname: this.registerForm.value.lastname,
         username: this.registerForm.value.username,
@@ -83,7 +83,7 @@ export class RegisterComponent implements OnInit {
     }   
   }
 
-  protected onRegisterUser(userRequest: RegisterRequest){
+  protected onRegisterUser(userRequest: CustomerRegistration){
     //ereditato
   }
 

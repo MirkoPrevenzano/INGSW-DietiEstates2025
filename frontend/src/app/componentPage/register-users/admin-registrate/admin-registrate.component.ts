@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { RegisterComponent } from '../register/register.component';
-import { RegisterRequest } from '../../../model/registerRequest';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { RegisterValidationService } from '../../../_service/register-validation/register-validation.service';
 import { FormFieldComponent } from '../../../componentCustom/form-field/form-field.component';
@@ -11,6 +10,8 @@ import { Router } from '@angular/router';
 import { ButtonCustomComponent } from '../../../componentCustom/button-custom/button-custom.component';
 import { LoginWithGoogleComponent } from '../../../componentCustom/login-with-google/login-with-google.component';
 import { CreateStaffService } from '../../../rest-backend/create-staff/create-staff.service';
+import { CollaboratorCreation } from '../../../model/request/collaboratorCreation';
+import { HandleNotifyService } from '../../../_service/handle-notify.service';
 
 @Component({
   selector: 'app-admin-registrate',
@@ -28,6 +29,7 @@ import { CreateStaffService } from '../../../rest-backend/create-staff/create-st
 })
 export class AdminRegistrateComponent extends RegisterComponent{
   private readonly createStaffService = inject(CreateStaffService)
+  private readonly handleNotifyService = inject(HandleNotifyService)
   override title: string="Create new admin";
 
   constructor(
@@ -38,13 +40,10 @@ export class AdminRegistrateComponent extends RegisterComponent{
     super(registerValidation, notify);
   }
 
-  protected override onRegisterUser(userRequest: RegisterRequest): void {
+  protected override onRegisterUser(userRequest: CollaboratorCreation): void {
     this.createStaffService.saveAdmin(userRequest).subscribe({
       error: (err) => {
-        if(err?.error.status >= 400 && err?.error.status < 500)
-          this.notify.warning(err?.error.description)
-        if(err?.error.status >= 500 && err?.error.status < 600)
-          this.notify.error(err?.error.description)
+        this.handleNotifyService.showMessageError(err.error);
       },
       complete: ()=>{
         this.notify.success('Admin created successfully')
@@ -60,7 +59,7 @@ export class AdminRegistrateComponent extends RegisterComponent{
     if(this.registerValidation.isEmailInvalid(this.registerForm.value.username))
       this.notify.warning("Email is not valid")
     else{
-      const userRequest: RegisterRequest ={
+      const userRequest: CollaboratorCreation ={
         name:this.registerForm.value.name,
         surname: this.registerForm.value.lastname,
         username: this.registerForm.value.username,

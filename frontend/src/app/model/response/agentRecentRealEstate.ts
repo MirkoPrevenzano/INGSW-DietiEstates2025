@@ -1,4 +1,4 @@
-export interface EstateRecently{
+export interface AgentRecentRealEstate{
     title: string
     description:string
     uploadingDate: Date

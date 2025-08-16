@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { EstateRent } from '../../../model/estateRent';
+import { RealEstateForRentCreation } from '../../../model/request/realEstateForRentCreation';
 
 @Component({
   selector: 'app-rent-estate-view',
@@ -8,6 +8,6 @@ import { EstateRent } from '../../../model/estateRent';
   styleUrl: './rent-estate-view.component.scss'
 })
 export class RentEstateViewComponent {
-  @Input() estate!: EstateRent;
+  @Input() estate!: RealEstateForRentCreation;
   
 }
