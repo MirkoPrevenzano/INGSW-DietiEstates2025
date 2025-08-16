@@ -23,9 +23,11 @@ public class CustomerWelcomeEmailService extends UserWelcomeEmailService
     @Override
     protected String getWelcomeBody(User user) 
     {
-        return  String.format("Ciao %s,\n\nGrazie per esserti registrato nella nostra applicazione!\n" +
-                                    "Inizia subito a cercare l'immobile perfetto per te, e non esitare a contattarci per qualsiasi dubbio o problema.\n\n" +
-                                    "Cordiali Saluti,\nStaff DietiEstates2025.", user.getName());
+        return  String.format("Ciao %s,\n\n" + 
+                              "Grazie per esserti registrato nella nostra applicazione!\n" +
+                              "Inizia subito a cercare l'immobile perfetto per te, e non esitare a contattarci per qualsiasi dubbio o problema.\n\n" +
+                              "Cordiali Saluti,\n" + 
+                              "Staff DietiEstates2025.", user.getName());    
     }
     
 }

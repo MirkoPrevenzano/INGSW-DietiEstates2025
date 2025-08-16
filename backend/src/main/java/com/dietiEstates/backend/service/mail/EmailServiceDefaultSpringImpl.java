@@ -39,7 +39,7 @@ public class EmailServiceDefaultSpringImpl implements EmailService
         } 
         catch (MailException e) 
         {
-            throw new EmailServiceException("Errore durante invio email! " + e.getMessage(), to, subject, e);
+            throw new EmailServiceException(to, subject, e);
         }
     }   
 }

@@ -4,6 +4,8 @@ package com.dietiEstates.backend.repository;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.dietiEstates.backend.model.entity.Administrator;
@@ -13,4 +15,7 @@ import com.dietiEstates.backend.model.entity.Administrator;
 public interface AdministratorRepository extends JpaRepository<Administrator,Long> 
 {
     public Optional<Administrator> findByUsername(String username);
+
+    @Query("SELECT a.agency.name FROM Administrator a WHERE a.id = :adminId")
+    public String findAgencyNameById(@Param("adminId") Long adminId);
 }
