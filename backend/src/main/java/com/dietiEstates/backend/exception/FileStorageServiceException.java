@@ -62,7 +62,7 @@ public class FileStorageServiceException extends RuntimeException
         if (baseMessage != null && !baseMessage.isEmpty()) 
             fullMessage.append(baseMessage);
         else 
-            fullMessage.append("Errore durante il file storing!");
+            fullMessage.append("Errore durante il processo di file storing!");
 
         
         if (fileKey != null) 

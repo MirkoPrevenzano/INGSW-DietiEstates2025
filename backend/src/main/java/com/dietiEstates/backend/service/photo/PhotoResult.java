@@ -7,8 +7,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class PhotoData 
+public class PhotoResult<T> 
 {
-    Object photoValue;
+    T photoValue;
     String contentType;
 }

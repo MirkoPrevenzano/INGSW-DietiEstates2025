@@ -8,6 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.dietiEstates.backend.enums.FileStorageOperation;
+import com.dietiEstates.backend.enums.FileStorageProvider;
 import com.dietiEstates.backend.exception.FileStorageServiceException;
 
 import software.amazon.awssdk.core.ResponseBytes;
@@ -34,12 +36,14 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
 {
     private final S3Client s3Client;
 
+    private final static FileStorageProvider PROVIDER = FileStorageProvider.AMAZON_S3;
+
 	@Value("${aws.bucket.name}")
 	private String bucketName;
 
 
     @Override
-    public void uploadFile(byte[] file, String fileStorageKey, String contentType, String contentDisposition, Map<String, String> photoMetadata) 
+    public void uploadFile(byte[] fileBytes, String fileStorageKey, String contentType, String contentDisposition, Map<String, String> photoMetadata) 
     {
 		PutObjectRequest putObjectRequest = PutObjectRequest.builder()
 															.bucket(bucketName)
@@ -51,13 +55,13 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
 
 		try 
 		{
-			s3Client.putObject(putObjectRequest, RequestBody.fromBytes(file));
+			s3Client.putObject(putObjectRequest, RequestBody.fromBytes(fileBytes));
             log.info("File with key '{}' was uploaded successfully in Amazon S3 bucket '{}'.", fileStorageKey, bucketName);
 		} 
 		catch (SdkException e)
 		{
             log.error("Amazon S3/SDK exception occurred while uploading file with key '{}' in bucket '{}': {}", fileStorageKey, bucketName, e.getMessage());
-            throw new FileStorageServiceException("Failed to upload file in storage: " + fileStorageKey, e);
+            throw new FileStorageServiceException("Failed to upload file in storage", fileStorageKey, (long) fileBytes.length, PROVIDER, FileStorageOperation.UPLOAD, e);
 		}        
     }
 
@@ -70,22 +74,23 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
                                                             .key(fileStorageKey)
                                                             .build();		
 
-        try {
+        try 
+        {
 /*             ResponseInputStream<GetObjectResponse> responseInputStream = s3Client.getObject(getObjectRequest);
             return responseInputStream.readAllBytes(); */
             ResponseBytes<GetObjectResponse> objectBytesAndResponse = s3Client.getObjectAsBytes(getObjectRequest);
             log.info("File with key '{}' was retrieved successfully from the Amazon S3 bucket '{}'", fileStorageKey, bucketName);
             return objectBytesAndResponse.asByteArray();
-        } catch (NoSuchKeyException e) {
+        } 
+        catch (NoSuchKeyException e) 
+        {
             log.error("File with key '{}' not found in Amazon S3 bucket '{}'.", fileStorageKey, bucketName);
-            throw new FileStorageServiceException("File not found in storage: " + fileStorageKey, e);
+            throw new FileStorageServiceException("File not found in storage", fileStorageKey, null, PROVIDER, FileStorageOperation.READ, e);
+
         } catch (SdkException e) {
             log.error("Amazon S3/SDK exception occurred while retrieving file with key '{}' from bucket '{}': {}", fileStorageKey, bucketName, e.getMessage());
-            throw new FileStorageServiceException("Failed to retrieve file from storage: " + fileStorageKey, e);
-        } catch (Exception e) {
-            log.error("Generic exception occurred while retrieving file with key '{}' from bucket '{}': {}", fileStorageKey, bucketName, e.getMessage());
-            throw new FileStorageServiceException("An unexpected error occurred during file download: " + fileStorageKey, e);
-        }
+            throw new FileStorageServiceException("Failed to retrieve file from storage", fileStorageKey, null, PROVIDER, FileStorageOperation.READ, e);
+        } 
     }
 
 
@@ -107,19 +112,19 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
             if (response.contentDisposition() != null) photoMetadata.put("ContentDisposition", (String) response.contentDisposition());
 
             log.info("Metadata for file with key '{}' retrieved successfully from Amazon S3 bucket '{}'.", fileStorageKey, bucketName);
+
             return photoMetadata;
         } 
         catch (NoSuchKeyException e) 
         {
             log.error("File with key '{}' not found in Amazon S3 bucket '{}', while retrieving its metadata.", fileStorageKey, bucketName);
-            throw new FileStorageServiceException("File not found in storage while retrieving its metadata: " + fileStorageKey, e);
-        } catch (SdkException e) {
+            throw new FileStorageServiceException("File not found in storage while retrieving its metadata", fileStorageKey, null, PROVIDER, FileStorageOperation.READ, e);
+        } 
+        catch (SdkException e) 
+        {
             log.error("Amazon S3/SDK exception occurred during metadata retrieval for file with key '{}' from bucket '{}': {}", fileStorageKey, bucketName, e.getMessage());
-            throw new FileStorageServiceException("Failed to retrieve metadata from storage: " + fileStorageKey, e);
-        } catch (Exception e) {
-            log.error("Generic exception occurred during metadata retrieval for file with key '{}' from bucket '{}': {}", fileStorageKey, bucketName, e.getMessage());
-            throw new FileStorageServiceException("An unexpected error occurred during metadata retrieval: " + fileStorageKey, e);
-        }
+            throw new FileStorageServiceException("Failed to retrieve metadata of file from storage", fileStorageKey, null, PROVIDER, FileStorageOperation.READ, e);
+        } 
     }
 
 
@@ -133,19 +138,14 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
         try 
         {
             URL url = s3Client.utilities().getUrl(getUrlRequest);
-            log.info("Generated public URL for file with key '{}' in bucket Amazon S3 bucket '{}': {}", fileStorageKey, bucketName, url.toString());
+            log.info("Public URL for file with key '{}' in bucket Amazon S3 bucket '{}' retrieved successfully: {}", fileStorageKey, bucketName, url.toString());
             return url.toString();
         } 
         catch (SdkException e) 
         {
             log.error("Amazon S3/SDK exception occurred during public URL generation for file with key '{} from bucket '{}': {}", fileStorageKey, bucketName, e.getMessage());
-            throw new FileStorageServiceException("Failed to generate public URL for file: " + fileStorageKey, e);
+            throw new FileStorageServiceException("Failed to generate public URL of file from storage", fileStorageKey, null, PROVIDER, FileStorageOperation.READ, e);
         } 
-        catch (Exception e) 
-        {
-            log.error("Generic exception occurred during public URL generation for file with key '{}' from bucket '{}': {}", fileStorageKey,bucketName, e.getMessage());
-            throw new FileStorageServiceException("An unexpected error occurred during public URL generation: " + fileStorageKey, e);
-        }
     }
     
 
@@ -169,12 +169,7 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
         catch (SdkException e) 
         {
             log.error("Amazon S3/SDK exception occurred during deletion of file with key '{}' in Amazon S3 bucket '{}': {}", fileStorageKey, bucketName, e.getMessage());
-            throw new FileStorageServiceException("Failed to delete file from storage: " + fileStorageKey);
-        } 
-        catch (Exception e) 
-        {
-            log.error("Generic exception occurred during deletion of file with key '{}' from bucket '{}': {}", fileStorageKey,bucketName, e.getMessage());
-            throw new FileStorageServiceException("An unexpected error occurred during file deletion: " + fileStorageKey, e);
+            throw new FileStorageServiceException("Failed to delete file from storage", fileStorageKey, null, PROVIDER, FileStorageOperation.DELETE, e);
         }        
     }
 }

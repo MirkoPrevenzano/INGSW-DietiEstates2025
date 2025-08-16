@@ -34,7 +34,7 @@ import com.dietiEstates.backend.service.AgentService;
 import com.dietiEstates.backend.service.export.ExportingResult;
 import com.dietiEstates.backend.service.export.csv.CsvExportService;
 import com.dietiEstates.backend.service.export.pdf.PdfExportService;
-import com.dietiEstates.backend.service.photo.PhotoData;
+import com.dietiEstates.backend.service.photo.PhotoResult;
 import com.dietiEstates.backend.validator.groups.OnCreate;
 
 import lombok.RequiredArgsConstructor;
@@ -99,7 +99,7 @@ public class AgentController
 
 
     @GetMapping(value = "get-photos2/{realEstateId}")
-    public ResponseEntity<List<PhotoData>> getPhoto2(@PathVariable("realEstateId") Long realEstateId) throws IOException
+    public ResponseEntity<List<PhotoResult<String>>> getPhoto2(@PathVariable("realEstateId") Long realEstateId) throws IOException
     {        
         return ResponseEntity.ok(agentService.getPhoto2(realEstateId));
     }

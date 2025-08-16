@@ -29,7 +29,7 @@ import com.dietiEstates.backend.service.export.ExportingResult;
 import com.dietiEstates.backend.service.export.csv.CsvExportService;
 import com.dietiEstates.backend.service.export.pdf.PdfExportService;
 import com.dietiEstates.backend.service.mock.MockingStatsService;
-import com.dietiEstates.backend.service.photo.PhotoData;
+import com.dietiEstates.backend.service.photo.PhotoResult;
 import com.dietiEstates.backend.service.photo.PhotoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -106,19 +106,19 @@ public class AgentService
     }
 
 
-    public List<PhotoData> getPhoto2(Long realEstateId) throws IOException
+    public List<PhotoResult<String>> getPhoto2(Long realEstateId) throws IOException
     {
         RealEstate realEstate = realEstateRepository.findById(realEstateId)
                                                     .orElseThrow(() -> new UsernameNotFoundException(""));
 
         List<Photo> photos = realEstate.getPhotos();
 
-        List<PhotoData> photosData = new ArrayList<>();
+        List<PhotoResult<String>> photoResults = new ArrayList<>();
         for(Photo photo : photos)
-            photosData.add(photoService.getPhotoAsBase64(photo.getKey()));
+            photoResults.add(photoService.getPhotoAsBase64(photo.getKey()));
 
 
-        return photosData;
+        return photoResults;
     }
 
 

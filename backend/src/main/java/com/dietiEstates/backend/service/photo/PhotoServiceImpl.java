@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.http.ContentDisposition;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,6 +38,8 @@ public class PhotoServiceImpl implements PhotoService
             throw new IllegalArgumentException("Photo format is not supported: " + contentType);
         }
 
+        String contentDisposition = ContentDisposition.inline().build().toString();
+
         String originalFilename = file.getOriginalFilename();
         String fileExtension = "";
         if (originalFilename != null && originalFilename.contains(".")) 
@@ -48,30 +51,26 @@ public class PhotoServiceImpl implements PhotoService
         Map<String,String> photoMetadata = new HashMap<>();
         photoMetadata.put("originalFilename", originalFilename);
 
-        fileStorageService.uploadFile(file.getBytes(), photoKey, contentType, "inline", photoMetadata);
+        fileStorageService.uploadFile(file.getBytes(), photoKey, contentType, contentDisposition, photoMetadata);
 
         return photoKey;        
     }
 
     
     @Override
-    public PhotoData getPhotoAsByteArray(String photokey) 
+    public PhotoResult<byte[]> getPhotoAsByteArray(String photokey) 
     {
         byte[] photoBytes = fileStorageService.getFile(photokey);
 
         Map<String, String> metadata = fileStorageService.getFileMetadata(photokey);
         String contentType = (String) metadata.getOrDefault("ContentType", "application/octet-stream"); 
 
-        //String base64String = Base64.getEncoder().encodeToString(photoBytes);
-
-        return new PhotoData(photoBytes, contentType);
-
-        //return base64String;
+        return new PhotoResult<>(photoBytes, contentType);
     }
 
 
     @Override
-    public PhotoData getPhotoAsBase64(String photoKey) 
+    public PhotoResult<String> getPhotoAsBase64(String photoKey) 
     {   
         byte[] photoBytes = fileStorageService.getFile(photoKey);
 
@@ -80,9 +79,7 @@ public class PhotoServiceImpl implements PhotoService
 
         String base64String = Base64.getEncoder().encodeToString(photoBytes);
 
-        return new PhotoData(base64String, contentType);
-
-        //return base64String;
+        return new PhotoResult<>(base64String, contentType);
     }
 
 
