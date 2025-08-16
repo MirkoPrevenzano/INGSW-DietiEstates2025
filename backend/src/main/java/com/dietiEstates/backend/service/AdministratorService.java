@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.dto.request.CollaboratorCreationDto;
 import com.dietiEstates.backend.dto.request.AgentCreationDto;
-import com.dietiEstates.backend.exception.EmailServiceException;
 import com.dietiEstates.backend.model.entity.Administrator;
 import com.dietiEstates.backend.model.entity.Agent;
 import com.dietiEstates.backend.repository.AdministratorRepository;
@@ -58,23 +57,17 @@ public class AdministratorService
         Administrator collaborator = modelMapper.map(collaboratorCreationDto, Administrator.class);
         
         String plainTextPassword = PasswordGenerationUtil.generateRandomPassword();
-        String hashedPassword = passwordEncoder.encode(plainTextPassword);
+        collaborator.setPassword(plainTextPassword);
 
+        collaboratorWelcomeEmailService.sendWelcomeEmail(collaborator); 
+        randomPasswordEmailService.sendRandomPasswordEmail(collaborator);
+
+        String hashedPassword = passwordEncoder.encode(plainTextPassword);
         collaborator.setPassword(hashedPassword);
         
         administrator.addCollaborator(collaborator);
-        // admin = administratorRepository.save(admin);
 
         log.info("Collaborator was created successfully!");
-
-        try 
-        {
-            collaboratorWelcomeEmailService.sendWelcomeEmail(collaborator);
-        } 
-        catch (EmailServiceException e) 
-        {
-            log.warn(e.getMessage());
-        }
     }
 
 
@@ -99,26 +92,17 @@ public class AdministratorService
 
         String plainTextPassword = PasswordGenerationUtil.generateRandomPassword();
         agent.setPassword(plainTextPassword);
-        try 
-        {
-            agentWelcomeEmailService.sendWelcomeEmail(agent);
-            randomPasswordEmailService.sendRandomPasswordEmail(agent);
-        } 
-        catch (EmailServiceException e) 
-        {
-            log.warn(e.getMessage());
-        }
-        String hashedPassword = passwordEncoder.encode(plainTextPassword);
 
+        agentWelcomeEmailService.sendWelcomeEmail(agent);
+        randomPasswordEmailService.sendRandomPasswordEmail(agent);
+
+        String hashedPassword = passwordEncoder.encode(plainTextPassword);
         agent.setPassword(hashedPassword);
 
         mockingStatsService.mockAgentStats(agent);
 
         administrator.addAgent(agent);
-       // administrator = administratorRepository.save(administrator);
 
-        log.info("Real Estate Agent was created successfully!");
-
-        
+        log.info("Real Estate Agent was created successfully!");        
     }
 }
