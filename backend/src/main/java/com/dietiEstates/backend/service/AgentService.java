@@ -77,7 +77,7 @@ public class AgentService
 
         log.info("Real Estate was created successfully!");
 
-        return realEstateRepository.findLastUploadedByAgent(agent.getUserId());
+        return realEstateRepository.findLastUploadedByAgentId(agent.getUserId());
     }
 
 
@@ -144,7 +144,7 @@ public class AgentService
         Agent agent = agentRepository.findByUsername(username)
                                      .orElseThrow(() -> new UsernameNotFoundException(""));
                                      
-        return realEstateRepository.findAgentRecentRealEstatesByAgent(agent.getUserId(), limit);
+        return realEstateRepository.findAgentRecentRealEstatesByAgentId(agent.getUserId(), limit);
     }
 
 
@@ -153,7 +153,7 @@ public class AgentService
         Agent agent = agentRepository.findByUsername(username)
                                      .orElseThrow(() -> new UsernameNotFoundException(""));
 
-        return realEstateRepository.findAgentDashboardRealEstateStatsByAgent(agent.getUserId(), page);
+        return realEstateRepository.findAgentDashboardRealEstateStatsByAgentId(agent.getUserId(), page);
     }
 
 

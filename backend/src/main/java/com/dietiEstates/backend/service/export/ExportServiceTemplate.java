@@ -81,6 +81,6 @@ public abstract class ExportServiceTemplate
     
     protected List<AgentDashboardRealEstateStatsDto> getAgentDashboardRealEstateStatsByAgent(Agent agent) 
     {
-        return realEstateRepository.findAgentDashboardRealEstateStatsByAgent(agent.getUserId(), null);
+        return realEstateRepository.findAgentDashboardRealEstateStatsByAgentId(agent.getUserId(), null);
     }
 }

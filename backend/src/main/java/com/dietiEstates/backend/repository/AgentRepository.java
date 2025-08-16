@@ -16,6 +16,8 @@ public interface AgentRepository extends JpaRepository<Agent,Long>
 {
     public Optional<Agent> findByUsername(String username);
 
-   @Query("SELECT a.administrator.agency.agencyName FROM Agent a WHERE a.id = :agentId")
+   @Query("SELECT a.administrator.agency.agencyName " +
+          "FROM Agent a " +
+          "WHERE a.id = :agentId")
     public String findAgencyNameById(@Param("agentId") Long agentId);
 }
