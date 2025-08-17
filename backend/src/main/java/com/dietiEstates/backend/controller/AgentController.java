@@ -1,4 +1,105 @@
 
+
+package com.dietiEstates.backend.controller;
+
+import java.io.IOException;
+import java.util.List;
+
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import com.dietiEstates.backend.dto.request.AgentCreationDto;
+import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
+import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDto;
+import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDto;
+import com.dietiEstates.backend.service.AgentService;
+import com.dietiEstates.backend.service.export.ExportingResult;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+
+@RestController
+@RequestMapping(path = "/agents")
+@RequiredArgsConstructor
+@Validated
+@Slf4j
+public class AgentController 
+{
+    private final AgentService agentService;
+
+
+    @PostMapping
+    public ResponseEntity<Void> createAgent(@PathVariable String username, @RequestBody AgentCreationDto agentCreationDto) 
+    {
+        agentService.createAgent(username, agentCreationDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+   
+    @GetMapping(path = "/recent-real-estates/{limit}")
+    public ResponseEntity<List<AgentRecentRealEstateDto>> getAgentRecentRealEstates(@PathVariable("username") String username, @PathVariable("limit") Integer limit) 
+    {
+        List<AgentRecentRealEstateDto> agentRecentRealEstateDtos = agentService.getAgentRecentRealEstates(username, limit);
+        return ResponseEntity.status(HttpStatus.OK).body(agentRecentRealEstateDtos);
+    }
+
+    @GetMapping(value = "/dashboard/csv-report")
+    public ResponseEntity<byte[]> exportCsvReport(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
+    {
+        ExportingResult exportingResult = agentService.exportCsvReport(username);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(exportingResult.getContentType());
+        headers.setContentDisposition(ContentDisposition.attachment().filename(exportingResult.getFilename()).build());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                             .headers(headers)
+                             .body(exportingResult.getExportingBytes());
+    }
+
+    @GetMapping(value = "/dashboard/pdf-report")
+    public ResponseEntity<byte[]> exportPdfReport(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
+    {
+        ExportingResult exportingResult = agentService.exportPdfReport(username);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(exportingResult.getContentType());
+        headers.setContentDisposition(ContentDisposition.attachment().filename(exportingResult.getFilename()).build());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                             .headers(headers)
+                             .body(exportingResult.getExportingBytes());
+    }
+
+    @GetMapping(value = "/dashboard/personal-stats")
+    public ResponseEntity<AgentDashboardPersonalStatsDto> getAgentDashboardPersonalStats(@PathVariable("username") String username) 
+    {
+        AgentDashboardPersonalStatsDto agentDashboardPersonalStatsDto = agentService.getAgentDashboardPersonalStats(username);
+        return ResponseEntity.ok().body(agentDashboardPersonalStatsDto);
+    }
+
+    @GetMapping(value = "/dashboard/real-estate-stats/{limit}")
+    public ResponseEntity<List<AgentDashboardRealEstateStatsDto>> getAgentDashboardRealEstateStats(@PathVariable("username") String username, 
+                                                   @PathVariable("page") Integer page,
+                                                   @PathVariable("limit") Integer limit) 
+    {
+        List<AgentDashboardRealEstateStatsDto> realEstateStatsDTOs = agentService.getAgentDashboardRealEstateStats(username,PageRequest.of(page, limit));
+        
+        return ResponseEntity.ok().body(realEstateStatsDTOs);
+    }
+}
+
+
+/* 
 package com.dietiEstates.backend.controller;
 
 import java.io.IOException;
@@ -18,15 +119,18 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dietiEstates.backend.dto.request.AgentCreationDto;
 import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
 import com.dietiEstates.backend.dto.request.RealEstateForRentCreationDto;
 import com.dietiEstates.backend.dto.request.RealEstateForSaleCreationDto;
+import com.dietiEstates.backend.dto.request.UpdatePasswordDto;
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
 import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDto;
 import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDto;
@@ -52,9 +156,8 @@ public class AgentController
     private final PdfExportService pdfExportService;
     private final CsvExportService csvExportService;
 
-    
 
-/*     @PostMapping(path = "{username}/create-real-estate")
+    @PostMapping(path = "{username}/create-real-estate")
     public ResponseEntity<Long> createRealEstate(@PathVariable() String username, @Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateCreationDto realEstateCreationDto) 
     {
         if (realEstateCreationDto instanceof RealEstateForSaleCreationDto) 
@@ -102,7 +205,7 @@ public class AgentController
     public ResponseEntity<List<PhotoResult<String>>> getPhoto2(@PathVariable("realEstateId") Long realEstateId) throws IOException
     {        
         return ResponseEntity.ok(agentService.getPhoto2(realEstateId));
-    } */
+    }
    
    
     @GetMapping(path = "{username}/recent-real-estates/{limit}")
@@ -163,4 +266,4 @@ public class AgentController
         
         return ResponseEntity.ok().body(realEstateStatsDTOs);
     }
-}
+} */

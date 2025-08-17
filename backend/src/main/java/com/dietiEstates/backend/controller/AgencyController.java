@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.dietiEstates.backend.dto.request.AgencyRegistrationDto;
 import com.dietiEstates.backend.service.AgencyService;
@@ -16,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @RestController
-@RequestMapping(path = "/agency")
+@RequestMapping(path = "/agencies")
 @RequiredArgsConstructor
 @Slf4j
 public class AgencyController
@@ -24,7 +23,7 @@ public class AgencyController
     private final AgencyService agencyService;
     
 
-    @PreAuthorize("sd")
+    //@PreAuthorize("sd")
     @PostMapping
     public ResponseEntity<Void> createAgency(@RequestBody AgencyRegistrationDto aagencyRegistrationDto) 
     {
