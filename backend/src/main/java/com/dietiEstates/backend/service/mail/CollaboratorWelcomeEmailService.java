@@ -64,12 +64,12 @@ public class CollaboratorWelcomeEmailService extends AgentAndCollaboratorWelcome
                              "Sei stato registrato nella nostra applicazione in ruolo di COLLABORATORE DELL'AMMINISTRATORE dell'agenzia '%s'.\n" +
                              "Inizia subito a gestire l'agenzia controllando l'operato dei tuoi agenti immobiliari, e non esitare a contattarci per qualsiasi dubbio o problema.\n\n" +
                              "Cordiali Saluti,\n" + 
-                             "Staff DietiEstates2025.", user.getName(), getAgencyName(user.getUserId()));
+                             "Staff DietiEstates2025.", user.getName(), getAgencyName(user.getUsername()));
     }
 
     @Override
-    protected String getAgencyName(Long id) 
+    protected String getAgencyName(String username) 
     {
-        return administratorRepository.findAgencyNameById(id);
+        return administratorRepository.findAgencyNameByUsername(username);
     }
 }

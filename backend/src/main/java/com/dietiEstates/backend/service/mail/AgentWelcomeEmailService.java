@@ -65,12 +65,14 @@ public class AgentWelcomeEmailService extends AgentAndCollaboratorWelcomeEmailSe
                              "Sei stato registrato nella nostra applicazione in ruolo di AGENTE IMMOBILIARE dell'agenzia '%s'.\n" +
                              "Inizia subito a caricare e gestire i tuoi annunci immobiliari, e non esitare a contattarci per qualsiasi dubbio o problema.\n\n" +
                              "Cordiali Saluti,\n" + 
-                             "Staff DietiEstates2025.", user.getName(), getAgencyName(user.getUserId()));
+                             "Staff DietiEstates2025.", user.getName(), getAgencyName(user.getUsername()));
     }
 
     @Override
-    protected String getAgencyName(Long id) 
+    protected String getAgencyName(String username) 
     {
-        return agentRepository.findAgencyNameById(id);
+        String agencyname = agentRepository.findAgencyNameByUsername(username);
+        log.info("\n\n\n\n {} \b\b\b", agencyname); 
+        return agentRepository.findAgencyNameByUsername(username);
     }
 }

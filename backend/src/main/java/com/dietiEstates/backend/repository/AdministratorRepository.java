@@ -18,6 +18,6 @@ public interface AdministratorRepository extends JpaRepository<Administrator,Lon
 
     @Query("SELECT a.agency.agencyName " +
            "FROM Administrator a " + 
-           "WHERE a.id = :adminId")
-    public String findAgencyNameById(@Param("adminId") Long adminId);
+           "WHERE a.username = :username")
+    public String findAgencyNameByUsername(@Param("username") String username);
 }

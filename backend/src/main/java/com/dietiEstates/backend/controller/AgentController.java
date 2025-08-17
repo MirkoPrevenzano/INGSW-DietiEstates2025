@@ -6,11 +6,14 @@ import java.io.IOException;
 import java.util.List;
 
 import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,9 +42,11 @@ public class AgentController
 
 
     @PostMapping
-    public ResponseEntity<Void> createAgent(@PathVariable String username, @RequestBody AgentCreationDto agentCreationDto) 
+    public ResponseEntity<Void> createAgent(@RequestBody AgentCreationDto agentCreationDto, Authentication authentication) 
     {
-        agentService.createAgent(username, agentCreationDto);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        agentService.createAgent(userDetails.getUsername(), agentCreationDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
    

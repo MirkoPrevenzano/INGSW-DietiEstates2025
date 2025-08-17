@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,10 +46,12 @@ public class RealEstateController
 
 
     @PostMapping
-    public ResponseEntity<Long> createRealEstate(@PathVariable() String username, @Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateCreationDto realEstateCreationDto) 
+    public ResponseEntity<Long> createRealEstate(@Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateCreationDto realEstateCreationDto, Authentication authentication) 
     {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        
         return ResponseEntity.status(HttpStatus.CREATED)
-                             .body(realEstateService.createRealEstate(username, realEstateCreationDto));
+                             .body(realEstateService.createRealEstate(userDetails.getUsername(), realEstateCreationDto));
                                  
     }
 

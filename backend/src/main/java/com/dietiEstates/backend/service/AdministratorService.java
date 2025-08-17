@@ -49,9 +49,6 @@ public class AdministratorService
         String plainTextPassword = PasswordGenerationUtil.generateRandomPassword();
         collaborator.setPassword(plainTextPassword);
 
-        collaboratorWelcomeEmailService.sendWelcomeEmail(collaborator); 
-        randomPasswordEmailService.sendRandomPasswordEmail(collaborator);
-
         String hashedPassword = passwordEncoder.encode(plainTextPassword);
         collaborator.setPassword(hashedPassword);
         
@@ -59,7 +56,12 @@ public class AdministratorService
         
         administrator.addCollaborator(collaborator);
 
+        administratorRepository.flush();
+
         log.info("Collaborator was created successfully!");
+
+        collaboratorWelcomeEmailService.sendWelcomeEmail(collaborator); 
+        randomPasswordEmailService.sendRandomPasswordEmail(collaborator, plainTextPassword);
     }
 }
 

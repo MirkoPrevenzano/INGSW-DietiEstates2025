@@ -52,6 +52,12 @@ public class AgencyService
 
         log.info("Agency was created successfully!");
 
-        agencyRepository.save(agency);
+        Agency agency2 = agencyRepository.save(agency);
+
+        Administrator administrator = agency2.getAdministrators().get(0);
+
+        log.info(administrator.toString());
+        String agencyname = administratorRepository.findAgencyNameByUsername(administrator.getUsername());
+        log.info(agencyname);
     }
 }

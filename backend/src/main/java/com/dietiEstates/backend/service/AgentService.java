@@ -69,8 +69,8 @@ public class AgentService
         String plainTextPassword = PasswordGenerationUtil.generateRandomPassword();
         agent.setPassword(plainTextPassword);
 
-        agentWelcomeEmailService.sendWelcomeEmail(agent);
-        rememberRandomPasswordEmailService.sendRandomPasswordEmail(agent);
+/*         agentWelcomeEmailService.sendWelcomeEmail(agent);
+        rememberRandomPasswordEmailService.sendRandomPasswordEmail(agent); */
 
         String hashedPassword = passwordEncoder.encode(plainTextPassword);
         agent.setPassword(hashedPassword);
@@ -79,7 +79,12 @@ public class AgentService
 
         administrator.addAgent(agent);
 
+        administratorRepository.flush();
+
         log.info("Real Estate Agent was created successfully!");        
+
+        agentWelcomeEmailService.sendWelcomeEmail(agent);
+        rememberRandomPasswordEmailService.sendRandomPasswordEmail(agent, plainTextPassword);
     }
 
 

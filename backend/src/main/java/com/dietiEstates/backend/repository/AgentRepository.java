@@ -18,6 +18,6 @@ public interface AgentRepository extends JpaRepository<Agent,Long>
 
    @Query("SELECT a.administrator.agency.agencyName " +
           "FROM Agent a " +
-          "WHERE a.id = :agentId")
-    public String findAgencyNameById(@Param("agentId") Long agentId);
+          "WHERE a.username = :username")
+    public String findAgencyNameByUsername(@Param("username") String username);
 }

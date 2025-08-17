@@ -154,7 +154,10 @@ public class RealEstateService
                                                     .orElseThrow(() -> new IllegalArgumentException("Immobile non trovato con ID: " + realEstateId));
         
         Agent agent = realEstate.getAgent();
+        String agencyName = agentRepository.findAgencyNameByUsername(agent.getUsername());
+
         AgentPublicInfoDto agentPublicInfoDto = modelMapper.map(agent, AgentPublicInfoDto.class);    
+        agentPublicInfoDto.setAgencyName(agencyName);
 
         RealEstateCreationDtoMapper realEstateCreationDtoMapper = realEstateMapperResolver.getMapper(realEstate);
         RealEstateCreationDto realEstateCreationDto = realEstateCreationDtoMapper.toDto(realEstate);
