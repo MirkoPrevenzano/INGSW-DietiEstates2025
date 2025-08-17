@@ -28,22 +28,22 @@ public class AgencyService
     
 
     @Transactional
-    public void createAgency(AgencyRegistrationDto aagencyRegistrationDto) 
+    public void createAgency(AgencyRegistrationDto agencyRegistrationDto) 
     {
-        if(agencyRepository.findByBusinessNameOrVatNumber(aagencyRegistrationDto.getBusinessName(), aagencyRegistrationDto.getVatNumber()).isPresent())
+        if(agencyRepository.findByBusinessNameOrVatNumber(agencyRegistrationDto.getBusinessName(), agencyRegistrationDto.getVatNumber()).isPresent())
         {
             log.error("This agency is already present!");
             throw new IllegalArgumentException("This agency is already present!");
         }
 
-        if(administratorRepository.findByUsername(aagencyRegistrationDto.getUsername()).isPresent())
+        if(administratorRepository.findByUsername(agencyRegistrationDto.getUsername()).isPresent())
         {
             log.error("This username is already present!");
             throw new IllegalArgumentException("This username is already present!");
         }
 
-        Agency agency = modelMapper.map(aagencyRegistrationDto, Agency.class);
-        Administrator admin = modelMapper.map(aagencyRegistrationDto, Administrator.class);
+        Agency agency = modelMapper.map(agencyRegistrationDto, Agency.class);
+        Administrator admin = modelMapper.map(agencyRegistrationDto, Administrator.class);
         
         String hashedPassword = passwordEncoder.encode(admin.getPassword());
         admin.setPassword(hashedPassword);

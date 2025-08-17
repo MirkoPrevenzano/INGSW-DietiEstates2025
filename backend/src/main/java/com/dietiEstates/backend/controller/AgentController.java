@@ -54,7 +54,7 @@ public class AgentController
 
     
 
-    @PostMapping(path = "{username}/create-real-estate")
+/*     @PostMapping(path = "{username}/create-real-estate")
     public ResponseEntity<Long> createRealEstate(@PathVariable() String username, @Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateCreationDto realEstateCreationDto) 
     {
         if (realEstateCreationDto instanceof RealEstateForSaleCreationDto) 
@@ -102,7 +102,7 @@ public class AgentController
     public ResponseEntity<List<PhotoResult<String>>> getPhoto2(@PathVariable("realEstateId") Long realEstateId) throws IOException
     {        
         return ResponseEntity.ok(agentService.getPhoto2(realEstateId));
-    }
+    } */
    
    
     @GetMapping(path = "{username}/recent-real-estates/{limit}")
@@ -119,7 +119,7 @@ public class AgentController
     @GetMapping(value = "/{username}/exportCSV2")
     public ResponseEntity<byte[]> exportToCSV(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {
-        ExportingResult exportingResult = agentService.exportToCsv(username);
+        ExportingResult exportingResult = agentService.exportCsvReport(username);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(exportingResult.getContentType());
@@ -134,7 +134,7 @@ public class AgentController
     @GetMapping(value = "/{username}/exportPDF2")
     public ResponseEntity<byte[]> exportToPDF(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
     {
-        ExportingResult exportingResult = agentService.exportToPdf(username);
+        ExportingResult exportingResult = agentService.exportPdfReport(username);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(exportingResult.getContentType());

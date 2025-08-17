@@ -5,11 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.dto.request.CustomerRegistrationDto;
-import com.dietiEstates.backend.exception.EmailServiceException;
 import com.dietiEstates.backend.model.entity.Customer;
 import com.dietiEstates.backend.repository.CustomerRepository;
 import com.dietiEstates.backend.service.mail.CustomerWelcomeEmailService;
-import org.modelmapper.MappingException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -33,7 +31,7 @@ public class CustomerService
 
     
     @Transactional
-    public void customerRegistration(CustomerRegistrationDto customerRegistrationDto) throws IllegalArgumentException, MappingException
+    public void customerRegistration(CustomerRegistrationDto customerRegistrationDto) throws IllegalArgumentException
     {
         if(customerRepository.findByUsername(customerRegistrationDto.getUsername()).isPresent())
         {
@@ -47,18 +45,9 @@ public class CustomerService
         customer = customerRepository.save(customer);
 
         log.info("Customer was registrated successfully!");
-
-        try 
-        {
-            customerWelcomeEmailService.sendWelcomeEmail(customer);
-        } 
-        catch (EmailServiceException e) 
-        {
-            log.warn(e.getMessage());
-        }
+        
+        customerWelcomeEmailService.sendWelcomeEmail(customer);
     }
-
-            
 
 
 
@@ -82,10 +71,6 @@ public class CustomerService
         log.info("Utente non trovato, creazione di un nuovo utente per l'email: {}", email);
         return generateCustomerAPI(email, reqUser);
     }
-
-    
-
-        
 
     /*
     *Dal payload google ottengo diverse informazioni, che vado ad inserire nell'oggetto che si sta creando 

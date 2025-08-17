@@ -38,13 +38,13 @@ public class AdministratorController
     }
 
 
-    @PostMapping(path = "/{username}/create-agent")
+/*     @PostMapping(path = "/{username}/create-agent")
     public ResponseEntity<Void> createAgent(@PathVariable String username, @RequestBody AgentCreationDto agentCreationDto) 
     {
         administratorService.createAgent(username, agentCreationDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-    
+     */
     
     @PutMapping(path = "/{username}/update-password")
     public ResponseEntity<Void> updatePassword(@PathVariable String username, @RequestBody UpdatePasswordDto updatePasswordDto) 
