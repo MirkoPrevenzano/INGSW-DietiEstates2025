@@ -56,11 +56,13 @@ public class RealEstateController
     }
 
     @PostMapping(value = "/{realEstateId}/photos", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Void> uploadPhotos(@PathVariable("username") String username, 
+    public ResponseEntity<Void> uploadPhotos(Authentication authentication,
                                               @RequestParam("photos") MultipartFile[] file, 
                                               @PathVariable("realEstateId") Long realEstateId) throws IOException
     {
-        realEstateService.uploadPhotos(username, file, realEstateId);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        realEstateService.uploadPhotos(userDetails.getUsername(), file, realEstateId);
         return ResponseEntity.ok().build();            
     }
 

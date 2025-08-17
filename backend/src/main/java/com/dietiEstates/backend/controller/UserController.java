@@ -3,6 +3,8 @@ package com.dietiEstates.backend.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -26,9 +28,11 @@ public class UserController
 
     
     @PutMapping(path = "/password")
-    public ResponseEntity<Void> updatePassword(@PathVariable String username, @RequestBody UpdatePasswordDto updatePasswordDto) 
+    public ResponseEntity<Void> updatePassword(@RequestBody UpdatePasswordDto updatePasswordDto, Authentication authentication) 
     {
-        userService.updatePassword(username, updatePasswordDto);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        userService.updatePassword(userDetails.getUsername(), updatePasswordDto);
         return ResponseEntity.status(HttpStatus.OK).build();
     }   
 }

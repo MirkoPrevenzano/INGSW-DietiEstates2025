@@ -5,9 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.dietiEstates.backend.dto.request.CollaboratorCreationDto;
 import com.dietiEstates.backend.service.AdministratorService;
@@ -25,9 +26,11 @@ public class AdministratorController
 
 
     @PostMapping(path = "/collaborators")
-    public ResponseEntity<Void> createCollaborator(@PathVariable String username, @RequestBody CollaboratorCreationDto collaboratorCreationDto) 
+    public ResponseEntity<Void> createCollaborator(@RequestBody CollaboratorCreationDto collaboratorCreationDto, Authentication authentication) 
     {
-        administratorService.createCollaborator(username, collaboratorCreationDto);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        administratorService.createCollaborator(userDetails.getUsername(), collaboratorCreationDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

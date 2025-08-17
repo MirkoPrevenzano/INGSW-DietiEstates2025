@@ -51,16 +51,20 @@ public class AgentController
     }
    
     @GetMapping(path = "/recent-real-estates/{limit}")
-    public ResponseEntity<List<AgentRecentRealEstateDto>> getAgentRecentRealEstates(@PathVariable("username") String username, @PathVariable("limit") Integer limit) 
+    public ResponseEntity<List<AgentRecentRealEstateDto>> getAgentRecentRealEstates(@PathVariable("limit") Integer limit, Authentication authentication) 
     {
-        List<AgentRecentRealEstateDto> agentRecentRealEstateDtos = agentService.getAgentRecentRealEstates(username, limit);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        List<AgentRecentRealEstateDto> agentRecentRealEstateDtos = agentService.getAgentRecentRealEstates(userDetails.getUsername(), limit);
         return ResponseEntity.status(HttpStatus.OK).body(agentRecentRealEstateDtos);
     }
 
     @GetMapping(value = "/dashboard/csv-report")
-    public ResponseEntity<byte[]> exportCsvReport(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
+    public ResponseEntity<byte[]> exportCsvReport(Authentication authentication) throws IOException 
     {
-        ExportingResult exportingResult = agentService.exportCsvReport(username);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        ExportingResult exportingResult = agentService.exportCsvReport(userDetails.getUsername());
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(exportingResult.getContentType());
@@ -72,9 +76,11 @@ public class AgentController
     }
 
     @GetMapping(value = "/dashboard/pdf-report")
-    public ResponseEntity<byte[]> exportPdfReport(@PathVariable("username") String username, HttpServletResponse response) throws IOException 
+    public ResponseEntity<byte[]> exportPdfReport(Authentication authentication) throws IOException 
     {
-        ExportingResult exportingResult = agentService.exportPdfReport(username);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        ExportingResult exportingResult = agentService.exportPdfReport(userDetails.getUsername());
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(exportingResult.getContentType());
@@ -86,19 +92,22 @@ public class AgentController
     }
 
     @GetMapping(value = "/dashboard/personal-stats")
-    public ResponseEntity<AgentDashboardPersonalStatsDto> getAgentDashboardPersonalStats(@PathVariable("username") String username) 
+    public ResponseEntity<AgentDashboardPersonalStatsDto> getAgentDashboardPersonalStats(Authentication authentication) 
     {
-        AgentDashboardPersonalStatsDto agentDashboardPersonalStatsDto = agentService.getAgentDashboardPersonalStats(username);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        AgentDashboardPersonalStatsDto agentDashboardPersonalStatsDto = agentService.getAgentDashboardPersonalStats(userDetails.getUsername());
         return ResponseEntity.ok().body(agentDashboardPersonalStatsDto);
     }
 
     @GetMapping(value = "/dashboard/real-estate-stats/{limit}")
-    public ResponseEntity<List<AgentDashboardRealEstateStatsDto>> getAgentDashboardRealEstateStats(@PathVariable("username") String username, 
+    public ResponseEntity<List<AgentDashboardRealEstateStatsDto>> getAgentDashboardRealEstateStats(Authentication authentication, 
                                                    @PathVariable("page") Integer page,
                                                    @PathVariable("limit") Integer limit) 
     {
-        List<AgentDashboardRealEstateStatsDto> realEstateStatsDTOs = agentService.getAgentDashboardRealEstateStats(username,PageRequest.of(page, limit));
-        
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        List<AgentDashboardRealEstateStatsDto> realEstateStatsDTOs = agentService.getAgentDashboardRealEstateStats(userDetails.getUsername(), PageRequest.of(page, limit));
         return ResponseEntity.ok().body(realEstateStatsDTOs);
     }
 }
