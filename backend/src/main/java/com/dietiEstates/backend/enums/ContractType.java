@@ -46,13 +46,13 @@ public enum ContractType
 
 package com.dietiEstates.backend.enums;
 
-import com.dietiEstates.backend.enums.common.StringValueEnum;
+import com.dietiEstates.backend.enums.common.JsonStringValueEnum;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 
-public enum ContractType implements StringValueEnum
+public enum ContractType implements JsonStringValueEnum
 {
     FOR_SALE("For Sale"),
     FOR_RENT("For Rent");
@@ -77,6 +77,6 @@ public enum ContractType implements StringValueEnum
     @JsonCreator
     static public ContractType fromValue(String value) 
     {
-        return StringValueEnum.fromValue(ContractType.class, value);
+        return JsonStringValueEnum.fromValue(ContractType.class, value);
     }   
 }

@@ -49,13 +49,13 @@ public enum NotaryDeedState
 
 package com.dietiEstates.backend.enums;
 
-import com.dietiEstates.backend.enums.common.StringValueEnum;
+import com.dietiEstates.backend.enums.common.JsonStringValueEnum;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 
-public enum NotaryDeedState implements StringValueEnum
+public enum NotaryDeedState implements JsonStringValueEnum
 {
     FREE("Free"),
     OCCUPIED("Occupied"),
@@ -82,6 +82,6 @@ public enum NotaryDeedState implements StringValueEnum
     @JsonCreator
     static public NotaryDeedState fromValue(String value) 
     {
-        return StringValueEnum.fromValue(NotaryDeedState.class, value);
+        return JsonStringValueEnum.fromValue(NotaryDeedState.class, value);
     }   
 }

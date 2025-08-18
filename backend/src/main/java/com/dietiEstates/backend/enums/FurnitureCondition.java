@@ -47,13 +47,13 @@ public enum FurnitureCondition
 
 package com.dietiEstates.backend.enums;
 
-import com.dietiEstates.backend.enums.common.StringValueEnum;
+import com.dietiEstates.backend.enums.common.JsonStringValueEnum;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 
-public enum FurnitureCondition implements StringValueEnum
+public enum FurnitureCondition implements JsonStringValueEnum
 {
     NOT_FOURNISHED("Not fournished"), 
     PARTIALLY_FOURNISHED("Partially fournished"), 
@@ -80,6 +80,6 @@ public enum FurnitureCondition implements StringValueEnum
     @JsonCreator
     static public FurnitureCondition fromValue(String value) 
     {
-        return StringValueEnum.fromValue(FurnitureCondition.class, value);
+        return JsonStringValueEnum.fromValue(FurnitureCondition.class, value);
     }   
 }

@@ -43,10 +43,10 @@ public enum Role
 
 package com.dietiEstates.backend.enums;
 
-import com.dietiEstates.backend.enums.common.StringValueEnum;
+import com.dietiEstates.backend.enums.common.JsonStringValueEnum;
 
 
-public enum Role implements StringValueEnum
+public enum Role implements JsonStringValueEnum
 {
     ROLE_CUSTOMER("Customer"),
     ROLE_AGENT("Agent"),
@@ -72,6 +72,6 @@ public enum Role implements StringValueEnum
 
     static public Role fromValue(String value) 
     {
-        return StringValueEnum.fromValue(Role.class, value);
+        return JsonStringValueEnum.fromValue(Role.class, value);
     }   
 }

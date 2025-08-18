@@ -2,7 +2,8 @@
 package com.dietiEstates.backend.service.export.pdf;
 
 import java.awt.Color;
-import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
+// import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -70,22 +71,22 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
     protected Object initializeWriter() throws Exception 
     {
         Document document = new Document(PageSize.A4);
-        //ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        FileOutputStream fileOutputStream = new FileOutputStream("ooooooooo.pdf");
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        //FileOutputStream fileOutputStream = new FileOutputStream("ooooooooo.pdf");
 
-        //PdfWriter writer = PdfWriter.getInstance(document, byteArrayOutputStream);
-        PdfWriter writer = PdfWriter.getInstance(document, fileOutputStream);
+        PdfWriter writer = PdfWriter.getInstance(document, byteArrayOutputStream);
+        //PdfWriter writer = PdfWriter.getInstance(document, fileOutputStream);
         
         
         writer.setPageEvent(new PdfPageEventHelperImpl());
         
         document.open();
         
-        // Crea gli stili una sola volta e li passa tramite il wrapper
+        // Creo gli stili una sola volta e li passo tramite il wrapper
         PdfStyleConfig styleConfig = createStyleConfig();
         
-        return new PdfWriterWrapper(document, writer, styleConfig, fileOutputStream); 
-        //return new PdfWriterWrapper(document, writer, styleConfig, byteArrayOutputStream); 
+        //return new PdfWriterWrapper(document, writer, styleConfig, fileOutputStream); 
+        return new PdfWriterWrapper(document, writer, styleConfig, byteArrayOutputStream); 
     }
 
     @Override
@@ -192,8 +193,8 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
     protected byte[] finalizeWriter(Object writer) throws Exception {
         PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
         pdfWrapper.getDocument().close();
-        // return ((ByteArrayOutputStream) pdfWrapper.getOutputStream()).toByteArray();
-        return null;
+        return ((ByteArrayOutputStream) pdfWrapper.getOutputStream()).toByteArray();
+        //return null;
     }
 
     @Override

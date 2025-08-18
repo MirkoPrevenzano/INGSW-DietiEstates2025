@@ -53,13 +53,13 @@ public enum PropertyCondition
 
 package com.dietiEstates.backend.enums;
 
-import com.dietiEstates.backend.enums.common.StringValueEnum;
+import com.dietiEstates.backend.enums.common.JsonStringValueEnum;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 
-public enum PropertyCondition implements StringValueEnum
+public enum PropertyCondition implements JsonStringValueEnum
 {
     UNDER_CONSTRUCTION("Under construction"), 
     NEW("New"), 
@@ -90,6 +90,6 @@ public enum PropertyCondition implements StringValueEnum
     @JsonCreator
     static public PropertyCondition fromValue(String value) 
     {
-        return StringValueEnum.fromValue(PropertyCondition.class, value);
+        return JsonStringValueEnum.fromValue(PropertyCondition.class, value);
     }   
 }

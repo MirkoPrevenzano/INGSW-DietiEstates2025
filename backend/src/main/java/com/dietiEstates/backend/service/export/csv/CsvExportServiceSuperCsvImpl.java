@@ -169,8 +169,7 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
         String csvContent = csvWriterWrapper.getStringWriter().toString();
 
         return csvContent.getBytes();
-        // csvWriter.close();               
-
+        
         //return null;
     }
 

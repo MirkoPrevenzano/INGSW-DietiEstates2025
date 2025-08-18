@@ -4,11 +4,11 @@ package com.dietiEstates.backend.enums.common;
 import java.util.Arrays;
 
 
-public interface StringValueEnum 
+public interface JsonStringValueEnum 
 {
     public String getValue();
 
-    public static <E extends Enum<E> & StringValueEnum> E fromValue(Class<E> enumType, String value) 
+    public static <E extends Enum<E> & JsonStringValueEnum> E fromValue(Class<E> enumType, String value) 
     {
         if (value == null) return null;
 

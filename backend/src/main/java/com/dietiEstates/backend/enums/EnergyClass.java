@@ -54,13 +54,13 @@ public enum EnergyClass
 
 package com.dietiEstates.backend.enums;
 
-import com.dietiEstates.backend.enums.common.StringValueEnum;
+import com.dietiEstates.backend.enums.common.JsonStringValueEnum;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 
-public enum EnergyClass implements StringValueEnum
+public enum EnergyClass implements JsonStringValueEnum
 {
     A_PLUS_PLUS("A++"),
     A_PLUS("A+"),
@@ -93,6 +93,6 @@ public enum EnergyClass implements StringValueEnum
     @JsonCreator
     static public EnergyClass fromValue(String value) 
     {
-        return StringValueEnum.fromValue(EnergyClass.class, value);
+        return JsonStringValueEnum.fromValue(EnergyClass.class, value);
     }   
 }
