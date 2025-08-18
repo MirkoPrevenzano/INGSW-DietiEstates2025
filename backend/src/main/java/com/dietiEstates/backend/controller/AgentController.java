@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.dietiEstates.backend.dto.request.AgentCreationDto;
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
+import com.dietiEstates.backend.dto.response.AgentPublicInfoDto;
 import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDto;
 import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDto;
 import com.dietiEstates.backend.service.AgentService;
@@ -48,6 +49,14 @@ public class AgentController
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
    
+    @GetMapping(path = "/public-info")
+    public ResponseEntity<AgentPublicInfoDto> getAgentPublicInfo(Authentication authentication) 
+    {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        return ResponseEntity.status(HttpStatus.OK).body(agentService.getAgentPublicInfo(userDetails.getUsername()));
+    }
+
     @GetMapping(path = "/recent-real-estates/{limit}")
     public ResponseEntity<List<AgentRecentRealEstateDto>> getAgentRecentRealEstates(@PathVariable("limit") Integer limit, Authentication authentication) 
     {

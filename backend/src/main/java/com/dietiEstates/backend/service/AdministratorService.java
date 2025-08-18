@@ -46,12 +46,10 @@ public class AdministratorService
 
         Administrator collaborator = modelMapper.map(collaboratorCreationDto, Administrator.class);
         
-        String plainTextPassword = PasswordGenerationUtil.generateRandomPassword();
-        collaborator.setPassword(plainTextPassword);
+        String randomPassword = PasswordGenerationUtil.generateRandomPassword();
+        String hashedPassword = passwordEncoder.encode(randomPassword);
 
-        String hashedPassword = passwordEncoder.encode(plainTextPassword);
         collaborator.setPassword(hashedPassword);
-        
         collaborator.setAgency(administrator.getAgency());
         
         administrator.addCollaborator(collaborator);
@@ -61,7 +59,7 @@ public class AdministratorService
         log.info("Collaborator was created successfully!");
 
         collaboratorWelcomeEmailService.sendWelcomeEmail(collaborator); 
-        randomPasswordEmailService.sendRandomPasswordEmail(collaborator, plainTextPassword);
+        randomPasswordEmailService.sendRandomPasswordEmail(collaborator, randomPassword);
     }
 }
 

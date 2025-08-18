@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
@@ -18,9 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
+import com.dietiEstates.backend.dto.response.AgentPublicInfoDto;
 import com.dietiEstates.backend.dto.response.RealEstateCompleteInfoDto;
 import com.dietiEstates.backend.dto.response.RealEstateSearchDto;
-import com.dietiEstates.backend.dto.response.support.AgentPublicInfoDto;
 import com.dietiEstates.backend.dto.response.support.RealEstatePreviewInfoDto;
 import com.dietiEstates.backend.extra.CoordinatesBoundingBox;
 import com.dietiEstates.backend.factory.RealEstateFromDtoFactory;
@@ -57,7 +56,6 @@ public class RealEstateService
     private final PhotoService photoService;
     private final RealEstateRepository realEstateRepository;
     private final CustomerRepository customerRepository;
-    private final ModelMapper modelMapper;
     private final RealEstateMapperResolver realEstateMapperResolver;
 
 
@@ -153,11 +151,14 @@ public class RealEstateService
         RealEstate realEstate = realEstateRepository.findById(realEstateId)
                                                     .orElseThrow(() -> new IllegalArgumentException("Immobile non trovato con ID: " + realEstateId));
         
-        Agent agent = realEstate.getAgent();
+/*         Agent agent = realEstate.getAgent();
         String agencyName = agentRepository.findAgencyNameByUsername(agent.getUsername());
 
         AgentPublicInfoDto agentPublicInfoDto = modelMapper.map(agent, AgentPublicInfoDto.class);    
-        agentPublicInfoDto.setAgencyName(agencyName);
+        agentPublicInfoDto.setAgencyName(agencyName); */
+
+        Long agentId = realEstate.getAgent().getUserId();
+        AgentPublicInfoDto agentPublicInfoDto = agentRepository.findAgentPublicInfoById(agentId);
 
         RealEstateCreationDtoMapper realEstateCreationDtoMapper = realEstateMapperResolver.getMapper(realEstate);
         RealEstateCreationDto realEstateCreationDto = realEstateCreationDtoMapper.toDto(realEstate);

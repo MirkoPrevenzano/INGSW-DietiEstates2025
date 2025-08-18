@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiEstates.backend.dto.request.AgentCreationDto;
 import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
+import com.dietiEstates.backend.dto.response.AgentPublicInfoDto;
 import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDto;
 import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDto;
 import com.dietiEstates.backend.dto.response.support.AgentStatsDto;
@@ -66,13 +67,9 @@ public class AgentService
 
         Agent agent = modelMapper.map(agentCreationDto, Agent.class);
 
-        String plainTextPassword = PasswordGenerationUtil.generateRandomPassword();
-        agent.setPassword(plainTextPassword);
+        String randomPassword = PasswordGenerationUtil.generateRandomPassword();
+        String hashedPassword = passwordEncoder.encode(randomPassword);
 
-/*         agentWelcomeEmailService.sendWelcomeEmail(agent);
-        rememberRandomPasswordEmailService.sendRandomPasswordEmail(agent); */
-
-        String hashedPassword = passwordEncoder.encode(plainTextPassword);
         agent.setPassword(hashedPassword);
 
         mockingStatsService.mockAgentStats(agent);
@@ -84,7 +81,7 @@ public class AgentService
         log.info("Real Estate Agent was created successfully!");        
 
         agentWelcomeEmailService.sendWelcomeEmail(agent);
-        rememberRandomPasswordEmailService.sendRandomPasswordEmail(agent, plainTextPassword);
+        rememberRandomPasswordEmailService.sendRandomPasswordEmail(agent, randomPassword);
     }
 
 
@@ -134,6 +131,14 @@ public class AgentService
         AgentDashboardPersonalStatsDto agentDashboardPersonalStatsDto = new AgentDashboardPersonalStatsDto(agentStatsDto, estatesPerMonth);
         
         return agentDashboardPersonalStatsDto;
+    }
+
+    public AgentPublicInfoDto getAgentPublicInfo(String username) 
+    {
+        agentRepository.findByUsername(username)
+                       .orElseThrow(() -> new UsernameNotFoundException(""));
+                                     
+        return agentRepository.findAgentPublicInfoByUsername(username);
     }
 }
 
