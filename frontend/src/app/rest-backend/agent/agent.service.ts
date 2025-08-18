@@ -20,10 +20,10 @@ export class AgentService {
         })
       };
   
-    private url="http://localhost:8080/agent"
+    private url="http://localhost:8080/agents"
 
     recentlyRealEstate(user:string):Observable<AgentRecentRealEstate[]>{
-      const url= this.url+`/${user}/recent-real-estates/4`
+      const url= this.url+`/recent-real-estates/4`
       return this.http.get<AgentRecentRealEstate[]>(url,this.httpOptions)
     }
 
@@ -51,7 +51,7 @@ export class AgentService {
       url: agent/{username}/general-stats
     */
     agentStats(user:string):Observable<AgentDashboardPersonalStats>{
-      const url = this.url+`/${user}/general-stats`
+      const url = this.url+`/dashboard/personal-stats`
       return this.http.get<AgentDashboardPersonalStats>(url, this.httpOptions)
     }
 
@@ -69,19 +69,19 @@ export class AgentService {
       url: agent/{username}/estates-stats?page=${page}&limit=${limit}`
     */
     estatesStats(user:string, page:number, limit:number):Observable<AgentDashboardRealEstateStats[]>{
-      const url = `${this.url}/${user}/estates-stats/${page}/${limit}`
+      const url = `${this.url}/dashboard/estates-stats/${page}/${limit}`
       return this.http.get<AgentDashboardRealEstateStats[]>(url, this.httpOptions)
     }
 
 
     exportCSV():Observable<Blob>{
-      const url = this.url+`/${localStorage.getItem('user')}/exportCSV`;
+      const url = this.url+`/dashboard/csv-report`;
       return this.http.get(url, {responseType:'blob'})
   
     }
 
     exportPDF():Observable<Blob>{
-      const url = this.url+`/${localStorage.getItem('user')}/exportPDF`;
+      const url = this.url+`/dashboard/pdf-report`;
       return this.http.get(url, {responseType:'blob'})
     }
   

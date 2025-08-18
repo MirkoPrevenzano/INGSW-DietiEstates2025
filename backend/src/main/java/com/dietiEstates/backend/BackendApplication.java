@@ -43,7 +43,7 @@ public class BackendApplication
     {
         return args -> 
         {  
-            Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@");
+            /*Administrator administrator = new Administrator("w", "x", "ydk", "jssssssssssssssssssss22A@");
             administrator.setPassword(passwordEncoder.encode(administrator.getPassword()));
             administrator = administratorRepository.saveAndFlush(administrator);
 
@@ -53,7 +53,7 @@ public class BackendApplication
             administrator.addAgent(agent);
             administrator = administratorRepository.save(administrator);    
             AgencyRegistrationDto agentRegistrationDto = new AgencyRegistrationDto("a", "b", "12345678901", "ciro","Pizza", "ciropizza2002@gmail.com","CiroPizza1926!");
-            agencyService.createAgency(agentRegistrationDto); 
+            agencyService.createAgency(agentRegistrationDto); */
         };
     }
 }

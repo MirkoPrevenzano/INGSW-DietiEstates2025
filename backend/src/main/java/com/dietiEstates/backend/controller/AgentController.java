@@ -107,7 +107,7 @@ public class AgentController
         return ResponseEntity.ok().body(agentDashboardPersonalStatsDto);
     }
 
-    @GetMapping(value = "/dashboard/real-estate-stats/{limit}")
+    @GetMapping(value = "/dashboard/real-estate-stats/{page}/{limit}")
     public ResponseEntity<List<AgentDashboardRealEstateStatsDto>> getAgentDashboardRealEstateStats(Authentication authentication, 
                                                    @PathVariable("page") Integer page,
                                                    @PathVariable("limit") Integer limit) 
