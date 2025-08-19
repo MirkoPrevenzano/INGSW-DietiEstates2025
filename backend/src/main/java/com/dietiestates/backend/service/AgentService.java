@@ -1,0 +1,319 @@
+
+package com.dietiestates.backend.service;
+
+import java.util.List;
+
+import org.modelmapper.MappingException;
+import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.dietiestates.backend.dto.request.AgentCreationDto;
+import com.dietiestates.backend.dto.response.AgentDashboardPersonalStatsDto;
+import com.dietiestates.backend.dto.response.AgentDashboardRealEstateStatsDto;
+import com.dietiestates.backend.dto.response.AgentPublicInfoDto;
+import com.dietiestates.backend.dto.response.AgentRecentRealEstateDto;
+import com.dietiestates.backend.dto.response.support.AgentStatsDto;
+import com.dietiestates.backend.model.entity.Administrator;
+import com.dietiestates.backend.model.entity.Agent;
+import com.dietiestates.backend.repository.AdministratorRepository;
+import com.dietiestates.backend.repository.AgentRepository;
+import com.dietiestates.backend.repository.RealEstateRepository;
+import com.dietiestates.backend.service.export.ExportingResult;
+import com.dietiestates.backend.service.export.csv.CsvExportService;
+import com.dietiestates.backend.service.export.pdf.PdfExportService;
+import com.dietiestates.backend.service.mail.AgentWelcomeEmailService;
+import com.dietiestates.backend.service.mail.RememberRandomPasswordEmailService;
+import com.dietiestates.backend.service.mock.MockingStatsService;
+import com.dietiestates.backend.util.PasswordGenerationUtil;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+
+@Service
+@Transactional(readOnly = true)
+@RequiredArgsConstructor
+@Slf4j
+public class AgentService 
+{
+    private final AdministratorRepository administratorRepository;
+    private final AgentRepository agentRepository;
+    private final RealEstateRepository realEstateRepository;
+    private final MockingStatsService mockingStatsService;
+    private final ModelMapper modelMapper;
+    private final PdfExportService pdfExportService;
+    private final CsvExportService csvExportService;
+    private final PasswordEncoder passwordEncoder;
+    private final AgentWelcomeEmailService agentWelcomeEmailService;
+    private final RememberRandomPasswordEmailService rememberRandomPasswordEmailService;
+
+
+    @Transactional
+    public void createAgent(String username, AgentCreationDto agentCreationDto) throws UsernameNotFoundException, 
+                                                                                          IllegalArgumentException, MappingException
+    {
+        Administrator administrator = administratorRepository.findByUsername(username)
+                                                             .orElseThrow(() -> new UsernameNotFoundException(""));
+
+        if(agentRepository.findByUsername(agentCreationDto.getUsername()).isPresent())
+        {
+            log.error("This username is already present!");
+            throw new IllegalArgumentException("This username is already present!");
+        }
+
+        Agent agent = modelMapper.map(agentCreationDto, Agent.class);
+
+        String randomPassword = PasswordGenerationUtil.generateRandomPassword();
+        String hashedPassword = passwordEncoder.encode(randomPassword);
+
+        agent.setPassword(hashedPassword);
+
+        mockingStatsService.mockAgentStats(agent);
+
+        administrator.addAgent(agent);
+
+        administratorRepository.flush();
+
+        log.info("Real Estate Agent was created successfully!");        
+
+        agentWelcomeEmailService.sendWelcomeEmail(agent);
+        rememberRandomPasswordEmailService.sendRandomPasswordEmail(agent, randomPassword);
+    }
+
+
+    public ExportingResult exportPdfReport(String username) 
+    {
+        Agent agent = agentRepository.findByUsername(username)
+                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+                                     
+        return pdfExportService.exportPdfReport(agent);
+    }
+
+    public ExportingResult exportCsvReport(String username) 
+    {
+        Agent agent = agentRepository.findByUsername(username)
+                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+                                     
+        return csvExportService.exportCsvReport(agent);
+    }
+
+
+    public List<AgentRecentRealEstateDto> getAgentRecentRealEstates(String username, Integer limit) 
+    {
+        Agent agent = agentRepository.findByUsername(username)
+                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+                                     
+        return realEstateRepository.findAgentRecentRealEstatesByAgentId(agent.getUserId(), limit);
+    }
+
+
+    public List<AgentDashboardRealEstateStatsDto> getAgentDashboardRealEstateStats(String username, Pageable page) 
+    {
+        Agent agent = agentRepository.findByUsername(username)
+                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+
+        return realEstateRepository.findAgentDashboardRealEstateStatsByAgentId(agent.getUserId(), page);
+    }
+
+
+    public AgentDashboardPersonalStatsDto getAgentDashboardPersonalStats(String username) 
+    {
+        Agent agent = agentRepository.findByUsername(username)
+                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+
+        Integer[] estatesPerMonth = mockingStatsService.mockBarChartStats(agent);
+        AgentStatsDto agentStatsDto = modelMapper.map(agent.getAgentStats(), AgentStatsDto.class);
+
+        AgentDashboardPersonalStatsDto agentDashboardPersonalStatsDto = new AgentDashboardPersonalStatsDto(agentStatsDto, estatesPerMonth);
+        
+        return agentDashboardPersonalStatsDto;
+    }
+
+    public AgentPublicInfoDto getAgentPublicInfo(String username) 
+    {
+        agentRepository.findByUsername(username)
+                       .orElseThrow(() -> new UsernameNotFoundException(""));
+                                     
+        return agentRepository.findAgentPublicInfoByUsername(username);
+    }
+}
+
+
+
+/* 
+package com.dietiEstates.backend.service;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.dietiEstates.backend.dto.request.RealEstateCreationDto;
+import com.dietiEstates.backend.dto.response.AgentDashboardRealEstateStatsDto;
+import com.dietiEstates.backend.dto.response.AgentDashboardPersonalStatsDto;
+import com.dietiEstates.backend.dto.response.AgentRecentRealEstateDto;
+import com.dietiEstates.backend.dto.response.support.AgentStatsDto;
+import com.dietiEstates.backend.factory.RealEstateFromDtoFactory;
+import com.dietiEstates.backend.model.entity.Address;
+import com.dietiEstates.backend.model.entity.Photo;
+import com.dietiEstates.backend.model.entity.RealEstate;
+import com.dietiEstates.backend.model.entity.Agent;
+import com.dietiEstates.backend.repository.AgentRepository;
+import com.dietiEstates.backend.repository.RealEstateRepository;
+import com.dietiEstates.backend.resolver.RealEstateFromDtoFactoryResolver;
+import com.dietiEstates.backend.service.export.ExportingResult;
+import com.dietiEstates.backend.service.export.csv.CsvExportService;
+import com.dietiEstates.backend.service.export.pdf.PdfExportService;
+import com.dietiEstates.backend.service.mock.MockingStatsService;
+import com.dietiEstates.backend.service.photo.PhotoResult;
+import com.dietiEstates.backend.service.photo.PhotoService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+
+@Service
+@Transactional(readOnly = true)
+@RequiredArgsConstructor
+@Slf4j
+public class AgentService 
+{
+    private final AgentRepository agentRepository;
+    private final RealEstateRepository realEstateRepository;
+    private final MockingStatsService mockingStatsService;
+    private final ModelMapper modelMapper;
+    private final RealEstateFromDtoFactoryResolver realEstateFromDtoFactoryResolver;
+    private final PhotoService photoService;
+     private final PdfExportService pdfExportService;
+    private final CsvExportService csvExportService;
+
+
+
+    
+    // TODO: DA RIMUOVERE PER REST API, mettere in realEstateService
+    @Transactional
+    public Long createRealEstate(String username, RealEstateCreationDto realEstateCreationDto)  throws UsernameNotFoundException
+    {
+        Agent agent = agentRepository.findByUsername(username)
+                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+        
+        RealEstateFromDtoFactory realEstateFromDtoFactory = realEstateFromDtoFactoryResolver.getFactory(realEstateCreationDto);
+        RealEstate realEstate = realEstateFromDtoFactory.create(realEstateCreationDto);
+
+        Address address = modelMapper.map(realEstateCreationDto.getAddressDto(), Address.class);
+        //realEstate.addAddress(address);
+
+        mockingStatsService.mockRealEstateStats(realEstate);
+
+        agent.addRealEstate(realEstate);
+
+        int newTotalUploadedRealEstates = agent.getAgentStats().getTotalUploadedRealEstates() + 1;
+        agent.getAgentStats().setTotalUploadedRealEstates(newTotalUploadedRealEstates);
+        agent.addRealEstate(realEstate);
+
+        agent = agentRepository.save(agent);
+
+        log.info("Real Estate was created successfully!");
+
+        return realEstateRepository.findLastUploadedByAgentId(agent.getUserId());
+    }
+
+
+
+    @Transactional
+    public void uploadPhoto2(String username, MultipartFile[] files, Long realEstateId) throws IllegalArgumentException, RuntimeException, IOException
+    {
+        RealEstate realEstate = realEstateRepository.findById(realEstateId)
+                                                    .orElseThrow(() -> new UsernameNotFoundException(""));
+                                                            
+        if(files.length < 3 || files.length > 10)
+        {
+            log.error("You have inserted a wrong number of photos! You must add from 3 to 10 photos.");
+            throw new IllegalArgumentException("You have inserted a wrong number of photos! You must add from 3 to 10 photos.");
+        }
+
+        for(MultipartFile file : files)
+        {
+            String photoKey = photoService.uploadPhoto(file, "real-estates/" + realEstateId);
+    
+            Photo photo = new Photo(photoKey);
+            realEstate.getPhotos().add(photo);            
+        }
+
+        realEstateRepository.save(realEstate);
+    }
+
+
+    public List<PhotoResult<String>> getPhoto2(Long realEstateId) throws IOException
+    {
+        RealEstate realEstate = realEstateRepository.findById(realEstateId)
+                                                    .orElseThrow(() -> new UsernameNotFoundException(""));
+
+        List<Photo> photos = realEstate.getPhotos();
+
+        List<PhotoResult<String>> photoResults = new ArrayList<>();
+        for(Photo photo : photos)
+            photoResults.add(photoService.getPhotoAsBase64(photo.getKey()));
+
+
+        return photoResults;
+    }
+
+
+    public ExportingResult exportToPdf(String username) 
+    {
+        Agent agent = agentRepository.findByUsername(username)
+                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+                                     
+        return pdfExportService.exportPdfReport(agent);
+    }
+
+    public ExportingResult exportToCsv(String username) 
+    {
+        Agent agent = agentRepository.findByUsername(username)
+                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+                                     
+        return csvExportService.exportCsvReport(agent);
+    }
+
+
+    public List<AgentRecentRealEstateDto> getAgentRecentRealEstates(String username, Integer limit) 
+    {
+        Agent agent = agentRepository.findByUsername(username)
+                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+                                     
+        return realEstateRepository.findAgentRecentRealEstatesByAgentId(agent.getUserId(), limit);
+    }
+
+
+    public List<AgentDashboardRealEstateStatsDto> getAgentDashboardRealEstateStats(String username, Pageable page) 
+    {
+        Agent agent = agentRepository.findByUsername(username)
+                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+
+        return realEstateRepository.findAgentDashboardRealEstateStatsByAgentId(agent.getUserId(), page);
+    }
+
+
+    public AgentDashboardPersonalStatsDto getAgentDashboardPersonalStats(String username) 
+    {
+        Agent agent = agentRepository.findByUsername(username)
+                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+
+        Integer[] estatesPerMonth = mockingStatsService.mockBarChartStats(agent);
+        AgentStatsDto agentStatsDto = modelMapper.map(agent.getAgentStats(), AgentStatsDto.class);
+
+        AgentDashboardPersonalStatsDto agentDashboardPersonalStatsDto = new AgentDashboardPersonalStatsDto(agentStatsDto, estatesPerMonth);
+        
+        return agentDashboardPersonalStatsDto;
+    }
+} */

@@ -1,0 +1,84 @@
+/* 
+package com.dietiEstates.backend.enums;
+
+import java.util.stream.Stream;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+
+public enum FurnitureCondition
+{
+    NOT_FOURNISHED("Not fournished"), 
+    PARTIALLY_FOURNISHED("Partially fournished"), 
+    WELL_FOURNISHED("Well fournished"),
+    NOT_SPECIFIED("Not specified");
+    
+
+    private final String value;
+
+
+    private FurnitureCondition(String value) 
+    {
+        this.value = value;
+    };
+
+
+    @JsonValue
+    public String getValue() 
+    {
+        return this.value;
+    }
+
+
+    @JsonCreator
+    static public FurnitureCondition of(String value) 
+    {
+        if(value == null)
+            return null;
+
+        return Stream.of(FurnitureCondition.values())
+                     .filter(furnitureCondition -> furnitureCondition.getValue().equals(value))
+                     .findFirst()
+                     .orElseThrow(() -> new IllegalArgumentException("Furniture Condition value not valid: '" + value + "'"));
+    }
+} */
+
+
+package com.dietiestates.backend.enums;
+
+import com.dietiestates.backend.enums.common.JsonStringValueEnum;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+
+public enum FurnitureCondition implements JsonStringValueEnum
+{
+    NOT_FOURNISHED("Not fournished"), 
+    PARTIALLY_FOURNISHED("Partially fournished"), 
+    WELL_FOURNISHED("Well fournished"),
+    NOT_SPECIFIED("Not specified");
+
+
+    private final String value;
+
+
+    private FurnitureCondition(String value) 
+    {
+        this.value = value;
+    };
+
+
+    @Override
+    @JsonValue
+    public String getValue() 
+    {
+        return this.value;
+    }
+
+    @JsonCreator
+    static public FurnitureCondition fromValue(String value) 
+    {
+        return JsonStringValueEnum.fromValue(FurnitureCondition.class, value);
+    }   
+}
