@@ -16,8 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class CustomerLoadingStrategy implements UserLoadingStrategy {
-
+public class CustomerLoadingStrategy implements UserLoadingStrategy 
+{
     private final CustomerRepository customerRepository;
 
 
@@ -32,7 +32,6 @@ public class CustomerLoadingStrategy implements UserLoadingStrategy {
 
         return customer;
     }
-
     
     @Override
     public boolean supports(Role role) 

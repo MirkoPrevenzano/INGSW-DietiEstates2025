@@ -41,7 +41,6 @@ public class AdministratorLoadingStrategy implements UserLoadingStrategy
         return administrator;
     }
 
-
     @Override
     public boolean supports(Role role) 
     {

@@ -33,7 +33,6 @@ public class AgentLoadingStrategy implements UserLoadingStrategy
         return agent;
     }
 
-
     @Override
     public boolean supports(Role role)
     {
