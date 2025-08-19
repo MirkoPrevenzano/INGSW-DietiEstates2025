@@ -1,56 +1,3 @@
-/* 
-package com.dietiEstates.backend.enums;
-
-import java.util.stream.Stream;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-
-
-public enum PropertyCondition 
-{
-    UNDER_CONSTRUCTION("Under construction"), 
-    NEW("New"), 
-    TO_RENOVATE("To renovate"), 
-    RENOVATED("Renovated"), 
-    HABITABLE("Habitable"),
-    GOOD("Good"), 
-    EXCELLENT("Excellent"),
-    NOT_SPECIFIED("Not specified");
-    
-    
-    private final String value;
-
-
-    private PropertyCondition(String value) 
-    {
-        this.value = value;
-    };
-
-
-    @JsonValue
-    public String getValue() 
-    {
-        return this.value;
-    }
-
-    
-    @JsonCreator
-    static public PropertyCondition of(String value) 
-    {
-        if(value == null)
-            return null;
-
-        return Stream.of(PropertyCondition.values())
-                     .filter(propertyCondition -> propertyCondition.getValue().equals(value))
-                     .findFirst()
-                     .orElseThrow(() -> new IllegalArgumentException("Property Condition value not valid: '" + value + "'"));
-    }
-} */
-
-
-
-
 package com.dietiestates.backend.enums;
 
 import com.dietiestates.backend.enums.common.JsonStringValueEnum;
@@ -76,7 +23,7 @@ public enum PropertyCondition implements JsonStringValueEnum
     private PropertyCondition(String value) 
     {
         this.value = value;
-    };
+    }
 
 
     @Override
@@ -87,7 +34,7 @@ public enum PropertyCondition implements JsonStringValueEnum
     }
 
     @JsonCreator
-    static public PropertyCondition fromValue(String value) 
+    public static PropertyCondition fromValue(String value) 
     {
         return JsonStringValueEnum.fromValue(PropertyCondition.class, value);
     }   

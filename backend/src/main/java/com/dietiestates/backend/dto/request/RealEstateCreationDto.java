@@ -4,11 +4,12 @@ package com.dietiestates.backend.dto.request;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
-import com.dietiestates.backend.dto.request.support.AddressDto;
+import com.dietiestates.backend.dto.AddressDto;
 import com.dietiestates.backend.dto.request.support.RealEstateBooleanFeaturesDto;
 import com.dietiestates.backend.dto.request.support.RealEstateLocationFeaturesDto;
 import com.dietiestates.backend.dto.request.support.RealEstateMainFeaturesDto;
 import com.dietiestates.backend.enums.ContractType;
+
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 

@@ -1,13 +1,14 @@
 
-package com.dietiestates.backend.dto.request.support;
-
-import com.dietiestates.backend.validator.groups.OnCreate;
+package com.dietiestates.backend.dto;
 
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+
+import com.dietiestates.backend.validator.groups.OnCreate;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -31,7 +32,7 @@ public class AddressDto
     private String street;
 
     @NotBlank(groups = OnCreate.class)
-    @Pattern(regexp = "^[0-9]{5}$", message = "must be of 5 digits")
+    @Pattern(regexp = "^\\d{5}$", message = "must be of 5 digits")
     private String postalCode;
 
     @NotNull(groups = OnCreate.class)

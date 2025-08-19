@@ -11,12 +11,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dietiestates.backend.dto.AgentStatsDto;
 import com.dietiestates.backend.dto.request.AgentCreationDto;
 import com.dietiestates.backend.dto.response.AgentDashboardPersonalStatsDto;
 import com.dietiestates.backend.dto.response.AgentDashboardRealEstateStatsDto;
 import com.dietiestates.backend.dto.response.AgentPublicInfoDto;
 import com.dietiestates.backend.dto.response.AgentRecentRealEstateDto;
-import com.dietiestates.backend.dto.response.support.AgentStatsDto;
 import com.dietiestates.backend.model.entity.Administrator;
 import com.dietiestates.backend.model.entity.Agent;
 import com.dietiestates.backend.repository.AdministratorRepository;

@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.dietiestates.backend.dto.AddressDto;
 import com.dietiestates.backend.dto.request.RealEstateCreationDto;
-import com.dietiestates.backend.dto.request.support.AddressDto;
 import com.dietiestates.backend.dto.request.support.RealEstateBooleanFeaturesDto;
 import com.dietiestates.backend.dto.request.support.RealEstateLocationFeaturesDto;
 import com.dietiestates.backend.dto.request.support.RealEstateMainFeaturesDto;

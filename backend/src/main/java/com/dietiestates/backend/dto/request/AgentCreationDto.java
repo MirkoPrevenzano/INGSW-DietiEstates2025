@@ -1,9 +1,10 @@
 
 package com.dietiestates.backend.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
+
 import com.dietiestates.backend.validator.EmailValidator;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;

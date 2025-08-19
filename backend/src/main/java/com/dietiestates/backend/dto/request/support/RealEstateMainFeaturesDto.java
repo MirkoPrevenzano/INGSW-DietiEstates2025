@@ -1,16 +1,17 @@
 
 package com.dietiestates.backend.dto.request.support;
 
-import com.dietiestates.backend.enums.EnergyClass;
-import com.dietiestates.backend.enums.FurnitureCondition;
-import com.dietiestates.backend.enums.PropertyCondition;
-import com.dietiestates.backend.validator.groups.OnCreate;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
+
+import com.dietiestates.backend.enums.EnergyClass;
+import com.dietiestates.backend.enums.FurnitureCondition;
+import com.dietiestates.backend.enums.PropertyCondition;
+import com.dietiestates.backend.validator.groups.OnCreate;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;

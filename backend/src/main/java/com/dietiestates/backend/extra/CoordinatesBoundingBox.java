@@ -12,7 +12,10 @@ import lombok.AllArgsConstructor;
 public class CoordinatesBoundingBox 
 {
     private double minLatitude;
+
     private double maxLatitude;
+
     private double minLongitude;
+    
     private double maxLongitude;
 }

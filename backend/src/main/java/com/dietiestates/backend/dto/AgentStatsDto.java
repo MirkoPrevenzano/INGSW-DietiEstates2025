@@ -1,5 +1,5 @@
 
-package com.dietiestates.backend.dto.response.support;
+package com.dietiestates.backend.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,11 +1,10 @@
 
 package com.dietiestates.backend.dto.response;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import com.dietiestates.backend.dto.request.RealEstateCreationDto;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 

@@ -1,11 +1,10 @@
 
 package com.dietiestates.backend.dto.response;
 
+import com.dietiestates.backend.dto.AgentStatsDto;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import com.dietiestates.backend.dto.response.support.AgentStatsDto;
-
 import lombok.AllArgsConstructor;
 
 

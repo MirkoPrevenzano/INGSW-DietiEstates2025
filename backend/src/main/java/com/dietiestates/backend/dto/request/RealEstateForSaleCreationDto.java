@@ -1,7 +1,9 @@
 
 package com.dietiestates.backend.dto.request;
 
-import com.dietiestates.backend.dto.request.support.AddressDto;
+import jakarta.validation.constraints.NotNull;
+
+import com.dietiestates.backend.dto.AddressDto;
 import com.dietiestates.backend.dto.request.support.RealEstateBooleanFeaturesDto;
 import com.dietiestates.backend.dto.request.support.RealEstateLocationFeaturesDto;
 import com.dietiestates.backend.dto.request.support.RealEstateMainFeaturesDto;
@@ -9,7 +11,6 @@ import com.dietiestates.backend.enums.ContractType;
 import com.dietiestates.backend.enums.NotaryDeedState;
 import com.dietiestates.backend.validator.groups.OnCreate;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

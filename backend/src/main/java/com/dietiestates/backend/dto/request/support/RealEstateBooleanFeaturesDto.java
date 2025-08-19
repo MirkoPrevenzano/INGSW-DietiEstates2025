@@ -1,9 +1,10 @@
 
 package com.dietiestates.backend.dto.request.support;
 
+import jakarta.validation.constraints.NotNull;
+
 import com.dietiestates.backend.validator.groups.OnCreate;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
