@@ -21,16 +21,14 @@ export class RecentlyEstatePopupComponent {
   ){}
   
   ngOnInit(): void {
-    const user = localStorage.getItem('user');
-    if(user)
-      this.agentService.recentlyRealEstate(user).subscribe({
-        next: (result) =>{
-          this.recentListings = result
-        },
-        error: (err) => {
-          this.handleError.showMessageError(err.error)
-        }
-      })
+    this.agentService.recentlyRealEstate().subscribe({
+      next: (result) =>{
+        this.recentListings = result
+      },
+      error: (err) => {
+        this.handleError.showMessageError(err.error)
+      }
+    })
   }
 
   truncate(text: string, limit: number): string {

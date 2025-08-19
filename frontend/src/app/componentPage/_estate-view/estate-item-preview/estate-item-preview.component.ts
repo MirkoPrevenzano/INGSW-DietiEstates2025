@@ -3,10 +3,9 @@ import { ImageSliderComponent } from '../../../componentCustom/image-slider/imag
 import { RealEstatePreviewInfo } from '../../../model/response/support/realEstatePreviewInfo';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { UploadPhotoService } from '../../../rest-backend/upload-photo/upload-photo.service';
-import { ToastrService } from 'ngx-toastr';
 import { PhotoResult } from '../../../model/response/photoResult';
 import { HandleNotifyService } from '../../../_service/handle-notify.service';
+import { RealEstateService } from '../../../rest-backend/real-estate/real-estate.service';
 
 @Component({
   selector: 'app-estate-item-preview',
@@ -29,14 +28,13 @@ export class EstateItemPreviewComponent implements AfterViewInit{
 
   constructor(
     private readonly router: Router,
-    private readonly uploadPhotoService: UploadPhotoService,
-    private readonly notifyService: ToastrService,
+    private readonly realEstateService: RealEstateService,
     private readonly handleError:HandleNotifyService
   ){}
 
 
   ngAfterViewInit(): void {
-    this.uploadPhotoService.getPhotos(this.realEstateId).subscribe({
+    this.realEstateService.getPhotos(this.realEstateId).subscribe({
       next: (photos:PhotoResult[]) =>{
         
         this.photos.push(...photos.map(photo => `data:image/${photo.contentType};base64,${photo.photoValue}`));

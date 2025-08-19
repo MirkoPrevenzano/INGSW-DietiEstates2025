@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators,  } from '@angular/forms';
-import { PasswordChangeService } from '../../rest-backend/password-change/password-change.service';
 import { PasswordFieldComponent } from '../../componentCustom/password-field/password-field.component';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -11,6 +10,7 @@ import { AuthService } from '../../_service/auth/auth.service';
 import { LoginService } from '../../rest-backend/login/login.service';
 import { Authentication } from '../../model/response/authentication';
 import { HandleNotifyService } from '../../_service/handle-notify.service';
+import { UserService } from '../../rest-backend/user/user.service';
 
 @Component({
     selector: 'app-password-change',
@@ -25,7 +25,7 @@ import { HandleNotifyService } from '../../_service/handle-notify.service';
 })
 export class PasswordChangeComponent implements OnInit{
     constructor(
-      private readonly passwordService:PasswordChangeService,
+      private readonly userService:UserService,
       private readonly loginService:LoginService,
       private readonly passwordChangeControlService: PasswordChangeControlService,
       private readonly notify: ToastrService,
@@ -66,7 +66,7 @@ export class PasswordChangeComponent implements OnInit{
 
 
     executePasswordChange() {
-      this.passwordService.passwordChange({
+      this.userService.updatePassword({
         oldPassword: this.oldPassword,
         newPassword: this.newPassword
       }).subscribe({

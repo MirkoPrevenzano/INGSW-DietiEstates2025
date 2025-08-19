@@ -8,16 +8,15 @@ import { Map as LeafletMap } from 'leaflet';
 import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CacheEstates } from '../../model/cacheEstates';
-import { EstateService } from '../../rest-backend/estates-request/estate.service';
 import { RealEstatePreviewInfo } from '../../model/response/support/realEstatePreviewInfo';
 import { CacheService } from '../../_service/cache-service/cache-service.service';
 import { ButtonCustomComponent } from '../../componentCustom/button-custom/button-custom.component';
 import { NotFoundComponent } from '../../componentCustom/not-found/not-found.component';
 import { FilterService } from '../../_service/filter/filter.service';
 import { EstateListComponent } from './estate-list/estate-list.component';
-import { ToastrService } from 'ngx-toastr';
 import { RealEstateSearch } from '../../model/response/realEstateSearch';
 import { HandleNotifyService } from '../../_service/handle-notify.service';
+import { RealEstateService } from '../../rest-backend/real-estate/real-estate.service';
 
 
 @Component({
@@ -60,7 +59,7 @@ export class EstateSearchContainerComponent implements OnInit {
   constructor(
     private readonly markerService: MarkerService,
     private readonly activadeRouter: ActivatedRoute,
-    private readonly estateService: EstateService,
+    private readonly realEstateService: RealEstateService,
     private readonly cacheService: CacheService,
     private readonly filterService: FilterService,
     private readonly handleError: HandleNotifyService,
@@ -134,7 +133,7 @@ export class EstateSearchContainerComponent implements OnInit {
   
 
   getEstatesNewFilter(params: Params) {
-    this.estateService.getEstatesNewFilter(params).subscribe({
+    this.realEstateService.getEstatesNewFilter(params).subscribe({
       next: (result: RealEstateSearch) =>{
         if(
             result.realEstatePreviewInfoDtoList!=null 

@@ -14,13 +14,12 @@ import { Coordinate } from '../../../model/coordinate';
 import { PoiService } from '../../../_service/map-service/poi-service/poi.service';
 import { RealEstateLocationFeatures } from '../../../model/request/support/realEstateLocationFeatures';
 import { Observable, switchMap } from 'rxjs';
-import { UploadPhotoService } from '../../../rest-backend/upload-photo/upload-photo.service';
 import { ToastrService } from 'ngx-toastr';
 import { EstateItemDetailComponent } from '../../_estate-view/estate-item-detail/estate-item-detail.component';
-import { EstateCreateService } from '../../../rest-backend/estate-create/estate-create.service';
 import { ValidateStepEstateCreateService } from '../../../_service/validate-step-create-estate/validate-step-estate-create.service';
 import { EstateDataService } from '../../../_service/estate-data/estate-data.service';
 import { HandleNotifyService } from '../../../_service/handle-notify.service';
+import { RealEstateService } from '../../../rest-backend/real-estate/real-estate.service';
 
 @Component({
   selector: 'app-create-estates',
@@ -72,9 +71,8 @@ export class CreateEstatesComponent implements OnInit{
     private readonly estateFactory: EstateFactoryService,
     private readonly estateDataService: EstateDataService,
     private readonly poiService: PoiService,
-    private readonly uploadPhotosService: UploadPhotoService,
     private readonly toastrService: ToastrService,
-    private readonly createEstateService:EstateCreateService,
+    private readonly realEstateService:RealEstateService,
     private readonly validateStepService: ValidateStepEstateCreateService,
     private readonly router: Router,
     private readonly handleError:HandleNotifyService
@@ -180,7 +178,7 @@ export class CreateEstatesComponent implements OnInit{
         this.estate=this.createEstate()
       })
 
-    this.createEstateService.createEstate(this.estate).subscribe({
+    this.realEstateService.createEstate(this.estate).subscribe({
       next: (response: any) => {
         this.uploadPhotos(response);
         setTimeout(()=>{
@@ -197,7 +195,7 @@ export class CreateEstatesComponent implements OnInit{
 
   uploadPhotos(id: any) {
     console.log("carico foto")
-    this.uploadPhotosService.uploadPhotos(id, this.filePhoto).subscribe({})
+    this.realEstateService.uploadPhotos(id, this.filePhoto).subscribe({})
   }
 
   createEstate(): RealEstateCreation {

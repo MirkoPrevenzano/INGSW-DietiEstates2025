@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RegisterComponent } from '../register/register.component';
 import { RegisterValidationService } from '../../../_service/register-validation/register-validation.service';
-import { RegisterService } from '../../../rest-backend/register/register.service';
+import { AuthenticationService } from '../../../rest-backend/authentication/authentication.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FormFieldComponent } from '../../../componentCustom/form-field/form-field.component';
@@ -31,7 +31,7 @@ export class CustomerRegistrateComponent extends RegisterComponent{
   private readonly handleError= inject(HandleNotifyService)
   override title: string="Register";
   constructor(
-    private readonly register: RegisterService,
+    private readonly register: AuthenticationService,
     protected override readonly registerValidation: RegisterValidationService,
     protected override readonly notify: ToastrService,
     private readonly router: Router

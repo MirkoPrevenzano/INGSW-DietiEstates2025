@@ -4,6 +4,7 @@ import { LoginService } from '../../rest-backend/login/login.service';
 import { AuthService } from '../../_service/auth/auth.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment.prod';
+import { AuthenticationService } from '../../rest-backend/authentication/authentication.service';
 
 declare const google: any;
 
@@ -20,7 +21,7 @@ export class LoginWithGoogleComponent implements OnInit  {
   user: string|undefined
  
   constructor(
-    private readonly loginService:LoginService,
+    private readonly authenticationService:AuthenticationService,
     private readonly authService: AuthService, 
     private readonly router:Router
   ){}
@@ -47,7 +48,7 @@ export class LoginWithGoogleComponent implements OnInit  {
   handleCredentialResponse(response: any): void {
     console.log('Encoded JWT ID token: ');
     console.log(response)
-    this.loginService.loginWithGoogle(response.credential).subscribe({
+    this.authenticationService.loginWithGoogle(response.credential).subscribe({
       error: (err)=>{
         console.log(err)
       },

@@ -40,10 +40,9 @@ export class EstateStatsComponent implements OnInit, AfterViewInit, OnDestroy{
   }
 
   loadStats() {
-    const user = localStorage.getItem('user')
-    if(user && !this.loading){
+    if(!this.loading){
       this.loading= true
-      this.agentService.estatesStats(user, this.page,this.limit).
+      this.agentService.estatesStats(this.page,this.limit).
         subscribe({
           next: (response:AgentDashboardRealEstateStats[]) =>{
             this.estatesStats = this.estatesStats.concat(response)

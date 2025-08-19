@@ -5,7 +5,7 @@
 >   
   <div class="relative z-10 flex flex-col items-center h-full justify-center text-text p-6">
     <h1 class="text-6xl font-extrabold mb-6 drop-shadow-lg">Welcome to Our Platform</h1> 
-    <p class="text-lg mb-8 text-center max-w-2xl">Join us today to explore the best estate opportunities. Log in to access your account or sign up if you're a new customer.</p>
+    <p class="text-lg mb-8 text-center max-w-2xl">Discover the best real estate opportunities with us. Log in to access your account, register as a customer to start browsing properties, or create your agency to manage and showcase your listings.</p>
     
     <div class="bg-back p-10  w-full max-w-2xl text-center">
       <div class="flex flex-col space-y-6">
@@ -13,13 +13,22 @@
           text="Login"
           routerLink="/login"
           color="bg-primary"
+          icon="🔑"
         ></app-button-custom>
         <app-button-custom
           text="Register as Customer"
           routerLink="/register"
           color="bg-primary"
+          icon="👤"
         ></app-button-custom>
-        
+        <app-button-custom
+          text = "Register your Agency"
+          routerLink = "/create-agency"
+          color = "bg-secondary"
+          icon = "🏢"
+        >
+          
+        </app-button-custom>
       </div>
     </div>
   </div>

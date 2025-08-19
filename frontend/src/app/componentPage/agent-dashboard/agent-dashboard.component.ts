@@ -54,7 +54,7 @@ export class AgentDashboardComponent implements OnInit {
   ngOnInit() {
     const user= localStorage.getItem('user')
      if(user)
-      this.agentService.agentStats(user).subscribe({
+      this.agentService.agentStats().subscribe({
         next: (response:AgentDashboardPersonalStats)=>{
           if(response){
             this.generalStats = response.agentStatsDto

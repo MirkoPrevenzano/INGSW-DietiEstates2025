@@ -18,6 +18,7 @@ import { roleGuard } from './_guard/authorization/role.guard';
 import { notAuthGuard } from './_guard/not-auth/no-auth.guard';
 import { EstateItemDetailComponent } from './componentPage/_estate-view/estate-item-detail/estate-item-detail.component';
 import { RedirectGuard } from './_guard/redirect-home/redirect.guard';
+import { RegisterAgencyComponent } from './componentPage/register-agency/register-agency.component';
 
 export const routes: Routes = [
     
@@ -26,6 +27,12 @@ export const routes: Routes = [
         path: 'login',
         canActivate:[notAuthGuard],
         component:LoginComponent
+    },
+    {
+        title: 'Create Agency',
+        path: 'create-agency',
+        canActivate:[notAuthGuard],
+        component: RegisterAgencyComponent
     },
     {
         title:'Register',

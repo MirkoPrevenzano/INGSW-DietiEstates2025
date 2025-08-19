@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<div class=" relative h-max lg:py-12 bg-cover bg-back" >
+
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-text p-4">
+    <form   [formGroup]="form" class="w-full max-w-md bg-white border-4 border-secondary rounded-lg shadow-md p-8">
+    <h2 class="text-2xl font-bold mb-6 text-center">Register your Agency</h2>
+
+    <div class="flex items-center my-6">
+      <div class="flex-grow border-t border-gray-300"></div>
+      <span class="px-4 text-sm text-gray-500 font-medium">Agency Information</span>
+      <div class="flex-grow border-t border-gray-300"></div>
+    </div>
+
+    <app-form-field 
+      label="Agency Name" 
+      type="text" 
+      controlName="agencyName"
+      [form]="form"
+      >
+    </app-form-field>
+
+    <app-form-field 
+      label="Business Name" 
+      type="text" 
+      controlName="businessName"
+      [form]="form"
+      >
+    </app-form-field>
+
+    <app-form-field 
+      label="Vat Number" 
+      type="text" 
+      controlName="vatNumber"
+      [form]="form"
+      >
+    </app-form-field>
+
+    <!-- Separatore tra info agenzia e amministratore -->
+    <div class="flex items-center my-6">
+      <div class="flex-grow border-t border-gray-300"></div>
+      <span class="px-4 text-sm text-gray-500 font-medium">Administrator Information</span>
+      <div class="flex-grow border-t border-gray-300"></div>
+    </div>
+
+    <app-form-field 
+      label="Name" 
+      type="text" 
+      controlName="name"
+      [form]="form"
+      >
+    </app-form-field>
+
+    <app-form-field 
+      label="Surname" 
+      type="text" 
+      controlName="surname"
+      [form]="form"
+      >
+    </app-form-field>
+    
+    <app-form-field 
+      label="E-mail" 
+      type="email" 
+      controlName="username"
+      [form]="form"
+    >
+    </app-form-field>
+    
+    
+    
+    <app-password-field 
+    label="Password" 
+    controlName="password"
+    [form]="form"
+    >
+    </app-password-field>
+
+    <fieldset>
+      <app-button-custom
+        text="Register"
+        (clickEvent)="onSubmit()"
+      ></app-button-custom>
+    </fieldset>
+
+  
+  </form>
+  
+</div>
+</div>

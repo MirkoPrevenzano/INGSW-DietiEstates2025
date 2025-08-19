@@ -9,9 +9,9 @@ import {  ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { ButtonCustomComponent } from '../../../componentCustom/button-custom/button-custom.component';
 import { LoginWithGoogleComponent } from '../../../componentCustom/login-with-google/login-with-google.component';
-import { CreateStaffService } from '../../../rest-backend/create-staff/create-staff.service';
 import { CollaboratorCreation } from '../../../model/request/collaboratorCreation';
 import { HandleNotifyService } from '../../../_service/handle-notify.service';
+import { AdministratorService } from '../../../rest-backend/administrator/administrator.service';
 
 @Component({
   selector: 'app-admin-registrate',
@@ -28,7 +28,7 @@ import { HandleNotifyService } from '../../../_service/handle-notify.service';
   styleUrl: './admin-registrate.component.scss'
 })
 export class AdminRegistrateComponent extends RegisterComponent{
-  private readonly createStaffService = inject(CreateStaffService)
+  private readonly administratorService = inject(AdministratorService)
   private readonly handleNotifyService = inject(HandleNotifyService)
   override title: string="Create new admin";
 
@@ -41,7 +41,7 @@ export class AdminRegistrateComponent extends RegisterComponent{
   }
 
   protected override onRegisterUser(userRequest: CollaboratorCreation): void {
-    this.createStaffService.saveAdmin(userRequest).subscribe({
+    this.administratorService.saveAdmin(userRequest).subscribe({
       error: (err) => {
         this.handleNotifyService.showMessageError(err.error);
       },
