@@ -4,6 +4,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "BackendApplication",
+      "request": "launch",
+      "mainClass": "com.dietiestates.backend.BackendApplication",
+      "projectName": "backend"
+    },
+    {
+      "type": "java",
       "name": "Main",
       "request": "launch",
       "mainClass": "com.dietiEstates.backend.service.mail.Main",
