@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class RealEstateRootForRentFactory implements RealEstateRootFactory 
+public class RealEstateRootForRentFactory implements RealEstateRootFactory<RealEstateForRent> 
 {
     @Override
     public Root<RealEstateForRent> create(CriteriaQuery<?> query) 
@@ -22,7 +22,6 @@ public class RealEstateRootForRentFactory implements RealEstateRootFactory
         return query.from(RealEstateForRent.class);
     }
     
-
     @Override
     public boolean supports(ContractType contractType) 
     {

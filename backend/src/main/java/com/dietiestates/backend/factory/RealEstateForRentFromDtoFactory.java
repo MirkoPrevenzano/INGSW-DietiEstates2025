@@ -7,7 +7,6 @@ import com.dietiestates.backend.dto.request.RealEstateCreationDto;
 import com.dietiestates.backend.dto.request.RealEstateForRentCreationDto;
 import com.dietiestates.backend.mapper.RealEstateCreationForRentDtoMapper;
 import com.dietiestates.backend.model.entity.RealEstate;
-import com.dietiestates.backend.model.entity.RealEstateForRent;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,11 +21,8 @@ public class RealEstateForRentFromDtoFactory implements RealEstateFromDtoFactory
     @Override
     public RealEstate create(RealEstateCreationDto realEstateCreationDto) 
     {
-        RealEstateForRent realEstateForRent = (RealEstateForRent) realEstateCreationForRentDtoMapper.toEntity((RealEstateForRentCreationDto) realEstateCreationDto);
-
-        return realEstateForRent;
+        return realEstateCreationForRentDtoMapper.toEntity(realEstateCreationDto);
     }
-
 
     @Override
     public boolean supports(RealEstateCreationDto realEstateCreationDto) 

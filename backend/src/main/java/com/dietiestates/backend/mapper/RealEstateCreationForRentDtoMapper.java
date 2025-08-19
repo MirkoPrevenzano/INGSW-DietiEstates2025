@@ -9,23 +9,29 @@ import com.dietiestates.backend.enums.ContractType;
 import com.dietiestates.backend.model.entity.RealEstate;
 import com.dietiestates.backend.model.entity.RealEstateForRent;
 
+import org.modelmapper.ModelMapper;
+
 
 @Component
 public class RealEstateCreationForRentDtoMapper extends RealEstateCreationDtoMapper
 {
+    public RealEstateCreationForRentDtoMapper(ModelMapper modelMapper) 
+    {
+        super(modelMapper);
+    }
+
+
     @Override
     protected RealEstateForRentCreationDto initializeDto() 
     {
         return new RealEstateForRentCreationDto();
     }
 
-
     @Override
     protected RealEstateForRent initializeEntity() 
     {
         return new RealEstateForRent();
     }
-
 
     @Override
     protected void mapSpecificFieldsToEntity(RealEstateCreationDto dto, RealEstate entity) 
@@ -34,13 +40,13 @@ public class RealEstateCreationForRentDtoMapper extends RealEstateCreationDtoMap
         ((RealEstateForRent) entity).setContractYears(((RealEstateForRentCreationDto) dto).getContractYears());
     }
 
-
     @Override
     protected void mapSpecificFieldstoDto(RealEstate entity, RealEstateCreationDto dto) 
     {
         ((RealEstateForRentCreationDto) dto).setSecurityDeposit(((RealEstateForRent) entity).getSecurityDeposit());
         ((RealEstateForRentCreationDto) dto).setContractYears(((RealEstateForRent) entity).getContractYears());
-        ((RealEstateCreationDto) dto).setContractType(ContractType.FOR_RENT);
+        
+        dto.setContractType(ContractType.FOR_RENT);
     }
 
 

@@ -10,7 +10,7 @@ import com.dietiestates.backend.factory.RealEstateFromDtoFactory;
 
 import lombok.RequiredArgsConstructor;
 
-// TODO: creare strategyresolverexception
+
 @Component
 @RequiredArgsConstructor
 public class RealEstateFromDtoFactoryResolver 

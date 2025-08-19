@@ -3,8 +3,6 @@ package com.dietiestates.backend.mapper;
 
 import java.time.LocalDateTime;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.dietiestates.backend.dto.AddressDto;
 import com.dietiestates.backend.dto.request.RealEstateCreationDto;
 import com.dietiestates.backend.dto.request.support.RealEstateBooleanFeaturesDto;
@@ -18,11 +16,13 @@ import com.dietiestates.backend.resolver.Supportable;
 
 import org.modelmapper.ModelMapper;
 
+import lombok.RequiredArgsConstructor;
 
+
+@RequiredArgsConstructor
 public abstract class RealEstateCreationDtoMapper implements Supportable<RealEstate>
 {  
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     
     public final RealEstateCreationDto toDto(RealEstate entity)
@@ -34,7 +34,6 @@ public abstract class RealEstateCreationDtoMapper implements Supportable<RealEst
 
         return dto;
     }
-
 
     public final RealEstate toEntity(RealEstateCreationDto dto)
     {
@@ -84,7 +83,6 @@ public abstract class RealEstateCreationDtoMapper implements Supportable<RealEst
         entity.setExternalFeatures(externalRealEstateFeatures);
         entity.setAddress(address);
     }
-    
 
     public void mapCommonFieldsToDto(RealEstate entity, RealEstateCreationDto dto) 
     {
@@ -127,7 +125,10 @@ public abstract class RealEstateCreationDtoMapper implements Supportable<RealEst
     
 
     protected abstract RealEstateCreationDto initializeDto();
+
     protected abstract RealEstate initializeEntity();
+
     protected abstract void mapSpecificFieldstoDto(RealEstate entity, RealEstateCreationDto dto);
+    
     protected abstract void mapSpecificFieldsToEntity(RealEstateCreationDto dto, RealEstate entity);  
 }
