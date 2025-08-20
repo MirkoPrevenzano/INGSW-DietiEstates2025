@@ -9,7 +9,6 @@ import { DownloadFileService } from '../../_service/download-file/download-file.
 import { ChartsConfigService } from '../../_service/charts-config/charts-config.service';
 import { AgentStats } from '../../model/response/support/agentStats';
 import { ButtonCustomComponent } from '../../componentCustom/button-custom/button-custom.component';
-import { ToastrService } from 'ngx-toastr';
 import { AgentDashboardPersonalStats } from '../../model/response/agentDashboardPersonalStats';
 import { HandleNotifyService } from '../../_service/handle-notify.service';
 

@@ -7,6 +7,7 @@ import { AgentDashboardRealEstateStats } from '../../model/response/agentDashboa
 import { AgentDashboardComponent } from '../../componentPage/agent-dashboard/agent-dashboard.component';
 import { AgentDashboardPersonalStats } from '../../model/response/agentDashboardPersonalStats';
 import { AgentCreation } from '../../model/request/agentCreation';
+import { AgentPublicInfo } from '../../model/response/support/agentPublicInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,11 @@ export class AgentService {
       return this.http.get<AgentRecentRealEstate[]>(url,this.httpOptions)
     }
 
+
+    getAgentPublicInfo():Observable<AgentPublicInfo>{
+      const url = this.url+`/public-info`
+      return this.http.get<AgentPublicInfo>(url, this.httpOptions)
+    }
    
     agentStats():Observable<AgentDashboardPersonalStats>{
       const url = this.url+`/dashboard/personal-stats`
@@ -42,8 +48,8 @@ export class AgentService {
 
 
     
-    estatesStats(page:number, limit:number):Observable<AgentDashboardRealEstateStats[]>{
-      const url = `${this.url}/dashboard/estates-stats/${page}/${limit}`
+    estatesStats(page: number, limit: number):Observable<AgentDashboardRealEstateStats[]>{
+      const url = `${this.url}/dashboard/real-estate-stats/${page}/${limit}`
       return this.http.get<AgentDashboardRealEstateStats[]>(url, this.httpOptions)
     }
 

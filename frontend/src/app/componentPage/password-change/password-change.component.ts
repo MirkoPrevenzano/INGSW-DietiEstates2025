@@ -114,7 +114,7 @@ export class PasswordChangeComponent implements OnInit{
 
   isMatch(): boolean {
     return this.passwordChangeControlService.isMatch(
-      this.oldPassword ,
+      this.newPassword ,
       this.confirmPassword
     );
   }

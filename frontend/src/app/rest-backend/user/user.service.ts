@@ -20,6 +20,7 @@ export class UserService {
   };
 
   updatePassword(password: UpdatePassword): Observable<any> {
-    return this.http.put(this.url, password, this.httpOptions);
+    const url = `${this.url}/password`;
+    return this.http.put(url, password, this.httpOptions);
   }
 }

@@ -20,6 +20,8 @@ import { ValidateStepEstateCreateService } from '../../../_service/validate-step
 import { EstateDataService } from '../../../_service/estate-data/estate-data.service';
 import { HandleNotifyService } from '../../../_service/handle-notify.service';
 import { RealEstateService } from '../../../rest-backend/real-estate/real-estate.service';
+import { AgentPublicInfo } from '../../../model/response/support/agentPublicInfo';
+import { AgentService } from '../../../rest-backend/agent/agent.service';
 
 @Component({
   selector: 'app-create-estates',
@@ -43,6 +45,7 @@ export class CreateEstatesComponent implements OnInit{
   address!: Address
   description!: RealEstateMainFeatures
   features!: RealEstateBooleanFeatures
+  agentPublicInfo!: AgentPublicInfo
   estate: RealEstateCreation = {} as RealEstateCreation
   additionalFields: any
   currentStep = 0;
@@ -75,9 +78,16 @@ export class CreateEstatesComponent implements OnInit{
     private readonly realEstateService:RealEstateService,
     private readonly validateStepService: ValidateStepEstateCreateService,
     private readonly router: Router,
-    private readonly handleError:HandleNotifyService
+    private readonly handleError:HandleNotifyService,
+    private readonly agentService: AgentService
 
-  ){}
+  ){
+    agentService.getAgentPublicInfo().subscribe({
+      next: (response: AgentPublicInfo) => {
+        this.agentPublicInfo = response;
+      }
+    });
+  }
   
 
   onPhotosChanged(photos:string[]): void {

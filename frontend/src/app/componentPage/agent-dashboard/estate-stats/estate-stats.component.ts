@@ -19,6 +19,8 @@ export class EstateStatsComponent implements OnInit, AfterViewInit, OnDestroy{
   page:number = 0
   limit: number = 10
   loading: boolean = false; //evito richieste multiple
+  hasMoreData: boolean = true; // Flag per verificare se ci sono ancora dati
+  private scrollListener: ((event: any) => void) | null = null; // Riferimento al listener per rimuoverlo correttamente
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
 
 
@@ -35,39 +37,69 @@ export class EstateStatsComponent implements OnInit, AfterViewInit, OnDestroy{
   }
   ngAfterViewInit(): void {
     if (this.scrollContainer?.nativeElement) {
-      this.scrollContainer.nativeElement.addEventListener('scroll', this.nextPage.bind(this));
+      this.scrollListener = this.nextPage.bind(this);
+      this.scrollContainer.nativeElement.addEventListener('scroll', this.scrollListener);
     }
   }
 
   loadStats() {
-    if(!this.loading){
-      this.loading= true
+    const user = localStorage.getItem('user')
+    if(user && !this.loading && this.hasMoreData){
+      this.loading = true
       this.agentService.estatesStats(this.page,this.limit).
         subscribe({
           next: (response:AgentDashboardRealEstateStats[]) =>{
-            this.estatesStats = this.estatesStats.concat(response)
+            if(response && response.length > 0) {
+              this.estatesStats = this.estatesStats.concat(response)
+              // Se la risposta ha meno elementi del limite, non ci sono più dati
+              if(response.length < this.limit) {
+                this.hasMoreData = false
+              }
+            } else {
+              // Se la risposta è vuota, non ci sono più dati
+              this.hasMoreData = false
+            }
             this.loading = false
           },
           error: (err) => {
             this.handleError.showMessageError(err.error)
+            this.loading = false // Assicurati che loading sia false anche in caso di errore
           }
         })
     }
   }
   
   nextPage(event: any) {
-    console.log(event)
     const element = event.target;
-    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+    const threshold = 5; // Margine di 5px dal fondo
+    
+    // Verifica se siamo vicini al fondo del container
+    const nearBottom = element.scrollTop + element.clientHeight >= element.scrollHeight - threshold;
+    
+    if (nearBottom && this.hasMoreData && !this.loading) {
       this.page++;
       this.loadStats();
     }
   }
 
   ngOnDestroy(): void {
-    if (this.scrollContainer?.nativeElement) {
-      this.scrollContainer.nativeElement.removeEventListener('scroll', this.nextPage.bind(this));
+    if (this.scrollContainer?.nativeElement && this.scrollListener) {
+      this.scrollContainer.nativeElement.removeEventListener('scroll', this.scrollListener);
     }
+  }
+
+  // Metodo per resettare la paginazione (utile per refresh)
+  resetPagination(): void {
+    this.page = 0;
+    this.hasMoreData = true;
+    this.loading = false;
+    this.estatesStats = [];
+  }
+
+  // Metodo per ricaricare i dati dall'inizio
+  refreshStats(): void {
+    this.resetPagination();
+    this.loadStats();
   }
 }
 

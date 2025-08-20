@@ -49,7 +49,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
                                     @NonNull FilterChain filterChain) throws ServletException, IOException 
     {
         if (request.getServletPath().equals("/login") || 
-            (request.getServletPath().equals("/agency") && request.getMethod().equals("POST")) ||
+            (request.getServletPath().equals("/agencies") && request.getMethod().equals("POST")) ||
             request.getServletPath().equals("/auth/customer-registration") ||
             request.getServletPath().equals("/auth/login/oauth2/code/google")) 
            

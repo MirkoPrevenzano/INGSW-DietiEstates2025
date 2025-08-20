@@ -33,7 +33,7 @@ export class RealEstateService {
       formData.append('photos', photo)
     })
     
-    const url = this.url+`${id}/photos`
+    const url = this.url+`/${id}/photos`
     return this.http.post(url, formData, {headers: new HttpHeaders({})})
   }
 

@@ -102,7 +102,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
     private static final String NEAR_SCHOOL = "nearSchool";
 
-    private static final String NEAR_PUBLIC_TRANSPORT = "nearPublicTransporta";
+    private static final String NEAR_PUBLIC_TRANSPORT = "nearPublicTransport";
 
 
     @Override
