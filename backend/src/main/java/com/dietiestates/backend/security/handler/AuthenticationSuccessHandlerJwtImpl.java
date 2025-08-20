@@ -33,11 +33,12 @@ public class AuthenticationSuccessHandlerJwtImpl implements AuthenticationSucces
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException 
     {
-        log.info("Authentication is OK!\nUser '" + authentication.getName() + "' has been successfully authenticated.");
-    
         UserDetails user = (UserDetails) authentication.getPrincipal();
+
+        log.info("Authentication is OK!");
+        log.info("User '" + user.getUsername() + "' has been successfully authenticated.");
+
         String accessToken = JwtUtil.generateAccessToken(user);
-        
         AuthenticationResponseDto authenticationResponseDto = new AuthenticationResponseDto(accessToken);
 
         response.setStatus(HttpStatus.OK.value());

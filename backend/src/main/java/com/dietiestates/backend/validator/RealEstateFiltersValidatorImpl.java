@@ -13,10 +13,14 @@ import jakarta.validation.ConstraintValidatorContext;
 
 public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealEstateFiltersValidator, Map<String,String>> 
 {
+    private static final String MIN_PRICE = "minPrice";
+
+    private static final String MAX_PRICE = "maxPrice";
+
     private static final Set<String> BOOLEAN_FILTERS = Set.of("airConditioning", "heating", "elevator", "concierge", "terrace", "garage", 
                                                               "balcony", "garden", "swimmingPool", "isNearSchool", "isNearPark", "isNearPublicTransport");
 
-    private static final Set<String> NUMERICAL_FILTERS = Set.of("radius", "minPrice", "maxPrice", "rooms");
+    private static final Set<String> NUMERICAL_FILTERS = Set.of("radius", MIN_PRICE, MAX_PRICE, "rooms");
 
 
     @Override
@@ -40,7 +44,7 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
             {
                 if(key.equals("lat"))
                 {
-                    double lat = Double.valueOf(value);
+                    double lat = Double.parseDouble(value);
     
                     if (lat < -90.0 || lat > 90.0)
                     {
@@ -51,7 +55,7 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
 
                 if(key.equals("lon"))
                 {
-                    double lon = Double.valueOf(value);
+                    double lon = Double.parseDouble(value);
     
                     if (lon < -180.0 || lon > 180.0)
                     {
@@ -62,7 +66,7 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
 
                 if(NUMERICAL_FILTERS.contains(key))
                 {
-                    double number = Double.valueOf(value);
+                    double number = Double.parseDouble(value);
     
                     if (number < 0.0)
                     {
@@ -94,10 +98,10 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
         }
 
         
-        if (!hasExceptionOccurred && filters.containsKey("minPrice") && filters.containsKey("maxPrice")) 
+        if (!hasExceptionOccurred && filters.containsKey(MIN_PRICE) && filters.containsKey(MAX_PRICE)) 
         {
-            double minPrice = Double.valueOf(filters.get("minPrice"));
-            double maxPrice = Double.valueOf(filters.get("maxPrice"));
+            double minPrice = Double.parseDouble(filters.get(MIN_PRICE));
+            double maxPrice = Double.parseDouble(filters.get(MAX_PRICE));
             
             if (minPrice > maxPrice) 
             {

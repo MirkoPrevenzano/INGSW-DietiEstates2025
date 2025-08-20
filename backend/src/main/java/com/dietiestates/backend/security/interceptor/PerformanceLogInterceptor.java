@@ -32,13 +32,7 @@ public class PerformanceLogInterceptor implements HandlerInterceptor
         long preHandleStartTime = (Long) request.getAttribute("preHandleStartTime");
         long afterCompletionDuration = System.currentTimeMillis() - preHandleStartTime;
     
-        if (ex != null) 
-        {
-            // Richiesta completata con eccezione NON gestita da @ControllerAdvice
-            log.error("Request to handler \"{}\" failed with unhandled exception.\nURI: {}.\nResponse Status: {}.\nDuration: {} ms.\nException: {}",
-                      handler, request.getRequestURI(), response.getStatus(), afterCompletionDuration, ex.getMessage());
-        } 
-        else if (response.getStatus() >= 400) 
+        if (response.getStatus() >= 400) 
         {
             // Richiesta completata con errore (status 4xx/5xx)
             log.error("Request to handler \"{}\" completed with error.\nURI: {}.\nResponse Status: {}.\nDuration: {} ms",

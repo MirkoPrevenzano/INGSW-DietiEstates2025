@@ -33,7 +33,6 @@ public class VatNumberValidatorImpl implements ConstraintValidator<VatNumberVali
         for (int i = 0; i < vatNumber.length(); i++)    
             vatNumberDigits[i] = Character.getNumericValue(vatNumber.charAt(i));
 
-            
         int oddDigitsSum = 0;  
         int evenDigitsSum = 0; 
         

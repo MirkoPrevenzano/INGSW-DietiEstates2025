@@ -11,13 +11,11 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.http.HttpMethod;
-
-import lombok.RequiredArgsConstructor;
-
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -31,6 +29,7 @@ import com.dietiestates.backend.security.handler.AuthenticationEntryPointCustomI
 import com.dietiestates.backend.security.handler.AuthenticationFailureHandlerCustomImpl;
 import com.dietiestates.backend.security.handler.AuthenticationSuccessHandlerJwtImpl;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -47,7 +46,6 @@ public class WebSecurityConfig
     private final AccessDeniedHandlerCustomImpl accessDeniedHandlerCustomImpl;
     private final AuthenticationFailureHandlerCustomImpl authenticationFailureHandlerCustomImpl;
     private final AuthenticationSuccessHandlerJwtImpl authenticationSuccessHandlerJwtImpl;
-
 
 
     @Bean
@@ -84,21 +82,19 @@ public class WebSecurityConfig
         return urlBasedCorsConfigurationSource;
     }
 
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, UsernamePasswordRoleAuthenticationFilter usernamePasswordRoleAuthenticationFilter, CorsConfigurationSource corsConfigurationSource) throws Exception
     {
-        http.csrf(csrfCustomizer -> csrfCustomizer.disable())
-            .cors(cors -> cors.configurationSource(corsConfigurationSource))
+        http.csrf(CsrfConfigurer::disable)
+            .cors(corsCustomizer -> corsCustomizer.configurationSource(corsConfigurationSource))
             .httpBasic(Customizer.withDefaults())
-            .sessionManagement(sessionManagementCustomizer -> 
-                                    sessionManagementCustomizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
-                                        authorizeHttpRequestsCustomizer.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                                        .requestMatchers("/login/**", "/auth/**", "/error/**","/admin/**").permitAll()
-                                        .requestMatchers(HttpMethod.POST, "/agencies").permitAll())
+            .sessionManagement(sessionManagementCustomizer -> sessionManagementCustomizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> authorizeHttpRequestsCustomizer.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                                                                                                    .requestMatchers("/login/**", "/auth/**", "/error/**").permitAll()
+                                                                                                    .requestMatchers(HttpMethod.POST, "/agencies").permitAll()
+                                                                                                    .requestMatchers(HttpMethod.POST, "/customer").permitAll())
 
-			.authorizeHttpRequests(adminHttpRequestsCustomizer-> 
+/* 			.authorizeHttpRequests(adminHttpRequestsCustomizer-> 
                                         adminHttpRequestsCustomizer.requestMatchers("/admin/create-collaborator")
                                                                         .hasAuthority(Role.ROLE_ADMIN.name())
                                                                     .requestMatchers("/admin/{username}/update-password")
@@ -107,11 +103,10 @@ public class WebSecurityConfig
                                                                                          Role.ROLE_UNAUTHORIZED.name())
                                                                     .requestMatchers("/admin/{username}/create-agent")
                                                                         .hasAnyAuthority(Role.ROLE_ADMIN.name(),
-                                                                                         Role.ROLE_COLLABORATOR.name()))
-            .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> 
-                authorizeHttpRequestsCustomizer.anyRequest().authenticated())
-            
-            .exceptionHandling(a -> a.authenticationEntryPoint(authenticationEntryPointCustomImpl).accessDeniedHandler(accessDeniedHandlerCustomImpl))   
+                                                                                         Role.ROLE_COLLABORATOR.name())) */
+            .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> authorizeHttpRequestsCustomizer.anyRequest().authenticated())
+            .exceptionHandling(exceptionHandlingCustomizer -> exceptionHandlingCustomizer.authenticationEntryPoint(authenticationEntryPointCustomImpl)
+                                                                                         .accessDeniedHandler(accessDeniedHandlerCustomImpl))   
             .addFilter(usernamePasswordRoleAuthenticationFilter)
             .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
             .addFilterBefore(endpointFilter, JwtAuthorizationFilter.class);

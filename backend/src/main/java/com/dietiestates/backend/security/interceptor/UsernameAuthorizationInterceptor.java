@@ -45,13 +45,10 @@ public class UsernameAuthorizationInterceptor implements HandlerInterceptor
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String authenticatedUsername = authentication.getName();
 
-            if(pathUsername != null && authenticatedUsername != null)
+            if(pathUsername != null && authenticatedUsername != null && pathUsername.equals(authenticatedUsername))
             {
-                if(!pathUsername.equals(authenticatedUsername))
-                {
-                    accessDeniedHandlerCustomImpl.handle(request, response, new AccessDeniedException("User is trying to access other users'resources"));
-                    return false;
-                }
+                accessDeniedHandlerCustomImpl.handle(request, response, new AccessDeniedException("User is trying to access other users'resources"));
+                return false;
             }
         }
 

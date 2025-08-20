@@ -30,8 +30,6 @@ public class UsernamePasswordRoleAuthenticationFilter extends UsernamePasswordAu
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-        Authentication authentication = getAuthenticationManager().authenticate(usernamePasswordAuthenticationToken);
-
-        return authentication;
+        return this.getAuthenticationManager().authenticate(usernamePasswordAuthenticationToken);
     }
 }

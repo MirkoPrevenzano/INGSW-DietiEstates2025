@@ -76,7 +76,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
                 Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
                 Arrays.stream(roles)
-                      .forEach(role -> {authorities.add(new SimpleGrantedAuthority(role));});
+                      .forEach(role -> authorities.add(new SimpleGrantedAuthority(role)));
 
                 UserLoadingStrategy userLoadingStrategy = userLoadingStrategyResolver.getUserLoadingStrategy(Role.valueOf(roles[0]));
                 UserDetails userDetails = userLoadingStrategy.loadUser(username);
@@ -95,7 +95,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
                 log.error("Exception occured during JwtAuthorizationFilter!");
                 authenticationEntryPointCustomImpl.commence(request, response, e);
             }
-            catch (JWTVerificationException e) // TODO: Sostituire con exc custom jwt
+            catch (JWTVerificationException e) 
             {
                 log.error("Exception occured during JwtAuthorizationFilter!");
                 authenticationEntryPointCustomImpl.commence(request, response, new BadCredentialsException(e.getMessage()));

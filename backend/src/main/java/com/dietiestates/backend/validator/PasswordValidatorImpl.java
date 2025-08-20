@@ -12,8 +12,8 @@ public class PasswordValidatorImpl implements ConstraintValidator<PasswordValida
     private static final Pattern UPPERCASE = Pattern.compile("[A-Z]");
     private static final Pattern LOWERCASE = Pattern.compile("[a-z]");
     private static final Pattern DIGITS = Pattern.compile("\\d");
-    private static final Pattern SYMBOLS = Pattern.compile("[!-/,:-@,{-}]");
-    
+    private static final Pattern SYMBOLS = Pattern.compile("[!\"#$%&'()*+,-./:;<=>?@{}\\[\\]|^_`~]");
+
 
     @Override
     public boolean isValid(CharSequence password, ConstraintValidatorContext context) 

@@ -2,6 +2,11 @@
 package com.dietiestates.backend.security.handler;
 
 import java.io.IOException;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
@@ -9,11 +14,9 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
 import com.dietiestates.backend.exception.handler.ApiErrorResponse;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,9 +32,8 @@ public class AccessDeniedHandlerCustomImpl implements AccessDeniedHandler
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException 
     {
-        log.error("Denied access occurred for user: " + request.getUserPrincipal().getName());
+        log.error("Denied access: " + accessDeniedException.getMessage());
         log.error("Attempted access to: " + request.getRequestURI());
-        log.error("Exception: " + accessDeniedException.getMessage());
 
         String errorDetail = "Denied access! You don't have the permissions to access this resource.";
         String errorPath = request.getRequestURI();
