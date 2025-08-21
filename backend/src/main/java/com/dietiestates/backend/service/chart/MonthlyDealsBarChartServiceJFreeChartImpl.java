@@ -63,10 +63,4 @@ public class MonthlyDealsBarChartServiceJFreeChartImpl extends ChartServiceJFree
     {
         return ChartType.MONTHLY_DEALS_BAR_CHART;
     }
-
-    @Override
-    protected void customizeChart(JFreeChart chart) 
-    {
-        super.customizeChart(chart);
-    }  
 }

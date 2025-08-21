@@ -36,7 +36,7 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
 {
     private final S3Client s3Client;
 
-    private final static FileStorageProvider PROVIDER = FileStorageProvider.AMAZON_S3;
+    private static final FileStorageProvider PROVIDER = FileStorageProvider.AMAZON_S3;
 
 	@Value("${aws.bucket.name}")
 	private String bucketName;
@@ -76,8 +76,6 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
 
         try 
         {
-/*             ResponseInputStream<GetObjectResponse> responseInputStream = s3Client.getObject(getObjectRequest);
-            return responseInputStream.readAllBytes(); */
             ResponseBytes<GetObjectResponse> objectBytesAndResponse = s3Client.getObjectAsBytes(getObjectRequest);
             log.info("File with key '{}' was retrieved successfully from the Amazon S3 bucket '{}'", fileStorageKey, bucketName);
             return objectBytesAndResponse.asByteArray();
@@ -108,8 +106,8 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
             HeadObjectResponse response = s3Client.headObject(headObjectRequest);
             Map<String, String> photoMetadata = new HashMap<>(response.metadata()); // Metadati utente
 
-            if (response.contentType() != null) photoMetadata.put("ContentType", (String) response.contentType());
-            if (response.contentDisposition() != null) photoMetadata.put("ContentDisposition", (String) response.contentDisposition());
+            if (response.contentType() != null) photoMetadata.put("ContentType", response.contentType());
+            if (response.contentDisposition() != null) photoMetadata.put("ContentDisposition", response.contentDisposition());
 
             log.info("Metadata for file with key '{}' retrieved successfully from Amazon S3 bucket '{}'.", fileStorageKey, bucketName);
 

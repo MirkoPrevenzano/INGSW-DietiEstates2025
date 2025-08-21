@@ -63,7 +63,7 @@ public class PhotoServiceImpl implements PhotoService
         byte[] photoBytes = fileStorageService.getFile(photokey);
 
         Map<String, String> metadata = fileStorageService.getFileMetadata(photokey);
-        String contentType = (String) metadata.getOrDefault("ContentType", "application/octet-stream"); 
+        String contentType = metadata.getOrDefault("ContentType", "application/octet-stream"); 
 
         return new PhotoResult<>(photoBytes, contentType);
     }
@@ -75,7 +75,7 @@ public class PhotoServiceImpl implements PhotoService
         byte[] photoBytes = fileStorageService.getFile(photoKey);
 
         Map<String, String> metadata = fileStorageService.getFileMetadata(photoKey);
-        String contentType = (String) metadata.getOrDefault("ContentType", "application/octet-stream"); 
+        String contentType = metadata.getOrDefault("ContentType", "application/octet-stream"); 
 
         String base64String = Base64.getEncoder().encodeToString(photoBytes);
 

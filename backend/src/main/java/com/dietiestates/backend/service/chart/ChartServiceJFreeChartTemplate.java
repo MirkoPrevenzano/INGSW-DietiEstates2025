@@ -27,9 +27,7 @@ public abstract class ChartServiceJFreeChartTemplate<T, D extends Dataset> imple
 
         ChartType chartType = getChartType();
         
-        byte[] chartBytes = convertChartToBytes(chart, chartType, data);
-
-        return chartBytes;
+        return  convertChartToBytes(chart, chartType, data);
     }
 
 

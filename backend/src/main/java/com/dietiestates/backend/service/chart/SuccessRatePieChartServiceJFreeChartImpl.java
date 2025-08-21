@@ -26,8 +26,8 @@ public class SuccessRatePieChartServiceJFreeChartImpl extends ChartServiceJFreeC
         int totalUploadedRealEstates = agent.getAgentStats().getTotalUploadedRealEstates();
         int completedDeals = agent.getAgentStats().getCompletedDeals();
         
-        defaultPieDataset.setValue(COMPLETED_DEALS_LABEL, (double) completedDeals);
-        defaultPieDataset.setValue(TOTAL_UPLOADED_REAL_ESTATES_LABEL, (double) totalUploadedRealEstates);
+        defaultPieDataset.setValue(COMPLETED_DEALS_LABEL, completedDeals);
+        defaultPieDataset.setValue(TOTAL_UPLOADED_REAL_ESTATES_LABEL, totalUploadedRealEstates);
 
         return defaultPieDataset;
     }
@@ -46,11 +46,5 @@ public class SuccessRatePieChartServiceJFreeChartImpl extends ChartServiceJFreeC
     protected ChartType getChartType() 
     {
         return ChartType.SUCCESS_RATE_PIE_CHART;
-    }
-    
-    @Override
-    protected void customizeChart(JFreeChart chart) 
-    {
-        super.customizeChart(chart);
     }
 }

@@ -26,8 +26,8 @@ public class TotalDealsPieChartServiceJFreeChartImpl extends ChartServiceJFreeCh
         int totalSales = agent.getAgentStats().getTotalSoldRealEstates();
         int totalRentals = agent.getAgentStats().getTotalRentedRealEstates();
 
-        defaultPieDataset.setValue(TOTAL_SALES_LABEL, (double) totalSales);
-        defaultPieDataset.setValue(TOTAL_RENTALS_LABEL, (double) totalRentals);
+        defaultPieDataset.setValue(TOTAL_SALES_LABEL, totalSales);
+        defaultPieDataset.setValue(TOTAL_RENTALS_LABEL, totalRentals);
         
         return defaultPieDataset;
     }
@@ -46,11 +46,5 @@ public class TotalDealsPieChartServiceJFreeChartImpl extends ChartServiceJFreeCh
     protected ChartType getChartType() 
     {
         return ChartType.TOTAL_DEALS_PIE_CHART;
-    }
-
-    @Override
-    protected void customizeChart(JFreeChart chart) 
-    {
-        super.customizeChart(chart);
     }
 }
