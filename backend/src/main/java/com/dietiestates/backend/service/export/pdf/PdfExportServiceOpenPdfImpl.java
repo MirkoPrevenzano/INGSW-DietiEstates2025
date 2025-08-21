@@ -3,7 +3,6 @@ package com.dietiestates.backend.service.export.pdf;
 
 import java.awt.Color;
 import java.io.ByteArrayOutputStream;
-// import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,6 +22,7 @@ import com.dietiestates.backend.service.chart.SuccessRatePieChartService;
 import com.dietiestates.backend.service.chart.TotalDealsPieChartService;
 import com.dietiestates.backend.service.export.ExportServiceTemplate;
 import com.dietiestates.backend.service.export.ExportingResult;
+
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
@@ -69,16 +69,12 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
     }
 
     @Override
-    protected Object initializeWriter() throws Exception 
+    protected Object initializeWriter() 
     {
         Document document = new Document(PageSize.A4);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        //FileOutputStream fileOutputStream = new FileOutputStream("ooooooooo.pdf");
 
         PdfWriter writer = PdfWriter.getInstance(document, byteArrayOutputStream);
-        //PdfWriter writer = PdfWriter.getInstance(document, fileOutputStream);
-        
-        
         writer.setPageEvent(new PdfPageEventHelperImpl());
         
         document.open();
@@ -86,12 +82,11 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
         // Creo gli stili una sola volta e li passo tramite il wrapper
         PdfStyleConfig styleConfig = createStyleConfig();
         
-        //return new PdfWriterWrapper(document, writer, styleConfig, fileOutputStream); 
         return new PdfWriterWrapper(document, writer, styleConfig, byteArrayOutputStream); 
     }
 
     @Override
-    protected void writeAgentInfo(Agent agent, Object writer) throws Exception 
+    protected void writeAgentInfo(Agent agent, Object writer) 
     {
         PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
         Document document = pdfWrapper.getDocument();
@@ -111,7 +106,7 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
     }
 
     @Override
-    protected void writeAgentStats(Agent agent, Object writer) throws Exception 
+    protected void writeAgentStats(Agent agent, Object writer) 
     {
         PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
         Document document = pdfWrapper.getDocument();
@@ -140,7 +135,7 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
     }
 
     @Override
-    protected void writeRealEstateStats(Agent agent, Object writer) throws Exception 
+    protected void writeRealEstateStats(Agent agent, Object writer) 
     {
         PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
         Document document = pdfWrapper.getDocument();
@@ -158,7 +153,6 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
         {
             for (AgentDashboardRealEstateStatsDto agentDashboardRealEstateStatsDto : agentDashboardRealEstateStatsDtos) 
             {
-                //RealEstateStats realEstateStats = realEstate.getRealEstateStats();
                 String[] estateStats = {
                     agentDashboardRealEstateStatsDto.getTitle(),
                     agentDashboardRealEstateStatsDto.getUploadingDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm:ss")),
@@ -169,7 +163,7 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
                 writeInTable(realEstateStatsTable, styles.cell, styles.cellFont, estateStats);
             }
         } else {
-            writeInTable(realEstateStatsTable, styles.cell, styles.cellFont, new String[] {"//", "//", "//", "//", "//"});
+            writeInTable(realEstateStatsTable, styles.cell, styles.cellFont,"//", "//", "//", "//", "//");
         }
         
         document.add(realEstateStatsParagraph);
@@ -177,7 +171,7 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
     }
 
     @Override
-    protected void writeRealEstatePerMonthStats(Agent agent, Object writer) throws Exception 
+    protected void writeRealEstatePerMonthStats(Agent agent, Object writer) 
     {
         PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
         Document document = pdfWrapper.getDocument();
@@ -186,16 +180,18 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
     }
 
     @Override
-    protected void writeSectionSeparator(Object writer) throws Exception 
-    {        
+    protected void writeSectionSeparator(Object writer) 
+    { 
+        // PDF non ha bisogno di separatori       
     }
 
     @Override
-    protected byte[] finalizeWriter(Object writer) throws Exception {
+    protected byte[] finalizeWriter(Object writer) 
+    {
         PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
         pdfWrapper.getDocument().close();
+
         return ((ByteArrayOutputStream) pdfWrapper.getOutputStream()).toByteArray();
-        //return null;
     }
 
     @Override
@@ -248,7 +244,7 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
     private Paragraph createParagraph(Font fontName, String title) 
     {
         Paragraph p = new Paragraph(title, fontName);
-        p.setAlignment(Paragraph.ALIGN_CENTER);
+        p.setAlignment(Element.ALIGN_CENTER);
         return p;
     }
     
@@ -271,23 +267,6 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
         }
     }
     
-    private void addLogoHeader(Document document) 
-    {
-        try 
-        {
-            Image logo = Image.getInstance("Screenshot from 2025-01-26 00-42-55.png");
-            PdfPTable logoTable = createTable(1, 60, new float[] {1});
-            PdfPCell logoCell = createCell(Color.WHITE, 0);
-            logoCell.setImage(logo);
-            logoTable.setHorizontalAlignment(Element.ALIGN_CENTER);
-            logoTable.addCell(logoCell);
-            document.add(logoTable);
-        } 
-        catch (Exception e) 
-        {
-            log.warn("Exception occurred while creating PDF image of the logo: {}", e.getMessage());
-        }
-    }
     
     private void addPieCharts(Document document, Agent agent) 
     {
@@ -335,57 +314,68 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
         }
     }
     
-    private void addFooter(PdfWriter writer, Document document) {
-        PdfPTable table = new PdfPTable(2);
-        table.setTotalWidth(520);
-        table.setWidths(new int[]{50, 50});
-        
-        Paragraph title = new Paragraph("Exporting date: " + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE), 
-                                       new Font(Font.HELVETICA, 10));
-        PdfPCell titleCell = new PdfPCell(title);
-        titleCell.setPaddingTop(10);
-        titleCell.setHorizontalAlignment(Element.ALIGN_LEFT);
-        titleCell.setBorderColor(Color.GRAY);
-        titleCell.setBorder(Rectangle.TOP);
-        table.addCell(titleCell);
-        
-        Paragraph pageNumberText = new Paragraph("Page " + document.getPageNumber(), 
-                                               new Font(Font.HELVETICA, 10));
-        PdfPCell pageNumberCell = new PdfPCell(pageNumberText);
-        pageNumberCell.setPaddingTop(10);
-        pageNumberCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-        pageNumberCell.setBorderColor(Color.GRAY);
-        pageNumberCell.setBorder(Rectangle.TOP);
-        table.addCell(pageNumberCell);
-        
-        table.writeSelectedRows(0, -1, 34, 36, writer.getDirectContent());
-    }
-
 
 
     private final class PdfPageEventHelperImpl extends PdfPageEventHelper 
     {
-        
         @Override
         public void onOpenDocument(PdfWriter arg0, Document arg1) 
         {
             addLogoHeader(arg1);
         }
 
-
-        @Override
-        public void onStartPage(PdfWriter arg0, Document arg1) 
-        {
-            super.onStartPage(arg0, arg1);
-        }
-
-
         @Override
         public void onEndPage(PdfWriter writer, Document document) 
         {
             addFooter(writer, document);
         }
+
+        
+        private void addLogoHeader(Document document) 
+        {
+            try 
+            {
+                Image logo = Image.getInstance("Screenshot from 2025-01-26 00-42-55.png");
+                PdfPTable logoTable = createTable(1, 60, new float[] {1});
+                PdfPCell logoCell = createCell(Color.WHITE, 0);
+                logoCell.setImage(logo);
+                logoTable.setHorizontalAlignment(Element.ALIGN_CENTER);
+                logoTable.addCell(logoCell);
+                document.add(logoTable);
+            } 
+            catch (Exception e) 
+            {
+                log.warn("Exception occurred while creating PDF image of the logo: {}", e.getMessage());
+            }
+        }
+
+        private void addFooter(PdfWriter writer, Document document) {
+            PdfPTable table = new PdfPTable(2);
+            table.setTotalWidth(520);
+            table.setWidths(new int[]{50, 50});
+            
+            Paragraph title = new Paragraph("Exporting date: " + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE), 
+                                           new Font(Font.HELVETICA, 10));
+            PdfPCell titleCell = new PdfPCell(title);
+            titleCell.setPaddingTop(10);
+            titleCell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            titleCell.setBorderColor(Color.GRAY);
+            titleCell.setBorder(Rectangle.TOP);
+            table.addCell(titleCell);
+            
+            Paragraph pageNumberText = new Paragraph("Page " + document.getPageNumber(), 
+                                                   new Font(Font.HELVETICA, 10));
+            PdfPCell pageNumberCell = new PdfPCell(pageNumberText);
+            pageNumberCell.setPaddingTop(10);
+            pageNumberCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            pageNumberCell.setBorderColor(Color.GRAY);
+            pageNumberCell.setBorder(Rectangle.TOP);
+            table.addCell(pageNumberCell);
+            
+            table.writeSelectedRows(0, -1, 34, 36, writer.getDirectContent());
+        }    
     }
+
 
 
     // Classe helper per wrappare Document, PdfWriter e StyleConfig
@@ -399,6 +389,7 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
         private final OutputStream outputStream;
     }
     
+
 
     // Classe per contenere la configurazione degli stili
     @RequiredArgsConstructor

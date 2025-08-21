@@ -60,13 +60,13 @@ public abstract class ExportServiceTemplate
     }
     
     
-    protected abstract Object initializeWriter() throws Exception;
-    protected abstract void writeAgentInfo(Agent agent, Object writer) throws Exception;
-    protected abstract void writeAgentStats(Agent agent, Object writer) throws Exception;
-    protected abstract void writeRealEstateStats(Agent agent, Object writer) throws Exception;
-    protected abstract void writeRealEstatePerMonthStats(Agent agent, Object writer) throws Exception;
-    protected abstract void writeSectionSeparator(Object writer) throws Exception;
-    protected abstract byte[] finalizeWriter(Object writer) throws Exception;
+    protected abstract Object initializeWriter();
+    protected abstract void writeAgentInfo(Agent agent, Object writer);
+    protected abstract void writeAgentStats(Agent agent, Object writer);
+    protected abstract void writeRealEstateStats(Agent agent, Object writer);
+    protected abstract void writeRealEstatePerMonthStats(Agent agent, Object writer);
+    protected abstract void writeSectionSeparator(Object writer);
+    protected abstract byte[] finalizeWriter(Object writer);
     protected abstract ExportingFormat getExportingFormat();
     protected abstract MediaType getContentType();
     protected abstract String getFileExtension();

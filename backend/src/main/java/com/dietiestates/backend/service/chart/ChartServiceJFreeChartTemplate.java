@@ -53,8 +53,8 @@ public abstract class ChartServiceJFreeChartTemplate<T, D extends Dataset> imple
         {
             Long agentId = null; 
 
-            if (data instanceof Agent)
-                agentId = ((Agent)data).getUserId();
+            if (data instanceof Agent agent)
+                agentId = agent.getUserId();
             
             throw new ChartServiceException(chartType, agentId, e);
         }
