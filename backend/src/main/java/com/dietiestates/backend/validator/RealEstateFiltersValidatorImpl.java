@@ -23,7 +23,7 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
     private static final Set<String> NUMERICAL_FILTERS = Set.of("radius", MIN_PRICE, MAX_PRICE, "rooms");
 
 
-    @Override
+    @Override 
     public boolean isValid(Map<String,String> filters, ConstraintValidatorContext context) 
     {
         context.disableDefaultConstraintViolation();
@@ -34,70 +34,121 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
             String key = entry.getKey();
             String value = entry.getValue();
 
-            if (value == null || value.trim().isEmpty()) 
+            hasExceptionOccurred |= validateLatitude(key, value, context);
+
+            hasExceptionOccurred |= validateLongitude(key, value, context);
+
+            hasExceptionOccurred |= validateNumericalFilter(key, value, context);
+    
+            hasExceptionOccurred |= validateBooleanFilter(key, value, context);
+                
+            hasExceptionOccurred |= validateEnergyClass(key, value, context);
+
+            hasExceptionOccurred |= validateContractType(key, value, context);
+        }
+
+        return !validatePriceRange(filters, context, hasExceptionOccurred);
+    }
+
+
+
+    private boolean validateLatitude(String key, String value, ConstraintValidatorContext context) 
+    {
+        if (key.equals("lat"))
+        {
+            double lat = Double.parseDouble(value);
+
+            if (lat < -90.0 || lat > 90.0) 
             {
-                addViolation(context, "value for filter '" + key + "' cannot be empty or null");
-                return false;
-            }
-
-            try 
-            {
-                if(key.equals("lat"))
-                {
-                    double lat = Double.parseDouble(value);
-    
-                    if (lat < -90.0 || lat > 90.0)
-                    {
-                        addViolation(context, key + " value must be between -90 and 90");
-                        hasExceptionOccurred = true;
-                    }
-                } 
-
-                if(key.equals("lon"))
-                {
-                    double lon = Double.parseDouble(value);
-    
-                    if (lon < -180.0 || lon > 180.0)
-                    {
-                        addViolation(context, key + " value must be between -180 and 180");
-                        hasExceptionOccurred = true;
-                    }                
-                } 
-
-                if(NUMERICAL_FILTERS.contains(key))
-                {
-                    double number = Double.parseDouble(value);
-    
-                    if (number < 0.0)
-                    {
-                        addViolation(context, key + " value must be greater or equal than 0");
-                        hasExceptionOccurred = true;
-                    }
-                } 
-    
-                if(BOOLEAN_FILTERS.contains(key))
-                {
-                    if (!value.equalsIgnoreCase("true") && !value.equalsIgnoreCase("false")) 
-                    {
-                        addViolation(context, key + " value must be true or false");
-                        hasExceptionOccurred = true;
-                    }
-                }  
-                    
-                if(key.equals("energyClass"))
-                    EnergyClass.fromValue(value);
-
-                if(key.equals("type"))
-                    ContractType.fromValue(value);
-            } 
-            catch (Exception e)
-            {
-                addViolation(context, "Invalid value '" + value + "' for filter: " + key);
-                hasExceptionOccurred = true;
+                addViolation(context, "lat value must be between -90 and 90");
+                return true;
             }
         }
 
-        
+        return false;
+    }
+    
+    private boolean validateLongitude(String key, String value, ConstraintValidatorContext context) 
+    {
+        if (key.equals("lon"))
+        {
+            double lon = Double.parseDouble(value);
+
+            if (lon < -180.0 || lon > 180.0) 
+            {
+                addViolation(context, "lon value must be between -180 and 180");
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean validateNumericalFilter(String key, String value, ConstraintValidatorContext context) 
+    {
+        if (NUMERICAL_FILTERS.contains(key))
+        {
+            double number = Double.parseDouble(value);
+
+            if (number < 0.0) 
+            {
+                addViolation(context, key + " value must be greater or equal than 0");
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    private boolean validateBooleanFilter(String key, String value, ConstraintValidatorContext context) 
+    {
+        if (BOOLEAN_FILTERS.contains(key) && !value.equalsIgnoreCase("true") && !value.equalsIgnoreCase("false"))
+        {
+            addViolation(context, key + " value must be true or false");
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean validateEnergyClass(String key, String value, ConstraintValidatorContext context) 
+    {
+        if (!key.equals("energyClass"))
+        {
+            try 
+            {
+                EnergyClass.fromValue(value);
+            } 
+            catch (IllegalArgumentException e) 
+            {
+                addViolation(context, "Invalid value '" + value + "' for filter: " + key);
+                return true;
+            }
+        }            
+
+        return false;
+    }
+
+    private boolean validateContractType(String key, String value, ConstraintValidatorContext context) 
+    {
+        if (!key.equals("type"))
+        {
+            try 
+            {
+                ContractType.fromValue(value);
+            } 
+            catch (IllegalArgumentException e) 
+            {
+                addViolation(context, "Invalid value '" + value + "' for filter: " + key);
+                return true;
+            }
+        }            
+
+        return false;
+    }
+
+    private boolean validatePriceRange(Map<String, String> filters, ConstraintValidatorContext context, boolean hasExceptionOccurred) 
+    {
         if (!hasExceptionOccurred && filters.containsKey(MIN_PRICE) && filters.containsKey(MAX_PRICE)) 
         {
             double minPrice = Double.parseDouble(filters.get(MIN_PRICE));
@@ -110,13 +161,12 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
             }
         }
 
-        return !hasExceptionOccurred;
+        return hasExceptionOccurred;
     }
-
 
     private void addViolation(ConstraintValidatorContext context, String message) 
     {        
         context.buildConstraintViolationWithTemplate(message)
                .addConstraintViolation();
     }
-}
+} 
