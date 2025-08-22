@@ -20,12 +20,12 @@ public class FileStorageServiceException extends RuntimeException
 
     public FileStorageServiceException(String msg)
     {
-        this(msg, new String(""), null, null, null, null);
+        this(msg, "", null, null, null, null);
     }
     
     public FileStorageServiceException(String msg, Throwable cause)
     {
-        this(msg, new String(""), null, null, null, cause);
+        this(msg, "", null, null, null, cause);
     }
 
     public FileStorageServiceException(String fileKey, Long fileSize, FileStorageProvider fileStorageProvider, FileStorageOperation fileStorageOperation)

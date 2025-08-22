@@ -38,7 +38,7 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
 
     private static final FileStorageProvider PROVIDER = FileStorageProvider.AMAZON_S3;
 
-	@Value("${aws.bucket.name}")
+	@Value("${aws.bucketname}")
 	private String bucketName;
 
 

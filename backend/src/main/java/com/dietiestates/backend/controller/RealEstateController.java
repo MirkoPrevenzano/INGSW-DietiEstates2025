@@ -68,7 +68,7 @@ public class RealEstateController
     }
 
     @GetMapping(value = "/{realEstateId}/photos")
-    public ResponseEntity<List<PhotoResult<String>>> getPhotos(@PathVariable("realEstateId") Long realEstateId) throws IOException
+    public ResponseEntity<List<PhotoResult<String>>> getPhotos(@PathVariable("realEstateId") Long realEstateId)
     {        
         return ResponseEntity.ok(realEstateService.getPhotos(realEstateId));
     }

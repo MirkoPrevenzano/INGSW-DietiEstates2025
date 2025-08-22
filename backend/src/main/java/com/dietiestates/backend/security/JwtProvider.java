@@ -21,7 +21,7 @@ import com.auth0.jwt.JWTVerifier;
 public class JwtProvider 
 {
     @Value("${jwt.secret}")
-    private String secretKey;;
+    private String secretKey;
 
     private static final String ISSUER = "dieti-estates";
 

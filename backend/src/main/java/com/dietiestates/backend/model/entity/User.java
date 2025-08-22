@@ -59,7 +59,7 @@ public abstract class User implements UserDetails
     Role role;
     
 
-    public User(String name, String surname, String username, String password) 
+    protected User(String name, String surname, String username, String password) 
     {
         this.name = name;
         this.surname = surname;

@@ -46,15 +46,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     {
         logExceptionInfo(ex);
 
-        //String errorPath = request.getDescription(false);
         String errorDetail = "Errore nella richiesta! " +
                              "Il metodo HTTP '" +  ex.getMethod() + "' non è supportato. " +  
                              "I metodi supportati sono: {" + ex.getSupportedHttpMethods() + "}";
-
-        //ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
-        
-/*         return ResponseEntity.status(errorResponse.getStatus())
-                             .body(errorResponse);   */    
                              
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);
     }
@@ -64,17 +58,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     {
         logExceptionInfo(ex);
 
-        // String errorPath = request.getDescription(false);
         String errorDetail = "Errore nella richiesta! " + 
                              "Il content media type '" +  ex.getContentType() + "' non è supportato. " + 
                              "I content supportati sono: {" + ex.getSupportedMediaTypes() + "}";
-
-        //ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
         
-        return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);
-
-/*         return ResponseEntity.status(errorResponse.getStatus())
-                             .body(errorResponse);  */       
+        return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);   
     }
 
     @Override
@@ -82,21 +70,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     {
         logExceptionInfo(ex);
 
-        //String errorPath = request.getDescription(false);
         String errorDetail = "Errore nella richiesta! " + 
                              "Il content media type non è in una rappresentazione accettabile. " + 
                              "I content supportati sono: {" + ex.getSupportedMediaTypes() + "}";
 
-        //ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
-        
-        //HttpHeaders responseHeaders = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);
-
-/*         return ResponseEntity.status(errorResponse.getStatus())
-                             .headers(responseHeaders)
-                             .body(errorResponse); */
     }
 
     @Override
@@ -109,9 +89,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         ex.getBindingResult()
           .getAllErrors()
           .forEach(error -> { String fieldName;
-                              if (error instanceof FieldError)
+                              if (error instanceof FieldError fieldError)
                               {
-                                fieldName = ((FieldError) error).getField();
+                                fieldName = fieldError.getField();
 
                                 int lastDot = fieldName.lastIndexOf('.');
                                 if (lastDot != -1) 
@@ -125,15 +105,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
                                 subErrors.add(fieldName + ": " + message);
                             });
 
-        //String errorPath = request.getDescription(false);
         String errorDetail = "Errore durante la validazione dei dati!";
-
-        //ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath, subErrors);
         
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, subErrors, headers, request);
-
-/*         return ResponseEntity.status(errorResponse.getStatus())
-                             .body(errorResponse); */
     }
 
     @Override
@@ -141,17 +115,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     {
         logExceptionInfo(ex);
 
-        //String errorPath = request.getDescription(false);
         String errorDetail = "Errore nella richiesta! " + 
                              "La variabile URI obbligatoria '" + ex.getVariableName()  + "' " + 
                              "di tipo '" + ex.getParameter().getNestedParameterType().getSimpleName() + "' non è presente.";
 
-        //ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
        
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);
-
-/*         return ResponseEntity.status(errorResponse.getStatus())
-                             .body(errorResponse); */
     }
 
     @Override
@@ -159,17 +128,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     {
         logExceptionInfo(ex);
         
-        //String errorPath = request.getDescription(false);
         String errorDetail = "Errore nella richiesta! " +
                              "Il parametro URI obbligatorio '" + ex.getParameterName() + "' " + 
                              "di tipo '" + ex.getParameterType() + "' non è presente.";
-
-        //ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
         
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);
-
-/*         return ResponseEntity.status(errorResponse.getStatus())
-                             .body(errorResponse);   */  
     }
 
     @Override
@@ -177,16 +140,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     {
         logExceptionInfo(ex);
 
-        //String errorPath = request.getDescription(false);        
         String errorDetail = "Errore nella richiesta! " +  
                              "La parte obbligatoria '" + ex.getRequestPartName() + "' non è presente.";
-
-        //ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
         
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);
-
-/*         return ResponseEntity.status(errorResponse.getStatus())
-                             .body(errorResponse); */
     }
 
     @Override
@@ -194,15 +151,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     {
         logExceptionInfo(ex);
 
-        //String errorPath = request.getDescription(false);
         String errorDetail = "Errore nella richiesta! Superata la soglia massima di dimensione di upload.";
-
-        //ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDetail, errorPath);
         
-        return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);
-
-/*         return ResponseEntity.status(errorResponse.getStatus())
-                             .body(errorResponse);    */             
+        return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);             
     }
 
     @Override
@@ -210,18 +161,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     {
         logExceptionInfo(ex);
 
-        //String errorPath = request.getDescription(false);
         String errorDetail = "Errore nella richiesta! " + 
                                   "Fallimento nel convertire il valore '" + ex.getValue() + "' " + 
                                   "del parametro '" + ex.getPropertyName() + "' " + 
                                   "nel tipo richiesto '" + ex.getRequiredType().getSimpleName() +  "'";
 
-        //ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.valueOf(status.value()), errorDescription, errorPath);
-
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);
-
-/*         return ResponseEntity.status(errorResponse.getStatus())
-                             .body(errorResponse); */
     }
 
     @Override
@@ -229,57 +174,27 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     {
         logExceptionInfo(ex);
         
-        if (ex.getCause() instanceof ValueInstantiationException) 
+        if (ex.getCause() instanceof ValueInstantiationException vie) 
         {
-            //String errorPath = request.getDescription(false);
             String errorDetail = "Errore durante la deserializzazione dei dati JSON! ";
 
-            ValueInstantiationException vie = (ValueInstantiationException) ex.getCause();
             errorDetail += vie.getCause().getMessage();
 
             return buildResponseEntity(HttpStatus.BAD_REQUEST, errorDetail, null, headers, request);
-
-            /*             ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDescription, errorPath);
-
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                                 .body(errorResponse); */
         }
         else
             return super.handleHttpMessageNotReadable(ex, headers, status, request);
 
     }
 
-
-    @ExceptionHandler(ExportServiceException.class)
-    public ResponseEntity<Object> handleExportServiceException(ExportServiceException ex, WebRequest request) 
-    {
-        logExceptionInfo(ex);
-        
-        //String errorPath = request.getDescription(false);
-        String errorDetail = ex.getMessage();
-
-        return buildResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, errorDetail, null, null, request);
-
-/*         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, errorDescription, errorPath);
-
-        return ResponseEntity.status(errorResponse.getStatus())
-                             .body(errorResponse); */
-    }
-
-    @ExceptionHandler(FileStorageServiceException.class)
+    @ExceptionHandler({FileStorageServiceException.class, ExportServiceException.class})
     public ResponseEntity<Object> handleFileStorageServiceException(FileStorageServiceException ex, WebRequest request) 
     {
         logExceptionInfo(ex);
         
-        //String errorPath = request.getDescription(false);
         String errorDetail = ex.getMessage();
 
         return buildResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, errorDetail, null, null, request);
-
-/*         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, errorDescription, errorPath);
-
-        return ResponseEntity.status(errorResponse.getStatus())
-                             .body(errorResponse); */
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
@@ -287,15 +202,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     {
         logExceptionInfo(ex);
         
-        //String errorPath = request.getDescription(false);
         String errorDetail = ex.getMessage();
 
         return buildResponseEntity(HttpStatus.BAD_REQUEST, errorDetail, null, null, request);
-
-/*         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, errorDescription, errorPath);
-
-        return ResponseEntity.status(errorResponse.getStatus())
-                             .body(errorResponse); */
     }
 
     @ExceptionHandler(Exception.class)
@@ -303,15 +212,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     {
         logExceptionInfo(ex);
         
-        //String errorPath = request.getDescription(false);
         String errorDetail = "Errore interno non gestito.";
 
         return buildResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, errorDetail, null, null, request);
-
-/*         ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, errorDescription, errorPath);
-
-        return ResponseEntity.status(errorResponse.getStatus())
-                             .body(errorResponse); */
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
@@ -321,15 +224,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 
         if (isViolationFromEntity(ex))
         {
-            //String errorPath = request.getDescription(false);
             String errorDetail = "Errore durante il salvataggio dei dati!";
 
             return buildResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, errorDetail, null, null, request);
-
-/*             ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, errorDescription, errorPath);
-            
-            return ResponseEntity.status(errorResponse.getStatus())
-                                 .body(errorResponse); */
         }
         else
         {
@@ -350,16 +247,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
                               subErrors.add(parameterName + ": " + message);
                             });
 
-
-            //String errorPath = request.getDescription(false);           
             String errorDetail = "Errore durante la validazione dei dati!";
-            return buildResponseEntity(HttpStatus.BAD_REQUEST, errorDetail, subErrors, null, request);
 
-            
-/*             ApiErrorResponse errorResponse = new ApiErrorResponse(HttpStatus.BAD_REQUEST, errorDetail, errorPath, subErrors);
-            
-            return ResponseEntity.status(errorResponse.getStatus())
-                                 .body(errorResponse); */
+            return buildResponseEntity(HttpStatus.BAD_REQUEST, errorDetail, subErrors, null, request);
         }
     }
 

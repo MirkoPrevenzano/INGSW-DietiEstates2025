@@ -15,12 +15,12 @@ public class EmailServiceException extends RuntimeException
 
     public EmailServiceException(String msg)
     {
-        this(msg, new String(""), new String(""), null);
+        this(msg, "", "", null);
     }
     
     public EmailServiceException(String msg, Throwable cause)
     {
-        this(msg, new String(""), new String(""), cause);
+        this(msg, "", "", cause);
     }
 
     public EmailServiceException(String recipient, String subject)
