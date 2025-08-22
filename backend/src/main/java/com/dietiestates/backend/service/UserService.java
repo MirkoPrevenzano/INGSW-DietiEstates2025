@@ -31,6 +31,7 @@ public class UserService implements UserDetailsService
     private final PasswordEncoder passwordEncoder;
 
 
+    @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
     {
@@ -49,9 +50,7 @@ public class UserService implements UserDetailsService
         username = username.substring(0, index);
 
         UserLoadingStrategy userLoadingStrategy = userLoadingStrategyResolver.getUserLoadingStrategy(role);
-        UserDetails user = userLoadingStrategy.loadUser(username);
-
-        return user;
+        return userLoadingStrategy.loadUser(username);
     }
 
     @Transactional
@@ -74,7 +73,6 @@ public class UserService implements UserDetailsService
         }
         
         user.setPassword(passwordEncoder.encode(updatePasswordDto.getNewPassword()));
-        userRepository.save(user);
 
         log.info("Password was updated successfully!");
     }

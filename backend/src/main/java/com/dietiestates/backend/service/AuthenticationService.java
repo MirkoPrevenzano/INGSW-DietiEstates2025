@@ -2,6 +2,7 @@
 package com.dietiestates.backend.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dietiestates.backend.dto.request.CustomerRegistrationDto;
 import com.dietiestates.backend.dto.response.AuthenticationResponseDto;
@@ -25,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 
 
 @Service
@@ -39,6 +41,7 @@ public class AuthenticationService
     private final PasswordEncoder passwordEncoder;
 
 
+    @Transactional
     public AuthenticationResponseDto customerRegistration(CustomerRegistrationDto customerRegistrationDto) throws IllegalArgumentException
     {
         if(customerRepository.findByUsername(customerRegistrationDto.getUsername()).isPresent())
@@ -62,7 +65,9 @@ public class AuthenticationService
 
     public AuthenticationResponseDto authenticateWithGoogle(Map <String, String> request) { 
         String googleToken = request.get("token");
-        GoogleIdToken.Payload payload = verifyGoogleToken(googleToken); 
+        GoogleIdToken.Payload payload = verifyGoogleToken(googleToken)
+                                        .orElseThrow(() -> new IllegalArgumentException("Token Google non valido"));
+         
         Customer user = customerService.authenticateWithExternalAPI(payload);
         // Genera il token di autenticazione 
         Collection<SimpleGrantedAuthority> authorities = Collections.singletonList(
@@ -82,7 +87,7 @@ public class AuthenticationService
     } 
 
    
-    private GoogleIdToken.Payload verifyGoogleToken(String token) {
+    private Optional<GoogleIdToken.Payload> verifyGoogleToken(String token) {
         try {
             @SuppressWarnings("deprecation") 
             GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())
@@ -90,10 +95,10 @@ public class AuthenticationService
                     .build();
     
             GoogleIdToken idToken = verifier.verify(token);
-            return (idToken != null) ? idToken.getPayload() : null;
+            return Optional.ofNullable(idToken).map(GoogleIdToken::getPayload);
         } catch (Exception e) {
             log.error("Errore durante la verifica del token Google: {}", e.getMessage());
-            return null;
+            return Optional.empty();
         }
     }
 

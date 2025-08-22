@@ -17,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Service
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Slf4j
 public class AgencyService 
@@ -52,13 +51,5 @@ public class AgencyService
         agency.addAdministrator(admin);
 
         log.info("Agency was created successfully!");
-
-        Agency agency2 = agencyRepository.save(agency);
-
-        Administrator administrator = agency2.getAdministrators().get(0);
-
-        log.info(administrator.toString());
-        String agencyname = administratorRepository.findAgencyNameByUsername(administrator.getUsername());
-        log.info(agencyname);
     }
 }

@@ -20,7 +20,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import com.dietiestates.backend.enums.Role;
 import com.dietiestates.backend.security.filter.EndpointFilter;
 import com.dietiestates.backend.security.filter.JwtAuthorizationFilter;
 import com.dietiestates.backend.security.filter.UsernamePasswordRoleAuthenticationFilter;
@@ -93,17 +92,6 @@ public class WebSecurityConfig
                                                                                                     .requestMatchers("/login/**", "/auth/**", "/error/**").permitAll()
                                                                                                     .requestMatchers(HttpMethod.POST, "/agencies").permitAll()
                                                                                                     .requestMatchers(HttpMethod.POST, "/customer").permitAll())
-
-/* 			.authorizeHttpRequests(adminHttpRequestsCustomizer-> 
-                                        adminHttpRequestsCustomizer.requestMatchers("/admin/create-collaborator")
-                                                                        .hasAuthority(Role.ROLE_ADMIN.name())
-                                                                    .requestMatchers("/admin/{username}/update-password")
-                                                                        .hasAnyAuthority(Role.ROLE_ADMIN.name(),
-                                                                                         Role.ROLE_COLLABORATOR.name(),
-                                                                                         Role.ROLE_UNAUTHORIZED.name())
-                                                                    .requestMatchers("/admin/{username}/create-agent")
-                                                                        .hasAnyAuthority(Role.ROLE_ADMIN.name(),
-                                                                                         Role.ROLE_COLLABORATOR.name())) */
             .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> authorizeHttpRequestsCustomizer.anyRequest().authenticated())
             .exceptionHandling(exceptionHandlingCustomizer -> exceptionHandlingCustomizer.authenticationEntryPoint(authenticationEntryPointCustomImpl)
                                                                                          .accessDeniedHandler(accessDeniedHandlerCustomImpl))   
