@@ -1,27 +1,43 @@
 
-package com.dietiestates.backend.util;
+package com.dietiestates.backend.security;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+
+import jakarta.annotation.PostConstruct;
+
 import com.auth0.jwt.JWTVerifier;
 
-import lombok.experimental.UtilityClass;
 
-
-@UtilityClass
-public class JwtUtil 
+@Component
+public class JwtProvider 
 {
-    private final String ISSUER = "dieti-estates";
-    private final String SECRET_KEY = "w4nw7RJyMobORgdBx4cj80GjLUMBSscPaZ1HOiiQlwo="; // generated with: openssl rand -base64 32
-    private final long EXPIRATION_TIME = 1L * 24 * 60 * 60 * 1000;
-    private final Algorithm ALGORITHM = Algorithm.HMAC256(SECRET_KEY.getBytes());
-    private final JWTVerifier jwtVerifier = JWT.require(ALGORITHM).build();
+    @Value("${jwt.secret}")
+    private String secretKey;;
+
+    private static final String ISSUER = "dieti-estates";
+
+    private static final long EXPIRATION_TIME = 1L * 24 * 60 * 60 * 1000;
+
+    private Algorithm algorithm;
+
+    private JWTVerifier jwtVerifier;
+
+
+    @PostConstruct
+    void init()
+    {
+        this.algorithm = Algorithm.HMAC256(secretKey.getBytes());
+        this.jwtVerifier = JWT.require(algorithm).build();
+    }
     
 
     public String generateAccessToken(UserDetails userDetails)
@@ -32,7 +48,7 @@ public class JwtUtil
                     .withSubject(userDetails.getUsername())
                     .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                     .withClaim("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
-                    .sign(ALGORITHM);
+                    .sign(algorithm);
         
         
     }

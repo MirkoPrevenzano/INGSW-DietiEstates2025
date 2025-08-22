@@ -10,7 +10,7 @@ import com.dietiestates.backend.enums.Role;
 import com.dietiestates.backend.model.entity.Customer;
 import com.dietiestates.backend.repository.CustomerRepository;
 import com.dietiestates.backend.service.mail.CustomerWelcomeEmailService;
-import com.dietiestates.backend.util.JwtUtil;
+import com.dietiestates.backend.security.JwtProvider;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -39,6 +39,8 @@ public class AuthenticationService
     private final ModelMapper modelMapper;
     private final CustomerWelcomeEmailService customerWelcomeEmailService;
     private final PasswordEncoder passwordEncoder;
+    private final JwtProvider jwtProvider;
+
 
 
     @Transactional
@@ -59,7 +61,7 @@ public class AuthenticationService
 
         customerWelcomeEmailService.sendWelcomeEmail(customer);
 
-        return new AuthenticationResponseDto(JwtUtil.generateAccessToken(customer));
+        return new AuthenticationResponseDto(jwtProvider.generateAccessToken(customer));
     }
  
 
@@ -75,7 +77,7 @@ public class AuthenticationService
         );
     
         // Genera il token di autenticazione
-        String token = JwtUtil.generateAccessToken(
+        String token = jwtProvider.generateAccessToken(
             new User(
                 user.getUsername(),
                 user.getPassword(),

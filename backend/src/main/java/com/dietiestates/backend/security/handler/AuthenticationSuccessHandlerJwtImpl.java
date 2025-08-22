@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import com.dietiestates.backend.dto.response.AuthenticationResponseDto;
-import com.dietiestates.backend.util.JwtUtil;
+import com.dietiestates.backend.security.JwtProvider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AuthenticationSuccessHandlerJwtImpl implements AuthenticationSuccessHandler 
 {
     private final ObjectMapper objectMapper;
+    private final JwtProvider jwtProvider;
 
 
     @Override
@@ -38,7 +39,7 @@ public class AuthenticationSuccessHandlerJwtImpl implements AuthenticationSucces
         log.info("Authentication is OK!");
         log.info("User '" + user.getUsername() + "' has been successfully authenticated.");
 
-        String accessToken = JwtUtil.generateAccessToken(user);
+        String accessToken = jwtProvider.generateAccessToken(user);
         AuthenticationResponseDto authenticationResponseDto = new AuthenticationResponseDto(accessToken);
 
         response.setStatus(HttpStatus.OK.value());

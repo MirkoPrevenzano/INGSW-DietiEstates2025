@@ -27,9 +27,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.dietiestates.backend.enums.Role;
 import com.dietiestates.backend.resolver.UserLoadingStrategyResolver;
+import com.dietiestates.backend.security.JwtProvider;
 import com.dietiestates.backend.security.handler.AuthenticationEntryPointCustomImpl;
 import com.dietiestates.backend.strategy.UserLoadingStrategy;
-import com.dietiestates.backend.util.JwtUtil;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +42,8 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
 {
     private final AuthenticationEntryPointCustomImpl authenticationEntryPointCustomImpl;
     private final UserLoadingStrategyResolver userLoadingStrategyResolver;
+    private final JwtProvider jwtProvider;
+
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, 
@@ -68,7 +70,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
             try 
             {
                 String token = authorizationHeader.substring("Bearer ".length());
-                JwtUtil.VerifiedJwt verifiedJwt = JwtUtil.verifyToken(token);
+                JwtProvider.VerifiedJwt verifiedJwt = jwtProvider.verifyToken(token);
 
                 String username = verifiedJwt.getSubject();
                 String[] roles = verifiedJwt.getRoles();
