@@ -260,7 +260,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         Path.Node firstNode = firstViolation.getPropertyPath().iterator().next();
         ElementKind kind = firstNode.getKind();
            
-        return kind == ElementKind.PROPERTY ? true : false;
+        return kind == ElementKind.PROPERTY;
     }
 
     private void logExceptionInfo(Exception ex)

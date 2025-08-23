@@ -1,26 +1,15 @@
 
 package com.dietiestates.backend.dto.request;
 
-import com.dietiestates.backend.validator.EmailValidator;
+import com.dietiestates.backend.dto.request.interfaces.UserRegistrationDto;
 
-import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 
-@Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class CollaboratorCreationDto 
+public class CollaboratorCreationDto extends UserRegistrationDto
 {
-    @NotBlank
-    private String name;
-
-    @NotBlank
-    private String surname;
-
-    @NotBlank
-    @EmailValidator
-    private String username;
-}
+    public CollaboratorCreationDto(String name, String surname, String username) 
+    {
+        super(name, surname, username);
+    } }

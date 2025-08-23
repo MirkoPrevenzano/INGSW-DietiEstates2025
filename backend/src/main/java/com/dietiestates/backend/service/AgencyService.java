@@ -50,6 +50,8 @@ public class AgencyService
         
         agency.addAdministrator(admin);
 
+        agencyRepository.save(agency);
+
         log.info("Agency was created successfully!");
     }
 }

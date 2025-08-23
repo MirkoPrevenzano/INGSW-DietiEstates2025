@@ -1,27 +1,16 @@
 
 package com.dietiestates.backend.dto.request;
 
-import jakarta.validation.constraints.NotBlank;
+import com.dietiestates.backend.dto.request.interfaces.UserRegistrationDto;
 
-import com.dietiestates.backend.validator.EmailValidator;
-
-import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 
-@Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class AgentCreationDto 
+public class AgentCreationDto extends UserRegistrationDto
 {
-    @NotBlank
-    private String name;
-
-    @NotBlank
-    private String surname;
-
-    @NotBlank
-    @EmailValidator
-    private String username;
+    public AgentCreationDto(String name, String surname, String username) 
+    {
+        super(name, surname, username);
+    } 
 }

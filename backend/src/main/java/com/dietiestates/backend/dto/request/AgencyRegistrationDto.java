@@ -3,19 +3,18 @@ package com.dietiestates.backend.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 
-import com.dietiestates.backend.validator.EmailValidator;
-import com.dietiestates.backend.validator.PasswordValidator;
+import com.dietiestates.backend.dto.request.interfaces.UserRegistrationWithPasswordDto;
 import com.dietiestates.backend.validator.VatNumberValidator;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-@AllArgsConstructor
-public class AgencyRegistrationDto
+public class AgencyRegistrationDto extends UserRegistrationWithPasswordDto
 {
     @NotBlank
     private String agencyName;
@@ -26,18 +25,13 @@ public class AgencyRegistrationDto
     @NotBlank
     @VatNumberValidator
     private String vatNumber;
+
     
-    @NotBlank
-    private String name;
-
-    @NotBlank
-    private String surname;
-
-    @NotBlank
-    @EmailValidator
-    private String username;
-
-    @NotBlank
-    @PasswordValidator
-    private String password;
+    public AgencyRegistrationDto(String name, String surname, String username, String password, String agencyName, String businessName, String vatNumber) 
+    {
+        super(name, surname, username, password);
+        this.agencyName = agencyName;
+        this.businessName = businessName;
+        this.vatNumber = vatNumber;
+    }
 }

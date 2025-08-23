@@ -1,32 +1,16 @@
 
 package com.dietiestates.backend.dto.request;
 
-import jakarta.validation.constraints.NotBlank;
+import com.dietiestates.backend.dto.request.interfaces.UserRegistrationWithPasswordDto;
 
-import com.dietiestates.backend.validator.EmailValidator;
-import com.dietiestates.backend.validator.PasswordValidator;
-
-import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 
-@Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class CustomerRegistrationDto 
+public class CustomerRegistrationDto extends UserRegistrationWithPasswordDto
 {
-    @NotBlank
-    private String name;
-
-    @NotBlank
-    private String surname;
-
-    @NotBlank
-    @EmailValidator
-    private String username;
-
-    @NotBlank
-    @PasswordValidator
-    private String password;
+    public CustomerRegistrationDto(String name, String surname, String username, String password) 
+    {
+        super(name, surname, username, password);
+    } 
 }

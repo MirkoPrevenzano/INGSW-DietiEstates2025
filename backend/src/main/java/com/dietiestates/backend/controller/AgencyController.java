@@ -1,6 +1,8 @@
 
 package com.dietiestates.backend.controller;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +29,7 @@ public class AgencyController
 
     //@PreAuthorize("sd")
     @PostMapping
-    public ResponseEntity<Void> createAgency(@RequestBody AgencyRegistrationDto aagencyRegistrationDto) 
+    public ResponseEntity<Void> createAgency(@Valid @RequestBody AgencyRegistrationDto aagencyRegistrationDto) 
     {
         agencyService.createAgency(aagencyRegistrationDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
