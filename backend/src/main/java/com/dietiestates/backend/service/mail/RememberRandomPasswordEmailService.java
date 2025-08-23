@@ -21,11 +21,11 @@ public class RememberRandomPasswordEmailService
     {
         String subject = "La tua password di default in DietiEstates2025!";
         String body = String.format("""
-                                    "Ciao %s,"
-                                    "Ti ricordiamo che il tuo account è stato creato con una password di default, per ragioni di sicurezza, che è la seguente: %s." 
-                                    "Effettua il tuo primo accesso nell'applicazione per cambiarla a tuo gradimento, ricordandoti di inserire la password che ti abbiamo inviato in questa mail!" 
-                                    "Cordiali Saluti" 
-                                    "Staff DietiEstates2025.
+                                    Ciao %s,
+                                    Ti ricordiamo che il tuo account è stato creato con una password di default, per ragioni di sicurezza, che è la seguente: %s.
+                                    Effettua il tuo primo accesso nell'applicazione per cambiarla a tuo gradimento, ricordandoti di inserire la password che ti abbiamo inviato in questa mail! 
+                                    Cordiali Saluti 
+                                    Staff DietiEstates2025.
                                     """, user.getName(), randomPassword);
 
         emailService.sendEmail(user.getUsername(), subject, body);

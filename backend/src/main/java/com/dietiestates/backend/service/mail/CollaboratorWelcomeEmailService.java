@@ -27,11 +27,11 @@ public class CollaboratorWelcomeEmailService extends AgentAndCollaboratorWelcome
     protected String getWelcomeBody(User user) 
     {
         return String.format("""
-                             "Ciao %s," 
-                             "Sei stato registrato nella nostra applicazione in ruolo di COLLABORATORE DELL'AMMINISTRATORE dell'agenzia '%s'."
-                             "Inizia subito a gestire l'agenzia controllando l'operato dei tuoi agenti immobiliari, e non esitare a contattarci per qualsiasi dubbio o problema."
-                             "Cordiali Saluti," 
-                             "Staff DietiEstates2025."
+                             Ciao %s, 
+                             Sei stato registrato nella nostra applicazione in ruolo di COLLABORATORE DELL'AMMINISTRATORE dell'agenzia '%s'.
+                             Inizia subito a gestire l'agenzia controllando l'operato dei tuoi agenti immobiliari, e non esitare a contattarci per qualsiasi dubbio o problema.
+                             Cordiali Saluti,
+                             Staff DietiEstates2025.
                              """, user.getName(), getAgencyName(user.getUsername()));
     }
 

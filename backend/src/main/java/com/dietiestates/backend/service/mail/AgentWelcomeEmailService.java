@@ -27,11 +27,11 @@ public class AgentWelcomeEmailService extends AgentAndCollaboratorWelcomeEmailSe
     protected String getWelcomeBody(User user) 
     {
         return String.format("""
-                             "Ciao %s,"
-                             "Sei stato registrato nella nostra applicazione in ruolo di AGENTE IMMOBILIARE dell'agenzia '%s'."
-                             "Inizia subito a caricare e gestire i tuoi annunci immobiliari, e non esitare a contattarci per qualsiasi dubbio o problema."
-                             "Cordiali Saluti," 
-                             "Staff DietiEstates2025."
+                             Ciao %s,
+                             Sei stato registrato nella nostra applicazione in ruolo di AGENTE IMMOBILIARE dell'agenzia '%s'.
+                             Inizia subito a caricare e gestire i tuoi annunci immobiliari, e non esitare a contattarci per qualsiasi dubbio o problema.
+                             Cordiali Saluti,
+                             Staff DietiEstates2025.
                              """, user.getName(), getAgencyName(user.getUsername()));
     }
 

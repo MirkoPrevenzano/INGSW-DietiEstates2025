@@ -22,11 +22,11 @@ public class CustomerWelcomeEmailService extends UserWelcomeEmailService
     protected String getWelcomeBody(User user) 
     {
         return  String.format("""
-                             "Ciao %s," 
-                             "Grazie per esserti registrato nella nostra applicazione!"
-                             "Inizia subito a cercare l'immobile perfetto per te, e non esitare a contattarci per qualsiasi dubbio o problema."
-                             "Cordiali Saluti," 
-                             "Staff DietiEstates2025."
+                             Ciao %s, 
+                             Grazie per esserti registrato nella nostra applicazione!
+                             Inizia subito a cercare l'immobile perfetto per te, e non esitare a contattarci per qualsiasi dubbio o problema.
+                             Cordiali Saluti,
+                             Staff DietiEstates2025.
                              """, user.getName());    
     }
     
