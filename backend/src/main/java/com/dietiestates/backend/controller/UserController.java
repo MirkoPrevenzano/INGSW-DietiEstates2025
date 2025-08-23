@@ -1,6 +1,8 @@
 
 package com.dietiestates.backend.controller;
 
+import jakarta.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -29,7 +31,7 @@ public class UserController
 
     
     @PutMapping(path = "/password")
-    public ResponseEntity<Void> updatePassword(@RequestBody UpdatePasswordDto updatePasswordDto, Authentication authentication) 
+    public ResponseEntity<Void> updatePassword(@Valid @RequestBody UpdatePasswordDto updatePasswordDto, Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 

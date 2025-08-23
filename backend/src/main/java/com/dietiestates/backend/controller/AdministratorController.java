@@ -1,6 +1,8 @@
 
 package com.dietiestates.backend.controller;
 
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +30,7 @@ public class AdministratorController
 
 
     @PostMapping(path = "/collaborators")
-    public ResponseEntity<Void> createCollaborator(@RequestBody CollaboratorCreationDto collaboratorCreationDto, Authentication authentication) 
+    public ResponseEntity<Void> createCollaborator(@Valid @RequestBody CollaboratorCreationDto collaboratorCreationDto, Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 

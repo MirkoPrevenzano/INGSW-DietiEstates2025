@@ -1,8 +1,9 @@
 
-
 package com.dietiestates.backend.controller;
 
 import java.util.List;
+
+import jakarta.validation.Valid;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ContentDisposition;
@@ -42,7 +43,7 @@ public class AgentController
 
 
     @PostMapping
-    public ResponseEntity<Void> createAgent(@RequestBody AgentCreationDto agentCreationDto, Authentication authentication) 
+    public ResponseEntity<Void> createAgent(@Valid @RequestBody AgentCreationDto agentCreationDto, Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
