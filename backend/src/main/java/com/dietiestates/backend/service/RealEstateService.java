@@ -75,8 +75,14 @@ public class RealEstateService
         agent = agentRepository.save(agent);
 
         log.info("Real Estate was created successfully!");
+        
+        
+        
+        long rid = realEstateRepository.findLastUploadedByAgentId(agent.getUserId());
 
-        return realEstateRepository.findLastUploadedByAgentId(agent.getUserId());
+        System.out.println(realEstateRepository.findById(rid).get());
+
+        return rid;
     }
 
 

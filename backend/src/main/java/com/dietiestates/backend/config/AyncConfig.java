@@ -22,7 +22,7 @@ public class AyncConfig implements AsyncConfigurer
                                                 if (throwable instanceof EmailServiceException) 
                                                     log.warn(throwable.getMessage());
                                                 else
-                                                    log.error("Async exception occurred in the method: {}: {}", method, throwable.getMessage());
+                                                    log.error("Async exception occurred in the method '{}'': {}", method, throwable.getMessage());
                                               };       
     }   
 }

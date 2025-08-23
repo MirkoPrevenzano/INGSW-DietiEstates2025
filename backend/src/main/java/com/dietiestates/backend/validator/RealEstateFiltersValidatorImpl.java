@@ -47,7 +47,9 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
             hasExceptionOccurred |= validateContractType(key, value, context);
         }
 
-        return !validatePriceRange(filters, context, hasExceptionOccurred);
+        hasExceptionOccurred |= validatePriceRange(filters, context);
+
+        return !hasExceptionOccurred;
     }
 
 
@@ -105,15 +107,15 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
         if (BOOLEAN_FILTERS.contains(key) && !value.equalsIgnoreCase("true") && !value.equalsIgnoreCase("false"))
         {
             addViolation(context, key + " value must be true or false");
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     private boolean validateEnergyClass(String key, String value, ConstraintValidatorContext context) 
     {
-        if (!key.equals("energyClass"))
+        if (key.equals("energyClass"))
         {
             try 
             {
@@ -131,7 +133,7 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
 
     private boolean validateContractType(String key, String value, ConstraintValidatorContext context) 
     {
-        if (!key.equals("type"))
+        if (key.equals("type"))
         {
             try 
             {
@@ -147,9 +149,9 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
         return false;
     }
 
-    private boolean validatePriceRange(Map<String, String> filters, ConstraintValidatorContext context, boolean hasExceptionOccurred) 
+    private boolean validatePriceRange(Map<String, String> filters, ConstraintValidatorContext context) 
     {
-        if (!hasExceptionOccurred && filters.containsKey(MIN_PRICE) && filters.containsKey(MAX_PRICE)) 
+        if (filters.containsKey(MIN_PRICE) && filters.containsKey(MAX_PRICE)) 
         {
             double minPrice = Double.parseDouble(filters.get(MIN_PRICE));
             double maxPrice = Double.parseDouble(filters.get(MAX_PRICE));
@@ -157,11 +159,11 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
             if (minPrice > maxPrice) 
             {
                 addViolation(context, "minPrice cannot be greater than maxPrice");
-                hasExceptionOccurred = true;
+                return true;
             }
         }
 
-        return hasExceptionOccurred;
+        return false;
     }
 
     private void addViolation(ConstraintValidatorContext context, String message) 
