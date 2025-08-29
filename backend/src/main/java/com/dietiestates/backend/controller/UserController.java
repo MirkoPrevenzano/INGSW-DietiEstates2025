@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import com.dietiestates.backend.dto.request.UpdatePasswordDto;
 import com.dietiestates.backend.service.UserService;
 
@@ -31,6 +35,15 @@ public class UserController
 
     
     @PutMapping(path = "/password")
+    @Operation(summary = "", 
+               description = "",
+               tags = "Admins")
+    @ApiResponses({@ApiResponse(responseCode = "201",
+                                description = "Collaboratore creato!",
+                                ref = ""),
+                   @ApiResponse(responseCode = "500",
+                                description = "Errore interno non gestito",
+                                ref = "")})
     public ResponseEntity<Void> updatePassword(@Valid @RequestBody UpdatePasswordDto updatePasswordDto, Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();

@@ -21,6 +21,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.enums.ParameterStyle;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 import com.dietiestates.backend.dto.request.AgentCreationDto;
 import com.dietiestates.backend.dto.response.AgentDashboardPersonalStatsDto;
 import com.dietiestates.backend.dto.response.AgentDashboardRealEstateStatsDto;
@@ -45,6 +54,14 @@ public class AgentController
 
     @PostMapping
     //@PreAuthorize("hasAnyAuthority(ROLE_AGENT)")
+    @Operation(description = "Creazione di un account per un nuovo agente immobiliare.",
+               tags = "Agents")
+    @ApiResponses({@ApiResponse(responseCode = "201",
+                                description = "Agente creato!",
+                                ref = ""),
+                   @ApiResponse(responseCode = "500",
+                                description = "Errore interno non gestito",
+                                ref = "")})
     public ResponseEntity<Void> createAgent(@Valid @RequestBody AgentCreationDto agentCreationDto, Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -54,6 +71,14 @@ public class AgentController
     }
    
     @GetMapping(path = "/public-info")
+    @Operation(description = "Recupero di alcune informazioni utili e pubbliche di un agente immobiliare.",
+               tags = "Agents")
+    @ApiResponses({@ApiResponse(responseCode = "200",
+                                description = "Informazioni ottenute!",
+                                ref = ""),
+                   @ApiResponse(responseCode = "500",
+                                description = "Errore interno non gestito",
+                                ref = "")})
     public ResponseEntity<AgentPublicInfoDto> getAgentPublicInfo(Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -62,7 +87,19 @@ public class AgentController
     }
 
     @GetMapping(path = "/recent-real-estates/{limit}")
-    public ResponseEntity<List<AgentRecentRealEstateDto>> getAgentRecentRealEstates(@PathVariable("limit") Integer limit, Authentication authentication) 
+    @Operation(description = "Lista degli ultimi immobili pubblicati da un agente immobiliare.",
+               tags = "Agents")
+    @Parameter(description = "Valore massimo di immobili da recuperare",
+               name = "limit", 
+               example = "10")
+    @ApiResponses({@ApiResponse(responseCode = "200",
+                                description = "Lista ottenuta!",
+                                ref = ""),
+                   @ApiResponse(responseCode = "500",
+                                description = "Errore interno non gestito",
+                                ref = "")})
+    public ResponseEntity<List<AgentRecentRealEstateDto>> getAgentRecentRealEstates(
+            @PathVariable("limit") Integer limit, Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
@@ -71,6 +108,14 @@ public class AgentController
     }
 
     @GetMapping(value = "/dashboard/csv-report")
+    @Operation(description = "Download di un file formato csv riguardante diverse statistiche di un agente immobiliare.",
+               tags = "Agents")
+    @ApiResponses({@ApiResponse(responseCode = "200",
+                                description = "Download effettuato!",
+                                ref = ""),
+                   @ApiResponse(responseCode = "500",
+                                description = "Errore interno non gestito",
+                                ref = "")})
     public ResponseEntity<byte[]> exportCsvReport(Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -86,7 +131,16 @@ public class AgentController
                              .body(exportingResult.getExportingBytes());
     }
 
+
     @GetMapping(value = "/dashboard/pdf-report")
+    @Operation(description = "Download di un file formato pdf riguardante diverse statistiche di un agente immobiliare.",
+               tags = "Agents")
+    @ApiResponses({@ApiResponse(responseCode = "200",
+                                description = "Download effettuato!",
+                                ref = ""),
+                   @ApiResponse(responseCode = "500",
+                                description = "Errore interno non gestito",
+                                ref = "")})
     public ResponseEntity<byte[]> exportPdfReport(Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -103,6 +157,14 @@ public class AgentController
     }
 
     @GetMapping(value = "/dashboard/personal-stats")
+    @Operation(description = "Recupero di statistiche personali di un agente immobiliare.",
+               tags = "Agents")
+    @ApiResponses({@ApiResponse(responseCode = "200",
+                                description = "Statistiche ottenute!",
+                                ref = ""),
+                   @ApiResponse(responseCode = "500",
+                                description = "Errore interno non gestito",
+                                ref = "")})
     public ResponseEntity<AgentDashboardPersonalStatsDto> getAgentDashboardPersonalStats(Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -112,6 +174,20 @@ public class AgentController
     }
 
     @GetMapping(value = "/dashboard/real-estate-stats/{page}/{limit}")
+    @Operation(description = "Recupero di statistiche riguardanti tutti gli immobili caricati da un agente immobiliare.",
+               tags = "Agents")
+    @Parameter(description = "Numero di pagina da recuperare",
+               name = "page", 
+               example = "1")
+    @Parameter(description = "Valore massimo di immobili da recuperare",
+               name = "limit", 
+               example = "10")
+    @ApiResponses({@ApiResponse(responseCode = "200",
+                                description = "Statistiche ottenute!",
+                                ref = ""),
+                   @ApiResponse(responseCode = "500",
+                                description = "Errore interno non gestito",
+                                ref = "")})
     public ResponseEntity<List<AgentDashboardRealEstateStatsDto>> getAgentDashboardRealEstateStats(Authentication authentication, 
                                                    @PathVariable("page") Integer page,
                                                    @PathVariable("limit") Integer limit) 

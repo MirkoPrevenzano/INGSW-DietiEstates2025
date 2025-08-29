@@ -4,12 +4,14 @@
     "java.debug.settings.onBuildFailureProceed": true,
     "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx4G -Xms100m -Xlog:disable",
     "java.configuration.runtimes": [
-        
+    
+
+
+    
         
         {
             "name": "JavaSE-21",
-            "path": "/usr/lib/jvm/java-21-openjdk",
-            "default": true
+            "path": "/usr/lib/jvm/java-21-openjdk"
         }
     ]
 }

@@ -38,6 +38,16 @@ public class OpenApiConfig
                                              new Server().url("https://")
                                                          .description("Server di produzione")))
                             .tags(List.of(new Tag().name("Users")
-                                                   .description("Operazioni sugli utenti")));
+                                                   .description("Operazioni sugli utenti"),
+                                          new Tag().name("Agents")
+                                                   .description("Operazioni sugli agents"),
+                                          new Tag().name("Admins")
+                                                   .description("Operazioni sugli admins"),
+                                          new Tag().name("Customers")
+                                                   .description("Operazioni sui customers"),
+                                          new Tag().name("Agencies")
+                                                   .description("Operazioni sulle agencies"),
+                                          new Tag().name("Real Estates")
+                                                   .description("Operazioni sui real estates")));
     }
 }

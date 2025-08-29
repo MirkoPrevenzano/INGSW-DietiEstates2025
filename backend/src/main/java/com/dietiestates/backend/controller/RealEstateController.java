@@ -24,6 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import com.dietiestates.backend.dto.request.RealEstateCreationDto;
 import com.dietiestates.backend.dto.response.RealEstateCompleteInfoDto;
 import com.dietiestates.backend.dto.response.RealEstateSearchDto;
@@ -47,6 +51,14 @@ public class RealEstateController
 
 
     @PostMapping
+    @Operation(description = "",
+               tags = "Real Estates")
+    @ApiResponses({@ApiResponse(responseCode = "201",
+                                description = "Collaboratore creato!",
+                                ref = ""),
+                   @ApiResponse(responseCode = "500",
+                                description = "Errore interno non gestito",
+                                ref = "")})
     public ResponseEntity<Long> createRealEstate(@Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateCreationDto realEstateCreationDto, Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -57,6 +69,15 @@ public class RealEstateController
     }
 
     @PostMapping(value = "/{realEstateId}/photos", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "", 
+               description = "",
+               tags = "Admins")
+    @ApiResponses({@ApiResponse(responseCode = "201",
+                                description = "Collaboratore creato!",
+                                ref = ""),
+                   @ApiResponse(responseCode = "500",
+                                description = "Errore interno non gestito",
+                                ref = "")})
     public ResponseEntity<Void> uploadPhotos(Authentication authentication,
                                               @RequestParam("photos") MultipartFile[] file, 
                                               @PathVariable("realEstateId") Long realEstateId) throws IOException
@@ -68,12 +89,30 @@ public class RealEstateController
     }
 
     @GetMapping(value = "/{realEstateId}/photos")
+    @Operation(summary = "", 
+               description = "",
+               tags = "Admins")
+    @ApiResponses({@ApiResponse(responseCode = "201",
+                                description = "Collaboratore creato!",
+                                ref = ""),
+                   @ApiResponse(responseCode = "500",
+                                description = "Errore interno non gestito",
+                                ref = "")})
     public ResponseEntity<List<PhotoResult<String>>> getPhotos(@PathVariable("realEstateId") Long realEstateId)
     {        
         return ResponseEntity.ok(realEstateService.getPhotos(realEstateId));
     }
    
     @GetMapping
+    @Operation(summary = "", 
+               description = "",
+               tags = "Admins")
+    @ApiResponses({@ApiResponse(responseCode = "201",
+                                description = "Collaboratore creato!",
+                                ref = ""),
+                   @ApiResponse(responseCode = "500",
+                                description = "Errore interno non gestito",
+                                ref = "")})
     public ResponseEntity<RealEstateSearchDto> search(@RequestParam("page") Integer page,
                                                    @RequestParam("limit") Integer limit, 
                                                    @Valid @RealEstateFiltersValidator @RequestParam Map<String,String> filters) 
@@ -83,6 +122,15 @@ public class RealEstateController
     }
 
     @GetMapping("/{realEstateId}")
+    @Operation(summary = "", 
+               description = "",
+               tags = "Admins")
+    @ApiResponses({@ApiResponse(responseCode = "201",
+                                description = "Collaboratore creato!",
+                                ref = ""),
+                   @ApiResponse(responseCode = "500",
+                                description = "Errore interno non gestito",
+                                ref = "")})
     public ResponseEntity<RealEstateCompleteInfoDto> getRealEstateCompleteInfo(@PathVariable("realEstateId") Long realEstateId, Authentication authentication) 
     {
         return ResponseEntity.ok(realEstateService.getRealEstateCompleteInfo(realEstateId, authentication));

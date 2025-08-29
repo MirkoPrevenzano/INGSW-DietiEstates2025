@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dietiestates.backend.dto.request.AgencyRegistrationDto;
 import com.dietiestates.backend.service.AgencyService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
@@ -29,6 +33,14 @@ public class AgencyController
 
     //@PreAuthorize("sd")
     @PostMapping
+    @Operation(description = "Registrazione di una nuova agenzia (compresa di amministratore) all'interno dell'applicazione.",
+               tags = "Agencies")
+    @ApiResponses({@ApiResponse(responseCode = "201",
+                                description = "Registrazione dell'agenzia (con relativo amministratore) completata!",
+                                ref = ""),
+                   @ApiResponse(responseCode = "500",
+                                description = "Errore interno non gestito",
+                                ref = "")})
     public ResponseEntity<Void> createAgency(@Valid @RequestBody AgencyRegistrationDto aagencyRegistrationDto) 
     {
         agencyService.createAgency(aagencyRegistrationDto);
