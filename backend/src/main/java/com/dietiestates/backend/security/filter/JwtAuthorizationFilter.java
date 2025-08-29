@@ -51,6 +51,9 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
                                     @NonNull FilterChain filterChain) throws ServletException, IOException 
     {
         if (request.getServletPath().equals("/login") || 
+            request.getServletPath().startsWith("/swagger-ui") ||
+            request.getServletPath().startsWith("/v3/api-docs") ||
+            request.getServletPath().startsWith("/v3/api-docs.yaml") ||           
             (request.getServletPath().equals("/agencies") && request.getMethod().equals("POST")) ||
             request.getServletPath().equals("/auth/customer-registration") ||
             request.getServletPath().equals("/auth/login/oauth2/code/google")) 
@@ -103,9 +106,9 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
                 authenticationEntryPointCustomImpl.commence(request, response, new BadCredentialsException(e.getMessage()));
             }
         }
-        else
+        /*else
         {
             authenticationEntryPointCustomImpl.commence(request, response, new BadCredentialsException("User is not a JWT Bearer!"));
-        }
+        }*/
     }
 }

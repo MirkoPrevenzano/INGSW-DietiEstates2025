@@ -89,7 +89,7 @@ public class WebSecurityConfig
             .httpBasic(Customizer.withDefaults())
             .sessionManagement(sessionManagementCustomizer -> sessionManagementCustomizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> authorizeHttpRequestsCustomizer.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                                                                                                    .requestMatchers("/login/**", "/auth/**", "/error/**").permitAll()
+                                                                                                    .requestMatchers("/login/**", "/auth/**", "/error/**", "/swagger-ui/**", "/v3/api-docs/**", "/v3/api-docs.yaml").permitAll()
                                                                                                     .requestMatchers(HttpMethod.POST, "/agencies").permitAll()
                                                                                                     .requestMatchers(HttpMethod.POST, "/customer").permitAll())
             .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> authorizeHttpRequestsCustomizer.anyRequest().authenticated())
