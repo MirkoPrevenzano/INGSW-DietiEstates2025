@@ -53,15 +53,10 @@ public class AgentController
 
 
     @PostMapping
-    //@PreAuthorize("hasAnyAuthority(ROLE_AGENT)")
     @Operation(description = "Creazione di un account per un nuovo agente immobiliare.",
                tags = "Agents")
     @ApiResponses({@ApiResponse(responseCode = "201",
-                                description = "Agente creato!",
-                                ref = ""),
-                   @ApiResponse(responseCode = "500",
-                                description = "Errore interno non gestito",
-                                ref = "")})
+                                description = "Agente creato con successo!")})
     public ResponseEntity<Void> createAgent(@Valid @RequestBody AgentCreationDto agentCreationDto, Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -74,11 +69,7 @@ public class AgentController
     @Operation(description = "Recupero di alcune informazioni utili e pubbliche di un agente immobiliare.",
                tags = "Agents")
     @ApiResponses({@ApiResponse(responseCode = "200",
-                                description = "Informazioni ottenute!",
-                                ref = ""),
-                   @ApiResponse(responseCode = "500",
-                                description = "Errore interno non gestito",
-                                ref = "")})
+                                description = "Informazioni ottenute con successo!")})
     public ResponseEntity<AgentPublicInfoDto> getAgentPublicInfo(Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -93,11 +84,7 @@ public class AgentController
                name = "limit", 
                example = "10")
     @ApiResponses({@ApiResponse(responseCode = "200",
-                                description = "Lista ottenuta!",
-                                ref = ""),
-                   @ApiResponse(responseCode = "500",
-                                description = "Errore interno non gestito",
-                                ref = "")})
+                                description = "Lista ottenuta con successo!")})
     public ResponseEntity<List<AgentRecentRealEstateDto>> getAgentRecentRealEstates(
             @PathVariable("limit") Integer limit, Authentication authentication) 
     {
@@ -108,14 +95,10 @@ public class AgentController
     }
 
     @GetMapping(value = "/dashboard/csv-report")
-    @Operation(description = "Download di un file formato csv riguardante diverse statistiche di un agente immobiliare.",
+    @Operation(description = "Download di un file in formato csv riguardante diverse statistiche di un agente immobiliare.",
                tags = "Agents")
     @ApiResponses({@ApiResponse(responseCode = "200",
-                                description = "Download effettuato!",
-                                ref = ""),
-                   @ApiResponse(responseCode = "500",
-                                description = "Errore interno non gestito",
-                                ref = "")})
+                                description = "Download effettuato con successo!")})
     public ResponseEntity<byte[]> exportCsvReport(Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -131,16 +114,11 @@ public class AgentController
                              .body(exportingResult.getExportingBytes());
     }
 
-
     @GetMapping(value = "/dashboard/pdf-report")
-    @Operation(description = "Download di un file formato pdf riguardante diverse statistiche di un agente immobiliare.",
+    @Operation(description = "Download di un file in formato pdf riguardante diverse statistiche di un agente immobiliare.",
                tags = "Agents")
     @ApiResponses({@ApiResponse(responseCode = "200",
-                                description = "Download effettuato!",
-                                ref = ""),
-                   @ApiResponse(responseCode = "500",
-                                description = "Errore interno non gestito",
-                                ref = "")})
+                                description = "Download effettuato con successo!")})
     public ResponseEntity<byte[]> exportPdfReport(Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -160,11 +138,7 @@ public class AgentController
     @Operation(description = "Recupero di statistiche personali di un agente immobiliare.",
                tags = "Agents")
     @ApiResponses({@ApiResponse(responseCode = "200",
-                                description = "Statistiche ottenute!",
-                                ref = ""),
-                   @ApiResponse(responseCode = "500",
-                                description = "Errore interno non gestito",
-                                ref = "")})
+                                description = "Statistiche ottenute con successo!")})
     public ResponseEntity<AgentDashboardPersonalStatsDto> getAgentDashboardPersonalStats(Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -183,11 +157,7 @@ public class AgentController
                name = "limit", 
                example = "10")
     @ApiResponses({@ApiResponse(responseCode = "200",
-                                description = "Statistiche ottenute!",
-                                ref = ""),
-                   @ApiResponse(responseCode = "500",
-                                description = "Errore interno non gestito",
-                                ref = "")})
+                                description = "Statistiche ottenute con successo!")})
     public ResponseEntity<List<AgentDashboardRealEstateStatsDto>> getAgentDashboardRealEstateStats(Authentication authentication, 
                                                    @PathVariable("page") Integer page,
                                                    @PathVariable("limit") Integer limit) 

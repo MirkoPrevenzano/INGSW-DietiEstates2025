@@ -33,14 +33,10 @@ public class AgencyController
 
     //@PreAuthorize("sd")
     @PostMapping
-    @Operation(description = "Registrazione di una nuova agenzia (compresa di amministratore) all'interno dell'applicazione.",
+    @Operation(description = "Registrazione di una nuova agenzia (con incluso l'amministratore della stessa agenzia) all'interno dell'applicazione.",
                tags = "Agencies")
     @ApiResponses({@ApiResponse(responseCode = "201",
-                                description = "Registrazione dell'agenzia (con relativo amministratore) completata!",
-                                ref = ""),
-                   @ApiResponse(responseCode = "500",
-                                description = "Errore interno non gestito",
-                                ref = "")})
+                                description = "Registrazione dell'agenzia (con relativo amministratore) completata con successo!")})
     public ResponseEntity<Void> createAgency(@Valid @RequestBody AgencyRegistrationDto aagencyRegistrationDto) 
     {
         agencyService.createAgency(aagencyRegistrationDto);

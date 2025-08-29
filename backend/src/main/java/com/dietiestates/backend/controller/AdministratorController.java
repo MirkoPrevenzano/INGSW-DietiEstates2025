@@ -37,11 +37,7 @@ public class AdministratorController
     @Operation(description = "Creazione di un account per un nuovo collaboratore dell'admin.",
                tags = "Admins")
     @ApiResponses({@ApiResponse(responseCode = "201",
-                                description = "Collaboratore creato!",
-                                ref = ""),
-                   @ApiResponse(responseCode = "500",
-                                description = "Errore interno non gestito",
-                                ref = "")})
+                                description = "Collaboratore creato con successo!")})
     public ResponseEntity<Void> createCollaborator(@Valid @RequestBody CollaboratorCreationDto collaboratorCreationDto, Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();

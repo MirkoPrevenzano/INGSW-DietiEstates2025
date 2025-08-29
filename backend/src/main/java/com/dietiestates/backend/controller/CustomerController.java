@@ -34,7 +34,7 @@ public class CustomerController
     @Operation(description = "Registrazione di un nuovo cliente all'interno dell'applicazione.",
                tags = "Customers")
     @ApiResponses({@ApiResponse(responseCode = "201",
-                                description = "Cliente creato!")})
+                                description = "Cliente creato con successo!")})
     public ResponseEntity<Void> customerRegistration(@Valid @RequestBody CustomerRegistrationDto userRegistrationDTO) 
     {
         customerService.customerRegistration(userRegistrationDTO);
