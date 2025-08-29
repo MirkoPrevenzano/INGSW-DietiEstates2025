@@ -117,8 +117,6 @@ public class RealEstateController
                              "'airConditioning', 'heating', 'elevator', 'concierge', 'terrace', 'garage', 'balcony', " + 
                              "'garden', 'swimmingPool', 'isNearSchool', 'isNearPark', 'isNearPublicTransport'.",
                tags = "Real Estates")
-    @ApiResponses({@ApiResponse(responseCode = "200",
-                                description = "Annunci immobiliari recuperati con successo!")})
     @Parameter(description = "Numero di pagina da recuperare",
                name = "page", 
                example = "1")
@@ -132,6 +130,8 @@ public class RealEstateController
                       "&elevator=false&concierge=true&terrace=true&garage=false&balcony=true" +
                       "&garden=false&swimmingPool=true&isNearSchool=true&isNearPark=false" +
                       "&isNearPublicTransport=true")
+    @ApiResponses({@ApiResponse(responseCode = "200",
+                                description = "Annunci immobiliari recuperati con successo!")})
     public ResponseEntity<RealEstateSearchDto> search(@RequestParam("page") Integer page,
                                                    @RequestParam("limit") Integer limit, 
                                                    @Valid @RealEstateFiltersValidator @RequestParam(name = "filters", required = false) Map<String,String> filters) 
