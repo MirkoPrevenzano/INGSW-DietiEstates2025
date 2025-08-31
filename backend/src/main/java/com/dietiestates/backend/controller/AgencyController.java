@@ -12,6 +12,8 @@ import com.dietiestates.backend.service.AgencyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +37,7 @@ public class AgencyController
     @PostMapping
     @Operation(description = "Registrazione di una nuova agenzia (con incluso l'amministratore della stessa agenzia) all'interno dell'applicazione.",
                tags = "Agencies")
+    @SecurityRequirements
     @ApiResponses({@ApiResponse(responseCode = "201",
                                 description = "Registrazione dell'agenzia (con relativo amministratore) completata con successo!")})
     public ResponseEntity<Void> createAgency(@Valid @RequestBody AgencyRegistrationDto aagencyRegistrationDto) 

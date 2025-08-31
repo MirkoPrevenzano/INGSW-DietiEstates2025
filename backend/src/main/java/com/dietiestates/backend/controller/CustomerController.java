@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 
 import com.dietiestates.backend.dto.request.CustomerRegistrationDto;
 import com.dietiestates.backend.service.CustomerService;
@@ -33,6 +34,7 @@ public class CustomerController
     @PostMapping
     @Operation(description = "Registrazione di un nuovo cliente all'interno dell'applicazione.",
                tags = "Customers")
+    @SecurityRequirements
     @ApiResponses({@ApiResponse(responseCode = "201",
                                 description = "Cliente creato con successo!")})
     public ResponseEntity<Void> customerRegistration(@Valid @RequestBody CustomerRegistrationDto userRegistrationDTO) 
