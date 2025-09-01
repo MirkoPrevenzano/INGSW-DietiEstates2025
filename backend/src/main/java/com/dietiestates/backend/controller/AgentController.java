@@ -115,7 +115,7 @@ public class AgentController
                              .body(exportingResult.getExportingBytes());
     }
 
-    @GetMapping(value = "/dashboard/pdf-report")
+    @GetMapping(value = "/dashboard/pdf-report", produces = "application/pdf")
     @Operation(description = "Download di un file in formato pdf riguardante diverse statistiche di un agente immobiliare.",
                tags = "Agents")
     @ApiResponses({@ApiResponse(responseCode = "200",

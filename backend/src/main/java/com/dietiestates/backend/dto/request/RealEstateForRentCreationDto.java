@@ -11,6 +11,7 @@ import com.dietiestates.backend.dto.request.support.RealEstateMainFeaturesDto;
 import com.dietiestates.backend.enums.ContractType;
 import com.dietiestates.backend.validator.groups.OnCreate;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -21,14 +22,17 @@ import lombok.ToString;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
+@Schema(description = "DTO per la creazione di un annuncio immobiliare in affitto, contenente informazioni sul tipo di contratto, sull'indirizzo e sulle diverse caratteristiche dell'immobile.")
 public class RealEstateForRentCreationDto extends RealEstateCreationDto
 {
     @NotNull(groups = OnCreate.class)
     @PositiveOrZero
+    @Schema(description = "Importo del deposito cauzionale richiesto per l'affitto, in euro.", example = "1500")
     private Double securityDeposit;
 
     @NotNull(groups = OnCreate.class)
     @PositiveOrZero
+    @Schema(description = "Durata del contratto di locazione, espressa in anni.", example = "4")
     private Integer contractYears;
 
 

@@ -13,6 +13,8 @@ import com.dietiestates.backend.enums.ContractType;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -29,9 +31,11 @@ import lombok.AllArgsConstructor;
 @JsonSubTypes(
     {@JsonSubTypes.Type(value = RealEstateForSaleCreationDto.class, name = "For Sale"),
      @JsonSubTypes.Type(value = RealEstateForRentCreationDto.class, name = "For Rent")})
+@Schema(description = "DTO astratto per la creazione di un annuncio immobiliare, contenente informazioni sul tipo di contratto, sull'indirizzo e sulle diverse caratteristiche dell'immobile.")
 public class RealEstateCreationDto
 {
     @NotNull
+    @Schema(description = "Tipo di contratto dell'immobile.", example = "For Sale")
     private ContractType contractType;
 
     @Valid

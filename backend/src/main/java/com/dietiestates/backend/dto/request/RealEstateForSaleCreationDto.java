@@ -11,6 +11,7 @@ import com.dietiestates.backend.enums.ContractType;
 import com.dietiestates.backend.enums.NotaryDeedState;
 import com.dietiestates.backend.validator.groups.OnCreate;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -21,9 +22,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
+@Schema(description = "DTO per la creazione di un annuncio immobiliare in vendita, contenente informazioni sul tipo di contratto, sull'indirizzo e sulle diverse caratteristiche dell'immobile.")
 public class RealEstateForSaleCreationDto extends RealEstateCreationDto
 {
     @NotNull(groups = OnCreate.class)
+    @Schema(description = "Stato dell'atto notarile relativo alla compravendita dell'immobile.", example = "FREE")
     private NotaryDeedState notaryDeedState;
 
 

@@ -34,9 +34,9 @@ public class OpenApiConfig
     {
         return new OpenAPI().info(new Info().title("Dieti Estates API")
                                             .version("1.0")
-                                            .description("Lista delle API messe a disposizione dalla nostra app per la gestione e/o compravendita di proprietà immobiliari")
+                                            .description("API per la piattaforma Dieti Estates, che consente la gestione e la compravendita di proprietà immobiliari.")
                                             .contact(new Contact().name("Ciro")
-                                                                  .email("ciro@example.com")
+                                                                  .email("ciropizza2002@gmail.com")
                                                                   .url("http://localhost:8080")))
                             .components(new Components().addSecuritySchemes("jwtBearerAuth", new SecurityScheme().type(SecurityScheme.Type.HTTP)
                                                                                                                  .in(SecurityScheme.In.HEADER)
