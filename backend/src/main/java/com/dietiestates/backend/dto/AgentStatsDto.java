@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(description = "DTO generico della classe AgentStats, che contiene diverse statistiche relative ad un agente.")
+@Schema(description = "DTO che contiene diverse statistiche relative ad un agente.")
 public class AgentStatsDto 
 {
     @Schema(description = "Numero totale di annunci immobiliari caricati dall'agente.", example = "21")

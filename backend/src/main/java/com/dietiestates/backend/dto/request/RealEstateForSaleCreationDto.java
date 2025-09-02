@@ -26,7 +26,7 @@ import lombok.ToString;
 public class RealEstateForSaleCreationDto extends RealEstateCreationDto
 {
     @NotNull(groups = OnCreate.class)
-    @Schema(description = "Stato dell'atto notarile relativo alla compravendita dell'immobile.", example = "FREE")
+    @Schema(description = "Stato dell'atto notarile relativo alla compravendita dell'immobile.", example = "Free")
     private NotaryDeedState notaryDeedState;
 
 

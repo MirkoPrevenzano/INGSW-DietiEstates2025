@@ -18,7 +18,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(description = "DTO dell'entità Address, che contiene informazioni sul luogo preciso di un immobile.")
+@Schema(description = "DTO che contiene informazioni sul luogo preciso di un immobile.")
 public class AddressDto 
 {
     @Schema(description = "Nome dello Stato/Nazione.", example = "Itala")

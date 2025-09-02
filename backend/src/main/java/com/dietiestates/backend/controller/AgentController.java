@@ -27,6 +27,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.enums.ParameterStyle;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -67,10 +68,10 @@ public class AgentController
     }
    
     @GetMapping(path = "/public-info")
-    @Operation(description = "Recupero di alcune informazioni utili e pubbliche di un agente immobiliare.",
+    @Operation(description = "Recupero di alcune informazioni pubbliche di un agente immobiliare.",
                tags = "Agents")
     @ApiResponses({@ApiResponse(responseCode = "200",
-                                description = "Informazioni ottenute con successo!")})
+                                description = "Informazioni pubbliche ottenute con successo!")})
     public ResponseEntity<AgentPublicInfoDto> getAgentPublicInfo(Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -95,11 +96,14 @@ public class AgentController
         return ResponseEntity.status(HttpStatus.OK).body(agentRecentRealEstateDtos);
     }
 
-    @GetMapping(value = "/dashboard/csv-report")
+    @GetMapping(value = "/dashboard/csv-report", produces = "text/csv")
     @Operation(description = "Download di un file in formato csv riguardante diverse statistiche di un agente immobiliare.",
                tags = "Agents")
     @ApiResponses({@ApiResponse(responseCode = "200",
-                                description = "Download effettuato con successo!")})
+                                description = "Download effettuato con successo!",
+                                content = @Content(mediaType = "text/csv",
+                                                   schema = @Schema(type = "string",
+                                                                    format = "binary")))})
     public ResponseEntity<byte[]> exportCsvReport(Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -119,7 +123,10 @@ public class AgentController
     @Operation(description = "Download di un file in formato pdf riguardante diverse statistiche di un agente immobiliare.",
                tags = "Agents")
     @ApiResponses({@ApiResponse(responseCode = "200",
-                                description = "Download effettuato con successo!")})
+                                description = "Download effettuato con successo!",
+                                content = @Content(mediaType = "application/pdf",
+                                                   schema = @Schema(type = "string",
+                                                                    format = "binary")))})
     public ResponseEntity<byte[]> exportPdfReport(Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
