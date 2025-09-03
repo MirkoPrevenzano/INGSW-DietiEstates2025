@@ -1,8 +1,11 @@
 
 package com.dietiestates.backend.config;
 
-import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
-import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import java.util.List;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
@@ -20,21 +23,22 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.tags.Tag;
 
-import java.util.List;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
 
 @Configuration
 public class OpenApiConfig 
 {
+    private static final String STRING_TYPE = "string";
+
+    private static final String OBJECT_TYPE = "object";
+    
+
+    
     @Bean
-    public OpenAPI customOpenAPI() 
+    public OpenAPI OpenAPI() 
     {
         return new OpenAPI().info(new Info().title("Dieti Estates API")
                                             .version("1.0")
-                                            .description("API per la piattaforma Dieti Estates, che consente la gestione e la compravendita di proprietà immobiliari.")
+                                            .description("API REST offerta dal backend della piattaforma Dieti Estates, che consente la gestione e la compravendita di proprietà immobiliari.")
                                             .contact(new Contact().name("Ciro")
                                                                   .email("ciropizza2002@gmail.com")
                                                                   .url("http://localhost:8080")))
@@ -43,8 +47,8 @@ public class OpenApiConfig
                                                                                                                  .scheme("bearer")
                                                                                                                  .bearerFormat("JWT")
                                                                                                                  .description("Autorizzazione tramite token JWT, necessaria per accedere alle API protette"))
-                                                         .addSchemas("jwtTokenResponse", new Schema<>().type("object")
-                                                                                                       .addProperty("accessToken", new Schema<>().type("string")
+                                                         .addSchemas("jwtTokenResponse", new Schema<>().type(OBJECT_TYPE)
+                                                                                                       .addProperty("accessToken", new Schema<>().type(STRING_TYPE)
                                                                                                                                                  .description("Token JWT generato al momento dell'autenticazione, utilizzato per autorizzare le richieste successive.")
                                                                                                                                                  .example("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."))))
                             .servers(List.of(new Server().url("http://localhost:8080")
@@ -70,6 +74,7 @@ public class OpenApiConfig
     }
 
 
+
     private PathItem createLoginPath()
     {
          return new PathItem().post(new Operation().summary("Login utente")
@@ -84,24 +89,17 @@ public class OpenApiConfig
 
     }
 
+
     private Schema<?> getLoginRequestSchema()
     {
-         return new Schema<>().type("object")
-                              .addProperty("username", new Schema<>().type("string")
+         return new Schema<>().type(OBJECT_TYPE)
+                              .addProperty("username", new Schema<>().type(STRING_TYPE)
                                                                      .description("Email dell'utente")
                                                                      .format("email")
                                                                      .example("login@example.com"))
-                              .addProperty("password", new Schema<>().type("string")
+                              .addProperty("password", new Schema<>().type(STRING_TYPE)
                                                                      .format("password")
                                                                      .description("Password dell'utente")
                                                                      .example("password1234@!"));
     }
-
-   private Schema<?> getJwtTokenResponseSchema()
-   {
-         return new Schema<>().type("object")
-                              .addProperty("accessToken", new Schema<>().type("string")
-                                                                        .description("Token JWT da usare per l'autenticazione dell'utente.")
-                                                                        .example("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."));
-   }
 }

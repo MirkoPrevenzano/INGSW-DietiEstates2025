@@ -17,9 +17,11 @@ import lombok.RequiredArgsConstructor;
 public class AuthenticationProviderConfig
 {
     private final PasswordEncoder passwordEncoder;
+    
     private final UserService userService;
 
 
+    
     @Bean
     public AuthenticationProvider authenticationProvider()
     {

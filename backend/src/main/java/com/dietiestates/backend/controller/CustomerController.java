@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dietiestates.backend.dto.request.CustomerRegistrationDto;
+import com.dietiestates.backend.service.CustomerService;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
-
-import com.dietiestates.backend.dto.request.CustomerRegistrationDto;
-import com.dietiestates.backend.service.CustomerService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,8 +35,8 @@ public class CustomerController
     @Operation(description = "Registrazione di un nuovo cliente all'interno dell'applicazione.",
                tags = "Customers")
     @SecurityRequirements
-    @ApiResponses({@ApiResponse(responseCode = "201",
-                                description = "Cliente creato con successo!")})
+    @ApiResponses(@ApiResponse(responseCode = "201",
+                                description = "Cliente creato con successo!"))
     public ResponseEntity<Void> customerRegistration(@Valid @RequestBody CustomerRegistrationDto userRegistrationDTO) 
     {
         customerService.customerRegistration(userRegistrationDTO);
