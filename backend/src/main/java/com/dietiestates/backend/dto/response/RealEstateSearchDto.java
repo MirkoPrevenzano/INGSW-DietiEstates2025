@@ -6,6 +6,7 @@ import java.util.List;
 import com.dietiestates.backend.dto.response.support.RealEstatePreviewInfoDto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;

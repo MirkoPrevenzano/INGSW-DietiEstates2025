@@ -10,6 +10,7 @@ import jakarta.validation.constraints.Pattern;
 import com.dietiestates.backend.validator.groups.OnCreate;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class AddressDto
     @NotBlank(groups = OnCreate.class)
     private String state;
 
-    @Schema(description = "Nome della regione/paese.", example = "Campania")
+    @Schema(description = "Nome della regione.", example = "Campania")
     @NotBlank(groups = OnCreate.class)
     private String country;
 

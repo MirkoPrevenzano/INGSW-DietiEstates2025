@@ -13,6 +13,7 @@ import com.dietiestates.backend.enums.PropertyCondition;
 import com.dietiestates.backend.validator.groups.OnCreate;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -32,9 +33,11 @@ public class RealEstateMainFeaturesDto
     @NotBlank(groups = OnCreate.class)
     @Size(min = 250)
     @Schema(description = "Descrizione dettagliata dell'immobile.", 
-            example = "Ampio appartamento di 100 m² situato in centro città, composto da tre camere da letto luminose, cucina abitabile completamente attrezzata, servizi moderni, " + 
-                      "soggiorno con balcone panoramico, pavimenti in parquet, riscaldamento autonomo, aria condizionata e garage privato. L'immobile è vicino a scuole, parchi, " + 
-                      "supermercati e mezzi di trasporto pubblico, rendendolo ideale per famiglie e professionisti.")
+            example = """
+                      Ampio appartamento di 100 m² situato in centro città, composto da tre camere da letto luminose, cucina abitabile completamente attrezzata, servizi moderni,  
+                      soggiorno con balcone panoramico, pavimenti in parquet, riscaldamento autonomo, aria condizionata e garage privato. L'immobile è vicino a scuole, parchi,
+                      supermercati e mezzi di trasporto pubblico, rendendolo ideale per famiglie e professionisti.
+                      """)
     private String description;
     
     @NotNull(groups = OnCreate.class)

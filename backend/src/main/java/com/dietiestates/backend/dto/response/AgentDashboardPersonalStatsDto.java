@@ -4,6 +4,7 @@ package com.dietiestates.backend.dto.response;
 import com.dietiestates.backend.dto.AgentStatsDto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -12,7 +13,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(description = "DTO che rappresenta le statistiche personali di un agente, da visualizzare in una dashboard.")
+@Schema(description = "DTO che rappresenta tutte le statistiche personali di un agente, da visualizzare in una dashboard.")
 public class AgentDashboardPersonalStatsDto
 {
     private AgentStatsDto agentStatsDto;

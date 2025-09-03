@@ -12,6 +12,7 @@ import com.dietiestates.backend.enums.NotaryDeedState;
 import com.dietiestates.backend.validator.groups.OnCreate;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,7 @@ public class RealEstateForSaleCreationDto extends RealEstateCreationDto
     @Schema(description = "Stato dell'atto notarile relativo alla compravendita dell'immobile.", example = "Free")
     private NotaryDeedState notaryDeedState;
 
+    
 
     public RealEstateForSaleCreationDto(ContractType contractType, AddressDto addressDto, RealEstateMainFeaturesDto realEstateMainFeaturesDto, 
                                         RealEstateBooleanFeaturesDto realEstateBooleanFeaturesDto, RealEstateLocationFeaturesDto realEstateLocationFeaturesDto, 

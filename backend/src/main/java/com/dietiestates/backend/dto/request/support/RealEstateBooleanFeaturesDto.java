@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import com.dietiestates.backend.validator.groups.OnCreate;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(description = "DTO che rappresenta le caratteristiche booleane dell'immobile, come la presenza (si/no) di giardino o terrazzo.")
+@Schema(description = "DTO che rappresenta le caratteristiche booleane (si/no) dell'immobile, come la presenza di giardino o garage.")
 public class RealEstateBooleanFeaturesDto 
 {
     @NotNull(groups = OnCreate.class)

@@ -10,11 +10,11 @@ import com.dietiestates.backend.dto.request.support.RealEstateLocationFeaturesDt
 import com.dietiestates.backend.dto.request.support.RealEstateMainFeaturesDto;
 import com.dietiestates.backend.enums.ContractType;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import io.swagger.v3.oas.annotations.Hidden;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;

@@ -1,8 +1,9 @@
 
 package com.dietiestates.backend.dto.request.support;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(description = "DTO che rappresenta le caratteristiche di posizione dell'immobile, come vicinanza a parchi, scuole o fermate di trasporti pubblici.")
+@Schema(description = "DTO che rappresenta le caratteristiche di posizionamento dell'immobile, come vicinanza a parchi, scuole o fermate di trasporti pubblici.")
 public class RealEstateLocationFeaturesDto
 {
     @NotNull

@@ -1,10 +1,12 @@
 
 package com.dietiestates.backend.dto.response.support;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
+
 
 @Data
 @NoArgsConstructor
@@ -26,9 +28,9 @@ public class RealEstatePreviewInfoDto
     @Schema(description = "Indirizzo o via in cui si trova l'immobile.", example = "Via Toledo 45, Napoli")
     private String street;
 
-    @Schema(description = "Longitudine della posizione dell'immobile.", example = "14,251222")
+    @Schema(description = "Longitudine della posizione dell'immobile.", example = "14.251222")
     private double longitude;
     
-    @Schema(description = "Latitudine geografica della posizione dell'immobile.", example = "40,851775")
+    @Schema(description = "Latitudine della posizione dell'immobile.", example = "40.851775")
     private double latitude; 
 }

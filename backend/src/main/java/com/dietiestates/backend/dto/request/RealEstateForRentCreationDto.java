@@ -12,6 +12,7 @@ import com.dietiestates.backend.enums.ContractType;
 import com.dietiestates.backend.validator.groups.OnCreate;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,7 @@ public class RealEstateForRentCreationDto extends RealEstateCreationDto
     @PositiveOrZero
     @Schema(description = "Durata del contratto di locazione, espressa in anni.", example = "4")
     private Integer contractYears;
+
 
 
     public RealEstateForRentCreationDto(ContractType contractType, AddressDto addressDto, RealEstateMainFeaturesDto realEstateMainFeaturesDto, 

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -28,7 +29,7 @@ public class AgentDashboardRealEstateStatsDto
     @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd, HH:mm:ss")
     private LocalDateTime uploadingDate;
 
-    @Schema(description = "Numero totale di visualizzazioni ricevute dall'annuncio.", example = "356")
+    @Schema(description = "Numero totale di visualizzazioni ricevute dall'annuncio immobiliare.", example = "356")
     private long viewsNumber;
 
     @Schema(description = "Numero di visite fisiche effettuate sull'immobile.", example = "3")

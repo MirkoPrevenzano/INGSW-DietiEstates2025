@@ -22,6 +22,8 @@ public abstract class UserRegistrationWithPasswordDto extends UserRegistrationDt
     @Schema(description = "Password scelta dall'utente. Deve rispettare i criteri di sicurezza definiti dal sistema (lunghezza minima, presenza di caratteri speciali, ecc...).", example = "P@ssw0rd123!")
     private String password;
 
+
+    
     protected UserRegistrationWithPasswordDto(String name, String surname, String username, String password) 
     {
         super(name, surname, username);

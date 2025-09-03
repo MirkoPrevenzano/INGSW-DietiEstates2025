@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Schema(description = "Informazioni relative a un immobile recentemente pubblicato da un agente.")
+@Schema(description = "DTO che contiene alcune informazioni relative ad un annuncio immobiliare recentemente pubblicato da un agente.")
 public class AgentRecentRealEstateDto 
 {
     @Schema(description = "Identificativo univoco dell'immobile.", example = "20")

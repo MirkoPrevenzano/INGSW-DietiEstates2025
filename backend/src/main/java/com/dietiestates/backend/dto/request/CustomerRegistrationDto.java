@@ -4,6 +4,7 @@ package com.dietiestates.backend.dto.request;
 import com.dietiestates.backend.dto.request.interfaces.UserRegistrationWithPasswordDto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.NoArgsConstructor;
 
 

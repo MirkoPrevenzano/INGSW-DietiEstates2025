@@ -1,9 +1,10 @@
 
 package com.dietiestates.backend.dto.response;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 
 

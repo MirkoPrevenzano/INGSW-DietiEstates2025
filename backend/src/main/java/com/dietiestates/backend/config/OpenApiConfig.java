@@ -34,7 +34,7 @@ public class OpenApiConfig
 
     
     @Bean
-    public OpenAPI OpenAPI() 
+    public OpenAPI openAPI() 
     {
         return new OpenAPI().info(new Info().title("Dieti Estates API")
                                             .version("1.0")
@@ -48,9 +48,9 @@ public class OpenApiConfig
                                                                                                                  .bearerFormat("JWT")
                                                                                                                  .description("Autorizzazione tramite token JWT, necessaria per accedere alle API protette"))
                                                          .addSchemas("jwtTokenResponse", new Schema<>().type(OBJECT_TYPE)
-                                                                                                       .addProperty("accessToken", new Schema<>().type(STRING_TYPE)
-                                                                                                                                                 .description("Token JWT generato al momento dell'autenticazione, utilizzato per autorizzare le richieste successive.")
-                                                                                                                                                 .example("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."))))
+                                                                                                           .addProperty("accessToken", new Schema<>().type(STRING_TYPE)
+                                                                                                                                                         .description("Token JWT generato al momento dell'autenticazione, utilizzato per autorizzare le richieste successive.")
+                                                                                                                                                         .example("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."))))
                             .servers(List.of(new Server().url("http://localhost:8080")
                                                          .description("Server locale"), 
                                              new Server().url("https://")
@@ -100,6 +100,9 @@ public class OpenApiConfig
                               .addProperty("password", new Schema<>().type(STRING_TYPE)
                                                                      .format("password")
                                                                      .description("Password dell'utente")
-                                                                     .example("password1234@!"));
+                                                                     .example("password1234@!")
+                              .addProperty("role", new Schema<>().type(STRING_TYPE)
+                                                                     .description("Ruolo che l'utente possiede all'interno della piattaforma.")
+                                                                     .example("Admin")));
     }
 }

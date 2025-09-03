@@ -7,6 +7,7 @@ import com.dietiestates.backend.dto.request.interfaces.UserRegistrationWithPassw
 import com.dietiestates.backend.validator.VatNumberValidator;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
