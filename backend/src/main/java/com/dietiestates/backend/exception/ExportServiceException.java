@@ -12,7 +12,9 @@ import lombok.EqualsAndHashCode;
 public class ExportServiceException extends RuntimeException
 {
     private final ExportingFormat exportingFormat;
+
     private final Long agentId;
+
 
 
     public ExportServiceException(String msg)
@@ -20,25 +22,30 @@ public class ExportServiceException extends RuntimeException
         this(msg, null, null, null);
     }
     
+
     public ExportServiceException(String msg, Throwable cause)
     {
         this(msg, null, null, cause);
     }
+
 
     public ExportServiceException(ExportingFormat exportingFormat, Long agentId) 
     {
         this(null, exportingFormat, agentId, null);
     }
 
+
     public ExportServiceException(ExportingFormat exportingFormat, Long agentId, Throwable cause) 
     {
         this(null, exportingFormat, agentId, cause);
     }
 
+
     public ExportServiceException(String msg, ExportingFormat exportingFormat, Long agentId) 
     {
         this(msg, exportingFormat, agentId, null);
     }
+
 
     public ExportServiceException(String msg, ExportingFormat exportingFormat, Long agentId, Throwable cause) 
     {
@@ -48,6 +55,7 @@ public class ExportServiceException extends RuntimeException
     }
 
 
+    
     @Override
     public String getMessage() 
     {

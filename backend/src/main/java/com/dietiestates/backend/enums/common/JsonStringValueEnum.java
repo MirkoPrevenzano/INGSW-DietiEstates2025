@@ -8,6 +8,7 @@ public interface JsonStringValueEnum
 {
     public String getValue();
 
+    
     public static <E extends Enum<E> & JsonStringValueEnum> E fromValue(Class<E> enumType, String value) 
     {
         if (value == null) return null;

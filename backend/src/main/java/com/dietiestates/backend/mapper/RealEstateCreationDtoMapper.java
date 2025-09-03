@@ -24,6 +24,7 @@ public abstract class RealEstateCreationDtoMapper implements Supportable<RealEst
 {  
     private final ModelMapper modelMapper;
 
+
     
     public final RealEstateCreationDto toDto(RealEstate entity)
     {
@@ -34,6 +35,7 @@ public abstract class RealEstateCreationDtoMapper implements Supportable<RealEst
 
         return dto;
     }
+
 
     public final RealEstate toEntity(RealEstateCreationDto dto)
     {
@@ -84,6 +86,7 @@ public abstract class RealEstateCreationDtoMapper implements Supportable<RealEst
         entity.setAddress(address);
     }
 
+
     public void mapCommonFieldsToDto(RealEstate entity, RealEstateCreationDto dto) 
     {
         RealEstateMainFeaturesDto realEstateMainFeaturesDto = new RealEstateMainFeaturesDto();
@@ -124,6 +127,7 @@ public abstract class RealEstateCreationDtoMapper implements Supportable<RealEst
     }
     
 
+    
     protected abstract RealEstateCreationDto initializeDto();
 
     protected abstract RealEstate initializeEntity();

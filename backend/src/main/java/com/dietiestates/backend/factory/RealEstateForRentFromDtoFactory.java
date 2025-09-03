@@ -18,12 +18,14 @@ public class RealEstateForRentFromDtoFactory implements RealEstateFromDtoFactory
     private final RealEstateCreationForRentDtoMapper realEstateCreationForRentDtoMapper;
 
 
+
     @Override
     public RealEstate create(RealEstateCreationDto realEstateCreationDto) 
     {
         return realEstateCreationForRentDtoMapper.toEntity(realEstateCreationDto);
     }
 
+    
     @Override
     public boolean supports(RealEstateCreationDto realEstateCreationDto) 
     {

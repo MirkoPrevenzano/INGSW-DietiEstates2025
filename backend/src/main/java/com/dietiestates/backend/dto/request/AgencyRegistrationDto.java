@@ -3,7 +3,7 @@ package com.dietiestates.backend.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 
-import com.dietiestates.backend.dto.request.interfaces.UserRegistrationWithPasswordDto;
+import com.dietiestates.backend.dto.request.common.UserRegistrationWithPasswordDto;
 import com.dietiestates.backend.validator.VatNumberValidator;
 
 import io.swagger.v3.oas.annotations.media.Schema;

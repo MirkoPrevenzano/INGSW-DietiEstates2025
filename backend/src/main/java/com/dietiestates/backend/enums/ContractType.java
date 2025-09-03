@@ -2,6 +2,7 @@
 package com.dietiestates.backend.enums;
 
 import com.dietiestates.backend.enums.common.JsonStringValueEnum;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -9,10 +10,13 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum ContractType implements JsonStringValueEnum
 {
     FOR_SALE("For Sale"),
+
     FOR_RENT("For Rent");
 
 
+
     private final String value;
+
 
 
     private ContractType(String value) 
@@ -21,12 +25,14 @@ public enum ContractType implements JsonStringValueEnum
     }
 
 
+
     @Override
     @JsonValue
     public String getValue() 
     {
         return this.value;
     }
+    
 
     @JsonCreator
     public static ContractType fromValue(String value) 

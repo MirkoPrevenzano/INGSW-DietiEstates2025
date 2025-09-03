@@ -12,33 +12,40 @@ import lombok.EqualsAndHashCode;
 public class ChartServiceException extends RuntimeException 
 {
     private final ChartType chartType;
+
     private final Long agentId;
 
     
+
     public ChartServiceException(String msg) 
     {
         this(msg, null, null, null);
     }
     
+
     public ChartServiceException(String msg, Throwable cause) 
     {
         this(msg, null, null, cause);
     }
+
 
     public ChartServiceException(ChartType chartType, Long agentId) 
     {
         this(null, chartType, agentId, null);
     }
 
+
     public ChartServiceException(ChartType chartType, Long agentId, Throwable cause) 
     {
         this(null, chartType, agentId, cause);
     }
 
+
     public ChartServiceException(String msg, ChartType chartType, Long agentId) 
     {
         this(msg, chartType, agentId, null);
     }
+
 
     public ChartServiceException(String msg, ChartType chartType, Long agentId, Throwable cause) 
     {
@@ -47,6 +54,7 @@ public class ChartServiceException extends RuntimeException
         this.agentId = agentId;
     }
 
+    
 
     @Override
     public String getMessage() 

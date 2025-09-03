@@ -19,14 +19,20 @@ import lombok.NoArgsConstructor;
 public class ApiErrorResponse 
 {
     private int status;
-    private String title;    
+
+    private String title;  
+
     private String type;
+
     private String detail;
+
     private List<String> subErrors;
+
     private String path;
 
     @JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd, HH:mm:ss")
     private LocalDateTime timestamp = LocalDateTime.now();
+
 
 
     public ApiErrorResponse(HttpStatus httpStatus, String detail, String path) 
@@ -38,12 +44,14 @@ public class ApiErrorResponse
         this.path = path;
     }
 
+
     public ApiErrorResponse(HttpStatus httpStatus, String detail, String path, List<String> subErrors) 
     {
         this(httpStatus, detail, path);
         this.subErrors = subErrors;
     }
 
+    
     public ApiErrorResponse(HttpStatus httpStatus, String detail, String path, String subError) 
     {
         this(httpStatus, detail, path);

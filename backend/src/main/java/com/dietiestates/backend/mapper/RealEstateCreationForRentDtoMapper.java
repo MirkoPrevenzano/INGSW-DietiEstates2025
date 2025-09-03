@@ -21,11 +21,13 @@ public class RealEstateCreationForRentDtoMapper extends RealEstateCreationDtoMap
     }
 
 
+
     @Override
     protected RealEstateForRentCreationDto initializeDto() 
     {
         return new RealEstateForRentCreationDto();
     }
+
 
     @Override
     protected RealEstateForRent initializeEntity() 
@@ -33,12 +35,14 @@ public class RealEstateCreationForRentDtoMapper extends RealEstateCreationDtoMap
         return new RealEstateForRent();
     }
 
+
     @Override
     protected void mapSpecificFieldsToEntity(RealEstateCreationDto dto, RealEstate entity) 
     {
         ((RealEstateForRent) entity).setSecurityDeposit(((RealEstateForRentCreationDto) dto).getSecurityDeposit());
         ((RealEstateForRent) entity).setContractYears(((RealEstateForRentCreationDto) dto).getContractYears());
     }
+
 
     @Override
     protected void mapSpecificFieldstoDto(RealEstate entity, RealEstateCreationDto dto) 
@@ -50,6 +54,7 @@ public class RealEstateCreationForRentDtoMapper extends RealEstateCreationDtoMap
     }
 
 
+    
     @Override
     public boolean supports(RealEstate realEstate) 
     {

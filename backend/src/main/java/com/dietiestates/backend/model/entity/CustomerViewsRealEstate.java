@@ -15,6 +15,7 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.ForeignKey;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,13 +29,12 @@ public class CustomerViewsRealEstate
     @NotNull
     @EmbeddedId
     private CustomerViewsRealEstateId customerViewsRealEstateId;
-        
+    
     @NotNull
     @Column(name = "view_date", 
             nullable = false, 
             updatable = true)
     private LocalDateTime viewDate;
-
 
 
     @NotNull
@@ -58,8 +58,9 @@ public class CustomerViewsRealEstate
     private RealEstate realEstate;
 
 
+
     public CustomerViewsRealEstate(CustomerViewsRealEstateId customerViewsRealEstateId,
-            LocalDateTime viewDate, Customer customer, RealEstate realEstate) 
+                                   LocalDateTime viewDate, Customer customer, RealEstate realEstate) 
     {
         this.customerViewsRealEstateId = customerViewsRealEstateId;
         this.viewDate = viewDate;

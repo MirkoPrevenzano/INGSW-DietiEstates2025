@@ -1,7 +1,7 @@
 
 package com.dietiestates.backend.dto.request;
 
-import com.dietiestates.backend.dto.request.interfaces.UserRegistrationDto;
+import com.dietiestates.backend.dto.request.common.UserRegistrationDto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

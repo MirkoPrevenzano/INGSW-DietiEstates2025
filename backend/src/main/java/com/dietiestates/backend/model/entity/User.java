@@ -59,6 +59,7 @@ public abstract class User implements UserDetails
     Role role;
     
 
+
     protected User(String name, String surname, String username, String password) 
     {
         this.name = name;
@@ -67,6 +68,7 @@ public abstract class User implements UserDetails
         this.password = password;
     }
 
+    
 
     @Override
     public Collection<SimpleGrantedAuthority> getAuthorities() 

@@ -21,11 +21,13 @@ public class RealEstateCreationForSaleDtoMapper extends RealEstateCreationDtoMap
     }
 
 
+
     @Override
     protected RealEstateForSaleCreationDto initializeDto() 
     {
         return new RealEstateForSaleCreationDto();
     }
+
 
     @Override
     protected RealEstateForSale initializeEntity() 
@@ -33,11 +35,13 @@ public class RealEstateCreationForSaleDtoMapper extends RealEstateCreationDtoMap
         return new RealEstateForSale();
     }
 
+
     @Override
     protected void mapSpecificFieldsToEntity(RealEstateCreationDto dto, RealEstate entity) 
     {
         ((RealEstateForSale) entity).setNotaryDeedState(((RealEstateForSaleCreationDto) dto).getNotaryDeedState());
     }
+
 
     @Override
     protected void mapSpecificFieldstoDto(RealEstate entity, RealEstateCreationDto dto) 
@@ -48,6 +52,7 @@ public class RealEstateCreationForSaleDtoMapper extends RealEstateCreationDtoMap
     }
 
 
+    
     @Override
     public boolean supports(RealEstate realEstate) 
     {

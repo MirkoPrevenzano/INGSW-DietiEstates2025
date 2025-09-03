@@ -29,7 +29,7 @@ import lombok.ToString;
 public class Customer extends User
 {
     @Column(name = "is_auth_with_external_api", nullable = false)
-    private boolean isAuthWithExternalAPI;//valutare se creare una classe d'appoggio
+    private boolean isAuthWithExternalAPI; //valutare se creare una classe d'appoggio
 
 
     @OneToMany(mappedBy = "customer", 
@@ -39,10 +39,12 @@ public class Customer extends User
     private List<CustomerViewsRealEstate> customerViewsRealEstates = new ArrayList<>();
 
 
+
     public Customer(String name, String surname, String username, String password) 
     {
         super(name, surname, username, password);
     }
+
 
 
     public void addCustomerViewsRealEstate(CustomerViewsRealEstate newCustomerViewsRealEstate) 
@@ -52,6 +54,7 @@ public class Customer extends User
                                   .getCustomerViewsRealEstates()
                                   .add(newCustomerViewsRealEstate);
     }
+    
     
     public void removeCustomerViewsRealEstate(CustomerViewsRealEstate customerViewsRealEstateToRemove) 
     {

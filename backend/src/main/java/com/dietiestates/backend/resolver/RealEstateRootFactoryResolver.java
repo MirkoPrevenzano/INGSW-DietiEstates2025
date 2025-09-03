@@ -19,6 +19,7 @@ public class RealEstateRootFactoryResolver
     private final List<RealEstateRootFactory<? extends RealEstate>> realEstateRootFactories;
 
 
+    
     @SuppressWarnings("unchecked")
     public <R extends RealEstate> RealEstateRootFactory<R> getFactory(ContractType contractType) 
     {

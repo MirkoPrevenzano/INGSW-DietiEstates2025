@@ -32,6 +32,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.dietiestates.backend.exception.ExportServiceException;
 import com.dietiestates.backend.exception.FileStorageServiceException;
+
 import com.fasterxml.jackson.databind.exc.ValueInstantiationException;
 
 import lombok.extern.slf4j.Slf4j;
@@ -53,6 +54,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);
     }
 
+
     @Override
     protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
@@ -64,6 +66,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);   
     }
+
 
     @Override
     protected ResponseEntity<Object> handleHttpMediaTypeNotAcceptable(HttpMediaTypeNotAcceptableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
@@ -78,6 +81,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);
     }
+
 
     @Override
     public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
@@ -110,6 +114,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, subErrors, headers, request);
     }
 
+
     @Override
     public ResponseEntity<Object> handleMissingPathVariable(MissingPathVariableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
@@ -123,6 +128,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);
     }
 
+
     @Override
     protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
@@ -135,6 +141,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);
     }
 
+
     @Override
     protected ResponseEntity<Object> handleMissingServletRequestPart(MissingServletRequestPartException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
@@ -146,6 +153,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);
     }
 
+
     @Override
     protected ResponseEntity<Object> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
     {
@@ -155,6 +163,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);             
     }
+
 
     @Override
     protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
@@ -168,6 +177,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 
         return buildResponseEntity(HttpStatus.valueOf(status.value()), errorDetail, null, headers, request);
     }
+
 
     @Override
     public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) 
@@ -187,6 +197,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 
     }
 
+
     @ExceptionHandler({FileStorageServiceException.class, ExportServiceException.class})
     public ResponseEntity<Object> handleFileStorageServiceException(FileStorageServiceException ex, WebRequest request) 
     {
@@ -196,6 +207,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 
         return buildResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, errorDetail, null, null, request);
     }
+
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException ex, WebRequest request) 
@@ -207,6 +219,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
         return buildResponseEntity(HttpStatus.BAD_REQUEST, errorDetail, null, null, request);
     }
 
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> handleGenericException(Exception ex, WebRequest request) 
     {
@@ -216,6 +229,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 
         return buildResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR, errorDetail, null, null, request);
     }
+
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException ex, WebRequest request) 
@@ -254,6 +268,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
     }
 
 
+
     private boolean isViolationFromEntity(ConstraintViolationException e) 
     {
         ConstraintViolation<?> firstViolation = e.getConstraintViolations().iterator().next();
@@ -262,6 +277,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
            
         return kind == ElementKind.PROPERTY;
     }
+
 
     private void logExceptionInfo(Exception ex)
     {
@@ -272,6 +288,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
             log.error("Exception cause: " + ex.getCause().getMessage());
     }
 
+    
     private ResponseEntity<Object> buildResponseEntity(HttpStatus httpStatus, String errorDetail, List<String> subErrors, HttpHeaders headers, WebRequest request) 
     {
         String errorPath = request.getDescription(false);

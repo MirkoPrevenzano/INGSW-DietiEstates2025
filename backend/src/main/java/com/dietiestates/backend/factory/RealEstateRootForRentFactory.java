@@ -22,6 +22,7 @@ public class RealEstateRootForRentFactory implements RealEstateRootFactory<RealE
         return query.from(RealEstateForRent.class);
     }
     
+    
     @Override
     public boolean supports(ContractType contractType) 
     {

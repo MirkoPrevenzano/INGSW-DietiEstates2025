@@ -20,6 +20,7 @@ public class UserLoadingStrategyResolver
     private final List<UserLoadingStrategy> userLoadingStrategies;
 
 
+    
     public UserLoadingStrategy getUserLoadingStrategy(Role role)
     {
         return userLoadingStrategies.stream()

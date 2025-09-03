@@ -30,6 +30,7 @@ public class Photo
             updatable = true) 
     private String key;
 
+    
 
     public Photo(String key) 
     {

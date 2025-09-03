@@ -20,7 +20,9 @@ import lombok.AllArgsConstructor;
 public class CustomerViewsRealEstateId implements Serializable 
 { 
     private Long customerId;
+
     private Long realEstateId;
+
 
 
     @Override

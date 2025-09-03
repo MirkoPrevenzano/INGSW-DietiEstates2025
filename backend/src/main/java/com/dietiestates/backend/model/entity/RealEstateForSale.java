@@ -44,7 +44,7 @@ public class RealEstateForSale extends RealEstate
     
     public RealEstateForSale(String title, String description, LocalDateTime uploadingDate, Double price, Double condoFee, EnergyClass energyClass,
                              InternalRealEstateFeatures internalFeatures, ExternalRealEstateFeatures externalFeatures,
-                            NotaryDeedState notaryDeedState)
+                             NotaryDeedState notaryDeedState)
     {
         super(title,description, uploadingDate, price, condoFee, energyClass, internalFeatures, externalFeatures);
         this.notaryDeedState = notaryDeedState;

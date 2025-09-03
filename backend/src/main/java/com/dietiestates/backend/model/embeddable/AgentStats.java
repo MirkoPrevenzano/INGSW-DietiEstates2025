@@ -41,10 +41,12 @@ public class AgentStats
     private double rentalsIncome; 
 
 
+
     public void incrementTotalUploadedRealEstates()
     {
         this.totalUploadedRealEstates += 1;
     }
+
     
     public double getTotalIncomes()
     {

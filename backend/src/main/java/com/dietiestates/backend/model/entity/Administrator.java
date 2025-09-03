@@ -13,11 +13,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.ForeignKey;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 
 
 @Entity(name = "Administrator")
@@ -59,10 +59,12 @@ public class Administrator extends User
     private List<Agent> agents = new ArrayList<>();
 
 
+
     public Administrator(String name, String surname, String username, String password) 
     {
         super(name, surname, username, password);
     }
+
 
 
     public void addCollaborator(Administrator newCollaborator) 
@@ -71,17 +73,20 @@ public class Administrator extends User
        newCollaborator.setManager(this);
     }  
     
+
     public void removeCollaborator(Administrator collaboratorToRemove)
     {
         this.collaborators.remove(collaboratorToRemove);
         collaboratorToRemove.setManager(null);
     }
 
+
     public void addAgent(Agent newAgent) 
     {
        this.agents.add(newAgent);
        newAgent.setAdministrator(this);
     }  
+    
     
     public void removeAgent(Agent agentToRemove)
     {

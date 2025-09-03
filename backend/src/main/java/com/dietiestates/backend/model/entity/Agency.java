@@ -53,6 +53,13 @@ public class Agency
     private String vatNumber;
 
     
+    @OneToMany(mappedBy = "agency",
+               fetch = FetchType.LAZY,
+               cascade = {CascadeType.ALL},
+               orphanRemoval = true)
+    private List<Administrator> administrators = new ArrayList<>();
+
+
 
     public Agency(String agencyName, String businessName, String vatNumber) 
     {
@@ -62,12 +69,6 @@ public class Agency
     }
 
 
-    @OneToMany(mappedBy = "agency",
-               fetch = FetchType.LAZY,
-               cascade = {CascadeType.ALL},
-               orphanRemoval = true)
-    private List<Administrator> administrators = new ArrayList<>();
-
 
     public void addAdministrator(Administrator newAdministrator)
     {
@@ -75,6 +76,7 @@ public class Agency
         newAdministrator.setAgency(this);
     }
 
+    
     public void removeAdministrator(Administrator adminToRemove)
     {
         this.administrators.remove(adminToRemove);

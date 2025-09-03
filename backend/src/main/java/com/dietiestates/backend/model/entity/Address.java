@@ -71,13 +71,14 @@ public class Address
 	 
 	@MapsId
 	@OneToOne(fetch = FetchType.LAZY, 
-		   cascade = {},
-		   orphanRemoval = false)
+		      cascade = {},
+		      orphanRemoval = false)
 	@JoinColumn(name = "real_estate_id",
 				nullable = false,
 				updatable = true,
 				foreignKey = @ForeignKey(name = "adress_to_real_estate_fk"))
 	private RealEstate realEstate;
+
 
 
 	public Address(String state, String country, String city, String street, String postalCode, int houseNumber, double longitude, double latitude) 

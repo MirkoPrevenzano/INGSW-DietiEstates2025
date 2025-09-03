@@ -16,11 +16,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.ForeignKey;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 
 
 @Entity(name = "Agent")
@@ -52,17 +52,20 @@ public class Agent extends User
     private List<RealEstate> realEstates = new ArrayList<>();
 
 
+
     public Agent(String name, String surname, String username, String password) 
     {
         super(name, surname, username, password);
     }
     
 
+
     public void addRealEstate(RealEstate newRealEstate) 
     {
        this.realEstates.add(newRealEstate);
        newRealEstate.setAgent(this);
     }  
+   
     
     public void removeRealEstate(RealEstate realEstateToRemove)
     {

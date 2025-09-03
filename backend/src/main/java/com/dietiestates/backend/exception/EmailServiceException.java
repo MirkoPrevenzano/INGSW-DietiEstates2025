@@ -10,7 +10,9 @@ import lombok.EqualsAndHashCode;
 public class EmailServiceException extends RuntimeException
 {
     private final String recipient;
+
     private final String subject;
+
 
 
     public EmailServiceException(String msg)
@@ -18,25 +20,30 @@ public class EmailServiceException extends RuntimeException
         this(msg, "", "", null);
     }
     
+
     public EmailServiceException(String msg, Throwable cause)
     {
         this(msg, "", "", cause);
     }
+
 
     public EmailServiceException(String recipient, String subject)
     {
         this(null, recipient, subject, null);
     }
 
+
     public EmailServiceException(String recipient, String subject, Throwable cause)
     {
         this(null, recipient, subject, cause);
     }
 
+
     public EmailServiceException(String msg, String recipient, String subject)
     {
         this(msg, recipient, subject, null);
     }
+
 
     public EmailServiceException(String msg, String recipient, String subject, Throwable cause)
     {
@@ -46,6 +53,7 @@ public class EmailServiceException extends RuntimeException
     }
 
 
+    
     @Override
     public String getMessage() 
     {

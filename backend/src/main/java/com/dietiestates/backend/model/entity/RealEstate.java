@@ -5,11 +5,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dietiestates.backend.enums.EnergyClass;
-import com.dietiestates.backend.model.embeddable.ExternalRealEstateFeatures;
-import com.dietiestates.backend.model.embeddable.InternalRealEstateFeatures;
-import com.dietiestates.backend.model.embeddable.RealEstateStats;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -30,6 +25,12 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.ForeignKey;
+
+import com.dietiestates.backend.enums.EnergyClass;
+import com.dietiestates.backend.model.embeddable.ExternalRealEstateFeatures;
+import com.dietiestates.backend.model.embeddable.InternalRealEstateFeatures;
+import com.dietiestates.backend.model.embeddable.RealEstateStats;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -68,7 +69,7 @@ public class RealEstate
     @NotNull
     @Column(nullable = false, 
             updatable = true)
-    private Double price;
+    private double price;
 
     @NotNull
     @Column(name = "condo_fee",
@@ -93,7 +94,6 @@ public class RealEstate
     
     @Embedded
     private RealEstateStats realEstateStats = new RealEstateStats();
-
 
 
     @OneToOne(mappedBy = "realEstate",
@@ -129,7 +129,7 @@ public class RealEstate
 
 
     public RealEstate(String title, String description, LocalDateTime uploadingDate, double price, double condoFee,
-                     EnergyClass energyClass, InternalRealEstateFeatures internalFeatures, ExternalRealEstateFeatures externalFeatures)
+                      EnergyClass energyClass, InternalRealEstateFeatures internalFeatures, ExternalRealEstateFeatures externalFeatures)
     {
         this.title = title;
         this.description = description;

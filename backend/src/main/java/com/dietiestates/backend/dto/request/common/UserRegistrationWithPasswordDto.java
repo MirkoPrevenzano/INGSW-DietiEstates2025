@@ -1,5 +1,5 @@
 
-package com.dietiestates.backend.dto.request.interfaces;
+package com.dietiestates.backend.dto.request.common;
 
 import jakarta.validation.constraints.NotBlank;
 

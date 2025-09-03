@@ -18,6 +18,7 @@ public class RealEstateFromDtoFactoryResolver
     private final List<RealEstateFromDtoFactory> realEstateFromDtoFactories;
 
 
+    
     public RealEstateFromDtoFactory getFactory(RealEstateCreationDto dto) 
     {
         return realEstateFromDtoFactories.stream()

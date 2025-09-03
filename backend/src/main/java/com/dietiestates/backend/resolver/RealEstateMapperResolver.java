@@ -18,6 +18,7 @@ public class RealEstateMapperResolver
     private final List<RealEstateCreationDtoMapper> realEstateCreationDtoMappers;
 
 
+    
     public RealEstateCreationDtoMapper getMapper(RealEstate entity) 
     {
         return realEstateCreationDtoMappers.stream()
