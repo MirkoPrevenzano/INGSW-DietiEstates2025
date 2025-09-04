@@ -20,8 +20,10 @@ import lombok.RequiredArgsConstructor;
 public class WebMvcConfig implements WebMvcConfigurer
 {
     private final UsernameAuthorizationInterceptor usernameAuthorizationInterceptor;
+
     private final PerformanceLogInterceptor performanceLogInterceptor;
     
+
 
     @Override
     public void addInterceptors(@NonNull InterceptorRegistry registry) 
@@ -30,6 +32,7 @@ public class WebMvcConfig implements WebMvcConfigurer
         registry.addInterceptor(usernameAuthorizationInterceptor);
     }
 
+    
     @Override
     public void addCorsMappings(@NonNull CorsRegistry registry) 
     {

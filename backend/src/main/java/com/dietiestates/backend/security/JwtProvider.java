@@ -3,6 +3,8 @@ package com.dietiestates.backend.security;
 
 import java.util.Date;
 
+import jakarta.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,19 +13,16 @@ import org.springframework.stereotype.Component;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-
-import jakarta.annotation.PostConstruct;
-
 import com.auth0.jwt.JWTVerifier;
 
 
 @Component
 public class JwtProvider 
 {
-    @Value("${jwt.secret}")
+    @Value("${dietiestates.jwt.secret}")
     private String secretKey;
 
-    private static final String ISSUER = "dieti-estates";
+    private static final String ISSUER = "Dieti Estates";
 
     private static final long EXPIRATION_TIME = 1L * 24 * 60 * 60 * 1000;
 

@@ -41,8 +41,11 @@ import lombok.extern.slf4j.Slf4j;
 public class JwtAuthorizationFilter extends OncePerRequestFilter
 {
     private final AuthenticationEntryPointCustomImpl authenticationEntryPointCustomImpl;
+
     private final UserLoadingStrategyResolver userLoadingStrategyResolver;
+
     private final JwtProvider jwtProvider;
+
 
 
     @Override
@@ -50,19 +53,17 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
                                     @NonNull HttpServletResponse response, 
                                     @NonNull FilterChain filterChain) throws ServletException, IOException 
     {
-        if (request.getServletPath().equals("/login") || 
+        if (request.getServletPath().equals("/") ||
+            request.getServletPath().equals("/login") || 
             request.getServletPath().startsWith("/swagger-ui") ||
             request.getServletPath().startsWith("/v3/api-docs") ||
-            request.getServletPath().startsWith("/v3/api-docs.yaml") ||           
             (request.getServletPath().equals("/agencies") && request.getMethod().equals("POST")) ||
-            request.getServletPath().equals("/auth/customer-registration") ||
+            (request.getServletPath().equals("/customer") && request.getMethod().equals("POST")) ||
             request.getServletPath().equals("/auth/login/oauth2/code/google")) 
-           
         {
             filterChain.doFilter(request, response);
             return;
-        } 
-
+        }
 
         log.info("Attempting JwtAuthorizationFilter...");
 
@@ -89,28 +90,28 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,null, authorities);
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);   
-                    
-                log.info("JwtAuthorizationFilter is OK!");
-
-                filterChain.doFilter(request, response); 
+                SecurityContextHolder.getContext().setAuthentication(authenticationToken);                       
             } 
             catch (UsernameNotFoundException e)
             {
                 log.error("Exception occured during JwtAuthorizationFilter!");
+
                 authenticationEntryPointCustomImpl.commence(request, response, e);
+
+                return;
             }
             catch (JWTVerificationException e) 
             {
                 log.error("Exception occured during JwtAuthorizationFilter!");
+                
                 authenticationEntryPointCustomImpl.commence(request, response, new BadCredentialsException(e.getMessage()));
+
+                return;
             }
         }
 
+        log.info("JwtAuthorizationFilter is OK!");
+
         filterChain.doFilter(request, response);
-        /*else
-        {
-            authenticationEntryPointCustomImpl.commence(request, response, new BadCredentialsException("User is not a JWT Bearer!"));
-        }*/
     }
 }

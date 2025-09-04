@@ -18,6 +18,8 @@ import jakarta.validation.Payload;
 public @interface EmailValidator 
 {
     String message() default "an invalid email was inserted!";
+
     Class<?>[] groups() default {};
+    
     Class<? extends Payload>[] payload() default {};
 }

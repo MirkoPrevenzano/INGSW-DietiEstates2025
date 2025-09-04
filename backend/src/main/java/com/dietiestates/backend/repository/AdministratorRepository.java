@@ -16,6 +16,7 @@ public interface AdministratorRepository extends JpaRepository<Administrator,Lon
 {
     public Optional<Administrator> findByUsername(String username);
 
+    
     @Query("SELECT a.agency.agencyName " +
            "FROM Administrator a " + 
            "WHERE a.username = :username")

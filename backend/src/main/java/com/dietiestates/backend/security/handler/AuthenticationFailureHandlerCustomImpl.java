@@ -33,30 +33,31 @@ public class AuthenticationFailureHandlerCustomImpl implements AuthenticationFai
     private final ObjectMapper objectMapper;
 
 
+
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException 
     {
         log.error("Authentication failed: " + authException.getMessage());
         log.error("Attempted access to: " + request.getRequestURI());
 
-        String errorDetail = "Authentication failed! ";
+        String errorDetail = "Authentication failed: ";
         String errorPath = request.getRequestURI();
 
         if(authException instanceof DisabledException || authException instanceof LockedException)
-            errorDetail += "Your account is temporarily blocked or disabled.";
+            errorDetail += "your account is temporarily blocked or disabled.";
         else if(authException instanceof UsernameNotFoundException)
         {
             if (authException.getCause() instanceof IllegalArgumentException)
-                errorDetail += "You have entered a wrong role.";
+                errorDetail += "you have entered a wrong role.";
             else
-                errorDetail += "You have entered a wrong username.";
+                errorDetail += "you have entered a wrong username.";
         }
         else if(authException instanceof BadCredentialsException)
         {
-            errorDetail += "You have entered a wrong password.";
+            errorDetail += "you have entered a wrong password.";
         }
         else
-            errorDetail += "An error occurred during authentication. Try later.";
+            errorDetail += "an error occurred during authentication.. try later.";
 
 
         ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.UNAUTHORIZED, errorDetail, errorPath);

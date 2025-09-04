@@ -18,6 +18,8 @@ import jakarta.validation.Payload;
 public @interface PasswordValidator 
 {
     String message() default "an invalid password was inserted!";
+
     Class<?>[] groups() default {};
+    
     Class<? extends Payload>[] payload() default {};
 }

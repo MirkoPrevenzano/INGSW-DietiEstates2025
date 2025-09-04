@@ -20,6 +20,7 @@ public class CustomerLoadingStrategy implements UserLoadingStrategy
 {
     private final CustomerRepository customerRepository;
 
+    
 
     @Override
     public UserDetails loadUser(String username) throws UsernameNotFoundException 
@@ -33,6 +34,7 @@ public class CustomerLoadingStrategy implements UserLoadingStrategy
         return customer;
     }
     
+
     @Override
     public boolean supports(Role role) 
     {

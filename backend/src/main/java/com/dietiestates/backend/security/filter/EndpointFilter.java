@@ -27,34 +27,36 @@ import lombok.extern.slf4j.Slf4j;
 public class EndpointFilter extends OncePerRequestFilter 
 {
     private final ObjectMapper objectMapper;
+
     private final RequestMappingHandlerMapping requestMappingHandlerMapping;
 
 
+    
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException 
+    protected void doFilterInternal(HttpServletRequest request, 
+                                    HttpServletResponse response, 
+                                    FilterChain filterChain) throws ServletException, IOException 
     {        
-        if (request.getServletPath().equals("/login") || 
+        if (request.getServletPath().equals("/") ||
+            request.getServletPath().equals("/login") || 
             request.getServletPath().startsWith("/swagger-ui") ||
             request.getServletPath().startsWith("/v3/api-docs") ||
-            request.getServletPath().startsWith("/v3/api-docs.yaml") ||
             (request.getServletPath().equals("/agencies") && request.getMethod().equals("POST")) ||
-            request.getServletPath().equals("/auth/customer-registration") ||
+            (request.getServletPath().equals("/customer") && request.getMethod().equals("POST")) ||
             request.getServletPath().equals("/auth/login/oauth2/code/google")) 
-           
         {
             filterChain.doFilter(request, response);
             return;
         } 
 
-        
         log.info("Attempting EndpointFilter...");
 
         try 
         {
             if (requestMappingHandlerMapping.getHandler(request) == null) 
             {
-                log.error("Endpoint not found!");
-                log.error("Attempted access to: " + request.getRequestURI());
+                log.warn("Endpoint not found!");
+                log.warn("Attempted access to: " + request.getRequestURI());
 
                 String errorDetail = "URL doesn't exist!";
                 String errorPath = request.getRequestURI();
@@ -79,7 +81,9 @@ public class EndpointFilter extends OncePerRequestFilter
 
             response.setStatus(apiErrorResponse.getStatus());
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-            objectMapper.writeValue(response.getWriter(), apiErrorResponse);        
+            objectMapper.writeValue(response.getWriter(), apiErrorResponse);     
+            
+            return;
         } 
 
         log.info("EndpointFilter is OK!");

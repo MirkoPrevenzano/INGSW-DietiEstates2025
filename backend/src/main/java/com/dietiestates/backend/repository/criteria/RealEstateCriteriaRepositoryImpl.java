@@ -43,7 +43,6 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
 
     private final RealEstateRootFactoryResolver realEstateRootFactoryResolver;
 
-
     private static final String AGENT = "agent";
 
     private static final String REAL_ESTATE_ID = "realEstateId";
@@ -105,6 +104,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
     private static final String NEAR_PUBLIC_TRANSPORT = "nearPublicTransport";
 
 
+
     @Override
     public Page<RealEstatePreviewInfoDto> findRealEstatePreviewInfosByFilters(Map<String,String> filters, Pageable page, CoordinatesBoundingBox coordinatesBoundingBox) 
     {        
@@ -132,9 +132,9 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         Join<RealEstate, Agent> agentJoin = realEstate.join(AGENT, JoinType.INNER);
 
         query.select(criteriaBuilder.construct(AgentRecentRealEstateDto.class, realEstate.get(REAL_ESTATE_ID), 
-                                                                               realEstate.get(TITLE), 
-                                                                               realEstate.get(DESCRIPTION), 
-                                                                               realEstate.get(UPLOADING_DATE)))
+                                                                                           realEstate.get(TITLE), 
+                                                                                           realEstate.get(DESCRIPTION), 
+                                                                                           realEstate.get(UPLOADING_DATE)))
                                     .where(criteriaBuilder.equal(agentJoin.get(USER_ID), agentId))
                                     .orderBy(criteriaBuilder.desc(realEstate.get(UPLOADING_DATE)));
 
@@ -162,22 +162,19 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
                                     .where(criteriaBuilder.equal(agentJoin.get(USER_ID), agentId))
                                     .orderBy(criteriaBuilder.asc(realEstate.get(REAL_ESTATE_ID)));
 
-        List<AgentDashboardRealEstateStatsDto> list;
 
         if(page != null)
         {
-            list = entityManager.createQuery(query)
+            return entityManager.createQuery(query)
                                 .setFirstResult((int)page.getOffset())
                                 .setMaxResults(page.getPageSize())
                                 .getResultList();
         }
         else
         {
-           list = entityManager.createQuery(query)
+           return entityManager.createQuery(query)
                                .getResultList(); 
         }
-
-        return list;
     }       
     
 
@@ -248,6 +245,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         return countQuery;
     }
 
+
     private List<Predicate> getPredicates(CriteriaBuilder criteriaBuilder, Map<String, String> filters, CoordinatesBoundingBox coordinatesBoundingBox, 
                                           Root<RealEstate> realEstate, Join<RealEstate,Address> addressJoin, Root<? extends RealEstate> realEstateType) 
     {
@@ -268,6 +266,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         return predicates;
     }
 
+
     private void addRealEstateSubtypePredicate(List<Predicate> predicates, CriteriaBuilder criteriaBuilder, 
                                                Root<RealEstate> realEstate, Root<? extends RealEstate> realEstateType)
     {
@@ -276,6 +275,7 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
             
         predicates.add(criteriaBuilder.equal(realEstateId, realEstateTypeId));
     }
+
 
     private void addBoundingBoxPredicates(List<Predicate> predicates, CriteriaBuilder criteriaBuilder, 
                                           CoordinatesBoundingBox coordinatesBoundingBox, Join<RealEstate,Address> addressJoin)
@@ -289,8 +289,9 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         predicates.add(criteriaBuilder.le(longitude, coordinatesBoundingBox.getMaxLongitude()));  
     }
 
-    private void addGeneralPredicates(List<Predicate> predicates, CriteriaBuilder criteriaBuilder, Map<String, String> filters, 
-                                          Root<RealEstate> realEstate)
+
+    private void addGeneralPredicates(List<Predicate> predicates, CriteriaBuilder criteriaBuilder, 
+                                      Map<String, String> filters, Root<RealEstate> realEstate)
     {
         Path<Double> price = realEstate.get(PRICE);         
         Path<String> energyClass = realEstate.get(ENERGY_CLASS);
@@ -305,8 +306,9 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
             predicates.add(criteriaBuilder.equal(energyClass, filters.get(ENERGY_CLASS)));
     }
 
-    private void addInternalFeaturesPredicates(List<Predicate> predicates, CriteriaBuilder criteriaBuilder, Map<String, String> filters, 
-                                                   Root<RealEstate> realEstate)
+
+    private void addInternalFeaturesPredicates(List<Predicate> predicates, CriteriaBuilder criteriaBuilder, 
+                                               Map<String, String> filters, Root<RealEstate> realEstate)
     {
 
         Path<Integer> roomsNumber = realEstate.get(INTERNAL_FEATURES).get(ROOMS_NUMBER);
@@ -324,8 +326,9 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
         
     }
 
-    private void addExternalFeaturesPredicates(List<Predicate> predicates, CriteriaBuilder criteriaBuilder, Map<String, String> filters, 
-                                               Root<RealEstate> realEstate)
+
+    private void addExternalFeaturesPredicates(List<Predicate> predicates, CriteriaBuilder criteriaBuilder, 
+                                               Map<String, String> filters, Root<RealEstate> realEstate)
     {
         Path<Boolean> elevator = realEstate.get(EXTERNAL_FEATURES).get(ELEVATOR);
         Path<Boolean> concierge = realEstate.get(EXTERNAL_FEATURES).get(CONCIERGE);
@@ -357,8 +360,9 @@ public class RealEstateCriteriaRepositoryImpl implements RealEstateCriteriaRepos
             predicates.add(criteriaBuilder.equal(swimmingPool, Boolean.valueOf(filters.get(SWIMMING_POOL))));
     }
 
-    private void addNearByPredicates(List<Predicate> predicates, CriteriaBuilder criteriaBuilder, Map<String, String> filters, 
-                                     Root<RealEstate> realEstate)
+
+    private void addNearByPredicates(List<Predicate> predicates, CriteriaBuilder criteriaBuilder, 
+                                     Map<String, String> filters, Root<RealEstate> realEstate)
     {
         Path<Boolean> nearPark = realEstate.get(EXTERNAL_FEATURES).get(NEAR_PARK);
         Path<Boolean> nearSchool = realEstate.get(EXTERNAL_FEATURES).get(NEAR_SCHOOL);

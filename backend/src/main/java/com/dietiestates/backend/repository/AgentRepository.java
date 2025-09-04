@@ -15,24 +15,27 @@ import com.dietiestates.backend.model.entity.Agent;
 @Repository
 public interface AgentRepository extends JpaRepository<Agent,Long> 
 {
-    public Optional<Agent> findByUsername(String username);
-
-   @Query("SELECT a.administrator.agency.agencyName " +
-          "FROM Agent a " +
-          "WHERE a.username = :username")
+	public Optional<Agent> findByUsername(String username);
+	
+	
+	@Query("SELECT a.administrator.agency.agencyName " +
+	   	   "FROM Agent a " +
+	   	   "WHERE a.username = :username")
     public String findAgencyNameByUsername(@Param("username") String username);
 
-    @Query("SELECT new com.dietiestates.backend.dto.response.AgentPublicInfoDto(a.name, a.surname, a.username, ag.agencyName) " +
-           "FROM Agent a " +
-           "JOIN a.administrator ad " + 
-           "JOIN ad.agency ag " + 
-           "WHERE a.username = :username")
-    public AgentPublicInfoDto findAgentPublicInfoByUsername(@Param("username") String username);
 
     @Query("SELECT new com.dietiestates.backend.dto.response.AgentPublicInfoDto(a.name, a.surname, a.username, ag.agencyName) " +
-           "FROM Agent a " +
-           "JOIN a.administrator ad " + 
-           "JOIN ad.agency ag " + 
-           "WHERE a.id = :agentId")
+	       "FROM Agent a " +
+	       "JOIN a.administrator ad " + 
+	       "JOIN ad.agency ag " + 
+	       "WHERE a.username = :username")
+    public AgentPublicInfoDto findAgentPublicInfoByUsername(@Param("username") String username);
+
+
+    @Query("SELECT new com.dietiestates.backend.dto.response.AgentPublicInfoDto(a.name, a.surname, a.username, ag.agencyName) " +
+	       "FROM Agent a " +
+	       "JOIN a.administrator ad " + 
+	       "JOIN ad.agency ag " + 
+	       "WHERE a.id = :agentId")
     public AgentPublicInfoDto findAgentPublicInfoById(@Param("agentId") Long agentId);
 }

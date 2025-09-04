@@ -35,21 +35,21 @@ public class Agency
     
     @NotNull
     @Column(name = "agency_name",
-	    nullable = false, 
-	    updatable = true)
+	        nullable = false, 
+	        updatable = true)
     private String agencyName;
 
     @NotNull
     @Column(name = "business_name",
-	    nullable = false, 
-	    updatable = true)
+	        nullable = false, 
+	        updatable = true)
     private String businessName;
     
     @NotNull
     @Column(name = "vat_number",
-	    nullable = false, 
-	    updatable = true,
-	    length = 12)
+	        nullable = false, 
+	        updatable = true,
+	        length = 12)
     private String vatNumber;
 
     

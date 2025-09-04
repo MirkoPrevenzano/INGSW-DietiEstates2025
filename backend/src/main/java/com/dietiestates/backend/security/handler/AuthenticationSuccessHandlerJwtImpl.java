@@ -28,9 +28,11 @@ import lombok.extern.slf4j.Slf4j;
 public class AuthenticationSuccessHandlerJwtImpl implements AuthenticationSuccessHandler 
 {
     private final ObjectMapper objectMapper;
+
     private final JwtProvider jwtProvider;
 
 
+    
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException 
     {

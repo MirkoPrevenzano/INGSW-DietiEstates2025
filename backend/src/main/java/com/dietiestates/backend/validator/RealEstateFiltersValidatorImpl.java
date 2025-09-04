@@ -23,10 +23,12 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
     private static final Set<String> NUMERICAL_FILTERS = Set.of("radius", MIN_PRICE, MAX_PRICE, "rooms");
 
 
+
     @Override 
     public boolean isValid(Map<String,String> filters, ConstraintValidatorContext context) 
     {
         context.disableDefaultConstraintViolation();
+
         boolean hasExceptionOccurred = false; 
 
         for(Map.Entry<String,String> entry : filters.entrySet())
@@ -58,11 +60,14 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
     {
         if (key.equals("lat"))
         {
-            double lat = Double.parseDouble(value);
+            Double lat = parseDouble(key, value, context);
+
+            if (lat == null) return true;
 
             if (lat < -90.0 || lat > 90.0) 
             {
                 addViolation(context, "lat value must be between -90 and 90");
+
                 return true;
             }
         }
@@ -70,11 +75,14 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
         return false;
     }
     
+
     private boolean validateLongitude(String key, String value, ConstraintValidatorContext context) 
     {
         if (key.equals("lon"))
         {
-            double lon = Double.parseDouble(value);
+            Double lon = parseDouble(key, value, context);
+
+            if (lon == null) return true;
 
             if (lon < -180.0 || lon > 180.0) 
             {
@@ -86,15 +94,24 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
         return false;
     }
 
+
     private boolean validateNumericalFilter(String key, String value, ConstraintValidatorContext context) 
     {
         if (NUMERICAL_FILTERS.contains(key))
         {
-            double number = Double.parseDouble(value);
+            Number number;
 
-            if (number < 0.0) 
+            if (key.equals("rooms"))
+                number = parseInteger(key, value, context);
+            else
+                number = parseDouble(key, value, context);
+
+            if (number == null) return true;
+
+            if (number.doubleValue() < 0.0) 
             {
                 addViolation(context, key + " value must be greater or equal than 0");
+
                 return true;
             }
         }
@@ -102,16 +119,19 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
         return false;
     }
     
+
     private boolean validateBooleanFilter(String key, String value, ConstraintValidatorContext context) 
     {
         if (BOOLEAN_FILTERS.contains(key) && !value.equalsIgnoreCase("true") && !value.equalsIgnoreCase("false"))
         {
             addViolation(context, key + " value must be true or false");
+
             return true;
         }
 
         return false;
     }
+
 
     private boolean validateEnergyClass(String key, String value, ConstraintValidatorContext context) 
     {
@@ -131,6 +151,7 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
         return false;
     }
 
+
     private boolean validateContractType(String key, String value, ConstraintValidatorContext context) 
     {
         if (key.equals("type"))
@@ -149,6 +170,7 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
         return false;
     }
 
+
     private boolean validatePriceRange(Map<String, String> filters, ConstraintValidatorContext context) 
     {
         if (filters.containsKey(MIN_PRICE) && filters.containsKey(MAX_PRICE)) 
@@ -166,6 +188,37 @@ public class RealEstateFiltersValidatorImpl implements ConstraintValidator<RealE
         return false;
     }
 
+
+    private Double parseDouble(String key, String value, ConstraintValidatorContext context)
+    {
+        try 
+        {
+            return Double.parseDouble(value);
+        } 
+        catch (NumberFormatException e) 
+        {
+            addViolation(context, key + " must be a valid number");
+            
+            return null;
+        }
+    }
+
+
+    private Integer parseInteger(String key, String value, ConstraintValidatorContext context)
+    {
+        try 
+        {
+            return Integer.parseInt(value);
+        } 
+        catch (NumberFormatException e) 
+        {
+            addViolation(context, key + " must be a valid number");
+            
+            return null;
+        }
+    }
+
+    
     private void addViolation(ConstraintValidatorContext context, String message) 
     {        
         context.buildConstraintViolationWithTemplate(message)

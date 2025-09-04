@@ -18,6 +18,8 @@ import jakarta.validation.Payload;
 public @interface RealEstateFiltersValidator 
 {
     String message() default "some invalid filters were inserted!";
+
     Class<?>[] groups() default {};
+    
     Class<? extends Payload>[] payload() default {};
 }

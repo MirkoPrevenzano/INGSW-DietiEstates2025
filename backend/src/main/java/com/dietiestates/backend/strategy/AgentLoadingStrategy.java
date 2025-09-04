@@ -21,6 +21,7 @@ public class AgentLoadingStrategy implements UserLoadingStrategy
     private final AgentRepository agentRepository;
 
 
+
     @Override
     public UserDetails loadUser(String username) throws UsernameNotFoundException 
     {
@@ -33,6 +34,7 @@ public class AgentLoadingStrategy implements UserLoadingStrategy
         return agent;
     }
 
+    
     @Override
     public boolean supports(Role role)
     {

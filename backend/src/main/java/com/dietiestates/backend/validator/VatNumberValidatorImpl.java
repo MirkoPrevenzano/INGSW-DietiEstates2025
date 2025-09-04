@@ -10,21 +10,18 @@ public class VatNumberValidatorImpl implements ConstraintValidator<VatNumberVali
     @Override
     public boolean isValid(CharSequence vatNumber, ConstraintValidatorContext context) 
     {
-        String vatNumberStr = vatNumber.toString();
+        String vatNumberString = vatNumber.toString();
 
-        if (vatNumberStr.length() != 11) 
-        {
+        if (vatNumberString.length() != 11) 
             return false;
-        }
         
-        if (!vatNumberStr.matches("\\d{11}")) 
-        {
+        if (!vatNumberString.matches("\\d{11}")) 
             return false;
-        }
         
-        return validateByLuhnFormula(vatNumberStr);
+        return validateByLuhnFormula(vatNumberString);
     }
 
+    
 
     private boolean validateByLuhnFormula(String vatNumber) 
     {
@@ -39,9 +36,7 @@ public class VatNumberValidatorImpl implements ConstraintValidator<VatNumberVali
         for (int i = 0; i < 11; i++) 
         {
             if (i % 2 == 0) 
-            {
                 oddDigitsSum += vatNumberDigits[i];
-            } 
             else 
             {
                 int doubled = vatNumberDigits[i] * 2;

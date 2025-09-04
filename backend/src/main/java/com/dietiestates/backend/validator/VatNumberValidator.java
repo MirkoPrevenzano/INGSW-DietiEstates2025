@@ -18,6 +18,8 @@ import jakarta.validation.Payload;
 public @interface VatNumberValidator 
 {
     String message() default "an invalid vat number was inserted!";
+
     Class<?>[] groups() default {};
+    
     Class<? extends Payload>[] payload() default {};
 }

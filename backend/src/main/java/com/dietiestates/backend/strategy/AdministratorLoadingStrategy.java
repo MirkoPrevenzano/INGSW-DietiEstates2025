@@ -21,6 +21,7 @@ public class AdministratorLoadingStrategy implements UserLoadingStrategy
     private final AdministratorRepository administratorRepository;
 
 
+
     @Override
     public UserDetails loadUser(String username) throws UsernameNotFoundException 
     {
@@ -41,6 +42,7 @@ public class AdministratorLoadingStrategy implements UserLoadingStrategy
         return administrator;
     }
 
+    
     @Override
     public boolean supports(Role role) 
     {

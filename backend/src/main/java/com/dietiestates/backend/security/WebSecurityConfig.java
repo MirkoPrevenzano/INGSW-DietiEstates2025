@@ -40,11 +40,17 @@ import lombok.extern.slf4j.Slf4j;
 public class WebSecurityConfig
 {
     private final EndpointFilter endpointFilter;
+
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
+
     private final AuthenticationEntryPointCustomImpl authenticationEntryPointCustomImpl;
+
     private final AccessDeniedHandlerCustomImpl accessDeniedHandlerCustomImpl;
+
     private final AuthenticationFailureHandlerCustomImpl authenticationFailureHandlerCustomImpl;
+
     private final AuthenticationSuccessHandlerJwtImpl authenticationSuccessHandlerJwtImpl;
+
 
 
     @Bean
@@ -52,6 +58,7 @@ public class WebSecurityConfig
     {
         return authenticationConfiguration.getAuthenticationManager();
     }
+
 
     @Bean
     public UsernamePasswordRoleAuthenticationFilter usernamePasswordRoleAuthenticationFilter(AuthenticationManager authenticationManager)
@@ -64,6 +71,7 @@ public class WebSecurityConfig
 
         return usernamePasswordRoleAuthenticationFilter;
     }
+
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() 
@@ -81,15 +89,24 @@ public class WebSecurityConfig
         return urlBasedCorsConfigurationSource;
     }
 
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, UsernamePasswordRoleAuthenticationFilter usernamePasswordRoleAuthenticationFilter, CorsConfigurationSource corsConfigurationSource) throws Exception
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, 
+                                                   UsernamePasswordRoleAuthenticationFilter usernamePasswordRoleAuthenticationFilter, 
+                                                   CorsConfigurationSource corsConfigurationSource) throws Exception
     {
         http.csrf(CsrfConfigurer::disable)
             .cors(corsCustomizer -> corsCustomizer.configurationSource(corsConfigurationSource))
             .httpBasic(Customizer.withDefaults())
             .sessionManagement(sessionManagementCustomizer -> sessionManagementCustomizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> authorizeHttpRequestsCustomizer.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                                                                                                    .requestMatchers("/login/**", "/auth/**", "/error/**", "/swagger-ui/**", "/v3/api-docs/**", "/v3/api-docs.yaml").permitAll()
+                                                                                                    .requestMatchers("/",
+                                                                                                                                 "/login/**", 
+                                                                                                                                 "/auth/**", 
+                                                                                                                                 "/error/**", 
+                                                                                                                                 "/swagger-ui/**", 
+                                                                                                                                 "/v3/api-docs/**", 
+                                                                                                                                 "/v3/api-docs.yaml").permitAll()
                                                                                                     .requestMatchers(HttpMethod.POST, "/agencies").permitAll()
                                                                                                     .requestMatchers(HttpMethod.POST, "/customer").permitAll())
             .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> authorizeHttpRequestsCustomizer.anyRequest().authenticated())

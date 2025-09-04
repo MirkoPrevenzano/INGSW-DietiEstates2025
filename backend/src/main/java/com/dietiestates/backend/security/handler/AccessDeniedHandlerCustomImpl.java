@@ -29,13 +29,14 @@ public class AccessDeniedHandlerCustomImpl implements AccessDeniedHandler
     private final ObjectMapper objectMapper;
 
 
+
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException 
     {
         log.error("Denied access: " + accessDeniedException.getMessage());
         log.error("Attempted access to: " + request.getRequestURI());
 
-        String errorDetail = "Denied access! You don't have the permissions to access this resource.";
+        String errorDetail = "Denied access: you don't have the permissions to access this resource!";
         String errorPath = request.getRequestURI();
 
         ApiErrorResponse apiErrorResponse = new ApiErrorResponse(HttpStatus.FORBIDDEN, errorDetail, errorPath);

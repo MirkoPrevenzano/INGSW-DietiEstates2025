@@ -15,9 +15,13 @@ public class PasswordGenerationUtil
     private final int DEFAULT_PASSWORD_LENGTH = 12;
 
     private final String LOWERCASE_CHARS = "abcdefghijklmnopqrstuvwxyz";
+
     private final String UPPERCASE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
     private final String DIGITS = "0123456789";
+
     private final String SPECIAL_CHARS = "!@#$%^&*()_+{}[]:;\"'<>,.?/\\|`~";
+
     private final String ALL_POSSIBLE_CHARS = LOWERCASE_CHARS + UPPERCASE_CHARS + DIGITS + SPECIAL_CHARS;
 
     private final SecureRandom SECURE_RANDOM = new SecureRandom();
@@ -44,7 +48,6 @@ public class PasswordGenerationUtil
         char[] passwordArrayChars = new char[passwordListChars.size()];
         for (int i = 0; i < passwordListChars.size(); i++) 
             passwordArrayChars[i] = passwordListChars.get(i);
-            
 
         return new String(passwordArrayChars);
     }

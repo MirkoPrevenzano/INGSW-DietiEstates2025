@@ -12,9 +12,11 @@ import lombok.extern.slf4j.Slf4j;
 public class FindByRadiusUtil 
 {											
     private final double METERS_PER_DEGREE_OF_LATITUDE = 111320.0;
+
 	private final double METERS_PER_DEGREE_OF_LONGITUDE = 78000.0; 
 	    
 
+	
     public CoordinatesBoundingBox getBoundingBox(Integer radiusMeters, Double centerLatitude, Double centerLongitude)
 	{		
 		double latitudeVariation = (double) radiusMeters / METERS_PER_DEGREE_OF_LATITUDE;
