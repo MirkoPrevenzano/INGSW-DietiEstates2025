@@ -9,7 +9,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.dietiestates.backend.security.interceptor.PerformanceLogInterceptor;
-import com.dietiestates.backend.security.interceptor.UsernameAuthorizationInterceptor;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,8 +18,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class WebMvcConfig implements WebMvcConfigurer
 {
-    private final UsernameAuthorizationInterceptor usernameAuthorizationInterceptor;
-
     private final PerformanceLogInterceptor performanceLogInterceptor;
     
 
@@ -29,10 +26,9 @@ public class WebMvcConfig implements WebMvcConfigurer
     public void addInterceptors(@NonNull InterceptorRegistry registry) 
     {
         registry.addInterceptor(performanceLogInterceptor);
-        registry.addInterceptor(usernameAuthorizationInterceptor);
     }
 
-    
+
     @Override
     public void addCorsMappings(@NonNull CorsRegistry registry) 
     {
