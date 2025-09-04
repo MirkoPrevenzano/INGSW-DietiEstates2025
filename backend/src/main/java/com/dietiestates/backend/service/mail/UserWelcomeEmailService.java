@@ -12,6 +12,7 @@ public abstract class UserWelcomeEmailService
     private final EmailService emailService;
 
 
+
     public final void sendWelcomeEmail(User user)
     {
         String subject = "Benvenuto su DietiEstates2025!";
@@ -21,5 +22,6 @@ public abstract class UserWelcomeEmailService
     }
 
 
+    
     protected abstract String getWelcomeBody(User user);
 }

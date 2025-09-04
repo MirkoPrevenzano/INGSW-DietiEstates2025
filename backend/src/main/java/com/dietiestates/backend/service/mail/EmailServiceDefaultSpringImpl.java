@@ -19,27 +19,30 @@ public class EmailServiceDefaultSpringImpl implements EmailService
 {
     private final JavaMailSender javaMailSender;
 
+    private static final String DIETI_ESTATES_EMAIL = "ciropizza2002@gmail.com";
+
+
 
     @Override
-    public void sendEmail(String to, String subject, String body) 
+    public void sendEmail(String recipient, String subject, String body) 
     {
         SimpleMailMessage message = new SimpleMailMessage();
         
-        message.setTo(to);
+        message.setTo(recipient);
         message.setSubject(subject);
         message.setText(body);
 
-        message.setFrom("ciropizza2002@gmail.com");
+        message.setFrom(DIETI_ESTATES_EMAIL);
 
         try 
         {
             javaMailSender.send(message);
 
-            log.info("Email inviata correttamente a: " + to + "\nOggetto: " + subject);
+            log.info("Email inviata correttamente a: " + recipient + "\nOggetto: " + subject);
         } 
         catch (MailException e) 
         {
-            throw new EmailServiceException(to, subject, e);
+            throw new EmailServiceException(recipient, subject, e);
         }
     }   
 }

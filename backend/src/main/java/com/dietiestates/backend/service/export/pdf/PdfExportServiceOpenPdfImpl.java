@@ -47,13 +47,17 @@ import lombok.extern.slf4j.Slf4j;
 public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implements PdfExportService
 {
     private final SuccessRatePieChartService successRatePieChartService;
+
     private final TotalDealsPieChartService totalDealsPieChartService;
+
     private final MonthlyDealsBarChartService monthlyDealsBarChartService;
 
 
+
     public PdfExportServiceOpenPdfImpl(RealEstateRepository realEstateRepository, 
-                                SuccessRatePieChartService successRatePieChartService,
-                                TotalDealsPieChartService totalDealsPieChartService, MonthlyDealsBarChartService monthlyDealsBarChartService) 
+                                       SuccessRatePieChartService successRatePieChartService,
+                                       TotalDealsPieChartService totalDealsPieChartService, 
+                                       MonthlyDealsBarChartService monthlyDealsBarChartService) 
     {
         super(realEstateRepository);
         this.successRatePieChartService = successRatePieChartService;
@@ -62,71 +66,76 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
     }
 
 
+
     @Override
     public ExportingResult exportPdfReport(Agent agent) 
     {
         return super.exportReport(agent);
     }
 
+
     @Override
     protected Object initializeWriter() 
     {
         Document document = new Document(PageSize.A4);
+
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
-        PdfWriter writer = PdfWriter.getInstance(document, byteArrayOutputStream);
-        writer.setPageEvent(new PdfPageEventHelperImpl());
+        PdfWriter pdfWriter = PdfWriter.getInstance(document, byteArrayOutputStream);
+        pdfWriter.setPageEvent(new PdfPageEventHelperImpl());
         
         document.open();
         
-        // Creo gli stili una sola volta e li passo tramite il wrapper
-        PdfStyleConfig styleConfig = createStyleConfig();
+        PdfStyleConfig pdfStyleConfig = initPdfStyleConfig();
         
-        return new PdfWriterWrapper(document, writer, styleConfig, byteArrayOutputStream); 
+        return new PdfWriterWrapper(document, pdfWriter, pdfStyleConfig, byteArrayOutputStream); 
     }
+
 
     @Override
     protected void writeAgentInfo(Agent agent, Object writer) 
     {
-        PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
-        Document document = pdfWrapper.getDocument();
-        PdfStyleConfig styles = pdfWrapper.getStyleConfig();
+        PdfWriterWrapper pdfWriterWrapper = (PdfWriterWrapper) writer;
+
+        Document document = pdfWriterWrapper.getDocument();
+        PdfStyleConfig pdfStyleConfig = pdfWriterWrapper.getPdfStyleConfig();
         
-        Paragraph agentInfoParagraph = createParagraph(styles.paragraphFont, "AGENT INFO");
+        Paragraph agentInfoParagraph = createParagraph(pdfStyleConfig.paragraphFont, "AGENT INFO");
         PdfPTable agentInfoTable = createTable(3, 80f, new float[] {2.5f, 2.5f, 2.5f});
         
-        String[] agentInfoHeader = {"Name", "Surname", "Username"};
-        writeInTable(agentInfoTable, styles.cellHeader, styles.cellHeaderFont, agentInfoHeader);
+        String[] agentInfoTableColumnHeaders = {"Name", "Surname", "Username"};
+        writeInTable(agentInfoTable, pdfStyleConfig.cellHeader, pdfStyleConfig.cellHeaderFont, agentInfoTableColumnHeaders);
         
-        String[] agentInfo = {agent.getName(), agent.getSurname(), agent.getUsername()};
-        writeInTable(agentInfoTable, styles.cell, styles.cellFont, agentInfo);
+        String[] agentInfoTableColumnValues = {agent.getName(), agent.getSurname(), agent.getUsername()};
+        writeInTable(agentInfoTable, pdfStyleConfig.cell, pdfStyleConfig.cellFont, agentInfoTableColumnValues);
         
         document.add(agentInfoParagraph);
         document.add(agentInfoTable);        
     }
 
+
     @Override
     protected void writeAgentStats(Agent agent, Object writer) 
     {
-        PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
-        Document document = pdfWrapper.getDocument();
-        PdfStyleConfig styles = pdfWrapper.getStyleConfig();
+        PdfWriterWrapper pdfWriterWrapper = (PdfWriterWrapper) writer;
+
+        Document document = pdfWriterWrapper.getDocument();
+        PdfStyleConfig pdfStyleConfig = pdfWriterWrapper.getPdfStyleConfig();
         
-        Paragraph agentStatsParagraph = createParagraph(styles.paragraphFont, "AGENT STATS");
+        Paragraph agentStatsParagraph = createParagraph(pdfStyleConfig.paragraphFont, "AGENT STATS");
         PdfPTable agentStatsTable = createTable(5, 100f, new float[] {2.0f, 2.0f, 2.0f, 2.0f, 2.0f});
         
-        String[] agentStatsHeader = {"Uploaded Real Estates", "Sold Real Estates", "Rented Real Estates", "Sales Income", "Rentals Income"};
-        writeInTable(agentStatsTable, styles.cellHeader, styles.cellHeaderFont, agentStatsHeader);
+        String[] agentStatsTableColumnHeaders = {"Uploaded Real Estates", "Sold Real Estates", "Rented Real Estates", 
+                                                 "Sales Income", "Rentals Income"};
+        writeInTable(agentStatsTable, pdfStyleConfig.cellHeader, pdfStyleConfig.cellHeaderFont, agentStatsTableColumnHeaders);
         
         AgentStats agentStats = agent.getAgentStats();
-        String[] stats = {
-            String.valueOf(agentStats.getTotalUploadedRealEstates()),
-            String.valueOf(agentStats.getTotalSoldRealEstates()),
-            String.valueOf(agentStats.getTotalRentedRealEstates()),
-            String.valueOf(agentStats.getSalesIncome()),
-            String.valueOf(agentStats.getRentalsIncome())
-        };
-        writeInTable(agentStatsTable, styles.cell, styles.cellFont, stats);
+        String[] agentStatsTableColumnValues = {String.valueOf(agentStats.getTotalUploadedRealEstates()),
+                                                String.valueOf(agentStats.getTotalSoldRealEstates()),
+                                                String.valueOf(agentStats.getTotalRentedRealEstates()),
+                                                String.valueOf(agentStats.getSalesIncome()),
+                                                String.valueOf(agentStats.getRentalsIncome())};
+        writeInTable(agentStatsTable, pdfStyleConfig.cell, pdfStyleConfig.cellFont, agentStatsTableColumnValues);
         
         document.add(agentStatsParagraph);
         document.add(agentStatsTable);
@@ -134,65 +143,82 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
         addPieCharts(document, agent);        
     }
 
+
     @Override
     protected void writeRealEstateStats(Agent agent, Object writer) 
     {
-        PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
-        Document document = pdfWrapper.getDocument();
-        PdfStyleConfig styles = pdfWrapper.getStyleConfig();
+        PdfWriterWrapper pdfWriterWrapper = (PdfWriterWrapper) writer;
+
+        Document document = pdfWriterWrapper.getDocument();
+        PdfStyleConfig pdfStyleConfig = pdfWriterWrapper.getPdfStyleConfig();
         
-        Paragraph realEstateStatsParagraph = createParagraph(styles.paragraphFont, "REAL ESTATES STATS");
+        Paragraph realEstateStatsParagraph = createParagraph(pdfStyleConfig.paragraphFont, "REAL ESTATES STATS");
         PdfPTable realEstateStatsTable = createTable(5, 105f, new float[] {3.0f, 2.5f, 2.0f, 2.0f, 2.0f});
         
-        String[] realEstateStatsHeader = {"Title", "Uploading Date", "Views Number", "Offers Number", "Visits Number"};
-        writeInTable(realEstateStatsTable, styles.cellHeader, styles.cellHeaderFont, realEstateStatsHeader);
+        String[] realEstateStatsTableColumnHeaders = {"Title", "Uploading Date", "Views Number", "Offers Number", "Visits Number"};
+        writeInTable(realEstateStatsTable, pdfStyleConfig.cellHeader, pdfStyleConfig.cellHeaderFont, realEstateStatsTableColumnHeaders);
         
-        List<AgentDashboardRealEstateStatsDto> agentDashboardRealEstateStatsDtos = this.getAgentDashboardRealEstateStatsByAgent(agent);
-
+        List<AgentDashboardRealEstateStatsDto> agentDashboardRealEstateStatsDtos = this.getAgentDashboardRealEstateStats(agent);
         if (!agentDashboardRealEstateStatsDtos.isEmpty()) 
         {
             for (AgentDashboardRealEstateStatsDto agentDashboardRealEstateStatsDto : agentDashboardRealEstateStatsDtos) 
             {
-                String[] estateStats = {
-                    agentDashboardRealEstateStatsDto.getTitle(),
-                    agentDashboardRealEstateStatsDto.getUploadingDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm:ss")),
-                    String.valueOf(agentDashboardRealEstateStatsDto.getViewsNumber()),
-                    String.valueOf(agentDashboardRealEstateStatsDto.getOffersNumber()),
-                    String.valueOf(agentDashboardRealEstateStatsDto.getVisitsNumber())
-                };
-                writeInTable(realEstateStatsTable, styles.cell, styles.cellFont, estateStats);
+                String[] realEstateStatsTableColumnValues = {agentDashboardRealEstateStatsDto.getTitle(),
+                                                             agentDashboardRealEstateStatsDto.getUploadingDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy  HH:mm:ss")),
+                                                             String.valueOf(agentDashboardRealEstateStatsDto.getViewsNumber()),
+                                                             String.valueOf(agentDashboardRealEstateStatsDto.getOffersNumber()),
+                                                             String.valueOf(agentDashboardRealEstateStatsDto.getVisitsNumber())};
+                writeInTable(realEstateStatsTable, pdfStyleConfig.cell, pdfStyleConfig.cellFont, realEstateStatsTableColumnValues);
             }
-        } else {
-            writeInTable(realEstateStatsTable, styles.cell, styles.cellFont,"//", "//", "//", "//", "//");
+        } 
+        else 
+        {
+            writeInTable(realEstateStatsTable, pdfStyleConfig.cell, pdfStyleConfig.cellFont,"//", "//", "//", "//", "//");
         }
         
         document.add(realEstateStatsParagraph);
         document.add(realEstateStatsTable);        
     }
 
+
     @Override
-    protected void writeRealEstatePerMonthStats(Agent agent, Object writer) 
+    protected void writeRealEstateMonthlyDeals(Agent agent, Object writer) 
     {
-        PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
-        Document document = pdfWrapper.getDocument();
+        PdfWriterWrapper pdfWriterWrapper = (PdfWriterWrapper) writer;
+
+        Document document = pdfWriterWrapper.getDocument();
         
         addBarChart(document, agent);        
     }
 
+
     @Override
     protected void writeSectionSeparator(Object writer) 
     { 
+        /* Paragraph separatorParagraph = new Paragraph();
+        separatorParagraph.setSpacingAfter(40);
+
+        PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
+
+        pdfWrapper.getDocument().add(separatorParagraph); */
+
         // PDF non ha bisogno di separatori       
     }
+
 
     @Override
     protected byte[] finalizeWriter(Object writer) 
     {
-        PdfWriterWrapper pdfWrapper = (PdfWriterWrapper) writer;
-        pdfWrapper.getDocument().close();
+        PdfWriterWrapper pdfWriterWrapper = (PdfWriterWrapper) writer;
 
-        return ((ByteArrayOutputStream) pdfWrapper.getOutputStream()).toByteArray();
+        Document document = pdfWriterWrapper.getDocument();
+        ByteArrayOutputStream byteArrayOutputStream = (ByteArrayOutputStream) pdfWriterWrapper.getOutputStream();
+
+        document.close();
+
+        return byteArrayOutputStream.toByteArray();
     }
+
 
     @Override
     protected ExportingFormat getExportingFormat() 
@@ -200,12 +226,14 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
         return ExportingFormat.PDF;
     }
 
+
     @Override
     protected MediaType getContentType() 
     {
         return ExportingFormat.PDF.getMediaType();
     }
     
+
     @Override
     protected String getFileExtension() 
     {
@@ -213,56 +241,71 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
     }
 
 
+
     // Metodi helper per PDF
-    private PdfStyleConfig createStyleConfig() 
+    private PdfStyleConfig initPdfStyleConfig() 
     {
         Font paragraphFont = createFont(FontFactory.HELVETICA_BOLD, 22, Color.BLUE);
         Font cellHeaderFont = createFont(FontFactory.HELVETICA, 13, Color.WHITE);
         Font cellFont = createFont(FontFactory.HELVETICA, 12, Color.BLACK);
+
         PdfPCell cellHeader = createCell(Color.BLUE, 5);
         PdfPCell cell = createCell(Color.WHITE, 5);
         
         return new PdfStyleConfig(paragraphFont, cellHeaderFont, cellFont, cellHeader, cell);
     }
     
+
     private Font createFont(String fontName, float size, Color fontColor) 
     {
         Font font = FontFactory.getFont(fontName);
+
         font.setSize(size);
         font.setColor(fontColor);
+
         return font;
     }
     
+
     private PdfPCell createCell(Color cellColor, float paddingSize) 
     {
         PdfPCell cell = new PdfPCell();
+
         cell.setBackgroundColor(cellColor);
         cell.setPadding(paddingSize);
+
         return cell;
     }
     
+
     private Paragraph createParagraph(Font fontName, String title) 
     {
-        Paragraph p = new Paragraph(title, fontName);
-        p.setAlignment(Element.ALIGN_CENTER);
-        return p;
+        Paragraph paragraph = new Paragraph(title, fontName);
+
+        paragraph.setAlignment(Element.ALIGN_CENTER);
+
+        return paragraph;
     }
     
+
     private PdfPTable createTable(int columnsNumber, float widthPercentage, float[] relativeWidths) 
     {
         PdfPTable table = new PdfPTable(columnsNumber);
+
         table.setWidthPercentage(widthPercentage);
         table.setWidths(relativeWidths);
         table.setSpacingBefore(15);
         table.setSpacingAfter(40);
+
         return table;
     }
     
-    private void writeInTable(PdfPTable table, PdfPCell cell, Font cellFont, String... headers) 
+
+    private void writeInTable(PdfPTable table, PdfPCell cell, Font cellFont, String... strings) 
     {
-        for (String header : headers) 
+        for (String string : strings) 
         {
-            cell.setPhrase(new Phrase(header, cellFont));
+            cell.setPhrase(new Phrase(string, cellFont));
             table.addCell(cell);
         }
     }
@@ -272,15 +315,18 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
     {
         try 
         {
-            Image im2 = Image.getInstance(successRatePieChartService.createChart(agent));
-            Image im3 = Image.getInstance(totalDealsPieChartService.createChart(agent));
+            Image successRatePieChartImage = Image.getInstance(successRatePieChartService.createChart(agent));
+            Image totalDealsPieChartImage = Image.getInstance(totalDealsPieChartService.createChart(agent));
+
             PdfPTable chartTable = createTable(2, 110, new float[] {1, 1});
             PdfPCell cell = createCell(Color.WHITE, 0);
+
             cell.setBorderColor(Color.WHITE);
-            cell.setImage(im2);
+
+            cell.setImage(successRatePieChartImage);
             chartTable.addCell(cell);
             
-            cell.setImage(im3);
+            cell.setImage(totalDealsPieChartImage);
             chartTable.addCell(cell);
             
             document.add(chartTable);
@@ -295,14 +341,17 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
         }
     }
     
+
     private void addBarChart(Document document, Agent agent) 
     {
         try 
         {
-            Image im4 = Image.getInstance(monthlyDealsBarChartService.createChart(agent));
-            im4.setAlignment(Element.ALIGN_CENTER);
-            im4.scalePercent(80);
-            document.add(im4);
+            Image monthlyDealsBarChartImage = Image.getInstance(monthlyDealsBarChartService.createChart(agent));
+
+            monthlyDealsBarChartImage.setAlignment(Element.ALIGN_CENTER);
+            monthlyDealsBarChartImage.scalePercent(80);
+
+            document.add(monthlyDealsBarChartImage);
         } 
         catch (ChartServiceException e)
         {
@@ -314,6 +363,8 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
         }
     }
     
+
+
 
 
     private final class PdfPageEventHelperImpl extends PdfPageEventHelper 
@@ -378,20 +429,24 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
 
 
 
-    // Classe helper per wrappare Document, PdfWriter e StyleConfig
+
+
+    // Classe helper per wrappare Document, PdfWriter e PdfStyleConfig
     @RequiredArgsConstructor
     @Getter
     private static class PdfWriterWrapper 
     {
         private final Document document;
-        private final PdfWriter writer;
-        private final PdfStyleConfig styleConfig;
+        private final PdfWriter pdfWriter;
+        private final PdfStyleConfig pdfStyleConfig;
         private final OutputStream outputStream;
     }
     
 
 
-    // Classe per contenere la configurazione degli stili
+
+
+    // Classe helper per contenere la configurazione degli stili
     @RequiredArgsConstructor
     private static class PdfStyleConfig 
     {

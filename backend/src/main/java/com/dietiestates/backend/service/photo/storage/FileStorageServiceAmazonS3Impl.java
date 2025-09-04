@@ -38,8 +38,9 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
 
     private static final FileStorageProvider PROVIDER = FileStorageProvider.AMAZON_S3;
 
-	@Value("${aws.bucketname}")
+	@Value("${dietiestates.aws.s3.bucketname}")
 	private String bucketName;
+
 
 
     @Override
@@ -92,18 +93,18 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
     }
 
 
-
     @Override
     public Map<String, String> getFileMetadata(String fileStorageKey) 
     {
         HeadObjectRequest headObjectRequest = HeadObjectRequest.builder()
-        .bucket(bucketName)
-        .key(fileStorageKey)
-        .build();
+                                                               .bucket(bucketName)
+                                                               .key(fileStorageKey)
+                                                               .build();
 
         try 
         {
             HeadObjectResponse response = s3Client.headObject(headObjectRequest);
+
             Map<String, String> photoMetadata = new HashMap<>(response.metadata()); // Metadati utente
 
             if (response.contentType() != null) photoMetadata.put("ContentType", response.contentType());
@@ -151,9 +152,9 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
     public void deleteFile(String fileStorageKey) 
     {
         DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
-        .bucket(bucketName)
-        .key(fileStorageKey)
-        .build();
+                                                                     .bucket(bucketName)
+                                                                     .key(fileStorageKey)
+                                                                     .build();
 
         try 
         {

@@ -27,6 +27,7 @@ public abstract class ExportServiceTemplate
     private final RealEstateRepository realEstateRepository;
 
 
+
     public final ExportingResult exportReport(Agent agent) 
     {
         try 
@@ -42,15 +43,17 @@ public abstract class ExportServiceTemplate
             writeRealEstateStats(agent, writer);
             writeSectionSeparator(writer);
             
-            writeRealEstatePerMonthStats(agent, writer);
+            writeRealEstateMonthlyDeals(agent, writer);
             
-            byte[] data = finalizeWriter(writer);
+            byte[] exportingBytes = finalizeWriter(writer);
             
             String filename = generateFileName(agent.getUsername()) + getFileExtension();
+
             MediaType contentType = getContentType();
             
             log.info("Report exported successfully for agent: {}", agent.getUsername());
-            return new ExportingResult(data, filename, contentType);            
+
+            return new ExportingResult(exportingBytes, filename, contentType);            
         } 
         catch (Exception e) 
         {
@@ -60,27 +63,39 @@ public abstract class ExportServiceTemplate
     }
     
     
+
     protected abstract Object initializeWriter();
+
     protected abstract void writeAgentInfo(Agent agent, Object writer);
+
     protected abstract void writeAgentStats(Agent agent, Object writer);
+
     protected abstract void writeRealEstateStats(Agent agent, Object writer);
-    protected abstract void writeRealEstatePerMonthStats(Agent agent, Object writer);
+
+    protected abstract void writeRealEstateMonthlyDeals(Agent agent, Object writer);
+
     protected abstract void writeSectionSeparator(Object writer);
+
     protected abstract byte[] finalizeWriter(Object writer);
+    
     protected abstract ExportingFormat getExportingFormat();
+
     protected abstract MediaType getContentType();
+
     protected abstract String getFileExtension();
 
-    
+
     // Metodi comuni (hook methods)
     protected String generateFileName(String username) 
     {
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         String currentDateTime = dateFormatter.format(new Date());
+
         return username + "_" + currentDateTime;
     }
     
-    protected List<AgentDashboardRealEstateStatsDto> getAgentDashboardRealEstateStatsByAgent(Agent agent) 
+
+    protected List<AgentDashboardRealEstateStatsDto> getAgentDashboardRealEstateStats(Agent agent) 
     {
         return realEstateRepository.findAgentDashboardRealEstateStatsByAgentId(agent.getUserId(), null);
     }

@@ -1,16 +1,17 @@
 
 package com.dietiestates.backend.service.chart;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.springframework.stereotype.Service;
 
 import com.dietiestates.backend.enums.ChartType;
 import com.dietiestates.backend.enums.MonthLabel;
 import com.dietiestates.backend.model.entity.Agent;
 import com.dietiestates.backend.service.mock.MockingStatsService;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,11 +22,14 @@ public class MonthlyDealsBarChartServiceJFreeChartImpl extends ChartServiceJFree
 {
     private final MockingStatsService mockingStatsService;
 
-    
     private static final String CHART_TITLE = "Monthly Deals";
+
     private static final String X_AXIS_LABEL = "Month";
+
     private static final String Y_AXIS_LABEL = "Total Deals";
+
     private static final String DATASET_SERIES = "Sales/Rentals";
+
 
 
     @Override
@@ -45,6 +49,7 @@ public class MonthlyDealsBarChartServiceJFreeChartImpl extends ChartServiceJFree
         return defaultCategoryDataset;
     }
 
+
     @Override
     protected JFreeChart buildChart(DefaultCategoryDataset defaultCategoryDataset) 
     {
@@ -58,6 +63,7 @@ public class MonthlyDealsBarChartServiceJFreeChartImpl extends ChartServiceJFree
                                            false);
     }
 
+    
     @Override
     protected ChartType getChartType() 
     {

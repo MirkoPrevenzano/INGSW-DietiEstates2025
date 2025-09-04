@@ -25,6 +25,7 @@ public class PhotoServiceImpl implements PhotoService
     private final FileStorageService fileStorageService;
 
 
+
     @Override
     public String uploadPhoto(MultipartFile file, String folderName) throws IOException
     {
@@ -77,9 +78,9 @@ public class PhotoServiceImpl implements PhotoService
         Map<String, String> metadata = fileStorageService.getFileMetadata(photoKey);
         String contentType = metadata.getOrDefault("ContentType", "application/octet-stream"); 
 
-        String base64String = Base64.getEncoder().encodeToString(photoBytes);
+        String photoBase64 = Base64.getEncoder().encodeToString(photoBytes);
 
-        return new PhotoResult<>(base64String, contentType);
+        return new PhotoResult<>(photoBase64, contentType);
     }
 
 

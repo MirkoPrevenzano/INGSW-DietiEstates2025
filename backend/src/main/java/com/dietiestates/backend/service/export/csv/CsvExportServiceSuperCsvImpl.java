@@ -46,6 +46,7 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
     private final MockingStatsService mockingStatsService;
 
     
+
     public CsvExportServiceSuperCsvImpl(RealEstateRepository realEstateRepository, MockingStatsService mockingStatsService) 
     {
         super(realEstateRepository);
@@ -53,11 +54,13 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
     }
 
 
+
     @Override
     public ExportingResult exportCsvReport(Agent agent) 
     {
         return super.exportReport(agent);
     }
+
 
 
     @Override
@@ -70,54 +73,54 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
         return new CsvWriterWrapper(csvListWriter, stringWriter);
     }
 
+
     @Override
     protected void writeAgentInfo(Agent agent, Object writer) 
-    {
+    {        
         CsvWriterWrapper csvWriterWrapper = (CsvWriterWrapper) writer;
 
-        List<Object> agentData = Arrays.asList(
-            agent.getName(), 
-            agent.getSurname(), 
-            agent.getUsername()
-        );
+        ICsvListWriter csvListWriter = csvWriterWrapper.getCsvListWriter();
+
+        List<Object> agentInfoData = Arrays.asList(agent.getName(),
+                                                   agent.getSurname(), 
+                                                   agent.getUsername());
         
         try 
         {
-            csvWriterWrapper.getCsvListWriter().writeHeader("AGENT INFO");
-            csvWriterWrapper.getCsvListWriter().writeHeader("Name", "Surname", "Username");
+            csvListWriter.writeHeader("AGENT INFO");
+            csvListWriter.writeHeader("Name", "Surname", "Email");
 
-            csvWriterWrapper.getCsvListWriter().write(agentData, getAgentInfoProcessors());
+            csvListWriter.write(agentInfoData, getAgentInfoProcessors());
         } 
         catch (IOException e) 
         {
             throw new SuperCsvException(e.getMessage());
         }        
     }
+
 
     @Override
     protected void writeAgentStats(Agent agent, Object writer) 
     {
         CsvWriterWrapper csvWriterWrapper = (CsvWriterWrapper) writer;
 
-        AgentStats stats = agent.getAgentStats();
-        List<Object> statsData = Arrays.asList(
-            stats.getTotalUploadedRealEstates(),
-            stats.getTotalSoldRealEstates(),
-            stats.getTotalRentedRealEstates(),
-            stats.getSalesIncome(),
-            stats.getRentalsIncome(),
-            stats.getTotalIncomes(),
-            stats.getSuccessRate()
-        );
+        AgentStats agentStats = agent.getAgentStats();
+        List<Object> agentStatsData = Arrays.asList(agentStats.getTotalUploadedRealEstates(),
+                                                    agentStats.getTotalSoldRealEstates(),
+                                                    agentStats.getTotalRentedRealEstates(),
+                                                    agentStats.getSalesIncome(),
+                                                    agentStats.getRentalsIncome(),
+                                                    agentStats.getTotalIncomes(),
+                                                    agentStats.getSuccessRate());
 
         try 
         {
             csvWriterWrapper.getCsvListWriter().writeHeader("AGENT STATS");
-            csvWriterWrapper.getCsvListWriter().writeHeader("TotalUploadedRealEstates", "TotalSoldRealEstates", 
-                                 "TotalRentedRealEstates", "SalesIncome", "RentalsIncome", 
-                                 "Total Incomes", "Success Rate");
+            csvWriterWrapper.getCsvListWriter().writeHeader("Uploaded RealEstates", "Sold Real Estates", "Rented Real Estates", 
+                                                            "Sales Income", "Rentals Income", 
+                                                            "Total Incomes", "Success Rate");
             
-            csvWriterWrapper.getCsvListWriter().write(statsData, getAgentStatsProcessors());
+            csvWriterWrapper.getCsvListWriter().write(agentStatsData, getAgentStatsProcessors());
         } 
         catch (IOException e) 
         {
@@ -125,30 +128,30 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
         }        
     }
 
+
     @Override
     protected void writeRealEstateStats(Agent agent, Object writer) 
     {
         CsvWriterWrapper csvWriterWrapper = (CsvWriterWrapper) writer;
 
-        List<AgentDashboardRealEstateStatsDto> agentDashboardRealEstateStatsDtos = this.getAgentDashboardRealEstateStatsByAgent(agent);
+        List<AgentDashboardRealEstateStatsDto> agentDashboardRealEstateStatsDtos = this.getAgentDashboardRealEstateStats(agent);
         
         try 
         {
             csvWriterWrapper.getCsvListWriter().writeHeader("REAL ESTATES STATS");
-            csvWriterWrapper.getCsvListWriter().writeHeader("Title", "UploadingDate", "ViewsNumber", "VisitsNumber", "OffersNumber");
+            csvWriterWrapper.getCsvListWriter().writeHeader("Title", "Uploading Date", "Views Number", "Visits Number", "Offers Number");
 
             if (!agentDashboardRealEstateStatsDtos.isEmpty()) 
             {
                 for (AgentDashboardRealEstateStatsDto agentDashboardRealEstateStatsDto : agentDashboardRealEstateStatsDtos) 
                 {
-                    List<Object> estateData = Arrays.asList(
-                        agentDashboardRealEstateStatsDto.getTitle(),
-                        Date.from(agentDashboardRealEstateStatsDto.getUploadingDate().toInstant(ZoneOffset.UTC)),
-                        agentDashboardRealEstateStatsDto.getViewsNumber(),
-                        agentDashboardRealEstateStatsDto.getVisitsNumber(),
-                        agentDashboardRealEstateStatsDto.getOffersNumber()
-                    );
-                    csvWriterWrapper.getCsvListWriter().write(estateData, getRealEstateStatsProcessors());
+                    List<Object> realEstateStatsData = Arrays.asList(agentDashboardRealEstateStatsDto.getTitle(),
+                                                                     Date.from(agentDashboardRealEstateStatsDto.getUploadingDate().toInstant(ZoneOffset.UTC)),
+                                                                     agentDashboardRealEstateStatsDto.getViewsNumber(),
+                                                                     agentDashboardRealEstateStatsDto.getVisitsNumber(),
+                                                                     agentDashboardRealEstateStatsDto.getOffersNumber());
+
+                    csvWriterWrapper.getCsvListWriter().write(realEstateStatsData, getRealEstateStatsProcessors());
                 }
             } 
             else 
@@ -162,8 +165,9 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
         }        
     }
 
+
     @Override
-    protected void writeRealEstatePerMonthStats(Agent agent, Object writer) 
+    protected void writeRealEstateMonthlyDeals(Agent agent, Object writer) 
     {
         CsvWriterWrapper csvWriterWrapper = (CsvWriterWrapper) writer;
 
@@ -172,7 +176,7 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
 
         try 
         {
-            csvWriterWrapper.getCsvListWriter().writeHeader("REAL ESTATES STATS PER MONTH");
+            csvWriterWrapper.getCsvListWriter().writeHeader("REAL ESTATES MONTHLY DEALS");
             csvWriterWrapper.getCsvListWriter().writeHeader(MonthLabel.getMonthAbbreviations());
             
             csvWriterWrapper.getCsvListWriter().write(monthlyData);
@@ -182,6 +186,7 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
             throw new SuperCsvException(e.getMessage());
         }        
     }
+
 
     @Override
     protected void writeSectionSeparator(Object writer) 
@@ -199,24 +204,27 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
         }        
     }   
 
+
     @Override
     protected byte[] finalizeWriter(Object writer) 
     {
         CsvWriterWrapper csvWriterWrapper = (CsvWriterWrapper) writer;
 
+        ICsvListWriter csvListWriter = csvWriterWrapper.getCsvListWriter();
+        StringWriter stringWriter = csvWriterWrapper.getStringWriter();
+
         try 
         {
-            csvWriterWrapper.getCsvListWriter().close();
+            csvListWriter.close();
         } 
         catch (IOException e) 
         {
             throw new SuperCsvException(e.getMessage());
         }
         
-        String csvContent = csvWriterWrapper.getStringWriter().toString();
-
-        return csvContent.getBytes();        
+        return stringWriter.toString().getBytes();        
     }
+
 
     @Override
     protected ExportingFormat getExportingFormat() 
@@ -224,17 +232,20 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
         return ExportingFormat.CSV;
     }
 
+
     @Override
     protected MediaType getContentType() 
     {
         return ExportingFormat.CSV.getMediaType();
     }
 
+
     @Override
     protected String getFileExtension() 
     {
         return ExportingFormat.CSV.getFileExtension();
     }
+
 
 
     // Metodi helper per i processori CSV
@@ -265,6 +276,8 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
                                     new LMinMax(0L, LMinMax.MAX_LONG)};
     }
 
+
+    
 
     
     @RequiredArgsConstructor

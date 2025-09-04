@@ -10,5 +10,6 @@ import lombok.Data;
 public class PhotoResult<T> 
 {
     T photoValue;
+    
     String contentType;
 }

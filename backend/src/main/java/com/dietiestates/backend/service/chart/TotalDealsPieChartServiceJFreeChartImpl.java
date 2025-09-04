@@ -1,22 +1,26 @@
 
 package com.dietiestates.backend.service.chart;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.JFreeChart;
-import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.stereotype.Service;
 
 import com.dietiestates.backend.enums.ChartType;
 import com.dietiestates.backend.model.entity.Agent;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 
 @Service
 public class TotalDealsPieChartServiceJFreeChartImpl extends ChartServiceJFreeChartTemplate<Agent, DefaultPieDataset<String>> implements TotalDealsPieChartService 
 {   
     private static final String CHART_TITLE = "Sales / Rentals Ratio";
+
     private static final String TOTAL_SALES_LABEL = "Sales";
+
     private static final String TOTAL_RENTALS_LABEL = "Rentals";
     
+
 
     @Override
     protected DefaultPieDataset<String> buildDataset(Agent agent) 
@@ -32,16 +36,18 @@ public class TotalDealsPieChartServiceJFreeChartImpl extends ChartServiceJFreeCh
         return defaultPieDataset;
     }
     
+
     @Override
     protected JFreeChart buildChart(DefaultPieDataset<String> defaultPieDataset) 
     {
         return ChartFactory.createPieChart(CHART_TITLE,
                                            defaultPieDataset,
-                                           false,
+                                           true,
                                            false,
                                            false);
     }
     
+
     @Override
     protected ChartType getChartType() 
     {

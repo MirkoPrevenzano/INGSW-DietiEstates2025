@@ -5,13 +5,13 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-import org.jfree.chart.ChartUtils;
-import org.jfree.chart.JFreeChart;
-import org.jfree.data.general.Dataset;
-
 import com.dietiestates.backend.enums.ChartType;
 import com.dietiestates.backend.exception.ChartServiceException;
 import com.dietiestates.backend.model.entity.Agent;
+
+import org.jfree.chart.ChartUtils;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.Dataset;
 
 
 public abstract class ChartServiceJFreeChartTemplate<T, D extends Dataset> implements ChartService<T>
@@ -27,12 +27,15 @@ public abstract class ChartServiceJFreeChartTemplate<T, D extends Dataset> imple
 
         ChartType chartType = getChartType();
         
-        return  convertChartToBytes(chart, chartType, data);
+        return convertChartToBytes(chart, chartType, data);
     }
 
 
+
     protected abstract D buildDataset(T data);
+
     protected abstract JFreeChart buildChart(D dataset);
+
     protected abstract ChartType getChartType();
 
 
@@ -41,6 +44,8 @@ public abstract class ChartServiceJFreeChartTemplate<T, D extends Dataset> imple
         chart.getPlot().setBackgroundPaint(Color.WHITE);
         chart.getPlot().setOutlinePaint(Color.BLACK);
     }
+
+
 
     private byte[] convertChartToBytes(JFreeChart chart, ChartType chartType, T data) 
     {

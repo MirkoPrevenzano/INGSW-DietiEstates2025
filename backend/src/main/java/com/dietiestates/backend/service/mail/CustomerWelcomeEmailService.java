@@ -18,6 +18,7 @@ public class CustomerWelcomeEmailService extends UserWelcomeEmailService
     }
 
     
+    
     @Override
     protected String getWelcomeBody(User user) 
     {

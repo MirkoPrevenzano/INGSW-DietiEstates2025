@@ -10,5 +10,6 @@ public abstract class AgentAndCollaboratorWelcomeEmailService extends UserWelcom
     }
 
     
+    
     protected abstract String getAgencyName(String username);
 }

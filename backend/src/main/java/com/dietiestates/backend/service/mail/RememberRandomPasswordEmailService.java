@@ -17,6 +17,7 @@ public class RememberRandomPasswordEmailService
     private final EmailService emailService;
 
 
+
     public void sendRandomPasswordEmail(User user, String randomPassword) 
     {
         String subject = "La tua password di default in DietiEstates2025!";

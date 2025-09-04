@@ -15,6 +15,7 @@ public class CollaboratorWelcomeEmailService extends AgentAndCollaboratorWelcome
 {
     private final AdministratorRepository administratorRepository;
 
+
     
     public CollaboratorWelcomeEmailService(EmailService emailService, AdministratorRepository administratorRepository)
     {
@@ -35,6 +36,7 @@ public class CollaboratorWelcomeEmailService extends AgentAndCollaboratorWelcome
                              """, user.getName(), getAgencyName(user.getUsername()));
     }
 
+    
     @Override
     protected String getAgencyName(String username) 
     {

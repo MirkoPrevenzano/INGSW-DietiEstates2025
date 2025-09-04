@@ -16,12 +16,14 @@ public class AgentWelcomeEmailService extends AgentAndCollaboratorWelcomeEmailSe
     private final AgentRepository agentRepository;
 
     
+
     public AgentWelcomeEmailService(EmailService emailService, AgentRepository agentRepository)
     {
         super(emailService);
         this.agentRepository = agentRepository;
     }
     
+
 
     @Override
     protected String getWelcomeBody(User user) 
@@ -35,6 +37,7 @@ public class AgentWelcomeEmailService extends AgentAndCollaboratorWelcomeEmailSe
                              """, user.getName(), getAgencyName(user.getUsername()));
     }
 
+    
     @Override
     protected String getAgencyName(String username) 
     {

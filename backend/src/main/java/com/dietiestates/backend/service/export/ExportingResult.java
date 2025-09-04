@@ -12,6 +12,8 @@ import lombok.Data;
 public class ExportingResult
 {
     private final byte[] exportingBytes;
+
     private final String filename;
+    
     private final MediaType contentType;
 }
