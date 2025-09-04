@@ -3,8 +3,6 @@ package com.dietiestates.backend.security;
 
 import java.util.Date;
 
-import jakarta.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,24 +17,22 @@ import com.auth0.jwt.JWTVerifier;
 @Component
 public class JwtProvider 
 {
-    @Value("${dietiestates.jwt.secret}")
-    private String secretKey;
-
     private static final String ISSUER = "Dieti Estates";
 
     private static final long EXPIRATION_TIME = 1L * 24 * 60 * 60 * 1000;
+    
+    private final Algorithm algorithm;
 
-    private Algorithm algorithm;
-
-    private JWTVerifier jwtVerifier;
+    private final JWTVerifier jwtVerifier;
 
 
-    @PostConstruct
-    void init()
+
+    public JwtProvider(@Value("${dietiestates.jwt.secret}") String secretKey) 
     {
         this.algorithm = Algorithm.HMAC256(secretKey.getBytes());
         this.jwtVerifier = JWT.require(algorithm).build();
     }
+
     
 
     public String generateAccessToken(UserDetails userDetails)
@@ -52,6 +48,7 @@ public class JwtProvider
         
     }
 
+
     public VerifiedJwt verifyToken(String token)
     {
         DecodedJWT decodedJWT = jwtVerifier.verify(token);
@@ -66,12 +63,14 @@ public class JwtProvider
         private final DecodedJWT decodedJWT;
 
 
+
         private VerifiedJwt(DecodedJWT decodedJWT) 
         {
             this.decodedJWT = decodedJWT;
         }
 
 
+        
         public String getSubject() 
         {
             return decodedJWT.getSubject();
