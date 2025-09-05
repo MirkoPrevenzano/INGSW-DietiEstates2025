@@ -28,7 +28,9 @@ public class AdministratorLoadingStrategy implements UserLoadingStrategy
         Administrator administrator = administratorRepository.findByUsername(username)
                                                              .orElseThrow(() -> new UsernameNotFoundException("Amministratore non trovato con username: " + username));
 
-        if (administrator.getManager() == null) 
+        log.info("Amministratore con username '{}' trovato nel DB!", username);
+
+        /*if (administrator.getManager() == null) 
         { 
             log.info("Amministratore (ruolo ADMIN) con username '{}' trovato nel DB!", username);
             administrator.setRole(Role.ROLE_ADMIN);
@@ -37,12 +39,25 @@ public class AdministratorLoadingStrategy implements UserLoadingStrategy
         {
             log.info("Amministratore (ruolo COLLABORATOR) con username '{}' trovato nel DB!", username);
             administrator.setRole(Role.ROLE_COLLABORATOR);
-        }
+        }*/
 
         return administrator;
     }
 
     
+    @Override
+    public void setRole(UserDetails userDetails) 
+    {
+        if (userDetails instanceof Administrator administrator)
+        {
+            if (administrator.getManager() == null)
+                administrator.setRole(Role.ROLE_ADMIN);
+            else 
+                administrator.setRole(Role.ROLE_COLLABORATOR);
+        }
+    }
+
+
     @Override
     public boolean supports(Role role) 
     {

@@ -1,20 +1,24 @@
 
 package com.dietiestates.backend.service;
 
+import java.util.UUID;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.dietiestates.backend.dto.request.CustomerRegistrationDto;
 import com.dietiestates.backend.model.entity.Customer;
 import com.dietiestates.backend.repository.CustomerRepository;
 import com.dietiestates.backend.service.mail.CustomerWelcomeEmailService;
+
+import org.modelmapper.ModelMapper;
+
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import java.util.UUID;
 
 
 @Service
@@ -24,23 +28,29 @@ import java.util.UUID;
 public class CustomerService 
 {
     private final CustomerRepository customerRepository;
+
     private final PasswordEncoder passwordEncoder;
+
     private final ModelMapper modelMapper;
+
     private final CustomerWelcomeEmailService customerWelcomeEmailService;
 
+    
     
     @Transactional
     public void customerRegistration(CustomerRegistrationDto customerRegistrationDto) throws IllegalArgumentException
     {
         if(customerRepository.findByUsername(customerRegistrationDto.getUsername()).isPresent())
         {
-            log.error("This e-mail is already present!");
-            throw new IllegalArgumentException("This e-mail is already present!");
+            log.error("This customer's email is already present!");
+            throw new IllegalArgumentException("This customer's email is already present!");
         }
 
         Customer customer = modelMapper.map(customerRegistrationDto, Customer.class);
 
-        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+        String encodedPassword = passwordEncoder.encode(customer.getPassword());
+        customer.setPassword(encodedPassword);
+
         customer = customerRepository.save(customer);
 
         log.info("Customer was registrated successfully!");

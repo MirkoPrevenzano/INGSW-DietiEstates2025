@@ -11,4 +11,6 @@ import com.dietiestates.backend.resolver.Supportable;
 public interface UserLoadingStrategy extends Supportable<Role>
 {
     public UserDetails loadUser(String username) throws UsernameNotFoundException;
+    
+    public void setRole(UserDetails userDetails);
 }

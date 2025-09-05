@@ -1,32 +1,27 @@
 
 package com.dietiestates.backend.service;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Collections;
 
-import com.dietiestates.backend.dto.request.CustomerRegistrationDto;
+import org.springframework.stereotype.Service;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+
 import com.dietiestates.backend.dto.response.AuthenticationResponseDto;
 import com.dietiestates.backend.enums.Role;
 import com.dietiestates.backend.model.entity.Customer;
-import com.dietiestates.backend.repository.CustomerRepository;
-import com.dietiestates.backend.service.mail.CustomerWelcomeEmailService;
 import com.dietiestates.backend.security.JwtProvider;
+
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import java.util.Collections;
-
-import org.modelmapper.ModelMapper;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
 
 
 @Service
@@ -35,35 +30,10 @@ import java.util.Optional;
 public class AuthenticationService 
 {
     private final CustomerService customerService;
-    private final CustomerRepository customerRepository;
-    private final ModelMapper modelMapper;
-    private final CustomerWelcomeEmailService customerWelcomeEmailService;
-    private final PasswordEncoder passwordEncoder;
+
     private final JwtProvider jwtProvider;
 
 
-
-    @Transactional
-    public AuthenticationResponseDto customerRegistration(CustomerRegistrationDto customerRegistrationDto) throws IllegalArgumentException
-    {
-        if(customerRepository.findByUsername(customerRegistrationDto.getUsername()).isPresent())
-        {
-            log.error("This e-mail is already present!");
-            throw new IllegalArgumentException("This e-mail is already present!");
-        }
-
-        Customer customer = modelMapper.map(customerRegistrationDto, Customer.class);
-
-        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-        customer = customerRepository.save(customer);
-
-        log.info("Customer was registrated successfully!");
-
-        customerWelcomeEmailService.sendWelcomeEmail(customer);
-
-        return new AuthenticationResponseDto(jwtProvider.generateAccessToken(customer));
-    }
- 
 
     public AuthenticationResponseDto authenticateWithGoogle(Map <String, String> request) { 
         String googleToken = request.get("token");

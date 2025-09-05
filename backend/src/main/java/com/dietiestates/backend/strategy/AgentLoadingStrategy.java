@@ -29,12 +29,21 @@ public class AgentLoadingStrategy implements UserLoadingStrategy
                                      .orElseThrow(() -> new UsernameNotFoundException("Agente non trovato con username: " + username));
 
         log.info("Agente con username '{}' trovato nel DB!", username);
-        agent.setRole(Role.ROLE_AGENT); 
+        
+        //agent.setRole(Role.ROLE_AGENT); 
 
         return agent;
     }
 
+
+    @Override
+    public void setRole(UserDetails userDetails) 
+    {
+        if (userDetails instanceof Agent customer)
+            customer.setRole(Role.ROLE_CUSTOMER);
+    }
     
+
     @Override
     public boolean supports(Role role)
     {

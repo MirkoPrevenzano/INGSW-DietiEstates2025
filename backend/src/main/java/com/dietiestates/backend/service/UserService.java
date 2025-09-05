@@ -1,7 +1,6 @@
 
 package com.dietiestates.backend.service;
 
-import org.modelmapper.MappingException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,11 +26,13 @@ import lombok.extern.slf4j.Slf4j;
 public class UserService implements UserDetailsService
 {
     private final UserLoadingStrategyResolver userLoadingStrategyResolver;
+
     private final UserRepository userRepository;
+
     private final PasswordEncoder passwordEncoder;
 
 
-    @Transactional(readOnly = true)
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
     {
@@ -50,29 +51,34 @@ public class UserService implements UserDetailsService
         username = username.substring(0, index);
 
         UserLoadingStrategy userLoadingStrategy = userLoadingStrategyResolver.getUserLoadingStrategy(role);
-        return userLoadingStrategy.loadUser(username);
+
+        UserDetails userDetails = userLoadingStrategy.loadUser(username);
+        userLoadingStrategy.setRole(userDetails);
+
+        return userDetails;
     }
 
+
     @Transactional
-    public void updatePassword(String username, UpdatePasswordDto updatePasswordDto) throws UsernameNotFoundException, 
-                                                                                            IllegalArgumentException, MappingException
+    public void updatePassword(String username, UpdatePasswordDto updatePasswordDto)
     {
         User user = userRepository.findByUsername(username)
-                                  .orElseThrow(() -> new UsernameNotFoundException(""));
+                                  .orElseThrow(() -> new UsernameNotFoundException("Utente '" + username + "' non trovato nel DB!"));
 
         if(!(passwordEncoder.matches(updatePasswordDto.getOldPassword(), user.getPassword())))
         {
-            log.error("The \"old password\" you have inserted do not correspond to your current password");
-            throw new IllegalArgumentException("The \"old password\" you have inserted do not correspond to your current password");
+            log.error("The \"old password\" you have inserted do not correspond to your current password!");
+            throw new IllegalArgumentException("The \"old password\" you have inserted do not correspond to your current password!");
         }
 
         if((passwordEncoder.matches(updatePasswordDto.getNewPassword(), user.getPassword())))
         {
-            log.error("The \"new password\" you have inserted can't be equal to your current password");
-            throw new IllegalArgumentException("\"The \"new password\" you have inserted can't be equal to your current password");
+            log.error("The \"new password\" you have inserted can't be equal to your current password!");
+            throw new IllegalArgumentException("\"The \"new password\" you have inserted can't be equal to your current password!");
         }
         
-        user.setPassword(passwordEncoder.encode(updatePasswordDto.getNewPassword()));
+        String encodedPassword = passwordEncoder.encode(updatePasswordDto.getNewPassword());
+        user.setPassword(encodedPassword);
 
         log.info("Password was updated successfully!");
     }

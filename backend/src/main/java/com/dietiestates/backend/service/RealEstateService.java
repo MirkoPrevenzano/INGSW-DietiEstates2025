@@ -38,6 +38,8 @@ import com.dietiestates.backend.resolver.RealEstateMapperResolver;
 import com.dietiestates.backend.service.mock.MockingStatsService;
 import com.dietiestates.backend.service.photo.PhotoResult;
 import com.dietiestates.backend.service.photo.PhotoService;
+import com.dietiestates.backend.strategy.AgentLoadingStrategy;
+import com.dietiestates.backend.strategy.CustomerLoadingStrategy;
 import com.dietiestates.backend.util.FindByRadiusUtil;
 
 import lombok.RequiredArgsConstructor;
@@ -45,24 +47,35 @@ import lombok.extern.slf4j.Slf4j;
 
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Slf4j
 public class RealEstateService 
 {
     private final AgentRepository agentRepository;
+
+    private final AgentLoadingStrategy agentLoadingStrategy;
+
     private final RealEstateFromDtoFactoryResolver realEstateFromDtoFactoryResolver;
+
     private final MockingStatsService mockingStatsService;
+
     private final PhotoService photoService;
+
     private final RealEstateRepository realEstateRepository;
+
     private final CustomerRepository customerRepository;
+
+    private final CustomerLoadingStrategy customerLoadingStrategy;
+
     private final RealEstateMapperResolver realEstateMapperResolver;
+
 
 
     @Transactional
     public Long createRealEstate(String username, RealEstateCreationDto realEstateCreationDto) throws UsernameNotFoundException
     {
-        Agent agent = agentRepository.findByUsername(username)
-                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+        Agent agent = (Agent) agentLoadingStrategy.loadUser(username);
         
         RealEstateFromDtoFactory realEstateFromDtoFactory = realEstateFromDtoFactoryResolver.getFactory(realEstateCreationDto);
         RealEstate realEstate = realEstateFromDtoFactory.create(realEstateCreationDto);
@@ -70,19 +83,14 @@ public class RealEstateService
         mockingStatsService.mockRealEstateStats(realEstate);
 
         agent.getAgentStats().incrementTotalUploadedRealEstates();
+
         agent.addRealEstate(realEstate);
 
         agent = agentRepository.save(agent);
 
         log.info("Real Estate was created successfully!");
-        
-        
-        
-        long rid = realEstateRepository.findLastUploadedByAgentId(agent.getUserId());
-
-        System.out.println(realEstateRepository.findById(rid).get());
-
-        return rid;
+         
+        return realEstateRepository.findLastUploadedByAgentId(agent.getUserId());
     }
 
 
@@ -90,7 +98,7 @@ public class RealEstateService
     public void uploadPhotos(String username, MultipartFile[] files, Long realEstateId) throws IllegalArgumentException, RuntimeException, IOException
     {
         RealEstate realEstate = realEstateRepository.findById(realEstateId)
-                                                    .orElseThrow(() -> new UsernameNotFoundException(""));
+                                                    .orElseThrow(() -> new IllegalArgumentException("Immobile non trovato con ID: " + realEstateId));
                                                             
         if(files.length < 3 || files.length > 10)
         {
@@ -101,19 +109,20 @@ public class RealEstateService
         for(MultipartFile file : files)
         {
             String photoKey = photoService.uploadPhoto(file, "real-estates/" + realEstateId);
-    
+
             Photo photo = new Photo(photoKey);
+
             realEstate.getPhotos().add(photo);            
         }
 
         realEstateRepository.save(realEstate);
     }
 
-    @Transactional(readOnly = true)
+
     public List<PhotoResult<String>> getPhotos(Long realEstateId)
     {
         RealEstate realEstate = realEstateRepository.findById(realEstateId)
-                                                    .orElseThrow(() -> new UsernameNotFoundException(""));
+                                                    .orElseThrow(() -> new IllegalArgumentException("Immobile non trovato con ID: " + realEstateId));
 
         List<Photo> photos = realEstate.getPhotos();
 
@@ -121,11 +130,10 @@ public class RealEstateService
         for(Photo photo : photos)
             photoResults.add(photoService.getPhotoAsBase64(photo.getKey()));
 
-
         return photoResults;
     }
 
-    @Transactional(readOnly = true)
+
     public RealEstateSearchDto search(Map<String,String> filters, Pageable page)
     {
         CoordinatesBoundingBox coordinatesBoundingBox = FindByRadiusUtil.getBoundingBox(Integer.valueOf(filters.get("radius")), 
@@ -141,7 +149,6 @@ public class RealEstateService
     }
 
 
-    @Transactional
     public RealEstateCompleteInfoDto getRealEstateCompleteInfo(Long realEstateId, Authentication authentication)
     {
         RealEstate realEstate = realEstateRepository.findById(realEstateId)
@@ -160,8 +167,11 @@ public class RealEstateService
                                                                                        .anyMatch(authority -> authority.getAuthority().equals("ROLE_CUSTOMER"))) 
         {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            Customer customer = customerRepository.findByUsername(userDetails.getUsername())
-                                                  .orElseThrow(() -> new IllegalArgumentException("Customer non trovato: " + userDetails.getUsername()));
+
+            /*Customer customer = customerRepository.findByUsername(userDetails.getUsername())
+                                                  .orElseThrow(() -> new IllegalArgumentException("Customer non trovato: " + userDetails.getUsername()));*/
+
+            Customer customer = (Customer) customerLoadingStrategy.loadUser(userDetails.getUsername());
 
             realEstate.getRealEstateStats().incrementViewsNumber();
 
@@ -171,7 +181,8 @@ public class RealEstateService
                                                                                           realEstate);
 
             customer.addCustomerViewsRealEstate(customerViewsRealEstate);
-            customerRepository.saveAndFlush(customer);
+
+            customerRepository.save(customer);
         }
 
         return realEstateCompleteInfoDto;

@@ -29,11 +29,20 @@ public class CustomerLoadingStrategy implements UserLoadingStrategy
                                               .orElseThrow(() -> new UsernameNotFoundException("Customer non trovato con username: " + username));
 
         log.info("Customer con username '{}' trovato nel DB!", username);
-        customer.setRole(Role.ROLE_CUSTOMER);
+        
+        //customer.setRole(Role.ROLE_CUSTOMER);
 
         return customer;
     }
     
+    
+    @Override
+    public void setRole(UserDetails userDetails) 
+    {
+        if (userDetails instanceof Customer customer)
+            customer.setRole(Role.ROLE_CUSTOMER);
+    }
+
 
     @Override
     public boolean supports(Role role) 

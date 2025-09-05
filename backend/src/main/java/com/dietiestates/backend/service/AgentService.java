@@ -3,10 +3,7 @@ package com.dietiestates.backend.service;
 
 import java.util.List;
 
-import org.modelmapper.MappingException;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,35 +25,55 @@ import com.dietiestates.backend.service.export.pdf.PdfExportService;
 import com.dietiestates.backend.service.mail.AgentWelcomeEmailService;
 import com.dietiestates.backend.service.mail.RememberRandomPasswordEmailService;
 import com.dietiestates.backend.service.mock.MockingStatsService;
+import com.dietiestates.backend.strategy.AdministratorLoadingStrategy;
+import com.dietiestates.backend.strategy.AgentLoadingStrategy;
 import com.dietiestates.backend.util.PasswordGenerationUtil;
+
+import org.modelmapper.ModelMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Slf4j
 public class AgentService 
 {
-    private final AdministratorRepository administratorRepository;
     private final AgentRepository agentRepository;
+
+    private final AgentLoadingStrategy agentLoadingStrategy;
+
+    private final AdministratorRepository administratorRepository;
+
+    private final AdministratorLoadingStrategy administratorLoadingStrategy;
+
     private final RealEstateRepository realEstateRepository;
+
     private final MockingStatsService mockingStatsService;
+
     private final ModelMapper modelMapper;
+
     private final PdfExportService pdfExportService;
+
     private final CsvExportService csvExportService;
+
     private final PasswordEncoder passwordEncoder;
+
     private final AgentWelcomeEmailService agentWelcomeEmailService;
+
     private final RememberRandomPasswordEmailService rememberRandomPasswordEmailService;
 
 
+
     @Transactional
-    public void createAgent(String username, AgentCreationDto agentCreationDto) throws UsernameNotFoundException, 
-                                                                                          IllegalArgumentException, MappingException
+    public void createAgent(String username, AgentCreationDto agentCreationDto)
     {
-        Administrator administrator = administratorRepository.findByUsername(username)
-                                                             .orElseThrow(() -> new UsernameNotFoundException(""));
+        Administrator administrator = (Administrator) administratorLoadingStrategy.loadUser(username);
+        
+        /* Administrator administrator = administratorRepository.findByUsername(username)
+                                                             .orElseThrow(() -> new UsernameNotFoundException("Amministratore '" + username + "' non trovato nel DB!")); */ 
 
         if(agentRepository.findByUsername(agentCreationDto.getUsername()).isPresent())
         {
@@ -84,49 +101,41 @@ public class AgentService
     }
 
 
-    @Transactional
     public ExportingResult exportPdfReport(String username) 
     {
-        Agent agent = agentRepository.findByUsername(username)
-                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+        Agent agent = (Agent) agentLoadingStrategy.loadUser(username);
                                      
         return pdfExportService.exportPdfReport(agent);
     }
 
-    @Transactional
+
     public ExportingResult exportCsvReport(String username) 
     {
-        Agent agent = agentRepository.findByUsername(username)
-                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+        Agent agent = (Agent) agentLoadingStrategy.loadUser(username);
                                      
         return csvExportService.exportCsvReport(agent);
     }
 
-    @Transactional(readOnly = true)
+
     public List<AgentRecentRealEstateDto> getAgentRecentRealEstates(String username, Integer limit) 
     {
-        Agent agent = agentRepository.findByUsername(username)
-                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+        Agent agent = (Agent) agentLoadingStrategy.loadUser(username);
                                      
         return realEstateRepository.findAgentRecentRealEstatesByAgentId(agent.getUserId(), limit);
     }
 
 
-    @Transactional(readOnly = true)
     public List<AgentDashboardRealEstateStatsDto> getAgentDashboardRealEstateStats(String username, Pageable page) 
     {
-        Agent agent = agentRepository.findByUsername(username)
-                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+        Agent agent = (Agent) agentLoadingStrategy.loadUser(username);
 
         return realEstateRepository.findAgentDashboardRealEstateStatsByAgentId(agent.getUserId(), page);
     }
 
 
-    @Transactional(readOnly = true)
     public AgentDashboardPersonalStatsDto getAgentDashboardPersonalStats(String username) 
     {
-        Agent agent = agentRepository.findByUsername(username)
-                                     .orElseThrow(() -> new UsernameNotFoundException(""));
+        Agent agent = (Agent) agentLoadingStrategy.loadUser(username);
 
         Integer[] estatesPerMonth = mockingStatsService.mockBarChartStats(agent);
         AgentStatsDto agentStatsDto = modelMapper.map(agent.getAgentStats(), AgentStatsDto.class);
@@ -134,11 +143,10 @@ public class AgentService
         return new AgentDashboardPersonalStatsDto(agentStatsDto, estatesPerMonth);        
     }
 
-    @Transactional(readOnly = true)
+
     public AgentPublicInfoDto getAgentPublicInfo(String username) 
     {
-        agentRepository.findByUsername(username)
-                       .orElseThrow(() -> new UsernameNotFoundException(""));
+        agentLoadingStrategy.loadUser(username);
                                      
         return agentRepository.findAgentPublicInfoByUsername(username);
     }
