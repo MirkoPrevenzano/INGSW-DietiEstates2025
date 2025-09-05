@@ -39,7 +39,7 @@ public class OpenApiConfig
         return new OpenAPI().info(new Info().title("Dieti Estates API")
                                             .version("1.0")
                                             .description("API REST offerta dal backend della piattaforma Dieti Estates, che consente la gestione e la compravendita di proprietà immobiliari.")
-                                            .contact(new Contact().name("Ciro")
+                                            .contact(new Contact().name("Dieti Estates")
                                                                   .email("ciropizza2002@gmail.com")
                                                                   .url("http://localhost:8080")))
                             .components(new Components().addSecuritySchemes("jwtBearerAuth", new SecurityScheme().type(SecurityScheme.Type.HTTP)
