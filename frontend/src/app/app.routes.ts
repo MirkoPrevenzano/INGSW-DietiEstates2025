@@ -21,7 +21,12 @@ import { RedirectGuard } from './_guard/redirect-home/redirect.guard';
 import { RegisterAgencyComponent } from './componentPage/register-agency/register-agency.component';
 
 export const routes: Routes = [
-    
+    // Route di default per path vuoto
+    {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full'
+    },
     {
         title: 'Login',
         path: 'login',
@@ -134,7 +139,7 @@ export const routes: Routes = [
     {
         path: '**',
         canActivate: [RedirectGuard],
-        component: HomeComponent // Puoi usare un componente generico o uno specifico
+        component: HomeComponent
     }
    
 ];

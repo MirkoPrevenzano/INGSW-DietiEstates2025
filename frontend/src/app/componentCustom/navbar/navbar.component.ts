@@ -41,6 +41,10 @@ export class NavbarComponent {
   }
 
   goHome(){
+    if(!this.authService.isAuthenticated()){
+      this.router.navigateByUrl("/home")
+      return
+    }
     const role = localStorage.getItem("role")
     if(role==="ROLE_CUSTOMER")
       this.router.navigateByUrl("/home/customer")
