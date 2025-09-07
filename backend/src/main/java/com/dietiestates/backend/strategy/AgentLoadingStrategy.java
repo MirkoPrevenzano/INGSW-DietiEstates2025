@@ -40,7 +40,7 @@ public class AgentLoadingStrategy implements UserLoadingStrategy
     public void setRole(UserDetails userDetails) 
     {
         if (userDetails instanceof Agent customer)
-            customer.setRole(Role.ROLE_CUSTOMER);
+            customer.setRole(Role.ROLE_AGENT);
     }
     
 
