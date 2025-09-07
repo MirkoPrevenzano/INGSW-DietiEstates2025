@@ -58,7 +58,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
             request.getServletPath().startsWith("/swagger-ui") ||
             request.getServletPath().startsWith("/v3/api-docs") ||
             (request.getServletPath().equals("/agencies") && request.getMethod().equals("POST")) ||
-            (request.getServletPath().equals("/customer") && request.getMethod().equals("POST")) ||
+            (request.getServletPath().equals("/customers") && request.getMethod().equals("POST")) ||
             request.getServletPath().equals("/auth/login/oauth2/code/google")) 
         {
             filterChain.doFilter(request, response);

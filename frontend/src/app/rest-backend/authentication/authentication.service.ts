@@ -19,7 +19,7 @@ export class AuthenticationService {
   };
     
   registrate(registerRequest:CustomerRegistration){
-    const url=this.url+"/customer-registration"
+    const url="http://localhost:8080/customers"
     return this.http.post(url, registerRequest, this.httpOptions)
   }
 

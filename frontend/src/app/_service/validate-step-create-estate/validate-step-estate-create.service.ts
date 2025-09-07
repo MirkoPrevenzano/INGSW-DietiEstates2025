@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Address } from '../../model/request/support/address';
 import { DescriptionEstatesFormComponent } from '../../componentPage/create-estates-components/description-estates-form/description-estates-form.component';
 import { FormGroup } from '@angular/forms';
+import { min } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class ValidateStepEstateCreateService {
     let error =""
     if(!descriptionFormComponent.isValid())
       error+=this.errorEmptyFields+"\n" 
-    if(length<0)
+    if(length<minPhotos)
       error+=this.errorLessPhotos+" "+minPhotos+"\n"
     else if(length>maxPhotos)
       error+=this.errorMorePhotos+" "+maxPhotos+"\n"

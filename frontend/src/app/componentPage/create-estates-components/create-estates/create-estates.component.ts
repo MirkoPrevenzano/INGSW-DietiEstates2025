@@ -204,7 +204,6 @@ export class CreateEstatesComponent implements OnInit{
   }
 
   uploadPhotos(id: any) {
-    console.log("carico foto")
     this.realEstateService.uploadPhotos(id, this.filePhoto).subscribe({})
   }
 

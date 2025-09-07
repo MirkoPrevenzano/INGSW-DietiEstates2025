@@ -54,6 +54,7 @@ testati in modo isolato, cioè preso un parametro con valore non valido nello st
  * CE5: newPassword vuota
  * CE6: newPassword null
  * CE7: null
+ * CE8: vecchia password non sicura
 */
 
 // ExtendWith serve per estendere le funzionalità di JUnit con quelle di Mockito

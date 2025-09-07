@@ -108,7 +108,7 @@ public class WebSecurityConfig
                                                                                                                                  "/v3/api-docs/**", 
                                                                                                                                  "/v3/api-docs.yaml").permitAll()
                                                                                                     .requestMatchers(HttpMethod.POST, "/agencies").permitAll()
-                                                                                                    .requestMatchers(HttpMethod.POST, "/customer").permitAll())
+                                                                                                    .requestMatchers(HttpMethod.POST, "/customers").permitAll())
             .authorizeHttpRequests(authorizeHttpRequestsCustomizer-> authorizeHttpRequestsCustomizer.anyRequest().authenticated())
             .exceptionHandling(exceptionHandlingCustomizer -> exceptionHandlingCustomizer.authenticationEntryPoint(authenticationEntryPointCustomImpl)
                                                                                          .accessDeniedHandler(accessDeniedHandlerCustomImpl))   

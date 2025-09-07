@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.Collections;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
@@ -26,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 @Slf4j
 public class AuthenticationService 
 {
@@ -35,6 +37,7 @@ public class AuthenticationService
 
 
 
+    @Transactional
     public AuthenticationResponseDto authenticateWithGoogle(Map <String, String> request) { 
         String googleToken = request.get("token");
         GoogleIdToken.Payload payload = verifyGoogleToken(googleToken)
