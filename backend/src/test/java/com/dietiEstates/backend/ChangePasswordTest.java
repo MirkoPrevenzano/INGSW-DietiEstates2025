@@ -16,12 +16,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.dietiestates.backend.dto.request.UpdatePasswordDto;
 import com.dietiestates.backend.model.entity.User;
@@ -41,23 +41,28 @@ testati in modo isolato, cioè preso un parametro con valore non valido nello st
 
 /*Funzione: updatePassword(String username, UpdatePasswordDto) 
  * String username:
- * CE1: null (non valido)
- * CE2: stringa vuota (non valido)
- * CE3: username non esistente (non valido)
+ * CE1: null (non valido) OK
+ * CE2: stringa vuota (non valido) OK
+ * CE3: username non esistente (non valido) OK
  * CE4: username esistente (valido) OK
  * 
  * UpdatePasswordDto:
- * CE1: vecchia password non corrispondente (non valido)
- * CE2: vecchia password uguale a quella nuova (non valido)
- * CE3: oldPassword vuota
- * CE4: oldPassword null
- * CE5: newPassword vuota
- * CE6: newPassword null
- * CE7: null
- * CE8: vecchia password non sicura
+ * CE1: vecchia password non corrispondente (non valido) OK
+ * CE2: vecchia password uguale a quella nuova (non valido) OK
+ * 
+ * 
+ * CE3: oldPassword vuota - bloccata da @NotBlank nel DTO
+ * CE4: oldPassword null - bloccata da @NotBlank nel DTO  
+ * CE5: newPassword vuota - bloccata da @NotBlank nel DTO
+ * CE6: newPassword null - bloccata da @NotBlank nel DTO
+ * CE7: UpdatePasswordDto null
+ * CE8: vecchia password non sicura - bloccata da @PasswordValidator
 */
 
 // ExtendWith serve per estendere le funzionalità di JUnit con quelle di Mockito
+
+
+
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Test per verificare cambio password")
@@ -65,6 +70,8 @@ public class ChangePasswordTest {
 
     private static final Logger logger = LoggerFactory.getLogger(ChangePasswordTest.class);
     private static final String VALID_USERNAME = "mirko.prevenzano2002@gmail.com";
+    private static final String CURRENT_PASSWORD = "CurrentPassword123!";
+    private static final String NEW_PASSWORD = "NewPassword123!";
 
     //Mock serve per creare oggetti fittizi che simulano il comportamento di oggetti reali 
     @Mock 
@@ -87,13 +94,14 @@ public class ChangePasswordTest {
         user.setUsername(VALID_USERNAME);
         user.setName("mirko");
         user.setSurname("prev");
-        user.setPassword("CurrentPassword123!");
+        user.setPassword(CURRENT_PASSWORD);
         
-        updatePasswordDto = new UpdatePasswordDto("CurrentPassword123!", "NewPassword123!");
+        updatePasswordDto = new UpdatePasswordDto(CURRENT_PASSWORD, NEW_PASSWORD);
         
         
     }
 
+    
     @Test
     @DisplayName("TC1: username esistente + UpdatePasswordDto valida -> successo")
     void testValidUsernameValidPassowrd(){
@@ -145,5 +153,115 @@ public class ChangePasswordTest {
         logger.info("✅ TEST-2 PASSED - UsernameNotFoundException correttamente lanciata");
     }
 
-   
+    @Test
+    @DisplayName("TC3: username vuoto")
+    void testEmptyUsername(){
+        logger.info(" TEST-3 STARTED - Testing Empty Username");
+
+        user.setUsername("");
+        
+        logger.debug(" TEST-3 - Configurazione mock userRepository.findByUsername per restituire Optional.empty() per " + user.getUsername());
+        when(userRepository.findByUsername(user.getUsername()))
+            .thenReturn(Optional.empty());
+
+        logger.info(" TEST-3 - Esecuzione metodo updatePassword (dovrebbe lanciare UsernameNotFoundException)");
+        assertThrows(UsernameNotFoundException.class, () ->
+            userService.updatePassword(user.getUsername(), updatePasswordDto)
+        );
+        
+        logger.info("✅ TEST-3 PASSED - UsernameNotFoundException correttamente lanciata");
+    }
+
+    @Test
+    @DisplayName("TC4: username null")
+    void testNullUsername(){
+        logger.info(" TEST-4 STARTED - Testing Null Username");
+
+        user.setUsername(null);
+        
+        logger.debug(" TEST-4 - Configurazione mock userRepository.findByUsername per restituire Optional.empty() per " + user.getUsername());
+        when(userRepository.findByUsername(user.getUsername()))
+            .thenReturn(Optional.empty());
+
+        logger.info(" TEST-4 - Esecuzione metodo updatePassword (dovrebbe lanciare UsernameNotFoundException)");
+        assertThrows(UsernameNotFoundException.class, () ->
+            userService.updatePassword(user.getUsername(), updatePasswordDto)
+        );
+        
+        logger.info("✅ TEST-4 PASSED - UsernameNotFoundException correttamente lanciata");
+        
+    }
+
+    
+    @Test
+    @DisplayName("TC5: caso in cui oldPassword non corrisponde con l'attuale password")
+    void testWrongPassword(){
+        logger.info(" TEST-5 STARTED - Testing Wrong Password");
+
+        
+        logger.debug(" TEST-5 - Configurazione mock userRepository.findByUsername per restituire l'oggetto user " + user.getUsername());
+        when(userRepository.findByUsername(user.getUsername()))
+            .thenReturn(Optional.of(user));
+        
+        logger.debug(" TEST-5 - Configurazione mock passwordEncoder.matches (old password)");
+        when(passwordEncoder.matches(updatePasswordDto.getOldPassword(), user.getPassword()))
+            .thenReturn(false);
+
+        logger.info(" TEST-5 - Esecuzione metodo updatePassword (dovrebbe lanciare IllegalArgumentException)");
+        assertThrows(IllegalArgumentException.class, () ->
+            userService.updatePassword(user.getUsername(), updatePasswordDto)
+        );
+
+
+        
+        logger.info("✅ TEST-5 PASSED - IllegalArgumentException correttamente lanciata");
+    }
+
+    @Test
+    @DisplayName("TC6: caso in cui newPassword corrisponde con l'attuale password")
+    void testSamePassword(){
+        logger.info(" TEST-6 STARTED - Testing Same Password");
+
+        
+        logger.debug(" TEST-6 - Configurazione mock userRepository.findByUsername per restituire l'oggetto user");
+        when(userRepository.findByUsername(user.getUsername()))
+            .thenReturn(Optional.of(user));
+        
+        logger.debug(" TEST-6 - Configurazione mock passwordEncoder.matches (old password) - deve essere TRUE");
+        when(passwordEncoder.matches(updatePasswordDto.getOldPassword(), user.getPassword()))
+            .thenReturn(true);
+        
+        logger.debug(" TEST-6 - Configurazione mock passwordEncoder.matches (new password) - deve essere TRUE (stessa password)");
+        when(passwordEncoder.matches(updatePasswordDto.getNewPassword(), user.getPassword()))
+            .thenReturn(true);
+
+        logger.info(" TEST-6 - Esecuzione metodo updatePassword (dovrebbe lanciare IllegalArgumentException per password uguale)");
+        assertThrows(IllegalArgumentException.class, () ->
+            userService.updatePassword(user.getUsername(), updatePasswordDto)
+        );
+
+        logger.info("✅ TEST-6 PASSED - IllegalArgumentException correttamente lanciata per password uguale");
+    }
+
+    
+
+
+    
+    
+    @Test
+    @DisplayName("TC7: UpdatePasswordDto null")
+    void testNullUpdatePasswordDto(){
+        logger.info(" TEST-7 STARTED - Testing Null UpdatePasswordDto");
+
+        logger.debug(" TEST-7 - Configurazione mock userRepository.findByUsername");
+        when(userRepository.findByUsername(user.getUsername()))
+            .thenReturn(Optional.of(user));
+
+        logger.info(" TEST-7 - Esecuzione metodo updatePassword (dovrebbe lanciare NullPointerException per DTO null)");
+        assertThrows(NullPointerException.class, () ->
+            userService.updatePassword(user.getUsername(), null)
+        );
+        
+        logger.info("✅ TEST-7 PASSED - NullPointerException correttamente lanciata per DTO null");
+    }
 }
