@@ -311,3 +311,102 @@
 2025-09-08 09:00:44.236 [main] INFO  c.d.backend.ChangePasswordTest -  TEST-1 - Esecuzione metodo updatePassword
 2025-09-08 09:00:44.238 [main] DEBUG c.d.backend.ChangePasswordTest -  TEST-1 - Verifica password aggiornata
 2025-09-08 09:00:44.239 [main] INFO  c.d.backend.ChangePasswordTest - ✅ TEST-1 PASSED - Test completato con successo
+2025-09-09 07:55:01.927 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 614012 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 07:55:01.931 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 07:55:01.931 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 07:55:03.346 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 1.667 seconds (process running for 2.221)
+2025-09-09 07:57:00.310 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 615809 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 07:57:00.312 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 07:57:00.312 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 07:58:24.124 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 616963 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 07:58:24.126 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 07:58:24.127 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 07:58:29.178 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.21 seconds (process running for 5.792)
+2025-09-09 07:59:52.522 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 618026 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 07:59:52.524 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 07:59:52.525 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 07:59:57.487 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.103 seconds (process running for 5.782)
+2025-09-09 08:02:38.288 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 620250 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:02:38.290 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:02:38.291 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:02:43.872 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.75 seconds (process running for 6.34)
+2025-09-09 08:04:17.626 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 621451 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:04:17.629 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:04:17.630 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:04:24.173 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 6.764 seconds (process running for 7.385)
+2025-09-09 08:08:34.798 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 624476 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:08:34.800 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:08:34.801 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:08:40.186 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.547 seconds (process running for 6.175)
+2025-09-09 08:08:50.408 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 624872 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:08:50.411 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:08:50.411 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:08:55.377 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.104 seconds (process running for 5.69)
+2025-09-09 08:09:05.913 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 625216 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:09:05.915 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:09:05.916 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:09:11.513 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.751 seconds (process running for 6.296)
+2025-09-09 08:29:03.706 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 640733 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:29:03.709 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:29:03.711 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:29:08.735 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.178 seconds (process running for 5.738)
+2025-09-09 08:29:26.190 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 641177 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:29:26.192 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:29:26.193 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:29:31.782 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.773 seconds (process running for 6.36)
+2025-09-09 08:31:28.242 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 642553 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:31:28.244 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:31:28.244 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:31:33.615 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.524 seconds (process running for 6.137)
+2025-09-09 08:39:58.557 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 648298 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:39:58.559 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:39:58.560 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:40:03.259 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 4.835 seconds (process running for 5.47)
+2025-09-09 08:40:44.096 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 649050 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:40:44.097 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:40:44.098 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:40:49.796 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.858 seconds (process running for 6.444)
+2025-09-09 08:42:09.016 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 650146 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:42:09.018 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:42:09.019 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:42:15.019 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 6.15 seconds (process running for 6.783)
+2025-09-09 08:43:30.519 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 651227 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:43:30.521 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:43:30.522 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:43:35.810 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.426 seconds (process running for 6.08)
+2025-09-09 08:45:13.481 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 652461 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:45:13.483 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:45:13.484 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:45:19.282 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.934 seconds (process running for 6.528)
+2025-09-09 08:46:40.895 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 653541 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:46:40.897 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:46:40.898 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:46:46.051 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.309 seconds (process running for 5.898)
+2025-09-09 08:49:38.341 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 655826 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:49:38.343 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:49:38.344 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:49:43.906 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.705 seconds (process running for 6.303)
+2025-09-09 08:50:19.682 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 656524 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:50:19.684 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:50:19.685 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:50:24.658 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.131 seconds (process running for 5.702)
+2025-09-09 08:50:46.864 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 657062 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:50:46.866 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:50:46.866 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:50:52.021 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.292 seconds (process running for 5.875)
+2025-09-09 08:51:12.155 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 657515 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:51:12.157 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:51:12.158 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:51:17.640 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.619 seconds (process running for 6.217)
+2025-09-09 08:53:09.156 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 659088 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:53:09.157 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:53:09.159 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:53:14.662 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.686 seconds (process running for 6.262)
+2025-09-09 08:56:11.081 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 661585 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:56:11.083 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:56:11.084 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:56:16.479 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.539 seconds (process running for 6.118)
+2025-09-09 08:59:33.118 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 664513 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-09 08:59:33.120 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-09 08:59:33.120 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-09 08:59:38.354 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.39 seconds (process running for 6.043)

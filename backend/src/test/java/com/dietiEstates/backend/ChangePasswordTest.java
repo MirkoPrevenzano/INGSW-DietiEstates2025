@@ -49,8 +49,6 @@ testati in modo isolato, cioè preso un parametro con valore non valido nello st
  * UpdatePasswordDto:
  * CE1: vecchia password non corrispondente (non valido) OK
  * CE2: vecchia password uguale a quella nuova (non valido) OK
- * 
- * 
  * CE3: oldPassword vuota - bloccata da @NotBlank nel DTO
  * CE4: oldPassword null - bloccata da @NotBlank nel DTO  
  * CE5: newPassword vuota - bloccata da @NotBlank nel DTO
@@ -242,9 +240,6 @@ public class ChangePasswordTest {
 
         logger.info("✅ TEST-6 PASSED - IllegalArgumentException correttamente lanciata per password uguale");
     }
-
-    
-
 
     
     
