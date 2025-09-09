@@ -57,6 +57,8 @@ public class PhotoServiceImpl implements PhotoService
         return photoKey;        
     }
 
+
+
     
     @Override
     public PhotoResult<byte[]> getPhotoAsByteArray(String photokey) 

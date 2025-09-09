@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.dietiestates.backend.BackendApplication;
 import com.dietiestates.backend.dto.request.CollaboratorCreationDto;
+import com.dietiestates.backend.repository.AdministratorRepository;
 import com.dietiestates.backend.service.AdministratorService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -35,21 +37,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * CE3: name vuoto o null
  * CE4: lastName vuoto o null
  * CE5: tutti i campi vuoti o null
- * CE6: username già esistente
+ * CE6: email non valida
  * 
- * Authentication
- * CE1: valido 
- * CE2: null (non autenticata)
- * CE3: principal null
- * CE4: principal non è userDetails
- * CE5: Utente non abilitato a tale funzione
- * 
- * Spring security effettua dei controlli su Authentication in modo da evitare proprio l'accesso alla funzione del controller
- * nel caso in cui l'utente non è autenticato o non autorizzato.
  * 
  * Quindi le classi di equivalenza che vale la pena testare sono le seguenti:
  * CE1: valido
- * CE2: errore generico
+ * CE2: non autenticato
  */
 
 @DisplayName("Test per verificare creazione agenzia immobiliare")
@@ -68,8 +61,20 @@ class CreateCollaboratorTest {
     @MockitoBean //permette di iniettare un bean in automatico simulando il comportamento reale
     private AdministratorService administratorService;
 
+
     @Autowired
     private ObjectMapper objectMapper; //permette di serializzare e deserializzare JSON
+
+
+    private static final String VALID_NAME = "name";
+    private static final String VALID_SURNAME = "surname";
+    private static final String VALID_COLLABORATOR = "collaborator@mail.com";
+    private static final String VALID_ADMIN = "admin@mail.com";
+    private static final String VALID_PWD = "pWD123@@@@";
+
+    
+
+    
 
 
     CollaboratorCreationDto collaboratorCreationDto;
@@ -78,17 +83,17 @@ class CreateCollaboratorTest {
     void setUp(){
 
         collaboratorCreationDto = new CollaboratorCreationDto();
-        collaboratorCreationDto.setName("nome");
-        collaboratorCreationDto.setSurname("surname");
-        collaboratorCreationDto.setUsername("nome@mail.com");
+        collaboratorCreationDto.setName(VALID_NAME);
+        collaboratorCreationDto.setSurname(VALID_SURNAME);
+        collaboratorCreationDto.setUsername(VALID_COLLABORATOR);
 
-        authentication = new UsernamePasswordAuthenticationToken("admin@mail.com", "pwd");
+        authentication = new UsernamePasswordAuthenticationToken(VALID_ADMIN, VALID_PWD);
     }
 
 
 
     @Test
-    @WithMockUser(username = "admin@mail.com", roles = {"Admin"}) //Annotazione di spring security test che simula un utente autenticato
+    @WithMockUser(username = VALID_ADMIN) //Annotazione di spring security test che simula un utente autenticato
     @DisplayName("TC1: caso in cui i parametri sono validi. Utente da creare non esista, l'amministratore è autenticato correttamente e i parametri name e lastName siano non vuoti")
     void validTestCreateCollaborator() throws Exception {
         callControllerIsCreated();
@@ -96,56 +101,51 @@ class CreateCollaboratorTest {
     }
 
     @Test
-    @WithMockUser(username = "admin@mail.com", roles = {"Admin"})
+    @WithMockUser(username = VALID_ADMIN)
     @DisplayName("TC2: caso in cui username del collaboratore da inserire è null o vuoto")
     void emptyUsernameCreateCollaborator() throws Exception {
         collaboratorCreationDto.setUsername(null);
-
         callControllerBadRequest();
         verifyNoInteractions(administratorService);
 
-        collaboratorCreationDto.setUsername("");
 
+        collaboratorCreationDto.setUsername("");
         callControllerBadRequest();
         verifyNoInteractions(administratorService);
     }
 
 
     @Test
-    @WithMockUser(username = "admin@mail.com", roles = {"Admin"})
+    @WithMockUser(username = VALID_ADMIN)
     @DisplayName("TC3: caso in cui name del collaboratore da inserire è null o vuoto")
     void emptyNameCreateCollaborator() throws Exception {
         collaboratorCreationDto.setName(null);
-
         callControllerBadRequest();
         verifyNoInteractions(administratorService);
 
-        collaboratorCreationDto.setName("");
 
+        collaboratorCreationDto.setName("");
         callControllerBadRequest();
         verifyNoInteractions(administratorService);
     }
 
     @Test
-    @WithMockUser(username = "admin@mail.com", roles = {"Admin"})
+    @WithMockUser(username = VALID_ADMIN)
     @DisplayName("TC4: caso in cui surname del collaboratore da inserire è null o vuoto")
     void emptySurnameCreateCollaborator() throws Exception {
         collaboratorCreationDto.setSurname(null);
-
-       
-
         callControllerBadRequest();
         verifyNoInteractions(administratorService);
 
-        collaboratorCreationDto.setSurname("");
 
+        collaboratorCreationDto.setSurname("");
         callControllerBadRequest();
         verifyNoInteractions(administratorService);
     }
 
     @Test
-    @WithMockUser(username = "admin@mail.com", roles = {"Admin"})
-    @DisplayName("TC4: caso in cui surname del collaboratore da inserire è null o vuoto")
+    @WithMockUser(username = VALID_ADMIN)
+    @DisplayName("TC5: caso in cui tutti i campi di CollaboratorCreationDto sono null o vuoti")
     void emptyFieldsCreateCollaborator() throws Exception {
         collaboratorCreationDto.setSurname(null);
         collaboratorCreationDto.setName(null);
@@ -160,12 +160,38 @@ class CreateCollaboratorTest {
         verifyNoInteractions(administratorService);
     }
 
+    @Test
+    @WithMockUser(username= VALID_ADMIN)
+    @DisplayName("TC6: caso in cui l'email del collaboratore non è un formato valido")
+    void invalidEmailCreateCollaborator() throws Exception{
+        collaboratorCreationDto.setUsername("emailNotValid");
+        callControllerBadRequest();
+        verifyNoInteractions(administratorService);
+    }
+
+    @Test
+    @DisplayName("TC7: caso in cui l'utente non è autorizzato/autenticato")
+    void noAuthenticationCreateCollaborator() throws Exception{
+        callControllerUnauthorizedRequest();
+        verifyNoInteractions(administratorService);
+    }
+
+    
+
     private void callControllerBadRequest() throws Exception{
         mockMvc.perform(post("/admins/collaborators")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(collaboratorCreationDto))
             .principal(authentication))
             .andExpect(status().isBadRequest());
+    }
+
+    private void callControllerUnauthorizedRequest() throws Exception{
+        mockMvc.perform(post("/admins/collaborators")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(collaboratorCreationDto))
+            .principal(authentication))
+            .andExpect(status().isUnauthorized());
     }
 
     private void callControllerIsCreated() throws Exception{
@@ -175,4 +201,6 @@ class CreateCollaboratorTest {
             .principal(authentication))
             .andExpect(status().isCreated());
     }
+
+    
 }
