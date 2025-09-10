@@ -33,10 +33,20 @@ public class PhotoServiceImpl implements PhotoService
             throw new IllegalArgumentException("Il file da caricare non può essere null o vuoto.");        
         
         String contentType = file.getContentType();
+        if(contentType == null){
+            log.error("Type is null");
+            throw new IllegalArgumentException("Type is null");
+        }
         if(contentType != null && !contentType.equals("image/jpeg") && !contentType.equals("image/png"))
         {
             log.error("Photo format is not supported!");
             throw new IllegalArgumentException("Photo format is not supported: " + contentType);
+        }
+
+        if(folderName == null || folderName.isBlank())
+        {
+            log.error("Folder name not valid!");
+            throw new IllegalArgumentException("Folder name not valid");   
         }
 
         String contentDisposition = ContentDisposition.inline().build().toString();
@@ -45,6 +55,8 @@ public class PhotoServiceImpl implements PhotoService
         String fileExtension = "";
         if (originalFilename != null && originalFilename.contains(".")) 
             fileExtension = originalFilename.substring(originalFilename.lastIndexOf("."));
+        else
+            throw new IllegalArgumentException("Original filename is not valid: " + originalFilename);
         
         String uniqueFilename = UUID.randomUUID().toString() + fileExtension;
         String photoKey = folderName + "/" + uniqueFilename;

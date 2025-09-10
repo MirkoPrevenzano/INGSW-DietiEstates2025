@@ -623,3 +623,51 @@
 2025-09-09 21:50:13.459 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
 2025-09-09 21:50:13.460 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
 2025-09-09 21:50:18.107 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 4.806 seconds (process running for 6.246)
+2025-09-10 09:12:58.679 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 09:12:58.718 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 09:12:58.726 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 09:12:58.738 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 09:12:58.746 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 09:12:58.754 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 09:12:58.764 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 09:12:58.764 [main] INFO  c.d.backend.ChangePasswordTest - TEST-1 STARTED - Testing valid username with valid password
+2025-09-10 09:12:59.564 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 1192663 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-10 09:12:59.565 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-10 09:12:59.566 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-10 09:13:05.075 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.733 seconds (process running for 8.084)
+2025-09-10 09:13:37.307 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 09:13:37.370 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 09:13:37.384 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 09:13:37.400 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 09:13:37.412 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 09:13:37.425 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 09:13:37.439 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 09:13:37.440 [main] INFO  c.d.backend.ChangePasswordTest - TEST-1 STARTED - Testing valid username with valid password
+2025-09-10 09:13:38.156 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 1193249 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-10 09:13:38.156 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-10 09:13:38.157 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-10 09:13:44.656 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 6.728 seconds (process running for 9.049)
+2025-09-10 11:36:05.792 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 11:36:05.841 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 11:36:05.851 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 11:36:05.860 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 11:36:05.866 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 11:36:05.873 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 11:36:05.882 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 11:36:05.883 [main] INFO  c.d.backend.ChangePasswordTest - TEST-1 STARTED - Testing valid username with valid password
+2025-09-10 11:36:06.474 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 1204597 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-10 11:36:06.474 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-10 11:36:06.475 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-10 11:36:11.615 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 5.334 seconds (process running for 7.207)
+2025-09-10 11:42:10.900 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 11:42:10.957 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 11:42:10.971 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 11:42:10.987 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 11:42:10.996 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 11:42:11.005 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 11:42:11.015 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-09-10 11:42:11.016 [main] INFO  c.d.backend.ChangePasswordTest - TEST-1 STARTED - Testing valid username with valid password
+2025-09-10 11:42:11.719 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 1208798 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-09-10 11:42:11.720 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-09-10 11:42:11.720 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-09-10 11:42:17.930 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 6.416 seconds (process running for 8.521)
