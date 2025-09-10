@@ -40,10 +40,11 @@ testati in modo isolato, cioè preso un parametro con valore non valido nello st
  * CE3: username non esistente (non valido) OK
  * CE4: username esistente (valido) OK
  * 
- * UpdatePasswordDto:
+ * UpdatePasswordDto dto:
  * CE0: updatePasswordDto valido
  * CE1: vecchia password non corrispondente (non valido) OK
  * CE2: vecchia password uguale a quella nuova (non valido) OK
+ * CE3: null
  * 
  * Questi casi successivi è compito del controller validarli
  * CE3: oldPassword vuota 
@@ -60,6 +61,9 @@ testati in modo isolato, cioè preso un parametro con valore non valido nello st
 
 // ExtendWith serve per estendere le funzionalità di JUnit con quelle di Mockito
 
+//Mock serve per creare oggetti fittizi che simulano il comportamento di oggetti reali 
+//InjectMocks crea un'istanza della classe specificata e inietta i mock creati con @Mock
+
 
 
 
@@ -74,7 +78,6 @@ public class ChangePasswordTest {
     private static final String VALID_NAME = "mirko";
     private static final String VALID_SURNAME = "prevenzano";
 
-    //Mock serve per creare oggetti fittizi che simulano il comportamento di oggetti reali 
     @Mock 
     private UserRepository userRepository;
 
@@ -83,7 +86,6 @@ public class ChangePasswordTest {
 
     @InjectMocks
     private UserService userService;
-    //InjectMocks crea un'istanza della classe specificata e inietta i mock creati con @Mock
 
     Administrator user;
     UpdatePasswordDto updatePasswordDto;
