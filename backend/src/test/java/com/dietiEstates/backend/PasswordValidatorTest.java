@@ -25,7 +25,7 @@ import jakarta.validation.ConstraintValidatorContext;
  * CE1: null (non valido)
  * CE2: vuoto (non valido)
  * CE3: solo spazi (non valido)
- * CE4: valido (valido)
+ * CE4: con almeno un carattere maiuscolo ecc (valido)
  * CE5: meno di 10 caratteri (non valido)
  * CE6: senza una lettera maiuscola (non valido)
  * CE7: senza una lettera minuscola (non valido)
@@ -58,7 +58,7 @@ class PasswordValidatorTest {
     @BeforeEach
     void setUp() {
         passwordValidator = new PasswordValidatorImpl();
-        
+
         mockContext = mock(ConstraintValidatorContext.class);
     }
 

@@ -39,13 +39,9 @@
               "src/styles.scss",
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/@geoapify/geocoder-autocomplete/styles/round-borders.css",
-              "node_modules/ngx-toastr/toastr.css",
-              "node_modules/slick-carousel/slick/slick.css",
-              "node_modules/slick-carousel/slick/slick-theme.css"
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/slick-carousel/slick/slick.min.js"
             ]
           },
           "configurations": {

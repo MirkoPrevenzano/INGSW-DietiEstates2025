@@ -1,0 +1,54 @@
+services: #definisce i servizi da avviare, nel nostro caso server e client
+  
+
+  database:
+    image: postgres:latest
+    container_name: dieti-estates-db
+    environment:
+      - POSTGRES_DB=dieti_estate_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=07092021
+    ports:
+      - "5433:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - dieti-estates-network
+    restart: unless-stopped
+  
+  server: 
+    build: #definisce come costruire l'immagine del server
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: dieti-estates-server
+    ports:
+      - "8080:8080" # Mappa la porta 8080 del container alla porta 8080 della macchina host
+    networks:
+      - dieti-estates-network # Rete per la comunicazione tra container
+    depends_on:
+      - database
+    restart: unless-stopped # Riavvia il server se si arresta in modo anomalo
+
+  client:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: dieti-estates-client
+    environment:
+      - SERVER_HOST=server
+      - SERVER_PORT=8080
+    networks:
+      - dieti-estates-network
+    depends_on:
+      - server
+    ports:
+      - "4200:80"
+    restart: unless-stopped
+
+networks:
+  dieti-estates-network:
+    driver: bridge
+
+volumes:
+  db-data: {}
+  
