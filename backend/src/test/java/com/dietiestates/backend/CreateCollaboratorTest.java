@@ -1,4 +1,4 @@
-package com.dietiEstates.backend;
+package com.dietiestates.backend;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;

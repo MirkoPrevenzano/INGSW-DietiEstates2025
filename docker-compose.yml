@@ -5,9 +5,9 @@ services: #definisce i servizi da avviare, nel nostro caso server e client
     image: postgres:latest
     container_name: dieti-estates-db
     environment:
-      - POSTGRES_DB=dieti_estate_db
+      - POSTGRES_DB=dieti_estates_db
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=07092021
+      - POSTGRES_HOST_AUTH_METHOD=trust
     ports:
       - "5433:5432"
     volumes:
