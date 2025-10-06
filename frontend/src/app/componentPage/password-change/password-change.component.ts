@@ -54,6 +54,7 @@ export class PasswordChangeComponent implements OnInit{
  
 
     submitPasswordChange(){
+      
      
       if (this.passwordChangeControlService.isValidNewPassword(
         this.newPassword,

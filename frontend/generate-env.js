@@ -1,18 +1,23 @@
 import { writeFileSync } from 'fs';
 import { config } from 'dotenv';
 
-// Carica le variabili dal file .env
-const env = config().parsed;
+// Carica le variabili dal file .env (se presente)
+const parsed = config().parsed || {};
+
+// Usa le variabili d'ambiente di runtime come fallback (process.env)
+const env = {
+  ...process.env,
+  ...parsed
+};
 
 // Genera il contenuto del file environment.ts
 const environmentFileContent = `
 export const environment = {
   production: false,
-  googleApiKey: '${env.GOOGLE_API_KEY}',
-  geoapifyToken: '${env.GEOAPIFY_TOKEN}'
+  googleApiKey: '${env.GOOGLE_API_KEY || ''}',
+  geoapifyToken: '${env.GEOAPIFY_TOKEN || ''}'
 };
 `;
-//ciao
 // Scrive il file environment.ts
 writeFileSync('./src/environments/environment.ts', environmentFileContent);
 
@@ -20,8 +25,8 @@ writeFileSync('./src/environments/environment.ts', environmentFileContent);
 const environmentProdFileContent = `
 export const environment = {
   production: true,
-  googleApiKey: '${env.GOOGLE_API_KEY}',
-  geoapifyToken: '${env.GEOAPIFY_TOKEN}'
+  googleApiKey: '${env.GOOGLE_API_KEY || ''}',
+  geoapifyToken: '${env.GEOAPIFY_TOKEN || ''}'
 };
 `;
 

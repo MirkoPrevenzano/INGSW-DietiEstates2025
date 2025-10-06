@@ -743,3 +743,15 @@
 2025-09-10 20:20:44.342 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
 2025-09-10 20:20:44.343 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
 2025-09-10 20:20:51.201 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 7.15 seconds (process running for 9.372)
+2025-10-06 11:08:20.998 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-10-06 11:08:21.118 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-10-06 11:08:21.151 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-10-06 11:08:21.183 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-10-06 11:08:21.213 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-10-06 11:08:21.244 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-10-06 11:08:21.277 [main] INFO  c.d.backend.ChangePasswordTest -  SETUP - Inizializzazione test per cambio password
+2025-10-06 11:08:21.278 [main] INFO  c.d.backend.ChangePasswordTest - TEST-1 STARTED - Testing valid username with valid password
+2025-10-06 11:08:22.197 [main] INFO  c.d.backend.CreateCollaboratorTest - Starting CreateCollaboratorTest using Java 17.0.16 with PID 43914 (started by mirko in /home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/backend)
+2025-10-06 11:08:22.199 [main] DEBUG c.d.backend.CreateCollaboratorTest - Running with Spring Boot v3.4.0, Spring v6.2.0
+2025-10-06 11:08:22.201 [main] INFO  c.d.backend.CreateCollaboratorTest - No active profile set, falling back to 1 default profile: "default"
+2025-10-06 11:08:29.562 [main] INFO  c.d.backend.CreateCollaboratorTest - Started CreateCollaboratorTest in 7.774 seconds (process running for 11.315)

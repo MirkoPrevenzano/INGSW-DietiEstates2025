@@ -61,6 +61,6 @@ public class AdministratorLoadingStrategy implements UserLoadingStrategy
     @Override
     public boolean supports(Role role) 
     {
-        return Role.ROLE_ADMIN == role;
+        return Role.ROLE_ADMIN == role || Role.ROLE_COLLABORATOR == role;
     }
 }

@@ -11,7 +11,7 @@ import {
   coerceElement,
   coerceNumberProperty,
   hasModifierKey
-} from "./chunk-OXU73K5U.js";
+} from "./chunk-MTRAYGTV.js";
 import {
   Location
 } from "./chunk-6SMMMRAD.js";
@@ -98,6 +98,19 @@ import {
   __spreadProps,
   __spreadValues
 } from "./chunk-IMJAHVCN.js";
+
+// node_modules/@angular/cdk/fesm2022/boolean-property-_aCfQwp8.mjs
+function coerceBooleanProperty(value) {
+  return value != null && `${value}` !== "false";
+}
+
+// node_modules/@angular/cdk/fesm2022/css-pixel-value-C1yoKJ7R.mjs
+function coerceCssPixelValue(value) {
+  if (value == null) {
+    return "";
+  }
+  return typeof value === "string" ? value : `${value}px`;
+}
 
 // node_modules/@angular/cdk/fesm2022/scrolling-BXVcIfjZ.mjs
 var RtlScrollAxisType;
@@ -1747,14 +1760,6 @@ function _isTestEnvironment() {
     typeof jest !== "undefined" && !!jest || // @ts-ignore
     typeof Mocha !== "undefined" && !!Mocha
   );
-}
-
-// node_modules/@angular/cdk/fesm2022/css-pixel-value-C1yoKJ7R.mjs
-function coerceCssPixelValue(value) {
-  if (value == null) {
-    return "";
-  }
-  return typeof value === "string" ? value : `${value}px`;
 }
 
 // node_modules/@angular/cdk/fesm2022/portal-directives-CtfZjx5e.mjs
@@ -5117,28 +5122,23 @@ var FullscreenOverlayContainer = class _FullscreenOverlayContainer extends Overl
   }], () => [], null);
 })();
 
-// node_modules/@angular/cdk/fesm2022/boolean-property-_aCfQwp8.mjs
-function coerceBooleanProperty(value) {
-  return value != null && `${value}` !== "false";
-}
-
 export {
+  coerceBooleanProperty,
+  ScrollDispatcher,
+  CdkScrollable,
+  ViewportRuler,
+  CdkScrollableModule,
   ComponentPortal,
   TemplatePortal,
   BasePortalOutlet,
   CdkPortalOutlet,
   PortalModule,
-  ScrollDispatcher,
-  CdkScrollable,
-  ViewportRuler,
-  CdkScrollableModule,
   OverlayConfig,
   OverlayContainer,
   OverlayRef,
   Overlay,
   CdkOverlayOrigin,
   CdkConnectedOverlay,
-  OverlayModule,
-  coerceBooleanProperty
+  OverlayModule
 };
-//# sourceMappingURL=chunk-VRADNY4M.js.map
+//# sourceMappingURL=chunk-UKARB7BX.js.map

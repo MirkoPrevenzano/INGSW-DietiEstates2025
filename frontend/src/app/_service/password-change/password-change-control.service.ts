@@ -16,12 +16,14 @@ export class PasswordChangeControlService {
     newPassword:string,
     oldPassword:string,
     confirmNewPassword:string
-  ) {    
-    if(!this.isMatch(newPassword, confirmNewPassword))
+  ) {
+    if(newPassword === '' || oldPassword === '' || confirmNewPassword === '') {
+      this.notify.warning('All fields are required');
+    } else if(!this.isMatch(newPassword, confirmNewPassword))
       this.notify.warning('Password should be match')
     else if(this.isEqualNewOldPassword(newPassword, oldPassword))
       this.notify.warning("The 'new password' you have inserted can't be equal to your current password")
-    else if(newPassword && newPassword!==''){
+    else {
       const errorMessage= this.passwordValidatorService.validatePassword(newPassword);
       if(errorMessage.length == 0 )
         return true
@@ -32,8 +34,6 @@ export class PasswordChangeControlService {
         });
       }
     }
-    else
-      this.notify.warning('Password should be match')
 
     return false
   }
