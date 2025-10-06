@@ -1,4 +1,4 @@
-package com.dietiEstates.backend;
+package com.dietiestates.backend;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
