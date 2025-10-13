@@ -2,7 +2,6 @@
 package com.dietiestates.backend.dto.request.common;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import com.dietiestates.backend.validator.EmailValidator;
 

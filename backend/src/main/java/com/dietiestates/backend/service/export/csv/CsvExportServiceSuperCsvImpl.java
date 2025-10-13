@@ -105,6 +105,7 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
         CsvWriterWrapper csvWriterWrapper = (CsvWriterWrapper) writer;
 
         AgentStats agentStats = agent.getAgentStats();
+        
         List<Object> agentStatsData = Arrays.asList(agentStats.getTotalUploadedRealEstates(),
                                                     agentStats.getTotalSoldRealEstates(),
                                                     agentStats.getTotalRentedRealEstates(),
@@ -130,7 +131,7 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
 
 
     @Override
-    protected void writeRealEstateStats(Agent agent, Object writer) 
+    protected void writeRealEstatesStats(Agent agent, Object writer) 
     {
         CsvWriterWrapper csvWriterWrapper = (CsvWriterWrapper) writer;
 
@@ -167,7 +168,7 @@ public class CsvExportServiceSuperCsvImpl extends ExportServiceTemplate implemen
 
 
     @Override
-    protected void writeRealEstateMonthlyDeals(Agent agent, Object writer) 
+    protected void writeRealEstatesMonthlyDeals(Agent agent, Object writer) 
     {
         CsvWriterWrapper csvWriterWrapper = (CsvWriterWrapper) writer;
 

@@ -2,7 +2,6 @@
 package com.dietiestates.backend.security.filter;
 
 import java.util.Arrays;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,12 +23,13 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.dietiestates.backend.enums.Role;
 import com.dietiestates.backend.resolver.UserLoadingStrategyResolver;
 import com.dietiestates.backend.security.JwtProvider;
 import com.dietiestates.backend.security.handler.AuthenticationEntryPointCustomImpl;
 import com.dietiestates.backend.strategy.UserLoadingStrategy;
+
+import com.auth0.jwt.exceptions.JWTVerificationException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -84,7 +84,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter
                 Arrays.stream(roles)
                       .forEach(role -> authorities.add(new SimpleGrantedAuthority(role)));
 
-                UserLoadingStrategy userLoadingStrategy = userLoadingStrategyResolver.getUserLoadingStrategy(Role.valueOf(roles[0]));
+                UserLoadingStrategy userLoadingStrategy = userLoadingStrategyResolver.getStrategy(Role.valueOf(roles[0]));
                 UserDetails userDetails = userLoadingStrategy.loadUser(username);
 
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,null, authorities);

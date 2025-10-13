@@ -4,8 +4,6 @@ package com.dietiestates.backend.service;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -74,9 +72,6 @@ public class AgentService
     {
         Administrator administrator = (Administrator) administratorLoadingStrategy.loadUser(username);
         
-        /* Administrator administrator = administratorRepository.findByUsername(username)
-                                                             .orElseThrow(() -> new UsernameNotFoundException("Amministratore '" + username + "' non trovato nel DB!")); */ 
-
         if(agentRepository.findByUsername(agentCreationDto.getUsername()).isPresent())
         {
             log.error("This username is already present!");
@@ -121,11 +116,6 @@ public class AgentService
 
     public List<AgentRecentRealEstateDto> getAgentRecentRealEstates(String username, Integer limit) 
     {
-        if(limit <= 0)
-        {
-            log.error("The limit must be greater than zero!");
-            throw new IllegalArgumentException("The limit must be greater than zero!");
-        }
         Agent agent = (Agent) agentLoadingStrategy.loadUser(username);
                                      
         return realEstateRepository.findAgentRecentRealEstatesByAgentId(agent.getUserId(), limit);

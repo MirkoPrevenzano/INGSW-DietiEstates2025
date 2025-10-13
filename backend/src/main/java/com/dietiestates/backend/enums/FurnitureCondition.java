@@ -18,7 +18,6 @@ public enum FurnitureCondition implements JsonStringValueEnum
     NOT_SPECIFIED("Not specified");
 
 
-
     private final String value;
 
 

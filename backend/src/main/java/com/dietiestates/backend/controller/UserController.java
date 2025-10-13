@@ -37,14 +37,15 @@ public class UserController
     @Operation(description = "Modifica della password di un utente.",
                tags = "Users")
     @ApiResponses(@ApiResponse(responseCode = "200",
-                                description = "Password modificata con successo!"))
-    public ResponseEntity<Void> updatePassword(@Valid @RequestBody UpdatePasswordDto updatePasswordDto, 
+                               description = "Password modificata con successo!"))
+    public ResponseEntity<Void> updatePassword(@RequestBody @Valid UpdatePasswordDto updatePasswordDto, 
                                                Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         userService.updatePassword(userDetails.getUsername(), updatePasswordDto);
 
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.OK)
+                             .build();
     }   
 }

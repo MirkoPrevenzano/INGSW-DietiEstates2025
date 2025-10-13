@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface FileStorageService 
 {
-    void uploadFile(byte[] fileBytes, String fileStorageKey, String contentType, String contentDisposition, Map<String, String> photoMetadata);
+    void uploadFile(byte[] fileBytes, String fileStorageKey, String contentType, String contentDisposition, Map<String, String> fileMetadata);
 
     byte[] getFile(String fileStorageKey);
     

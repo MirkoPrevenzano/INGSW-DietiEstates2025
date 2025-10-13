@@ -30,8 +30,6 @@ public class CustomerLoadingStrategy implements UserLoadingStrategy
 
         log.info("Customer con username '{}' trovato nel DB!", username);
         
-        //customer.setRole(Role.ROLE_CUSTOMER);
-
         return customer;
     }
     

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.groups.Default;
 
 import org.springframework.data.domain.PageRequest;
@@ -64,7 +66,7 @@ public class RealEstateController
                                                                     type = "integer",
                                                                     format = "int64",
                                                                     example = "3"))))
-    public ResponseEntity<Long> createRealEstate(@Validated(value = {OnCreate.class, Default.class}) @RequestBody RealEstateCreationDto realEstateCreationDto, 
+    public ResponseEntity<Long> createRealEstate(@RequestBody @Validated(value = {OnCreate.class, Default.class}) RealEstateCreationDto realEstateCreationDto, 
                                                  Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -154,9 +156,9 @@ public class RealEstateController
                         """)
     @ApiResponses(@ApiResponse(responseCode = "200",
                                 description = "Annunci immobiliari recuperati con successo!"))
-    public ResponseEntity<RealEstateSearchDto> search(@RequestParam Integer page,
-                                                      @RequestParam Integer limit, 
-                                                      @Valid @RealEstateFiltersValidator @RequestParam Map<String,String> filters) 
+    public ResponseEntity<RealEstateSearchDto> search(@RequestParam @PositiveOrZero Integer page,
+                                                      @RequestParam @Positive Integer limit, 
+                                                      @RequestParam @Valid @RealEstateFiltersValidator Map<String,String> filters) 
     {
         RealEstateSearchDto realEstateSearchDto = realEstateService.search(filters, PageRequest.of(page, limit));  
         
@@ -173,7 +175,8 @@ public class RealEstateController
                example = "5")
     @ApiResponses(@ApiResponse(responseCode = "200",
                                 description = "Info dell'annuncio immobiliare recuperate con successo!"))
-    public ResponseEntity<RealEstateCompleteInfoDto> getRealEstateCompleteInfo(@PathVariable("realEstateId") Long realEstateId, Authentication authentication) 
+    public ResponseEntity<RealEstateCompleteInfoDto> getRealEstateCompleteInfo(@PathVariable("realEstateId") Long realEstateId, 
+                                                                               Authentication authentication) 
     {
         return ResponseEntity.status(HttpStatus.OK)
                              .body(realEstateService.getRealEstateCompleteInfo(realEstateId, authentication));

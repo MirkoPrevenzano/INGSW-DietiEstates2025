@@ -50,7 +50,7 @@ public class UserService implements UserDetailsService
 
         username = username.substring(0, index);
 
-        UserLoadingStrategy userLoadingStrategy = userLoadingStrategyResolver.getUserLoadingStrategy(role);
+        UserLoadingStrategy userLoadingStrategy = userLoadingStrategyResolver.getStrategy(role);
 
         UserDetails userDetails = userLoadingStrategy.loadUser(username);
         userLoadingStrategy.setRole(userDetails);

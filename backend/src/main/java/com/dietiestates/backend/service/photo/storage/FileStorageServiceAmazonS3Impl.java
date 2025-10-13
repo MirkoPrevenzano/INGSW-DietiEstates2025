@@ -39,19 +39,19 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
     private static final FileStorageProvider PROVIDER = FileStorageProvider.AMAZON_S3;
 
 	@Value("${dietiestates.aws.s3.bucketname}")
-	private String bucketName;
+	private final String bucketName;
 
 
 
     @Override
-    public void uploadFile(byte[] fileBytes, String fileStorageKey, String contentType, String contentDisposition, Map<String, String> photoMetadata) 
+    public void uploadFile(byte[] fileBytes, String fileStorageKey, String contentType, String contentDisposition, Map<String, String> fileMetadata) 
     {
 		PutObjectRequest putObjectRequest = PutObjectRequest.builder()
 															.bucket(bucketName)
  															.key(fileStorageKey)
                                                             .contentType(contentType)
                                                             .contentDisposition(contentDisposition)
-                                                            .metadata(photoMetadata)
+                                                            .metadata(fileMetadata)
 															.build();		
 
 		try 
@@ -105,14 +105,14 @@ public class FileStorageServiceAmazonS3Impl implements FileStorageService
         {
             HeadObjectResponse response = s3Client.headObject(headObjectRequest);
 
-            Map<String, String> photoMetadata = new HashMap<>(response.metadata()); // Metadati utente
+            Map<String, String> fileMetadata = new HashMap<>(response.metadata()); // Metadati utente
 
-            if (response.contentType() != null) photoMetadata.put("ContentType", response.contentType());
-            if (response.contentDisposition() != null) photoMetadata.put("ContentDisposition", response.contentDisposition());
+            if (response.contentType() != null) fileMetadata.put("ContentType", response.contentType());
+            if (response.contentDisposition() != null) fileMetadata.put("ContentDisposition", response.contentDisposition());
 
             log.info("Metadata for file with key '{}' retrieved successfully from Amazon S3 bucket '{}'.", fileStorageKey, bucketName);
 
-            return photoMetadata;
+            return fileMetadata;
         } 
         catch (NoSuchKeyException e) 
         {

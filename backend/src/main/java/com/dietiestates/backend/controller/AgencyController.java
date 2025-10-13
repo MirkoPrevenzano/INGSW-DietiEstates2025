@@ -39,10 +39,11 @@ public class AgencyController
     @SecurityRequirements
     @ApiResponses(@ApiResponse(responseCode = "201",
                                description = "Registrazione dell'agenzia (con relativo amministratore) completata con successo!"))
-    public ResponseEntity<Void> createAgency(@Valid @RequestBody AgencyRegistrationDto aagencyRegistrationDto) 
+    public ResponseEntity<Void> createAgency(@RequestBody @Valid AgencyRegistrationDto aagencyRegistrationDto) 
     {
         agencyService.createAgency(aagencyRegistrationDto);
         
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED)
+                             .build();
     }
 }

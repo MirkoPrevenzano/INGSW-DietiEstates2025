@@ -16,7 +16,6 @@ public enum ExportingFormat
     CSV(MediaType.valueOf("text/csv"), ".csv");
     
 
-
     private final MediaType mediaType;
     
     private final String fileExtension;

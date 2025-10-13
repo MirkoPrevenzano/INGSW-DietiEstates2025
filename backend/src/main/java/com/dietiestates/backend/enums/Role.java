@@ -17,7 +17,6 @@ public enum Role implements JsonStringValueEnum
     ROLE_UNAUTHORIZED("");
 
 
-
     private final String value;
 
 

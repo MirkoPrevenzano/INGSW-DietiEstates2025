@@ -30,19 +30,19 @@ public class PerformanceLogInterceptor implements HandlerInterceptor
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception 
     {
         long preHandleStartTime = (Long) request.getAttribute("preHandleStartTime");
-        long afterCompletionDuration = System.currentTimeMillis() - preHandleStartTime;
+        long afterCompletionEndTime = System.currentTimeMillis() - preHandleStartTime;
     
         if (response.getStatus() >= 400) 
         {
             // Richiesta completata con errore (status 4xx/5xx)
             log.error("Request to handler \"{}\" completed with error.\nURI: {}.\nResponse Status: {}.\nDuration: {} ms",
-                      handler, request.getRequestURI(), response.getStatus(), afterCompletionDuration);
+                      handler, request.getRequestURI(), response.getStatus(), afterCompletionEndTime);
         } 
         else 
         {
             // Richiesta completata con SUCCESS (status 2xx)
             log.info("Request to handler \"{}\" completed succesfully.\nURI: {}.\nResponse Status: {}.\nDuration: {} ms",
-                     handler, request.getRequestURI(), response.getStatus(), afterCompletionDuration);
+                     handler, request.getRequestURI(), response.getStatus(), afterCompletionEndTime);
         }  
     }
 }

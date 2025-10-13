@@ -38,12 +38,13 @@ public class AdministratorController
                tags = "Admins")
     @ApiResponses(@ApiResponse(responseCode = "201",
                                description = "Collaboratore creato con successo!"))
-    public ResponseEntity<Void> createCollaborator(@Valid @RequestBody CollaboratorCreationDto collaboratorCreationDto, 
+    public ResponseEntity<Void> createCollaborator(@RequestBody @Valid CollaboratorCreationDto collaboratorCreationDto, 
                                                    Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         administratorService.createCollaborator(userDetails.getUsername(), collaboratorCreationDto);
         
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED)
+                             .build();
     }
 }

@@ -30,8 +30,6 @@ public class AgentLoadingStrategy implements UserLoadingStrategy
 
         log.info("Agente con username '{}' trovato nel DB!", username);
         
-        //agent.setRole(Role.ROLE_AGENT); 
-
         return agent;
     }
 

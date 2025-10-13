@@ -33,6 +33,7 @@ public class AgencyRegistrationDto extends UserRegistrationWithPasswordDto
     private String vatNumber;
 
     
+    
     public AgencyRegistrationDto(String name, String surname, String username, String password, String agencyName, String businessName, String vatNumber) 
     {
         super(name, surname, username, password);

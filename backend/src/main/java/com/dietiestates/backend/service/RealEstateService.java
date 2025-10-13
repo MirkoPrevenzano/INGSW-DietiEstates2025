@@ -11,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -73,7 +72,7 @@ public class RealEstateService
 
 
     @Transactional
-    public Long createRealEstate(String username, RealEstateCreationDto realEstateCreationDto) throws UsernameNotFoundException
+    public Long createRealEstate(String username, RealEstateCreationDto realEstateCreationDto)
     {
         Agent agent = (Agent) agentLoadingStrategy.loadUser(username);
         
@@ -83,7 +82,6 @@ public class RealEstateService
         mockingStatsService.mockRealEstateStats(realEstate);
 
         agent.getAgentStats().incrementTotalUploadedRealEstates();
-
         agent.addRealEstate(realEstate);
 
         agent = agentRepository.save(agent);
@@ -114,8 +112,6 @@ public class RealEstateService
 
             realEstate.getPhotos().add(photo);            
         }
-
-        realEstateRepository.save(realEstate);
     }
 
 
@@ -127,6 +123,7 @@ public class RealEstateService
         List<Photo> photos = realEstate.getPhotos();
 
         List<PhotoResult<String>> photoResults = new ArrayList<>();
+        
         for(Photo photo : photos)
             photoResults.add(photoService.getPhotoAsBase64(photo.getKey()));
 
@@ -167,9 +164,6 @@ public class RealEstateService
                                                                                        .anyMatch(authority -> authority.getAuthority().equals("ROLE_CUSTOMER"))) 
         {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
-            /*Customer customer = customerRepository.findByUsername(userDetails.getUsername())
-                                                  .orElseThrow(() -> new IllegalArgumentException("Customer non trovato: " + userDetails.getUsername()));*/
 
             Customer customer = (Customer) customerLoadingStrategy.loadUser(userDetails.getUsername());
 
