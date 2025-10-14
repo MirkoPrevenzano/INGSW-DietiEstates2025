@@ -91,7 +91,7 @@ class CreateCollaboratorTest {
 
 
     @Test
-    @WithMockUser(username = VALID_ADMIN) //Annotazione di spring security test che simula un utente autenticato
+    @WithMockUser(username = VALID_ADMIN, roles = {"ADMIN"}) // Annotazione di spring security test che simula un utente autenticato
     @DisplayName("TC1: caso in cui i parametri sono validi. Utente da creare non esista, l'amministratore è autenticato correttamente e i parametri name e lastName siano non vuoti")
     void validTestCreateCollaborator() throws Exception {
         callControllerIsCreated();
@@ -99,7 +99,7 @@ class CreateCollaboratorTest {
     }
 
     @Test
-    @WithMockUser(username = VALID_ADMIN)
+    @WithMockUser(username = VALID_ADMIN, roles = {"ADMIN"})
     @DisplayName("TC2: caso in cui username del collaboratore da inserire è null o vuoto")
     void emptyUsernameCreateCollaborator() throws Exception {
         collaboratorCreationDto.setUsername(null);
@@ -114,7 +114,7 @@ class CreateCollaboratorTest {
 
 
     @Test
-    @WithMockUser(username = VALID_ADMIN)
+    @WithMockUser(username = VALID_ADMIN, roles = {"ADMIN"})
     @DisplayName("TC3: caso in cui name del collaboratore da inserire è null o vuoto")
     void emptyNameCreateCollaborator() throws Exception {
         collaboratorCreationDto.setName(null);
@@ -128,7 +128,7 @@ class CreateCollaboratorTest {
     }
 
     @Test
-    @WithMockUser(username = VALID_ADMIN)
+    @WithMockUser(username = VALID_ADMIN, roles = {"ADMIN"})
     @DisplayName("TC4: caso in cui surname del collaboratore da inserire è null o vuoto")
     void emptySurnameCreateCollaborator() throws Exception {
         collaboratorCreationDto.setSurname(null);
@@ -142,7 +142,7 @@ class CreateCollaboratorTest {
     }
 
     @Test
-    @WithMockUser(username = VALID_ADMIN)
+    @WithMockUser(username = VALID_ADMIN, roles = {"ADMIN"})
     @DisplayName("TC5: caso in cui tutti i campi di CollaboratorCreationDto sono null o vuoti")
     void emptyFieldsCreateCollaborator() throws Exception {
         collaboratorCreationDto.setSurname(null);
@@ -159,7 +159,7 @@ class CreateCollaboratorTest {
     }
 
     @Test
-    @WithMockUser(username= VALID_ADMIN)
+    @WithMockUser(username= VALID_ADMIN, roles = {"ADMIN"})
     @DisplayName("TC6: caso in cui l'email del collaboratore non è un formato valido")
     void invalidEmailCreateCollaborator() throws Exception{
         collaboratorCreationDto.setUsername("emailNotValid");
