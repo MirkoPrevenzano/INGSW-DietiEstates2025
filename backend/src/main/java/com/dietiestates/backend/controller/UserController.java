@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping(path = "/users")
+@PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_COLLABORATOR', 'ROLE_AGENT', 'ROLE_CUSTOMER')")
 @RequiredArgsConstructor
 @Slf4j
 public class UserController 

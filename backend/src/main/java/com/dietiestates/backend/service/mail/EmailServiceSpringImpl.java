@@ -21,7 +21,7 @@ public class EmailServiceSpringImpl implements EmailService
     private final JavaMailSender javaMailSender;
 
     @Value("${spring.mail.username}")
-    private final String DIETI_ESTATES_EMAIL;
+    private String dietiEstatesMail;
 
 
 
@@ -33,7 +33,7 @@ public class EmailServiceSpringImpl implements EmailService
         message.setTo(recipient);
         message.setSubject(subject);
         message.setText(body);
-        message.setFrom(DIETI_ESTATES_EMAIL);
+        message.setFrom(dietiEstatesMail);
 
         try 
         {

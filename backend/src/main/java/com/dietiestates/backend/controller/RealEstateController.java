@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
@@ -57,6 +58,7 @@ public class RealEstateController
 
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ROLE_AGENT')")
     @Operation(description = "Creazione di un nuovo annuncio immobiliare.",
                tags = "Real Estates")
     @ApiResponses(@ApiResponse(responseCode = "201",
@@ -78,6 +80,7 @@ public class RealEstateController
 
 
     @PostMapping(value = "/{realEstateId}/photos", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PreAuthorize("hasAuthority('ROLE_AGENT')")
     @Operation(description = "Inserimento di foto relative ad un annuncio immobiliare.",
                tags = "Real Estates")
     @Parameter(description = "Lista di foto da aggiungere.",

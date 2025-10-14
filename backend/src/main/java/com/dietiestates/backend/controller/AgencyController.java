@@ -32,9 +32,8 @@ public class AgencyController
     
 
     
-    //@PreAuthorize("sd")
     @PostMapping
-    @Operation(description = "Registrazione di una nuova agenzia (con incluso l'amministratore della stessa agenzia) all'interno dell'applicazione.",
+    @Operation(description = "Registrazione di una nuova agenzia (con incluso l'amministratore della stessa) all'interno dell'applicazione.",
                tags = "Agencies")
     @SecurityRequirements
     @ApiResponses(@ApiResponse(responseCode = "201",

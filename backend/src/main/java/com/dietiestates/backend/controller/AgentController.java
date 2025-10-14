@@ -12,6 +12,7 @@ import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
@@ -43,6 +44,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping(path = "/agents")
+@PreAuthorize("hasAuthority('ROLE_AGENT')")
 @RequiredArgsConstructor
 @Validated
 @Slf4j
@@ -52,7 +54,8 @@ public class AgentController
 
 
 
-    @PostMapping
+    @PostMapping        
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_COLLABORATOR')")
     @Operation(description = "Creazione di un account per un nuovo agente immobiliare.",
                tags = "Agents")
     @ApiResponses(@ApiResponse(responseCode = "201",
