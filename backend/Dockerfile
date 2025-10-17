@@ -18,7 +18,9 @@
 
     
     # -------- STAGE 2: Runtime leggero --------
-    FROM openjdk:17-slim
+    #FROM openjdk:17-slim
+    FROM eclipse-temurin:17-jdk
+    
     # Cartella di lavoro nel container runtime
     WORKDIR /app
     
@@ -29,4 +31,5 @@
     EXPOSE 8080
     
     # Comando di avvio dell'app
-    ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+    #ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+    ENTRYPOINT ["java","-Djava.awt.headless=true","-jar","/app/app.jar"]
