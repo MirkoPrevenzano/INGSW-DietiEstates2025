@@ -23,6 +23,8 @@ services: #definisce i servizi da avviare, nel nostro caso server e client
     container_name: dieti-estates-server
     ports:
       - "8080:8080" # Mappa la porta 8080 del container alla porta 8080 della macchina host
+    env_file:
+      - backend/.env
     networks:
       - dieti-estates-network # Rete per la comunicazione tra container
     depends_on:

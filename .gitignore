@@ -54,4 +54,7 @@ backend/HELP.md
 backend/target
 !**/src/main/**/target/
 !**/src/test/**/target/
-*.properties
+backend/.env
+backend/.classpath
+backend/.project
+backend/.factorypath
