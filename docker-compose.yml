@@ -1,13 +1,10 @@
 services: #definisce i servizi da avviare, nel nostro caso server e client
   
-
   database:
     image: postgres:latest
     container_name: dieti-estates-db
-    environment:
-      - POSTGRES_DB=dieti_estates_db
-      - POSTGRES_USER=postgres
-      - POSTGRES_HOST_AUTH_METHOD=trust
+    env_file:
+      - backend/.env
     ports:
       - "5433:5432"
     volumes:
@@ -65,4 +62,3 @@ networks:
 
 volumes:
   db-data: {}
-  
