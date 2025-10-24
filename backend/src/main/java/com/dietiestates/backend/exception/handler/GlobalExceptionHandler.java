@@ -199,7 +199,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler
 
 
     @ExceptionHandler({FileStorageServiceException.class, ExportServiceException.class})
-    public ResponseEntity<Object> handleFileStorageServiceException(FileStorageServiceException ex, WebRequest request) 
+    public ResponseEntity<Object> handleCustomException(RuntimeException ex, WebRequest request) 
     {
         logExceptionInfo(ex);
         

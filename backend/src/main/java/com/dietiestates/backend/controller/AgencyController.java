@@ -32,17 +32,17 @@ public class AgencyController
     
 
     
-    //@PreAuthorize("sd")
     @PostMapping
-    @Operation(description = "Registrazione di una nuova agenzia (con incluso l'amministratore della stessa agenzia) all'interno dell'applicazione.",
+    @Operation(description = "Registrazione di una nuova agenzia (con incluso l'amministratore della stessa) all'interno dell'applicazione.",
                tags = "Agencies")
     @SecurityRequirements
     @ApiResponses(@ApiResponse(responseCode = "201",
                                description = "Registrazione dell'agenzia (con relativo amministratore) completata con successo!"))
-    public ResponseEntity<Void> createAgency(@Valid @RequestBody AgencyRegistrationDto aagencyRegistrationDto) 
+    public ResponseEntity<Void> createAgency(@RequestBody @Valid AgencyRegistrationDto aagencyRegistrationDto) 
     {
         agencyService.createAgency(aagencyRegistrationDto);
         
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED)
+                             .build();
     }
 }

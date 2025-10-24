@@ -1,6 +1,7 @@
 
 package com.dietiestates.backend.service.mail;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -15,11 +16,12 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class EmailServiceDefaultSpringImpl implements EmailService
+public class EmailServiceSpringImpl implements EmailService
 {
     private final JavaMailSender javaMailSender;
 
-    private static final String DIETI_ESTATES_EMAIL = "ciropizza2002@gmail.com";
+    @Value("${spring.mail.username}")
+    private String dietiEstatesMail;
 
 
 
@@ -31,8 +33,7 @@ public class EmailServiceDefaultSpringImpl implements EmailService
         message.setTo(recipient);
         message.setSubject(subject);
         message.setText(body);
-
-        message.setFrom(DIETI_ESTATES_EMAIL);
+        message.setFrom(dietiEstatesMail);
 
         try 
         {

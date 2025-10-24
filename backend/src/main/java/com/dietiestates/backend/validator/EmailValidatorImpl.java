@@ -28,10 +28,8 @@ public class EmailValidatorImpl implements ConstraintValidator<EmailValidator, C
     @Override
     public boolean isValid(CharSequence email, ConstraintValidatorContext context) 
     {
-        // Se email è null, lascia che @NotNull gestisca la validazione
-        if (email == null) {
-            return false;
-        }
+        if (email == null) 
+            return true;
         
         if (email.length() > 320 || email.length() < 5) 
             return false;

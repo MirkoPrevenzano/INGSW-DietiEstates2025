@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import com.dietiestates.backend.validator.PasswordValidator;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

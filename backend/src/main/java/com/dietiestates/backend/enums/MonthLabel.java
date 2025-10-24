@@ -36,7 +36,6 @@ public enum MonthLabel
     DECEMBER("DEC", 11);
 
 
-
     private final String monthAbbreviation;
 
     private final int index;

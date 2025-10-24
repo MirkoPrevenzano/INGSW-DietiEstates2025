@@ -40,10 +40,10 @@ public abstract class ExportServiceTemplate
             writeAgentStats(agent, writer);
             writeSectionSeparator(writer);
             
-            writeRealEstateStats(agent, writer);
+            writeRealEstatesStats(agent, writer);
             writeSectionSeparator(writer);
             
-            writeRealEstateMonthlyDeals(agent, writer);
+            writeRealEstatesMonthlyDeals(agent, writer);
             
             byte[] exportingBytes = finalizeWriter(writer);
             
@@ -58,7 +58,7 @@ public abstract class ExportServiceTemplate
         catch (Exception e) 
         {
             log.error("Error exporting report for agent {}: {}", agent.getUsername(), e.getMessage());
-            throw new ExportServiceException(getExportingFormat(), agent.getUserId(), e);
+            throw new ExportServiceException(this.getExportingFormat(), agent.getUserId(), e);
         }
     }
     
@@ -70,9 +70,9 @@ public abstract class ExportServiceTemplate
 
     protected abstract void writeAgentStats(Agent agent, Object writer);
 
-    protected abstract void writeRealEstateStats(Agent agent, Object writer);
+    protected abstract void writeRealEstatesStats(Agent agent, Object writer);
 
-    protected abstract void writeRealEstateMonthlyDeals(Agent agent, Object writer);
+    protected abstract void writeRealEstatesMonthlyDeals(Agent agent, Object writer);
 
     protected abstract void writeSectionSeparator(Object writer);
 
@@ -85,18 +85,19 @@ public abstract class ExportServiceTemplate
     protected abstract String getFileExtension();
 
 
-    // Metodi comuni (hook methods)
-    protected String generateFileName(String username) 
+    protected final List<AgentDashboardRealEstateStatsDto> getAgentDashboardRealEstateStats(Agent agent) 
+    {
+        return realEstateRepository.findAgentDashboardRealEstateStatsByAgentId(agent.getUserId(), null);
+    }
+    
+
+
+    private String generateFileName(String username) 
     {
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         String currentDateTime = dateFormatter.format(new Date());
 
         return username + "_" + currentDateTime;
     }
-    
 
-    protected List<AgentDashboardRealEstateStatsDto> getAgentDashboardRealEstateStats(Agent agent) 
-    {
-        return realEstateRepository.findAgentDashboardRealEstateStatsByAgentId(agent.getUserId(), null);
-    }
 }

@@ -14,7 +14,6 @@ public enum ContractType implements JsonStringValueEnum
     FOR_RENT("For Rent");
 
 
-
     private final String value;
 
 

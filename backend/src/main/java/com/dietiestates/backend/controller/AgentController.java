@@ -4,12 +4,15 @@ package com.dietiestates.backend.controller;
 import java.util.List;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
@@ -41,6 +44,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping(path = "/agents")
+@PreAuthorize("hasAuthority('ROLE_AGENT')")
 @RequiredArgsConstructor
 @Validated
 @Slf4j
@@ -50,12 +54,13 @@ public class AgentController
 
 
 
-    @PostMapping
+    @PostMapping        
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_COLLABORATOR')")
     @Operation(description = "Creazione di un account per un nuovo agente immobiliare.",
                tags = "Agents")
     @ApiResponses(@ApiResponse(responseCode = "201",
-                                description = "Agente creato con successo!"))
-    public ResponseEntity<Void> createAgent(@Valid @RequestBody AgentCreationDto agentCreationDto, 
+                               description = "Agente creato con successo!"))
+    public ResponseEntity<Void> createAgent(@RequestBody @Valid AgentCreationDto agentCreationDto, 
                                             Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -89,7 +94,7 @@ public class AgentController
                example = "10")
     @ApiResponses(@ApiResponse(responseCode = "200",
                                description = "Lista di immobili ottenuta con successo!"))
-    public ResponseEntity<List<AgentRecentRealEstateDto>> getAgentRecentRealEstates(@PathVariable Integer limit,
+    public ResponseEntity<List<AgentRecentRealEstateDto>> getAgentRecentRealEstates(@PathVariable @Positive Integer limit,
                                                                                     Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -105,10 +110,10 @@ public class AgentController
     @Operation(description = "Download di un file in formato csv riguardante diverse statistiche di un agente immobiliare.",
                tags = "Agents")
     @ApiResponses(@ApiResponse(responseCode = "200",
-                                description = "Download del file CSV effettuato con successo!",
-                                content = @Content(mediaType = "text/csv",
-                                                   schema = @Schema(type = "string",
-                                                                    format = "binary"))))
+                               description = "Download del file CSV effettuato con successo!",
+                               content = @Content(mediaType = "text/csv",
+                                                  schema = @Schema(type = "string",
+                                                                   format = "binary"))))
     public ResponseEntity<byte[]> exportCsvReport(Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -130,10 +135,10 @@ public class AgentController
     @Operation(description = "Download di un file in formato pdf riguardante diverse statistiche di un agente immobiliare.",
                tags = "Agents")
     @ApiResponses(@ApiResponse(responseCode = "200",
-                                description = "Download del file PDF effettuato con successo!",
-                                content = @Content(mediaType = "application/pdf",
-                                                   schema = @Schema(type = "string",
-                                                                    format = "binary"))))
+                               description = "Download del file PDF effettuato con successo!",
+                               content = @Content(mediaType = "application/pdf",
+                                                  schema = @Schema(type = "string",
+                                                                   format = "binary"))))
     public ResponseEntity<byte[]> exportPdfReport(Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -155,7 +160,7 @@ public class AgentController
     @Operation(description = "Recupero di statistiche personali di un agente immobiliare.",
                tags = "Agents")
     @ApiResponses(@ApiResponse(responseCode = "200",
-                                description = "Statistiche ottenute con successo!"))
+                               description = "Statistiche ottenute con successo!"))
     public ResponseEntity<AgentDashboardPersonalStatsDto> getAgentDashboardPersonalStats(Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -168,7 +173,7 @@ public class AgentController
 
 
     @GetMapping(value = "/dashboard/real-estate-stats/{page}/{limit}")
-    @Operation(description = "Recupero di statistiche riguardanti tutti gli immobili caricati da un agente immobiliare.",
+    @Operation(description = "Recupero di statistiche riguardanti gli immobili caricati da un agente immobiliare.",
                tags = "Agents")
     @Parameter(description = "Numero di pagina da recuperare",
                name = "page", 
@@ -177,9 +182,9 @@ public class AgentController
                name = "limit", 
                example = "10")
     @ApiResponses(@ApiResponse(responseCode = "200",
-                                description = "Statistiche ottenute con successo!"))
-    public ResponseEntity<List<AgentDashboardRealEstateStatsDto>> getAgentDashboardRealEstateStats(@PathVariable Integer page,
-                                                                                                   @PathVariable Integer limit,
+                               description = "Statistiche ottenute con successo!"))
+    public ResponseEntity<List<AgentDashboardRealEstateStatsDto>> getAgentDashboardRealEstateStats(@PathVariable @PositiveOrZero Integer page,
+                                                                                                   @PathVariable @Positive Integer limit,
                                                                                                    Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();

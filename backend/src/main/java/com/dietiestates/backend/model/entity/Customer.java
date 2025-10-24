@@ -28,8 +28,9 @@ import lombok.ToString;
           exclude = "customerViewsRealEstates")
 public class Customer extends User
 {
-    @Column(name = "is_auth_with_external_api", nullable = false)
-    private boolean isAuthWithExternalAPI; //valutare se creare una classe d'appoggio
+    @Column(name = "is_auth_with_external_api", 
+            nullable = false)
+    private boolean isAuthWithExternalAPI;
 
 
     @OneToMany(mappedBy = "customer", 

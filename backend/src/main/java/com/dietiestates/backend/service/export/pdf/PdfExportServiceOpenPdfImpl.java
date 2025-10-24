@@ -74,6 +74,7 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
     }
 
 
+
     @Override
     protected Object initializeWriter() 
     {
@@ -145,7 +146,7 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
 
 
     @Override
-    protected void writeRealEstateStats(Agent agent, Object writer) 
+    protected void writeRealEstatesStats(Agent agent, Object writer) 
     {
         PdfWriterWrapper pdfWriterWrapper = (PdfWriterWrapper) writer;
 
@@ -182,7 +183,7 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
 
 
     @Override
-    protected void writeRealEstateMonthlyDeals(Agent agent, Object writer) 
+    protected void writeRealEstatesMonthlyDeals(Agent agent, Object writer) 
     {
         PdfWriterWrapper pdfWriterWrapper = (PdfWriterWrapper) writer;
 
@@ -381,17 +382,21 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
             addFooter(writer, document);
         }
 
+
         
         private void addLogoHeader(Document document) 
         {
             try 
             {
                 Image logo = Image.getInstance("Screenshot from 2025-01-26 00-42-55.png");
+
                 PdfPTable logoTable = createTable(1, 60, new float[] {1});
                 PdfPCell logoCell = createCell(Color.WHITE, 0);
+
                 logoCell.setImage(logo);
                 logoTable.setHorizontalAlignment(Element.ALIGN_CENTER);
                 logoTable.addCell(logoCell);
+
                 document.add(logoTable);
             } 
             catch (Exception e) 
@@ -400,7 +405,9 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
             }
         }
 
-        private void addFooter(PdfWriter writer, Document document) {
+
+        private void addFooter(PdfWriter writer, Document document) 
+        {
             PdfPTable table = new PdfPTable(2);
             table.setTotalWidth(520);
             table.setWidths(new int[]{50, 50});

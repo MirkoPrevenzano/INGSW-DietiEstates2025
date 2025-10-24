@@ -26,7 +26,6 @@ public enum PropertyCondition implements JsonStringValueEnum
     NOT_SPECIFIED("Not specified");
 
 
-
     private final String value;
 
 

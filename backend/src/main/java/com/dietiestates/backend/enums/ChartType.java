@@ -16,7 +16,6 @@ public enum ChartType
     TOTAL_DEALS_PIE_CHART("Total deals pie chart", ChartDimensions.STANDARD_PIE_CHART);
 
 
-
     private final String value;
 
     private final ChartDimensions chartDimensions;

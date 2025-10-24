@@ -10,6 +10,9 @@ public class VatNumberValidatorImpl implements ConstraintValidator<VatNumberVali
     @Override
     public boolean isValid(CharSequence vatNumber, ConstraintValidatorContext context) 
     {
+        if (vatNumber == null) 
+            return true;
+            
         String vatNumberString = vatNumber.toString();
 
         if (vatNumberString.length() != 11) 

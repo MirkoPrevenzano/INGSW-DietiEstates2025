@@ -33,20 +33,16 @@ public class PhotoServiceImpl implements PhotoService
             throw new IllegalArgumentException("Il file da caricare non può essere null o vuoto.");        
         
         String contentType = file.getContentType();
-        if(contentType == null){
-            log.error("Type is null");
-            throw new IllegalArgumentException("Type is null");
-        }
-        if(contentType != null && !contentType.equals("image/jpeg") && !contentType.equals("image/png"))
+        if (contentType == null || (!contentType.equals("image/jpeg") && !contentType.equals("image/png"))) 
         {
-            log.error("Photo format is not supported!");
-            throw new IllegalArgumentException("Photo format is not supported: " + contentType);
+            log.error("Invalid or unsupported photo format: {}", contentType);
+            throw new IllegalArgumentException("Photo format is invalid or not supported: must be JPEG or PNG");
         }
 
         if(folderName == null || folderName.isBlank())
         {
-            log.error("Folder name not valid!");
-            throw new IllegalArgumentException("Folder name not valid");   
+            log.error("Folder name for photo is not valid!");
+            throw new IllegalArgumentException("Folder name for photo is not valid!");   
         }
 
         String contentDisposition = ContentDisposition.inline().build().toString();
@@ -68,8 +64,6 @@ public class PhotoServiceImpl implements PhotoService
 
         return photoKey;        
     }
-
-
 
     
     @Override

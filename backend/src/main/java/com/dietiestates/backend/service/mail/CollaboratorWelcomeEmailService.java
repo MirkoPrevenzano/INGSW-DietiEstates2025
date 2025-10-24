@@ -24,6 +24,7 @@ public class CollaboratorWelcomeEmailService extends AgentAndCollaboratorWelcome
     }
 
     
+    
     @Override
     protected String getWelcomeBody(User user) 
     {

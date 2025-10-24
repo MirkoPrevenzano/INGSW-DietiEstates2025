@@ -21,7 +21,7 @@ public class UserLoadingStrategyResolver
 
 
     
-    public UserLoadingStrategy getUserLoadingStrategy(Role role)
+    public UserLoadingStrategy getStrategy(Role role)
     {
         return userLoadingStrategies.stream()
                                     .filter(strategy -> strategy.supports(role))

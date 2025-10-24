@@ -38,7 +38,7 @@ public abstract class ChartServiceJFreeChartTemplate<T, D extends Dataset> imple
 
     protected abstract ChartType getChartType();
 
-
+    
     protected void customizeChart(JFreeChart chart) 
     {
         chart.getPlot().setBackgroundPaint(Color.WHITE);

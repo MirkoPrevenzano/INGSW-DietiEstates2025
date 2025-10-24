@@ -38,7 +38,8 @@ public class AuthenticationService
 
 
     @Transactional
-    public AuthenticationResponseDto authenticateWithGoogle(Map <String, String> request) { 
+    public AuthenticationResponseDto authenticateWithGoogle(Map <String, String> request) 
+    { 
         String googleToken = request.get("token");
         GoogleIdToken.Payload payload = verifyGoogleToken(googleToken)
                                         .orElseThrow(() -> new IllegalArgumentException("Token Google non valido"));
@@ -62,7 +63,8 @@ public class AuthenticationService
     } 
 
    
-    private Optional<GoogleIdToken.Payload> verifyGoogleToken(String token) {
+    private Optional<GoogleIdToken.Payload> verifyGoogleToken(String token) 
+    {
         try {
             @SuppressWarnings("deprecation") 
             GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())

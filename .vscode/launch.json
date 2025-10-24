@@ -4,31 +4,12 @@
   "configurations": [
     {
       "type": "java",
-      "name": "BackendApplication",
+      "name": "Backend Application",
       "request": "launch",
       "mainClass": "com.dietiestates.backend.BackendApplication",
-      "projectName": "backend"
-    },
-    {
-      "type": "java",
-      "name": "Main",
-      "request": "launch",
-      "mainClass": "com.dietiEstates.backend.service.mail.Main",
-      "projectName": "backend"
-    },
-    {
-      "type": "java",
-      "name": "BackendApplication",
-      "request": "launch",
-      "mainClass": "com.dietiEstates.backend.BackendApplication",
-      "projectName": "backend"
-    },
-    {
-      "type": "java",
-      "name": "BackendApplication",
-      "request": "launch",
-      "mainClass": "BackendApplication",
-      "projectName": "backend"
+      "projectName": "backend",
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/backend/.env"
     },
     {
       "name": "ng serve",

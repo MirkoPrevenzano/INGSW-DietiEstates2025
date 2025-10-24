@@ -30,17 +30,6 @@ public class AdministratorLoadingStrategy implements UserLoadingStrategy
 
         log.info("Amministratore con username '{}' trovato nel DB!", username);
 
-        /*if (administrator.getManager() == null) 
-        { 
-            log.info("Amministratore (ruolo ADMIN) con username '{}' trovato nel DB!", username);
-            administrator.setRole(Role.ROLE_ADMIN);
-        } 
-        else 
-        {
-            log.info("Amministratore (ruolo COLLABORATOR) con username '{}' trovato nel DB!", username);
-            administrator.setRole(Role.ROLE_COLLABORATOR);
-        }*/
-
         return administrator;
     }
 

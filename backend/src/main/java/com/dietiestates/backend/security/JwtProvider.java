@@ -44,8 +44,6 @@ public class JwtProvider
                     .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                     .withClaim("roles", userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
                     .sign(algorithm);
-        
-        
     }
 
 
@@ -54,6 +52,7 @@ public class JwtProvider
         DecodedJWT decodedJWT = jwtVerifier.verify(token);
         return new VerifiedJwt(decodedJWT);
     }
+
 
 
 
@@ -76,21 +75,25 @@ public class JwtProvider
             return decodedJWT.getSubject();
         }
 
+
         public String getIssuer() 
         {
             return decodedJWT.getIssuer();
         }
+
 
         public Date getIssuingDate() 
         {
             return decodedJWT.getIssuedAt();
         }
 
+
         public Date getExpirationDate() 
         {
             return decodedJWT.getExpiresAt();
         }
 
+        
         public String[] getRoles() 
         {
             return decodedJWT.getClaim("roles").asArray(String.class);

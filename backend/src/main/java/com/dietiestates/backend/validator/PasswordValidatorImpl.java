@@ -22,6 +22,9 @@ public class PasswordValidatorImpl implements ConstraintValidator<PasswordValida
     @Override
     public boolean isValid(CharSequence password, ConstraintValidatorContext context) 
     {        
+        if (password == null) 
+            return true;
+
         context.disableDefaultConstraintViolation();
 
         boolean hasExceptionOccurred = false;

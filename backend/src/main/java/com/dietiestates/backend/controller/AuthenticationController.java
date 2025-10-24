@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,6 +47,7 @@ public class AuthenticationController
     {
         AuthenticationResponseDto authenticationResponse= authenticationService.authenticateWithGoogle(request); 
         
-        return ResponseEntity.ok(authenticationResponse);
+        return ResponseEntity.status(HttpStatus.OK)
+                             .body(authenticationResponse);
     } 
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -25,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping(path = "/admins")
+@PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_COLLABORATOR')")
 @RequiredArgsConstructor
 @Slf4j
 public class AdministratorController
@@ -34,16 +36,18 @@ public class AdministratorController
     
 
     @PostMapping(path = "/collaborators")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @Operation(description = "Creazione di un account per un nuovo collaboratore dell'admin.",
                tags = "Admins")
     @ApiResponses(@ApiResponse(responseCode = "201",
                                description = "Collaboratore creato con successo!"))
-    public ResponseEntity<Void> createCollaborator(@Valid @RequestBody CollaboratorCreationDto collaboratorCreationDto, 
+    public ResponseEntity<Void> createCollaborator(@RequestBody @Valid CollaboratorCreationDto collaboratorCreationDto, 
                                                    Authentication authentication) 
     {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         administratorService.createCollaborator(userDetails.getUsername(), collaboratorCreationDto);
         
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.CREATED)
+                             .build();
     }
 }

@@ -12,10 +12,7 @@ public enum Role implements JsonStringValueEnum
 
     ROLE_ADMIN("Admin"),
 
-    ROLE_COLLABORATOR("Collaborator"),
-
-    ROLE_UNAUTHORIZED("");
-
+    ROLE_COLLABORATOR("Collaborator");
 
 
     private final String value;

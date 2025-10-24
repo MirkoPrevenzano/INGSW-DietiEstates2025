@@ -36,10 +36,12 @@ public class CustomerController
                tags = "Customers")
     @SecurityRequirements
     @ApiResponses(@ApiResponse(responseCode = "201",
-                                description = "Cliente creato con successo!"))
-    public ResponseEntity<Void> customerRegistration(@Valid @RequestBody CustomerRegistrationDto userRegistrationDTO) 
+                               description = "Cliente creato con successo!"))
+    public ResponseEntity<Void> customerRegistration(@RequestBody @Valid CustomerRegistrationDto userRegistrationDTO) 
     {
         customerService.customerRegistration(userRegistrationDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                             .build();
     } 
 }
