@@ -9,7 +9,7 @@ import { UpdatePassword } from '../../model/request/updatePassword';
 })
 export class UserService {
 
-  private readonly url = 'http://localhost:8080/users';
+  private readonly url = 'https://xqqys2wucm.eu-west-3.awsapprunner.com/users';
 
   constructor(private readonly http: HttpClient) {}
 

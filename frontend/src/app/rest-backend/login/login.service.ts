@@ -8,7 +8,7 @@ import { Authentication } from '../../model/response/authentication';
   providedIn: 'root'
 })
 export class LoginService {
-  private url = "http://localhost:8080";
+  private url = "https://xqqys2wucm.eu-west-3.awsapprunner.com";
   
   constructor(private readonly http: HttpClient) {}
 

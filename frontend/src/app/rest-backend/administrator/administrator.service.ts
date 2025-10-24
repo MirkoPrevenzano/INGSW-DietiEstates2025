@@ -14,7 +14,7 @@ export class AdministratorService {
       })
     };
 
-  private url="http://localhost:8080/admins"
+  private url="https://xqqys2wucm.eu-west-3.awsapprunner.com/admins"
 
 
   saveAdmin( newAdmin: CollaboratorCreation)

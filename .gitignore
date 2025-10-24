@@ -55,3 +55,18 @@ backend/target
 !**/src/main/**/target/
 !**/src/test/**/target/
 *.properties
+
+# Frontend
+frontend/HELP.md
+frontend/node_modules
+frontend/dist
+frontend/.angular
+frontend/.vscode
+frontend/.history
+frontend/.sass-cache
+frontend/coverage
+frontend/npm-debug.log
+frontend/yarn-error.log
+frontend/testem.log
+frontend/typings
+frontend/src/environments/environment*.ts

@@ -12,7 +12,7 @@ import { RealEstateSearch } from '../../model/response/realEstateSearch';
 })
 export class RealEstateService {
 
-  private readonly url = 'http://localhost:8080/real-estates';
+  private readonly url = 'https://xqqys2wucm.eu-west-3.awsapprunner.com/real-estates';
 
   constructor(private readonly http: HttpClient) {}
 
