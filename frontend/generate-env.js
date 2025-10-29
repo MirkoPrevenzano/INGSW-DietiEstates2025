@@ -15,7 +15,8 @@ const environmentFileContent = `
 export const environment = {
   production: false,
   googleApiKey: '${env.GOOGLE_API_KEY || ''}',
-  geoapifyToken: '${env.GEOAPIFY_TOKEN || ''}'
+  geoapifyToken: '${env.GEOAPIFY_TOKEN || ''}',
+  apiBaseUrl: '${env.API_BASE_URL || ''}'
 };
 `;
 // Scrive il file environment.ts
@@ -26,7 +27,8 @@ const environmentProdFileContent = `
 export const environment = {
   production: true,
   googleApiKey: '${env.GOOGLE_API_KEY || ''}',
-  geoapifyToken: '${env.GEOAPIFY_TOKEN || ''}'
+  geoapifyToken: '${env.GEOAPIFY_TOKEN || ''}',
+  apiBaseUrl: '${env.API_BASE_URL || ''}'
 };
 `;
 

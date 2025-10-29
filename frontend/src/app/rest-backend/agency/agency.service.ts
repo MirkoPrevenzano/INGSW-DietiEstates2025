@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AgencyRegistration } from '../../model/request/agencyRegistration';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AgencyService {
       })
     };
 
-  private url="https://xqqys2wucm.eu-west-3.awsapprunner.com/agencies"
+  private url=`${environment.apiBaseUrl}/agencies`
 
   registerAgency(agency:AgencyRegistration){
     return this.http.post(this.url, agency, this.httpOptions)

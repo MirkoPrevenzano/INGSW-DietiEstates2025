@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { LoginRequest } from '../../model/request/loginRequest';
 import { Observable } from 'rxjs';
 import { Authentication } from '../../model/response/authentication';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private url = "https://xqqys2wucm.eu-west-3.awsapprunner.com";
+  private url = environment.apiBaseUrl || '';
   
   constructor(private readonly http: HttpClient) {}
 
@@ -19,7 +20,7 @@ export class LoginService {
   };
 
   login(loginRequest: LoginRequest): Observable<Authentication> {
-    const url = this.url + "/login";
+  const url = this.url + "/login";
     const body = new HttpParams()
       .set('username', loginRequest.username)
       .set('password', loginRequest.password)

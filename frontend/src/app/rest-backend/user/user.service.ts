@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RealEstateCreation } from '../../model/request/realEstateCreation';
 import { UpdatePassword } from '../../model/request/updatePassword';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private readonly url = 'https://xqqys2wucm.eu-west-3.awsapprunner.com/users';
+  private readonly url = `${environment.apiBaseUrl}/users`;
 
   constructor(private readonly http: HttpClient) {}
 

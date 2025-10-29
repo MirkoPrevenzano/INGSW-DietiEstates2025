@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RealEstateCreation } from '../../model/request/realEstateCreation';
+import { environment } from '../../../environments/environment';
 import { PhotoResult } from '../../model/response/photoResult';
 import { RealEstateCompleteInfo } from '../../model/response/realEstateCompleteInfo';
 import { Params } from '@angular/router';
@@ -12,7 +13,7 @@ import { RealEstateSearch } from '../../model/response/realEstateSearch';
 })
 export class RealEstateService {
 
-  private readonly url = 'https://xqqys2wucm.eu-west-3.awsapprunner.com/real-estates';
+  private readonly url = `${environment.apiBaseUrl}/real-estates`;
 
   constructor(private readonly http: HttpClient) {}
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Address } from '../../../model/request/support/address';
 import { Coordinate } from '../../../model/coordinate';
-import { environment } from '../../../../environments/environment.prod';
+import { environment } from '../../../../environments/environment';
 
 
 @Injectable({

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginService } from '../../rest-backend/login/login.service';
 import { AuthService } from '../../_service/auth/auth.service';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 import { AuthenticationService } from '../../rest-backend/authentication/authentication.service';
 
 declare const google: any;

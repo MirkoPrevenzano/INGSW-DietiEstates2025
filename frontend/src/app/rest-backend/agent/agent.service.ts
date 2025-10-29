@@ -7,6 +7,7 @@ import { AgentDashboardRealEstateStats } from '../../model/response/agentDashboa
 import { AgentDashboardComponent } from '../../componentPage/agent-dashboard/agent-dashboard.component';
 import { AgentDashboardPersonalStats } from '../../model/response/agentDashboardPersonalStats';
 import { AgentCreation } from '../../model/request/agentCreation';
+import { environment } from '../../../environments/environment';
 import { AgentPublicInfo } from '../../model/response/support/agentPublicInfo';
 
 @Injectable({
@@ -22,7 +23,7 @@ export class AgentService {
         })
       };
   
-    private url="https://xqqys2wucm.eu-west-3.awsapprunner.com/agents"
+  private url=`${environment.apiBaseUrl}/agents`
 
 
     saveAgent( newAgent: AgentCreation)

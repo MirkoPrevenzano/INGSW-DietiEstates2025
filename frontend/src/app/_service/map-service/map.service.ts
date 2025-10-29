@@ -2,7 +2,7 @@ import { ElementRef, Injectable } from '@angular/core';
 import { Browser, map, Map, tileLayer } from 'leaflet';
 import { Coordinate } from '../../model/coordinate';
 import { MarkerService } from './marker-service/marker.service';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

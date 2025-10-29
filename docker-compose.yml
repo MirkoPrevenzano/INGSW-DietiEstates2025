@@ -35,15 +35,21 @@ services: #definisce i servizi da avviare, nel nostro caso server e client
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      # build args will be read from the environment or from an env_file;
+      # avoid embedding secrets directly in compose. If you need build-time
+      # values, pass them as build-args via the CLI or CI pipeline.
       args:
-        - GOOGLE_API_KEY=699354462746-9ale2lg8onjqvafu9aiopmd0fo82j3b4.apps.googleusercontent.com
-        - GEOAPIFY_TOKEN=c0324c2c2afb488980eae981c7906a43
+        GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+        GEOAPIFY_TOKEN: ${GEOAPIFY_TOKEN}
+        API_BASE_URL: ${API_BASE_URL}
     container_name: dieti-estates-client
+    # Load runtime env vars (including secrets) from frontend/.env
+    env_file:
+      - frontend/.env
     environment:
-      - SERVER_HOST=server
-      - SERVER_PORT=8080
-      - GOOGLE_API_KEY=699354462746-9ale2lg8onjqvafu9aiopmd0fo82j3b4.apps.googleusercontent.com
-      - GEOAPIFY_TOKEN=c0324c2c2afb488980eae981c7906a43
+      # For local compose deployment we want the client to call the backend
+      # container directly using the service name and internal port.
+      - API_BASE_URL=http://server:8080
       
     networks:
       - dieti-estates-network

@@ -4,7 +4,7 @@ import { Coordinate } from '../../model/coordinate';
 import { RealEstateLocationFeatures } from '../../model/request/support/realEstateLocationFeatures';
 import { MapService } from '../../_service/map-service/map.service';
 import { CommonModule } from '@angular/common';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-map',

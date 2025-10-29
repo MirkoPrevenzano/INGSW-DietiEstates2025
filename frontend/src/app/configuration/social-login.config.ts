@@ -1,5 +1,5 @@
 import { SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 export const socialAuthConfig: SocialAuthServiceConfig = {
   autoLogin: false,

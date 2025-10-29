@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CustomerRegistration } from '../../model/request/customerRegistration';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthenticationService {
 
   constructor(private readonly http:HttpClient) { }
 
-  private url:string="https://xqqys2wucm.eu-west-3.awsapprunner.com/auth"
+  private url:string=`${environment.apiBaseUrl}/auth`
 
   private httpOptions = {
       headers: new HttpHeaders({
@@ -19,8 +20,8 @@ export class AuthenticationService {
   };
     
   registrate(registerRequest:CustomerRegistration){
-    const url="https://xqqys2wucm.eu-west-3.awsapprunner.com/customers"
-    return this.http.post(url, registerRequest, this.httpOptions)
+  const url=`${environment.apiBaseUrl}/customers`
+  return this.http.post(url, registerRequest, this.httpOptions)
   }
 
   loginWithGoogle(credential: any): Observable<any> {

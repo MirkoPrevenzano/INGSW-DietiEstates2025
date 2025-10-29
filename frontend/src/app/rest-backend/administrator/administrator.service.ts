@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CollaboratorCreation } from '../../model/request/collaboratorCreation';
+import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -14,7 +15,7 @@ export class AdministratorService {
       })
     };
 
-  private url="https://xqqys2wucm.eu-west-3.awsapprunner.com/admins"
+  private url=`${environment.apiBaseUrl}/admins`
 
 
   saveAdmin( newAdmin: CollaboratorCreation)

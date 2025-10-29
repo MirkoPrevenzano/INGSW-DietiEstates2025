@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GeocoderAutocomplete, LocationType } from '@geoapify/geocoder-autocomplete';
-import { environment } from '../../../../environments/environment.prod';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
