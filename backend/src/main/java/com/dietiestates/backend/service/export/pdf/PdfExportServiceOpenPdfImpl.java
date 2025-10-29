@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 
@@ -388,16 +389,14 @@ public class PdfExportServiceOpenPdfImpl extends ExportServiceTemplate implement
         {
             try 
             {
-                Image logo = Image.getInstance("Screenshot from 2025-01-26 00-42-55.png");
+                ClassPathResource logoResource = new ClassPathResource("logo.png");
+                
+                Image logo = Image.getInstance(logoResource.getContentAsByteArray());
 
-                PdfPTable logoTable = createTable(1, 60, new float[] {1});
-                PdfPCell logoCell = createCell(Color.WHITE, 0);
+                logo.setAlignment(Element.ALIGN_CENTER);
+                logo.scalePercent(60);
 
-                logoCell.setImage(logo);
-                logoTable.setHorizontalAlignment(Element.ALIGN_CENTER);
-                logoTable.addCell(logoCell);
-
-                document.add(logoTable);
+                document.add(logo);
             } 
             catch (Exception e) 
             {

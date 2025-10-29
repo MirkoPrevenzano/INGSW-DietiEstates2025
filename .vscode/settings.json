@@ -15,5 +15,6 @@
             "path": "/usr/lib/jvm/java-21-openjdk"
         }
     ],
-    "java.configuration.detectJdksAtStart": false
+    "java.configuration.detectJdksAtStart": false,
+    "postman.settings.dotenv-detection-notification-visibility": false
 }
