@@ -46,11 +46,6 @@ services: #definisce i servizi da avviare, nel nostro caso server e client
     # Load runtime env vars (including secrets) from frontend/.env
     env_file:
       - frontend/.env
-    environment:
-      # For local compose deployment we want the client to call the backend
-      # container directly using the service name and internal port.
-      - API_BASE_URL=http://server:8080
-      
     networks:
       - dieti-estates-network
     depends_on:
