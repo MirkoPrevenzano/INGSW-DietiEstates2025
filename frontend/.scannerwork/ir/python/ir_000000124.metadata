@@ -1,7 +1,0 @@
-gyp.generator.cmake.NormjoinPath
-false
-aafe766d33d100ffdbe9915f65e14f28
-os.path.join
-os.path.normpath
-==
-startswith

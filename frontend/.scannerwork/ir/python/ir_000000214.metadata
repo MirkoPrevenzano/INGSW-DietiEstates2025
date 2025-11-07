@@ -1,9 +1,0 @@
-gyp.xcodeproj_file.PBXFrameworksBuildPhase.FileGroup
-false
-79dfdec027f1a70da25c103d15a71588
-posixpath.splitext
-==
-FrameworksGroup
-PBXProjectAncestor
-RootGroupForPath
-lower

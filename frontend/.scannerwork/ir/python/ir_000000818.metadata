@@ -1,9 +1,0 @@
-gyp.generator.msvs._GenerateMSBuildRuleXmlFile
-false
-0b9b024d9d2ca10955a89d80cca7e6c4
-builtins.__has_next
-builtins.iter
-builtins.next
-==
-WriteXmlIfChanged
-extend

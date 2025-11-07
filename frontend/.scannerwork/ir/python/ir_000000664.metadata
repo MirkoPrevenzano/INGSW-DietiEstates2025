@@ -1,6 +1,0 @@
-gyp.xcode_emulation.XcodeSettings.GetBundleResourceFolder
-false
-9fd09bb9c26bf7640de3196e780e8e69
-os.path.join
-==
-GetBundleContentsFolderPath

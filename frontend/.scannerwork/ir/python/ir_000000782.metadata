@@ -1,9 +1,0 @@
-gyp.generator.msvs._EscapeCppDefineForMSBuild
-false
-73b235ad4f01ae227337eb24df72e43f
-builtins.ord
-gyp.generator.msvs._EscapeCommandLineArgumentForMSBuild
-gyp.generator.msvs._EscapeEnvironmentVariableExpansion
-gyp.generator.msvs._EscapeMSBuildSpecialCharacters
-==
-replace

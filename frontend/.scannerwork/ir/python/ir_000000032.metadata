@@ -1,5 +1,0 @@
-packaging._manylinux._get_glibc_version
-false
-94de82bba1df78b103d97148ee53c1c7
-packaging._manylinux._glibc_version_string
-packaging._manylinux._parse_glibc_version

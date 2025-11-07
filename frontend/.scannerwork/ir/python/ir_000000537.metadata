@@ -1,6 +1,0 @@
-gyp.generator.ninja.NinjaWriter.GetToolchainEnv
-false
-fe0d0aeff5639a92a5df32119c5b71e6
-==
-GetMsvsToolchainEnv
-GetSortedXcodeEnv

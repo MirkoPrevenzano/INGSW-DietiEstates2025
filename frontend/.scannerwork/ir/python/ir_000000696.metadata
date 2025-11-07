@@ -1,8 +1,0 @@
-gyp.xcode_emulation.XcodeSettings._StandardizePath
-false
-9a3a6e662e1ae6f8732d4eef82364e0e
-os.path.join
-os.path.normpath
-==
-split
-startswith

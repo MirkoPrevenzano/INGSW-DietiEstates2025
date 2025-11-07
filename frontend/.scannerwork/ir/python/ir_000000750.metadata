@@ -1,8 +1,0 @@
-gyp.generator.android.PerformBuild
-false
-fb612e469132faafa2ad3c0ebc91260e
-builtins.print
-dict.__init__
-os.path.abspath
-os.path.join
-subprocess.check_call

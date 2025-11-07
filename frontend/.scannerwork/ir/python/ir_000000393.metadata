@@ -1,7 +1,0 @@
-gyp.msvs_emulation.MsvsSettings.GetRcflags
-false
-3ca0174045621a93f50a8fb47b37b31d
-gyp.msvs_emulation.MsvsSettings._GetWrapper.__init__
-==
-_TargetConfig
-append

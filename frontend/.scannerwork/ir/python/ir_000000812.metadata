@@ -1,8 +1,0 @@
-gyp.generator.msvs._GenerateMSBuildFiltersFile
-false
-9c270f274f49abfea510216b221cc64f
-gyp.generator.msvs._AppendFiltersForMSBuild
-os.path.exists
-os.unlink
-==
-WriteXmlIfChanged

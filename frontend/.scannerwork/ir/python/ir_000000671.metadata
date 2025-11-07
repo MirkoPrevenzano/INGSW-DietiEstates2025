@@ -1,6 +1,0 @@
-gyp.xcode_emulation.XcodeSettings.GetBundleXPCServicesFolderPath
-false
-e40792dcfa0d7a84ec6a4798ab61a479
-os.path.join
-==
-GetBundleContentsFolderPath

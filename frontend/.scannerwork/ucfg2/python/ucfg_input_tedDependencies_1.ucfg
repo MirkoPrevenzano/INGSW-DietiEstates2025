@@ -1,48 +1,0 @@
-
-;gyp.input.DependencyGraphNode.DirectAndImportedDependencies~
-r/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/frontend/node_modules/node-gyp/gyp/pylib/gyp/input.py„ „(%"2*Ð
-2
-… ˆ(–“
-
-Š Š(<
-%1*=
-
-__unknown_file (!
-gyp.input.DependencyGraphNode*,
-
-__unknown_file (
-
-dependencies2DirectDependenciesH
-F
-
-Š Š(<
-dependencies"__id*"
-
-__unknown_file (
-
-%1ÅÂ
-
-‹ ‹(C
-%2*=
-
-__unknown_file (!
-gyp.input.DependencyGraphNode*'
-
-__unknown_file (
-	
-targets*,
-
-__unknown_file (
-
-dependencies2_AddImportedDependencies"
-
-‹ ‹(C
-
-%2:
-
-„, „(3	
-targets:
-
-„5 „(F
-dependenciesB!
-gyp.input.DependencyGraphNodeH

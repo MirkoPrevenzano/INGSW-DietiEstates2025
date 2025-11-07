@@ -1,8 +1,0 @@
-gyp.generator.msvs._CollapseSingles
-false
-bd437e94d408798bfc5dde6e6bca7450
-builtins.__has_next
-builtins.iter
-builtins.len
-builtins.next
-gyp.generator.msvs._CollapseSingles

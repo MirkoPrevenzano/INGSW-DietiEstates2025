@@ -1,4 +1,0 @@
-packaging._tokenizer.Tokenizer.raise_syntax_error
-false
-f712078f3556ea89a4e6a513a4a5101a
-packaging._tokenizer.ParserSyntaxError.__init__

@@ -1,8 +1,0 @@
-gyp.generator.msvs._GetValueFormattedForMSBuild
-false
-4d28477f5ec722a806e8f271817843fc
-==
-ConvertVCMacrosToMSBuild
-append
-get
-join

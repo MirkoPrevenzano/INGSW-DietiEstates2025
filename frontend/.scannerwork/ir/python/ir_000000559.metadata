@@ -1,9 +1,0 @@
-gyp.generator.ninja_test.TestPrefixesAndSuffixes.test_BinaryNamesLinux
-false
-8823e1b37c6d3530c157fea2604e0258
-==
-ComputeOutputFileName
-NinjaWriter
-assertTrue
-endswith
-startswith

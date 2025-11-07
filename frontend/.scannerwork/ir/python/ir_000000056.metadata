@@ -1,9 +1,0 @@
-packaging.metadata._Validator._process_description_content_type
-false
-b53ad1ef4b040e05fd54d2b512c0acc7
-email.message.EmailMessage.__init__
-==
-_invalid_metadata
-get
-get_content_type
-lower

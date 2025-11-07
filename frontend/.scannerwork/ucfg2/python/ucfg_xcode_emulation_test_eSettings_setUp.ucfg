@@ -1,44 +1,0 @@
-
-0gyp.xcode_emulation_test.TestXcodeSettings.setUpå
-Å/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/frontend/node_modules/node-gyp/gyp/pylib/gyp/xcode_emulation_test.py ("2*Û
-2 (#K
-I
- (
-%2"__id*1
-
-__unknown_file (*
-
-sys"
-
-platformé
-ã
- (#
-%3"	__compare*"
-
-__unknown_file (
-!=*"
-
-__unknown_file (
-
-%2*&
-
-__unknown_file (
-
-darwin*
-3
-4*=
-3
-xcode_emulation_test.py"
- (
-implicit return*º
-4 (9ß§
- (9
-%1*J
-
-__unknown_file (.,
-*gyp.xcode_emulation_test.TestXcodeSettings*<
-
-__unknown_file ( 
-This test only runs on macOS2skipTest*
-3B.,
-*gyp.xcode_emulation_test.TestXcodeSettingsH

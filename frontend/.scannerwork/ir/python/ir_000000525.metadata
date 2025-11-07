@@ -1,9 +1,0 @@
-gyp.generator.ninja.NinjaWriter._WinIdlRule.fix_path
-false
-2fdaece06c3aaf9563ddf84cbb8ec2fd
-os.path.join
-os.path.relpath
-os.path.split
-os.path.splitext
-==
-ExpandRuleVariables

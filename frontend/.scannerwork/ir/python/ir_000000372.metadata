@@ -1,9 +1,0 @@
-gyp.msvs_emulation.MsvsSettings.GetComputedDefines
-false
-e55eb148c0d23ee51748bee9ec914930
-==
-_ConfigAttrib
-_Setting
-_TargetConfig
-append
-extend

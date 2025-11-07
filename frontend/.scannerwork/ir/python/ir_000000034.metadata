@@ -1,8 +1,0 @@
-gyp.generator.eclipse.WriteIncludePaths
-false
-7c928b91c0492c478ea86ffd1c7937a2
-builtins.__has_next
-builtins.iter
-builtins.next
-==
-write

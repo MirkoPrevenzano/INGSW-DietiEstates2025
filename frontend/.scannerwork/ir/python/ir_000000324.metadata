@@ -1,9 +1,0 @@
-gyp.MSVSNew.MakeGuid
-false
-13aadcf14030c542f015fab04f6ec968
-hashlib.md5
-str.__init__
-==
-encode
-hexdigest
-upper

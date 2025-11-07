@@ -1,4 +1,0 @@
-packaging.requirements.Requirement.__eq__
-false
-345e8e3337f9bdaac0ec6fcfd0ed1661
-packaging.utils.canonicalize_name

@@ -1,7 +1,0 @@
-gyp.msvs_emulation.MsvsSettings._GetAndMunge
-false
-3fdb8ed19b03b71775f8eab9b19586c2
-gyp.msvs_emulation._AddPrefix
-gyp.msvs_emulation._AppendOrReturn
-gyp.msvs_emulation._DoRemapping
-gyp.msvs_emulation._GenericRetrieve

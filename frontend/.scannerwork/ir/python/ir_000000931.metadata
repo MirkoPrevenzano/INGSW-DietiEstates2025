@@ -1,6 +1,0 @@
-gyp.common.UnrelativePath
-false
-3143910db23236efc9e0c1ae61a89d7a
-os.path.dirname
-os.path.join
-os.path.normpath

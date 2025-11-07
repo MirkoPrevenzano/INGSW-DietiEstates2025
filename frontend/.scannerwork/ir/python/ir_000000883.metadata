@@ -1,6 +1,0 @@
-gyp.generator.make.MakefileWriter.ComputeMacBundleBinaryOutput
-false
-6faae0fbadf0b50e49847406d90ea8d3
-os.path.join
-==
-GetExecutablePath

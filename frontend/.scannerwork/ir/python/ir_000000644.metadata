@@ -1,9 +1,0 @@
-gyp.xcode_emulation.XcodeArchsDefault.ActiveArchs
-false
-7783f03c3b27112f8fbed29895bcccd0
-builtins.__has_next
-builtins.iter
-builtins.next
-==
-_ExpandArchs
-append

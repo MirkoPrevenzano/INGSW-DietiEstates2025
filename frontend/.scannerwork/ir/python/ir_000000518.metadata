@@ -1,7 +1,0 @@
-gyp.generator.ninja.NinjaWriter.ExpandSpecial
-false
-698cbc75cb1513cb7268f57e6fccf182
-os.path.join
-==
-GypPathToUniqueOutput
-replace

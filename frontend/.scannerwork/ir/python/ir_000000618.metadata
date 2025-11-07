@@ -1,6 +1,0 @@
-gyp.generator.msvs_test.TestSequenceFunctions.test_GetLibraries
-false
-6a966e284ea277f1edeff53d372240f0
-==
-_GetLibraries
-assertEqual

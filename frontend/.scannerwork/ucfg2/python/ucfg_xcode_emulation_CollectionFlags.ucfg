@@ -1,101 +1,0 @@
-
-Fgyp.xcode_emulation.XcodeSettings._AddObjectiveCGarbageCollectionFlagsà
-|/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/frontend/node_modules/node-gyp/gyp/pylib/gyp/xcode_emulation.pyÔ Ô(,"2*Å
-2
- (Mb`
-
- ($
-%4*A
-
-__unknown_file (%#
-!gyp.xcode_emulation.XcodeSettings2	_Settingsüú
-
- (M
-%5*"
-
-__unknown_file (
-
-%4*2
-
-__unknown_file (
-GCC_ENABLE_OBJC_GC*+
-
-__unknown_file (
-unsupported2getE
-C
-
- (M
-	gc_policy"__id*"
-
-__unknown_file (
-
-%5ö
-ó
-
-Ò Ò(#
-%6"	__compare*"
-
-__unknown_file (
-==*)
-
-__unknown_file (
-
-	gc_policy*)
-
-__unknown_file (
-	supported*
-4
-6*:
-3
-xcode_emulation.py"
-ˆ ˆ(
-implicit return*Ñ
-4
-Ú Ú(%nl
-
-Ú Ú(%
-%1*%
-
-__unknown_file (	
-
-flags*)
-
-__unknown_file (
-	-fobjc-gc2append*
-3*â
-5
-Ù Ù(*sq
-
-Ù Ù(*
-%2*%
-
-__unknown_file (	
-
-flags*.
-
-__unknown_file (
--fobjc-gc-only2append*
-3*≥
-6
-Û Û($ô
-ñ
-
-Û Û($
-%3"	__compare*"
-
-__unknown_file (
-==*)
-
-__unknown_file (
-
-	gc_policy*(
-
-__unknown_file (
-
-required*
-3
-5:
-
-Ô3 Ô(8
-flagsB%#
-!gyp.xcode_emulation.XcodeSettingsH

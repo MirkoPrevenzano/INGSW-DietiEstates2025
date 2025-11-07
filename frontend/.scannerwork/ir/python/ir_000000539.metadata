@@ -1,5 +1,0 @@
-gyp.generator.ninja.NinjaWriter.GetSortedXcodeEnv
-false
-bed099de6ae5d900cd713ab481a611ff
-gyp.xcode_emulation.GetSortedXcodeEnv
-os.path.join

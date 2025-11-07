@@ -1,8 +1,0 @@
-gyp.xcodeproj_file.XCHierarchicalElement.__init__
-false
-f440494c1f59064904dc8b1e72dcf336
-gyp.xcodeproj_file.SourceTreeAndPathFromPath
-posixpath.basename
-==
-SetProperty
-__init__

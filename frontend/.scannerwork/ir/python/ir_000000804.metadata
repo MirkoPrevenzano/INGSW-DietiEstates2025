@@ -1,9 +1,0 @@
-gyp.generator.msvs._IdlFilesHandledNonNatively
-false
-c56099dc49d714c294eae9fff8585625
-builtins.__has_next
-builtins.int
-builtins.iter
-builtins.next
-==
-get

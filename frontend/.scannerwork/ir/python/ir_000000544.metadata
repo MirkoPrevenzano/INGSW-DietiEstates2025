@@ -1,8 +1,0 @@
-gyp.generator.ninja.NinjaWriter.ComputeOutputFileName
-false
-18f79152987e323b47fd9168f39c7306
-copy.copy
-gyp.generator.ninja.CalculateVariables
-gyp.generator.ninja.StripPrefix
-==
-get

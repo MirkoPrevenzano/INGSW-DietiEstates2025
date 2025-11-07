@@ -1,7 +1,0 @@
-gyp.easy_xml_test.TestSequenceFunctions.test_EasyXml_escaping
-false
-753b9c873cfa8a57fbdd1de1e1606112
-==
-XmlToString
-assertEqual
-replace

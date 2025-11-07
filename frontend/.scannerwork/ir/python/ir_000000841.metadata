@@ -1,6 +1,0 @@
-gyp.easy_xml_test.TestSequenceFunctions.test_EasyXml_simple
-false
-46a7c87f57e7448c94a340d61c735c97
-==
-XmlToString
-assertEqual

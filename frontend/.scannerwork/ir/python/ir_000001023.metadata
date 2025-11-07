@@ -1,6 +1,0 @@
-gyp.mac_tool.MacTool._Relink
-false
-7a4a424a62a6dba864cd3c6dac0786ca
-os.path.lexists
-os.remove
-os.symlink

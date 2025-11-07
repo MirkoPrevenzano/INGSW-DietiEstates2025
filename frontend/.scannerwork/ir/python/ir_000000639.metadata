@@ -1,7 +1,0 @@
-gyp.xcode_emulation_test.TestXcodeSettings.test_GetLdflags
-false
-291e9b4ec109f318b2aea7632c5d3589
-gyp.xcode_emulation.XcodeSettings.__init__
-==
-GetLdflags
-assertEqual

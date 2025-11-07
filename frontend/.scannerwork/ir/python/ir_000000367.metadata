@@ -1,8 +1,0 @@
-gyp.msvs_emulation.MsvsSettings._TargetConfig
-false
-968d3773a515f92e4ce4e16e25f52f00
-builtins.int
-==
-GetArch
-endswith
-rsplit

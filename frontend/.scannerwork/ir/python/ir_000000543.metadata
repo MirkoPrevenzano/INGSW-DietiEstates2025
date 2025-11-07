@@ -1,7 +1,0 @@
-gyp.generator.ninja.NinjaWriter.ComputeMacBundleOutput
-false
-91a52b11e7476688b19ee2257e8f2e05
-os.path.join
-==
-ExpandSpecial
-GetWrapperName

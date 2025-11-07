@@ -1,4 +1,0 @@
-gyp.common.WriteOnDiff.Writer.__getattr__
-false
-7e891236836278cb0f773c52621086fe
-builtins.getattr

@@ -1,62 +1,0 @@
-
-gyp.generator.analyzer.Config‹
-/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/frontend/node_modules/node-gyp/gyp/pylib/gyp/generator/analyzer.py„ „("2*Á
-2
-… …(
-
-… …(
-%2"listd
-b
-
-… …(*
-gyp.generator.analyzer.Config"
-files"__id*"
-
-__unknown_file (
-
-%2
-
-† †(
-%3"setf
-d
-
-† †(,
-gyp.generator.analyzer.Config"	
-targets"__id*"
-
-__unknown_file (
-
-%3
-
-‡/ ‡(4
-%4"set~
-|
-
-‡ ‡(4D
-gyp.generator.analyzer.Config"!
-additional_compile_target_names"__id*"
-
-__unknown_file (
-
-%4
-
-ˆ! ˆ(&
-%5"setp
-n
-
-ˆ ˆ(&6
-gyp.generator.analyzer.Config"
-test_target_names"__id*"
-
-__unknown_file (
-
-%5*
-3*Y
-3
-analyzer.py1/
-Š Š(
-%1"gyp.generator.analyzer.Config"
-Š Š(
-
-%1B!
-gyp.generator.analyzer.ConfigH

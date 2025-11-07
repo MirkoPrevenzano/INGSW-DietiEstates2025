@@ -1,9 +1,0 @@
-gyp.generator.msvs._FixPath
-false
-cae931ec0c2caa84059860b6294c8783
-gyp.generator.msvs._IsWindowsAbsPath
-gyp.generator.msvs._NormalizedSource
-os.path.isabs
-os.path.join
-==
-replace

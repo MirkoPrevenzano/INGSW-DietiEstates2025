@@ -1,8 +1,0 @@
-gyp.generator.msvs._GenerateRulesForMSVS
-false
-7595ee510e4c96c833e5ceb68c3be47a
-gyp.generator.msvs._AdjustSourcesForRules
-gyp.generator.msvs._GenerateExternalRules
-gyp.generator.msvs._GenerateNativeRulesForMSVS
-==
-get

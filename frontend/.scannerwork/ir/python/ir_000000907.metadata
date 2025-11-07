@@ -1,9 +1,0 @@
-gyp.MSVSSettings_test.TestSequenceFunctions._ExpectedWarnings
-false
-a789f4ca4028253b5aead8c38b3f0ff8
-builtins.sorted
-==
-assertEqual
-read
-seek
-split

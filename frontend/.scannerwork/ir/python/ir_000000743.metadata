@@ -1,9 +1,0 @@
-gyp.generator.android.AndroidMkWriter.NormalizeIncludePaths
-false
-56298d989179cf62203f72d438be2a16
-builtins.__has_next
-builtins.iter
-builtins.next
-gyp.common.RelativePath
-==
-append

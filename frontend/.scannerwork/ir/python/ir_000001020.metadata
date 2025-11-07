@@ -1,6 +1,0 @@
-gyp.mac_tool.MacTool.ExecFlock
-false
-c31226e15a9cfb43d3bab1e92a845843
-fcntl.flock
-os.open
-subprocess.call

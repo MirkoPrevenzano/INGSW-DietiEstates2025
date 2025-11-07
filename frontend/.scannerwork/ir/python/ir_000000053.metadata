@@ -1,7 +1,0 @@
-packaging.metadata._Validator._invalid_metadata
-false
-74af4853e60dd848cc272dddf587dac4
-builtins.repr
-packaging.metadata.InvalidMetadata.__init__
-==
-format_map

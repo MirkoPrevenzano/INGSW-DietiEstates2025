@@ -1,7 +1,0 @@
-gyp.generator.msvs._GetOutputFilePathAndTool
-false
-26f7b6045834c6ffb02cff037a580185
-builtins.int
-ntpath.join
-==
-get

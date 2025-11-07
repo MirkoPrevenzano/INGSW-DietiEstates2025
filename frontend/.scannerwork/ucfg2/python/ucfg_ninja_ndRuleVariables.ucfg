@@ -1,261 +1,0 @@
-
-3gyp.generator.ninja.NinjaWriter.ExpandRuleVariablesˆ
-|/home/mirko/Scrivania/repositoryProva/INGSW-DietiEstates2025/frontend/node_modules/node-gyp/gyp/pylib/gyp/generator/ninja.py¡ ¡("2*“
-2
-¢ ¢(h
-f
-
-¢ ¢(
-%14"__id*K
-
-__unknown_file (/*-!
-gyp.generator.ninja.NinjaWriter"
-flavor
-Œ
-
-¢ ¢(
-%15"	__compare*"
-
-__unknown_file (
-==*#
-
-__unknown_file (
-
-%14*#
-
-__unknown_file (
-win*
-4
-5* 
-4
-¤ ¤(Qš—
-
-¤ ¤(J
-%1"__mapGet*;
-
-__unknown_file (
-
-generator_default_variables*/
-
-__unknown_file (
-RULE_INPUT_ROOT2__getitem__›˜
-
-¤ ¤(Q
-%2"str.replace*$
-
-__unknown_file (
-
-path*"
-
-__unknown_file (
-
-%1*$
-
-__unknown_file (
-
-root2replace@
->
-
-¤ ¤(Q
-path"__id*"
-
-__unknown_file (
-
-%2š
-
-¥ ¥(M
-%3"__mapGet*;
-
-__unknown_file (
-
-generator_default_variables*2
-
-__unknown_file (
-RULE_INPUT_DIRNAME2__getitem__ž›
-
-¥ ¥(W
-%4"str.replace*$
-
-__unknown_file (
-
-path*"
-
-__unknown_file (
-
-%3*'
-
-__unknown_file (
-	
-dirname2replace@
->
-
-¥ ¥(W
-path"__id*"
-
-__unknown_file (
-
-%4š—
-
-¦ ¦(J
-%5"__mapGet*;
-
-__unknown_file (
-
-generator_default_variables*/
-
-__unknown_file (
-RULE_INPUT_PATH2__getitem__š
-
-¦ ¦(S
-%6"str.replace*$
-
-__unknown_file (
-
-path*"
-
-__unknown_file (
-
-%5*&
-
-__unknown_file (
-
-
-source2replace@
->
-
-¦ ¦(S
-path"__id*"
-
-__unknown_file (
-
-%6™–
-
-§ §(I
-%7"__mapGet*;
-
-__unknown_file (
-
-generator_default_variables*.
-
-__unknown_file (
-RULE_INPUT_EXT2__getitem__š—
-
-§ §(O
-%8"str.replace*$
-
-__unknown_file (
-
-path*"
-
-__unknown_file (
-
-%7*#
-
-__unknown_file (
-
-ext2replace@
->
-
-§ §(O
-path"__id*"
-
-__unknown_file (
-
-%8š—
-
-¨ ¨(J
-%9"__mapGet*;
-
-__unknown_file (
-
-generator_default_variables*/
-
-__unknown_file (
-RULE_INPUT_NAME2__getitem__œ™
-
-¨ ¨(Q
-%10"str.replace*$
-
-__unknown_file (
-
-path*"
-
-__unknown_file (
-
-%9*$
-
-__unknown_file (
-
-name2replaceA
-?
-
-¨ ¨(Q
-path"__id*#
-
-__unknown_file (
-
-%10"
-
-© ©(
-
-path*¿
-5
-£ £(To
-m
-
-£ £(%
-%11"__id*R
-
-__unknown_file (6*4!
-gyp.generator.ninja.NinjaWriter"
-msvs_settingsm
-k
-
-£C £(S
-%12"__id*P
-
-__unknown_file (4*2!
-gyp.generator.ninja.NinjaWriter"
-config_name…‚
-
-£ £(T
-%13*#
-
-__unknown_file (
-
-%11*$
-
-__unknown_file (
-
-path2ConvertVSMacros:
-config
-
-%12A
-?
-
-£ £(T
-path"__id*#
-
-__unknown_file (
-
-%13*
-4:
-
-¡" ¡(&
-path:
-
-¡( ¡(,
-root:
-
-¡. ¡(5	
-dirname:
-
-¡7 ¡(=
-source:
-
-¡? ¡(B
-ext:
-
-¡D ¡(H
-nameB#!
-gyp.generator.ninja.NinjaWriterH

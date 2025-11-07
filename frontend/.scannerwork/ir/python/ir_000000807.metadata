@@ -1,7 +1,0 @@
-gyp.generator.msvs._GetPathDict
-false
-ac8512548ce8f0e8c95f6113a493e04b
-gyp.generator.msvs._GetPathDict
-os.path.split
-==
-endswith

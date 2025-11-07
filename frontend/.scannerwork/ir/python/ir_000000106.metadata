@@ -1,6 +1,0 @@
-test_gyp.Runner.erase_current_line
-false
-9e8ac0ec6d5121ff41a3d9e5c65e9e98
-builtins.print
-==
-flush

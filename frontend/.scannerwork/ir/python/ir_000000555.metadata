@@ -1,9 +1,0 @@
-gyp.generator.ninja.PerformBuild
-false
-70d29b1ac5a6bbfbbf87f040e09c5540
-builtins.__has_next
-builtins.iter
-builtins.next
-builtins.print
-os.path.join
-subprocess.check_call

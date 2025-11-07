@@ -1,7 +1,0 @@
-gyp.xcode_emulation.XcodeSettings._GetBundleBinaryPath
-false
-544f93b946b780b8aa744d8cc6163360
-os.path.join
-==
-GetBundleExecutableFolderPath
-GetExecutableName

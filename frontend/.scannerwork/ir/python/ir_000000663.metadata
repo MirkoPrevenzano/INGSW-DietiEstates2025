@@ -1,7 +1,0 @@
-gyp.xcode_emulation.XcodeSettings.GetBundleContentsFolderPath
-false
-16fc25dd260f4b6cd1e7aa92b61c46dc
-os.path.join
-==
-GetFrameworkVersion
-GetWrapperName

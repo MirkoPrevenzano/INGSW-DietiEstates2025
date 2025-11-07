@@ -1,6 +1,0 @@
-gyp.xcode_emulation.XcodeSettings.GetBundlePlugInsFolderPath
-false
-12fd0c1669dee388bce920efc595c85c
-os.path.join
-==
-GetBundleContentsFolderPath

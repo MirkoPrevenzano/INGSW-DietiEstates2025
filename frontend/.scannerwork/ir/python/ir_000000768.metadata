@@ -1,8 +1,0 @@
-gyp.generator.msvs._RuleExpandPath
-false
-f336a2bd1974e0103864cf3eb9621e02
-os.path.dirname
-os.path.split
-os.path.splitext
-==
-replace

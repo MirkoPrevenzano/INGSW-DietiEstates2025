@@ -1,7 +1,0 @@
-gyp.xcode_emulation.XcodeSettings.GetBundleSharedSupportFolderPath
-false
-90f74b9e9e301272157c45d1e21bf02e
-os.path.join
-==
-GetBundleContentsFolderPath
-GetBundleResourceFolder

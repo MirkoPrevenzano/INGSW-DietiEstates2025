@@ -1,9 +1,0 @@
-gyp.MSVSProject.Writer._AddFilesToNode
-false
-a0c7d5b121f6561ee3b56181a41cb24e
-builtins.__has_next
-builtins.iter
-builtins.next
-==
-_AddFilesToNode
-append

@@ -1,7 +1,0 @@
-gyp.generator.ninja_test.TestPrefixesAndSuffixes.test_GenerateCompileDBWithNinja
-false
-a5c05e04b369a93d9e92e5a5182a5100
-pathlib.Path.__init__
-==
-GenerateCompileDBWithNinja
-resolve

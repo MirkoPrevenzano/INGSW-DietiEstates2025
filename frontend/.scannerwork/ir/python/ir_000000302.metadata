@@ -1,5 +1,0 @@
-packaging._structures.NegativeInfinityType.__hash__
-false
-173e7be053850daf6839581028ee35b3
-builtins.hash
-builtins.repr

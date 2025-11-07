@@ -1,7 +1,0 @@
-gyp.xcodeproj_file.PBXNativeTarget.SourcesPhase
-false
-d53a0f33e10e1471fb5cf7c043ad0c76
-gyp.xcodeproj_file.PBXSourcesBuildPhase.__init__
-==
-AppendProperty
-GetBuildPhaseByType

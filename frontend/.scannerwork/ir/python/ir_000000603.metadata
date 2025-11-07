@@ -1,9 +1,0 @@
-packaging._parser._parse_requirement
-false
-ab40eda188241e7e38ad456691f7b236
-packaging._parser.ParsedRequirement.__init__
-packaging._parser._parse_extras
-packaging._parser._parse_requirement_details
-==
-consume
-expect

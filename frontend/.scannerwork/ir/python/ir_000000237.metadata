@@ -1,6 +1,0 @@
-gyp.xcodeproj_file.PBXNativeTarget.GetBuildPhaseByType
-false
-5a4a83acd237b8364254a810c5964e5f
-builtins.__has_next
-builtins.iter
-builtins.next
