@@ -16,7 +16,7 @@ public class AmazonS3Config
 	public S3Client s3Client()
 	{
 		return S3Client.builder()
-					   .region(Region.EU_SOUTH_1)
+					   .region(Region.EU_WEST_3)
 					   .credentialsProvider(DefaultCredentialsProvider.create())
 					   .build();
 	}
