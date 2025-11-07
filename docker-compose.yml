@@ -1,5 +1,6 @@
 services: #definisce i servizi da avviare, nel nostro caso server e client
-  
+
+
   database:
     image: postgres:latest
     container_name: dieti-estates-db
@@ -45,11 +46,10 @@ services: #definisce i servizi da avviare, nel nostro caso server e client
     container_name: dieti-estates-client
     # Load runtime env vars (including secrets) from frontend/.env
     env_file:
-      - frontend/.env
+      - .env
     networks:
       - dieti-estates-network
-    depends_on:
-      - server
+    
     ports:
       - "4200:80"
     restart: unless-stopped
